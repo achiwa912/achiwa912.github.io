@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Effective Python一人輪読会(Item 37 to 51) &mdash; Dreaming in Brookline, MA 02446</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02446</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Effective Python一人輪読会(Item 37 to 51)</h1>
+    <p class="meta">
+<time datetime="2020-08-21T00:00:00-04:00" pubdate>Fri 21 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org1cef2df">1. Chapter 5: クラスとインタフェース</a>
+<ul>
+<li><a href="#orgd2788c7">1.1. Item 37: ビルトインタイプを何重にもネストさせるより(複数の)クラスを作れ</a></li>
+<li><a href="#orgcf6915f">1.2. Item 38: シンプルなインタフェースにはクラスでなく関数を受け入れよ</a></li>
+<li><a href="#org68142c2">1.3. Item 39: オブジェクトをgenericに作るためには@classmethodポリモーフィズムを使え</a></li>
+<li><a href="#orge97f1f3">1.4. Item 40: superを使って親クラスを初期化せよ</a></li>
+<li><a href="#orgf07ea62">1.5. Item 41: Mix-inクラスを使って機能をcomposeすることを考えよ</a></li>
+<li><a href="#org78926b9">1.6. Item 42: プライベートなアトリビュートよりもパブリックな方が良い</a></li>
+<li><a href="#org6121f3e">1.7. Item 43: カスタムコンテナタイプを作るにはcollections.abcを継承せよ</a></li>
+</ul>
+</li>
+<li><a href="#orgf7e2113">2. Chapter 6: メタクラスとアトリビュート</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org0d822cf">2.0.1. メタクラスの定義</a></li>
+<li><a href="#org75031fc">2.0.2. typeが持つ別の顔</a></li>
+<li><a href="#org8d01796">2.0.3. typeの正体</a></li>
+</ul>
+</li>
+<li><a href="#orgc11556f">2.1. Item 44: SetterやGetterメソッドよりもアトリビュートを普通に使え</a></li>
+<li><a href="#orgfc52e44">2.2. Item 45: アトリビュートのリファクタリングよりも @property を使え</a></li>
+<li><a href="#orgc1c7238">2.3. Item 46: 再利用可能な@propertyメソッドとしてデスクリプターを使え</a></li>
+<li><a href="#org436ca94">2.4. Item 47: Lazyアトリビュートのために__getattr__, ​__getattribute__や__setattribute__を使え</a></li>
+<li><a href="#orgee27390">2.5. Item 48: ​__init_subclass__を使ってサブクラスをvalidateせよ</a></li>
+<li><a href="#orgebbd2f7">2.6. Item 49: ​__init_subclass__を使ってクラスを登録せよ</a></li>
+<li><a href="#org72d199a">2.7. Item 50: ​__set_name__を使ってクラスアトリビュートをannotateせよ</a></li>
+<li><a href="#org563921a">2.8. Item 51: クラス拡張を組み合わせるために、メタクラスよりもクラスデコレーターを使え</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1cef2df" class="outline-2">
+<h2 id="org1cef2df"><span class="section-number-2">1</span> Chapter 5: クラスとインタフェース</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgd2788c7" class="outline-3">
+<h3 id="orgd2788c7"><span class="section-number-3">1.1</span> Item 37: ビルトインタイプを何重にもネストさせるより(複数の)クラスを作れ</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+コードを拡張して以下のような複雑なコードになったら、複数のクラスを使うようにリファクタリングした方が良いです。
+</p>
+<ul class="org-ul">
+<li>ディクショナリを含むディクショナリ</li>
+<li>3以上の個数を持つタプルを値として持つディクショナリ</li>
+<li>複雑にネストした他のビルトインタイプ</li>
+</ul>
+
+<p>
+長いタプルはnamedtupleを使う手もありますが、namedtupleには制限があります。
+</p>
+<ul class="org-ul">
+<li>デフォルト値が指定できない</li>
+<li>数値のインデックスやiterationでアトリビュート値がアクセスできる</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcf6915f" class="outline-3">
+<h3 id="orgcf6915f"><span class="section-number-3">1.2</span> Item 38: シンプルなインタフェースにはクラスでなく関数を受け入れよ</h3>
+<div class="outline-text-3" id="text-1-2">
+<pre class="example">
+current = {'green': 12, 'blue': 3}
+</pre>
+
+<p>
+このディクショナリに、
+</p>
+<pre class="example">
+increments = [('red', 5), ('blue', 17), ('orange', 9)]
+</pre>
+
+<p>
+このタプルのリストを加えて、
+</p>
+<pre class="example">
+result = {'green': 12, 'blue': 20, 'red': 5, 'orange': 9}
+</pre>
+
+<p>
+を得たいとします。
+</p>
+
+<p>
+次の関数は、ステートフルなclosureを使って追加した(=ミスした)色の数をカウントしつつ、上記のことを行います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">increment_with_report</span>(current, increments):
+    <span style="font-weight: bold; font-style: italic;">added_count</span> = 0
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">missing</span>():
+        <span style="font-style: italic;">'''&#12459;&#12454;&#12531;&#12488;&#12434;+1&#12375;&#12390;0&#12434;&#36820;&#12377;'''</span>
+        <span style="font-weight: bold;">nonlocal</span> added_count  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12473;&#12486;&#12540;&#12488;&#12501;&#12523;&#12394;closure</span>
+        <span style="font-weight: bold; font-style: italic;">added_count</span> += 1
+        <span style="font-weight: bold;">return</span> 0
+    <span style="font-weight: bold; font-style: italic;">result</span> = defaultdict(missing, current)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">closure&#12434;&#20181;&#36796;&#12416;</span>
+    <span style="font-weight: bold;">for</span> key, amount <span style="font-weight: bold;">in</span> increments:
+        <span style="font-weight: bold; font-style: italic;">result</span>[key] += amount
+    <span style="font-weight: bold;">return</span> result, added_count
+</pre>
+</div>
+
+<p>
+以前調べたとき、closuresは以下の定義でした。
+</p>
+<ul class="org-ul">
+<li>関数と、そのインナー関数がある</li>
+<li>インナー関数は、外側の関数で定義された変数を参照する</li>
+<li>外側の関数は、インナー関数を戻り値として返す</li>
+</ul>
+<p>
+上記の例では最後の要件を満たしていませんが、 <code>defaultdict()</code> にインナー関数 <code>missing()</code> を渡すことで、closureとして機能していることになるようです。
+</p>
+
+<p>
+また、上の例ではclosureをステートを保持する目的で使っています。これもclosureのユースケースの一つなのですね。
+</p>
+
+<p>
+しかし、ステートフルなclosureは読みづらいために避けるべきと書いてあります。その代わりにクラスを用意し、更に <code>__call__()</code> を実装することでクラスを関数のように使うことを推奨しています。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">BetterCountMissing</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>.added = 0
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__call__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>.added += 1
+        <span style="font-weight: bold;">return</span> 0
+
+<span style="font-weight: bold; font-style: italic;">counter</span> = BetterCountMissig()
+<span style="font-weight: bold; font-style: italic;">result</span> = defaultdict(counter, current)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">counter&#12434;&#38306;&#25968;&#12392;&#12375;&#12390;&#28193;&#12377;</span>
+<span style="font-weight: bold;">for</span> key, amount <span style="font-weight: bold;">in</span> increments:
+    <span style="font-weight: bold; font-style: italic;">result</span>[key] += amount
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org68142c2" class="outline-3">
+<h3 id="org68142c2"><span class="section-number-3">1.3</span> Item 39: オブジェクトをgenericに作るためには@classmethodポリモーフィズムを使え</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+えー、MapReduceって何でしたっけ。処理をたくさんのworkersにばらまいて、結果を統合していくやつでしたよね。この本は前提知識が高度すぎて、大変読みづらいです。ぼちぼち見ていきましょう。
+</p>
+
+<p>
+これはインタフェース的な、継承されることを前提としたクラスですね。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">InputData</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">read</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+</pre>
+</div>
+
+<p>
+パスを渡されてリードする処理を実装した子クラスです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">PathIputData</span>(InputData):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, path):
+        <span style="font-weight: bold;">super</span>().__init__()
+        <span style="font-weight: bold;">self</span>.path = path
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">read</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(<span style="font-weight: bold;">self</span>.path) <span style="font-weight: bold;">as</span> f:
+            <span style="font-weight: bold;">return</span> f.read()
+</pre>
+</div>
+
+<p>
+これもインタフェース的workerクラス。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Worker</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, input_data):
+        <span style="font-weight: bold;">self</span>.input_data = input_data
+        <span style="font-weight: bold;">self</span>.result = <span style="font-weight: bold; text-decoration: underline;">None</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">reduce</span>(<span style="font-weight: bold;">self</span>, other):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+</pre>
+</div>
+
+<p>
+行数をカウントする処理を入れ込んだworker子クラス。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">LineCountWorker</span>(Worker):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold; font-style: italic;">data</span> = <span style="font-weight: bold;">self</span>.input_data.read()
+        <span style="font-weight: bold;">self</span>.result = data.count(<span style="font-style: italic;">'\n'</span>)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">reduce</span>(<span style="font-weight: bold;">self</span>, other):
+        <span style="font-weight: bold;">self</span>.result += other.result
+</pre>
+</div>
+
+<p>
+次は、ディレクトリをリストして、その中にあるファイルをリードできる <code>PathInputData</code> オブジェクトをyieldするジェネレーター関数を定義します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> os
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">generate_inputs</span>(data_dir):
+    <span style="font-weight: bold;">for</span> name <span style="font-weight: bold;">in</span> os.listdir(data_dir):
+        <span style="font-weight: bold;">yield</span> PathInputData(os.path.join(data_dir, name))
+</pre>
+</div>
+
+<p>
+そしてworkersを複数用意するところ。ワーカーとして <code>LineCountWorker</code> を渡しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#24341;&#25968;input_list&#12399;PathInputData&#12434;yield&#12377;&#12427;&#12472;&#12455;&#12493;&#12524;&#12540;&#12479;&#12540;</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">create_workers</span>(input_list):  
+    <span style="font-weight: bold; font-style: italic;">workers</span> = []
+    <span style="font-weight: bold;">for</span> input_data <span style="font-weight: bold;">in</span> input_list:
+        workers.append(LineCountWorker(input_data))
+    <span style="font-weight: bold;">return</span> workers
+</pre>
+</div>
+
+<p>
+次は用意したworkersを実行するところ。Pythonでスレッド使うやり方習いましたっけ? まあ読めばわかるのでいいや。 <code>thread.join()</code> は作ったスレッドの実行が終わるまで待つ(ブロックされる)ということ。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Thread
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">execute</span>(workers):
+    <span style="font-weight: bold; font-style: italic;">threads</span> = [Thread(target=w.<span style="font-weight: bold;">map</span>) <span style="font-weight: bold;">for</span> w <span style="font-weight: bold;">in</span> workers]
+    <span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads: thread.start()
+    <span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads: thread.join()
+    first, *<span style="font-weight: bold; font-style: italic;">rest</span> = workers
+    <span style="font-weight: bold;">for</span> worker <span style="font-weight: bold;">in</span> rest:
+        first.<span style="font-weight: bold;">reduce</span>(worker)
+    <span style="font-weight: bold;">return</span> first.result
+</pre>
+</div>
+<p>
+おー、なんか格好いいです。これがMapReduceの実装なのですね。先頭の worker に全ての結果を集約しています。
+</p>
+
+<p>
+最後にこれらをまとめます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mapreduce</span>(data_dir):
+    <span style="font-weight: bold; font-style: italic;">inputs</span> = generate_inputs(data_dir)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12472;&#12455;&#12493;&#12524;&#12540;&#12479;&#12540;&#12434;&#36820;&#12377;</span>
+    <span style="font-weight: bold; font-style: italic;">workers</span> = create_workers(inputs)
+    <span style="font-weight: bold;">return</span> execute(workers)
+</pre>
+</div>
+<p>
+<code>generate_inputs</code> は <code>PathInputData</code> を一つずつ返す iterator を作り、 <code>create_workers</code> でこれらを割り振ったワーカーのリストを用意して、 <code>executee</code> で mapreduce します。うーん、格好いい! 
+</p>
+
+<p>
+ここまで理解したところで、やっと本節のテーマに入ります。導入が長すぎる。。。
+まずは、上記のやり方に対してダメ出しです。問題は、パーツの結びつきがお互いに強すぎて、一つ変更するとみんな変更しなくてはいけないこと。独立性が低すぎるということです。
+</p>
+
+<p>
+これに対する解はクラスメソッドのポリモーフィズムを使うことだと書いてあります。正直言って、意味がわかりません。読み進めましょう。
+</p>
+
+<p>
+まずはgenericな <code>InputData</code> クラスを定義します。追加したのはconfigパラメーターから設定を読み込むクラスメソッド(のインタフェース)。意味深です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">GenericInputData</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">read</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+    @<span style="font-weight: bold;">classmethod</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">generate_inputs</span>(cls, config):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+</pre>
+</div>
+
+<p>
+<code>PathInputData</code> クラスでこれを継承します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">PathInputData</span>(GenericInputData):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, path):
+        <span style="font-weight: bold;">super</span>().__init__()
+        <span style="font-weight: bold;">self</span>.path = path
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">read</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(<span style="font-weight: bold;">self</span>.path) <span style="font-weight: bold;">as</span> f:
+            <span style="font-weight: bold;">return</span> f.read()
+    @<span style="font-weight: bold;">classmethod</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">generate_input</span>(cls, config):
+        <span style="font-weight: bold; font-style: italic;">data_dir</span> = config[<span style="font-style: italic;">'data_dir'</span>]
+        <span style="font-weight: bold;">for</span> name <span style="font-weight: bold;">in</span> os.listdir(data_dir)
+            <span style="font-weight: bold;">yield</span> cls(os.path.join(data_dir, name))
+</pre>
+</div>
+<p>
+別関数だった <code>generate_input</code> を <code>PathInputData</code> にクラスメソッドとして組み込んでいます。
+</p>
+
+<p>
+<code>yield</code> の行は、 <code>PathInputData</code> のインスタンスを作って、その引数としてconfigのディレクトリにある各ファイルのパスを渡しています。 <code>@classmethod</code> を付けてクラスメソッドを用意することで、 <code>__init__()</code> を使わない別のやり方でコンストラクターを定義することができる、ということでした。
+</p>
+
+<p>
+また、genericなクラスではなく具体的な子クラスでそのクラスメソッドを実装することで、子クラスに合わせたフレキシブルな初期化ロジックを入れ込むことができます。
+</p>
+
+<p>
+そしてgenericなworkerクラスです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">GenericWorker</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, input_data)
+        <span style="font-weight: bold;">self</span>.input_data = input_data
+        <span style="font-weight: bold;">self</span>.result = <span style="font-weight: bold; text-decoration: underline;">None</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">reduce</span>(<span style="font-weight: bold;">self</span>, other):
+        <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">NotImplementedError</span>
+
+    @<span style="font-weight: bold;">classmethod</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">create_workers</span>(cls, input_class, config):
+        <span style="font-weight: bold; font-style: italic;">workers</span> = []
+        <span style="font-weight: bold;">for</span> input_data <span style="font-weight: bold;">in</span> input_class.generate_inputs(config):
+            workers.append(cls(input_data))
+        <span style="font-weight: bold;">return</span> workers
+</pre>
+</div>
+<p>
+こちらでも別関数だった <code>create_workers</code> をクラスメソッドとして組み込んでいます。今回のポイントはクラスメソッドを使ったポリモーフィズムとのことですが、 <code>create_workers</code> をジェネリックなworkerクラスに組み込んだところを言っているのでしょうか。
+</p>
+
+<p>
+以前は <code>mapreuce</code> 関数で呼び出していた <code>generate_inputs</code> はこの中で呼び出されるようになります。つまり、 <code>create_workers</code> メソッドにおいて <code>PathInputData</code> インスタンスの生成と、それを組み込んだ <code>GenericWorker</code> インスタンスの生成を行っています。
+</p>
+
+<p>
+<code>LineCountWorker</code> は <code>GenericWorker</code> を継承します。他は変更なし。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">LineCountWorker</span>(GenericWorker):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">map</span>(<span style="font-weight: bold;">self</span>):
+    ...
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">reduce</span>(<span style="font-weight: bold;">self</span>, other):
+    ...
+</pre>
+</div>
+
+<p>
+<code>mapreduce</code> 関数は引数としてconfigを取ります。 <code>generate_inputs</code> の呼び出しは <code>create_workers</code> に含まれたのでここからは無くなっています。シンプルになりました。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">mapreduce</span>(worker_class, input_class, config):
+    <span style="font-weight: bold; font-style: italic;">workers</span> = worker_class.create_workers(input_class, config)
+    <span style="font-weight: bold;">return</span> execute(workers)
+</pre>
+</div>
+
+<p>
+そして、全ての基点がここ。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">config</span> = {<span style="font-style: italic;">'data_dir'</span>: tmpdir}
+<span style="font-weight: bold; font-style: italic;">result</span> = mapreduce(LineCountWorker, PathInputData, config)
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'There are {result} lines'</span>)
+
+&gt;&gt;&gt;
+There are 4360 lines
+</pre>
+</div>
+
+<p>
+ところで、独立性が低すぎる件はこれで解決したのでしょうか。クラスのインスタンス生成をクラスメソッドとして組み込んだためスッキリしたとは思いますが、どこが解決されているのか今ひとつわかりません。。。
+</p>
+
+<p>
+今回の節はかなり難しかったです。意味を理解するのに数時間以上悩みました。
+</p>
+
+<p>
+追記です。このようなやり方でオブジェクトを作る方法は、static factory patternというようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge97f1f3" class="outline-3">
+<h3 id="orge97f1f3"><span class="section-number-3">1.4</span> Item 40: superを使って親クラスを初期化せよ</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+スーパークラスのコンストラクタを呼ぶときは、親クラスを名前で指定するのでなく、 <code>super.__init__()</code> を指定するように、とのこと。普通にやっていますよね。この節はこれで言いたいことはおしまいですが、更に補足します。
+</p>
+
+<p>
+二つの親クラスを継承した子クラスがあるとして、その二つの親クラスのどこかの先祖が同じクラスであるような継承をダイヤモンド継承と呼ぶらしいです。ダイヤモンド継承ではその同じ祖先のコンストラクタを複数回実行してしまうことで、副作用が出ることがあります。
+</p>
+
+<p>
+例えば共有する先祖クラスにおいて、親クラスで操作する変数の初期化をしている場合は、一つの親クラスがその変数の初期化及び値を操作した後に、別の親クラスのコンストラクタでもう一度初期化してしまう場合がありえます。
+</p>
+
+<p>
+しかし、 <code>super</code> を使うと一つの祖先クラスのコンストラクターを1回しか実行しないことを保証してくれます。このあたりのルールは method resolution order (MRO)という仕様にて定義されています。
+</p>
+
+<p>
+<code>super</code> によるMROを使ったコンストラクターは、先祖クラスのコンストラクターを実行する順序が、ぱっと見の感覚と異なる場合があることに注意。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf07ea62" class="outline-3">
+<h3 id="orgf07ea62"><span class="section-number-3">1.5</span> Item 41: Mix-inクラスを使って機能をcomposeすることを考えよ</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Mixinsは知りませんでした。<a href="https://www.residentmar.io/2019/07/07/python-mixins.html#:~:text=A%20mixin%20is%20a%20class,this%20feature%E2%80%94and%20nothing%20else.&amp;text=Mixins%20are%20a%20safe%20form%20of%20multiple%20inheritance.">ここ</a>にわかりやすい定義があります。
+</p>
+<blockquote>
+<p>
+A mixin is a class that defines and implements a single, well-defined feature. Subclasses that inherit from the mixin inherit this feature—and nothing else.
+</p>
+</blockquote>
+<p>
+継承させることを目的に、ある一つの機能だけを定義、実装したクラスで、 <code>xxxMixin</code> のような名前になるそうです。クラスを定義するときに、メインとなる親クラス一つと、複数のmixinクラスを継承するような使い方をします。
+</p>
+<pre class="example">
+class SomeClass(Parent, AaaMixin, BbbMixin, CccMixin):
+</pre>
+
+<p>
+のような感じで。これは便利そうです。Javaのインタフェースがこれに相当するのでしたっけ。
+</p>
+
+<p>
+この中に出てくるバイナリーツリーのコードの意味がピンときません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">BinaryTree</span>(ToDictMixin):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, value, left=<span style="font-weight: bold; text-decoration: underline;">None</span>, right=<span style="font-weight: bold; text-decoration: underline;">None</span>):
+        <span style="font-weight: bold;">self</span>.value = value
+        <span style="font-weight: bold;">self</span>.left = left
+        <span style="font-weight: bold;">self</span>.right = right
+</pre>
+</div>
+<p>
+<code>ToDictMinxin</code> はディクショナリ(リストや相当機能を持つクラスを含む)をたどってPythonのディクショナリに変換する <code>to_dict</code> メソッドを実装したmixinです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">tree</span> = BinaryTree(10, 
+    left=BinaryTree(7, right=BinaryTree(9)),
+    right=BinaryTree(13, left=BinaryTree(11)))
+<span style="font-weight: bold;">print</span>(tree.to_dict())
+&gt;&gt;&gt;
+{<span style="font-style: italic;">'value'</span>: 10,
+ <span style="font-style: italic;">'left'</span>: {<span style="font-style: italic;">'value'</span>: 7, 
+          <span style="font-style: italic;">'left'</span>: <span style="font-weight: bold; text-decoration: underline;">None</span>, 
+          <span style="font-style: italic;">'right: {'</span>value<span style="font-style: italic;">': 9, '</span>left<span style="font-style: italic;">': None, '</span>right<span style="font-style: italic;">': None}},</span>
+<span style="font-style: italic;"> '</span>right<span style="font-style: italic;">': {'</span>value<span style="font-style: italic;">': 13, </span>
+<span style="font-style: italic;">          '</span>left<span style="font-style: italic;">': {'</span>value<span style="font-style: italic;">': 11, '</span>left<span style="font-style: italic;">': None, '</span>right<span style="font-style: italic;">': None},</span>
+<span style="font-style: italic;">          '</span>right<span style="font-style: italic;">': None}}</span>
+</pre>
+</div>
+
+<p>
+ここにコードスニップを書いて眺めていたら、ようやく理解できました。
+Kindleデバイスでこの本を読むのは無理があります。。。
+</p>
+
+<p>
+また、
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> json
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">JsonMixin</span>:
+    @<span style="font-weight: bold;">classmethod</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">from_json</span>(cls, data):
+        <span style="font-weight: bold; font-style: italic;">kwargs</span> = json.loads(data)
+        <span style="font-weight: bold;">return</span> cls(**kwargs)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">to_json</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">return</span> json.dumps(<span style="font-weight: bold;">self</span>.to_dict())
+</pre>
+</div>
+<p>
+このクラスメソッド <code>from_json()</code> がわかりづらかったです。
+<code>data</code> はjsonエンコードしてシリアライズされたデータで、これをディクショナリに変換(デコード)して <code>kwargs</code> に入れます。そしてこれを引数に当該クラスのオブジェクトを作成して戻します。 <code>JsonMixin</code> は、当該クラスをjsonにエンコードする機能と、逆にデコードしてクラスに戻す機能を付与する mixin でした。
+</p>
+
+<p>
+これはスタティックファクトリーパターン、、、とは違うのかな。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org78926b9" class="outline-3">
+<h3 id="org78926b9"><span class="section-number-3">1.6</span> Item 42: プライベートなアトリビュートよりもパブリックな方が良い</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+タイトルの通りです。
+</p>
+<ul class="org-ul">
+<li>プライベートアトリビュートは頑張れば子クラスからアクセスできてしまう</li>
+<li>プライベートアトリビュートを親クラスから更にその親クラスに移した場合など、子クラスで無理にアクセスしようとしていると名称が変わってアクセスできなくなる</li>
+<li>プライベートの仕組みを使ってアクセス制御するよりも、注意事項をドキュメントに書いた方がよい</li>
+<li>唯一プライベートアトリビュートを使って良いのは、名前のコンフリクトを避けたい場合</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6121f3e" class="outline-3">
+<h3 id="org6121f3e"><span class="section-number-3">1.7</span> Item 43: カスタムコンテナタイプを作るにはcollections.abcを継承せよ</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+これもタイトルの通りです。
+</p>
+
+<p>
+<code>list</code> や <code>dict</code> 等のPythonで定義されているコンテナタイプを継承してクラスが作れるとは知りませんでした。
+</p>
+
+<p>
+<code>list</code> 等に用意されている便利なメソッドは多く、一から作るのは大変なので、 <code>collections.abc</code> を継承するとよい、ということでした。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf7e2113" class="outline-2">
+<h2 id="orgf7e2113"><span class="section-number-2">2</span> Chapter 6: メタクラスとアトリビュート</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+メタクラスって何ですか? StackOverflowの<a href="https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python">what-are-metaclass-in-python</a>に、ものすごく詳しくてわかりやすい解説がありました。
+</p>
+</div>
+
+<div id="outline-container-org0d822cf" class="outline-4">
+<h4 id="org0d822cf"><span class="section-number-4">2.0.1</span> メタクラスの定義</h4>
+<div class="outline-text-4" id="text-2-0-1">
+<p>
+メタクラスはクラスを作るクラスです。クラスはそのクラスの実体(オブジェクト)がどのように振る舞うかを規定しますが、メタクラスはクラスがどう振る舞うかを規定します。クラスはメタクラスのインスタンスです。
+</p>
+
+<p>
+そういう意味で、クラスはオブジェクトです。オブジェクトは以下の特徴を持ちます。
+</p>
+<ul class="org-ul">
+<li>それを変数にアサインできる</li>
+<li>コピーできる</li>
+<li>それにアトリビュートを追加できる</li>
+<li>関数のパラメーターとして渡すことが出来る</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org75031fc" class="outline-4">
+<h4 id="org75031fc"><span class="section-number-4">2.0.2</span> typeが持つ別の顔</h4>
+<div class="outline-text-4" id="text-2-0-2">
+<p>
+ご存じのように、 <code>type</code> には <code>type(1)</code> で <code>&lt;type 'int'&gt;</code> を、 <code>type("1")</code> で <code>&lt;type 'str'&gt;</code> のように返す機能がありますが、その他に全く別のアビリティーを持ちます。それは、クラスを動的に作る機能です。
+</p>
+
+<p>
+この機能の使い方は以下です。
+</p>
+<pre class="example">
+type(name, bases, attrs)
+# name: クラスの名前
+# bases: ペアレントクラスのタプル(空でもよい)
+# attrs: アトリビュートの名前と値を持つディクショナリ
+</pre>
+
+
+<p>
+例えば、
+</p>
+<pre class="example">
+class Foo():
+    bar = True
+</pre>
+
+<p>
+は次のように書けます。
+</p>
+<pre class="example">
+Foo = type('Foo', (), {'bar':True})
+</pre>
+
+<p>
+目からウロコです。なんだかすごくないですか!?
+</p>
+
+<p>
+メソッドを定義することも出来ます。
+</p>
+<pre class="example">
+def echo_bar(self):
+    print(self.bar)
+</pre>
+
+
+<p>
+Fooクラスを継承したFooChildを作ります。
+</p>
+<pre class="example">
+FooChild = type('FooChild', (Foo,), {'echo_bar': echo_bar})
+</pre>
+
+
+<p>
+これが、Pythonがキーワード <code>class</code> を見つけるとメタクラス <code>type</code> を使って行うことだそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8d01796" class="outline-4">
+<h4 id="org8d01796"><span class="section-number-4">2.0.3</span> typeの正体</h4>
+<div class="outline-text-4" id="text-2-0-3">
+<p>
+<code>__class__</code> のアトリビュートを見ると、タイプがわかります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; <span style="font-weight: bold; font-style: italic;">age</span> = 35
+&gt;&gt;&gt; age.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'int'</span>&gt;
+&gt;&gt;&gt; <span style="font-weight: bold; font-style: italic;">name</span> = <span style="font-style: italic;">'bob'</span>
+&gt;&gt;&gt; name.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'str'</span>&gt;
+&gt;&gt;&gt; <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">foo</span>(): <span style="font-weight: bold;">pass</span>
+... 
+&gt;&gt;&gt; foo.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'function'</span>&gt;
+&gt;&gt;&gt; <span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Bar</span>(<span style="font-weight: bold;">object</span>): <span style="font-weight: bold;">pass</span>
+... 
+&gt;&gt;&gt; <span style="font-weight: bold; font-style: italic;">b</span> = Bar()
+&gt;&gt;&gt; b.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Bar'</span>&gt;
+</pre>
+</div>
+<p>
+おー、これはわかりやすいです。
+</p>
+
+<p>
+一歩踏み込んで、 <code>__class__</code> の <code>__class__</code> を見てみると、、、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; age.__class__.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'type'</span>&gt;
+&gt;&gt;&gt; name.__class__.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'type'</span>&gt;
+&gt;&gt;&gt; foo.__class__.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'type'</span>&gt;
+&gt;&gt;&gt; b.__class__.__class__
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'type'</span>&gt;
+</pre>
+</div>
+<p>
+なんと、全て <code>type</code> になっていました。つまり、メタクラス <code>type</code> はPythonの様々なタイプオブジェクトのタイプなのでした。
+</p>
+
+<p>
+ここまで踏み込んだところで、ようやく本文に入ります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc11556f" class="outline-3">
+<h3 id="orgc11556f"><span class="section-number-3">2.1</span> Item 44: SetterやGetterメソッドよりもアトリビュートを普通に使え</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+getter, setterを用意するのはpythonicでないそうです。
+</p>
+
+<p>
+<code>@property</code> , <code>@&lt;attr&gt;.setter</code> デコレーターを使うと、アトリビュートの値を普通に参照、 <code>=</code> で設定するときにこれらのメソッドが使われます。Introducing Pythonを見返すまで忘れていましたが。。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Duck</span>():
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, input_name):
+        <span style="font-weight: bold;">self</span>.hidden_name = input_name
+    @<span style="font-weight: bold;">property</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">name</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">self</span>.hidden_name
+    <span style="font-weight: bold; text-decoration: underline;">@name.setter</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">name</span>(<span style="font-weight: bold;">self</span>, input_name):
+        <span style="font-weight: bold;">self</span>.hidden_name = input_name
+
+<span style="font-weight: bold; font-style: italic;">duck</span> = Duck(<span style="font-style: italic;">'No name'</span>)
+<span style="font-weight: bold; font-style: italic;">duck.name</span> = <span style="font-style: italic;">'Donald'</span>
+<span style="font-weight: bold;">print</span>(duck.name)
+&gt;&gt;&gt;
+Donald
+</pre>
+</div>
+
+<p>
+注意点として、これらは副作用無く、素早く終わるようにすること、だそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfc52e44" class="outline-3">
+<h3 id="orgfc52e44"><span class="section-number-3">2.2</span> Item 45: アトリビュートのリファクタリングよりも @property を使え</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<code>@property</code> のアドバンストな使い方は、アトリビュートをその場で計算して返すこと。Linuxの/procと似てますね。
+</p>
+
+<p>
+本題から外れてまたKindle版の悪口ですが、Click here to view code imageをクリックしてビットマップイメージでコードを見ても、まだインデントが間違っている箇所がたくさんあります。本当にひどい。返品したいくらいです。Kindle版の技術書がひどいのはある程度わかっていましたが、ここまでとは。もう安くても買いません。
+</p>
+
+<p>
+えーと、leaky bucket(穴の開いたバケツ)です。最初、普通に穴の開いたバケツをイメージして読んだのですが、コードの意味がよくわかりません。検索してみると専門用語のようです。ここで言っているクオータは何でしょう。残量? 使用した量? 残量みたいですね。整理しながら読んでいきましょう。
+</p>
+
+<p>
+まずはバケツを定義します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Bucket</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, period):
+        <span style="font-weight: bold;">self</span>.period_delta = timedelta(seconds=period)
+        <span style="font-weight: bold;">self</span>.reset_time = datetime.now()
+        <span style="font-weight: bold;">self</span>.quota = 0  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12463;&#12458;&#12540;&#12479;&#12434;0&#12395;&#21021;&#26399;&#21270;</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__repr__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">return</span> f<span style="font-style: italic;">'Bucket(quota={self.quota})'</span>
+</pre>
+</div>
+<p>
+これはいいですかね。最初はクオータ0始まりです。
+</p>
+
+<p>
+次は <code>fill()</code> です。バケツに水を汲みます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">fill</span>(bucket, amount):
+    <span style="font-weight: bold; font-style: italic;">now</span> = datatime.now()
+    <span style="font-weight: bold;">if</span> (now - bucket.reset_time) &gt; bucket.period_delta:
+        <span style="font-weight: bold; font-style: italic;">bucket.quota</span> = 0
+        <span style="font-weight: bold; font-style: italic;">bucket.reset_time</span> = now
+    <span style="font-weight: bold; font-style: italic;">bucket.quota</span> += amount
+</pre>
+</div>
+<p>
+時間が <code>bucket.period_delta</code> よりも長く経過していたら、タイマーをリセットし、クオータを <code>amount</code> に設定して、まだだったら残量に <code>amount</code> を追加しています。何ですかね。 <code>fill()</code> を呼ばれたときだけ一気に漏れる(そしてフィルする)バケツなのでしょうか。何だかWikiで呼んだleaky bucket algorithmの定義と違うような。。。
+</p>
+
+<p>
+そして、Kindle版でインデントがずれていた <code>deduct()</code> です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">deduct</span>(bucket, amount):
+    <span style="font-weight: bold; font-style: italic;">now</span> = datetime.now()
+    <span style="font-weight: bold;">if</span> (now - bucket.reset_time) &gt; bucket.period_delta:
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">False</span>  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12398;&#26399;&#38291;&#12395;&#12496;&#12465;&#12484;&#12399;&#12501;&#12451;&#12523;&#12373;&#12428;&#12390;&#12356;&#12394;&#12356;</span>
+    <span style="font-weight: bold;">if</span> bucket.quota - amount &lt; 0:
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">False</span>  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20351;&#12356;&#12383;&#12356;&#37327;&#12364;&#12394;&#12356;</span>
+    <span style="font-weight: bold; font-style: italic;">bucket.quota</span> -= amount
+    <span style="font-weight: bold;">return</span> <span style="font-weight: bold; text-decoration: underline;">True</span>
+</pre>
+</div>
+<p>
+あれれ、残量によらず(?)期間にバケツがフィルされていなければ <code>False</code> でリターンするのですね。フィルされずに <code>bucket.period_delta</code> を過ぎていたら、既に漏れてしまっているのでdeductさせません(クオータ(残量)の値は変えないけど)という乱暴な作りなのでしょうか。
+</p>
+
+<p>
+整理してみましょう。
+</p>
+<ul class="org-ul">
+<li>フィルするときに規定時間 <code>buekct.period_delta</code> 経っていなければ残量に追加量を加える</li>
+<li>フィルするときに規定時間経っていれば期間のカウンターをリセットして追加量＝残量とする</li>
+<li>水を使おうとしたときに残量が必要量あり、規定時間経っていなければ、使わせる</li>
+<li>水を使おうとしたときに規定時間経っていたら、(残量がどうあれ)使わせない</li>
+</ul>
+<p>
+やはり、乱暴な作りでした。。。
+</p>
+
+<p>
+この実装の問題は、そもそもバケツの残量がいくつから始まったのかわからないことだ、と書いてあります。そんなに大層な問題ですかね。。。
+</p>
+
+<p>
+で、改善版です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">NewBucket</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, period):
+        <span style="font-weight: bold;">self</span>.period_delta = timedelta(seconds=period)
+        <span style="font-weight: bold;">self</span>.reset_time = datetime.now()
+        <span style="font-weight: bold;">self</span>.max_quota = 0
+        <span style="font-weight: bold;">self</span>.quota_consumed = 0
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__repr__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">return</span> (f<span style="font-style: italic;">'NewBucket(max_quota={self.max_quota}, '</span>
+               f<span style="font-style: italic;">'quota_consumed={self.quota_consumed})'</span>)
+    @<span style="font-weight: bold;">property</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">quota</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">self</span>.max_quota - <span style="font-weight: bold;">self</span>.quota_consumed
+</pre>
+</div>
+<p>
+<code>quota</code> アトリビュートを廃止して <code>max_quota</code> と <code>quota_consumed</code> を導入しました。そして <code>@property</code> で廃止した <code>quota</code> アトリビュートを動的に作って返します。今回のポイントは実はここだけですかね。
+</p>
+
+<p>
+更にsetterの定義です。上で定義した <code>fill()</code> と <code>deduct()</code> がそのまま使えるように配慮しました、と書いてあります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; text-decoration: underline;">@quota.setter</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">quota</span>(<span style="font-weight: bold;">self</span>, amount):
+    <span style="font-weight: bold; font-style: italic;">delta</span> = <span style="font-weight: bold;">self</span>.max_quota - amount
+    <span style="font-weight: bold;">if</span> amount == 0:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">0&#12434;&#25351;&#23450;&#12375;&#12383;&#22580;&#21512;&#12399;&#12289;&#26032;&#12383;&#12394;&#26399;&#38291;&#12398;&#12383;&#12417;&#12395;&#12522;&#12475;&#12483;&#12488;&#12377;&#12427;</span>
+        <span style="font-weight: bold;">self</span>.quota_consumed = 0
+        <span style="font-weight: bold;">self</span>.max_quota = 0
+    eilf delta &lt; 0:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#26032;&#12383;&#12394;&#26399;&#38291;&#12398;&#12383;&#12417;&#12395;&#27531;&#37327;&#12434;&#12501;&#12451;&#12523;&#12377;&#12427;</span>
+        <span style="font-weight: bold;">assert</span> <span style="font-weight: bold;">self</span>.quota_comsumed == 0
+        <span style="font-weight: bold;">self</span>.max_quota = amount
+    <span style="font-weight: bold;">else</span>:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#24403;&#35442;&#26399;&#38291;&#12395;&#12362;&#12356;&#12390;&#12289;&#27531;&#37327;&#12434;&#20351;&#12358;</span>
+        <span style="font-weight: bold;">assert</span> <span style="font-weight: bold;">self</span>.max_quota &gt;= <span style="font-weight: bold;">self</span>.quota_consumed
+        <span style="font-weight: bold;">self</span>.quota_consumed += delta
+</pre>
+</div>
+<p>
+このメソッドだけ眺めても理解できないので、 <code>fill()</code> や <code>deduct()</code> と付き合わせて読みます。
+</p>
+
+<p>
+まず <code>amount == 0</code> の時は、 <code>fill()</code> で規定時間経過時のフィルのために、いったん残量をゼロにするところです。確かにこれでOKです。
+</p>
+
+<p>
+次の <code>delta &lt; 0</code> は、 <code>fill()</code> で残量をゼロした後にフィルするところです。残量をゼロにしたときに <code>quota_consumed = max_quota = 0</code> にしているので、 <code>delta</code> は必ず負になります。
+</p>
+
+<p>
+それ以外のケースは <code>deduct()</code> された場合です。このメソッドでは残量に、残量から <code>amount</code> を引いた量を代入している(<code>quota = max_quota - quota_consumed - amount</code>)ので、これがsetterメソッドで残量に設定する値になるから、setterメソッドの引数を <code>amount_setter</code> と表記すると、、、
+</p>
+<pre class="example">
+self.quota_consumed += delta は、
+self.quota_consumed = self.quota_consumed + delta ということなので、
+    = quota_consumed + (max_quota - amount_setter)  self略
+    = quota_consumed + (max_quota - (max_quota - quota_consumed - amount))
+    = quota_consumed x 2 + amount あれあれ???
+</pre>
+<p>
+うーむ、何をどう間違ったのか。 <code>quota_comsumed</code> が2回足されてしまいました。1回で良かったのに。2時間ほど考えてみましたがわかりませんでした。悔しいけど飛ばして進みます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc1c7238" class="outline-3">
+<h3 id="orgc1c7238"><span class="section-number-3">2.3</span> Item 46: 再利用可能な@propertyメソッドとしてデスクリプターを使え</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<code>@property</code> の大きな問題は再利用性です。同じようなアトリビュートがたくさんあると、それら全てに <code>@property</code> を用意しなければなりません。更に、無関係のクラスでは再利用できません。
+</p>
+
+<p>
+<code>@classmethod</code> はクラスメソッドで、そのクラスのオブジェクトを作らなくても使えるメソッドでした。 <code>@staticmethod</code> は知っているような気もしますがクラスメソッドと何が違うのでしたっけ。<a href="https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/">ここ</a>によると、スタティックメソッドは引数としてclsを取らないところがポイントで、クラスのステータスを扱えません。クラスメソッド(やインスタンスメソッドも?)から下請的に使うもののようです。
+</p>
+
+<p>
+次はデスクリプターです。Pythonのunder the hoodで活躍するもののようです。under the hood話はたまに聞くから良いのであって、これだけ続くとだいぶお腹いっぱいです。が、Real Pythonの<a href="https://realpython.com/python-descriptors/">長い記事</a>を読みます。。。。。 。。。読みました。最後の二つの節は意味が追えなかったので飛ばしましたが。
+</p>
+
+<p>
+デスクリプターは以下のデスクリプタープロトコルを一つ以上実装したクラスで、デスクリプター機能を実現したい他のクラスにアタッチして使います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">__get__(<span style="font-weight: bold;">self</span>, obj, <span style="font-weight: bold;">type</span>=<span style="font-weight: bold; text-decoration: underline;">None</span>) -&gt; <span style="font-weight: bold;">object</span>
+__set__(<span style="font-weight: bold;">self</span>, obj, value) -&gt; <span style="font-weight: bold; text-decoration: underline;">None</span>
+__delete__(<span style="font-weight: bold;">self</span>, obj) -&gt; <span style="font-weight: bold; text-decoration: underline;">None</span>
+</pre>
+</div>
+
+<p>
+そしてEffective Pythonに戻って話を続けます。あれれ、話の展開がそっくりです。こんなのあり? でもお陰で読みやすいです。
+</p>
+
+<p>
+以下の例で <code>Grade</code> がデスクリプターです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Grade</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__get__</span>(<span style="font-weight: bold;">self</span>, instance, instance_type):
+        ...
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__set__</span>(<span style="font-weight: bold;">self</span>, instance, value):
+        ...
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Exam</span>:
+    <span style="font-weight: bold; font-style: italic;">math_grade</span> = Grade()
+    <span style="font-weight: bold; font-style: italic;">writing_grade</span> = Grade()
+    <span style="font-weight: bold; font-style: italic;">science_grade</span> = Grade()
+</pre>
+</div>
+<p>
+<code>@property</code> と同様に、デスクリプターをアタッチした変数は、クラスインスタンスのアトリビュートとしてアクセスできるようになります。上の例では、 <code>Exam</code> のインスタンスを作ったとき、例えば <code>Exam_instance.writing_grade</code> のアトリビュートアクセスで、 <code>Exam</code> にアタッチされているデスクリプター <code>Grade</code> の <code>__get__</code> 、 <code>__get__</code> が使われます。
+</p>
+
+<p>
+具体例です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">exam</span> = Exam()
+<span style="font-weight: bold; font-style: italic;">exam.writing_grade</span> = 40
+</pre>
+</div>
+<p>
+これは、次のように解釈されます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Exam.<span style="font-weight: bold;">__dict__</span>[<span style="font-style: italic;">'writing_grade'</span>].__set__(exam, 40)
+</pre>
+</div>
+
+<p>
+ここで、 <code>__dict__</code> はPythonの全てのオブジェクトが持っているディクショナリのアトリビュートで、そのオブジェクトの全てのアトリビュートやメソッドが入っています。
+例えば、以下のようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">print</span>(Exam.<span style="font-weight: bold;">__dict__</span>)
+&gt;&gt;&gt;
+{<span style="font-style: italic;">'__module__'</span>: <span style="font-style: italic;">'__main__'</span>, <span style="font-style: italic;">'math_grade'</span>: &lt;__main__.Grade <span style="font-weight: bold;">object</span> at 0x10c02afa0&gt;, <span style="font-style: italic;">'writing_grade'</span>: &lt;__main__.Grade <span style="font-weight: bold;">object</span> at 0x10c02af70&gt;, <span style="font-style: italic;">'science_grade'</span>: &lt;__main__.Grade <span style="font-weight: bold;">object</span> at 0x10c041070&gt;, <span style="font-style: italic;">'__dict__'</span>: &lt;attribute <span style="font-style: italic;">'__dict__'</span> of <span style="font-style: italic;">'Exam'</span> objects&gt;, <span style="font-style: italic;">'__weakref__'</span>: &lt;attribute <span style="font-style: italic;">'__weakref__'</span> of <span style="font-style: italic;">'Exam'</span> objects&gt;, <span style="font-style: italic;">'__doc__'</span>: <span style="font-weight: bold; text-decoration: underline;">None</span>}
+</pre>
+</div>
+<p>
+<code>__dict__['writing_grade']</code> は <code>Grade</code> オブジェクトであることがわかりますね。同様に、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">exam.writing_grade
+</pre>
+</div>
+<p>
+これは、次のように解釈されます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Exam.<span style="font-weight: bold;">__dict__</span>[<span style="font-style: italic;">'writing_grade'</span>].__get__(exam, Exam)
+</pre>
+</div>
+
+<p>
+ここからしばらくReal PythonとEffective Pythonで同じストーリー展開で話が進みます。
+</p>
+<ol class="org-ol">
+<li><code>Grade</code> の実体は一つで、複数インスタンスから参照されるため、 <code>Grade</code> が持つアトリビュートに値を入れても駄目(一つのインスタンスで値を変えると、全てのインスタンスで変わってしまう)</li>
+<li>普通のアトリビュートでなく、オブジェクトをキーとするディクショナリにすれば解決、に見える</li>
+<li>そのディクショナリは強参照しているため、オブジェクトが不要となっても参照数が残り、ガベージコレクションがメモリを解放しない。つまり、メモリリークする。</li>
+<li>弱参照にすればいいじゃん(いまここ)</li>
+</ol>
+
+<p>
+何やらマニアックな話です。また新概念の登場です。 <code>weakref</code> モジュールの <code>WeakKeyDictionary</code> は弱参照するディクショナリです(<a href="https://docs.python.org/3/library/weakref.html">ここ</a>)。強参照(strong reference)が普通の参照で、弱参照(weak reference)は弱い参照です。この強弱は何が違うのかと言うと、ガベージコレクションの際に参照数をカウントする、しないになります。
+</p>
+
+<p>
+ガベージコレクション(GC)は参照カウントがゼロのオブジェクトを回収してメモリを解放しますが、弱参照はGCにカウントされません。このため、弱参照しか残っていないオブジェクトはGCによってメモリ解放(&amp;参照を解除)されてしまいます。
+</p>
+
+<p>
+そんな参照が役に立つのかというと、キャッシュなどのユースケースで使えます。キャッシュは本体がどこかにあるため、参照を消されてメモリ解放されても致命的ではないのです。
+</p>
+
+<p>
+<code>WeakKeyDictionary</code> を使った最終版です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> weakref <span style="font-weight: bold;">import</span> WeakKeyDictionary
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Grade</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>._values = WeakKeyDictionary()
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__get__</span>(<span style="font-weight: bold;">self</span>, instance, instance_type):
+        ...
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__set__</span>(<span style="font-weight: bold;">self</span>, instance, value):
+        ...
+</pre>
+</div>
+<p>
+ここでは省略していますが、 <code>__get__</code>, <code>__set__</code> の実装が変わっているはず、、、です。
+</p>
+
+<p>
+<code>Exam</code> の実装は変わりません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Exam</span>:
+    <span style="font-weight: bold; font-style: italic;">math_grade</span> = Grade()
+    <span style="font-weight: bold; font-style: italic;">writing_grade</span> = Grade()
+    <span style="font-weight: bold; font-style: italic;">science_grade</span> = Grade()
+
+<span style="font-weight: bold; font-style: italic;">first_exam</span> = Exam()
+<span style="font-weight: bold; font-style: italic;">first_exam.writing_grade</span> = 82
+<span style="font-weight: bold; font-style: italic;">second_exam</span> = Exam()
+<span style="font-weight: bold; font-style: italic;">second_exam.writing_grade</span> = 75
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'First {first_exam.writing_grade}'</span>)
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Second {second_exam.writing_grade}'</span>)
+&gt;&gt;&gt;
+First 82
+Second 75
+</pre>
+</div>
+<p>
+複数インスタンスで別の値を持つことができました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org436ca94" class="outline-3">
+<h3 id="org436ca94"><span class="section-number-3">2.4</span> Item 47: Lazyアトリビュートのために__getattr__, ​__getattribute__や__setattribute__を使え</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Pythonのスペシャルメソッド <code>__getattr__</code> はLazyなアトリビュート参照(参照された時に初めて見に行く)を実現します。クラスが <code>__getattr__</code> を実装していたら、オブジェクトインスタンスのディクショナリにアトリビュートが見つからなかった際、 <code>__getattr__</code> が呼ばれます。そしてそのアトリビュートはインスタンスディクショナリ <code>__dict__</code> に登録され、次以降のアクセスはそのディクショナリから値を取り出します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">SomeClass</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, aaa):
+        <span style="font-weight: bold;">self</span>.exists = 5
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12364;&#25351;&#23450;&#12450;&#12488;&#12522;&#12499;&#12517;&#12540;&#12488;&#12434;&#25345;&#12383;&#12394;&#12356;&#26178;&#12395;&#21628;&#12400;&#12428;&#12427;</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__getattr__</span>(<span style="font-weight: bold;">self</span>, name):
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"getattr is called"</span>)
+        <span style="font-weight: bold; font-style: italic;">value</span> = 15  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#26412;&#24403;&#12399;&#12289;&#12371;&#12371;&#12391;&#22806;&#37096;DB&#12394;&#12393;&#12363;&#12425;&#20516;&#12434;&#25345;&#12387;&#12390;&#12367;&#12427;</span>
+        <span style="font-weight: bold;">setattr</span>(<span style="font-weight: bold;">self</span>, name, value)
+        <span style="font-weight: bold;">return</span> value
+
+<span style="font-weight: bold; font-style: italic;">sc</span> = SomeClass()
+<span style="font-weight: bold;">print</span>(sc.exists)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"1st: "</span>, sc.foo)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"2nd: "</span>, sc.foo)
+&gt;&gt;&gt;
+5
+<span style="font-weight: bold;">getattr</span> <span style="font-weight: bold;">is</span> called
+1st:  15
+2nd:  15
+</pre>
+</div>
+<p>
+<code>foo</code> を2回読んだとき、 <code>__getattr__</code> が呼ばれたのは最初の1回だけだったことがわかります。
+</p>
+
+<p>
+<code>__dict__</code> にキャッシュされた値を取り出されると困る場合、例えば、アトリビュートが外部データベースの値を参照しているような時は、毎回実体のデータベースの値を読みにいく必要があります。これを実現するのが <code>__getattribute__</code> スペシャルメソッドです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">SomeClass</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>.exists = 5
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__getattribute__</span>(<span style="font-weight: bold;">self</span>, name):
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"__getattribute__ is called"</span>)
+        <span style="font-weight: bold; font-style: italic;">value</span> = 15
+        <span style="font-weight: bold;">setattr</span>(<span style="font-weight: bold;">self</span>, name, value)
+        <span style="font-weight: bold;">return</span> value
+
+<span style="font-weight: bold; font-style: italic;">sc</span> = SomeClass()
+<span style="font-weight: bold;">print</span>(sc.exists)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"1st: "</span>, sc.foo)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"2nd: "</span>, sc.foo)
+&gt;&gt;&gt;
+__getattribute__ <span style="font-weight: bold;">is</span> called
+15
+__getattribute__ <span style="font-weight: bold;">is</span> called
+1st:  15
+__getattribute__ <span style="font-weight: bold;">is</span> called
+2nd:  15
+</pre>
+</div>
+<p>
+常に <code>__getattribute__</code> が呼ばれていることがわかります。
+</p>
+
+<p>
+Lazyにセットしたい場合は、これらに共通の <code>__setattr__</code> を使います。これは毎回呼ばれるごとに、実体に値を設定します。
+</p>
+
+<p>
+注意点が一つあって、 <code>__getattribute__, __setattr__</code> を使うときにはその中でこれらが再帰的に呼ばれないようにしないと、無限recursiveによって落ちます。 <code>super().__setaddr__</code> のようにします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__setaddr__</span>(<span style="font-weight: bold;">self</span>, name, value):
+    &#12394;&#12395;&#12363;&#12481;&#12455;&#12483;&#12463;&#12375;&#12390;&#20363;&#22806;&#12434;&#19978;&#12370;&#12383;&#12426;&#12290;&#12290;&#12290;
+    <span style="font-weight: bold;">super</span>().__setattr__(name, value)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgee27390" class="outline-3">
+<h3 id="orgee27390"><span class="section-number-3">2.5</span> Item 48: ​__init_subclass__を使ってサブクラスをvalidateせよ</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+メタクラスは <code>type</code> を継承することで定義されます。デフォルトの挙動ではメタクラスは、関係するクラスのステートメントのコンテンツを <code>__new__</code> メソッドで受け取ります。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Meta</span>(<span style="font-weight: bold;">type</span>):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__new__</span>(meta, name, bases, class_dict):
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'* Running {meta}.__new__ for {name}'</span>)
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Bases:'</span>, bases)
+        <span style="font-weight: bold;">print</span>(class_dict)
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">type</span>.__new__(meta, name, bases, class_dict)
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">MyClass</span>(metaclass=Meta):
+    <span style="font-weight: bold; font-style: italic;">stuff</span> = 123
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">foo</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">pass</span>
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">MySubclass</span>(MyClass):
+    <span style="font-weight: bold; font-style: italic;">other</span> = 567
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">bar</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">pass</span>
+</pre>
+</div>
+
+<p>
+<code>__new__</code> の引数は以下です。
+</p>
+<pre class="example">
+meta: メタクラス
+name: (関連クラスの)名前
+bases: ペアレントクラスのタプル
+class dict: クラスのアトリビュートやメソッドの入ったディクショナリ
+</pre>
+
+<p>
+これを実行すると、以下のようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Running &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Meta'</span>&gt;.__new__ <span style="font-weight: bold;">for</span> MyClass
+Bases: ()
+{<span style="font-style: italic;">'__module__'</span>: <span style="font-style: italic;">'__main__'</span>, <span style="font-style: italic;">'__qualname__'</span>: <span style="font-style: italic;">'MyClass'</span>, <span style="font-style: italic;">'stuff'</span>: 123, <span style="font-style: italic;">'foo'</span>: &lt;function MyClass.foo at 0x10632f550&gt;}
+Running &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Meta'</span>&gt;.__new__ <span style="font-weight: bold;">for</span> MySubclass
+Bases: (&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.MyClass'</span>&gt;,)
+{<span style="font-style: italic;">'__module__'</span>: <span style="font-style: italic;">'__main__'</span>, <span style="font-style: italic;">'__qualname__'</span>: <span style="font-style: italic;">'MySubclass'</span>, <span style="font-style: italic;">'other'</span>: 567, <span style="font-style: italic;">'bar'</span>: &lt;function MySubclass.bar at 0x10632f5e0&gt;}
+</pre>
+</div>
+
+<p>
+このようにメタクラスでは、 <code>__new__</code> メソッドにおいて関係クラスの情報を得たり修正することが出来るため、関連クラスの定義が完了する前に、そのパラメーターの有効性をチェックする目的で使えそうです。
+</p>
+
+<p>
+しかしこのユースケースでは、メタクラスを使わずに、Python 3.6以降で用意されている <code>__init_subclass__</code> スペシャルクラスメソッドを使った方が良いです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">BetterPolygon</span>:
+    <span style="font-weight: bold; font-style: italic;">sides</span> = <span style="font-weight: bold; text-decoration: underline;">None</span>  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12469;&#12502;&#12463;&#12521;&#12473;&#12391;&#25351;&#23450;&#24517;&#35201;</span>
+
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init_subclass__</span>(cls):
+        <span style="font-weight: bold;">super</span>().__init_subclass()
+        <span style="font-weight: bold;">if</span> cls.sides &lt; 3:
+            <span style="font-weight: bold;">raise</span> <span style="font-weight: bold; text-decoration: underline;">ValueError</span>(<span style="font-style: italic;">'Polygons need 3+ sides'</span>)
+    @<span style="font-weight: bold;">classmethod</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">interior_angles</span>(cls):
+        <span style="font-weight: bold;">return</span> (cls.sides - 2) * 180
+</pre>
+</div>
+
+<p>
+これを継承して、ポリゴンを作ります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Point</span>(BetterPolygon):
+    <span style="font-weight: bold; font-style: italic;">sides</span> = 1
+&gt;&gt;&gt;
+Traceback ...
+<span style="font-weight: bold; text-decoration: underline;">ValueError</span>: Polygons need 3+ sides
+</pre>
+</div>
+<p>
+クラス <code>Point</code> を作ろうとして <code>BetterPolygon.__init_subclass()</code> にて例外が上がりました。
+</p>
+
+<p>
+<code>__init_subclass__</code> を使うと、複数のクラスチェック用クラスを継承したり、更にはダイヤモンド継承をしてもうまくハンドルしてくれます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Top</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init_subclass__</span>(cls):
+        <span style="font-weight: bold;">super</span>().__init_subclass()
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Top for {cls}'</span>)
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Left</span>(Top):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12428;&#12434;&#23450;&#32681;&#12377;&#12427;&#26178;&#12395;Top.__init_subclass__()&#12364;&#21628;&#12400;&#12428;&#12427;</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init_subclass__</span>(cls):
+        <span style="font-weight: bold;">super</span>().__init_subclass()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Right&#12395;&#12390;&#26082;&#12395;&#23455;&#34892;&#28168;&#12415;&#12398;&#12383;&#12417;&#20309;&#12418;&#12375;&#12394;&#12356;</span>
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Left for {cls}'</span>)
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Right</span>(Top):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12428;&#12434;&#23450;&#32681;&#12377;&#12427;&#26178;&#12395;Top.__init_subclass__()&#12364;&#21628;&#12400;&#12428;&#12427;</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init_subclass__</span>(cls):
+        <span style="font-weight: bold;">super</span>().__init_subclass()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Top.__init_subclass__()&#12434;&#21628;&#12406;</span>
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Right for {cls}'</span>)
+
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12428;&#12434;&#23450;&#32681;&#12377;&#12427;&#26178;&#12395;Right.__init_subclass__()&#12364;&#21628;&#12400;&#12428;&#12427;</span>
+<span style="font-weight: bold; font-style: italic;">#   </span><span style="font-weight: bold; font-style: italic;">&#12381;&#12398;&#20013;&#12391;&#12289;top.__init_subclass__()&#12434;&#21628;&#12406;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#27425;&#12395;&#12289;Left.__init_subclass__()&#12364;&#21628;&#12400;&#12428;&#12427;</span>
+<span style="font-weight: bold; font-style: italic;">#   </span><span style="font-weight: bold; font-style: italic;">&#12381;&#12398;&#20013;&#12391;&#12289;top.__init_subclass__()&#12434;&#21628;&#12400;&#12394;&#12356;(Right&#12364;&#23455;&#34892;&#28168;&#12415;)</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Bottom</span>(Left, Right):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init_subclass__</span>(cls):
+        <span style="font-weight: bold;">super</span>().__init_subclass()
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Bottom for {cls}'</span>)
+</pre>
+</div>
+
+<p>
+これを実行します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Top <span style="font-weight: bold;">for</span> &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Left'</span>&gt;  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Left&#12363;&#12425;Top&#12398;__init_subclass__&#23455;&#34892;</span>
+Top <span style="font-weight: bold;">for</span> &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Right'</span>&gt;  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Right&#12363;&#12425;Top&#12398;__init_subclass__&#23455;&#34892;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Bottom&#12363;&#12425;Right.__init_subclass__&#23455;&#34892;-&gt;Top&#12398;__init_subclass__&#23455;&#34892;</span>
+Top <span style="font-weight: bold;">for</span> &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Bottom'</span>&gt;  
+Right <span style="font-weight: bold;">for</span> &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Bottom'</span>&gt;  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Bottom&#12363;&#12425;Right.__init_subclass__&#23455;&#34892;</span>
+Left <span style="font-weight: bold;">for</span> &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.Bottom'</span>&gt;  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Bottom&#12363;&#12425;Left.__init_subclass__&#23455;&#34892;</span>
+</pre>
+</div>
+<p>
+<code>Bottom</code> は左経由、右経由と両方から <code>Top.__init_subclass__</code> を呼んでしまいそうですが、実際には、 <code>Top.__init_subclass__</code> はRight/Leftクラスで合わせて一度しか呼ばれていないことがわかります。 <code>super().__init_subclass__()</code> のお陰でダイヤモンド継承をうまく処理している証拠です。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgebbd2f7" class="outline-3">
+<h3 id="orgebbd2f7"><span class="section-number-3">2.6</span> Item 49: ​__init_subclass__を使ってクラスを登録せよ</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+モジュラーなPythonプログラムを作るために、次のような関数を使って作成したクラスを全て登録すること(class registration)は役に立つパターンの一つだそうです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">registry</span> = {}
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">registr_class</span>(target_class):
+    <span style="font-weight: bold; font-style: italic;">registry</span>[target_class.<span style="font-weight: bold;">__name__</span>] = target_class
+</pre>
+</div>
+
+<p>
+クラスを作ったら、必ず <code>register_class</code> を呼ぶ必要があるのですが、忘れないようにこれを自動で行うために <code>__init_subclass__</code> が使えます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Register</span>():
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init_subclass__</span>(cls):
+        <span style="font-weight: bold;">super</span>().__init_subclass__()
+        register_class(cls)
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">NewClass</span>(Register):
+    <span style="font-weight: bold;">pass</span>
+
+<span style="font-weight: bold;">print</span>(registry)
+&gt;&gt;&gt;
+{<span style="font-style: italic;">'NewClass'</span>: &lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.NewClass'</span>&gt;}
+</pre>
+</div>
+
+<p>
+メタクラスも使えますが、 <code>__init_subclass__</code> を使った方がクリアで理解しやすいとのことです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org72d199a" class="outline-3">
+<h3 id="org72d199a"><span class="section-number-3">2.7</span> Item 50: ​__set_name__を使ってクラスアトリビュートをannotateせよ</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+<code>__set_name__</code> は<a href="https://www.python.org/dev/peps/pep-0487/">PEP 487</a>で提唱され、Python 3.6以降に入っています。デスクリプターの問題(の一つ)は、それを含むクラスの情報を持たないことです。例えば、アトリビュートを <code>__dict__</code> に登録するユースケースにおいて、 <code>__get__</code> が呼ばれるまで登録するアトリビュートの名前を知りません。
+</p>
+
+<p>
+<code>__set_name__</code> はクラス作成の際に、このデスクリプターをアタッチする全てのアトリビュートに対して呼ばれ、デスクリプターがアトリビュート名の知識を得ることが出来ます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Field</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>.name = <span style="font-weight: bold; text-decoration: underline;">None</span>
+        <span style="font-weight: bold;">self</span>.internal_name = <span style="font-weight: bold; text-decoration: underline;">None</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__set_name__</span>(<span style="font-weight: bold;">self</span>, owner, name):
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Called on class creation for each descriptor</span>
+        <span style="font-weight: bold;">self</span>.name = name
+        <span style="font-weight: bold;">self</span>.internal_name = <span style="font-style: italic;">'_'</span> + name
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__get__</span>(<span style="font-weight: bold;">self</span>, instance , instance_type):
+        <span style="font-weight: bold;">if</span> instance <span style="font-weight: bold;">is</span> <span style="font-weight: bold; text-decoration: underline;">None</span>:
+            <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">self</span>
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">getattr</span>(instance, <span style="font-weight: bold;">self</span>.internal_name, <span style="font-style: italic;">''</span>)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__set__</span>(<span style="font-weight: bold;">self</span>, instance, value):
+        <span style="font-weight: bold;">setattr</span>(instance, <span style="font-weight: bold;">self</span>.internal_name, value)
+</pre>
+</div>
+<p>
+<code>Field</code> はデスクリプターです。 <code>__set_name__</code> によって、このデスクリプターをアタッチするクラスのアトリビュート名をとその内部名を覚えておいてくれます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">FixedCustomer</span>:
+    <span style="font-weight: bold; font-style: italic;">first_name</span> = Field()
+    <span style="font-weight: bold; font-style: italic;">last_name</span> = Filed()
+    <span style="font-weight: bold; font-style: italic;">prefix</span> = Field()
+    <span style="font-weight: bold; font-style: italic;">suffix</span> = Field()
+
+<span style="font-weight: bold; font-style: italic;">cust</span> = FixedCustomer()
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Before: {cust.first_name!r} {cust.__dict__}'</span>)
+<span style="font-weight: bold; font-style: italic;">cust.first_name</span> = <span style="font-style: italic;">'Joy'</span>
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'After: {cust.first_name!r} {cust.__dict__}'</span>)
+&gt;&gt;&gt;
+Before: <span style="font-style: italic;">''</span> {}
+After: <span style="font-style: italic;">'Joy'</span> {<span style="font-style: italic;">'_first_name'</span>: <span style="font-style: italic;">'Joy'</span>}
+</pre>
+</div>
+<p>
+first_nameを設定した時に、 <code>__set__</code> の指定通りに内部名が <code>dict</code> に登録されていることがわかります。
+</p>
+
+<p>
+first_nameは実際にはそのクラスのアトリビュートではなく、デスクリプター内に保持されている情報であるため、当該クラスオブジェクトの <code>__dict__</code> には登録されていません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org563921a" class="outline-3">
+<h3 id="org563921a"><span class="section-number-3">2.8</span> Item 51: クラス拡張を組み合わせるために、メタクラスよりもクラスデコレーターを使え</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+クラスの全てのメソッドに対し、ヘルパーを使って引数や戻り値、上がる割り込みをプリントすることを考えます。全てのメソッドにデコレーターを付けることは面倒です。メタクラスを使って仕込むことも、対象クラスの親クラスが別のメタクラスを既に使っていた場合に問題となります。
+</p>
+
+<p>
+これを解決するために、クラスデコレーターがあります。クラスデコレーターはクラス定義の前に <code>@&lt;decorator_name&gt;</code> を付けることで機能します。
+</p>
+
+<p>
+まずはシンプルなクラスデコレーターの例です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">my_class_decorator</span>(klass):
+    <span style="font-weight: bold; font-style: italic;">klass.extra_param</span> = <span style="font-style: italic;">'hello'</span>
+    <span style="font-weight: bold;">return</span> klass
+
+<span style="font-weight: bold; text-decoration: underline;">@my_class_decorator</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">MyClass</span>:
+    <span style="font-weight: bold;">pass</span>
+
+<span style="font-weight: bold;">print</span>(MyClass)
+<span style="font-weight: bold;">print</span>(MyClass.extra_param)
+&gt;&gt;&gt;
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.MyClass'</span>&gt;
+hello
+</pre>
+</div>
+<p>
+デコレーターによって、 <code>extra_param = 'hello'</code> が設定されています。
+</p>
+
+<p>
+次は上で述べたデバッグ用デコレーターです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> functools <span style="font-weight: bold;">import</span> wraps
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">trace_func</span>(func):
+    <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">hasattr</span>(func, <span style="font-style: italic;">'tracing'</span>):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Only decorate once</span>
+        <span style="font-weight: bold;">return</span> func
+
+    <span style="font-weight: bold; text-decoration: underline;">@wraps</span>(func)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">wrapper</span>(*args, **kwargs):
+        <span style="font-weight: bold; font-style: italic;">result</span> = <span style="font-weight: bold; text-decoration: underline;">None</span>
+        <span style="font-weight: bold;">try</span>:
+            <span style="font-weight: bold; font-style: italic;">result</span> = func(*args, **kwargs)
+            <span style="font-weight: bold;">return</span> result
+        <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span> <span style="font-weight: bold;">as</span> e:
+            <span style="font-weight: bold; font-style: italic;">result</span> = e
+            <span style="font-weight: bold;">raise</span>
+        <span style="font-weight: bold;">finally</span>:
+            <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'{func.__name__}({args!r}, {kwargs!r}) -&gt; '</span>
+                  f<span style="font-style: italic;">'{result!r}'</span>)
+
+    <span style="font-weight: bold; font-style: italic;">wrapper.tracing</span> = <span style="font-weight: bold; text-decoration: underline;">True</span>
+    <span style="font-weight: bold;">return</span> wrapper
+</pre>
+</div>
+<p>
+<code>functools</code> の <code>wraps</code> は関数をラッパーするデコレーターです。<a href="./effective2.html">Item 26</a>で学んでいました。 <code>try</code> ブロックの <code>finally</code> は、リターンしようが、例外が上がろうが、実行されます。
+</p>
+
+<p>
+次に示す <code>trace</code> はクラスデコレーターとして機能する関数です。 <code>dir</code> ビルトイン関数によってデコレートするクラスのアトリビュート一式(メソッドなど含む)の名前(キー)を取得し、これが <code>trace_types</code> に含まれるタイプなら(ie, メソッド等だったら) <code>trace_func</code> でラップして、ラップしたものを <code>setattr</code> で <code>__dict__</code> に設定します。つまり、そのメソッドの代わりにラップしたものが呼ばれるようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> types
+<span style="font-weight: bold; font-style: italic;">trace_types</span> = (
+    types.MethodType,
+    types.FunctionType,
+    types.BuiltinFunctionType,
+    types.BuiltinMethodType,
+    types.MethodDescriptorType,
+    types.ClassMethodDescriptorType)
+
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">trace</span>(klass):
+    <span style="font-weight: bold;">for</span> key <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">dir</span>(klass):
+        <span style="font-weight: bold; font-style: italic;">value</span> = <span style="font-weight: bold;">getattr</span>(klass, key)
+        <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">isinstance</span>(value, trace_types):
+            <span style="font-weight: bold; font-style: italic;">wrapped</span> = trace_func(value)
+            <span style="font-weight: bold;">setattr</span>(klass, key, wrapped)
+    <span style="font-weight: bold;">return</span> klass
+</pre>
+</div>
+
+<p>
+<code>@trace</code> クラスデコレーターで、 <code>dict</code> を継承したクラス <code>TraceDict</code> をデコレートします。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; text-decoration: underline;">@trace</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">TraceDict</span>(<span style="font-weight: bold;">dict</span>):
+    <span style="font-weight: bold;">pass</span>
+
+<span style="font-weight: bold; font-style: italic;">trace_dict</span> = TraceDict([(<span style="font-style: italic;">'hi'</span>, 1)])
+<span style="font-weight: bold; font-style: italic;">trace_dict</span>[<span style="font-style: italic;">'there'</span>] = 2
+trace_dict[<span style="font-style: italic;">'hi'</span>]
+<span style="font-weight: bold;">try</span>:
+    trace_dict[<span style="font-style: italic;">'doesn not exist'</span>]
+<span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">KeyError</span>:
+    <span style="font-weight: bold;">pass</span>  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Expected</span>
+&gt;&gt;&gt;
+__new__((&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'__main__.TraceDict'</span>&gt;, [(<span style="font-style: italic;">'hi'</span>, 1)]), {}) -&gt; {}
+__getitem__(({<span style="font-style: italic;">'hi'</span>: 1, <span style="font-style: italic;">'there'</span>: 2}, <span style="font-style: italic;">'hi'</span>), {}) -&gt; 1
+__getitem__(({<span style="font-style: italic;">'hi'</span>: 1, <span style="font-style: italic;">'there'</span>: 2}, <span style="font-style: italic;">'doesn not exist'</span>), {}) -&gt; <span style="font-weight: bold; text-decoration: underline;">KeyError</span>(<span style="font-style: italic;">'doesn not exist'</span>)
+</pre>
+</div>
+<p>
+実行結果を見ると、 <code>trace_func</code> 内のprint文は <code>TraceDict</code> がnewされた時と、キー'hi', 'doesn not exist'の値をそれぞれ参照しようとしたときに動いています。'there'に値2を入れた時に動いていないのはどうしてでしょうか。
+</p>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-21T00:00:00-04:00" pubdate>Fri 21 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/cookbook.html">Python Cookbook 3rd Editionを読みました</a>
+      </li>
+      <li class="post">
+          <a href="/fluent.html">Fluent Pythonを読みました</a>
+      </li>
+      <li class="post">
+          <a href="/effective5.html">Effective Python一人輪読会(Item 75 to 90)</a>
+      </li>
+      <li class="post">
+          <a href="/effective4.html">Effective Python一人輪読会(Item 52 to 74)</a>
+      </li>
+      <li class="post">
+          <a href="/effective3.html">Effective Python一人輪読会(Item 37 to 51)</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/blog.html">blog</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
