@@ -38,6 +38,7 @@
 
 
 <ul class="main-navigation">
+    <li><a href="pages/about.html">About me</a></li>
       <li >
         <a href="/category/blog.html">Blog</a>
       </li>
@@ -68,25 +69,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgee757c6">1. はじめに</a></li>
-<li><a href="#orga38cdab">2. emacsの嫌いなところ</a></li>
-<li><a href="#orgc48e259">3. elpyとは</a></li>
-<li><a href="#orgaffb71b">4. elpyの導入</a>
+<li><a href="#org9208452">1. はじめに</a></li>
+<li><a href="#org1a923c2">2. emacsの嫌いなところ</a></li>
+<li><a href="#org0eb75c3">3. elpyとは</a></li>
+<li><a href="#orgf38d831">4. elpyの導入</a>
 <ul>
-<li><a href="#org8b27619">4.1. melpaリポジトリの追加</a></li>
-<li><a href="#orgc05bd4e">4.2. パッケージを読み込む</a></li>
-<li><a href="#orgc1cdeec">4.3. パッケージをactivateする</a></li>
-<li><a href="#org679c93e">4.4. pipでインストールするパッケージを持ってくる</a></li>
-<li><a href="#orge6e78fd">4.5. 確認する</a></li>
+<li><a href="#org5008e97">4.1. melpaリポジトリの追加</a></li>
+<li><a href="#org0de4bd1">4.2. パッケージを読み込む</a></li>
+<li><a href="#org7375340">4.3. パッケージをactivateする</a></li>
+<li><a href="#org6dfca48">4.4. pipでインストールするパッケージを持ってくる</a></li>
+<li><a href="#orge70faf2">4.5. 確認する</a></li>
 </ul>
 </li>
-<li><a href="#org911cf5e">5. 終わりに</a></li>
+<li><a href="#org3095887">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgee757c6" class="outline-2">
-<h2 id="orgee757c6"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org9208452" class="outline-2">
+<h2 id="org9208452"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私は以前、elpyの導入に失敗しています。elpyはemacsをPythonの統合環境(IDE)化するパッケージです。
@@ -106,8 +107,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga38cdab" class="outline-2">
-<h2 id="orga38cdab"><span class="section-number-2">2</span> emacsの嫌いなところ</h2>
+<div id="outline-container-org1a923c2" class="outline-2">
+<h2 id="org1a923c2"><span class="section-number-2">2</span> emacsの嫌いなところ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いきなりですが、emacsの嫌いなところです。emacs使いはいろいろな意味で上級者が多いです。初級者向けの導入記事はあまり無いか、あっても高度すぎて理解できないことがよくあります。
@@ -127,8 +128,8 @@ emacs使いはきっと <del>マゾ</del> 辛いことが好きなんだと思�
 </div>
 </div>
 
-<div id="outline-container-orgc48e259" class="outline-2">
-<h2 id="orgc48e259"><span class="section-number-2">3</span> elpyとは</h2>
+<div id="outline-container-org0eb75c3" class="outline-2">
+<h2 id="org0eb75c3"><span class="section-number-2">3</span> elpyとは</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 話を戻して、elpyについてです。elpyはEmacs Python Development Environmentのことで、次のようなPythonのIDE機能を提供します。
@@ -148,12 +149,12 @@ emacs使いはきっと <del>マゾ</del> 辛いことが好きなんだと思�
 </div>
 </div>
 
-<div id="outline-container-orgaffb71b" class="outline-2">
-<h2 id="orgaffb71b"><span class="section-number-2">4</span> elpyの導入</h2>
+<div id="outline-container-orgf38d831" class="outline-2">
+<h2 id="orgf38d831"><span class="section-number-2">4</span> elpyの導入</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org8b27619" class="outline-3">
-<h3 id="org8b27619"><span class="section-number-3">4.1</span> melpaリポジトリの追加</h3>
+<div id="outline-container-org5008e97" class="outline-3">
+<h3 id="org5008e97"><span class="section-number-3">4.1</span> melpaリポジトリの追加</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 早速ですが、例のinit.elを編集します。
@@ -179,8 +180,8 @@ elpyはmelpaとかいうemacsのパッケージリポジトリから持ってく
 </div>
 </div>
 
-<div id="outline-container-orgc05bd4e" class="outline-3">
-<h3 id="orgc05bd4e"><span class="section-number-3">4.2</span> パッケージを読み込む</h3>
+<div id="outline-container-org0de4bd1" class="outline-3">
+<h3 id="org0de4bd1"><span class="section-number-3">4.2</span> パッケージを読み込む</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 次は、melpa他から必要なパッケージを持ってきます。
@@ -217,8 +218,8 @@ elpyの他にいろいろなパッケージを読んでいますが、簡単に�
 </div>
 </div>
 
-<div id="outline-container-orgc1cdeec" class="outline-3">
-<h3 id="orgc1cdeec"><span class="section-number-3">4.3</span> パッケージをactivateする</h3>
+<div id="outline-container-org7375340" class="outline-3">
+<h3 id="org7375340"><span class="section-number-3">4.3</span> パッケージをactivateする</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 そして、パッケージを有効化します。
@@ -259,8 +260,8 @@ export PATH="$HOME/.local/bin:$PYENV_ROOT/bin:$PATH"
 </div>
 </div>
 
-<div id="outline-container-org679c93e" class="outline-3">
-<h3 id="org679c93e"><span class="section-number-3">4.4</span> pipでインストールするパッケージを持ってくる</h3>
+<div id="outline-container-org6dfca48" class="outline-3">
+<h3 id="org6dfca48"><span class="section-number-3">4.4</span> pipでインストールするパッケージを持ってくる</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 melpaから持ってこられないパッケージをpipを使って持ってきます。
@@ -275,8 +276,8 @@ pip3 install jedi flake8 autopep8 yapf black
 </div>
 </div>
 
-<div id="outline-container-orge6e78fd" class="outline-3">
-<h3 id="orge6e78fd"><span class="section-number-3">4.5</span> 確認する</h3>
+<div id="outline-container-orge70faf2" class="outline-3">
+<h3 id="orge70faf2"><span class="section-number-3">4.5</span> 確認する</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 pythonの.pyファイルを開いてM-x elpy-configと入れ、リターンキーを押します。
@@ -290,8 +291,8 @@ pythonの.pyファイルを開いてM-x elpy-configと入れ、リターンキ�
 </div>
 </div>
 
-<div id="outline-container-org911cf5e" class="outline-2">
-<h2 id="org911cf5e"><span class="section-number-2">5</span> 終わりに</h2>
+<div id="outline-container-org3095887" class="outline-2">
+<h2 id="org3095887"><span class="section-number-2">5</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 上でも挙げた<a href="https://realpython.com/emacs-the-best-python-editor/">Real Pythonの導入記事</a>はemacsの説明から始まるので、うっかり見落とすところでしたが、さんざん検索した中で一番役に立った記事でした。初級者向けのemacs記事は少ないのでありがたいです。Real Pythonさん、どうもありがとうございます。
