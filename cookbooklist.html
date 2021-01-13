@@ -69,19 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9b9fd6d">1. はじめに</a></li>
-<li><a href="#orgd1cd692">2. レシピ一覧</a>
+<li><a href="#org1c8dcba">1. はじめに</a></li>
+<li><a href="#org2eb7ce4">2. レシピ一覧</a>
 <ul>
-<li><a href="#org5b88702">2.1. Chapter 1: データ構造とアルゴリズム</a></li>
-<li><a href="#org1d5b4a3">2.2. Chapter 2: 文字列とテキスト</a></li>
+<li><a href="#orge747f8d">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<ul>
+<li><a href="#org3771354">2.1.1. itemgetter()関数(1.13)</a></li>
+</ul>
+</li>
+<li><a href="#orgfadf81b">2.2. Chapter 2: 文字列とテキスト</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9b9fd6d" class="outline-2">
-<h2 id="org9b9fd6d"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org1c8dcba" class="outline-2">
+<h2 id="org1c8dcba"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。そこで、復習を兼ねて自分用にレシピリストを作ることにしました。少しずつアップデートするので、完成までに時間がかかりそうです。
@@ -89,12 +93,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </div>
 </div>
 
-<div id="outline-container-orgd1cd692" class="outline-2">
-<h2 id="orgd1cd692"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-org2eb7ce4" class="outline-2">
+<h2 id="org2eb7ce4"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5b88702" class="outline-3">
-<h3 id="org5b88702"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-orge747f8d" class="outline-3">
+<h3 id="orge747f8d"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -112,7 +116,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 
 <tr>
 <td class="org-right">1.2</td>
-<td class="org-left"><code>*</code> を使って可変数変数を(リストに)受ける</td>
+<td class="org-left"><code>*</code> (star unpacking)を使って可変数変数をリストに受ける</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">リストのレコードにタグを付けて異なる処理をするレシピ</td>
 </tr>
 
 <tr>
@@ -172,27 +181,27 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 
 <tr>
 <td class="org-right">1.11</td>
-<td class="org-left">スライスに名前を付けてコードの可読性を上げる。ビルトインslice()の使い方</td>
+<td class="org-left">スライスに名前を付けてコードの可読性を上げる。ビルトインslice()関数の使い方</td>
 </tr>
 
 <tr>
 <td class="org-right">1.12</td>
-<td class="org-left">Counterクラスを使って、シーケンス内のアイテムの登場回数を管理する</td>
+<td class="org-left">Counterオブジェクトを使ってアイテムの登場回数を管理する</td>
 </tr>
 
 <tr>
 <td class="org-right">&#xa0;</td>
-<td class="org-left">most_common()メソッド。 <code>+, -</code> での複数Counter操作</td>
+<td class="org-left">most_common(n)メソッド。 <code>+, -</code> での複数Counter操作</td>
 </tr>
 
 <tr>
 <td class="org-right">1.13</td>
-<td class="org-left">ディクショナリのリストをソートする。ソートキーの指定にitemgetter()を使う</td>
+<td class="org-left">ディクショナリのリストをソートするのに、ソートキーkey=itemgetter(キー)を使う</td>
 </tr>
 
 <tr>
 <td class="org-right">&#xa0;</td>
-<td class="org-left">ソートだけでなくmin(), max()でも指定可能</td>
+<td class="org-left">lambda関数も使える。ソートだけでなくmin(), max()でも指定可能</td>
 </tr>
 
 <tr>
@@ -252,10 +261,19 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </tbody>
 </table>
 </div>
+
+<div id="outline-container-org3771354" class="outline-4">
+<h4 id="org3771354"><span class="section-number-4">2.1.1</span> itemgetter()関数(1.13)</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+<code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
+</p>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org1d5b4a3" class="outline-3">
-<h3 id="org1d5b4a3"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div id="outline-container-orgfadf81b" class="outline-3">
+<h3 id="orgfadf81b"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
 </div>
 </div>
 </div>
