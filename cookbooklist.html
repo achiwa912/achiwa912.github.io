@@ -69,24 +69,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgdc52d58">1. はじめに</a></li>
-<li><a href="#org86636ec">2. レシピ一覧</a>
+<li><a href="#org0c8a618">1. はじめに</a></li>
+<li><a href="#org14d5a5a">2. レシピ一覧</a>
 <ul>
-<li><a href="#orgb82fd2c">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<li><a href="#org936bb63">2.1. Chapter 1: データ構造とアルゴリズム</a>
 <ul>
-<li><a href="#orgbf42c64">2.1.1. defaultdictとsetdefault(1.6)</a></li>
-<li><a href="#org34dfc16">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#orgf90248a">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#org4395e35">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#org8b72878">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
 </ul>
 </li>
-<li><a href="#org7f3cb1b">2.2. Chapter 2: 文字列とテキスト</a></li>
+<li><a href="#org2f7cc8d">2.2. Chapter 2: 文字列とテキスト</a>
+<ul>
+<li><a href="#org0c7adf6">2.2.1. noncaptureグループ</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdc52d58" class="outline-2">
-<h2 id="orgdc52d58"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org0c8a618" class="outline-2">
+<h2 id="org0c8a618"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。そこで、復習を兼ねて自分用にレシピリストを作ることにしました。少しずつアップデートするので、完成までに時間がかかりそうです。
@@ -94,12 +99,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </div>
 </div>
 
-<div id="outline-container-org86636ec" class="outline-2">
-<h2 id="org86636ec"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-org14d5a5a" class="outline-2">
+<h2 id="org14d5a5a"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb82fd2c" class="outline-3">
-<h3 id="orgb82fd2c"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-org936bb63" class="outline-3">
+<h3 id="org936bb63"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -227,27 +232,32 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 
 <tr>
 <td class="org-right">&#xa0;</td>
-<td class="org-left">filter()やcompress()も使える</td>
+<td class="org-left">filter()やcompress()の使い方。compressはbooleanのシーケンスを受ける</td>
 </tr>
 
 <tr>
 <td class="org-right">1.17</td>
-<td class="org-left">ディクショナリからサブセットのディクショナリを取り出すにはdictcompを使う</td>
+<td class="org-left">ディクショナリをフィルタしてサブセットのディクショナリを取り出すにはdictcompを使う</td>
 </tr>
 
 <tr>
 <td class="org-right">1.18</td>
-<td class="org-left">namedtupleの使い方。dict \rightarrows namedtuple変換レシピ</td>
-</tr>
-
-<tr>
-<td class="org-right">1.19</td>
-<td class="org-left">変換/フィルタしてからreduction(eg, sum(),min(),max())するのにgenexpを使う</td>
+<td class="org-left">namedtupleの使い方。dict &rarr; namedtuple変換レシピ</td>
 </tr>
 
 <tr>
 <td class="org-right">&#xa0;</td>
-<td class="org-left">genexpの代わりに、min(), max()等にkey引数を渡すレシピ</td>
+<td class="org-left">デフォルト値からなるnamedtupleを作り、_replace(**dic)でアップデートする</td>
+</tr>
+
+<tr>
+<td class="org-right">1.19</td>
+<td class="org-left">変換/フィルタしてからsum(),min(),max()等するのにgenexpを使う(値のみ返す)</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">genexpの代わりに、min(), max()等にkey引数を渡すレシピ(全体を返す)</td>
 </tr>
 
 <tr>
@@ -263,8 +273,8 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </table>
 </div>
 
-<div id="outline-container-orgbf42c64" class="outline-4">
-<h4 id="orgbf42c64"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
+<div id="outline-container-orgf90248a" class="outline-4">
+<h4 id="orgf90248a"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <code>defaultdict</code> は以下のように使う
@@ -291,8 +301,8 @@ d.setdeault(<span style="font-style: italic;">'a'</span>, []).append(1)
 </div>
 
 
-<div id="outline-container-org34dfc16" class="outline-4">
-<h4 id="org34dfc16"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
+<div id="outline-container-org4395e35" class="outline-4">
+<h4 id="org4395e35"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
@@ -303,10 +313,82 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </p>
 </div>
 </div>
+
+<div id="outline-container-org8b72878" class="outline-4">
+<h4 id="org8b72878"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+以下のようなパターンで使う。
+</p>
+<pre class="example">
+{ key:value for key,value in prices.items() if value &gt; 200}
+{ key:value for key,value in prices.items() if key in tech_names }
+</pre>
+</div>
+</div>
 </div>
 
-<div id="outline-container-org7f3cb1b" class="outline-3">
-<h3 id="org7f3cb1b"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+
+<div id="outline-container-org2f7cc8d" class="outline-3">
+<h3 id="org2f7cc8d"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">2.1</td>
+<td class="org-left">re.split(r'[;,\s]\s*', line)のように使う</td>
+</tr>
+
+<tr>
+<td class="org-right">2.2</td>
+<td class="org-left">文字列の先頭または末尾を調べるのにstartswith(), endswith()を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">複数選択肢がある場合はタプルを渡す name.endswith(('.py', 'html'))</td>
+</tr>
+
+<tr>
+<td class="org-right">2.3</td>
+<td class="org-left">fnmatch(), fnmatchcase()の使い方。fnmatch('foo.txt', '*.txt')</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">ワイルドカードを使いたいとき。正規表現未満。ファイル名以外でも</td>
+</tr>
+
+<tr>
+<td class="org-right">2.4</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div id="outline-container-org0c7adf6" class="outline-4">
+<h4 id="org0c7adf6"><span class="section-number-4">2.2.1</span> noncaptureグループ</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'[;,\s]\s*'</span>, line)
+[<span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">'fjdk'</span>, <span style="font-style: italic;">'afed'</span>, <span style="font-style: italic;">'fjek'</span>, <span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">'foo'</span>]
+&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'(;|,|\s)\s*'</span>, line)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">capture&#12464;&#12523;&#12540;&#12503;(&#32080;&#26524;&#12398;&#12522;&#12473;&#12488;&#12395;&#20986;&#21147;&#12373;&#12428;&#12427;)</span>
+[<span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">' '</span>, <span style="font-style: italic;">'fjdk'</span>, <span style="font-style: italic;">';'</span>, <span style="font-style: italic;">'afed'</span>, <span style="font-style: italic;">','</span>, <span style="font-style: italic;">'fjek'</span>, <span style="font-style: italic;">','</span>, <span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">','</span>, <span style="font-style: italic;">'foo'</span>]
+&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'(?:;|,|\s)\s*'</span>, line)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">noncapture&#12464;&#12523;&#12540;&#12503; (?: ...)</span>
+[<span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">'fjdk'</span>, <span style="font-style: italic;">'afed'</span>, <span style="font-style: italic;">'fjek'</span>, <span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">'foo'</span>]
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -332,6 +414,9 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/pronounce.html">英語の発音が悪い</a>
+      </li>
+      <li class="post">
           <a href="/cookbooklist.html">Python Cookbookレシピリスト</a>
       </li>
       <li class="post">
@@ -342,9 +427,6 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
       </li>
       <li class="post">
           <a href="/cookbook.html">Python Cookbook 3rd Editionを読みました</a>
-      </li>
-      <li class="post">
-          <a href="/fluent.html">Fluent Pythonを読みました</a>
       </li>
     </ul>
   </section>
@@ -363,7 +445,7 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
+    <a href="/tag/english.html">English</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
 
 
     <section>
