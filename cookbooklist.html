@@ -69,19 +69,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0c8a618">1. はじめに</a></li>
-<li><a href="#org14d5a5a">2. レシピ一覧</a>
+<li><a href="#orgca5eb25">1. はじめに</a></li>
+<li><a href="#org51a4347">2. レシピ一覧</a>
 <ul>
-<li><a href="#org936bb63">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<li><a href="#orgbf14c99">2.1. Chapter 1: データ構造とアルゴリズム</a>
 <ul>
-<li><a href="#orgf90248a">2.1.1. defaultdictとsetdefault(1.6)</a></li>
-<li><a href="#org4395e35">2.1.2. itemgetter()関数(1.13)</a></li>
-<li><a href="#org8b72878">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
+<li><a href="#org9679c01">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#orgb4dfd90">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#org9dd3754">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
 </ul>
 </li>
-<li><a href="#org2f7cc8d">2.2. Chapter 2: 文字列とテキスト</a>
+<li><a href="#org325e487">2.2. Chapter 2: 文字列とテキスト</a>
 <ul>
-<li><a href="#org0c7adf6">2.2.1. noncaptureグループ</a></li>
+<li><a href="#org8b80937">2.2.1. noncaptureグループ</a></li>
 </ul>
 </li>
 </ul>
@@ -90,21 +90,25 @@
 </div>
 </div>
 
-<div id="outline-container-org0c8a618" class="outline-2">
-<h2 id="org0c8a618"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgca5eb25" class="outline-2">
+<h2 id="orgca5eb25"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。そこで、復習を兼ねて自分用にレシピリストを作ることにしました。少しずつアップデートするので、完成までに時間がかかりそうです。
+Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。やはり、掲載されているコードサンプルは全て自分で入力して動きを確認していかないと駄目そうです。
+</p>
+
+<p>
+そこで、復習の意味でサンプルコードの実行と、自分用にレシピリストを作ることにしました。少しずつアップデートするので、完成までに時間がかかりそうです。今のペースだと5ヶ月くらい。。。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org14d5a5a" class="outline-2">
-<h2 id="org14d5a5a"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-org51a4347" class="outline-2">
+<h2 id="org51a4347"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org936bb63" class="outline-3">
-<h3 id="org936bb63"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-orgbf14c99" class="outline-3">
+<h3 id="orgbf14c99"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -273,8 +277,8 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </table>
 </div>
 
-<div id="outline-container-orgf90248a" class="outline-4">
-<h4 id="orgf90248a"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
+<div id="outline-container-org9679c01" class="outline-4">
+<h4 id="org9679c01"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <code>defaultdict</code> は以下のように使う
@@ -301,8 +305,8 @@ d.setdeault(<span style="font-style: italic;">'a'</span>, []).append(1)
 </div>
 
 
-<div id="outline-container-org4395e35" class="outline-4">
-<h4 id="org4395e35"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
+<div id="outline-container-orgb4dfd90" class="outline-4">
+<h4 id="orgb4dfd90"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
@@ -314,8 +318,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org8b72878" class="outline-4">
-<h4 id="org8b72878"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
+<div id="outline-container-org9dd3754" class="outline-4">
+<h4 id="org9dd3754"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 以下のようなパターンで使う。
@@ -329,8 +333,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-org2f7cc8d" class="outline-3">
-<h3 id="org2f7cc8d"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div id="outline-container-org325e487" class="outline-3">
+<h3 id="org325e487"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -343,7 +347,7 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 <tbody>
 <tr>
 <td class="org-right">2.1</td>
-<td class="org-left">re.split(r'[;,\s]\s*', line)のように使う</td>
+<td class="org-left">混在するdelimitersに対処 <code>re.split(r'[;,\s]\s*', line)</code> のように使う</td>
 </tr>
 
 <tr>
@@ -353,12 +357,12 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 
 <tr>
 <td class="org-right">&#xa0;</td>
-<td class="org-left">複数選択肢がある場合はタプルを渡す name.endswith(('.py', 'html'))</td>
+<td class="org-left">複数選択肢がある場合はタプルを渡す <code>name.endswith(('.py', 'html'))</code></td>
 </tr>
 
 <tr>
 <td class="org-right">2.3</td>
-<td class="org-left">fnmatch(), fnmatchcase()の使い方。fnmatch('foo.txt', '*.txt')</td>
+<td class="org-left">fnmatch(), fnmatchcase()の使い方 <code>fnmatch('foo.txt', '*.txt')</code></td>
 </tr>
 
 <tr>
@@ -368,6 +372,46 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 
 <tr>
 <td class="org-right">2.4</td>
+<td class="org-left">正規表現 re.compile(), match(), findall(), finditer()の使い方</td>
+</tr>
+
+<tr>
+<td class="org-right">2.5</td>
+<td class="org-left"><code>str.replace('before', 'after')</code> re.sub()/subn()使い方</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>re.sub(r'(\d+)/(\d+)/(\d+)', r'\3-\1-\2', text)</code> コールバック指定可</td>
+</tr>
+
+<tr>
+<td class="org-right">2.6</td>
+<td class="org-left">re.findall()等にflags=re.IGNORECASEを付ける</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">置き換え単語のケースを維持する、closureのヘルプ関数を使ったレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">2.7</td>
+<td class="org-left">正規表現で最短マッチ <code>re.compile(r'\"(.*?)\"')</code> のように?を付ける</td>
+</tr>
+
+<tr>
+<td class="org-right">2.8</td>
+<td class="org-left">複数行にわたるマッチ <code>re.compile(r'/\*((?:.¦\n)*?)\*/')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">re.DOTALLよりも自分でマッチパターンを書いた方が融通が利く</td>
+</tr>
+
+<tr>
+<td class="org-right">2.9</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
@@ -375,8 +419,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-org0c7adf6" class="outline-4">
-<h4 id="org0c7adf6"><span class="section-number-4">2.2.1</span> noncaptureグループ</h4>
+<div id="outline-container-org8b80937" class="outline-4">
+<h4 id="org8b80937"><span class="section-number-4">2.2.1</span> noncaptureグループ</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'[;,\s]\s*'</span>, line)
@@ -414,7 +458,7 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/pronounce.html">英語の発音が悪い</a>
+          <a href="/pronounce.html">googleの英語発音判定サービス</a>
       </li>
       <li class="post">
           <a href="/cookbooklist.html">Python Cookbookレシピリスト</a>
@@ -445,7 +489,7 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/english.html">English</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
+    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
 
 
     <section>
