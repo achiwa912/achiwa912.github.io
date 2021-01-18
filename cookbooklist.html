@@ -69,19 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgca5eb25">1. はじめに</a></li>
-<li><a href="#org51a4347">2. レシピ一覧</a>
+<li><a href="#org6ebe1e9">1. はじめに</a></li>
+<li><a href="#orgecf0bf0">2. レシピ一覧</a>
 <ul>
-<li><a href="#orgbf14c99">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<li><a href="#orgf9135bb">2.1. Chapter 1: データ構造とアルゴリズム</a>
 <ul>
-<li><a href="#org9679c01">2.1.1. defaultdictとsetdefault(1.6)</a></li>
-<li><a href="#orgb4dfd90">2.1.2. itemgetter()関数(1.13)</a></li>
-<li><a href="#org9dd3754">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
+<li><a href="#orgbd424e5">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#orgc54d2ef">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#orgb873cfd">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
 </ul>
 </li>
-<li><a href="#org325e487">2.2. Chapter 2: 文字列とテキスト</a>
+<li><a href="#orge2683d0">2.2. Chapter 2: 文字列とテキスト</a>
 <ul>
-<li><a href="#org8b80937">2.2.1. noncaptureグループ</a></li>
+<li><a href="#org285a79b">2.2.1. noncaptureグループ(2.1)</a></li>
+<li><a href="#org1763a4a">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
+<li><a href="#orgd8a56b7">2.2.3. (2.14)</a></li>
 </ul>
 </li>
 </ul>
@@ -90,8 +92,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgca5eb25" class="outline-2">
-<h2 id="orgca5eb25"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org6ebe1e9" class="outline-2">
+<h2 id="org6ebe1e9"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。やはり、掲載されているコードサンプルは全て自分で入力して動きを確認していかないと駄目そうです。
@@ -103,12 +105,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </div>
 </div>
 
-<div id="outline-container-org51a4347" class="outline-2">
-<h2 id="org51a4347"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-orgecf0bf0" class="outline-2">
+<h2 id="orgecf0bf0"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbf14c99" class="outline-3">
-<h3 id="orgbf14c99"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-orgf9135bb" class="outline-3">
+<h3 id="orgf9135bb"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -277,8 +279,8 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </table>
 </div>
 
-<div id="outline-container-org9679c01" class="outline-4">
-<h4 id="org9679c01"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
+<div id="outline-container-orgbd424e5" class="outline-4">
+<h4 id="orgbd424e5"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <code>defaultdict</code> は以下のように使う
@@ -305,8 +307,8 @@ d.setdeault(<span style="font-style: italic;">'a'</span>, []).append(1)
 </div>
 
 
-<div id="outline-container-orgb4dfd90" class="outline-4">
-<h4 id="orgb4dfd90"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
+<div id="outline-container-orgc54d2ef" class="outline-4">
+<h4 id="orgc54d2ef"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
@@ -318,8 +320,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org9dd3754" class="outline-4">
-<h4 id="org9dd3754"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
+<div id="outline-container-orgb873cfd" class="outline-4">
+<h4 id="orgb873cfd"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 以下のようなパターンで使う。
@@ -333,8 +335,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-org325e487" class="outline-3">
-<h3 id="org325e487"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div id="outline-container-orge2683d0" class="outline-3">
+<h3 id="orge2683d0"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -412,6 +414,91 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 
 <tr>
 <td class="org-right">2.9</td>
+<td class="org-left">unicode textをnormalizeする <code>unicodedata.normalize('NFC', text)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">combining文字を含むテキストをasciiに変換するレシピ。</td>
+</tr>
+
+<tr>
+<td class="org-right">2.10</td>
+<td class="org-left">uniocde文字を正規表現で扱う場合、case foldに注意</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">本格的にやるなら3rd partyのregexライブラリ等を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">2.11</td>
+<td class="org-left">strip(), lstrip(), rstrip() スペース以外の文字も指定可能 <code>strip('-=')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">先頭、末尾以外もstripしたい場合 <code>re.sub('\s+', ' ', text)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">2.12</td>
+<td class="org-left">テキストをsanitize, clean upするのにtranslate()を使うレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">NFDにnormalizeして <code>b.encode('ascii', 'ignore').decode('ascii')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">速度ではstr.replace()メソッドが一番速い</td>
+</tr>
+
+<tr>
+<td class="org-right">2.13</td>
+<td class="org-left">ljust(), rjust(), center()を使ったallignment <code>text.rjust(20, '=')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">format()も使える。ストリング以外でも <code>format(x, '10.2f')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">2.14</td>
+<td class="org-left">str.join()の使い方 <code>+</code> は文字列をコピーするので非効率(遅い)</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">print文のセパレーター指定は使える <code>print(a,b,c,sep=' ')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">多くの文字列小片をyieldするgenerator関数を使うレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">2.15</td>
+<td class="org-left">文字列に変数を入れ込む <code>s.format_map(vars())</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">dictを継承し、__missing__()を持つクラスを作って例外にならないように</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">vars()の代わりにsys._getframe(1).f_localsを使うframe hackレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
 <td class="org-left">&#xa0;</td>
 </tr>
 </tbody>
@@ -419,8 +506,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-org8b80937" class="outline-4">
-<h4 id="org8b80937"><span class="section-number-4">2.2.1</span> noncaptureグループ</h4>
+<div id="outline-container-org285a79b" class="outline-4">
+<h4 id="org285a79b"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'[;,\s]\s*'</span>, line)
@@ -429,6 +516,39 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 [<span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">' '</span>, <span style="font-style: italic;">'fjdk'</span>, <span style="font-style: italic;">';'</span>, <span style="font-style: italic;">'afed'</span>, <span style="font-style: italic;">','</span>, <span style="font-style: italic;">'fjek'</span>, <span style="font-style: italic;">','</span>, <span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">','</span>, <span style="font-style: italic;">'foo'</span>]
 &gt;&gt;&gt; re.split(r<span style="font-style: italic;">'(?:;|,|\s)\s*'</span>, line)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">noncapture&#12464;&#12523;&#12540;&#12503; (?: ...)</span>
 [<span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">'fjdk'</span>, <span style="font-style: italic;">'afed'</span>, <span style="font-style: italic;">'fjek'</span>, <span style="font-style: italic;">'asdf'</span>, <span style="font-style: italic;">'foo'</span>]
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1763a4a" class="outline-4">
+<h4 id="org1763a4a"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+ファイル内の行を全てstripしたい場合、genexpで効率よく実現できる。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(filename) <span style="font-weight: bold;">as</span> f:
+    <span style="font-weight: bold; font-style: italic;">lines</span> = (line.strip() <span style="font-weight: bold;">for</span> line <span style="font-weight: bold;">in</span> f)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">iterator&#12434;&#20316;&#12427;&#12384;&#12369;</span>
+    <span style="font-weight: bold;">for</span> line <span style="font-weight: bold;">in</span> lines:
+        ...
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd8a56b7" class="outline-4">
+<h4 id="orgd8a56b7"><span class="section-number-4">2.2.3</span> (2.14)</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+genexpを使ってリストを文字列に変換するレシピ。文字列化と連結を一括で実施する。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; <span style="font-weight: bold; font-style: italic;">data</span> = [<span style="font-style: italic;">'ACME'</span>, 50, 91.1]
+&gt;&gt;&gt; <span style="font-style: italic;">','</span>.join(<span style="font-weight: bold;">str</span>(d) <span style="font-weight: bold;">for</span> d <span style="font-weight: bold;">in</span> data)
+<span style="font-style: italic;">'ACME,50,91.1'</span>
 </pre>
 </div>
 </div>
