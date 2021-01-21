@@ -69,32 +69,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgeb09ffe">1. はじめに</a></li>
-<li><a href="#orgc4a1bee">2. レシピ一覧</a>
+<li><a href="#orge86a354">1. はじめに</a></li>
+<li><a href="#org06a35df">2. レシピ一覧</a>
 <ul>
-<li><a href="#org705cc8d">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<li><a href="#orgc67d241">2.1. Chapter 1: データ構造とアルゴリズム</a>
 <ul>
-<li><a href="#orgdedb584">2.1.1. defaultdictとsetdefault(1.6)</a></li>
-<li><a href="#org1eb9c7d">2.1.2. itemgetter()関数(1.13)</a></li>
-<li><a href="#orgf5e669d">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
+<li><a href="#org413e9c3">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#org2ec31b1">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#org818fbfc">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
 </ul>
 </li>
-<li><a href="#orgd48ab9e">2.2. Chapter 2: 文字列とテキスト</a>
+<li><a href="#orgd46fb8d">2.2. Chapter 2: 文字列とテキスト</a>
 <ul>
-<li><a href="#org690ab96">2.2.1. noncaptureグループ(2.1)</a></li>
-<li><a href="#org7ba2ce2">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
-<li><a href="#org398e39c">2.2.3. (2.14)</a></li>
+<li><a href="#org65e39ab">2.2.1. noncaptureグループ(2.1)</a></li>
+<li><a href="#org57fdeef">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
+<li><a href="#org7b93f16">2.2.3. (2.14)</a></li>
 </ul>
 </li>
-<li><a href="#orge5cf0bb">2.3. 数、日にちと時間</a></li>
+<li><a href="#org3320c01">2.3. 数、日にちと時間</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgeb09ffe" class="outline-2">
-<h2 id="orgeb09ffe"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orge86a354" class="outline-2">
+<h2 id="orge86a354"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。やはり、掲載されているコードサンプルは全て自分で入力して動きを確認していかないと駄目そうです。
@@ -106,12 +106,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </div>
 </div>
 
-<div id="outline-container-orgc4a1bee" class="outline-2">
-<h2 id="orgc4a1bee"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-org06a35df" class="outline-2">
+<h2 id="org06a35df"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org705cc8d" class="outline-3">
-<h3 id="org705cc8d"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-orgc67d241" class="outline-3">
+<h3 id="orgc67d241"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -280,8 +280,8 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </table>
 </div>
 
-<div id="outline-container-orgdedb584" class="outline-4">
-<h4 id="orgdedb584"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
+<div id="outline-container-org413e9c3" class="outline-4">
+<h4 id="org413e9c3"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <code>defaultdict</code> は以下のように使う
@@ -308,8 +308,8 @@ d.setdeault(<span style="font-style: italic;">'a'</span>, []).append(1)
 </div>
 
 
-<div id="outline-container-org1eb9c7d" class="outline-4">
-<h4 id="org1eb9c7d"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
+<div id="outline-container-org2ec31b1" class="outline-4">
+<h4 id="org2ec31b1"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
@@ -321,8 +321,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-orgf5e669d" class="outline-4">
-<h4 id="orgf5e669d"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
+<div id="outline-container-org818fbfc" class="outline-4">
+<h4 id="org818fbfc"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 以下のようなパターンで使う。
@@ -336,8 +336,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-orgd48ab9e" class="outline-3">
-<h3 id="orgd48ab9e"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div id="outline-container-orgd46fb8d" class="outline-3">
+<h3 id="orgd46fb8d"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -536,8 +536,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </table>
 </div>
 
-<div id="outline-container-org690ab96" class="outline-4">
-<h4 id="org690ab96"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
+<div id="outline-container-org65e39ab" class="outline-4">
+<h4 id="org65e39ab"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'[;,\s]\s*'</span>, line)
@@ -551,8 +551,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org7ba2ce2" class="outline-4">
-<h4 id="org7ba2ce2"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
+<div id="outline-container-org57fdeef" class="outline-4">
+<h4 id="org57fdeef"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 ファイル内の行を全てstripしたい場合、genexpで効率よく実現できる。
@@ -568,8 +568,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org398e39c" class="outline-4">
-<h4 id="org398e39c"><span class="section-number-4">2.2.3</span> (2.14)</h4>
+<div id="outline-container-org7b93f16" class="outline-4">
+<h4 id="org7b93f16"><span class="section-number-4">2.2.3</span> (2.14)</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 genexpを使ってリストを文字列に変換するレシピ。文字列化と連結を一括で実施する。
@@ -585,8 +585,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </div>
 </div>
 
-<div id="outline-container-orge5cf0bb" class="outline-3">
-<h3 id="orge5cf0bb"><span class="section-number-3">2.3</span> 数、日にちと時間</h3>
+<div id="outline-container-org3320c01" class="outline-3">
+<h3 id="org3320c01"><span class="section-number-3">2.3</span> 数、日にちと時間</h3>
 </div>
 </div>
 </div>
@@ -612,6 +612,9 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/etf.html">ETFは何を買うか</a>
+      </li>
+      <li class="post">
           <a href="/charles.html">Charles Schwabの口座を開設しました</a>
       </li>
       <li class="post">
@@ -622,9 +625,6 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
       </li>
       <li class="post">
           <a href="/bose500.html">Bose Home Speaker 500を買いました</a>
-      </li>
-      <li class="post">
-          <a href="/learnsql.html">Learning SQL 3rd Editionを読みました</a>
       </li>
     </ul>
   </section>
@@ -643,7 +643,7 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
 
 
     <section>
