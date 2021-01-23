@@ -69,32 +69,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge86a354">1. はじめに</a></li>
-<li><a href="#org06a35df">2. レシピ一覧</a>
+<li><a href="#org1bb6ca5">1. はじめに</a></li>
+<li><a href="#orgad13d50">2. レシピ一覧</a>
 <ul>
-<li><a href="#orgc67d241">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<li><a href="#org856fe45">2.1. Chapter 1: データ構造とアルゴリズム</a>
 <ul>
-<li><a href="#org413e9c3">2.1.1. defaultdictとsetdefault(1.6)</a></li>
-<li><a href="#org2ec31b1">2.1.2. itemgetter()関数(1.13)</a></li>
-<li><a href="#org818fbfc">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
+<li><a href="#org0437e39">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#orgee03792">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#org3968919">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
 </ul>
 </li>
-<li><a href="#orgd46fb8d">2.2. Chapter 2: 文字列とテキスト</a>
+<li><a href="#org3efc1cb">2.2. Chapter 2: 文字列とテキスト</a>
 <ul>
-<li><a href="#org65e39ab">2.2.1. noncaptureグループ(2.1)</a></li>
-<li><a href="#org57fdeef">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
-<li><a href="#org7b93f16">2.2.3. (2.14)</a></li>
+<li><a href="#orgbef2704">2.2.1. noncaptureグループ(2.1)</a></li>
+<li><a href="#org245a06a">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
+<li><a href="#org3c5f5ce">2.2.3. (2.14)</a></li>
 </ul>
 </li>
-<li><a href="#org3320c01">2.3. 数、日にちと時間</a></li>
+<li><a href="#orgf71bb7c">2.3. 数、日にちと時間</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge86a354" class="outline-2">
-<h2 id="orge86a354"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org1bb6ca5" class="outline-2">
+<h2 id="org1bb6ca5"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。やはり、掲載されているコードサンプルは全て自分で入力して動きを確認していかないと駄目そうです。
@@ -106,12 +106,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </div>
 </div>
 
-<div id="outline-container-org06a35df" class="outline-2">
-<h2 id="org06a35df"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-orgad13d50" class="outline-2">
+<h2 id="orgad13d50"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc67d241" class="outline-3">
-<h3 id="orgc67d241"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-org856fe45" class="outline-3">
+<h3 id="org856fe45"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -139,7 +139,7 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 
 <tr>
 <td class="org-right">1.3</td>
-<td class="org-left">限定数のヒストリーを持つのにdequeが使える</td>
+<td class="org-left">限定数のヒストリーを持つのにcollections.dequeが使える <code>deque(maxlen=3)</code></td>
 </tr>
 
 <tr>
@@ -149,12 +149,17 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 
 <tr>
 <td class="org-right">1.4</td>
-<td class="org-left">最大/最小からN個のアイテムを見つけるのにheapqが使える</td>
+<td class="org-left">最大/最小からN個のアイテムを見つけるのにheapqが使える <code>heapq.nlargest(3, somelist)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">大きなリストを扱うにはheapify()しておく</td>
 </tr>
 
 <tr>
 <td class="org-right">1.5</td>
-<td class="org-left">プライオリティーキューを作るのにheapqが使える</td>
+<td class="org-left">プライオリティキューを作るのにheapqが使える</td>
 </tr>
 
 <tr>
@@ -195,6 +200,11 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 <tr>
 <td class="org-right">1.11</td>
 <td class="org-left">スライスに名前を付けてコードの可読性を上げる。ビルトインslice()関数の使い方</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">IndexErrorが出ないように範囲にお編めるには <code>sliceobj.indices(len(s))</code> を使う</td>
 </tr>
 
 <tr>
@@ -269,7 +279,7 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 
 <tr>
 <td class="org-right">1.20</td>
-<td class="org-left">ChainMapは複数のマッピングを仮想的に一つにまとめる</td>
+<td class="org-left">collections.ChainMapは複数のマッピングを仮想的に一つにまとめる</td>
 </tr>
 
 <tr>
@@ -280,8 +290,8 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </table>
 </div>
 
-<div id="outline-container-org413e9c3" class="outline-4">
-<h4 id="org413e9c3"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
+<div id="outline-container-org0437e39" class="outline-4">
+<h4 id="org0437e39"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <code>defaultdict</code> は以下のように使う
@@ -308,8 +318,8 @@ d.setdeault(<span style="font-style: italic;">'a'</span>, []).append(1)
 </div>
 
 
-<div id="outline-container-org2ec31b1" class="outline-4">
-<h4 id="org2ec31b1"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
+<div id="outline-container-orgee03792" class="outline-4">
+<h4 id="orgee03792"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
@@ -321,8 +331,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org818fbfc" class="outline-4">
-<h4 id="org818fbfc"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
+<div id="outline-container-org3968919" class="outline-4">
+<h4 id="org3968919"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 以下のようなパターンで使う。
@@ -336,8 +346,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-orgd46fb8d" class="outline-3">
-<h3 id="orgd46fb8d"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div id="outline-container-org3efc1cb" class="outline-3">
+<h3 id="org3efc1cb"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -536,8 +546,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </table>
 </div>
 
-<div id="outline-container-org65e39ab" class="outline-4">
-<h4 id="org65e39ab"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
+<div id="outline-container-orgbef2704" class="outline-4">
+<h4 id="orgbef2704"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'[;,\s]\s*'</span>, line)
@@ -551,8 +561,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org57fdeef" class="outline-4">
-<h4 id="org57fdeef"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
+<div id="outline-container-org245a06a" class="outline-4">
+<h4 id="org245a06a"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 ファイル内の行を全てstripしたい場合、genexpで効率よく実現できる。
@@ -568,8 +578,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org7b93f16" class="outline-4">
-<h4 id="org7b93f16"><span class="section-number-4">2.2.3</span> (2.14)</h4>
+<div id="outline-container-org3c5f5ce" class="outline-4">
+<h4 id="org3c5f5ce"><span class="section-number-4">2.2.3</span> (2.14)</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 genexpを使ってリストを文字列に変換するレシピ。文字列化と連結を一括で実施する。
@@ -585,8 +595,60 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </div>
 </div>
 
-<div id="outline-container-org3320c01" class="outline-3">
-<h3 id="org3320c01"><span class="section-number-3">2.3</span> 数、日にちと時間</h3>
+<div id="outline-container-orgf71bb7c" class="outline-3">
+<h3 id="orgf71bb7c"><span class="section-number-3">2.3</span> 数、日にちと時間</h3>
+<div class="outline-text-3" id="text-2-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">3.1</td>
+<td class="org-left">数字を四捨五入するのにround()を使う。 <code>round(-1.27, 1) &gt;&gt;&gt; -1.3</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">マイナス値も使える <code>round(7734, -2) &gt;&gt;&gt; 7700</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.2</td>
+<td class="org-left">浮動小数点の誤差が許せない場合は Decimal('4.2') を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">with localcontext() as ctx: のように精度等を制御できる</td>
+</tr>
+
+<tr>
+<td class="org-right">3.3</td>
+<td class="org-left">formatの使い方 <code>format(x, '^10.1f'), format(x, '0.2e')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.4</td>
+<td class="org-left">2進、8進、16進での表記 <code>oct(x), format(x, 'o')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">10進に直すにはintを使う <code>int('4d2', 16)</code>  8進は0o755のように</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
