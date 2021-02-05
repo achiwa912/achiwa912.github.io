@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org28b95d2">1. はじめに</a></li>
-<li><a href="#orgf13f251">2. Learning SQL</a>
+<li><a href="#orga086193">1. はじめに</a></li>
+<li><a href="#org81b6f76">2. Learning SQL</a>
 <ul>
-<li><a href="#org273ee7a">2.1. SQL入門書として</a></li>
-<li><a href="#orga994f78">2.2. サンドボックス</a></li>
-<li><a href="#org7038348">2.3. MySQL準拠</a></li>
-<li><a href="#org5c11b17">2.4. データベースの内部構造について</a></li>
-<li><a href="#org63ebb66">2.5. 効果</a></li>
+<li><a href="#org12240c9">2.1. SQL入門書として</a></li>
+<li><a href="#orga8b0bae">2.2. サンドボックス</a></li>
+<li><a href="#org1e487f3">2.3. MySQL準拠</a></li>
+<li><a href="#org41340d5">2.4. データベースの内部構造について</a></li>
+<li><a href="#org2a3e7ab">2.5. 効果</a></li>
 </ul>
 </li>
-<li><a href="#orgf5f4dce">3. 終わりに</a></li>
+<li><a href="#orgead2624">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org28b95d2" class="outline-2">
-<h2 id="org28b95d2"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orga086193" class="outline-2">
+<h2 id="orga086193"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 SQLの入門書、Learning SQL Third Edition by Alan Beaulieuを読みました。Pythonの「お勉強」にもだいぶ飽きが来ていたのですが、多少なりともまともなアプリケーションを書くために、データベースの知識が必要と考えたためです。
@@ -101,8 +101,8 @@ SQLの入門書、Learning SQL Third Edition by Alan Beaulieuを読みました�
 </div>
 </div>
 
-<div id="outline-container-orgf13f251" class="outline-2">
-<h2 id="orgf13f251"><span class="section-number-2">2</span> Learning SQL</h2>
+<div id="outline-container-org81b6f76" class="outline-2">
+<h2 id="org81b6f76"><span class="section-number-2">2</span> Learning SQL</h2>
 <div class="outline-text-2" id="text-2">
 
 <div class="figure">
@@ -119,8 +119,8 @@ Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近�
 </p>
 </div>
 
-<div id="outline-container-org273ee7a" class="outline-3">
-<h3 id="org273ee7a"><span class="section-number-3">2.1</span> SQL入門書として</h3>
+<div id="outline-container-org12240c9" class="outline-3">
+<h3 id="org12240c9"><span class="section-number-3">2.1</span> SQL入門書として</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 完全な初心者向けではない、というレビューを見かけて、ついて行けるか若干心配だったのですが、特に問題なく読み通すことができました。
@@ -136,8 +136,8 @@ Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近�
 </div>
 </div>
 
-<div id="outline-container-orga994f78" class="outline-3">
-<h3 id="orga994f78"><span class="section-number-3">2.2</span> サンドボックス</h3>
+<div id="outline-container-orga8b0bae" class="outline-3">
+<h3 id="orga8b0bae"><span class="section-number-3">2.2</span> サンドボックス</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 自分でMySQLをインストールしなくても、MySQLがインストールされていて本書で使うテーブルを持つサンドボックスをオライリーが用意してくれています。登録が必要ですが無料で使えます。数十分でセッションがexpireするので、そのたびにブラウザーをリフレッシュして読み直さなくてはいけません。このとき、入力途中だったものは全て消えてしまうので、手元のエディタ等を使って書いたSQLをコピペするようにした方がよいでしょう。
@@ -146,8 +146,8 @@ Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近�
 </div>
 
 
-<div id="outline-container-org7038348" class="outline-3">
-<h3 id="org7038348"><span class="section-number-3">2.3</span> MySQL準拠</h3>
+<div id="outline-container-org1e487f3" class="outline-3">
+<h3 id="org1e487f3"><span class="section-number-3">2.3</span> MySQL準拠</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の互換性がほとんどないので、できれば自分の使うデータベースに準拠したテキストを使うのがよいかもしれません。ただ、私のような入門レベルでは、ネット検索ですぐに答えの見つかる、表面的なコマンドの違いを除いて、大きな問題はありませんでした。
@@ -155,8 +155,8 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 </div>
 </div>
 
-<div id="outline-container-org5c11b17" class="outline-3">
-<h3 id="org5c11b17"><span class="section-number-3">2.4</span> データベースの内部構造について</h3>
+<div id="outline-container-org41340d5" class="outline-3">
+<h3 id="org41340d5"><span class="section-number-3">2.4</span> データベースの内部構造について</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 本書はSQLの入門書であって、データベースの内部的な構造や動きについてはほとんど説明がありません。しかしデータベースを道具として使えればよいのであれば問題はありません。個人的には、インデックスがb-treeで出来ている(別の場合もあり)ことがわかったのは収穫でした。私にとってデータベースのインデックスは極めて不可思議で魔法的な存在だったので。
@@ -164,8 +164,8 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 </div>
 </div>
 
-<div id="outline-container-org63ebb66" class="outline-3">
-<h3 id="org63ebb66"><span class="section-number-3">2.5</span> 効果</h3>
+<div id="outline-container-org2a3e7ab" class="outline-3">
+<h3 id="org2a3e7ab"><span class="section-number-3">2.5</span> 効果</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 本書をこなせば、テーブル作成からデータの入力(INSERT)、取り出し(SELECT)、インデックス作成など、基本的なSQL操作が一通り使えるようになるでしょう。SQL入門書として、よく出来ていると思います。もっと早く読んでおけばよかったです。
@@ -174,8 +174,8 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 </div>
 </div>
 
-<div id="outline-container-orgf5f4dce" class="outline-2">
-<h2 id="orgf5f4dce"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-orgead2624" class="outline-2">
+<h2 id="orgead2624"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 大量のデータを扱うアプリケーションを作ろうとすると、言語によらず、データベースの知識が必要になってきます。その意味で、早い内にSQLに入門しておくことは、エンジニアとして大事なことと思います。本書はSQLの入門書として非常に優れていると思います。お勧めです。
@@ -205,6 +205,9 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/pyemail.html">Pythonでemail送受信テストしてみる</a>
+      </li>
+      <li class="post">
           <a href="/etf.html">ETFは何を買うか</a>
       </li>
       <li class="post">
@@ -215,9 +218,6 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
       </li>
       <li class="post">
           <a href="/cookbooklist.html">Python Cookbookレシピリスト</a>
-      </li>
-      <li class="post">
-          <a href="/bose500.html">Bose Home Speaker 500を買いました</a>
       </li>
     </ul>
   </section>
@@ -236,7 +236,7 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
 
 
     <section>

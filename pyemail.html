@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pythonでemail送受信テストしてみる &mdash; Dreaming in Brookline, MA 02446</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02446</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="pages/about.html">About me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Pythonでemail送受信テストしてみる</h1>
+    <p class="meta">
+<time datetime="2021-02-05T00:00:00-05:00" pubdate>Fri 05 February 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org60aeabd">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#org991d889">2. テストメールを送る</a></li>
+<li><a href="#org3343ffc">3. テストしてみる</a></li>
+<li><a href="#orga6897f8">4. 参考リンク</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org60aeabd" class="outline-2">
+<h2 id="org60aeabd"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
+</p>
+
+<p>
+まずはpipでモジュールをインストールします。
+</p>
+<pre class="example">
+pip install aiosmtpd
+</pre>
+
+<p>
+そして実行します。
+</p>
+<pre class="example">
+python -m aiosmtpd -n
+</pre>
+
+<p>
+なんと、これだけ。<a href="https://aiosmtpd.readthedocs.io/en/latest/cli.html">aiosmtpd公式ドキュメント</a>によるとlocalhostのポート8025をリッスンするようです。変えるには <code>-l &lt;[HOST][:PORT]&gt;</code> オプションを与えます。
+</p>
+
+<p>
+pipするのが面倒な方は、標準ライブラリにsmtpdがありますが、<a href="https://docs.python.org/3/library/smtpd.html">公式ドキュメント</a>によるとdeprecatedなのでaiosmtpdを使うように書いてありました。以下で使えます。
+</p>
+<pre class="example">
+python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org991d889" class="outline-2">
+<h2 id="org991d889"><span class="section-number-2">2</span> テストメールを送る</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> smtplib
+<span style="font-weight: bold;">from</span> email <span style="font-weight: bold;">import</span> utils
+<span style="font-weight: bold;">from</span> email.mime.text <span style="font-weight: bold;">import</span> MIMEText
+
+<span style="font-weight: bold; font-style: italic;">msg</span> = MIMEText(<span style="font-style: italic;">'This is the body'</span>)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12513;&#12540;&#12523;&#26412;&#25991;</span>
+<span style="font-weight: bold; font-style: italic;">msg</span>[<span style="font-style: italic;">'To'</span>] = utils.formataddr((
+    <span style="font-style: italic;">'Recipient'</span>, <span style="font-style: italic;">'test_recv@example.com'</span>))
+<span style="font-weight: bold; font-style: italic;">msg</span>[<span style="font-style: italic;">'From'</span>] = utils.formataddr((
+    <span style="font-style: italic;">'Author'</span>, <span style="font-style: italic;">'test_send@example.com'</span>))
+<span style="font-weight: bold; font-style: italic;">msg</span>[<span style="font-style: italic;">'Subject'</span>] = <span style="font-style: italic;">'Test email subject'</span>
+
+<span style="font-weight: bold; font-style: italic;">server</span> = smtplib.SMTP(<span style="font-style: italic;">'localhost'</span>, 8025)
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">server.set_debuglevel(True)  # &#12487;&#12496;&#12483;&#12464;&#29992;&#35443;&#32048;&#12513;&#12483;&#12475;&#12540;&#12472;&#20986;&#21147;</span>
+<span style="font-weight: bold;">try</span>:
+    server.sendmail(<span style="font-style: italic;">'test_send@example.com'</span>,
+                    [<span style="font-style: italic;">'test_recv@example.com'</span>],
+                    msg.as_string())
+<span style="font-weight: bold;">finally</span>:
+    server.<span style="font-weight: bold; text-decoration: underline;">quit</span>()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3343ffc" class="outline-2">
+<h2 id="org3343ffc"><span class="section-number-2">3</span> テストしてみる</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
+</p>
+<pre class="example">
+python emtest.py
+</pre>
+
+
+<p>
+あ、来ました。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">$ python -m aiosmtpd -n
+^[---------- MESSAGE FOLLOWS ----------
+Content-Type: text/plain; charset=<span style="font-style: italic;">"us-ascii"</span>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+To: Recipient <a href="mailto:test_recv%40example.com">&lt;test_recv@example.com&gt;</a>
+From: Author <a href="mailto:test_send%40example.com">&lt;test_send@example.com&gt;</a>
+Subject: Simple test message
+X-Peer: (<span style="font-style: italic;">'::1'</span>, 52132, 0, 0)
+
+This <span style="font-weight: bold;">is</span> the body.
+------------ END MESSAGE ------------
+</pre>
+</div>
+
+<p>
+Pythonを使うとemailのテストがとても簡単にできますね。
+</p>
+
+<p>
+上記スクリプトのデバッグ用詳細メッセージ出力の行のコメントを外すと、SMTPサーバーとの詳細なやりとりが見られます。(一部情報を伏せています)
+</p>
+
+<pre class="example">
+$ python emtest.py 
+send: 'ehlo localhost.localdomain\r\n'
+reply: b'250-localhost.localdomain\r\n'
+reply: b'250-8BITMIME\r\n'
+reply: b'250 HELP\r\n'
+reply: retcode (250); Msg: b'localhost.localdomain\n8BITMIME\nHELP'
+send: 'mail FROM:&lt;test_send@example.com&gt;\r\n'
+reply: b'250 OK\r\n'
+reply: retcode (250); Msg: b'OK'
+send: 'rcpt TO:&lt;test_recv@example.com&gt;\r\n'
+reply: b'250 OK\r\n'
+reply: retcode (250); Msg: b'OK'
+send: 'data\r\n'
+reply: b'354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;\r\n'
+reply: retcode (354); Msg: b'End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;'
+data: (354, b'End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;')
+send: b'Content-Type: text/plain; charset="us-ascii"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: 7bit\r\nTo: Recipient &lt;test_recv@example.com&gt;\r\nFrom: Author &lt;test_send@example.com&gt;\r\nSubject: Simple test message\r\n\r\nThis is the body.\r\n.\r\n'
+reply: b'250 OK\r\n'
+reply: retcode (250); Msg: b'OK'
+data: (250, b'OK')
+send: 'quit\r\n'
+reply: b'221 Bye\r\n'
+reply: retcode (221); Msg: b'Bye'
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga6897f8" class="outline-2">
+<h2 id="orga6897f8"><span class="section-number-2">4</span> 参考リンク</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
+<li><a href="https://docs.python.org/3/library/smtpd.html">smtpd — SMTP Server</a> Python公式</li>
+<li><a href="https://pymotw.com/2/smtpd/">PyMOTW smtpd – Sample SMTP Servers</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-02-05T00:00:00-05:00" pubdate>Fri 05 February 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/pyemail.html">Pythonでemail送受信テストしてみる</a>
+      </li>
+      <li class="post">
+          <a href="/etf.html">ETFは何を買うか</a>
+      </li>
+      <li class="post">
+          <a href="/charles.html">Charles Schwabの口座を開設しました</a>
+      </li>
+      <li class="post">
+          <a href="/pronounce.html">googleの英語発音判定サービス</a>
+      </li>
+      <li class="post">
+          <a href="/cookbooklist.html">Python Cookbookレシピリスト</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>,    <a href="/tag/game.html">game</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
