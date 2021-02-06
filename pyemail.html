@@ -69,16 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org60aeabd">1. テストSMTPサーバーを立てる</a></li>
-<li><a href="#org991d889">2. テストメールを送る</a></li>
-<li><a href="#org3343ffc">3. テストしてみる</a></li>
-<li><a href="#orga6897f8">4. 参考リンク</a></li>
+<li><a href="#orgff09ccb">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#org91729ae">2. テストメールを送る</a></li>
+<li><a href="#orgd31f89e">3. テストしてみる</a></li>
+<li><a href="#org114dd84">4. 宛先が表示されない?</a></li>
+<li><a href="#org50f62b8">5. 参考リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org60aeabd" class="outline-2">
-<h2 id="org60aeabd"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
+<div id="outline-container-orgff09ccb" class="outline-2">
+<h2 id="orgff09ccb"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
@@ -111,8 +112,8 @@ python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
 </div>
 </div>
 
-<div id="outline-container-org991d889" class="outline-2">
-<h2 id="org991d889"><span class="section-number-2">2</span> テストメールを送る</h2>
+<div id="outline-container-org91729ae" class="outline-2">
+<h2 id="org91729ae"><span class="section-number-2">2</span> テストメールを送る</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
@@ -142,8 +143,8 @@ SMTPサーバーを立てるほどではありませんが、テストメール�
 </div>
 </div>
 
-<div id="outline-container-org3343ffc" class="outline-2">
-<h2 id="org3343ffc"><span class="section-number-2">3</span> テストしてみる</h2>
+<div id="outline-container-orgd31f89e" class="outline-2">
+<h2 id="orgd31f89e"><span class="section-number-2">3</span> テストしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
@@ -208,9 +209,69 @@ reply: retcode (221); Msg: b'Bye'
 </div>
 </div>
 
-<div id="outline-container-orga6897f8" class="outline-2">
-<h2 id="orga6897f8"><span class="section-number-2">4</span> 参考リンク</h2>
+<div id="outline-container-org114dd84" class="outline-2">
+<h2 id="org114dd84"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
+</p>
+
+<p>
+そこで、aiosmtpdのドキュメントを参考(ほぼ丸写しとも言う)に、SMTPサーバー側も簡単なスクリプトを作成してRCPT TO情報を出力するようにしました。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> asyncio
+
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">MyHandler</span>:
+    <span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">handle_DATA</span>(<span style="font-weight: bold;">self</span>, server, session, envelope):
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Msg from {envelope.mail_from}'</span>)
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">envelope&#12398;RCPT TO&#24773;&#22577;&#12434;&#34920;&#31034;&#12377;&#12427;</span>
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Msg for {envelope.rcpt_tos}'</span>)
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Msg data:\n'</span>)
+        <span style="font-weight: bold;">for</span> ln <span style="font-weight: bold;">in</span> envelope.content.decode(<span style="font-style: italic;">'utf8'</span>, errors=<span style="font-style: italic;">'replace'</span>).splitlines():
+            <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'&gt; {ln}'</span>.strip())
+        <span style="font-weight: bold;">print</span>()
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'End of msg'</span>)
+        <span style="font-weight: bold;">return</span> <span style="font-style: italic;">'250 Message accepted for delivery'</span>
+
+<span style="font-weight: bold;">from</span> aiosmtpd.controller <span style="font-weight: bold;">import</span> Controller
+<span style="font-weight: bold; font-style: italic;">ctrlr</span> = Controller(MyHandler(), hostname=<span style="font-style: italic;">'&lt;IP&#12450;&#12489;&#12524;&#12473;&gt;'</span>)
+ctrlr.start()
+</pre>
+</div>
+
+<p>
+さて、どうでしょうか。To/Cc/Bccを含めない送信元からメールを出してみます。
+</p>
+
+<pre class="example">
+Msg from &lt;送り主emailアドレス&gt;
+Msg for ['&lt;宛先emailアドレス&gt;']
+Msg data:
+
+&gt; Date: Fri, 5 Feb 2021 18:12:38 -0500 (EST)
+&gt; From: &lt;送り主emailアドレス&gt;
+&gt; Message-ID: &lt;XXXXX2588.7.XXXXXXXX.JavaMail.root@XXXXX&gt;
+&gt; Subject: &lt;タイトル文字列&gt;
+&gt; MIME-Version: 1.0
+&gt; Content-Type: text/plain; charset=us-ascii
+&gt; Content-Transfer-Encoding: 7bit
+&gt;
+&gt; This is email contents.
+&gt;
+
+End of msg
+</pre>
+
+<p>
+無事、宛先アドレスがわかるようになりました。(引用では伏せてあります)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org50f62b8" class="outline-2">
+<h2 id="org50f62b8"><span class="section-number-2">5</span> 参考リンク</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
 <li><a href="https://docs.python.org/3/library/smtpd.html">smtpd — SMTP Server</a> Python公式</li>
