@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga341cd0">1. はじめに</a></li>
-<li><a href="#orgdb845cc">2. Learning SQL</a>
+<li><a href="#org1b7aecf">1. はじめに</a></li>
+<li><a href="#orgf7d29b8">2. Learning SQL</a>
 <ul>
-<li><a href="#org3b85fa2">2.1. SQL入門書として</a></li>
-<li><a href="#orgea73eaf">2.2. サンドボックス</a></li>
-<li><a href="#orgb7ad9ad">2.3. MySQL準拠</a></li>
-<li><a href="#org571a2d7">2.4. データベースの内部構造について</a></li>
-<li><a href="#orgfc2cb33">2.5. 効果</a></li>
+<li><a href="#orgc45a101">2.1. SQL入門書として</a></li>
+<li><a href="#orga2f4ca6">2.2. サンドボックス</a></li>
+<li><a href="#org9b8a8c1">2.3. MySQL準拠</a></li>
+<li><a href="#org9a2db7a">2.4. データベースの内部構造について</a></li>
+<li><a href="#org4475e48">2.5. 効果</a></li>
 </ul>
 </li>
-<li><a href="#orgf74091e">3. 終わりに</a></li>
+<li><a href="#org18f6e7c">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga341cd0" class="outline-2">
-<h2 id="orga341cd0"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org1b7aecf" class="outline-2">
+<h2 id="org1b7aecf"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 SQLの入門書、Learning SQL Third Edition by Alan Beaulieuを読みました。Pythonの「お勉強」にもだいぶ飽きが来ていたのですが、多少なりともまともなアプリケーションを書くために、データベースの知識が必要と考えたためです。
@@ -101,8 +101,8 @@ SQLの入門書、Learning SQL Third Edition by Alan Beaulieuを読みました�
 </div>
 </div>
 
-<div id="outline-container-orgdb845cc" class="outline-2">
-<h2 id="orgdb845cc"><span class="section-number-2">2</span> Learning SQL</h2>
+<div id="outline-container-orgf7d29b8" class="outline-2">
+<h2 id="orgf7d29b8"><span class="section-number-2">2</span> Learning SQL</h2>
 <div class="outline-text-2" id="text-2">
 
 <div class="figure">
@@ -119,8 +119,8 @@ Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近�
 </p>
 </div>
 
-<div id="outline-container-org3b85fa2" class="outline-3">
-<h3 id="org3b85fa2"><span class="section-number-3">2.1</span> SQL入門書として</h3>
+<div id="outline-container-orgc45a101" class="outline-3">
+<h3 id="orgc45a101"><span class="section-number-3">2.1</span> SQL入門書として</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 完全な初心者向けではない、というレビューを見かけて、ついて行けるか若干心配だったのですが、特に問題なく読み通すことができました。
@@ -136,8 +136,8 @@ Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近�
 </div>
 </div>
 
-<div id="outline-container-orgea73eaf" class="outline-3">
-<h3 id="orgea73eaf"><span class="section-number-3">2.2</span> サンドボックス</h3>
+<div id="outline-container-orga2f4ca6" class="outline-3">
+<h3 id="orga2f4ca6"><span class="section-number-3">2.2</span> サンドボックス</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 自分でMySQLをインストールしなくても、MySQLがインストールされていて本書で使うテーブルを持つサンドボックスをオライリーが用意してくれています。登録が必要ですが無料で使えます。数十分でセッションがexpireするので、そのたびにブラウザーをリフレッシュして読み直さなくてはいけません。このとき、入力途中だったものは全て消えてしまうので、手元のエディタ等を使って書いたSQLをコピペするようにした方がよいでしょう。
@@ -146,8 +146,8 @@ Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近�
 </div>
 
 
-<div id="outline-container-orgb7ad9ad" class="outline-3">
-<h3 id="orgb7ad9ad"><span class="section-number-3">2.3</span> MySQL準拠</h3>
+<div id="outline-container-org9b8a8c1" class="outline-3">
+<h3 id="org9b8a8c1"><span class="section-number-3">2.3</span> MySQL準拠</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の互換性がほとんどないので、できれば自分の使うデータベースに準拠したテキストを使うのがよいかもしれません。ただ、私のような入門レベルでは、ネット検索ですぐに答えの見つかる、表面的なコマンドの違いを除いて、大きな問題はありませんでした。
@@ -155,8 +155,8 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 </div>
 </div>
 
-<div id="outline-container-org571a2d7" class="outline-3">
-<h3 id="org571a2d7"><span class="section-number-3">2.4</span> データベースの内部構造について</h3>
+<div id="outline-container-org9a2db7a" class="outline-3">
+<h3 id="org9a2db7a"><span class="section-number-3">2.4</span> データベースの内部構造について</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 本書はSQLの入門書であって、データベースの内部的な構造や動きについてはほとんど説明がありません。しかしデータベースを道具として使えればよいのであれば問題はありません。個人的には、インデックスがb-treeで出来ている(別の場合もあり)ことがわかったのは収穫でした。私にとってデータベースのインデックスは極めて不可思議で魔法的な存在だったので。
@@ -164,8 +164,8 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 </div>
 </div>
 
-<div id="outline-container-orgfc2cb33" class="outline-3">
-<h3 id="orgfc2cb33"><span class="section-number-3">2.5</span> 効果</h3>
+<div id="outline-container-org4475e48" class="outline-3">
+<h3 id="org4475e48"><span class="section-number-3">2.5</span> 効果</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 本書をこなせば、テーブル作成からデータの入力(INSERT)、取り出し(SELECT)、インデックス作成など、基本的なSQL操作が一通り使えるようになるでしょう。SQL入門書として、よく出来ていると思います。もっと早く読んでおけばよかったです。
@@ -174,8 +174,8 @@ PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の�
 </div>
 </div>
 
-<div id="outline-container-orgf74091e" class="outline-2">
-<h2 id="orgf74091e"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org18f6e7c" class="outline-2">
+<h2 id="org18f6e7c"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 大量のデータを扱うアプリケーションを作ろうとすると、言語によらず、データベースの知識が必要になってきます。その意味で、早い内にSQLに入門しておくことは、エンジニアとして大事なことと思います。本書はSQLの入門書として非常に優れていると思います。お勧めです。
