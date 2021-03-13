@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DL-6; 買い物とアイテム装備 &mdash; Dreaming in Brookline, MA 02446</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02446</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="pages/about.html">About me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">DL-6; 買い物とアイテム装備</h1>
+    <p class="meta">
+<time datetime="2021-03-12T00:00:00-05:00" pubdate>Fri 12 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org9353f15">1. はじめに</a></li>
+<li><a href="#org56cec4f">2. アイテム装備</a></li>
+<li><a href="#org27cd8c0">3. 呪いを解く、識別する</a></li>
+<li><a href="#orgd81f308">4. アイテム売買</a></li>
+<li><a href="#orgbab1105">5. 次は、、</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9353f15" class="outline-2">
+<h2 id="org9353f15"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの6回目です。今回は酒場(tavern)と店(trader)のメニューを作り込みました。アイテムの装備、売買、識別、呪いの除去などです。
+</p>
+
+<p>
+githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未対応です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56cec4f" class="outline-2">
+<h2 id="org56cec4f"><span class="section-number-2">2</span> アイテム装備</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+アイテム装備は酒場でキャラクターをidentifyする画面から行います。アイテムを選択して装備します。装備したアイテムは名前の横に <code>*</code> が付き、パーティーウインドウのACが即時で(?)反映されます。
+</p>
+
+<pre class="example">
+daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)                           
+	 |   Betty            L  1 g-fig human                        |        
+	 |   | * which item?  # or l)leave            |               |        
+	 |   |   1) mace                              | 1             |        
+	 |   |   u)se e)quip t)rade d)rop l)eave &gt;    |28             |        
+	 |   |                                        | 6             |        
+	 |   |                                        | 0             |        
+	 |   |                                        |               |        
+	 |   |                                        |               |        
+	 |   |                                        |               |        
+	 |   mage  0/0/0/0/0/0/0   priest  0/0/0/0/0/0/0/             |        
+	 |   1) *mace              2) *leather armor                  |        
+	 |   3) *small shield      4)                                 |        
+	 |   5)                    6)                                 |        
+	 |   7)                    8)                                 |        
+	 |                                                            |        
+	 |   i)tems s)pells l)eave &gt; i                                |        
+	 |                                                            |        
+# name       class  ac   hp status                                             
+1 Alex       G-FIG  10   13 OK                                                 
+2 Betty      G-FIG   6   15 OK                                                 
+3 Cal        G-SAM  10   16 OK                                                 
+4 Debora     N-THI  10   11 OK                                                 
+5 Emily      G-PRI  10   12 OK                                                 
+6 Fast       G-MAG  10    7 OK     
+</pre>
+
+<p>
+不確定名の呪いアイテムも装備可能です(笑)。もちろん、呪われます(<code>&amp;</code> 印)。
+</p>
+
+<pre class="example">
+daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)                           
+	 |   Alex             L  1 g-fig dwarf                        |        
+	 |   | * which item?  # or l)leave            |               |        
+	 |   |   1) ?shield                           | 1             |        
+	 |   |   u)se e)quip t)rade d)rop l)eave &gt; e  |32             |        
+	 |   | * Cursed!                              |10             |        
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org27cd8c0" class="outline-2">
+<h2 id="org27cd8c0"><span class="section-number-2">3</span> 呪いを解く、識別する</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+店(Trader Jay's)で呪いを解くことができます。有料です。アイテムは持ち物から無くなり、不確定名だったとしても正式名を教えてくれます。
+</p>
+
+<pre class="example">
+| * *** Trader Jay's ***                                     |        
+|   Who? - # or l)eave &gt; 1                                   |        
+| * Welcome, Alex.                                           |        
+| *   You have 50000 gold.                                   |        
+|   b)uy s)ell u)ncurse i)dentify p)ool gold l)eave &gt; u      |        
+| * Which item to uncurse? -  # or leave                     |        
+|   1)&amp;?shield         4000                                  |        
+|   # or l)eave &gt; 1                                          |        
+| * Uncursed shield -3.                                      |        
+</pre>
+
+<p>
+呪われていなければ、これも有料で不確定名アイテムを識別してもらえます。bishopがいるので使いませんかね。。。
+</p>
+
+<pre class="example">
+| * *** Trader Jay's ***                                     |        
+|   Who? - # or l)eave &gt; 1                                   |        
+| * Welcome, Alex.                                           |        
+| *   You have 50000 gold.                                   |        
+|   b)uy s)ell u)ncurse i)dentify p)ool gold l)eave &gt; i      |        
+| * Which item to identify? -  # or leave                    |        
+|   1) ?shield         4000                                  |        
+|   # or l)eave &gt; 1                                          |        
+| * Identified as shield -3.                                 |        
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd81f308" class="outline-2">
+<h2 id="orgd81f308"><span class="section-number-2">4</span> アイテム売買</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+順番が逆になりましたが、アイテムの売買ができます。
+</p>
+
+<p>
+買い物では別ウインドウ(笑)が開きます。武器、鎧、盾などのページをh, lキーで切り替え、j, kキーで買いたいアイテムを選択して x キーで購入します。装備出来ないアイテムには#が、現在の持ち金で購入できるアイテムには$が付きます。
+</p>
+
+<pre class="example">
+	  | | Alex has 46000 gold                   |                  |        
+	  | |  jk)cursor x)choose hl)page ;)leave   |                  |        
+	  | | &gt; 1 long sword                    25#$|                  |        
+	  | |   2 sling                          5 $|                  |        
+	  | |   3 mage's bow                   500 $|                  |        
+	  | |   4 bow                           25 $|                  |        
+&lt;snip&gt;
+</pre>
+
+<p>
+買ったアイテムを売ることもできます。半額になりますが。販売可能アイテムがリストされるので、番号で指定します。以下はロングソードを売ったところです。
+</p>
+
+<pre class="example">
+|   b)uy s)ell u)ncurse i)dentify p)ool gold l)eave &gt; s      |        
+| * Which item to sell? -  # or leave                        |        
+|   1) shield -3       4000                                  |        
+|   2) long sword      12                                    |        
+|   3) robes           7                                     |        
+|   4) small shield    10                                    |        
+|   5) helm            50                                    |        
+|   6) gloves          3000                                  |        
+|   # or l)eave &gt; 2                                          |        
+| * I'm sure fellows'll want it.                             |        
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgbab1105" class="outline-2">
+<h2 id="orgbab1105"><span class="section-number-2">5</span> 次は、、</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+次はいよいよダンジョンと行きたいところですが、その前に宿屋くらいは用意しておきましょうか。寺院はまだいいかな。。。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-03-12T00:00:00-05:00" pubdate>Fri 12 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/dl6.html">DL-6; 買い物とアイテム装備</a>
+      </li>
+      <li class="post">
+          <a href="/dl5.html">DL-5; キャラクター作成</a>
+      </li>
+      <li class="post">
+          <a href="/dl4.html">DL-4; メッセージ表示ウインドウ</a>
+      </li>
+      <li class="post">
+          <a href="/dl3.html">DL-3; マップをスクロールさせる</a>
+      </li>
+      <li class="post">
+          <a href="/dl2.html">DL-2; マップを自動生成する</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
