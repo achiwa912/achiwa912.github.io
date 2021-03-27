@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>DL-9; 色々と実装 &mdash; Dreaming in Brookline, MA 02446</title>
+  <title>DL-9; 宿と病院、戦闘での魔法 &mdash; Dreaming in Brookline, MA 02446</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -60,7 +60,7 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">DL-9; 色々と実装</h1>
+      <h1 class="entry-title">DL-9; 宿と病院、戦闘での魔法</h1>
     <p class="meta">
 <time datetime="2021-03-26T00:00:00-04:00" pubdate>Fri 26 March 2021</time>    </p>
 </header>
@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge946a1a">1. はじめに</a></li>
-<li><a href="#org72762f0">2. 宿と病院</a></li>
-<li><a href="#org1d65e15">3. 戦闘</a></li>
-<li><a href="#orgf7b7695">4. セーブとロード</a></li>
-<li><a href="#orgcbc54d0">5. 次は、、</a></li>
+<li><a href="#org59d066d">1. はじめに</a></li>
+<li><a href="#orgcd45d19">2. 宿と病院</a></li>
+<li><a href="#org7c00f02">3. 戦闘</a></li>
+<li><a href="#org5c76dbf">4. セーブとロード</a></li>
+<li><a href="#org5e4dc1a">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge946a1a" class="outline-2">
-<h2 id="orge946a1a"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org59d066d" class="outline-2">
+<h2 id="org59d066d"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの9回目です。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org72762f0" class="outline-2">
-<h2 id="org72762f0"><span class="section-number-2">2</span> 宿と病院</h2>
+<div id="outline-container-orgcd45d19" class="outline-2">
+<h2 id="orgcd45d19"><span class="section-number-2">2</span> 宿と病院</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 前々回に予告した宿をようやく実装しました。宿は宿泊することでレベルアップします。このレベルアップ判定と処理が思いのほか複雑で、実装に結構苦労しました。'ず'さんの <a href="https://wiliki.zukeran.org/index.cgi?Wizardry1%2FApple%2F%B2%F2%C0%CF%A5%E1%A5%E2">解析ページ</a> にすっかりお世話になりました。
@@ -126,13 +126,13 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </p>
 
 <p>
-病院は寺院(temple of cant)の代わりですが、やっていることは一緒です。死亡や灰からの復活も可能です。しかし灰ってすごいですよね。。。
+病院は寺院(temple of cant)の代わりですが、やっていることは一緒です。麻痺以上の状態で迷宮から出てくると、救急車がやってきて病院に運ばれます(演出は無し)。死亡や灰からの復活も可能です。しかし灰ってすごいですよね。。。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1d65e15" class="outline-2">
-<h2 id="org1d65e15"><span class="section-number-2">3</span> 戦闘</h2>
+<div id="outline-container-org7c00f02" class="outline-2">
+<h2 id="org7c00f02"><span class="section-number-2">3</span> 戦闘</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 殴り合いだけでは地味なので、魔法をいくつか実装しました。katino相当で眠らせて倍打攻撃もできます。halito/mahalito/lahalito/dalto/madalto/malikto/tiltowait相当は全て同じメソッドで実現しています。
@@ -171,7 +171,7 @@ mahalito相当を唱えてモンスターを蹴散らしたところです。Mac
 </p>
 
 <p>
-これまでのところ実装したのは全てパーティーメンバーが使う、攻撃、HP回復、AC上下、ステータス攻撃(katino, monitino等)です。
+これまでのところ実装したのは全てパーティーメンバーが使う、攻撃、HP回復、AC上下、ステータス攻撃(katino, monitino等)です。また、自分たちの位置を表示するdumapic相当、モンスターを識別するlatumapic相当、パーティー全体のACを迷宮にいる間-2するmaporfic相当も実装しています。よくお世話になるmadi相当も入れました。
 </p>
 
 <p>
@@ -184,8 +184,8 @@ mahalito相当を唱えてモンスターを蹴散らしたところです。Mac
 </div>
 </div>
 
-<div id="outline-container-orgf7b7695" class="outline-2">
-<h2 id="orgf7b7695"><span class="section-number-2">4</span> セーブとロード</h2>
+<div id="outline-container-org5c76dbf" class="outline-2">
+<h2 id="org5c76dbf"><span class="section-number-2">4</span> セーブとロード</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 いちおうセーブとロードも実装しました。セーブ(&amp;終了)はEdge of townと迷宮でのキャンプ中にすることができます。ロードはセーブしたところからの再開で、Edge of townでのみすることができます。Edge of townで再開の操作をしても、迷宮でセーブした場合には迷宮のセーブ位置からの再開になります。
@@ -201,8 +201,8 @@ Pythonのpickleがどこまでクラスオブジェクトを保存してくれ�
 </div>
 </div>
 
-<div id="outline-container-orgcbc54d0" class="outline-2">
-<h2 id="orgcbc54d0"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org5e4dc1a" class="outline-2">
+<h2 id="org5e4dc1a"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 そろそろ宝箱の実装でしょうか。魔法の実装もたくさん残っています。一通りシステムが完成して、初めてシナリオと、オリジナルのモンスターやアイテムデータを考えることになりそうです。
@@ -232,7 +232,7 @@ Pythonのpickleがどこまでクラスオブジェクトを保存してくれ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/dl9.html">DL-9; 色々と実装</a>
+          <a href="/dl9.html">DL-9; 宿と病院、戦闘での魔法</a>
       </li>
       <li class="post">
           <a href="/dl8.html">DL-8; キャンプと戦闘の基本部分</a>
