@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rogue+Wizライクゲームのリメイク構想 &mdash; Dreaming in Brookline, MA 02446</title>
+  <title>DL-10; だいぶ出来てきた &mdash; Dreaming in Brookline, MA 02446</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -60,94 +60,91 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Rogue+Wizライクゲームのリメイク構想</h1>
+      <h1 class="entry-title">DL-10; だいぶ出来てきた</h1>
     <p class="meta">
-<time datetime="2021-02-23T00:00:00-05:00" pubdate>Tue 23 February 2021</time>    </p>
+<time datetime="2021-04-12T00:00:00-04:00" pubdate>Mon 12 April 2021</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgcf3d360">1. はじめに</a></li>
-<li><a href="#org7bf9795">2. どんなゲームを作るか</a></li>
-<li><a href="#orgc5b3ccd">3. どこから手を付けるか</a></li>
+<li><a href="#org29627a0">1. はじめに</a></li>
+<li><a href="#org9917341">2. 一通り実装</a></li>
+<li><a href="#org9648f94">3. DLゲームシステムの特徴</a></li>
+<li><a href="#org98688c8">4. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcf3d360" class="outline-2">
-<h2 id="orgcf3d360"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org29627a0" class="outline-2">
+<h2 id="org29627a0"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-20年ほど前に、Rogue風のマップとWizardryの戦闘システムを組み合わせたような、Daemonという名のゲームをC言語で作って公開していたのですが、去年末くらいにホストしていたWebサイトがひっそりとクローズしていました。
+Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの10回目です。
 </p>
 
 <p>
-私はPythonの修行中で、中級者向けの本を何冊か読んだのですが、実践不足で本の内容が消化不良になっていることは否めません。そこで、Rogue+WizardryのゲームDaemonをPythonでリメイクしてしばらく実戦経験を積むことにします。Wizardryは古いゲームにしては扱うデータが多く複雑で、データ構造の経験を積むのに適している気がします。当時、C言語で双方向リストを作ってパーティーを表現したりするのが大変だったと記憶していますが、Pythonを使うとどこまで楽になるでしょうか。
-</p>
-
-<p>
-とは言え、当時のソースコードや資料は全く残っておらず、全く一から作り直しです。とほほ。
+githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未検証です。(いちおうWindows用のコードは入れてみました)
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7bf9795" class="outline-2">
-<h2 id="org7bf9795"><span class="section-number-2">2</span> どんなゲームを作るか</h2>
+<div id="outline-container-org9917341" class="outline-2">
+<h2 id="org9917341"><span class="section-number-2">2</span> 一通り実装</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-私はWizardryが大好きなのですが、あの3Dマップだけは苦手です。Daemonを作ったときの動機が、マップ移動の楽なWizardryで遊びたいというものでした。かと言って、立派なグラフィックの2Dマップを作る余裕もセンスもありません。そこで今回もRogue風のテキストベースマップのお世話になります。
+だいぶ時間が空いてしまいましたが、だいぶ実装が進みました。魔法が一通り使えるようになり、宝箱も罠付きで用意しました。
 </p>
 
 <p>
-マップ画面イメージ:
-</p>
-<pre class="example">
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........##.
-^^^^^########.......########+###+######.
-^^^^^########.......@#######.###.######.
-^^^^^########.......+............#######
-^^^^^########.......########.########...
-^^^^^###########+###########*########...
-^^^^^###########.#######.........####...
-^^^^^...........+#######.........####...
-^^^^^...........+##....*.........####...
-</pre>
-
-<p>
-戦闘システムはWizardryを踏襲し、6人パーティー制です。戦闘は文章だけで進行します。魔法使い、僧侶のスペルは著作権の関係で同じ物(Katino, mahalito, dios等)が使えないので、名前は考えなくてはなりません。今回は日本風にしようかな。
+現在、実際にプレイしながらバグ取りとバランス調整をしています。まだまだ基本システム部分で大きなバグが出ていて、完成度はアルファ版未満です。中ボスとの対決の前に階段で下に行くか聞かれたり、逃げるとボス対決が終了したりしています 笑。
 </p>
 
 <p>
-Daemonではダンジョンマップをデータとして用意しましたが、10階分も用意するのはかなり大変だったので、今回はRogueライクを見習って自動生成します。アイテムやモンスターも入力が面倒なので、固定のものを除いて自動生成にしましょうか。うまくゲームバランスが取れるでしょうか。
+システム部分では、迷宮への出入りとフロア間の移動が思いの外複雑で、バグが収束しないので条件を整理して大きく手直ししました。通常の階段による上下だけでなく、セーブデータからのresumeや、魔法でのフロア移動でも破綻せずに動くようにするのは大変でした。
 </p>
 
 <p>
-城や街はマップ無し、メッセージのみのWizardry風です。Wizardryでは年を取るのが怖くて馬小屋ばかり使っていましたが、なんだか可哀想なので年は取らないようにし、年齢ペナルティーも撤廃しましょう。
+githubにREADMEを用意して、一通りゲームの説明を英語で書きました。Wizardryは昔のシンプルなゲームですが、文章で説明してみると結構な量になりました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc5b3ccd" class="outline-2">
-<h2 id="orgc5b3ccd"><span class="section-number-2">3</span> どこから手を付けるか</h2>
+<div id="outline-container-org9648f94" class="outline-2">
+<h2 id="org9648f94"><span class="section-number-2">3</span> DLゲームシステムの特徴</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-まずはキー入力(リアルタイムキースキャン)と画面表示(任意の位置に文字を表示)から始めます。低レベル機能のため、Pythonなのに機種依存が出てくるかもしれません。なるべくPyGameのような大がかりなライブラリには手を出したくないところです。
+DL(Daemon Lord)のゲームシステムでの特徴は、入る度にダンジョンが自動生成されることです。当初は、Rogueのように毎回地下1階からプレイする(迷宮内ではセーブできない)ようにするつもりでしたが、レベルは上がったまま地下1階からずっと歩いて冒険するのは面倒かつ、魔法が比較的低層で切れてしまうことから、魔法(mage level 2のtsubasa)での移動を基本にすることにしました。
 </p>
 
 <p>
-次はダンジョンマップの自動生成とスクロールマップの表示にチャレンジします。Pythonでローグライクを作るチュートリアルを斜め読みして予習したので、マップの自動生成は多分行けるでしょう。むしろ、ここで十分な性能が出ないと、プロジェクトを断念することになるかも。
+魔法tsubasaを使うと、これまで潜った最深階の最初の部屋(上り階段のある部屋)までテレポーテーションすることができます。tsubasaのお陰で、常に自分のレベルにあったフロアから冒険をスタートできるようになりました。
 </p>
 
 <p>
-次回のアップデートはこのあたりが出来たらになると思います。それでは。
+このため、常に下り階段を探すスタイルの冒険になります。時折、そのフロア内のどこかにランダム配置された鍵を探さないと入れない部屋を用意して、必ずしも常に最短コースが狙えないように工夫しました。
+</p>
+
+<p>
+その結果、オリジナルのWizardryとはゲームバランスがだいぶ変わってしまいましたが、それなりに遊べるシステムに仕上がってきているように思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org98688c8" class="outline-2">
+<h2 id="org98688c8"><span class="section-number-2">4</span> 次は、、</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+デバッグを進めてアルファ版として公開できるようにしたいです。一回通してプレイできるようになったらアルファ版認定してよいでしょうか。
+</p>
+
+<p>
+全滅パーティーの救出はまだ入っていませんが、要りますかね。DLでは比較的自由にセーブ、やり直しができるので、パーティーの誰かが死んだりドレインされたらリセットして再開するような気がしています。
+</p>
+
+<p>
+いちおうのエンディング後(地下11階〜)の冒険用データも用意しないと。ダンジョンフロア自体はメモリの許す限り深い階に対応しているのですが。
 </p>
 </div>
 </div>
@@ -159,7 +156,7 @@ Daemonではダンジョンマップをデータとして用意しましたが�
         きょうす
     </span>
   </span>
-<time datetime="2021-02-23T00:00:00-05:00" pubdate>Tue 23 February 2021</time>  <span class="categories">
+<time datetime="2021-04-12T00:00:00-04:00" pubdate>Mon 12 April 2021</time>  <span class="categories">
     <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
