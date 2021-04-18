@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>DL-10; だいぶ出来てきた &mdash; Dreaming in Brookline, MA 02446</title>
+  <title>DL-11; DLのアルファ版を公開しました &mdash; Dreaming in Brookline, MA 02446</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -60,28 +60,34 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">DL-10; だいぶ出来てきた</h1>
+      <h1 class="entry-title">DL-11; DLのアルファ版を公開しました</h1>
     <p class="meta">
-<time datetime="2021-04-12T00:00:00-04:00" pubdate>Mon 12 April 2021</time>    </p>
+<time datetime="2021-04-18T00:00:00-04:00" pubdate>Sun 18 April 2021</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8cb305e">1. はじめに</a></li>
-<li><a href="#org5d44773">2. 一通り実装</a></li>
-<li><a href="#org9b297ec">3. DLゲームシステムの特徴</a></li>
-<li><a href="#org67bd571">4. 次は、、</a></li>
+<li><a href="#org34efa2c">1. はじめに</a></li>
+<li><a href="#org9d01ac5">2. アルファ版リリース</a></li>
+<li><a href="#orgf89633b">3. issuesをgithubで管理</a></li>
+<li><a href="#org2fe9696">4. 開発での経験</a>
+<ul>
+<li><a href="#orgbcb2a71">4.1. 学んだこと</a></li>
+<li><a href="#org168c27e">4.2. まだまだなこと</a></li>
+</ul>
+</li>
+<li><a href="#org45e185e">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8cb305e" class="outline-2">
-<h2 id="org8cb305e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org34efa2c" class="outline-2">
+<h2 id="org34efa2c"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの10回目です。
+Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの11回目です。
 </p>
 
 <p>
@@ -90,61 +96,61 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org5d44773" class="outline-2">
-<h2 id="org5d44773"><span class="section-number-2">2</span> 一通り実装</h2>
+<div id="outline-container-org9d01ac5" class="outline-2">
+<h2 id="org9d01ac5"><span class="section-number-2">2</span> アルファ版リリース</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-だいぶ時間が空いてしまいましたが、だいぶ実装が進みました。魔法が一通り使えるようになり、宝箱も罠付きで用意しました。
+一通り実装が終わり、ゲームを通しでプレイして致命的なバグが出ないようになってきたので、アルファ版をリリースしました。zen tetrisを作った時と同じようにpygameに登録して(pygame使っていませんが、それでもいいらしいので)、twitterでつぶやいただけなので、誰か見てくれるのか分かりません。
 </p>
 
 <p>
-現在、実際にプレイしながらバグ取りとバランス調整をしています。まだまだ基本システム部分で大きなバグが出ていて、完成度はアルファ版未満です。中ボスとの対決の前に階段で下に行くか聞かれたり、逃げるとボス対決が終了したりしています 笑。
-</p>
-
-<p>
-システム部分では、迷宮への出入りとフロア間の移動が思いの外複雑で、バグが収束しないので条件を整理して大きく手直ししました。通常の階段による上下だけでなく、セーブデータからのresumeや、魔法でのフロア移動でも破綻せずに動くようにするのは大変でした。
-</p>
-
-<p>
-githubにREADMEを用意して、一通りゲームの説明を英語で書きました。Wizardryは昔のシンプルなゲームですが、文章で説明してみると結構な量になりました。
+そもそも30〜40年前のゲームのリメイクなので、需要がほぼゼロだとは思います。まあ、Pythonの勉強という意味では役に立ったのでいいでしょう。不足していた実践経験を少し補うことはできたと思います。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9b297ec" class="outline-2">
-<h2 id="org9b297ec"><span class="section-number-2">3</span> DLゲームシステムの特徴</h2>
+<div id="outline-container-orgf89633b" class="outline-2">
+<h2 id="orgf89633b"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-DL(Daemon Lord)のゲームシステムでの特徴は、入る度にダンジョンが自動生成されることです。当初は、Rogueのように毎回地下1階からプレイする(迷宮内ではセーブできない)ようにするつもりでしたが、レベルは上がったまま地下1階からずっと歩いて冒険するのは面倒かつ、魔法が比較的低層で切れてしまうことから、魔法(mage level 2のtsubasa)での移動を基本にすることにしました。
-</p>
-
-<p>
-魔法tsubasaを使うと、これまで潜った最深階の最初の部屋(上り階段のある部屋)までテレポーテーションすることができます。tsubasaのお陰で、常に自分のレベルにあったフロアから冒険をスタートできるようになりました。
-</p>
-
-<p>
-このため、常に下り階段を探すスタイルの冒険になります。時折、そのフロア内のどこかにランダム配置された鍵を探さないと入れない部屋を用意して、必ずしも常に最短コースが狙えないように工夫しました。
-</p>
-
-<p>
-その結果、オリジナルのWizardryとはゲームバランスがだいぶ変わってしまいましたが、それなりに遊べるシステムに仕上がってきているように思います。
+バグなどの問題点管理をgithub上でするようにしました。自分でissue登録して自分でfix、closeしていくだけなので少し寂しい感じです。前近代的にexcelでバグ管理するよりは、職場で使っているjiraに近くていい感じです。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org67bd571" class="outline-2">
-<h2 id="org67bd571"><span class="section-number-2">4</span> 次は、、</h2>
+<div id="outline-container-org2fe9696" class="outline-2">
+<h2 id="org2fe9696"><span class="section-number-2">4</span> 開発での経験</h2>
 <div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgbcb2a71" class="outline-3">
+<h3 id="orgbcb2a71"><span class="section-number-3">4.1</span> 学んだこと</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
-デバッグを進めてアルファ版として公開できるようにしたいです。一回通してプレイできるようになったらアルファ版認定してよいでしょうか。
+Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデータ構造にだいぶ慣れました。setは重複排除できるだけの使いにくい(順番が変わるので)listといった印象で、ほとんど使いませんでした。list comprehensionやgenerator expressionの便利さに感動しました。walrus expression(<code>:=</code>)は結構微妙でした。うまく使っても1,2行減るくらいで、可読性が上がるわけでもないので。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org168c27e" class="outline-3">
+<h3 id="org168c27e"><span class="section-number-3">4.2</span> まだまだなこと</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+クラスの設計が下手だと思います。後から様々なフラグアトリビュートを追加して複雑になる傾向がありました。今回はリアルタイムキースキャン以外はほぼ標準ライブラリのみのため、サードパーティーライブラリの使用スキルも身についていません。
 </p>
 
 <p>
-全滅パーティーの救出はまだ入っていませんが、要りますかね。DLでは比較的自由にセーブ、やり直しができるので、パーティーの誰かが死んだりドレインされたらリセットして再開するような気がしています。
+きちんとしたプロジェクトでは致命的と思いますが、今回はユニットテストを全くしませんでした。作ったきり、一度も通っていないコードパスが結構残っていそうです。
 </p>
+</div>
+</div>
+</div>
 
+
+<div id="outline-container-org45e185e" class="outline-2">
+<h2 id="org45e185e"><span class="section-number-2">5</span> 次は、、</h2>
+<div class="outline-text-2" id="text-5">
 <p>
-いちおうのエンディング後(地下11階〜)の冒険用データも用意しないと。ダンジョンフロア自体はメモリの許す限り深い階に対応しているのですが。
+バグが見つかったら直して、というようにペースを落として開発継続していくつもりです。
 </p>
 </div>
 </div>
@@ -156,7 +162,7 @@ DL(Daemon Lord)のゲームシステムでの特徴は、入る度にダンジ�
         きょうす
     </span>
   </span>
-<time datetime="2021-04-12T00:00:00-04:00" pubdate>Mon 12 April 2021</time>  <span class="categories">
+<time datetime="2021-04-18T00:00:00-04:00" pubdate>Sun 18 April 2021</time>  <span class="categories">
     <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
