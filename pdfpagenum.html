@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgad926d5">1. はじめに</a></li>
-<li><a href="#orgf5f4e71">2. ReportLab PDFライブラリ</a></li>
-<li><a href="#org6b29727">3. ReportLab + pdfrwを組み合わせる</a></li>
-<li><a href="#org94aa839">4. 使用方法</a>
+<li><a href="#org4294712">1. はじめに</a></li>
+<li><a href="#orgb065789">2. ReportLab PDFライブラリ</a></li>
+<li><a href="#org4d449ba">3. ReportLab + pdfrwを組み合わせる</a></li>
+<li><a href="#orga473602">4. 使用方法</a>
 <ul>
-<li><a href="#org63f154a">4.1. カスタマイズ方法</a></li>
+<li><a href="#org8ef26db">4.1. カスタマイズ方法</a></li>
 </ul>
 </li>
-<li><a href="#org7658597">5. 終わりに</a></li>
+<li><a href="#org88cfc9b">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgad926d5" class="outline-2">
-<h2 id="orgad926d5"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org4294712" class="outline-2">
+<h2 id="org4294712"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 小学生の娘が算数で間違った問題を、スキャンしてまとめてPDF化しています。しかし、必要なページだけ印刷したつもりが、結構ページ番号がずれていて、何度もやりなおしたりしています。電子化したつもりが意外とアナログです。そこで、自動でPDFファイルにページ番号を付けたいと思いました。ヒューマンエラーによるページ番号のずれが防げる、またはずれてもすぐに気がつくので。
@@ -99,8 +99,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf5f4e71" class="outline-2">
-<h2 id="orgf5f4e71"><span class="section-number-2">2</span> ReportLab PDFライブラリ</h2>
+<div id="outline-container-orgb065789" class="outline-2">
+<h2 id="orgb065789"><span class="section-number-2">2</span> ReportLab PDFライブラリ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりのようです。これらは、複数のPDFファイルをマージしたり、逆に分割したり、ページを入れ替えたりといったことが得意ですが、「既存PDFファイルにページ番号を付加する」というユースケースには対応していないようです。
@@ -126,8 +126,8 @@ PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりの�
 </div>
 </div>
 
-<div id="outline-container-org6b29727" class="outline-2">
-<h2 id="org6b29727"><span class="section-number-2">3</span> ReportLab + pdfrwを組み合わせる</h2>
+<div id="outline-container-org4d449ba" class="outline-2">
+<h2 id="org4d449ba"><span class="section-number-2">3</span> ReportLab + pdfrwを組み合わせる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 それでも諦めずに検索を続けたところ、見つけました。
@@ -197,8 +197,8 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-org94aa839" class="outline-2">
-<h2 id="org94aa839"><span class="section-number-2">4</span> 使用方法</h2>
+<div id="outline-container-orga473602" class="outline-2">
+<h2 id="orga473602"><span class="section-number-2">4</span> 使用方法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 f-stringを使っているので、python 3.6以降で使ってください。
@@ -230,8 +230,8 @@ python addpagenum.py &lt;pdf_filename&gt;
 </p>
 </div>
 
-<div id="outline-container-org63f154a" class="outline-3">
-<h3 id="org63f154a"><span class="section-number-3">4.1</span> カスタマイズ方法</h3>
+<div id="outline-container-org8ef26db" class="outline-3">
+<h3 id="org8ef26db"><span class="section-number-3">4.1</span> カスタマイズ方法</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 このあたりを適当に変えてください。
@@ -257,8 +257,8 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
 </div>
 </div>
 
-<div id="outline-container-org7658597" class="outline-2">
-<h2 id="org7658597"><span class="section-number-2">5</span> 終わりに</h2>
+<div id="outline-container-org88cfc9b" class="outline-2">
+<h2 id="org88cfc9b"><span class="section-number-2">5</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このスクリプトはgithubにも載せました。
@@ -293,6 +293,9 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/fedora34.html">Fedora34のインストールと設定</a>
+      </li>
+      <li class="post">
           <a href="/atok.html">ATOK解約しました</a>
       </li>
       <li class="post">
@@ -303,9 +306,6 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
       </li>
       <li class="post">
           <a href="/dl11.html">DL-11; DLのアルファ版を公開しました</a>
-      </li>
-      <li class="post">
-          <a href="/dl10.html">DL-10; だいぶ出来てきた</a>
       </li>
     </ul>
   </section>
@@ -324,7 +324,7 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
