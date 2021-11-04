@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>DL-12; データベースをサポート &mdash; Dreaming in Brookline, MA 02446</title>
+  <title>DL-12; データベースをサポート &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02446</a></h1>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -69,20 +69,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3d9388f">1. はじめに</a></li>
-<li><a href="#orgf56fef0">2. データベース対応</a>
+<li><a href="#org6084474">1. はじめに</a></li>
+<li><a href="#orgca7a491">2. データベース対応</a>
 <ul>
-<li><a href="#org1af2287">2.1. DLのデータベース対応</a></li>
-<li><a href="#orgd0c8176">2.2. データベース/SQLAlchemyを使ってみて</a></li>
+<li><a href="#org6d26089">2.1. DLのデータベース対応</a></li>
+<li><a href="#org4a9b863">2.2. データベース/SQLAlchemyを使ってみて</a></li>
 </ul>
 </li>
-<li><a href="#org1eb4076">3. 次の構想</a></li>
+<li><a href="#org39a13ab">3. 次の構想</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3d9388f" class="outline-2">
-<h2 id="org3d9388f"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org6084474" class="outline-2">
+<h2 id="org6084474"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの12回目です。
@@ -94,12 +94,12 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orgf56fef0" class="outline-2">
-<h2 id="orgf56fef0"><span class="section-number-2">2</span> データベース対応</h2>
+<div id="outline-container-orgca7a491" class="outline-2">
+<h2 id="orgca7a491"><span class="section-number-2">2</span> データベース対応</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org1af2287" class="outline-3">
-<h3 id="org1af2287"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
+<div id="outline-container-org6d26089" class="outline-3">
+<h3 id="org6d26089"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 DLはこれまでセーブデータをpickleしてファイルにセーブしていたのですが、データベースを使ってみたかったのでサポートしてみました。セーブするときには全部セーブして、ロードするときも同様という使い方なので、データベースにしたメリットは今のところほぼありません。それどころか、セーブに数秒かかるようになってしまいました。
@@ -115,8 +115,8 @@ DLはこれまでセーブデータをpickleしてファイルにセーブして
 </div>
 </div>
 
-<div id="outline-container-orgd0c8176" class="outline-3">
-<h3 id="orgd0c8176"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
+<div id="outline-container-org4a9b863" class="outline-3">
+<h3 id="org4a9b863"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/dp/1492057614/">Learning SQL</a>という入門書を読んだくらいで、ネットで検索しながら基本的なSELECT * FROM &lt;table&gt;のようなコマンドが使える程度でした。<a href="https://docs.sqlalchemy.org/en/14/orm/tutorial.html">SQLAlchemyのチュートリアル</a>も目を通しました。
@@ -141,8 +141,8 @@ SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/
 </div>
 </div>
 
-<div id="outline-container-org1eb4076" class="outline-2">
-<h2 id="org1eb4076"><span class="section-number-2">3</span> 次の構想</h2>
+<div id="outline-container-org39a13ab" class="outline-2">
+<h2 id="org39a13ab"><span class="section-number-2">3</span> 次の構想</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 次回作ですが、特に面白いアイデアがあるわけでも無いので、使ってみたい技術を使ってDLをマルチプレイヤー化してみたいと考えています。実はDLのデータベース化はその準備の一環です。他には、クライアント-サーバー化と、サーバーのasync対応をやりたいと考えています。ライブラリとしては<a href="https://python-socketio.readthedocs.io/en/latest/">python-socketio</a>や<a href="https://flask-socketio.readthedocs.io/en/latest/">flask-socketio</a>あたりに目を付けています。
@@ -176,6 +176,9 @@ WizardryクローンであるDLの戦闘はターン制なので、マルチプ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/jobchg.html">アメリカで転職しました</a>
+      </li>
+      <li class="post">
           <a href="/bus3.html">S3バックアップツールbus3.pyを作りました</a>
       </li>
       <li class="post">
@@ -186,9 +189,6 @@ WizardryクローンであるDLの戦闘はターン制なので、マルチプ�
       </li>
       <li class="post">
           <a href="/dl13.html">DL-13; サーバー&クライアント</a>
-      </li>
-      <li class="post">
-          <a href="/dl12.html">DL-12; データベースをサポート</a>
       </li>
     </ul>
   </section>
@@ -207,7 +207,7 @@ WizardryクローンであるDLの戦闘はターン制なので、マルチプ�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

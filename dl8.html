@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>DL-8; キャンプと戦闘の基本部分 &mdash; Dreaming in Brookline, MA 02446</title>
+  <title>DL-8; キャンプと戦闘の基本部分 &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02446</a></h1>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbc0efef">1. はじめに</a></li>
-<li><a href="#org503b219">2. 表示バグの解決</a></li>
-<li><a href="#org953c36f">3. キャンプ</a></li>
-<li><a href="#org522812d">4. 戦闘基本</a></li>
-<li><a href="#orgbf3bb0b">5. 次は、、</a></li>
+<li><a href="#orgff8ae65">1. はじめに</a></li>
+<li><a href="#orgb731171">2. 表示バグの解決</a></li>
+<li><a href="#orgdb55caa">3. キャンプ</a></li>
+<li><a href="#org85e656a">4. 戦闘基本</a></li>
+<li><a href="#orga1e28b6">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbc0efef" class="outline-2">
-<h2 id="orgbc0efef"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgff8ae65" class="outline-2">
+<h2 id="orgff8ae65"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの8回目です。今回はキャンプと戦闘の非常に基本的な部分を実装しています(現在進行形)。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org503b219" class="outline-2">
-<h2 id="org503b219"><span class="section-number-2">2</span> 表示バグの解決</h2>
+<div id="outline-container-orgb731171" class="outline-2">
+<h2 id="orgb731171"><span class="section-number-2">2</span> 表示バグの解決</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 これまでずっと妙な表示バグに悩まされてきました。DL(Daemon Lord)では仮想画面を使ったダブルバッファリングをしているのですが、ふと、一部古い画面を表示してしまうのです。致命的なバグではないのでしばらく放置してきましたが、ようやく原因がわかりました。メッセージ表示メソッドにおいて、メッセージウインドウのみを書き換えて他は前回の画面のまま表示していたのです。現象から原因を推測するのが難しいバグでした。
@@ -100,8 +100,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org953c36f" class="outline-2">
-<h2 id="org953c36f"><span class="section-number-2">3</span> キャンプ</h2>
+<div id="outline-container-orgdb55caa" class="outline-2">
+<h2 id="orgdb55caa"><span class="section-number-2">3</span> キャンプ</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 キャンプはキャラクター表示からの魔法(スペル)使用やアイテムの装備など、使い回しでそれなりに実装できました。キャンプ途中のみとはいえ、回復魔法が使えるのは心強いです。
@@ -109,8 +109,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org522812d" class="outline-2">
-<h2 id="org522812d"><span class="section-number-2">4</span> 戦闘基本</h2>
+<div id="outline-container-org85e656a" class="outline-2">
+<h2 id="org85e656a"><span class="section-number-2">4</span> 戦闘基本</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Wizardryのシステムにおいて、戦闘は最も複雑な部分です。その中で、逃亡、単純な打撃、parry(身を守る)と戦闘終了時の経験値とgoldの取得のみを実装しました。打撃は更に属性攻撃やドレイン、クリティカルなどの効果があります。
@@ -150,8 +150,8 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
 </div>
 </div>
 
-<div id="outline-container-orgbf3bb0b" class="outline-2">
-<h2 id="orgbf3bb0b"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-orga1e28b6" class="outline-2">
+<h2 id="orga1e28b6"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 戦闘の実装を進めます。魔法がキャンプと戦闘で思ったよりも共通化が難しいので、工夫が必要です。不本意ながら、それぞれ独立した実装になってしまうかもしれません。
@@ -181,6 +181,9 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/jobchg.html">アメリカで転職しました</a>
+      </li>
+      <li class="post">
           <a href="/bus3.html">S3バックアップツールbus3.pyを作りました</a>
       </li>
       <li class="post">
@@ -191,9 +194,6 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
       </li>
       <li class="post">
           <a href="/dl13.html">DL-13; サーバー&クライアント</a>
-      </li>
-      <li class="post">
-          <a href="/dl12.html">DL-12; データベースをサポート</a>
       </li>
     </ul>
   </section>
@@ -212,7 +212,7 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

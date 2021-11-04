@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>S3バックアップツールbus3.pyを作りました &mdash; Dreaming in Brookline, MA 02446</title>
+  <title>S3バックアップツールbus3.pyを作りました &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02446</a></h1>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org10a7885">1. はじめに</a></li>
-<li><a href="#org764266c">2. bus3概要</a></li>
-<li><a href="#orgfe818b4">3. bus3特徴</a>
+<li><a href="#orgfeff5b6">1. はじめに</a></li>
+<li><a href="#org1687ba9">2. bus3概要</a></li>
+<li><a href="#org0ccfdac">3. bus3特徴</a>
 <ul>
-<li><a href="#org34c34a4">3.1. 機能</a></li>
-<li><a href="#org41d0a71">3.2. 技術面で</a></li>
+<li><a href="#org4301c8b">3.1. 機能</a></li>
+<li><a href="#orgdff3336">3.2. 技術面で</a></li>
 </ul>
 </li>
-<li><a href="#org7a06e9a">4. 使用法</a></li>
-<li><a href="#org23b8c25">5. 今回学んだこと</a>
+<li><a href="#org85edf2b">4. 使用法</a></li>
+<li><a href="#org5986499">5. 今回学んだこと</a>
 <ul>
-<li><a href="#orgc96d406">5.1. asyncio</a></li>
-<li><a href="#orgdc9d513">5.2. データベース</a></li>
-<li><a href="#org0c2a07d">5.3. 性能ボトルネック解析</a></li>
-<li><a href="#org496d598">5.4. python</a></li>
-<li><a href="#orgfabc9d6">5.5. 開発環境</a></li>
+<li><a href="#org7e290a6">5.1. asyncio</a></li>
+<li><a href="#orgafe0579">5.2. データベース</a></li>
+<li><a href="#org43b2563">5.3. 性能ボトルネック解析</a></li>
+<li><a href="#org6c14811">5.4. python</a></li>
+<li><a href="#org9da413e">5.5. 開発環境</a></li>
 </ul>
 </li>
 </ul>
@@ -92,8 +92,8 @@
 </div>
 
 
-<div id="outline-container-org10a7885" class="outline-2">
-<h2 id="org10a7885"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgfeff5b6" class="outline-2">
+<h2 id="orgfeff5b6"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレージへのバックアップツールbus3.pyを作りました。<a href="https://github.com/achiwa912/bus3">https://github.com/achiwa912/bus3</a>
@@ -101,8 +101,8 @@ Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレ�
 </div>
 </div>
 
-<div id="outline-container-org764266c" class="outline-2">
-<h2 id="org764266c"><span class="section-number-2">2</span> bus3概要</h2>
+<div id="outline-container-org1687ba9" class="outline-2">
+<h2 id="org1687ba9"><span class="section-number-2">2</span> bus3概要</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 bus3は指定ディレクトリ以下のファイルやディレクトリをバックアップします。ファイルのコンテンツはS3ストレージに、メタデータはデータベースに保管します。
@@ -122,12 +122,12 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-orgfe818b4" class="outline-2">
-<h2 id="orgfe818b4"><span class="section-number-2">3</span> bus3特徴</h2>
+<div id="outline-container-org0ccfdac" class="outline-2">
+<h2 id="org0ccfdac"><span class="section-number-2">3</span> bus3特徴</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org34c34a4" class="outline-3">
-<h3 id="org34c34a4"><span class="section-number-3">3.1</span> 機能</h3>
+<div id="outline-container-org4301c8b" class="outline-3">
+<h3 id="org4301c8b"><span class="section-number-3">3.1</span> 機能</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>指定ファイルやディレクトリのバックアップ、リストアを行います</li>
@@ -139,8 +139,8 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-org41d0a71" class="outline-3">
-<h3 id="org41d0a71"><span class="section-number-3">3.2</span> 技術面で</h3>
+<div id="outline-container-orgdff3336" class="outline-3">
+<h3 id="orgdff3336"><span class="section-number-3">3.2</span> 技術面で</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>asyncio</code> をフルに活用してバックアップ・リストアの多重度を上げています
@@ -157,8 +157,8 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-org7a06e9a" class="outline-2">
-<h2 id="org7a06e9a"><span class="section-number-2">4</span> 使用法</h2>
+<div id="outline-container-org85edf2b" class="outline-2">
+<h2 id="org85edf2b"><span class="section-number-2">4</span> 使用法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 githubのREADMEを参照ください。
@@ -166,12 +166,12 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-org23b8c25" class="outline-2">
-<h2 id="org23b8c25"><span class="section-number-2">5</span> 今回学んだこと</h2>
+<div id="outline-container-org5986499" class="outline-2">
+<h2 id="org5986499"><span class="section-number-2">5</span> 今回学んだこと</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgc96d406" class="outline-3">
-<h3 id="orgc96d406"><span class="section-number-3">5.1</span> asyncio</h3>
+<div id="outline-container-org7e290a6" class="outline-3">
+<h3 id="org7e290a6"><span class="section-number-3">5.1</span> asyncio</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>単純に <code>await</code> を使っても多重度が上がる訳ではないことがわかりました。 多重度を上げるには、 <code>asyncio.create_task()</code> を使ってasyncタスク化しなくてはいけません</li>
@@ -183,8 +183,8 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-orgdc9d513" class="outline-3">
-<h3 id="orgdc9d513"><span class="section-number-3">5.2</span> データベース</h3>
+<div id="outline-container-orgafe0579" class="outline-3">
+<h3 id="orgafe0579"><span class="section-number-3">5.2</span> データベース</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>sqlite3はとても気軽に使えますが、グローバルライトロックがあるため、多重度を上げる技術である <code>asyncio</code> とは相性が悪いと感じました</li>
@@ -194,8 +194,8 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-org0c2a07d" class="outline-3">
-<h3 id="org0c2a07d"><span class="section-number-3">5.3</span> 性能ボトルネック解析</h3>
+<div id="outline-container-org43b2563" class="outline-3">
+<h3 id="org43b2563"><span class="section-number-3">5.3</span> 性能ボトルネック解析</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>CPUやメモリの利用率は <code>top</code> コマンドを使って見ました</li>
@@ -214,8 +214,8 @@ snakeviz prof.bin
 </div>
 
 
-<div id="outline-container-org496d598" class="outline-3">
-<h3 id="org496d598"><span class="section-number-3">5.4</span> python</h3>
+<div id="outline-container-org6c14811" class="outline-3">
+<h3 id="org6c14811"><span class="section-number-3">5.4</span> python</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li><code>argparse</code> が思ったように動いてくれず、とても使いづらかったです。</li>
@@ -223,8 +223,8 @@ snakeviz prof.bin
 </div>
 </div>
 
-<div id="outline-container-orgfabc9d6" class="outline-3">
-<h3 id="orgfabc9d6"><span class="section-number-3">5.5</span> 開発環境</h3>
+<div id="outline-container-org9da413e" class="outline-3">
+<h3 id="org9da413e"><span class="section-number-3">5.5</span> 開発環境</h3>
 <div class="outline-text-3" id="text-5-5">
 <ul class="org-ul">
 <li>私はemacs + elpyで開発していますが、どうもセーブ時の自動整形が変だと思ったら、必要なバックエンド機能が動いていなかった、ということがありました。 <code>M-x elpy-config</code> で確認するまでわかりませんでした</li>
@@ -258,6 +258,9 @@ snakeviz prof.bin
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/jobchg.html">アメリカで転職しました</a>
+      </li>
+      <li class="post">
           <a href="/bus3.html">S3バックアップツールbus3.pyを作りました</a>
       </li>
       <li class="post">
@@ -268,9 +271,6 @@ snakeviz prof.bin
       </li>
       <li class="post">
           <a href="/dl13.html">DL-13; サーバー&クライアント</a>
-      </li>
-      <li class="post">
-          <a href="/dl12.html">DL-12; データベースをサポート</a>
       </li>
     </ul>
   </section>
@@ -289,7 +289,7 @@ snakeviz prof.bin
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
