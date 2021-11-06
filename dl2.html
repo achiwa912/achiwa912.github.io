@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8a6c182">1. はじめに</a></li>
-<li><a href="#orgad456bf">2. マップ自動生成</a>
+<li><a href="#org3a56dd5">1. はじめに</a></li>
+<li><a href="#org8556e54">2. マップ自動生成</a>
 <ul>
-<li><a href="#org00c91fb">2.1. 部屋データ生成</a></li>
-<li><a href="#orgc33eb0b">2.2. 部屋のフロアへの配置</a></li>
-<li><a href="#orgd8f5714">2.3. 廊下で部屋をつなぐ</a></li>
-<li><a href="#org9f638bd">2.4. ドアの設置</a></li>
+<li><a href="#orga2bfac3">2.1. 部屋データ生成</a></li>
+<li><a href="#org6da268a">2.2. 部屋のフロアへの配置</a></li>
+<li><a href="#org3c2a7c3">2.3. 廊下で部屋をつなぐ</a></li>
+<li><a href="#org74eee5c">2.4. ドアの設置</a></li>
 </ul>
 </li>
-<li><a href="#org8278fe1">3. 続き</a></li>
+<li><a href="#orgea5202a">3. 続き</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8a6c182" class="outline-2">
-<h2 id="org8a6c182"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org3a56dd5" class="outline-2">
+<h2 id="org3a56dd5"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プロジェクトに名前が無いと不便なので、仮称DL - Daemon Lordとしました。dl.pyで作り始めます。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgad456bf" class="outline-2">
-<h2 id="orgad456bf"><span class="section-number-2">2</span> マップ自動生成</h2>
+<div id="outline-container-org8556e54" class="outline-2">
+<h2 id="org8556e54"><span class="section-number-2">2</span> マップ自動生成</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 まずは1フロア分のマップを作ります。以下のような流れになります。
@@ -111,8 +111,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </ol>
 </div>
 
-<div id="outline-container-org00c91fb" class="outline-3">
-<h3 id="org00c91fb"><span class="section-number-3">2.1</span> 部屋データ生成</h3>
+<div id="outline-container-orga2bfac3" class="outline-3">
+<h3 id="orga2bfac3"><span class="section-number-3">2.1</span> 部屋データ生成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはRoomクラスを作ります。パラメーターとして左上の座標(x, y)と横縦のサイズ(x_size, y_size)を持ちます。後で計算をさぼるために部屋の中心座標も計算して持っておきます(center_x, center_y)。
@@ -206,8 +206,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgc33eb0b" class="outline-3">
-<h3 id="orgc33eb0b"><span class="section-number-3">2.2</span> 部屋のフロアへの配置</h3>
+<div id="outline-container-org6da268a" class="outline-3">
+<h3 id="org6da268a"><span class="section-number-3">2.2</span> 部屋のフロアへの配置</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 続いて、フロアを岩で埋め尽くして初期化し、そこに部屋を配置していきます。これは一フロアを生成する関数generate_floor()の中で直接やってしまいます。今回のテーマのメイン関数です。
@@ -243,8 +243,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgd8f5714" class="outline-3">
-<h3 id="orgd8f5714"><span class="section-number-3">2.3</span> 廊下で部屋をつなぐ</h3>
+<div id="outline-container-org3c2a7c3" class="outline-3">
+<h3 id="org3c2a7c3"><span class="section-number-3">2.3</span> 廊下で部屋をつなぐ</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 そして、部屋を廊下でつないでいきます。まずは部屋をy座標 &rarr; x座標の順でソートします。そして部屋をひとつずつリストからpopして、一番近い部屋を探し、互いの中心座標を歩ける床のタイルb'.'で結び、廊下とします。他の廊下や部屋と重なっても気にしません。全ての部屋を一筆書きの要領でつなぎます。
@@ -337,8 +337,8 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
 </div>
 </div>
 
-<div id="outline-container-org9f638bd" class="outline-3">
-<h3 id="org9f638bd"><span class="section-number-3">2.4</span> ドアの設置</h3>
+<div id="outline-container-org74eee5c" class="outline-3">
+<h3 id="org74eee5c"><span class="section-number-3">2.4</span> ドアの設置</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 最後に、place_doors()関数で部屋の入り口にドアを設置します。ドアにはロック無し('+')、あり('*')の2種類を用意し、10%の確率でその部屋のドアをロック付きにします。
@@ -389,8 +389,8 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
 </div>
 </div>
 
-<div id="outline-container-org8278fe1" class="outline-2">
-<h2 id="org8278fe1"><span class="section-number-2">3</span> 続き</h2>
+<div id="outline-container-orgea5202a" class="outline-2">
+<h2 id="orgea5202a"><span class="section-number-2">3</span> 続き</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回はダンジョンフロアの自動生成部分を作ってみました。思いのほか長くなってしまいました。次回はフロアをスクロール画面に表示します。
@@ -423,10 +423,10 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
           <a href="/moving.html">アメリカで近距離の引っ越し</a>
       </li>
       <li class="post">
-          <a href="/breaklease.html">アパートリース契約を破棄しました</a>
+          <a href="/breaklease.html">アメリカでアパートリース契約を破棄</a>
       </li>
       <li class="post">
-          <a href="/jobchg.html">アメリカで転職しました</a>
+          <a href="/jobchg.html">アメリカの出向先に転職しました</a>
       </li>
       <li class="post">
           <a href="/bus3.html">S3バックアップツールbus3.pyを作りました</a>
