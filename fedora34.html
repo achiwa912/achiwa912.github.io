@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf3de0f3">1. はじめに</a></li>
-<li><a href="#org7113aa6">2. Fedora34インストール</a>
+<li><a href="#org808a90d">1. はじめに</a></li>
+<li><a href="#org69f20a7">2. Fedora34インストール</a>
 <ul>
-<li><a href="#org855c9e2">2.1. VM作成</a></li>
-<li><a href="#org0496f54">2.2. fedoraインストーラー</a></li>
-<li><a href="#org88793d7">2.3. fedora起動</a></li>
-<li><a href="#org6beb7a7">2.4. Guest Additions</a></li>
+<li><a href="#org4a6c1a8">2.1. VM作成</a></li>
+<li><a href="#org6216ea7">2.2. fedoraインストーラー</a></li>
+<li><a href="#org9d392c7">2.3. fedora起動</a></li>
+<li><a href="#org4eefd72">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#orgd6ba9b5">3. emacsの設定</a></li>
-<li><a href="#orgb86da86">4. pythonの設定</a>
+<li><a href="#org071e0e2">3. emacsの設定</a></li>
+<li><a href="#orgc9f5c62">4. pythonの設定</a>
 <ul>
-<li><a href="#orgf499c35">4.1. pyenvを入れる</a></li>
+<li><a href="#orgd09badd">4.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf3de0f3" class="outline-2">
-<h2 id="orgf3de0f3"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org808a90d" class="outline-2">
+<h2 id="org808a90d"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora34を入れました。
@@ -102,12 +102,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-org7113aa6" class="outline-2">
-<h2 id="org7113aa6"><span class="section-number-2">2</span> Fedora34インストール</h2>
+<div id="outline-container-org69f20a7" class="outline-2">
+<h2 id="org69f20a7"><span class="section-number-2">2</span> Fedora34インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org855c9e2" class="outline-3">
-<h3 id="org855c9e2"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org4a6c1a8" class="outline-3">
+<h3 id="org4a6c1a8"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 34 download</code> で検索して、isoファイルをダウンロードします。
@@ -134,8 +134,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org0496f54" class="outline-3">
-<h3 id="org0496f54"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-org6216ea7" class="outline-3">
+<h3 id="org6216ea7"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora34のインストーラー起動画面が出ます。
@@ -153,8 +153,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org88793d7" class="outline-3">
-<h3 id="org88793d7"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-org9d392c7" class="outline-3">
+<h3 id="org9d392c7"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。しばらく不安になる画面で放置されますが、数十秒で使えるようになります。
@@ -178,8 +178,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-org6beb7a7" class="outline-3">
-<h3 id="org6beb7a7"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-org4eefd72" class="outline-3">
+<h3 id="org4eefd72"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -201,8 +201,8 @@ Fedora34としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-orgd6ba9b5" class="outline-2">
-<h2 id="orgd6ba9b5"><span class="section-number-2">3</span> emacsの設定</h2>
+<div id="outline-container-org071e0e2" class="outline-2">
+<h2 id="org071e0e2"><span class="section-number-2">3</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Fedoraには最初からviが入っていますが、私はあまり使えないためにemacsを入れます。
@@ -464,8 +464,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-orgb86da86" class="outline-2">
-<h2 id="orgb86da86"><span class="section-number-2">4</span> pythonの設定</h2>
+<div id="outline-container-orgc9f5c62" class="outline-2">
+<h2 id="orgc9f5c62"><span class="section-number-2">4</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Fedora34を入れたら、いきなりpython 3.9.6が/usr/bin/pythonとしてインストールされていました。
@@ -479,8 +479,8 @@ Python 3.9.6
 </pre>
 </div>
 
-<div id="outline-container-orgf499c35" class="outline-3">
-<h3 id="orgf499c35"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
+<div id="outline-container-orgd09badd" class="outline-3">
+<h3 id="orgd09badd"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.9.6なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -566,6 +566,9 @@ Python 3.9.6
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/breaklease.html">アパートリース契約を破棄しました</a>
+      </li>
+      <li class="post">
           <a href="/jobchg.html">アメリカで転職しました</a>
       </li>
       <li class="post">
@@ -576,9 +579,6 @@ Python 3.9.6
       </li>
       <li class="post">
           <a href="/atok.html">ATOK解約しました</a>
-      </li>
-      <li class="post">
-          <a href="/dl13.html">DL-13; サーバー&クライアント</a>
       </li>
     </ul>
   </section>
@@ -597,7 +597,7 @@ Python 3.9.6
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog-amerikatoraburu.html">Blog アメリカトラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
