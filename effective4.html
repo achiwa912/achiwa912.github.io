@@ -69,47 +69,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org60ded93">1. Chapter 7: コンカレンシーと並列実行</a>
+<li><a href="#org7d69d9a">1. Chapter 7: コンカレンシーと並列実行</a>
 <ul>
-<li><a href="#org839bba9">1.1. Item 52: 子プロセスを管理するために subprosess を使え</a></li>
-<li><a href="#org1f420c8">1.2. Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</a></li>
-<li><a href="#org7b8e932">1.3. Item 54: スレッド間のデータレースを避けるために Lock を使え</a></li>
-<li><a href="#orgef970f4">1.4. Item 55: スレッド間のワークアサインの調整には Queue を使え</a></li>
-<li><a href="#org0972e7a">1.5. Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</a></li>
-<li><a href="#orga524eb0">1.6. Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</a></li>
-<li><a href="#orgabdb054">1.7. Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</a></li>
-<li><a href="#org4600083">1.8. Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</a></li>
-<li><a href="#orgd1a76e5">1.9. Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</a></li>
-<li><a href="#orgaaf2245">1.10. Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</a></li>
-<li><a href="#org8a62199">1.11. Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</a></li>
-<li><a href="#org472c974">1.12. Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</a></li>
-<li><a href="#org8e4c43c">1.13. Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</a></li>
+<li><a href="#org6d998b0">1.1. Item 52: 子プロセスを管理するために subprosess を使え</a></li>
+<li><a href="#orgd685d70">1.2. Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</a></li>
+<li><a href="#org71fe48d">1.3. Item 54: スレッド間のデータレースを避けるために Lock を使え</a></li>
+<li><a href="#org5fdb645">1.4. Item 55: スレッド間のワークアサインの調整には Queue を使え</a></li>
+<li><a href="#org6653bd2">1.5. Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</a></li>
+<li><a href="#org0f72bc1">1.6. Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</a></li>
+<li><a href="#org77f1a87">1.7. Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</a></li>
+<li><a href="#org943799c">1.8. Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</a></li>
+<li><a href="#org80ed438">1.9. Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</a></li>
+<li><a href="#org22d0ef6">1.10. Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</a></li>
+<li><a href="#org4fd57f0">1.11. Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</a></li>
+<li><a href="#org43896fd">1.12. Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</a></li>
+<li><a href="#org3a66de6">1.13. Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</a></li>
 </ul>
 </li>
-<li><a href="#org21bbf19">2. Chapter 8: 堅牢性(robustness)と性能</a>
+<li><a href="#orgdc28c2c">2. Chapter 8: 堅牢性(robustness)と性能</a>
 <ul>
-<li><a href="#orgb0d08f4">2.1. Item 65: try/except/else/finallyで各ブロックを有効に使え</a></li>
-<li><a href="#orgbc11042">2.2. Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</a></li>
-<li><a href="#org5ef109a">2.3. Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</a></li>
-<li><a href="#orgb67d01c">2.4. Item 68: copyregでpickleをreliableにせよ</a></li>
-<li><a href="#orgb434873">2.5. Item 69: 精度が重要なら decimal を使え</a></li>
-<li><a href="#orgc18e122">2.6. Item 70: 最適化の前にプロファイルせよ</a></li>
-<li><a href="#org1e21a27">2.7. Item 71: 生産者-消費者キューにはdequeを使え</a></li>
-<li><a href="#org0ca730b">2.8. Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</a></li>
-<li><a href="#org395b8cd">2.9. Item 73: 優先度キューのために heapq をどう使うかを知れ</a></li>
-<li><a href="#org239dcde">2.10. Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</a></li>
+<li><a href="#org4e17a21">2.1. Item 65: try/except/else/finallyで各ブロックを有効に使え</a></li>
+<li><a href="#org0425a2a">2.2. Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</a></li>
+<li><a href="#org7410640">2.3. Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</a></li>
+<li><a href="#orgf75945a">2.4. Item 68: copyregでpickleをreliableにせよ</a></li>
+<li><a href="#orge6267ab">2.5. Item 69: 精度が重要なら decimal を使え</a></li>
+<li><a href="#orgeca1532">2.6. Item 70: 最適化の前にプロファイルせよ</a></li>
+<li><a href="#org1aecaae">2.7. Item 71: 生産者-消費者キューにはdequeを使え</a></li>
+<li><a href="#orgc440448">2.8. Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</a></li>
+<li><a href="#org617e51c">2.9. Item 73: 優先度キューのために heapq をどう使うかを知れ</a></li>
+<li><a href="#org87d3b4c">2.10. Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org60ded93" class="outline-2">
-<h2 id="org60ded93"><span class="section-number-2">1</span> Chapter 7: コンカレンシーと並列実行</h2>
+<div id="outline-container-org7d69d9a" class="outline-2">
+<h2 id="org7d69d9a"><span class="section-number-2">1</span> Chapter 7: コンカレンシーと並列実行</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org839bba9" class="outline-3">
-<h3 id="org839bba9"><span class="section-number-3">1.1</span> Item 52: 子プロセスを管理するために subprosess を使え</h3>
+<div id="outline-container-org6d998b0" class="outline-3">
+<h3 id="org6d998b0"><span class="section-number-3">1.1</span> Item 52: 子プロセスを管理するために subprosess を使え</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Pythonから子プロセスを呼び出すシンプルな方法。
@@ -270,8 +270,8 @@ Exist status -15
 </div>
 </div>
 
-<div id="outline-container-org1f420c8" class="outline-3">
-<h3 id="org1f420c8"><span class="section-number-3">1.2</span> Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</h3>
+<div id="outline-container-orgd685d70" class="outline-3">
+<h3 id="orgd685d70"><span class="section-number-3">1.2</span> Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 普通使うPythonはCPythonですが、CPythonはglobal interpreter lock (GIL)のために複数コアでの並列実行ができません。知りませんでした。衝撃的な事実。。。I/Oによる待ちが無ければ複数スレッド使っても実行時間は短縮されません。
@@ -312,8 +312,8 @@ Took 0.103 seconds
 </div>
 </div>
 
-<div id="outline-container-org7b8e932" class="outline-3">
-<h3 id="org7b8e932"><span class="section-number-3">1.3</span> Item 54: スレッド間のデータレースを避けるために Lock を使え</h3>
+<div id="outline-container-org71fe48d" class="outline-3">
+<h3 id="org71fe48d"><span class="section-number-3">1.3</span> Item 54: スレッド間のデータレースを避けるために Lock を使え</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 単一コアで動くマルチスレッドにもロックは必要という話。
@@ -347,8 +347,8 @@ Pythonでmutexを用意する例:
 </div>
 </div>
 
-<div id="outline-container-orgef970f4" class="outline-3">
-<h3 id="orgef970f4"><span class="section-number-3">1.4</span> Item 55: スレッド間のワークアサインの調整には Queue を使え</h3>
+<div id="outline-container-org5fdb645" class="outline-3">
+<h3 id="org5fdb645"><span class="section-number-3">1.4</span> Item 55: スレッド間のワークアサインの調整には Queue を使え</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 <code>Queue</code> クラスはパイプラインを実装するのに便利です。 <code>Queue</code> の getメソッドは新データが来るまでブロックするため、自前でbusyウエイトを実装する必要がありません。
@@ -627,8 +627,8 @@ stop_threads(upload_queue, upload_threads)
 </div>
 </div>
 
-<div id="outline-container-org0972e7a" class="outline-3">
-<h3 id="org0972e7a"><span class="section-number-3">1.5</span> Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</h3>
+<div id="outline-container-org6653bd2" class="outline-3">
+<h3 id="org6653bd2"><span class="section-number-3">1.5</span> Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 あるワークを、コンカレントに実行できるものにばらまくことを fan-out、ばらまいたものを回収することを fan-inと言うそうです。Pythonにはこれらを実現するツールがたくさんあって、それぞれトレードオフがあります。次の節以降で説明していきます。
@@ -636,8 +636,8 @@ stop_threads(upload_queue, upload_threads)
 </div>
 </div>
 
-<div id="outline-container-orga524eb0" class="outline-3">
-<h3 id="orga524eb0"><span class="section-number-3">1.6</span> Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</h3>
+<div id="outline-container-org0f72bc1" class="outline-3">
+<h3 id="org0f72bc1"><span class="section-number-3">1.6</span> Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 ダイナミックにfan-out/fan-inを繰り返すような用途や、非常に多くにfan-outするケースにはスレッドは合いません。
@@ -650,8 +650,8 @@ stop_threads(upload_queue, upload_threads)
 </div>
 </div>
 
-<div id="outline-container-orgabdb054" class="outline-3">
-<h3 id="orgabdb054"><span class="section-number-3">1.7</span> Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</h3>
+<div id="outline-container-org77f1a87" class="outline-3">
+<h3 id="org77f1a87"><span class="section-number-3">1.7</span> Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Queueを使うとスレッド数はワーカーの数に限定されるので、上限を定めないスレッドよりはマシですが、仕組みが複雑なことと、仕様変更によっては大きなリファクタリングが必要になるため、よい方法とは言えません。
@@ -659,8 +659,8 @@ Queueを使うとスレッド数はワーカーの数に限定されるので、
 </div>
 </div>
 
-<div id="outline-container-org4600083" class="outline-3">
-<h3 id="org4600083"><span class="section-number-3">1.8</span> Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</h3>
+<div id="outline-container-org943799c" class="outline-3">
+<h3 id="org943799c"><span class="section-number-3">1.8</span> Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 スレッドプールはなかなか良さそうです。例外を呼び元に伝搬する仕組みもあります。ただ、 <code>max_workers</code> をあらかじめ決めておく必要があることがネックです
@@ -719,8 +719,8 @@ Queueを使うとスレッド数はワーカーの数に限定されるので、
 </div>
 </div>
 
-<div id="outline-container-orgd1a76e5" class="outline-3">
-<h3 id="orgd1a76e5"><span class="section-number-3">1.9</span> Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</h3>
+<div id="outline-container-org80ed438" class="outline-3">
+<h3 id="org80ed438"><span class="section-number-3">1.9</span> Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 <a href="https://docs.python.org/3/library/asyncio.html">Asyncronus I/O</a>です。これは1スレッド内で、スレッドとは異なる仕組みを使ってコンテキストスイッチを行います。スレッドはOSカーネルの仕組みを使って、プリエンプティブにコンテキストスイッチしますが、Async I/Oでは長い待ちが発生する時(eg, ネットワーク待ち)に自発的に処理の実行を明け渡します。Async I/OはCPUネックの処理では効果がありません。Async I/Oの仕組みはスレッドよりもずっと軽く、数千のコンテキストをコンカレントに処理することができます。
@@ -798,8 +798,8 @@ PythonのAsynchronous I/Oについては、Real Pythonの<a href="https://realpy
 </div>
 </div>
 
-<div id="outline-container-orgaaf2245" class="outline-3">
-<h3 id="orgaaf2245"><span class="section-number-3">1.10</span> Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</h3>
+<div id="outline-container-org22d0ef6" class="outline-3">
+<h3 id="org22d0ef6"><span class="section-number-3">1.10</span> Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 主な作業
@@ -817,8 +817,8 @@ PythonのAsynchronous I/Oについては、Real Pythonの<a href="https://realpy
 </div>
 </div>
 
-<div id="outline-container-org8a62199" class="outline-3">
-<h3 id="org8a62199"><span class="section-number-3">1.11</span> Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</h3>
+<div id="outline-container-org4fd57f0" class="outline-3">
+<h3 id="org4fd57f0"><span class="section-number-3">1.11</span> Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 asyncioへの移行はblocking I/Oには効果がありません。例えばディスクからリードするシステムコール <code>read</code> は完了までスリープせずにブロックされるため、別タスクにコンテキストスイッチをする機会がありません。blocking I/Oにはスレッドが有効です。
@@ -830,8 +830,8 @@ asyncioへの移行はblocking I/Oには効果がありません。例えばデ�
 </div>
 </div>
 
-<div id="outline-container-org472c974" class="outline-3">
-<h3 id="org472c974"><span class="section-number-3">1.12</span> Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</h3>
+<div id="outline-container-org43896fd" class="outline-3">
+<h3 id="org43896fd"><span class="section-number-3">1.12</span> Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</h3>
 <div class="outline-text-3" id="text-1-12">
 <p>
 以下の例のように、コルーチン用のイベントループ内でblocking I/Oをするとよくありません。
@@ -892,8 +892,8 @@ aiofiles helps with this by introducing asynchronous versions of files that supp
 </div>
 </div>
 
-<div id="outline-container-org8e4c43c" class="outline-3">
-<h3 id="org8e4c43c"><span class="section-number-3">1.13</span> Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</h3>
+<div id="outline-container-org3a66de6" class="outline-3">
+<h3 id="org3a66de6"><span class="section-number-3">1.13</span> Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</h3>
 <div class="outline-text-3" id="text-1-13">
 <p>
 Pythonのglobal interpreter lock (GIL)のせいで、マルチコアを使った真の並行動作は簡単には実現できません。Cエクステンションは高速化には適していますが、大きなコストがかかります。通常、遅くなる原因は多くの場所にあり、一部だけエクステンションとして抜き出して高速化する訳にはいかないようです。
@@ -918,12 +918,12 @@ Pythonのglobal interpreter lock (GIL)のせいで、マルチコアを使った
 </div>
 </div>
 
-<div id="outline-container-org21bbf19" class="outline-2">
-<h2 id="org21bbf19"><span class="section-number-2">2</span> Chapter 8: 堅牢性(robustness)と性能</h2>
+<div id="outline-container-orgdc28c2c" class="outline-2">
+<h2 id="orgdc28c2c"><span class="section-number-2">2</span> Chapter 8: 堅牢性(robustness)と性能</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb0d08f4" class="outline-3">
-<h3 id="orgb0d08f4"><span class="section-number-3">2.1</span> Item 65: try/except/else/finallyで各ブロックを有効に使え</h3>
+<div id="outline-container-org4e17a21" class="outline-3">
+<h3 id="org4e17a21"><span class="section-number-3">2.1</span> Item 65: try/except/else/finallyで各ブロックを有効に使え</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>try/except/else/finally</code> ブロックを整理します。
@@ -947,8 +947,8 @@ Pythonのglobal interpreter lock (GIL)のせいで、マルチコアを使った
 </div>
 </div>
 
-<div id="outline-container-orgbc11042" class="outline-3">
-<h3 id="orgbc11042"><span class="section-number-3">2.2</span> Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</h3>
+<div id="outline-container-org0425a2a" class="outline-3">
+<h3 id="org0425a2a"><span class="section-number-3">2.2</span> Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 <code>@contextmanager</code> デコレーターで修飾した関数はコンテキストマネージャーとなり、 <code>with</code> ステートメントで使えるようになります。正式に <code>__enter__</code>, <code>__exit__</code> を準備するよりも簡単です。
@@ -1028,8 +1028,8 @@ DEBUG:my-log:This <span style="font-weight: bold;">is</span> a message <span sty
 </div>
 </div>
 
-<div id="outline-container-org5ef109a" class="outline-3">
-<h3 id="org5ef109a"><span class="section-number-3">2.3</span> Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</h3>
+<div id="outline-container-org7410640" class="outline-3">
+<h3 id="org7410640"><span class="section-number-3">2.3</span> Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 timeはUTCとローカルしか扱えないため、datatimeを使うべきです。pytzというコミュニティーが作っているライブラリを使うと世界中の時間が使えます。datetimeでは一度UTCに変換してから時間操作を行います。
@@ -1067,8 +1067,8 @@ UTCを日本時間に変換します。
 </div>
 </div>
 
-<div id="outline-container-orgb67d01c" class="outline-3">
-<h3 id="orgb67d01c"><span class="section-number-3">2.4</span> Item 68: copyregでpickleをreliableにせよ</h3>
+<div id="outline-container-orgf75945a" class="outline-3">
+<h3 id="orgf75945a"><span class="section-number-3">2.4</span> Item 68: copyregでpickleをreliableにせよ</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Pythonでデータをシリアライズする場合、
@@ -1166,8 +1166,8 @@ pickleするクラスのアトリビュートを削除するとbackward compatib
 </div>
 </div>
 
-<div id="outline-container-orgb434873" class="outline-3">
-<h3 id="orgb434873"><span class="section-number-3">2.5</span> Item 69: 精度が重要なら decimal を使え</h3>
+<div id="outline-container-orge6267ab" class="outline-3">
+<h3 id="orge6267ab"><span class="section-number-3">2.5</span> Item 69: 精度が重要なら decimal を使え</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Pythonのfloatの扱いで、1.44999999&#x2026;のようになる場合があります。
@@ -1207,8 +1207,8 @@ Pythonのfloatの扱いで、1.44999999&#x2026;のようになる場合があり
 </div>
 </div>
 
-<div id="outline-container-orgc18e122" class="outline-3">
-<h3 id="orgc18e122"><span class="section-number-3">2.6</span> Item 70: 最適化の前にプロファイルせよ</h3>
+<div id="outline-container-orgeca1532" class="outline-3">
+<h3 id="orgeca1532"><span class="section-number-3">2.6</span> Item 70: 最適化の前にプロファイルせよ</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 プロファイルにはCで書かれたcProfileを使うとよい、とのことです。
@@ -1241,8 +1241,8 @@ stats.print_stats()
 </div>
 </div>
 
-<div id="outline-container-org1e21a27" class="outline-3">
-<h3 id="org1e21a27"><span class="section-number-3">2.7</span> Item 71: 生産者-消費者キューにはdequeを使え</h3>
+<div id="outline-container-org1aecaae" class="outline-3">
+<h3 id="org1aecaae"><span class="section-number-3">2.7</span> Item 71: 生産者-消費者キューにはdequeを使え</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 普通のリスト <code>[]</code> はキューに使えますが、キューが長くなると特に <code>pop(0)</code> が2乗のオーダーで遅くなるそうです。collectionsのdequeはリニアに遅くなるだけなので、キュー操作が性能ネックとなっているようなら、こちらを使った方が良いです。
@@ -1278,8 +1278,8 @@ stats.print_stats()
 </div>
 </div>
 
-<div id="outline-container-org0ca730b" class="outline-3">
-<h3 id="org0ca730b"><span class="section-number-3">2.8</span> Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</h3>
+<div id="outline-container-orgc440448" class="outline-3">
+<h3 id="orgc440448"><span class="section-number-3">2.8</span> Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 ソートされているリストなどの中で、指定の値がどこに来るかを調べるのに、 <code>bisect_left</code> は速いのでいいですよ、ということでした。
@@ -1287,8 +1287,8 @@ stats.print_stats()
 </div>
 </div>
 
-<div id="outline-container-org395b8cd" class="outline-3">
-<h3 id="org395b8cd"><span class="section-number-3">2.9</span> Item 73: 優先度キューのために heapq をどう使うかを知れ</h3>
+<div id="outline-container-org617e51c" class="outline-3">
+<h3 id="org617e51c"><span class="section-number-3">2.9</span> Item 73: 優先度キューのために heapq をどう使うかを知れ</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 FIFOでない、何かのアトリビュートの順番で処理する必要のあるキューを優先度キュー、プライオリティーキューと言います。優先度キューの実装に heapq が使えます。
@@ -1368,8 +1368,8 @@ heapify(queue)
 </div>
 
 
-<div id="outline-container-org239dcde" class="outline-3">
-<h3 id="org239dcde"><span class="section-number-3">2.10</span> Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</h3>
+<div id="outline-container-org87d3b4c" class="outline-3">
+<h3 id="org87d3b4c"><span class="section-number-3">2.10</span> Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 出ました。ゼロコピーです。Pythonのバッファープロトコルとゼロコピーについては、<a href="https://julien.danjou.info/high-performance-in-python-with-zero-copy-and-the-buffer-protocol/">ここ</a>にわかりやすい説明がありました。
