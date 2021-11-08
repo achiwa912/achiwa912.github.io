@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd589c93">1. はじめに</a></li>
-<li><a href="#org7b89177">2. 表示バグの解決</a></li>
-<li><a href="#org7aaed0f">3. キャンプ</a></li>
-<li><a href="#org80e4043">4. 戦闘基本</a></li>
-<li><a href="#org963fe81">5. 次は、、</a></li>
+<li><a href="#org7d96242">1. はじめに</a></li>
+<li><a href="#orgbfbf972">2. 表示バグの解決</a></li>
+<li><a href="#org6279a07">3. キャンプ</a></li>
+<li><a href="#orgdd2440c">4. 戦闘基本</a></li>
+<li><a href="#orge5e8d49">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd589c93" class="outline-2">
-<h2 id="orgd589c93"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org7d96242" class="outline-2">
+<h2 id="org7d96242"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの8回目です。今回はキャンプと戦闘の非常に基本的な部分を実装しています(現在進行形)。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org7b89177" class="outline-2">
-<h2 id="org7b89177"><span class="section-number-2">2</span> 表示バグの解決</h2>
+<div id="outline-container-orgbfbf972" class="outline-2">
+<h2 id="orgbfbf972"><span class="section-number-2">2</span> 表示バグの解決</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 これまでずっと妙な表示バグに悩まされてきました。DL(Daemon Lord)では仮想画面を使ったダブルバッファリングをしているのですが、ふと、一部古い画面を表示してしまうのです。致命的なバグではないのでしばらく放置してきましたが、ようやく原因がわかりました。メッセージ表示メソッドにおいて、メッセージウインドウのみを書き換えて他は前回の画面のまま表示していたのです。現象から原因を推測するのが難しいバグでした。
@@ -100,8 +100,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org7aaed0f" class="outline-2">
-<h2 id="org7aaed0f"><span class="section-number-2">3</span> キャンプ</h2>
+<div id="outline-container-org6279a07" class="outline-2">
+<h2 id="org6279a07"><span class="section-number-2">3</span> キャンプ</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 キャンプはキャラクター表示からの魔法(スペル)使用やアイテムの装備など、使い回しでそれなりに実装できました。キャンプ途中のみとはいえ、回復魔法が使えるのは心強いです。
@@ -109,8 +109,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org80e4043" class="outline-2">
-<h2 id="org80e4043"><span class="section-number-2">4</span> 戦闘基本</h2>
+<div id="outline-container-orgdd2440c" class="outline-2">
+<h2 id="orgdd2440c"><span class="section-number-2">4</span> 戦闘基本</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Wizardryのシステムにおいて、戦闘は最も複雑な部分です。その中で、逃亡、単純な打撃、parry(身を守る)と戦闘終了時の経験値とgoldの取得のみを実装しました。打撃は更に属性攻撃やドレイン、クリティカルなどの効果があります。
@@ -150,8 +150,8 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
 </div>
 </div>
 
-<div id="outline-container-org963fe81" class="outline-2">
-<h2 id="org963fe81"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-orge5e8d49" class="outline-2">
+<h2 id="orge5e8d49"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 戦闘の実装を進めます。魔法がキャンプと戦闘で思ったよりも共通化が難しいので、工夫が必要です。不本意ながら、それぞれ独立した実装になってしまうかもしれません。
@@ -181,6 +181,9 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/soda.html">SodaStreamに切り替えてみた</a>
+      </li>
+      <li class="post">
           <a href="/moving.html">アメリカで近距離の引っ越し</a>
       </li>
       <li class="post">
@@ -191,9 +194,6 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
       </li>
       <li class="post">
           <a href="/bus3.html">S3バックアップツールbus3.pyを作りました</a>
-      </li>
-      <li class="post">
-          <a href="/fedora34.html">Fedora34のインストールと設定</a>
       </li>
     </ul>
   </section>
