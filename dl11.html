@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3b02f27">1. はじめに</a></li>
-<li><a href="#org3a7ba7f">2. アルファ版リリース</a></li>
-<li><a href="#org283debf">3. issuesをgithubで管理</a></li>
-<li><a href="#org6bb949c">4. 開発での経験</a>
+<li><a href="#org6a168c4">1. はじめに</a></li>
+<li><a href="#org8e9548d">2. アルファ版リリース</a></li>
+<li><a href="#orge834425">3. issuesをgithubで管理</a></li>
+<li><a href="#orgfa3a79e">4. 開発での経験</a>
 <ul>
-<li><a href="#org380e41d">4.1. 学んだこと</a></li>
-<li><a href="#org05adf95">4.2. まだまだなこと</a></li>
+<li><a href="#orgdafd5c8">4.1. 学んだこと</a></li>
+<li><a href="#org2df8d48">4.2. まだまだなこと</a></li>
 </ul>
 </li>
-<li><a href="#org8060cd1">5. 次は、、</a></li>
+<li><a href="#org34ba0c2">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3b02f27" class="outline-2">
-<h2 id="org3b02f27"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org6a168c4" class="outline-2">
+<h2 id="org6a168c4"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの11回目です。
@@ -96,8 +96,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org3a7ba7f" class="outline-2">
-<h2 id="org3a7ba7f"><span class="section-number-2">2</span> アルファ版リリース</h2>
+<div id="outline-container-org8e9548d" class="outline-2">
+<h2 id="org8e9548d"><span class="section-number-2">2</span> アルファ版リリース</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 一通り実装が終わり、ゲームを通しでプレイして致命的なバグが出ないようになってきたので、アルファ版をリリースしました。zen tetrisを作った時と同じようにpygameに登録して(pygame使っていませんが、それでもいいらしいので)、twitterでつぶやいただけなので、誰か見てくれるのか分かりません。
@@ -109,8 +109,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org283debf" class="outline-2">
-<h2 id="org283debf"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
+<div id="outline-container-orge834425" class="outline-2">
+<h2 id="orge834425"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 バグなどの問題点管理をgithub上でするようにしました。自分でissue登録して自分でfix、closeしていくだけなので少し寂しい感じです。前近代的にexcelでバグ管理するよりは、職場で使っているjiraに近くていい感じです。
@@ -118,12 +118,12 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org6bb949c" class="outline-2">
-<h2 id="org6bb949c"><span class="section-number-2">4</span> 開発での経験</h2>
+<div id="outline-container-orgfa3a79e" class="outline-2">
+<h2 id="orgfa3a79e"><span class="section-number-2">4</span> 開発での経験</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org380e41d" class="outline-3">
-<h3 id="org380e41d"><span class="section-number-3">4.1</span> 学んだこと</h3>
+<div id="outline-container-orgdafd5c8" class="outline-3">
+<h3 id="orgdafd5c8"><span class="section-number-3">4.1</span> 学んだこと</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデータ構造にだいぶ慣れました。setは重複排除できるだけの使いにくい(順番が変わるので)listといった印象で、ほとんど使いませんでした。list comprehensionやgenerator expressionの便利さに感動しました。walrus expression(<code>:=</code>)は結構微妙でした。うまく使っても1,2行減るくらいで、可読性が上がるわけでもないので。
@@ -131,8 +131,8 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 </div>
 </div>
 
-<div id="outline-container-org05adf95" class="outline-3">
-<h3 id="org05adf95"><span class="section-number-3">4.2</span> まだまだなこと</h3>
+<div id="outline-container-org2df8d48" class="outline-3">
+<h3 id="org2df8d48"><span class="section-number-3">4.2</span> まだまだなこと</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 クラスの設計が下手だと思います。後から様々なフラグアトリビュートを追加して複雑になる傾向がありました。今回はリアルタイムキースキャン以外はほぼ標準ライブラリのみのため、サードパーティーライブラリの使用スキルも身についていません。
@@ -146,8 +146,8 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 </div>
 
 
-<div id="outline-container-org8060cd1" class="outline-2">
-<h2 id="org8060cd1"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org34ba0c2" class="outline-2">
+<h2 id="org34ba0c2"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 バグが見つかったら直して、というようにペースを落として開発継続していくつもりです。
@@ -177,6 +177,9 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/bline.html">Brooklineってどんなところ</a>
+      </li>
+      <li class="post">
           <a href="/soda.html">SodaStreamに切り替えてみた</a>
       </li>
       <li class="post">
@@ -187,9 +190,6 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
       </li>
       <li class="post">
           <a href="/jobchg.html">アメリカの出向先に転職しました</a>
-      </li>
-      <li class="post">
-          <a href="/bus3.html">S3バックアップツールbus3.pyを作りました</a>
       </li>
     </ul>
   </section>
