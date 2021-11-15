@@ -69,41 +69,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8324f3e">1. はじめに</a></li>
-<li><a href="#org48565a3">2. レシピ一覧</a>
+<li><a href="#org627c67a">1. はじめに</a></li>
+<li><a href="#orgb3a9466">2. レシピ一覧</a>
 <ul>
-<li><a href="#orgf2616ca">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<li><a href="#org56808b7">2.1. Chapter 1: データ構造とアルゴリズム</a>
 <ul>
-<li><a href="#org2fb21e6">2.1.1. defaultdictとsetdefault(1.6)</a></li>
-<li><a href="#org535fe89">2.1.2. itemgetter()関数(1.13)</a></li>
-<li><a href="#orge810b17">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
+<li><a href="#org4094f17">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#orgce6afb5">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#orga38065c">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
 </ul>
 </li>
-<li><a href="#orgd5bc95a">2.2. Chapter 2: 文字列とテキスト</a>
+<li><a href="#org0b2bf40">2.2. Chapter 2: 文字列とテキスト</a>
 <ul>
-<li><a href="#org87c1ed1">2.2.1. noncaptureグループ(2.1)</a></li>
-<li><a href="#org8b79f4c">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
-<li><a href="#orgf38c5bf">2.2.3. (2.14)</a></li>
+<li><a href="#org5727f21">2.2.1. noncaptureグループ(2.1)</a></li>
+<li><a href="#orge89e090">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
+<li><a href="#orgc75d20c">2.2.3. (2.14)</a></li>
 </ul>
 </li>
-<li><a href="#orgce6c8fd">2.3. Chapter 3: 数、日にちと時間</a>
+<li><a href="#org90382fc">2.3. Chapter 3: 数、日にちと時間</a>
 <ul>
-<li><a href="#org15d72b9">2.3.1. ランダム値を得る(3.11)</a></li>
-<li><a href="#orgaf6e367">2.3.2. タイムゾーンの扱い(3.16)</a></li>
+<li><a href="#orgff2b554">2.3.1. ランダム値を得る(3.11)</a></li>
+<li><a href="#org1ca5690">2.3.2. タイムゾーンの扱い(3.16)</a></li>
 </ul>
 </li>
-<li><a href="#org575ad45">2.4. Chapter 4: アイテレーターとジェネレーター</a>
+<li><a href="#orgf34df84">2.4. Chapter 4: アイテレーターとジェネレーター</a>
 <ul>
-<li><a href="#orgfa1f049">2.4.1. iterate可能なオブジェクト (4.4)</a></li>
-<li><a href="#org896242f">2.4.2. iter()の特別な用法(4.16)</a></li>
+<li><a href="#orgae44f14">2.4.1. iterate可能なオブジェクト (4.4)</a></li>
+<li><a href="#org03fe812">2.4.2. iter()の特別な用法(4.16)</a></li>
 </ul>
 </li>
-<li><a href="#org6ee5388">2.5. Chapter 5: ファイルとI/O</a>
+<li><a href="#orgfb92881">2.5. Chapter 5: ファイルとI/O</a>
 <ul>
-<li><a href="#orge8f6fd6">2.5.1. バッファインタフェース(5.4)</a></li>
-<li><a href="#org272d46d">2.5.2. 圧縮ファイルの読み書き(5.7)</a></li>
-<li><a href="#orga6c89e8">2.5.3. mmapを使う(5.10)</a></li>
-<li><a href="#orged2308e">2.5.4. テキスト操作の3つのレイヤー(5.16)</a></li>
+<li><a href="#org0d891e1">2.5.1. バッファインタフェース(5.4)</a></li>
+<li><a href="#orgec4e3a6">2.5.2. 圧縮ファイルの読み書き(5.7)</a></li>
+<li><a href="#orgfab5373">2.5.3. mmapを使う(5.10)</a></li>
+<li><a href="#orga6d8d7d">2.5.4. テキスト操作の3つのレイヤー(5.16)</a></li>
 </ul>
 </li>
 </ul>
@@ -112,8 +112,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8324f3e" class="outline-2">
-<h2 id="org8324f3e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org627c67a" class="outline-2">
+<h2 id="org627c67a"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。やはり、掲載されているコードサンプルは全て自分で入力して動きを確認していかないと駄目そうです。
@@ -125,12 +125,12 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </div>
 </div>
 
-<div id="outline-container-org48565a3" class="outline-2">
-<h2 id="org48565a3"><span class="section-number-2">2</span> レシピ一覧</h2>
+<div id="outline-container-orgb3a9466" class="outline-2">
+<h2 id="orgb3a9466"><span class="section-number-2">2</span> レシピ一覧</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf2616ca" class="outline-3">
-<h3 id="orgf2616ca"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div id="outline-container-org56808b7" class="outline-3">
+<h3 id="org56808b7"><span class="section-number-3">2.1</span> Chapter 1: データ構造とアルゴリズム</h3>
 <div class="outline-text-3" id="text-2-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -309,8 +309,8 @@ Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだの
 </table>
 </div>
 
-<div id="outline-container-org2fb21e6" class="outline-4">
-<h4 id="org2fb21e6"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
+<div id="outline-container-org4094f17" class="outline-4">
+<h4 id="org4094f17"><span class="section-number-4">2.1.1</span> defaultdictとsetdefault(1.6)</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 <code>defaultdict</code> は以下のように使う
@@ -337,8 +337,8 @@ d.setdeault(<span style="font-style: italic;">'a'</span>, []).append(1)
 </div>
 
 
-<div id="outline-container-org535fe89" class="outline-4">
-<h4 id="org535fe89"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
+<div id="outline-container-orgce6afb5" class="outline-4">
+<h4 id="orgce6afb5"><span class="section-number-4">2.1.2</span> itemgetter()関数(1.13)</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 <code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
@@ -350,8 +350,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-orge810b17" class="outline-4">
-<h4 id="orge810b17"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
+<div id="outline-container-orga38065c" class="outline-4">
+<h4 id="orga38065c"><span class="section-number-4">2.1.3</span> dictcompを使ってフィルタする(1.17)</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 以下のようなパターンで使う。
@@ -365,8 +365,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 
 
-<div id="outline-container-orgd5bc95a" class="outline-3">
-<h3 id="orgd5bc95a"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
+<div id="outline-container-org0b2bf40" class="outline-3">
+<h3 id="org0b2bf40"><span class="section-number-3">2.2</span> Chapter 2: 文字列とテキスト</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -565,8 +565,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </table>
 </div>
 
-<div id="outline-container-org87c1ed1" class="outline-4">
-<h4 id="org87c1ed1"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
+<div id="outline-container-org5727f21" class="outline-4">
+<h4 id="org5727f21"><span class="section-number-4">2.2.1</span> noncaptureグループ(2.1)</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; re.split(r<span style="font-style: italic;">'[;,\s]\s*'</span>, line)
@@ -580,8 +580,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-org8b79f4c" class="outline-4">
-<h4 id="org8b79f4c"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
+<div id="outline-container-orge89e090" class="outline-4">
+<h4 id="orge89e090"><span class="section-number-4">2.2.2</span> テキストファイル全体をstripする(2.11)</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 ファイル内の行を全てstripしたい場合、genexpで効率よく実現できる。
@@ -597,8 +597,8 @@ sort等の関数に <code>key=itemgetter('some_key')</code> のように指定�
 </div>
 </div>
 
-<div id="outline-container-orgf38c5bf" class="outline-4">
-<h4 id="orgf38c5bf"><span class="section-number-4">2.2.3</span> (2.14)</h4>
+<div id="outline-container-orgc75d20c" class="outline-4">
+<h4 id="orgc75d20c"><span class="section-number-4">2.2.3</span> (2.14)</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 genexpを使ってリストを文字列に変換するレシピ。文字列化と連結を一括で実施する。
@@ -614,8 +614,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </div>
 </div>
 
-<div id="outline-container-orgce6c8fd" class="outline-3">
-<h3 id="orgce6c8fd"><span class="section-number-3">2.3</span> Chapter 3: 数、日にちと時間</h3>
+<div id="outline-container-org90382fc" class="outline-3">
+<h3 id="org90382fc"><span class="section-number-3">2.3</span> Chapter 3: 数、日にちと時間</h3>
 <div class="outline-text-3" id="text-2-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -764,8 +764,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </table>
 </div>
 
-<div id="outline-container-org15d72b9" class="outline-4">
-<h4 id="org15d72b9"><span class="section-number-4">2.3.1</span> ランダム値を得る(3.11)</h4>
+<div id="outline-container-orgff2b554" class="outline-4">
+<h4 id="orgff2b554"><span class="section-number-4">2.3.1</span> ランダム値を得る(3.11)</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; <span style="font-weight: bold;">import</span> random
@@ -790,8 +790,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </div>
 </div>
 
-<div id="outline-container-orgaf6e367" class="outline-4">
-<h4 id="orgaf6e367"><span class="section-number-4">2.3.2</span> タイムゾーンの扱い(3.16)</h4>
+<div id="outline-container-org1ca5690" class="outline-4">
+<h4 id="org1ca5690"><span class="section-number-4">2.3.2</span> タイムゾーンの扱い(3.16)</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <div class="org-src-container">
 <pre class="src src-python">&gt;&gt;&gt; <span style="font-weight: bold;">from</span> datetime <span style="font-weight: bold;">import</span> datetime
@@ -837,8 +837,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </div>
 </div>
 
-<div id="outline-container-org575ad45" class="outline-3">
-<h3 id="org575ad45"><span class="section-number-3">2.4</span> Chapter 4: アイテレーターとジェネレーター</h3>
+<div id="outline-container-orgf34df84" class="outline-3">
+<h3 id="orgf34df84"><span class="section-number-3">2.4</span> Chapter 4: アイテレーターとジェネレーター</h3>
 <div class="outline-text-3" id="text-2-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -962,8 +962,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </table>
 </div>
 
-<div id="outline-container-orgfa1f049" class="outline-4">
-<h4 id="orgfa1f049"><span class="section-number-4">2.4.1</span> iterate可能なオブジェクト (4.4)</h4>
+<div id="outline-container-orgae44f14" class="outline-4">
+<h4 id="orgae44f14"><span class="section-number-4">2.4.1</span> iterate可能なオブジェクト (4.4)</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 ルートノードから世代をiterateするオブジェクトの実装例。
@@ -986,8 +986,8 @@ genexpを使ってリストを文字列に変換するレシピ。文字列化�
 </div>
 </div>
 
-<div id="outline-container-org896242f" class="outline-4">
-<h4 id="org896242f"><span class="section-number-4">2.4.2</span> iter()の特別な用法(4.16)</h4>
+<div id="outline-container-org03fe812" class="outline-4">
+<h4 id="org03fe812"><span class="section-number-4">2.4.2</span> iter()の特別な用法(4.16)</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 iter()に引数を取らないcallableとsentinelを与えると、sentinelが出るまで指定callableを繰り返し呼ぶiteratorを返す。引数を取らないcallableを作るためにlambdaを使う。
@@ -1008,8 +1008,8 @@ iter()に引数を取らないcallableとsentinelを与えると、sentinelが�
 </div>
 </div>
 
-<div id="outline-container-org6ee5388" class="outline-3">
-<h3 id="org6ee5388"><span class="section-number-3">2.5</span> Chapter 5: ファイルとI/O</h3>
+<div id="outline-container-orgfb92881" class="outline-3">
+<h3 id="orgfb92881"><span class="section-number-3">2.5</span> Chapter 5: ファイルとI/O</h3>
 <div class="outline-text-3" id="text-2-5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1168,8 +1168,8 @@ iter()に引数を取らないcallableとsentinelを与えると、sentinelが�
 </table>
 </div>
 
-<div id="outline-container-orge8f6fd6" class="outline-4">
-<h4 id="orge8f6fd6"><span class="section-number-4">2.5.1</span> バッファインタフェース(5.4)</h4>
+<div id="outline-container-org0d891e1" class="outline-4">
+<h4 id="org0d891e1"><span class="section-number-4">2.5.1</span> バッファインタフェース(5.4)</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 配列(アレイ)等はバッファインタフェースを持ち、いったんバイトに変換せずにバイトとして読み書きできる。配列等にバイトを直接読み出すのにfd.readinto(array)が使える。
@@ -1190,8 +1190,8 @@ array(<span style="font-style: italic;">'i'</span>, [1, 2, 3, 4, 0, 0])
 </div>
 </div>
 
-<div id="outline-container-org272d46d" class="outline-4">
-<h4 id="org272d46d"><span class="section-number-4">2.5.2</span> 圧縮ファイルの読み書き(5.7)</h4>
+<div id="outline-container-orgec4e3a6" class="outline-4">
+<h4 id="orgec4e3a6"><span class="section-number-4">2.5.2</span> 圧縮ファイルの読み書き(5.7)</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">import</span> gzip
@@ -1221,8 +1221,8 @@ array(<span style="font-style: italic;">'i'</span>, [1, 2, 3, 4, 0, 0])
 </div>
 </div>
 
-<div id="outline-container-orga6c89e8" class="outline-4">
-<h4 id="orga6c89e8"><span class="section-number-4">2.5.3</span> mmapを使う(5.10)</h4>
+<div id="outline-container-orgfab5373" class="outline-4">
+<h4 id="orgfab5373"><span class="section-number-4">2.5.3</span> mmapを使う(5.10)</h4>
 <div class="outline-text-4" id="text-2-5-3">
 <p>
 mmapを使うユーティリティ関数。
@@ -1288,8 +1288,8 @@ b<span style="font-style: italic;">'Hello World'</span>
 </div>
 </div>
 
-<div id="outline-container-orged2308e" class="outline-4">
-<h4 id="orged2308e"><span class="section-number-4">2.5.4</span> テキスト操作の3つのレイヤー(5.16)</h4>
+<div id="outline-container-orga6d8d7d" class="outline-4">
+<h4 id="orga6d8d7d"><span class="section-number-4">2.5.4</span> テキスト操作の3つのレイヤー(5.16)</h4>
 <div class="outline-text-4" id="text-2-5-4">
 <p>
 テキストファイルは3つのレイヤーでアクセスする。
