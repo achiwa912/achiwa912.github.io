@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7c682f6">1. はじめに</a></li>
-<li><a href="#org19945e5">2. Avery 8386</a></li>
-<li><a href="#org848999b">3. Avery Webサービス</a></li>
-<li><a href="#org82ca2d4">4. 宛先リスト</a></li>
-<li><a href="#orgfbbe6d3">5. 日本語フォントの扱い</a></li>
-<li><a href="#orgd9c3d10">6. Pythonスクリプト</a></li>
-<li><a href="#org987094e">7. 使い方</a></li>
-<li><a href="#org3c282c8">8. 印刷</a></li>
-<li><a href="#org37ce834">9. 終わりに</a></li>
+<li><a href="#org9c3766f">1. はじめに</a></li>
+<li><a href="#org0ac92b2">2. Avery 8386</a></li>
+<li><a href="#org3613e6a">3. Avery Webサービス</a></li>
+<li><a href="#org9f8bbc0">4. 宛先リスト</a></li>
+<li><a href="#org75ed061">5. 日本語フォントの扱い</a></li>
+<li><a href="#org8ac6fbb">6. Pythonスクリプト</a></li>
+<li><a href="#org2dde3be">7. 使い方</a></li>
+<li><a href="#orgd519f8d">8. 印刷</a></li>
+<li><a href="#orgf0c31f9">9. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7c682f6" class="outline-2">
-<h2 id="org7c682f6"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org9c3766f" class="outline-2">
+<h2 id="org9c3766f"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 今年は転職及び引越しのご挨拶にクリスマスカードを出すことにしました。
@@ -91,63 +91,66 @@
 </p>
 
 <p>
-色々と調べたところ、自作ポストカードをPCで作る人向けに、<a href="https://www.avery.com">Avery</a> という会社が用紙を販売、更にカード作成用の無料Webサービスまで提供していることがわかりました。これを利用しない手はありません。用紙はポストカード100枚分で$10〜20と若干高めですが、一般的な有償のクリスマスカード作成サービスよりはずっと安価です。
+色々と調べたところ、自作ポストカードをPCで作る人向けに、<a href="https://www.avery.com">Avery</a> という会社が用紙を販売、更にカード作成用の無料Webサービスまで提供していることがわかりました。これを利用しない手はありません。用紙はポストカード100枚分で$16と若干高めですが、一般的な有償のクリスマスカード作成サービスよりはずっと安価です。
+</p>
+
+<p>
+今回は、アメリカでポストカードを自作し、自宅プリンターで印刷するやり方について書きます。csvの宛先データをポストカード宛名面に埋め込むために作ったPythonスクリプトも載せておきます。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org19945e5" class="outline-2">
-<h2 id="org19945e5"><span class="section-number-2">2</span> Avery 8386</h2>
+<div id="outline-container-org0ac92b2" class="outline-2">
+<h2 id="org0ac92b2"><span class="section-number-2">2</span> Avery 8386</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-AmazonやAveryのサイトで探してみると、ポストカード用には8386番が良さそうです。
-早速注文してみました。
+AmazonやAveryのサイトで探してみると、ポストカードにはAvery 8386番が良さそうです。早速注文してみました。
 <img src="./images/avery8386.png" alt="avery8386.png" />
 </p>
 
 <p>
-どんな用紙かと思ったら、レターサイズの厚紙1枚からポストカード2枚が切り出せるタイプでした。ハサミ等を使わずに手で簡単に切り取れるように、切り取り線のミシン目が入っていて、プリンタへの設定面や向きを間違えないようにガイドが印刷されています。とてもよく出来ていて、感心しました。
+どんな用紙かと思ったら、レターサイズの厚紙1枚からポストカード2枚が切り出せるタイプでした。ハサミ等を使わずに手で簡単に切り取れるように、切り取り線のミシン目が入っていて、更にプリンタへの表裏面や向きを間違えないようにガイドが印刷されています。とてもよく出来ていて、感心しました。
 <img src="./images/8386sheet.png" alt="8386sheet.png" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org848999b" class="outline-2">
-<h2 id="org848999b"><span class="section-number-2">3</span> Avery Webサービス</h2>
+<div id="outline-container-org3613e6a" class="outline-2">
+<h2 id="org3613e6a"><span class="section-number-2">3</span> Avery Webサービス</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-8386番のテンプレートは、Averyサイトの<a href="https://www.avery.com/templates/8386?gclid=Cj0KCQiAy4eNBhCaARIsAFDVtI1fMZfOw9Qzn_yygpqJkxg7CWWjV6C8DzkWu87LeNpkSuWoDBbKV1caAtIbEALw_wcB&amp;gclsrc=aw.ds">8386テンプレートページ</a> からダウンロードできます。
+PCでAvery用ポストカードデータを作成するには、8386番のテンプレートを使用します。Averyサイトの<a href="https://www.avery.com/templates/8386?gclid=Cj0KCQiAy4eNBhCaARIsAFDVtI1fMZfOw9Qzn_yygpqJkxg7CWWjV6C8DzkWu87LeNpkSuWoDBbKV1caAtIbEALw_wcB&amp;gclsrc=aw.ds">8386テンプレートページ</a> からMicrosoft Wordやその他のアプリケーション用テンプレートをダウンロードできます。
 <img src="./images/8386template.png" alt="8386template.png" />
 </p>
 
 <p>
-ここで START DESIGNING をクリックしてアカウント登録すると、Webサイト上で8386のテンプレートを使ってポストカードが作成できるようになります。用意されているデザインが選べ、クリスマスカードのデザインだけで367種類あるようです。
+一方、このページ上で START DESIGNING をクリックしてアカウント登録すると、Webサイト上で8386のテンプレートを使ってポストカードが作成できるようになります。用意されているデザインが選べ、クリスマスカードのデザインだけで350種類以上ありました。
 <img src="./images/8386design.png" alt="8386design.png" />
 </p>
 
 <p>
-デザインを選んで、表面と裏面(宛名面)をエディットします。これの良いところは、絵が単なるjpgの一枚絵ではなく、パーツに分かれているところです。テキストの編集や追加はもちろん、背景色を変えたり、絵を動かしたりできます。写真も決まった位置に貼る必要が無く、自由度が高いのです。PowerPoint等を使ったことのある人なら、普通に使えると思います。
+デザインを選んで、表面と裏面(宛名面)をエディットします。このツールの良いところは、絵が単なるポストカード大の一枚絵ではなく、パーツに分かれているところです。テキストの編集や追加はもちろん、背景色を変えたり、絵のパーツを動かしたりできます。絵のパーツを端に寄せて写真を貼るなど、自由度が高いのです。PowerPoint等を使ったことのある人なら、普通に使えると思います。
 </p>
 
 <p>
-一点、日本語の入力に少し工夫がいります。普通にテキストボックスに日本語を入れようとしてもうまく入りません。そこで、Text &gt; Ease Text Fill の画面で入力するworkaroundが必要になります。
+注意点として、日本語の入力に少し工夫がいります。普通にテキストボックスに日本語を入れようとしてもうまく入りません。そこで、Text &gt; Easy Text Fill の画面で入力するワークアラウンドが必要になります。
 </p>
 
 <p>
-宛名面には、自分の住所と名前を入れ、日本向けのため"JAPAN"と赤文字で"AirMail"を予め配置しておきます。そして肝心な宛先のリストを入力しようとしたところ、家族から待ったがかかりました。一企業のWebサービスに知り合いの個人情報(名前と住所)を入れるのは不安だと言うのです。郵便局の はがきデザインキット では住所録をクラウドで管理していた気がしますが、内緒にしておきましょう。。。
+宛名面には、自分の住所と名前を入れ、日本向けのため"JAPAN"と赤文字で"AirMail"のテキストボックスを予め配置しておきます。そして肝心な宛先のリストを入力しようとしたところ、家族から「待った」がかかりました。一企業のWebサービスに知り合いの個人情報(名前と住所)を入れるのは不安だと言うのです。郵便局の はがきデザインキット では住所録をクラウドで管理していた気がしますが、家庭の平和のために内緒にしておきましょう。。。
 </p>
 
 <p>
-なお、作成したデータはAveryのサイト上で保存でき、自分で印刷するためにPDFファイルとしてダウンロード可能です。
+なお、作成したデータはAveryのサイト上で保存でき、自分で印刷するためにPDFファイルとしてダウンロード可能です。今回は宛先情報を入れないデータを作成しました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org82ca2d4" class="outline-2">
-<h2 id="org82ca2d4"><span class="section-number-2">4</span> 宛先リスト</h2>
+<div id="outline-container-org9f8bbc0" class="outline-2">
+<h2 id="org9f8bbc0"><span class="section-number-2">4</span> 宛先リスト</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-これまで宛先住所録は はがきデザインキットWeb版 のデータを使っていました。つまり、クラウドにあったわけですが、2年前のサービス終了の際に、csvファイルとしてデータをダウンロードしてありました。
+これまで宛先住所録は はがきデザインキットWeb版 のデータを使っていました。2年前のWeb版サービス終了の際に、csvファイルとしてデータをダウンロードしてありました。
 </p>
 
 <p>
@@ -162,21 +165,21 @@ AmazonやAveryのサイトで探してみると、ポストカード用には838
 
 <p>
 これを利用して、宛先面のPDFファイルに宛名と住所を埋め込めないかと考えました。
-私は1,2年前に、PDFファイルにページ番号を付けるスクリプトをPythonで作っていました。これを応用すれば、可能かもしれません。
+私は去年の夏に、PDFファイルにページ番号を付ける <a href="https://github.com/achiwa912/pdfpagenum">スクリプト</a> をPythonで作っていました。これを応用できないか試してみます。<a href="https://achiwa912.github.io/pdfpagenum.html">その時のブログエントリー</a>。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgfbbe6d3" class="outline-2">
-<h2 id="orgfbbe6d3"><span class="section-number-2">5</span> 日本語フォントの扱い</h2>
+<div id="outline-container-org75ed061" class="outline-2">
+<h2 id="org75ed061"><span class="section-number-2">5</span> 日本語フォントの扱い</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 少し試してみたところ、日本語が全て四角形シンボルになってしまいました。
-フォントとして <code>Times-Roman</code> を指定している部分を、日本語フォントを指定するようにしないとダメそうです。とりあえずフォントブックアプリを見て <code>Hiragino Maru Gothic ProN W4</code> を指定したところ、Keyエラーになりました。
+フォントとして <code>Times-Roman</code> を指定している部分を、日本語フォントを指定するようにしないとダメそうです。とりあえずフォントブックアプリを見て <code>Hiragino Maru Gothic ProN W4</code> を指定したところ、PythonのKeyエラーになりました。
 </p>
 
 <p>
-しばらく検索してみたところ、以下のページを見つけました。
+解決策をしばらく探してみたところ、以下のページを見つけました。
 </p>
 
 <p>
@@ -201,8 +204,8 @@ canvas.setFont(<span style="font-style: italic;">'HeiseiMin-W3'</span>, 20)
 </div>
 </div>
 
-<div id="outline-container-orgd9c3d10" class="outline-2">
-<h2 id="orgd9c3d10"><span class="section-number-2">6</span> Pythonスクリプト</h2>
+<div id="outline-container-org8ac6fbb" class="outline-2">
+<h2 id="org8ac6fbb"><span class="section-number-2">6</span> Pythonスクリプト</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 数カ月ぶりにPythonコードを書きました。あまりに久しぶりすぎて、
@@ -226,7 +229,7 @@ export PATH="$(pyenv root)/shims:$PATH"
 <li>住所一覧のcsvファイルを読んで、住所宛名listのlistを作る</li>
 <li>PDFファイルを扱う準備</li>
 <li>住所宛名listのlistからiteratorを作り、2つずつループで回す(1ページにポストカードが2枚あるため)</li>
-<li>宛名PDFファイルをベースに出力PDFページを作成(追加)する</li>
+<li>宛名面PDFファイルをベースに、出力PDFページを作成(追加)する</li>
 <li>住所宛名listが存在すれば出力PDFページの指定位置に埋め込む</li>
 </ol>
 
@@ -325,11 +328,11 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-org987094e" class="outline-2">
-<h2 id="org987094e"><span class="section-number-2">7</span> 使い方</h2>
+<div id="outline-container-org2dde3be" class="outline-2">
+<h2 id="org2dde3be"><span class="section-number-2">7</span> 使い方</h2>
 <div class="outline-text-2" id="text-7">
 <p>
-PDFライブラリをインストール
+PDFライブラリをインストールします。
 </p>
 <pre class="example">
 pip install reportlab
@@ -347,33 +350,38 @@ pip install pdfrw
 <pre class="example">
 python adrs.py &lt;pdf filename&gt; &lt;csv fiiename&gt;
 </pre>
+
+
+<p>
+Pythonは3.6以降なら動くと思います。開発は3.10を使いました。
+</p>
 </div>
 </div>
 
-<div id="outline-container-org3c282c8" class="outline-2">
-<h2 id="org3c282c8"><span class="section-number-2">8</span> 印刷</h2>
+<div id="outline-container-orgd519f8d" class="outline-2">
+<h2 id="orgd519f8d"><span class="section-number-2">8</span> 印刷</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Averyの8386テンプレートを使ってWeb上でポストカードデータを作成したら、自分のプリンターで印刷するためにPDFファイルとしてダウンロードすることができます。
 </p>
 
 <p>
-いくつかポイントがあるので、書いておきます。なお、私はブラザーのDCP-J983Nを使っています。
+これを日本のプリンターで印刷する際に、いくつかポイントがあるので、書いておきます。なお、私はブラザーのDCP-J983Nを使っています。
 </p>
 <ul class="org-ul">
-<li>印刷の際に、レターサイズを指定する(デフォルトはA4）</li>
-<li>Scaleは手動で100%を指定する</li>
-<li>手差しトレイを使って1枚、1面ずつ印刷する。印刷面が上。</li>
+<li>レターサイズを指定する(デフォルトはA4）</li>
+<li>Scaleは手動で100%を指定する(デフォルトだとauto fitで97%等になっている)</li>
+<li>手差しトレイを使って1枚、1面ずつ印刷する。通常トレイと逆で印刷面が上。</li>
 <li>手差しトレイにはきっちり奥まで差し込む。更に数ミリ自動で送られる。</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org37ce834" class="outline-2">
-<h2 id="org37ce834"><span class="section-number-2">9</span> 終わりに</h2>
+<div id="outline-container-orgf0c31f9" class="outline-2">
+<h2 id="orgf0c31f9"><span class="section-number-2">9</span> 終わりに</h2>
 <div class="outline-text-2" id="text-9">
 <p>
-はがきデザインキットの住所録csvデータを、Avery 8386用のポストカード宛名面PDFファイルに埋め込むという、ものすごくニッチなスクリプトを作りました。需要はゼロだと思いますが、来年の自分のために記録として残しておきます。
+はがきデザインキットの住所録csvデータを、Avery 8386用のポストカード宛名面PDFファイルに埋め込むという、ものすごくニッチなスクリプトを作りました。需要は無いと思いますが、来年の自分のために記録として残しておきます。
 </p>
 </div>
 </div>
