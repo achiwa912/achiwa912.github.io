@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ポストカードpdfファイルに宛先リストのデータを埋め込む &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="pages/about.html">About me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">ポストカードpdfファイルに宛先リストのデータを埋め込む</h1>
+    <p class="meta">
+<time datetime="2021-11-27T00:00:00-05:00" pubdate>Sat 27 November 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc1a600f">1. はじめに</a></li>
+<li><a href="#orgd416ad3">2. Avery 8386</a></li>
+<li><a href="#org006d53b">3. Avery Webサービス</a></li>
+<li><a href="#org91a0d67">4. 宛先リスト</a></li>
+<li><a href="#orgfc91e6e">5. 日本語フォントの扱い</a></li>
+<li><a href="#org2905675">6. Pythonスクリプト</a></li>
+<li><a href="#orgadf90c9">7. 使い方</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc1a600f" class="outline-2">
+<h2 id="orgc1a600f"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+今年は転職及び引越しのご挨拶にクリスマスカードを出すことにしました。
+日本にいたときには郵便局のはがきデザインキットで年賀状を作成、プリンターで印刷していましたが、アメリカのクリスマスカードにはもちろん対応していません。
+</p>
+
+<p>
+色々と調べたところ、自作ポストカードをPCで作る人向けに、<a href="https://www.avery.com">Avery</a> という会社が用紙を販売、更にカード作成用の無料Webサービスまで提供していることがわかりました。これを利用しない手はありません。用紙はポストカード100枚分で$10〜20と若干高めですが、一般的な有償のクリスマスカード作成サービスよりはずっと安価です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd416ad3" class="outline-2">
+<h2 id="orgd416ad3"><span class="section-number-2">2</span> Avery 8386</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+AmazonやAveryのサイトで探してみると、ポストカード用には8386番が良さそうです。
+早速注文してみました。
+<img src="./images/avery8386.png" alt="avery8386.png" />
+</p>
+
+<p>
+どんな用紙かと思ったら、レターサイズの厚紙1枚からポストカード2枚が切り出せるタイプでした。ハサミ等を使わずに手で簡単に切り取れるように、切り取り線のミシン目が入っていて、プリンタへの設定面や向きを間違えないようにガイドが印刷されています。とてもよく出来ていて、感心しました。
+<img src="./images/8386sheet.png" alt="8386sheet.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org006d53b" class="outline-2">
+<h2 id="org006d53b"><span class="section-number-2">3</span> Avery Webサービス</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+8386番のテンプレートは、Averyサイトの<a href="https://www.avery.com/templates/8386?gclid=Cj0KCQiAy4eNBhCaARIsAFDVtI1fMZfOw9Qzn_yygpqJkxg7CWWjV6C8DzkWu87LeNpkSuWoDBbKV1caAtIbEALw_wcB&amp;gclsrc=aw.ds">8386テンプレートページ</a> からダウンロードできます。
+<img src="./images/8386template.png" alt="8386template.png" />
+</p>
+
+<p>
+ここで START DESINING をクリックしてアカウント登録すると、Webサイト上で8386のテンプレートを使ってポストカードが作成できるようになります。用意されているデザインが選べ、クリスマスカードのデザインだけで367種類あるようです。
+<img src="./images/8386design.png" alt="8386design.png" />
+</p>
+
+<p>
+デザインを選んで、表面と裏面(宛名面)をエディットします。これの良いところは、絵が単なるjpgの一枚絵ではなく、パーツに分かれているところです。テキストの編集や追加はもちろん、背景色を変えたり、絵を動かしたりできます。写真も決まった位置に貼る必要が無く、自由度が高いのです。PowerPoint等を使ったことのある人なら、普通に使えると思います。
+</p>
+
+<p>
+一点、日本語の入力に少し工夫がいります。普通にテキストボックスに日本語を入れようとしてもうまく入りません。そこで、Text &gt; Ease Text Fill の画面で入力するworkaroundが必要になります。郵便局の はがきデザインキット では住所録をクラウドで管理していた気がしますが、内緒にしておきましょう。。。
+</p>
+
+<p>
+宛名面には、自分の住所と名前を入れ、日本向けのため"JAPAN"と赤文字で"AirMail"を予め配置しておきます。そして肝心な宛先のリストを入力しようとしたところ、家族から待ったがかかりました。一企業のWebサービスに知り合いの個人情報(名前と住所)を入れるのは不安だと言うのです。
+</p>
+
+<p>
+なお、作成したデータはAveryのサイト上で保存でき、自分で印刷するためにPDFファイルとしてダウンロード可能です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org91a0d67" class="outline-2">
+<h2 id="org91a0d67"><span class="section-number-2">4</span> 宛先リスト</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+これまで宛先住所録は はがきデザインキットWeb版 のデータを使っていました。つまり、クラウドにあったわけですが、2年前のサービス終了の際に、csvファイルとしてデータをダウンロードしてありました。
+</p>
+
+<p>
+このcsvファイルは以下のようなフォーマットになっています。
+</p>
+<pre class="example">
+氏名(姓),氏名(名),フリガナ(姓),フリガナ(名),敬称,
+郵便番号,都道府県,市区町村,番地・号,建物名,
+連名1(姓),連名1(名),連名1(敬称),連名2(姓),連名2(名),連名2(敬称)
+</pre>
+
+
+<p>
+これを利用して、宛先面のPDFファイルに宛名と住所を埋め込めないかと考えました。
+私は1,2年前に、PDFファイルにページ番号を付けるスクリプトをPythonで作っていました。これを応用すれば、可能かもしれません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfc91e6e" class="outline-2">
+<h2 id="orgfc91e6e"><span class="section-number-2">5</span> 日本語フォントの扱い</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+少し試してみたところ、日本語が全て四角形シンボルになってしまいました。
+フォントとして <code>Times-Roman</code> を指定している部分を、日本語フォントを指定するようにしないとダメそうです。とりあえずフォントブックアプリを見て <code>Hiragino Maru Gothic ProN W4</code> を指定したところ、Keyエラーになりました。
+</p>
+
+<p>
+しばらく検索してみたところ、以下のページを見つけました。
+</p>
+
+<p>
+<a href="https://gammasoft.jp/blog/pdf-japanese-font-by-python/">GAMMASOFTブログ - Pythonで日本語をPDFに出力する（ReportLabを利用）</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12487;&#12501;&#12457;&#12523;&#12488;&#12398;&#26085;&#26412;&#35486;&#12501;&#12457;&#12531;&#12488;&#12434;&#29992;&#12356;&#12427;&#26041;&#27861;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#21069;&#36848;&#12398;&#36890;&#12426;&#12289;ReportLab&#12395;&#12399;HeiseiMin-W3&#12392;HeiseiKakuGo-W5&#12364;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12487;&#12501;&#12457;&#12523;&#12488;&#12391;&#29992;&#24847;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;&#12290;&#12371;&#12428;&#12425;&#12434;&#21033;&#29992;&#12377;&#12427;&#12395;&#12399;&#12289;&#20197;&#19979;&#12398;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12467;&#12540;&#12489;&#12391;&#12501;&#12457;&#12531;&#12488;&#12434;&#30331;&#37682;&#12375;&#12414;&#12377;&#12290;</span>
+<span style="font-weight: bold;">from</span> reportlab.pdfbase <span style="font-weight: bold;">import</span> pdfmetrics
+<span style="font-weight: bold;">from</span> reportlab.pdfbase.cidfonts <span style="font-weight: bold;">import</span> UnicodeCIDFont
+pdfmetrics.registerFont(UnicodeCIDFont(<span style="font-style: italic;">'HeiseiMin-W3'</span>))
+canvas.setFont(<span style="font-style: italic;">'HeiseiMin-W3'</span>, 20)
+</pre>
+</div>
+
+<p>
+これで日本語が表示できるようになりました。GAMMASOFTさん、どうもありがとうございます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2905675" class="outline-2">
+<h2 id="org2905675"><span class="section-number-2">6</span> Pythonスクリプト</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+数カ月ぶりにPythonコードを書きました。あまりに久しぶりすぎて、
+</p>
+<pre class="example">
+python -V
+</pre>
+
+<p>
+をしたら2.17にリンクされていました。macOSのバージョンを上げると、結構な確率でPythonの環境が壊れます。。。しばらく試行錯誤した結果、pyenvのPATHが.zshrcから無くなっていたというオチでした。
+</p>
+<pre class="example">
+export PATH="$(pyenv root)/shims:$PATH"
+</pre>
+
+
+<p>
+それでは、作成したスクリプトです。やっていることは:
+</p>
+<ol class="org-ol">
+<li>住所一覧のcsvファイルを読んで、住所宛名listのlistを作る</li>
+<li>PDFファイルを扱う準備</li>
+<li>住所宛名listのlistからiteratorを作り、2つずつループで回す(1ページにポストカードが2枚あるため)</li>
+<li>宛名PDFファイルをベースに出力PDFページを作成(追加)する</li>
+<li>住所宛名listが存在すれば出力PDFページの指定位置に埋め込む</li>
+</ol>
+
+<p>
+前回同様、reportlabとpdfrwのライブラリを利用しています。
+定数値を使っていたりして見苦しいですが。。。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">import</span> sys, os, csv
+
+<span style="font-weight: bold;">from</span> reportlab.pdfgen.canvas <span style="font-weight: bold;">import</span> Canvas
+<span style="font-weight: bold;">from</span> reportlab.pdfbase <span style="font-weight: bold;">import</span> pdfmetrics
+<span style="font-weight: bold;">from</span> reportlab.pdfbase.cidfonts <span style="font-weight: bold;">import</span> UnicodeCIDFont
+<span style="font-weight: bold;">from</span> reportlab.lib.pagesizes <span style="font-weight: bold;">import</span> letter
+<span style="font-weight: bold;">from</span> pdfrw <span style="font-weight: bold;">import</span> PdfReader
+<span style="font-weight: bold;">from</span> pdfrw.toreportlab <span style="font-weight: bold;">import</span> makerl
+<span style="font-weight: bold;">from</span> pdfrw.buildxobj <span style="font-weight: bold;">import</span> pagexobj
+
+<span style="font-weight: bold;">if</span> <span style="font-weight: bold;">len</span>(sys.argv) != 3 <span style="font-weight: bold;">or</span> <span style="font-style: italic;">".pdf"</span> <span style="font-weight: bold;">not</span> <span style="font-weight: bold;">in</span> sys.argv[1].lower() \
+   <span style="font-weight: bold;">or</span> <span style="font-style: italic;">".csv"</span> <span style="font-weight: bold;">not</span> <span style="font-weight: bold;">in</span> sys.argv[2].lower():
+    <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"Usage: python {sys.argv[0]} &lt;pdf filename&gt; &lt;csv filename&gt;"</span>)
+    sys.<span style="font-weight: bold; text-decoration: underline;">exit</span>()
+
+<span style="font-weight: bold; font-style: italic;">address_list</span> = []
+<span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(sys.argv[2], newline=<span style="font-style: italic;">''</span>) <span style="font-weight: bold;">as</span> csvf:
+    <span style="font-weight: bold; font-style: italic;">csv_rdr</span> = csv.reader(csvf)
+    <span style="font-weight: bold;">for</span> row <span style="font-weight: bold;">in</span> csv_rdr:
+        <span style="font-weight: bold; font-style: italic;">adrs</span> = []
+        <span style="font-weight: bold;">if</span> row[5]: <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">zip code</span>
+            adrs.append(<span style="font-style: italic;">''</span>.join([<span style="font-style: italic;">'&#12306;'</span>, row[5]]))
+        adrs.append(<span style="font-style: italic;">''</span>.join([row[6], row[7], row[8]])) <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20303;&#25152;</span>
+        <span style="font-weight: bold;">if</span> row[9]: <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12450;&#12497;&#12540;&#12488;&#21517;</span>
+            adrs.append(<span style="font-style: italic;">''</span>.join([<span style="font-style: italic;">'&#12288;&#12288;'</span>, row[9]]))
+        adrs.append(<span style="font-style: italic;">''</span>)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#25913;&#34892;</span>
+        adrs.append(<span style="font-style: italic;">''</span>.join([row[0], <span style="font-style: italic;">'&#12288;'</span>, row[1], <span style="font-style: italic;">'&#12288;'</span>, row[4]])) <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23451;&#20808;&#21517;</span>
+        <span style="font-weight: bold;">if</span> row[11]:  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36899;&#21517;1</span>
+            <span style="font-weight: bold;">if</span> row[10]: <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36899;&#21517;1&#21517;&#23383;</span>
+                adrs.append(<span style="font-style: italic;">''</span>.join([row[10], <span style="font-style: italic;">'&#12288;'</span>, row[11], <span style="font-style: italic;">'&#12288;'</span>, row[12]]))
+            <span style="font-weight: bold;">else</span>:
+                adrs.append(<span style="font-style: italic;">''</span>.join([<span style="font-style: italic;">'&#12288;'</span>*(<span style="font-weight: bold;">len</span>(row[0])+1), row[11], <span style="font-style: italic;">'&#12288;'</span>, row[12]]))
+        <span style="font-weight: bold;">if</span> row[14]:  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36899;&#21517;2</span>
+            <span style="font-weight: bold;">if</span> row[13]: <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36899;&#21517;2&#21517;&#23383;</span>
+                adrs.append(<span style="font-style: italic;">''</span>.join([row[13], <span style="font-style: italic;">'&#12288;'</span>, row[14], <span style="font-style: italic;">'&#12288;'</span>, row[15]]))
+            <span style="font-weight: bold;">else</span>:
+                adrs.append(<span style="font-style: italic;">''</span>.join([<span style="font-style: italic;">'&#12288;'</span>*(<span style="font-weight: bold;">len</span>(row[0])+1), row[14], <span style="font-style: italic;">'&#12288;'</span>, row[15]]))
+        address_list.append(adrs)
+
+<span style="font-weight: bold; font-style: italic;">in_pdf</span> = sys.argv[1]
+<span style="font-weight: bold; font-style: italic;">out_pdf</span> = os.path.splitext(sys.argv[1])[0] + <span style="font-style: italic;">"_adrs.pdf"</span>
+
+<span style="font-weight: bold; font-style: italic;">canvas</span> = Canvas(out_pdf, pagesize=letter)
+<span style="font-weight: bold; font-style: italic;">pdf_rdr</span> = PdfReader(in_pdf)
+<span style="font-weight: bold; font-style: italic;">pages</span> = [pagexobj(p) <span style="font-weight: bold;">for</span> p <span style="font-weight: bold;">in</span> pdf_rdr.pages]
+<span style="font-weight: bold; font-style: italic;">in_page</span> = pages[0]  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">assuming it has only one page</span>
+
+pdfmetrics.registerFont(UnicodeCIDFont(<span style="font-style: italic;">'HeiseiMin-W3'</span>))
+
+<span style="font-weight: bold; font-style: italic;">it</span> = <span style="font-weight: bold;">iter</span>(address_list)
+<span style="font-weight: bold;">next</span>(it)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">skip header</span>
+<span style="font-weight: bold; font-style: italic;">cnt</span> = 0
+<span style="font-weight: bold;">while</span> <span style="font-weight: bold; text-decoration: underline;">True</span>:
+    <span style="font-weight: bold; font-style: italic;">exit_flag</span> = <span style="font-weight: bold; text-decoration: underline;">False</span>
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold; font-style: italic;">adrs</span> = <span style="font-weight: bold;">next</span>(it)
+    <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">StopIteration</span>:
+        <span style="font-weight: bold; font-style: italic;">exit_flag</span> = <span style="font-weight: bold; text-decoration: underline;">True</span>
+    <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">not</span> exit_flag:
+        canvas.doForm(makerl(canvas, in_page))
+        canvas.saveState()
+        canvas.setStrokeColorRGB(0, 0, 0)
+        canvas.setFont(<span style="font-style: italic;">'HeiseiMin-W3'</span>, 16)
+        <span style="font-weight: bold;">for</span> ln, sline <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">enumerate</span>(adrs[::-1], start=1):
+            canvas.drawString(180, 480+ln*17, sline)
+    <span style="font-weight: bold;">else</span>:
+        <span style="font-weight: bold;">break</span>
+
+    <span style="font-weight: bold; font-style: italic;">exit_flag</span> = <span style="font-weight: bold; text-decoration: underline;">False</span>
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold; font-style: italic;">adrs</span> = <span style="font-weight: bold;">next</span>(it)
+    <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">StopIteration</span>:
+        <span style="font-weight: bold; font-style: italic;">exit_flag</span> = <span style="font-weight: bold; text-decoration: underline;">True</span>
+    <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">not</span> exit_flag:
+        <span style="font-weight: bold;">for</span> ln, sline <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">enumerate</span>(adrs[::-1], start=1):
+            canvas.drawString(180, 150+ln*17, sline)
+    <span style="font-weight: bold;">else</span>:
+        canvas.restoreState()
+        canvas.showPage()
+        <span style="font-weight: bold;">break</span>
+
+    canvas.restoreState()
+    canvas.showPage()
+
+canvas.save()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgadf90c9" class="outline-2">
+<h2 id="orgadf90c9"><span class="section-number-2">7</span> 使い方</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+PDFライブラリをインストール
+</p>
+<pre class="example">
+pip install reportlab
+pip install pdfrw
+</pre>
+
+
+<p>
+上記スクリプトをadrs.pyとしてセーブ。
+</p>
+
+<p>
+実行
+</p>
+<pre class="example">
+python adrs.py &lt;pdf filename&gt; &lt;csv fiiename&gt;
+</pre>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-11-27T00:00:00-05:00" pubdate>Sat 27 November 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/addadrs.html">ポストカードpdfファイルに宛先リストのデータを埋め込む</a>
+      </li>
+      <li class="post">
+          <a href="/medical.html">アメリカで健康診断</a>
+      </li>
+      <li class="post">
+          <a href="/dentist.html">アメリカで歯医者にかかる</a>
+      </li>
+      <li class="post">
+          <a href="/rtnctree.html">クリスマスツリーを返品</a>
+      </li>
+      <li class="post">
+          <a href="/bline.html">Brooklineってどんなところ</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
