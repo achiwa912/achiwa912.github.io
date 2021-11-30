@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf06f20d">1. テストSMTPサーバーを立てる</a></li>
-<li><a href="#org24c45f5">2. テストメールを送る</a></li>
-<li><a href="#orge620e6b">3. テストしてみる</a></li>
-<li><a href="#orgd0d85ac">4. 宛先が表示されない?</a></li>
-<li><a href="#org60fc916">5. 参考リンク</a></li>
+<li><a href="#org7e2cdf6">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#org25aadec">2. テストメールを送る</a></li>
+<li><a href="#orgf721d6e">3. テストしてみる</a></li>
+<li><a href="#org3fbba97">4. 宛先が表示されない?</a></li>
+<li><a href="#org3db1b67">5. 参考リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf06f20d" class="outline-2">
-<h2 id="orgf06f20d"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
+<div id="outline-container-org7e2cdf6" class="outline-2">
+<h2 id="org7e2cdf6"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
@@ -112,8 +112,8 @@ python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
 </div>
 </div>
 
-<div id="outline-container-org24c45f5" class="outline-2">
-<h2 id="org24c45f5"><span class="section-number-2">2</span> テストメールを送る</h2>
+<div id="outline-container-org25aadec" class="outline-2">
+<h2 id="org25aadec"><span class="section-number-2">2</span> テストメールを送る</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
@@ -143,8 +143,8 @@ SMTPサーバーを立てるほどではありませんが、テストメール�
 </div>
 </div>
 
-<div id="outline-container-orge620e6b" class="outline-2">
-<h2 id="orge620e6b"><span class="section-number-2">3</span> テストしてみる</h2>
+<div id="outline-container-orgf721d6e" class="outline-2">
+<h2 id="orgf721d6e"><span class="section-number-2">3</span> テストしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
@@ -209,8 +209,8 @@ reply: retcode (221); Msg: b'Bye'
 </div>
 </div>
 
-<div id="outline-container-orgd0d85ac" class="outline-2">
-<h2 id="orgd0d85ac"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
+<div id="outline-container-org3fbba97" class="outline-2">
+<h2 id="org3fbba97"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
@@ -281,8 +281,8 @@ End of msg
 </div>
 
 
-<div id="outline-container-org60fc916" class="outline-2">
-<h2 id="org60fc916"><span class="section-number-2">5</span> 参考リンク</h2>
+<div id="outline-container-org3db1b67" class="outline-2">
+<h2 id="org3db1b67"><span class="section-number-2">5</span> 参考リンク</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
@@ -314,7 +314,7 @@ End of msg
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/addadrs.html">ポストカードpdfファイルに宛先リストのデータを埋め込む</a>
+          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
           <a href="/medical.html">アメリカで健康診断</a>
@@ -345,7 +345,7 @@ End of msg
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
