@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
+    <link href="/favicon.png" rel="icon">
 
-  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
+  <link href="/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
+        <a href="/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/english.html">English</a>
+        <a href="/category/english.html">English</a>
       </li>
       <li class="active">
-        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
+        <a href="/category/linux.html">Linux</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/python.html">Python</a>
+        <a href="/category/python.html">Python</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
+        <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org146fdf8">1. はじめに</a></li>
-<li><a href="#org6fdd3b0">2. Fedora34インストール</a>
+<li><a href="#orgd2e9eab">1. はじめに</a></li>
+<li><a href="#org7aa49dc">2. Fedora34インストール</a>
 <ul>
-<li><a href="#orge3b677d">2.1. VM作成</a></li>
-<li><a href="#orgceceb08">2.2. fedoraインストーラー</a></li>
-<li><a href="#org81c0924">2.3. fedora起動</a></li>
-<li><a href="#org811887d">2.4. Guest Additions</a></li>
+<li><a href="#org591442a">2.1. VM作成</a></li>
+<li><a href="#org369e6da">2.2. fedoraインストーラー</a></li>
+<li><a href="#org9e70bae">2.3. fedora起動</a></li>
+<li><a href="#orgade197f">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org6c9a000">3. emacsの設定</a></li>
-<li><a href="#orga8fedae">4. pythonの設定</a>
+<li><a href="#org1b8955b">3. emacsの設定</a></li>
+<li><a href="#org6f17db9">4. pythonの設定</a>
 <ul>
-<li><a href="#org71cf6c8">4.1. pyenvを入れる</a></li>
+<li><a href="#orgd16424b">4.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org146fdf8" class="outline-2">
-<h2 id="org146fdf8"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgd2e9eab" class="outline-2">
+<h2 id="orgd2e9eab"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora34を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora34インストール及び設定の備忘録です。
@@ -102,12 +102,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-org6fdd3b0" class="outline-2">
-<h2 id="org6fdd3b0"><span class="section-number-2">2</span> Fedora34インストール</h2>
+<div id="outline-container-org7aa49dc" class="outline-2">
+<h2 id="org7aa49dc"><span class="section-number-2">2</span> Fedora34インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge3b677d" class="outline-3">
-<h3 id="orge3b677d"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org591442a" class="outline-3">
+<h3 id="org591442a"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 34 download</code> で検索して、isoファイルをダウンロードします。
@@ -134,8 +134,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-orgceceb08" class="outline-3">
-<h3 id="orgceceb08"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-org369e6da" class="outline-3">
+<h3 id="org369e6da"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora34のインストーラー起動画面が出ます。
@@ -153,8 +153,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org81c0924" class="outline-3">
-<h3 id="org81c0924"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-org9e70bae" class="outline-3">
+<h3 id="org9e70bae"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。しばらく不安になる画面で放置されますが、数十秒で使えるようになります。
@@ -178,8 +178,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-org811887d" class="outline-3">
-<h3 id="org811887d"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-orgade197f" class="outline-3">
+<h3 id="orgade197f"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -212,8 +212,8 @@ Fedora34としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-org6c9a000" class="outline-2">
-<h2 id="org6c9a000"><span class="section-number-2">3</span> emacsの設定</h2>
+<div id="outline-container-org1b8955b" class="outline-2">
+<h2 id="org1b8955b"><span class="section-number-2">3</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Fedoraには最初からviが入っていますが、私はあまり使えないためにemacsを入れます。ついでにvimも。
@@ -475,8 +475,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-orga8fedae" class="outline-2">
-<h2 id="orga8fedae"><span class="section-number-2">4</span> pythonの設定</h2>
+<div id="outline-container-org6f17db9" class="outline-2">
+<h2 id="org6f17db9"><span class="section-number-2">4</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Fedora34を入れたら、いきなりpython 3.9.6が/usr/bin/pythonとしてインストールされていました。
@@ -490,8 +490,8 @@ Python 3.9.6
 </pre>
 </div>
 
-<div id="outline-container-org71cf6c8" class="outline-3">
-<h3 id="org71cf6c8"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
+<div id="outline-container-orgd16424b" class="outline-3">
+<h3 id="orgd16424b"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.9.6なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -563,10 +563,10 @@ Python 3.9.6
     </span>
   </span>
 <time datetime="2021-08-16T00:00:00-04:00" pubdate>Mon 16 August 2021</time>  <span class="categories">
-    <a class='category' href='http://achiwa912.github.io/category/linux.html'>Linux</a>
+    <a class='category' href='/category/linux.html'>Linux</a>
   </span>
   <span class="categories">
-    <a class="category" href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a class="category" href="http://achiwa912.github.io/tag/python.html">Python</a>  </span>
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -577,19 +577,19 @@ Python 3.9.6
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
+          <a href="/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
+          <a href="/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -597,18 +597,18 @@ Python 3.9.6
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
-        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
-        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
-        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
-        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -635,8 +635,8 @@ Python 3.9.6
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
-  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
-  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

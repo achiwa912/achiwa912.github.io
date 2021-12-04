@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
+    <link href="/favicon.png" rel="icon">
 
-  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
+  <link href="/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
+        <a href="/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/english.html">English</a>
+        <a href="/category/english.html">English</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
+        <a href="/category/linux.html">Linux</a>
       </li>
       <li class="active">
-        <a href="http://achiwa912.github.io/category/python.html">Python</a>
+        <a href="/category/python.html">Python</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
+        <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org69f128d">1. テストSMTPサーバーを立てる</a></li>
-<li><a href="#orga3befb8">2. テストメールを送る</a></li>
-<li><a href="#org5486a55">3. テストしてみる</a></li>
-<li><a href="#org1246488">4. 宛先が表示されない?</a></li>
-<li><a href="#org38d7fed">5. 参考リンク</a></li>
+<li><a href="#orgd6a52b3">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#orgcdee72d">2. テストメールを送る</a></li>
+<li><a href="#org4145129">3. テストしてみる</a></li>
+<li><a href="#orgb933ac6">4. 宛先が表示されない?</a></li>
+<li><a href="#org5bf96b1">5. 参考リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org69f128d" class="outline-2">
-<h2 id="org69f128d"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
+<div id="outline-container-orgd6a52b3" class="outline-2">
+<h2 id="orgd6a52b3"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
@@ -112,8 +112,8 @@ python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
 </div>
 </div>
 
-<div id="outline-container-orga3befb8" class="outline-2">
-<h2 id="orga3befb8"><span class="section-number-2">2</span> テストメールを送る</h2>
+<div id="outline-container-orgcdee72d" class="outline-2">
+<h2 id="orgcdee72d"><span class="section-number-2">2</span> テストメールを送る</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
@@ -143,8 +143,8 @@ SMTPサーバーを立てるほどではありませんが、テストメール�
 </div>
 </div>
 
-<div id="outline-container-org5486a55" class="outline-2">
-<h2 id="org5486a55"><span class="section-number-2">3</span> テストしてみる</h2>
+<div id="outline-container-org4145129" class="outline-2">
+<h2 id="org4145129"><span class="section-number-2">3</span> テストしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
@@ -209,8 +209,8 @@ reply: retcode (221); Msg: b'Bye'
 </div>
 </div>
 
-<div id="outline-container-org1246488" class="outline-2">
-<h2 id="org1246488"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
+<div id="outline-container-orgb933ac6" class="outline-2">
+<h2 id="orgb933ac6"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
@@ -281,8 +281,8 @@ End of msg
 </div>
 
 
-<div id="outline-container-org38d7fed" class="outline-2">
-<h2 id="org38d7fed"><span class="section-number-2">5</span> 参考リンク</h2>
+<div id="outline-container-org5bf96b1" class="outline-2">
+<h2 id="org5bf96b1"><span class="section-number-2">5</span> 参考リンク</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
@@ -300,10 +300,10 @@ End of msg
     </span>
   </span>
 <time datetime="2021-02-05T00:00:00-05:00" pubdate>Fri 05 February 2021</time>  <span class="categories">
-    <a class='category' href='http://achiwa912.github.io/category/python.html'>Python</a>
+    <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="http://achiwa912.github.io/tag/python.html">Python</a>  </span>
+    <a class="category" href="/tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -314,19 +314,19 @@ End of msg
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
+          <a href="/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
+          <a href="/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -334,18 +334,18 @@ End of msg
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
-        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
-        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
-        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
-        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -372,8 +372,8 @@ End of msg
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
-  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
-  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

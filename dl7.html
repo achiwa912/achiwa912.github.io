@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
+    <link href="/favicon.png" rel="icon">
 
-  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
+  <link href="/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
+        <a href="/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/english.html">English</a>
+        <a href="/category/english.html">English</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
+        <a href="/category/linux.html">Linux</a>
       </li>
       <li class="active">
-        <a href="http://achiwa912.github.io/category/python.html">Python</a>
+        <a href="/category/python.html">Python</a>
       </li>
       <li >
-        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
+        <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,18 +69,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org989428c">1. はじめに</a></li>
-<li><a href="#org0d06424">2. 仮想マップ</a></li>
-<li><a href="#orga7dc185">3. ドアオープン、ロック解除</a></li>
-<li><a href="#org5ff4f1a">4. フロア間移動</a></li>
-<li><a href="#org99d99c1">5. ダンジョンへの出入り</a></li>
-<li><a href="#org000d577">6. 次は、、</a></li>
+<li><a href="#orgad25a46">1. はじめに</a></li>
+<li><a href="#orgb005393">2. 仮想マップ</a></li>
+<li><a href="#org5e7d03d">3. ドアオープン、ロック解除</a></li>
+<li><a href="#org443ecf2">4. フロア間移動</a></li>
+<li><a href="#org9fcb97c">5. ダンジョンへの出入り</a></li>
+<li><a href="#orgb2bb697">6. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org989428c" class="outline-2">
-<h2 id="org989428c"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgad25a46" class="outline-2">
+<h2 id="orgad25a46"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの7回目です。今回は宿屋を作ると予告しましたが、まだ必要ないので先にダンジョンへの出入り、フロア間移動を作りました。
@@ -92,8 +92,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org0d06424" class="outline-2">
-<h2 id="org0d06424"><span class="section-number-2">2</span> 仮想マップ</h2>
+<div id="outline-container-orgb005393" class="outline-2">
+<h2 id="orgb005393"><span class="section-number-2">2</span> 仮想マップ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 これまでのスクリーンショットではマップ画面が全て見えていましたが、自分たちの隣接1文字分しか見えないように仮想マップを実装しました。見えないところは <code>^</code> で隠れています。
@@ -137,8 +137,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orga7dc185" class="outline-2">
-<h2 id="orga7dc185"><span class="section-number-2">3</span> ドアオープン、ロック解除</h2>
+<div id="outline-container-org5e7d03d" class="outline-2">
+<h2 id="org5e7d03d"><span class="section-number-2">3</span> ドアオープン、ロック解除</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ドアのオープンも実装しました。隣に移動して <code>o</code> キー、方向指定でドアを開けることができます。
@@ -196,8 +196,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org5ff4f1a" class="outline-2">
-<h2 id="org5ff4f1a"><span class="section-number-2">4</span> フロア間移動</h2>
+<div id="outline-container-org443ecf2" class="outline-2">
+<h2 id="org443ecf2"><span class="section-number-2">4</span> フロア間移動</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ひたすらフロアを歩き回っていると、下り階段 <code>&gt;</code> がありました。
@@ -294,8 +294,8 @@ yと答えると、地下二階に移動しました。フロアが 2 になっ�
 </div>
 </div>
 
-<div id="outline-container-org99d99c1" class="outline-2">
-<h2 id="org99d99c1"><span class="section-number-2">5</span> ダンジョンへの出入り</h2>
+<div id="outline-container-org9fcb97c" class="outline-2">
+<h2 id="org9fcb97c"><span class="section-number-2">5</span> ダンジョンへの出入り</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 地下1階から上り階段を使うと、地上に戻れます。
@@ -388,8 +388,8 @@ yと答えると、地下二階に移動しました。フロアが 2 になっ�
 </div>
 
 
-<div id="outline-container-org000d577" class="outline-2">
-<h2 id="org000d577"><span class="section-number-2">6</span> 次は、、</h2>
+<div id="outline-container-orgb2bb697" class="outline-2">
+<h2 id="orgb2bb697"><span class="section-number-2">6</span> 次は、、</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 地味な実装が続きますが、次はキャンプですかね。ではまた。
@@ -405,10 +405,10 @@ yと答えると、地下二階に移動しました。フロアが 2 になっ�
     </span>
   </span>
 <time datetime="2021-03-15T00:00:00-04:00" pubdate>Mon 15 March 2021</time>  <span class="categories">
-    <a class='category' href='http://achiwa912.github.io/category/python.html'>Python</a>
+    <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a class="category" href="http://achiwa912.github.io/tag/game.html">game</a>  </span>
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -419,19 +419,19 @@ yと答えると、地下二階に移動しました。フロアが 2 になっ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
+          <a href="/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
+          <a href="/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -439,18 +439,18 @@ yと答えると、地下二階に移動しました。フロアが 2 になっ�
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
-        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
-        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
-        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
-        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -477,8 +477,8 @@ yと答えると、地下二階に移動しました。フロアが 2 になっ�
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
-  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
-  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>
