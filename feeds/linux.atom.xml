@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dreaming in Brookline, MA 02445 - Linux</title><link href="http://achiwa912.github.io/" rel="alternate"></link><link href="http://achiwa912.github.io/feeds/linux.atom.xml" rel="self"></link><id>http://achiwa912.github.io/</id><updated>2021-12-03T00:00:00-05:00</updated><entry><title>Fedora34のインストールと設定</title><link href="http://achiwa912.github.io/fedora34.html" rel="alternate"></link><published>2021-08-16T00:00:00-04:00</published><updated>2021-12-03T00:00:00-05:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2021-08-16:/fedora34.html</id><summary type="html">installed fedora 34</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org146fdf8"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6fdd3b0"&gt;2. Fedora34インストール&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orge3b677d"&gt;2.1. VM作成&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgceceb08"&gt;2.2. fedoraインストーラー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org81c0924"&gt;2.3. fedora起動&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org811887d"&gt;2.4. Guest Additions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6c9a000"&gt;3. emacsの設定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga8fedae"&gt;4. pythonの設定&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org71cf6c8"&gt;4.1. pyenvを入れる&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org146fdf8" class="outline-2"&gt;
+&lt;h2 id="org146fdf8"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+MacBook上のVitrualBoxにFedora34を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora34インストール及び設定の備忘録です。
+(12/1/2021追記: Fedora35もそのまま行けました)
+&lt;/p&gt;
+
+&lt;p&gt;
+Fedoraインストールと設定、emacs設定、python設定までがワンセットです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6fdd3b0" class="outline-2"&gt;
+&lt;h2 id="org6fdd3b0"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Fedora34インストール&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge3b677d" class="outline-3"&gt;
+&lt;h3 id="orge3b677d"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; VM作成&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+&lt;code&gt;fedora 34 download&lt;/code&gt; で検索して、isoファイルをダウンロードします。
+最初に出てくるリンクが &lt;a href="https://getfedora.org/en/workstation/download/"&gt;こちら&lt;/a&gt;。ここからFedora 34: x86_64 DVD ISO &amp;gt; Download します。
+&lt;/p&gt;
+
+&lt;p&gt;
+30分くらいかけてのんびりダウンロードしている間に、VirtualBoxを最新にして、fedora34用のVMを作成します。VM作成手順:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;VirtualBox &amp;gt; Tools tab &amp;gt; New icon &amp;gt; Name: "fedora34" &amp;gt; Continue &amp;gt; memory 3000+ MB &amp;gt; Continue &amp;gt; Create (hard disk) &amp;gt; 略&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+ダウンロードが終わったら、isoファイルをVMにマウントします:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;VirtualBox &amp;gt; 作成したvm &amp;gt; Settings &amp;gt; Storage &amp;gt; Storage Devices &amp;gt; Controller: IDE &amp;gt; Emptyをクリック &amp;gt; Optical Drive: の右にあるdiscアイコンクリック &amp;gt; choose a disc file &amp;gt; isoを選択 &amp;gt; Open&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+fedora34 VMをダブルクリックして、VMを起動します。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgceceb08" class="outline-3"&gt;
+&lt;h3 id="orgceceb08"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; fedoraインストーラー&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+しばらく待っているとFedora34のインストーラー起動画面が出ます。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;install to hard drive &amp;gt; installer起動 &amp;gt; インストール先ストレージ選択 &amp;gt; Nextを押す &amp;gt; インストール開始 &amp;gt; しばらく待つ &amp;gt; Finish&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+若干、ユーザーを突き放したような画面で完了するので、めげずにTermを起動 &amp;gt; poweroffします。rebootでないのは、電源が落ちている間にisoファイルをアンマウントするためです:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;VM &amp;gt; Settings &amp;gt; Storage &amp;gt; Storage Devices &amp;gt; Controller: IDE &amp;gt; &amp;#x2026; から手動でアンマウント&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org81c0924" class="outline-3"&gt;
+&lt;h3 id="org81c0924"&gt;&lt;span class="section-number-3"&gt;2.3&lt;/span&gt; fedora起動&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-3"&gt;
+&lt;p&gt;
+初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。しばらく不安になる画面で放置されますが、数十秒で使えるようになります。
+&lt;/p&gt;
+
+&lt;p&gt;
+ネットワークは自動で設定されていました。便利になりましたねぇ。確認のために、terminalから &lt;code&gt;ping google.com&lt;/code&gt; してみます。
+&lt;/p&gt;
+
+&lt;p&gt;
+ネットワークが使えるようになったら、早速OSをアップデートします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+sudo dnf update
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+しばらく待って完了したら、poweroffして、念の為にスナップショットを取得しておきます。そしてまたVMを起動します。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org811887d" class="outline-3"&gt;
+&lt;h3 id="org811887d"&gt;&lt;span class="section-number-3"&gt;2.4&lt;/span&gt; Guest Additions&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-4"&gt;
+&lt;p&gt;
+「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
+&lt;/p&gt;
+
+&lt;p&gt;
+次にGuest Additionsの設定をします。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Devices &amp;gt; Shared Clipboard &amp;gt; Bidirectional&lt;/li&gt;
+&lt;li&gt;Devices &amp;gt; Drag and Drop &amp;gt; Bidirectional&lt;/li&gt;
+&lt;li&gt;Devices &amp;gt; Shares Folders &amp;gt; Shared Folders Sttings &amp;gt; ホストOSの共有したいフォルダを指定&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+共有フォルダにアクセスしようとするとPermission Deniedでエラーとなるので、ユーザーをvboxsfグループに追加します。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+sudo usermod -G vboxsf -a &amp;lt;user name&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;
+そして、リブート(logout &amp;rarr; loginでもいいかも)します。
+&lt;/p&gt;
+
+&lt;p&gt;
+Fedora34としての基本的な設定はここで終わりです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6c9a000" class="outline-2"&gt;
+&lt;h2 id="org6c9a000"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; emacsの設定&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+Fedoraには最初からviが入っていますが、私はあまり使えないためにemacsを入れます。ついでにvimも。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+sudo dnf install emacs vim
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+emacsは別ウインドウでなくterminalから直接使いたいので、.bashrcでaliasしておきます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+alias ll="ls -alF"
+alias l="ls -axF"
+alias em="emacs -nw"
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+&lt;code&gt;em&lt;/code&gt; でemacsが起動することを確認したら、 &lt;code&gt;~/.emacs.d&lt;/code&gt; ディレクトリが作成されているので、そこにinit.elを作成します。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+(require 'package)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+	("melpa" . "http://melpa.org/packages/")
+	("org" . "http://orgmode.org/elpa/")))
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar myPackages
+  '(better-defaults
+    elpy
+    flycheck            ;; On thr fly syntax checking
+    material-theme
+    htmlize
+    mozc
+    ox-gfm
+    mwim
+    rainbow-delimiters
+    )
+  )
+(mapc #'(lambda (package)
+	  (unless (package-installed-p package)
+	    (package-install package)))
+      myPackages)
+&lt;/pre&gt;
+
+&lt;p&gt;
+melpaからパッケージが取得できるかを確認するために、まずはこれだけでセーブして、emacsを起動します。このsnippetは&lt;a href="https://realpython.com/emacs-the-best-python-editor/"&gt;Real Pythonの記事&lt;/a&gt;から頂いてきました。myPackagesに使用するパッケージを並べておくと、必要に応じてインストールしてくれるのでとても便利です。
+&lt;/p&gt;
+
+&lt;p&gt;
+エラーが起きるようなら、myPackagesのリストを全てコメントアウトし、少しずつコメントを外してどこでエラーが起きているのかわかるようにします。
+&lt;/p&gt;
+
+&lt;p&gt;
+パッケージの取得ができるようになったら、他の設定をしていきます。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+(load-theme 'material t)
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+material-themeは黒基調の落ち着いた色のテーマで、最近のお気に入りです。これも上記Real Pythonの記事で知りました。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; No startup message
+(setq inhibit-startup-message t)
+
+;; no backup files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;; Delete auto-save files
+(setq delete-auto-save-files nil)
+&lt;/pre&gt;
+
+&lt;p&gt;
+スタートアップメッセージ抑止はお約束でしょうか。
+バックアップファイルや自動セーブファイルの抑止はお好みで。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; columm and line number
+(column-number-mode t)
+&lt;/pre&gt;
+
+&lt;p&gt;
+私は、すべての行に行番号を表示させるのが嫌なので、現在のカーソル位置を表示するようにしています。こちらのほうがスッキリしていると思います。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; Blink corresponding paren
+(show-paren-mode 1)
+&lt;/pre&gt;
+
+&lt;p&gt;
+対応するカッコを目立たせます。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; 1-line scroll
+(setq scroll-conservatively 1)
+&lt;/pre&gt;
+
+&lt;p&gt;
+1行ずつスクロールするようにしています。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; dired
+(require 'dired-x)
+&lt;/pre&gt;
+
+&lt;p&gt;
+あまり使いこなせていませんが、diredも入れます。diredはファイルやディレクトリ操作をリスト表示で行うファイラーです。使いこなしたら便利なはずですが、未だにキーバインドを覚えていません。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; yes or no to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+&lt;/pre&gt;
+
+&lt;p&gt;
+私は面倒くさがりなので、いちいち'yes'とタイプせずに'y'で済むようにしています。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; hide menu bar
+(menu-bar-mode 0)
+&lt;/pre&gt;
+
+&lt;p&gt;
+画面を広く使うためにメニューバーを隠します。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; add to load-path
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+&lt;/pre&gt;
+
+&lt;p&gt;
+これは以前からこのままですが、いらないかもしれません。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; suppress warnings
+(setq python-indent-guess-indent-offset-verbose nil)
+&lt;/pre&gt;
+
+&lt;p&gt;
+これは何だっけ? 既に記憶にありません。うっとおしいwarningを抑止しているのかな。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; disable org-mode truncate-lines
+(add-hook 'org-mode-hook
+	  (lambda () (setq truncate-lines nil)))
+
+;; org-mode export github-flavored markdown
+(eval-after-load "org"
+  '(require 'ox-gfm nil t))
+&lt;/pre&gt;
+
+&lt;p&gt;
+org-mode用の設定です。org-modeはブログを書いたり、残しておきたい長めのメモ(備忘録)を取ったり、github用のREADMEを書くのに使っています。WikiやConfluenceと似ていますが、表の書きやすさが抜きん出ています。一方で、画像の扱いが面倒です。
+&lt;/p&gt;
+
+&lt;p&gt;
+org-modeに移行する前はevernoteを使っていました。evernoteの無料版はデバイス台数などの制限がどんどんきつくなっていったので、使用を断念しました。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; mwim
+(global-set-key (kbd "C-a") 'mwim-beginning)
+(global-set-key (kbd "C-e") 'mwim-end)
+&lt;/pre&gt;
+
+&lt;p&gt;
+これはCtrl-aとCtrl-eを強化するパッケージです。&lt;a href="https://mako-note.com/python-emacs-ide/"&gt;makoのノート - EmacsでのPython開発環境&lt;/a&gt;で紹介されていたのを見て知りました。なかなか便利そうです。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; rainbow-delimiters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+&lt;/pre&gt;
+
+&lt;p&gt;
+こちらもmakoのノートから。対応するカッコをカラフル表示し、ネストしているものは色が変わります。一番外側のカッコが赤なのが趣味に合わないので、そのうちカスタマイズするかも。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; enable mozc
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
+(prefer-coding-system 'utf-8)
+&lt;/pre&gt;
+
+&lt;p&gt;
+日本語入力のmozc設定です。別途、コマンドラインから
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+sudo dnf install mozc
+&lt;/pre&gt;
+
+&lt;p&gt;
+が必要です。
+&lt;/p&gt;
+
+&lt;p&gt;
+ここからはPython向け設定です。後述するpyenvとvenvの設定が終わってからどうぞ。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; elpy
+(elpy-enable)
+(setq elpy-rpc-virtualenv-path 'current)
+&lt;/pre&gt;
+
+&lt;p&gt;
+emacsをPythonの統合環境化するelpyの設定です。
+これをする前に、前提ソフトをpipで入れておく必要があります。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+pip install jedi black flake8
+&lt;/pre&gt;
+
+
+&lt;pre class="example"&gt;
+;; black
+(add-hook 'elpy-mode-hook (lambda ()
+			    (add-hook 'before-save-hook
+				      'elpy-black-fix-code nil t)))
+&lt;/pre&gt;
+
+&lt;p&gt;
+自動フォーマットツールとして、一番人気の(?) black を使っています。
+私はフォーマットには特にこだわりが無く、逆に書き方に自信がないので、キツめな black が合っているようです。割と最近、autopep8から乗り換えました。この設定は、セーブするときにblackで自動整形するようにします。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+;; Flycheck
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+&lt;/pre&gt;
+
+&lt;p&gt;
+リアルタイムで構文チェックしてくれるflycheckです。評判が良さそうだったので。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga8fedae" class="outline-2"&gt;
+&lt;h2 id="orga8fedae"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; pythonの設定&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
+Fedora34を入れたら、いきなりpython 3.9.6が/usr/bin/pythonとしてインストールされていました。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+[k****@fedora ~]$ which python
+/usr/bin/python
+[k****@fedora ~]$ python -V
+Python 3.9.6
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org71cf6c8" class="outline-3"&gt;
+&lt;h3 id="org71cf6c8"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; pyenvを入れる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-1"&gt;
+&lt;p&gt;
+pyenvの最新安定pyrhonバージョンも3.9.6なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては&lt;a href="https://github.com/pyenv/pyenv"&gt;公式github&lt;/a&gt;へ。
+&lt;/p&gt;
+
+&lt;p&gt;
+まずは前提ソフトのインストールです。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+dnf install make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+ついで、pyenvをgit cloneしてきます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+.bashrcを書き換えて実行します。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+echo 'export PYENV_ROOT="$HOME/.pyenv"' &amp;gt;&amp;gt; ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"' &amp;gt;&amp;gt; ~/.bashrc
+echo 'eval "$(pyenv init -)"' &amp;gt;&amp;gt; ~/.bashrc
+source .bashrc
+&lt;/pre&gt;
+
+&lt;p&gt;
+そして、pyenvを使って最新安定版の3.9.6をインストールします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+pyenv install --list
+&lt;/pre&gt;
+&lt;p&gt;
+これでインストール可能バージョンを確認して、
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+pyenv install 3.9.6
+pyenv global 3.9.6
+pyenv rehash
+&lt;/pre&gt;
+&lt;p&gt;
+インストール、グローバルに適用、pyenvのキャッシュ(?)を最新にします。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+[k****@fedora ~]$ python -V
+Python 3.9.6
+[k****@fedora ~]$ which python
+~/.pyenv/shims/python
+&lt;/pre&gt;
+&lt;p&gt;
+無事に、pyenv版のpythonが設定されました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Linux"></category><category term="Linux"></category><category term="Python"></category></entry><entry><title>Linuxカーネルのlist head構造体って何するもの?</title><link href="http://achiwa912.github.io/linkern.html" rel="alternate"></link><published>2020-08-01T00:00:00-04:00</published><updated>2021-01-22T00:00:00-05:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-08-01:/linkern.html</id><summary type="html">Linuxカーネル入門</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org43262b0"&gt;1. はじめに&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orge6c35a3"&gt;1.1. ソースコードの入手&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org643801f"&gt;1.2. 最初の一歩?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5831c97"&gt;2. list head構造体&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org517ecf5"&gt;2.1. 背景&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org7ce2ade"&gt;2.2. list head構造体の定義&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5d7b41a"&gt;2.3. Linuxカーネルでの使われ方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org2d0356d"&gt;2.4. ペアレント構造体へのポインタを得る&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org8c1b2eb"&gt;3. まとめ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org96b3328"&gt;4. 参考文献&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org43262b0" class="outline-2"&gt;
+&lt;h2 id="org43262b0"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Linuxユーザーのエンジニアであれば、Linuxがどのように動くのかに興味ありますよね。いつかはLinuxカーネルについて勉強してみたいと思っている方も少なくないのではないでしょうか。
+&lt;/p&gt;
+
+&lt;p&gt;
+この記事では、Linuxカーネルに入門しようとしている初心者が、割と早いうちに途方に暮れると思われる壁「list_head構造体」について見ていきたいと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge6c35a3" class="outline-3"&gt;
+&lt;h3 id="orge6c35a3"&gt;&lt;span class="section-number-3"&gt;1.1&lt;/span&gt; ソースコードの入手&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-1-1"&gt;
+&lt;p&gt;
+まずはLinuxカーネルのソースコードを入手しましょう。
+&lt;/p&gt;
+
+&lt;p&gt;
+Linuxカーネルの開発はずっと続いているので、書籍などで引用されているコードはすでに古くなっています。折角なので、最新版を入手したいですよね。
+Linuxカーネルのソースコードをgit cloneして持ってきましょう。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+git clone http://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+20−30分くらいかかります。放置して待ちましょう。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+~/git % git clone http://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+Cloning into 'linux-stable'...
+warning: redirecting to https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/
+remote: Enumerating objects: 1189260, done.
+remote: Counting objects: 100% (1189260/1189260), done.
+remote: Compressing objects: 100% (165947/165947), done.
+remote: Total 8680156 (delta 1022459), reused 1186934 (delta 1020762), pack-reused 7490896
+Receiving objects: 100% (8680156/8680156), 1.57 GiB | 3.01 MiB/s, done.
+Resolving deltas: 100% (7328421/7328421), done.
+Updating files: 100% (69365/69365), done.
+warning: the following paths have collided (e.g. case-sensitive paths
+on a case-insensitive filesystem) and only one from the same
+colliding group is in the working tree:
+
+  'include/uapi/linux/netfilter/xt_CONNMARK.h'
+  'include/uapi/linux/netfilter/xt_connmark.h'
+  'include/uapi/linux/netfilter/xt_DSCP.h'
+  'include/uapi/linux/netfilter/xt_dscp.h'
+  'include/uapi/linux/netfilter/xt_MARK.h'
+  'include/uapi/linux/netfilter/xt_mark.h'
+  'include/uapi/linux/netfilter/xt_RATEEST.h'
+  'include/uapi/linux/netfilter/xt_rateest.h'
+  'include/uapi/linux/netfilter/xt_TCPMSS.h'
+  'include/uapi/linux/netfilter/xt_tcpmss.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_ECN.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_ecn.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_TTL.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_ttl.h'
+  'include/uapi/linux/netfilter_ipv6/ip6t_HL.h'
+  'include/uapi/linux/netfilter_ipv6/ip6t_hl.h'
+  'net/netfilter/xt_DSCP.c'
+  'net/netfilter/xt_dscp.c'
+  'net/netfilter/xt_HL.c'
+  'net/netfilter/xt_hl.c'
+  'net/netfilter/xt_RATEEST.c'
+  'net/netfilter/xt_rateest.c'
+  'net/netfilter/xt_TCPMSS.c'
+  'net/netfilter/xt_tcpmss.c'
+  'tools/memory-model/litmus-tests/Z6.0+pooncelock+poonceLock+pombonce.litmus'
+  'tools/memory-model/litmus-tests/Z6.0+pooncelock+pooncelock+pombonce.litmus'
+&lt;/pre&gt;
+
+&lt;p&gt;
+おめでとうございます。これで、Linuxカーネルのソースコードを一式入手することができました。意外と簡単ですね。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org643801f" class="outline-3"&gt;
+&lt;h3 id="org643801f"&gt;&lt;span class="section-number-3"&gt;1.2&lt;/span&gt; 最初の一歩?&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-1-2"&gt;
+&lt;p&gt;
+Linuxのカーネルは巨大です。一体、どこから見始めればよいのか検討もつきません。普通は参考文献にあるようなLinuxカーネル本をガイドにするのがよいと思います。ところで、私の場合はVFSに興味があります。inodeとかsuperblockとかのあれです。若干いきなりすぎる感もありますが、superblockのデータ構造を見てみましょう。
+&amp;lt;linux-stable/include/linux/fs.h&amp;gt;にありました。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+struct super_block {
+	struct list_head        s_list;         /* Keep this first */
+	dev_t                   s_dev;          /* search index; _not_ kdev_t */
+	unsigned char           s_blocksize_bits;
+	unsigned long           s_blocksize;
+	loff_t                  s_maxbytes;     /* Max file size */
+	struct file_system_type *s_type;
+	const struct super_operations   *s_op;
+	const struct dquot_operations   *dq_op;
+	const struct quotactl_ops       *s_qcop;
+	const struct export_operations *s_export_op;
+	unsigned long           s_flags;
+	unsigned long           s_iflags;       /* internal SB_I_* flags */
+	unsigned long           s_magic;
+	struct dentry           *s_root;
+	struct rw_semaphore     s_umount;
+	int                     s_count;
+	atomic_t                s_active;
+&amp;lt;snip&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;
+これが、superblockのデータ構造です。中身はさっぱりわかりませんが。。。
+構造体の中の1行目に着目します。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+struct list_head        s_list;         /* Keep this first */
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+これです。list head構造体。こいつが、カーネルのソースコードを少しでも読もうとする私のような初心者を突き放す、手強いやつなのです。しかも、やたらとたくさん出てきます。今回の記事では、これが何を意味するのかについて見ていきたいと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5831c97" class="outline-2"&gt;
+&lt;h2 id="org5831c97"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; list head構造体&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org517ecf5" class="outline-3"&gt;
+&lt;h3 id="org517ecf5"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; 背景&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+LinuxカーネルはC言語で書かれています。C言語には、よりモダンなプログラミング言語と違って、サポートするデータ構造は貧弱で、オブジェクト指向の仕組みも入っていません。例えば、Python等にあるリスト構造(['abc', 'def']みたいなやつ)はとても便利で、無くてはかったるくてプログラムなど書いていられないほどですが、C言語にリストはありません。同様にC言語にはクラスもありません。あるのは構造体のみ。
+&lt;/p&gt;
+
+&lt;p&gt;
+Linuxカーネル開発者達はこれらのモダンなデータ構造を、ユニークなやり方で実現しています。その一つが、リスト構造を実現するlist head構造体です。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7ce2ade" class="outline-3"&gt;
+&lt;h3 id="org7ce2ade"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; list head構造体の定義&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+では、list head構造体の定義を見てみましょう。
+&amp;lt;linux-stable/include/linux/types.h&amp;gt;にあります。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+struct list_head {
+        struct list_head *next, *prev;
+};
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+拍子抜けするほど単純ですね。前方、後方の、自身と同じlist head構造体へのポインタが入っているだけでした。なるほど、双方向リンクトリストなのですね。こういったやつです。(厳密には、循環双方向リンクトリストです)
+&lt;/p&gt;
+&lt;pre class="example"&gt;
++------+     +------+------+------+     +------+-----+------+     +------+
+| null | &amp;lt;-&amp;gt; | prev |  ... | next | &amp;lt;-&amp;gt; | prev | ... | next | &amp;lt;-&amp;gt; | null |
++------+     +------+------+------+     +------+-----+------+     +------+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5d7b41a" class="outline-3"&gt;
+&lt;h3 id="org5d7b41a"&gt;&lt;span class="section-number-3"&gt;2.3&lt;/span&gt; Linuxカーネルでの使われ方&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-3"&gt;
+&lt;p&gt;
+いや、ちょっと待ってください。リストって、前後のポインタだけ入っていても意味が無いです。リストを構成する各ノードのデータが入っていないと。例えばinodeをリンクトリストで持つ場合、inodeはinode自身のデータをたくさん持っているはずです。ファイル名とか、オーナーとか、パーミッションとか。上の図で言うと・・・の部分です。
+&lt;/p&gt;
+
+&lt;p&gt;
+実は、list head構造体は、それを他の構造体に埋め込むことで、埋め込まれたペアレント構造体をリンクトリスト化できる便利なやつなのです。すごい！発想の転換です。
+&lt;/p&gt;
+
+&lt;p&gt;
+そう言えば、superblockの構造体は、list head構造体をメンバーとして持っていました。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+struct super_block {
+	struct list_head        s_list;         /* Keep this first */
+	dev_t                   s_dev;          /* search index; _not_ kdev_t */
+	unsigned char           s_blocksize_bits;
+&amp;lt;snip&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;
+こうすることで、superblockがリンクトリストのノードになっているのです。
+&lt;/p&gt;
+
+&lt;p&gt;
+更に、いくつものlist_head構造体を埋め込むことで、複数のリンクトリストに同時に登録することも可能です。構造体の定義を見ただけで、これは何と何と何のリンクトリストに含まれるかもわかります(コメントが書いてあるので)。これはPythonのリンクには真似ができませんね。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2d0356d" class="outline-3"&gt;
+&lt;h3 id="org2d0356d"&gt;&lt;span class="section-number-3"&gt;2.4&lt;/span&gt; ペアレント構造体へのポインタを得る&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-4"&gt;
+&lt;p&gt;
+リストを持たないC言語でリンクトリストを実現するため、という目的はわかりましたが、一つ問題が残っています。リストヘッド構造体は、同じリストヘッド構造体同士を結びつけるだけなのですが、本当に欲しいのはそれを埋め込んだペアレント構造体へのポインタです。ペアレント構造体をリンクトリスト化したいのですから。
+&lt;/p&gt;
+
+&lt;p&gt;
+それをするための関数が定義されています。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+/**
+ * list_entry - get the struct for this entry
+ * @ptr:        the &amp;amp;struct list_head pointer.
+ * @type:       the type of the struct this is embedded in.
+ * @member:     the name of the list_head within the struct.
+ */
+#define list_entry(ptr, type, member) \
+	container_of(ptr, type, member)
+&lt;/pre&gt;
+
+&lt;p&gt;
+list_entry()関数です。この3つの引数は、
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;ptr: このlist_head構造体へのポインタ&lt;/li&gt;
+&lt;li&gt;type: list_headを埋め込んであるペアレント構造体のタイプ(上の例ではsuper_block)&lt;/li&gt;
+&lt;li&gt;member: このlist_head構造体の、ペアレント構造体内のメンバー名(上の例ではs_list)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+であり、ペアレント構造体へのポインタを返します。
+&lt;/p&gt;
+
+&lt;p&gt;
+よかった、よかった。ですが、list_entry()関数の定義内容が気になります。
+container_of()って何でしょうか。
+grepで探したところ、&amp;lt;linux-stable/include/linux/kernel.h&amp;gt;に定義がありました。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+/**
+ * container_of - cast a member of a structure out to the containing structure
+ * @ptr:        the pointer to the member.
+ * @type:       the type of the container struct this is embedded in.
+ * @member:     the name of the member within the struct.
+ *
+ */
+#define container_of(ptr, type, member) ({                              \
+	void *__mptr = (void *)(ptr);                                   \
+	BUILD_BUG_ON_MSG(!__same_type(*(ptr), ((type *)0)-&amp;gt;member) &amp;amp;&amp;amp;   \
+			 !__same_type(*(ptr), void),                    \
+			 "pointer type mismatch in container_of()");    \
+	((type *)(__mptr - offsetof(type, member))); })
+&lt;/pre&gt;
+
+&lt;p&gt;
+ポイントだけ抜き出します。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+#define container_of(ptr, type, member) ({                              \
+        void *__mptr = (void *)(ptr);                                   \
+        ((type *)(__mptr - offsetof(type, member))); })
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+まずは、voidへのポインタ__mptrに、list_head構造体へのポインタptrをvoidへのポインタにキャストして代入しています。list_head構造体へのポインタのままだと使えないですからね。
+&lt;/p&gt;
+
+&lt;p&gt;
+次の行で、__mptrを、offsetof(type, member)分前にずらしているようです。offsetof(type, member)は上の例の場合、super_block構造体の中でのメンバーstruct list_head s_listのオフセットです。つまり、ペアレントであるsuper_block構造体へのポインタに変換しているのでした。そしてこれを、super_block構造体へのポインタにキャストしています。
+&lt;/p&gt;
+
+&lt;p&gt;
+まとめると、
+&lt;/p&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;list_head構造体をvoidへのポインタにキャストして扱いやすくする&lt;/li&gt;
+&lt;li&gt;作ったポインタを手前にずらして、ペアレント構造体の先頭を指すようにする&lt;/li&gt;
+&lt;li&gt;最後に、ペアレント構造体へのポインタにキャストする&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+ということでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+なお、container_ofについては、参考文献のLinux Kernel Developmentの中では次のように定義されていました。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+#define container_of(ptr, type, member) ({ \
+    const typeof( ((type *)0)-&amp;gt;member ) *__mptr = (ptr); \
+    (type *)( (char *)__mptr - offsetof(type,member) );})
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+これを見て、「((type *)0)-&amp;gt;memberって何だ? これは一体何をしているんだ???」と相当悩んだことがこの記事を書く動機だったのですが、最新のソースでは、若干わかりやすくなっていました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8c1b2eb" class="outline-2"&gt;
+&lt;h2 id="org8c1b2eb"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; まとめ&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+Linuxカーネルで定義するデータ構造において、list_head構造体が埋め込まれた構造体があったら、それは何かのリンクトリストに含まれるということがわかりましたね。ソースのコメントを読めば、大抵は何のリンクトリストかが書いてあります。
+&lt;/p&gt;
+
+&lt;p&gt;
+list_entry()関数を使って、list_head構造体のポインタから、それが埋め込まれたペアレント構造体へのポインタに変換できます。そして、Linuxカーネルでのlist_entry() - contaier_of()の実装を少し見てみました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org96b3328" class="outline-2"&gt;
+&lt;h2 id="org96b3328"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; 参考文献&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468"&gt;Linux Kernel Development 3rd Edition&lt;/a&gt;, Robert Love&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Linux"></category><category term="Linux"></category></entry></feed>

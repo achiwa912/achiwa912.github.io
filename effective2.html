@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="/favicon.png" rel="icon">
+    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
 
-  <link href="/theme/css/main.css" media="screen, projection"
+  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="/category/blog.html">Blog</a>
+        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="/category/english.html">English</a>
+        <a href="http://achiwa912.github.io/category/english.html">English</a>
       </li>
       <li >
-        <a href="/category/linux.html">Linux</a>
+        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
       </li>
       <li class="active">
-        <a href="/category/python.html">Python</a>
+        <a href="http://achiwa912.github.io/category/python.html">Python</a>
       </li>
       <li >
-        <a href="/category/tech.html">Tech</a>
+        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,34 +69,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd8d102d">1. Chapter 3: 関数</a>
+<li><a href="#org2f41e6e">1. Chapter 3: 関数</a>
 <ul>
-<li><a href="#org669fbd9">1.1. Item 19: 関数が複数の値を返すとき、4つ以上の変数にunpackするな</a></li>
-<li><a href="#org8616d53">1.2. Item 20: Noneを返すくらいなら例外を上げよ</a></li>
-<li><a href="#org0ac6817">1.3. Item 21: Closuresが変数のスコープにどう影響するかを知っておけ</a></li>
-<li><a href="#org4fff966">1.4. Item 22: 可変数のpositional argumentsを使って見やすくしろ</a></li>
-<li><a href="#org059b820">1.5. Item 23: オプションとなる挙動はキーワード引数で与えよ</a></li>
-<li><a href="#org3721f83">1.6. Item 24: 動的なデフォルト引数を指定するときはNoneとDocstringsを使え</a></li>
-<li><a href="#orgc836c44">1.7. Item 25: キーワードオンリー引数、位置オンリー引数を使って、明確さを強制せよ</a></li>
-<li><a href="#orgf96102a">1.8. Item 26: 関数のデコレーターをfunctools.wrapsを使って定義せよ</a></li>
+<li><a href="#org820f816">1.1. Item 19: 関数が複数の値を返すとき、4つ以上の変数にunpackするな</a></li>
+<li><a href="#org17b0d41">1.2. Item 20: Noneを返すくらいなら例外を上げよ</a></li>
+<li><a href="#orgb8964c5">1.3. Item 21: Closuresが変数のスコープにどう影響するかを知っておけ</a></li>
+<li><a href="#org74faee5">1.4. Item 22: 可変数のpositional argumentsを使って見やすくしろ</a></li>
+<li><a href="#org0027aa8">1.5. Item 23: オプションとなる挙動はキーワード引数で与えよ</a></li>
+<li><a href="#orgd8af33d">1.6. Item 24: 動的なデフォルト引数を指定するときはNoneとDocstringsを使え</a></li>
+<li><a href="#org027f701">1.7. Item 25: キーワードオンリー引数、位置オンリー引数を使って、明確さを強制せよ</a></li>
+<li><a href="#org558a018">1.8. Item 26: 関数のデコレーターをfunctools.wrapsを使って定義せよ</a></li>
 </ul>
 </li>
-<li><a href="#org898812d">2. Chapter 4: Comprehensionsとジェネレーター</a>
+<li><a href="#orgae97b2d">2. Chapter 4: Comprehensionsとジェネレーター</a>
 <ul>
-<li><a href="#orgb0bf4cc">2.1. Item 27: mapとfilterの代わりにcomprehensionsを使え</a></li>
-<li><a href="#orgfc14b86">2.2. Item 28: 3つ以上のコントロールsubexpressionsをcomprehensionsで使うな</a></li>
-<li><a href="#org692a930">2.3. Item 29: Assignment表現を使って、comprehensions内での繰り返しを避けよ</a></li>
-<li><a href="#org336305a">2.4. Item 30: リストを返すくらいならジェネレーターを考慮せよ</a></li>
-<li><a href="#org6940345">2.5. Item 31: 引数をたどるときには保守的になれ</a></li>
-<li><a href="#org52b24b3">2.6. Item 32: 大きなリストcomprehensionsの代わりにジェネレーターexpressionsを考えよ</a></li>
-<li><a href="#org1f7cf6c">2.7. Item 33: yield fromを使って複数のジェネレーターを組み合わせよ</a></li>
-<li><a href="#org8be141d">2.8. Item 34: ジェネレーターにsendを使ってデータを送ってはいけない</a></li>
-<li><a href="#org56cee6a">2.9. Item 35: throwで例外を投げてジェネレータの状態遷移を起こすな</a></li>
-<li><a href="#orgf90b1fc">2.10. Item 36: Iteratorやジェネレーターを使うときにはitertoolsの使用を検討せよ</a>
+<li><a href="#orge8f1590">2.1. Item 27: mapとfilterの代わりにcomprehensionsを使え</a></li>
+<li><a href="#org05c19ba">2.2. Item 28: 3つ以上のコントロールsubexpressionsをcomprehensionsで使うな</a></li>
+<li><a href="#orgca2d3f6">2.3. Item 29: Assignment表現を使って、comprehensions内での繰り返しを避けよ</a></li>
+<li><a href="#org4025dc2">2.4. Item 30: リストを返すくらいならジェネレーターを考慮せよ</a></li>
+<li><a href="#org849f4c6">2.5. Item 31: 引数をたどるときには保守的になれ</a></li>
+<li><a href="#org0fe05e7">2.6. Item 32: 大きなリストcomprehensionsの代わりにジェネレーターexpressionsを考えよ</a></li>
+<li><a href="#org18181fd">2.7. Item 33: yield fromを使って複数のジェネレーターを組み合わせよ</a></li>
+<li><a href="#org61afc26">2.8. Item 34: ジェネレーターにsendを使ってデータを送ってはいけない</a></li>
+<li><a href="#orgf146ab2">2.9. Item 35: throwで例外を投げてジェネレータの状態遷移を起こすな</a></li>
+<li><a href="#orgc1d6aec">2.10. Item 36: Iteratorやジェネレーターを使うときにはitertoolsの使用を検討せよ</a>
 <ul>
-<li><a href="#orgbc9ac7a">2.10.1. Iteratorsをつなぐ</a></li>
-<li><a href="#orgc547a36">2.10.2. Iteratorからアイテムをフィルタする</a></li>
-<li><a href="#orgff80af6">2.10.3. 複数iteratorsのアイテムを結びつける</a></li>
+<li><a href="#org109feb6">2.10.1. Iteratorsをつなぐ</a></li>
+<li><a href="#org7042ef7">2.10.2. Iteratorからアイテムをフィルタする</a></li>
+<li><a href="#org35a3757">2.10.3. 複数iteratorsのアイテムを結びつける</a></li>
 </ul>
 </li>
 </ul>
@@ -105,12 +105,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgd8d102d" class="outline-2">
-<h2 id="orgd8d102d"><span class="section-number-2">1</span> Chapter 3: 関数</h2>
+<div id="outline-container-org2f41e6e" class="outline-2">
+<h2 id="org2f41e6e"><span class="section-number-2">1</span> Chapter 3: 関数</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org669fbd9" class="outline-3">
-<h3 id="org669fbd9"><span class="section-number-3">1.1</span> Item 19: 関数が複数の値を返すとき、4つ以上の変数にunpackするな</h3>
+<div id="outline-container-org820f816" class="outline-3">
+<h3 id="org820f816"><span class="section-number-3">1.1</span> Item 19: 関数が複数の値を返すとき、4つ以上の変数にunpackするな</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 うっかり順番を間違えたりするので。catch-allの星付きexpression(eg, *others)を使うか、namedtupleを使う。
@@ -159,8 +159,8 @@ namedtupleは内部ではクラスとして表現されていますが、メモ�
 </div>
 </div>
 
-<div id="outline-container-org8616d53" class="outline-3">
-<h3 id="org8616d53"><span class="section-number-3">1.2</span> Item 20: Noneを返すくらいなら例外を上げよ</h3>
+<div id="outline-container-org17b0d41" class="outline-3">
+<h3 id="org17b0d41"><span class="section-number-3">1.2</span> Item 20: Noneを返すくらいなら例外を上げよ</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>None</code> や0, 空の文字列, etc.は全て <code>False</code> と解釈されるので、if文などでの判定でうっかり間違いやすい。
@@ -184,8 +184,8 @@ def careful_divide(a: float, b: float) -&gt; float:
 </div>
 </div>
 
-<div id="outline-container-org0ac6817" class="outline-3">
-<h3 id="org0ac6817"><span class="section-number-3">1.3</span> Item 21: Closuresが変数のスコープにどう影響するかを知っておけ</h3>
+<div id="outline-container-orgb8964c5" class="outline-3">
+<h3 id="orgb8964c5"><span class="section-number-3">1.3</span> Item 21: Closuresが変数のスコープにどう影響するかを知っておけ</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 えーっと、closuresって何でしたっけ? Introducing Pythonを読んだときに消化不良のまま終わったような気が。。
@@ -246,8 +246,8 @@ sc(5, 7)  <span style="font-weight: bold; font-style: italic;"># </span><span st
 </div>
 </div>
 
-<div id="outline-container-org4fff966" class="outline-3">
-<h3 id="org4fff966"><span class="section-number-3">1.4</span> Item 22: 可変数のpositional argumentsを使って見やすくしろ</h3>
+<div id="outline-container-org74faee5" class="outline-3">
+<h3 id="org74faee5"><span class="section-number-3">1.4</span> Item 22: 可変数のpositional argumentsを使って見やすくしろ</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>可変長の引数(0個含む)は関数の定義def文において <code>*args</code> のようにアスタリスク付きで書くことで実現できる</li>
@@ -260,8 +260,8 @@ sc(5, 7)  <span style="font-weight: bold; font-style: italic;"># </span><span st
 </div>
 </div>
 
-<div id="outline-container-org059b820" class="outline-3">
-<h3 id="org059b820"><span class="section-number-3">1.5</span> Item 23: オプションとなる挙動はキーワード引数で与えよ</h3>
+<div id="outline-container-org0027aa8" class="outline-3">
+<h3 id="org0027aa8"><span class="section-number-3">1.5</span> Item 23: オプションとなる挙動はキーワード引数で与えよ</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 ここは特にコメントなしです。
@@ -269,8 +269,8 @@ sc(5, 7)  <span style="font-weight: bold; font-style: italic;"># </span><span st
 </div>
 </div>
 
-<div id="outline-container-org3721f83" class="outline-3">
-<h3 id="org3721f83"><span class="section-number-3">1.6</span> Item 24: 動的なデフォルト引数を指定するときはNoneとDocstringsを使え</h3>
+<div id="outline-container-orgd8af33d" class="outline-3">
+<h3 id="orgd8af33d"><span class="section-number-3">1.6</span> Item 24: 動的なデフォルト引数を指定するときはNoneとDocstringsを使え</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 例:
@@ -295,8 +295,8 @@ sc(5, 7)  <span style="font-weight: bold; font-style: italic;"># </span><span st
 </div>
 </div>
 
-<div id="outline-container-orgc836c44" class="outline-3">
-<h3 id="orgc836c44"><span class="section-number-3">1.7</span> Item 25: キーワードオンリー引数、位置オンリー引数を使って、明確さを強制せよ</h3>
+<div id="outline-container-org027f701" class="outline-3">
+<h3 id="org027f701"><span class="section-number-3">1.7</span> Item 25: キーワードオンリー引数、位置オンリー引数を使って、明確さを強制せよ</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 <code>float('inf')</code> は無限大を意味するそうです。
@@ -327,8 +327,8 @@ func(num=10, div=2)
 </div>
 </div>
 
-<div id="outline-container-orgf96102a" class="outline-3">
-<h3 id="orgf96102a"><span class="section-number-3">1.8</span> Item 26: 関数のデコレーターをfunctools.wrapsを使って定義せよ</h3>
+<div id="outline-container-org558a018" class="outline-3">
+<h3 id="org558a018"><span class="section-number-3">1.8</span> Item 26: 関数のデコレーターをfunctools.wrapsを使って定義せよ</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 コードスニップを見ていると、見慣れない表現が。。。
@@ -390,8 +390,8 @@ By applying this “wraps” decorator to our inner function, we copy over func�
 </div>
 </div>
 
-<div id="outline-container-org898812d" class="outline-2">
-<h2 id="org898812d"><span class="section-number-2">2</span> Chapter 4: Comprehensionsとジェネレーター</h2>
+<div id="outline-container-orgae97b2d" class="outline-2">
+<h2 id="orgae97b2d"><span class="section-number-2">2</span> Chapter 4: Comprehensionsとジェネレーター</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/#:~:text=A%20Python%20generator%20is%20a,as%20the%20%22generated%22%20value.">ここ</a>を参考にして、ジェネレーターについて整理します。(このリンクはかなり詳細に説明しています)
@@ -414,8 +414,8 @@ By applying this “wraps” decorator to our inner function, we copy over func�
 </div>
 
 
-<div id="outline-container-orgb0bf4cc" class="outline-3">
-<h3 id="orgb0bf4cc"><span class="section-number-3">2.1</span> Item 27: mapとfilterの代わりにcomprehensionsを使え</h3>
+<div id="outline-container-orge8f1590" class="outline-3">
+<h3 id="orge8f1590"><span class="section-number-3">2.1</span> Item 27: mapとfilterの代わりにcomprehensionsを使え</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>map()</code> ビルトイン関数は知りませんでした。<a href="https://www.geeksforgeeks.org/python-map-function/">ここ</a>によると、第二引数のiterable(例: リスト)の各アイテムに、第一引数の関数を適用して、iterableなmapオブジェクトを返す、とのこと。
@@ -460,8 +460,8 @@ map(lambda x: x**2, filter(lambda x: x % 2 == 0, somelist))
 </div>
 </div>
 
-<div id="outline-container-orgfc14b86" class="outline-3">
-<h3 id="orgfc14b86"><span class="section-number-3">2.2</span> Item 28: 3つ以上のコントロールsubexpressionsをcomprehensionsで使うな</h3>
+<div id="outline-container-org05c19ba" class="outline-3">
+<h3 id="org05c19ba"><span class="section-number-3">2.2</span> Item 28: 3つ以上のコントロールsubexpressionsをcomprehensionsで使うな</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 初級者的にキツい表現が出ました。やりたいことは、二次元にネストされたリストであるmatrixの中身をflattenする(一次元にする)、です。えーと、ネストされた <code>for</code> は左から解釈するらしいので、、
@@ -507,8 +507,8 @@ print(squared)
 </div>
 </div>
 
-<div id="outline-container-org692a930" class="outline-3">
-<h3 id="org692a930"><span class="section-number-3">2.3</span> Item 29: Assignment表現を使って、comprehensions内での繰り返しを避けよ</h3>
+<div id="outline-container-orgca2d3f6" class="outline-3">
+<h3 id="orgca2d3f6"><span class="section-number-3">2.3</span> Item 29: Assignment表現を使って、comprehensions内での繰り返しを避けよ</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Assignment expressions - Walrusのやつです(<code>:=</code>)。これは便利なので、是非とも使っていきたいと思います。
@@ -607,8 +607,8 @@ found = ((name, batches) for name in order
 </div>
 </div>
 
-<div id="outline-container-org336305a" class="outline-3">
-<h3 id="org336305a"><span class="section-number-3">2.4</span> Item 30: リストを返すくらいならジェネレーターを考慮せよ</h3>
+<div id="outline-container-org4025dc2" class="outline-3">
+<h3 id="org4025dc2"><span class="section-number-3">2.4</span> Item 30: リストを返すくらいならジェネレーターを考慮せよ</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 お、なんだか今更ジェネレーターの説明がありました。どうしてジェネレーターexpressionsを説明なしで使った後にこれが来るかな。。。
@@ -620,8 +620,8 @@ found = ((name, batches) for name in order
 </div>
 </div>
 
-<div id="outline-container-org6940345" class="outline-3">
-<h3 id="org6940345"><span class="section-number-3">2.5</span> Item 31: 引数をたどるときには保守的になれ</h3>
+<div id="outline-container-org849f4c6" class="outline-3">
+<h3 id="org849f4c6"><span class="section-number-3">2.5</span> Item 31: 引数をたどるときには保守的になれ</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 1カ所、どうしてもわからないところがありました。
@@ -694,8 +694,8 @@ iteratorを返す <code>__iter__()</code> メソッドを持つクラスを用�
 </div>
 </div>
 
-<div id="outline-container-org52b24b3" class="outline-3">
-<h3 id="org52b24b3"><span class="section-number-3">2.6</span> Item 32: 大きなリストcomprehensionsの代わりにジェネレーターexpressionsを考えよ</h3>
+<div id="outline-container-org0fe05e7" class="outline-3">
+<h3 id="org0fe05e7"><span class="section-number-3">2.6</span> Item 32: 大きなリストcomprehensionsの代わりにジェネレーターexpressionsを考えよ</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 (今更ですが)ジェネレーターexpressionsの説明でした。その戻り値であるiteratorを入力とした、ジェネレーターexpressionsのネスト(?)も可能。
@@ -707,8 +707,8 @@ roots = ((x, x**0.5) for x in it)
 </div>
 </div>
 
-<div id="outline-container-org1f7cf6c" class="outline-3">
-<h3 id="org1f7cf6c"><span class="section-number-3">2.7</span> Item 33: yield fromを使って複数のジェネレーターを組み合わせよ</h3>
+<div id="outline-container-org18181fd" class="outline-3">
+<h3 id="org18181fd"><span class="section-number-3">2.7</span> Item 33: yield fromを使って複数のジェネレーターを組み合わせよ</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 <code>yield from</code> です。for文で <code>yield</code> を回すところを <code>yeild from</code> とシンプルに書ける、くらいの説明でしたが、奥が深そうです。もう少し調べてみたところ、<a href="https://lerner.co.il/2020/05/08/making-sense-of-generators-coroutines-and-yield-from-in-python/">ここ</a>の説明が非常にわかりやすかったです。
@@ -766,8 +766,8 @@ generator.send('hello')
 </div>
 </div>
 
-<div id="outline-container-org8be141d" class="outline-3">
-<h3 id="org8be141d"><span class="section-number-3">2.8</span> Item 34: ジェネレーターにsendを使ってデータを送ってはいけない</h3>
+<div id="outline-container-org61afc26" class="outline-3">
+<h3 id="org61afc26"><span class="section-number-3">2.8</span> Item 34: ジェネレーターにsendを使ってデータを送ってはいけない</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 えー、前の項目で何とか理解したばかりだというのに、 <code>send()</code> を使うなと言っています。初心者にわかりづらいのと、 <code>yield from</code> を使って初回に <code>None</code> が返るケースでびっくりすることがあるため。
@@ -833,8 +833,8 @@ yield from wave_cascading(amplitude_it, 12)
 </div>
 </div>
 
-<div id="outline-container-org56cee6a" class="outline-3">
-<h3 id="org56cee6a"><span class="section-number-3">2.9</span> Item 35: throwで例外を投げてジェネレータの状態遷移を起こすな</h3>
+<div id="outline-container-orgf146ab2" class="outline-3">
+<h3 id="orgf146ab2"><span class="section-number-3">2.9</span> Item 35: throwで例外を投げてジェネレータの状態遷移を起こすな</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 <code>throw</code> を使う駄目な例:
@@ -891,20 +891,20 @@ yield from wave_cascading(amplitude_it, 12)
 </div>
 </div>
 
-<div id="outline-container-orgf90b1fc" class="outline-3">
-<h3 id="orgf90b1fc"><span class="section-number-3">2.10</span> Item 36: Iteratorやジェネレーターを使うときにはitertoolsの使用を検討せよ</h3>
+<div id="outline-container-orgc1d6aec" class="outline-3">
+<h3 id="orgc1d6aec"><span class="section-number-3">2.10</span> Item 36: Iteratorやジェネレーターを使うときにはitertoolsの使用を検討せよ</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 itertoolsには便利な関数がたくさんあるので使うとよい、という節でした。
 </p>
 </div>
 
-<div id="outline-container-orgbc9ac7a" class="outline-4">
-<h4 id="orgbc9ac7a"><span class="section-number-4">2.10.1</span> Iteratorsをつなぐ</h4>
+<div id="outline-container-org109feb6" class="outline-4">
+<h4 id="org109feb6"><span class="section-number-4">2.10.1</span> Iteratorsをつなぐ</h4>
 <div class="outline-text-4" id="text-2-10-1">
 </div>
 <ol class="org-ol">
-<li><a id="org7edc100"></a>chain<br />
+<li><a id="org05c8324"></a>chain<br />
 <div class="outline-text-5" id="text-2-10-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it</span> = itertools.chain([1, 2, 3], [4, 5, 6])
@@ -915,7 +915,7 @@ itertoolsには便利な関数がたくさんあるので使うとよい、と�
 </div>
 </div>
 </li>
-<li><a id="org415e018"></a>repeat<br />
+<li><a id="orge6c4ac4"></a>repeat<br />
 <div class="outline-text-5" id="text-2-10-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it</span> = itertools.repeat(<span style="font-style: italic;">'hello'</span>, 3)
@@ -939,7 +939,7 @@ itertoolsには便利な関数がたくさんあるので使うとよい、と�
 </div>
 </li>
 
-<li><a id="org149cfb8"></a>cycle<br />
+<li><a id="orgd8de34c"></a>cycle<br />
 <div class="outline-text-5" id="text-2-10-1-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it</span> = itertools.cycle([1, 2])
@@ -951,7 +951,7 @@ itertoolsには便利な関数がたくさんあるので使うとよい、と�
 </div>
 </div>
 </li>
-<li><a id="orgab7266e"></a>tee - iteratorを指定個数に分割して並列実行<br />
+<li><a id="org0aedf21"></a>tee - iteratorを指定個数に分割して並列実行<br />
 <div class="outline-text-5" id="text-2-10-1-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it1</span>, <span style="font-weight: bold; font-style: italic;">it2</span>, <span style="font-weight: bold; font-style: italic;">it3</span> = itertools.tee([<span style="font-style: italic;">'first'</span>, <span style="font-style: italic;">'second'</span>], 3)
@@ -966,16 +966,16 @@ itertoolsには便利な関数がたくさんあるので使うとよい、と�
 </div>
 </div>
 </li>
-<li><a id="orgbc9daa3"></a>zip_longest - zipと似ているが、一番長いiteratorに合わせる。<br /></li>
+<li><a id="org69a4a1b"></a>zip_longest - zipと似ているが、一番長いiteratorに合わせる。<br /></li>
 </ol>
 </div>
 
-<div id="outline-container-orgc547a36" class="outline-4">
-<h4 id="orgc547a36"><span class="section-number-4">2.10.2</span> Iteratorからアイテムをフィルタする</h4>
+<div id="outline-container-org7042ef7" class="outline-4">
+<h4 id="org7042ef7"><span class="section-number-4">2.10.2</span> Iteratorからアイテムをフィルタする</h4>
 <div class="outline-text-4" id="text-2-10-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgb47ae8d"></a>islice - スライスする。ステップも指定可<br />
+<li><a id="org91bd8e7"></a>islice - スライスする。ステップも指定可<br />
 <div class="outline-text-5" id="text-2-10-2-1">
 <pre class="example">
 first_five = itertools.islice(values, 5)  # 最初の5個
@@ -983,7 +983,7 @@ mkddle_odds = itertools.islice(values, 2, 8, 2)  # 3番目からステップ2で
 </pre>
 </div>
 </li>
-<li><a id="orgd7adbe1"></a>takewhile - 指定関数がFalseを返すまでtakeする<br />
+<li><a id="org4e97f34"></a>takewhile - 指定関数がFalseを返すまでtakeする<br />
 <div class="outline-text-5" id="text-2-10-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">values</span> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -996,17 +996,17 @@ mkddle_odds = itertools.islice(values, 2, 8, 2)  # 3番目からステップ2で
 </div>
 </div>
 </li>
-<li><a id="org2028d89"></a>dropwhile - takewhileの逆。指定関数がTrueを返すまでドロップする<br /></li>
-<li><a id="org88d334b"></a>filterfalse - filterの逆<br /></li>
+<li><a id="org637910a"></a>dropwhile - takewhileの逆。指定関数がTrueを返すまでドロップする<br /></li>
+<li><a id="orgad493bb"></a>filterfalse - filterの逆<br /></li>
 </ol>
 </div>
 
-<div id="outline-container-orgff80af6" class="outline-4">
-<h4 id="orgff80af6"><span class="section-number-4">2.10.3</span> 複数iteratorsのアイテムを結びつける</h4>
+<div id="outline-container-org35a3757" class="outline-4">
+<h4 id="org35a3757"><span class="section-number-4">2.10.3</span> 複数iteratorsのアイテムを結びつける</h4>
 <div class="outline-text-4" id="text-2-10-3">
 </div>
 <ol class="org-ol">
-<li><a id="org4f8fd3d"></a>accumulate - 積算する<br />
+<li><a id="org816fd63"></a>accumulate - 積算する<br />
 <div class="outline-text-5" id="text-2-10-3-1">
 <p>
 二つ目の引数に関数を指定して、加工が可能。
@@ -1031,7 +1031,7 @@ Modulo: [1, 3, 6, 10, 15, 1, 8, 16, 5, 15]
 </div>
 </li>
 
-<li><a id="org1087b97"></a>product - 直積(cartesian product)<br />
+<li><a id="org1ddedab"></a>product - 直積(cartesian product)<br />
 <div class="outline-text-5" id="text-2-10-3-2">
 <p>
 直積、デカルト積、cartesian積と呼ばれます。AとBの要素からそれぞれ一つずつ取ってきた作ったペアの集合です。学校で習った記憶があまりありません。。。
@@ -1053,7 +1053,7 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
 </div>
 </li>
 
-<li><a id="orgbc52e03"></a>permutations - 順列<br />
+<li><a id="orge28d83e"></a>permutations - 順列<br />
 <div class="outline-text-5" id="text-2-10-3-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it</span> = itertools.permutations([1, 2, 3, 4], 2)
@@ -1065,7 +1065,7 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
 </div>
 </div>
 </li>
-<li><a id="org5774b8b"></a>combinations - 組み合わせ<br />
+<li><a id="orgc64c6d7"></a>combinations - 組み合わせ<br />
 <div class="outline-text-5" id="text-2-10-3-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it</span> = itertools.combinations([1, 2, 3, 4], 2)
@@ -1076,7 +1076,7 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
 </div>
 </div>
 </li>
-<li><a id="org090c6f5"></a>combinations_with_replacement<br />
+<li><a id="orga0a6aba"></a>combinations_with_replacement<br />
 <div class="outline-text-5" id="text-2-10-3-5">
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold; font-style: italic;">it</span> = itertools.combinations_with_replacement([1, 2, 3, 4], 2)
@@ -1101,10 +1101,10 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
     </span>
   </span>
 <time datetime="2020-08-18T00:00:00-04:00" pubdate>Tue 18 August 2020</time>  <span class="categories">
-    <a class='category' href='/category/python.html'>Python</a>
+    <a class='category' href='http://achiwa912.github.io/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>  </span>
+    <a class="category" href="http://achiwa912.github.io/tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -1115,19 +1115,19 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="/medical.html">アメリカで健康診断</a>
+          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="/bline.html">Brooklineってどんなところ</a>
+          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -1135,18 +1135,18 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="/category/blog.html">Blog</a></li>
-        <li><a href="/category/english.html">English</a></li>
-        <li><a href="/category/linux.html">Linux</a></li>
-        <li><a href="/category/python.html">Python</a></li>
-        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
+        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
+        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
+        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
+        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -1173,8 +1173,8 @@ Multi: [(1, <span style="font-style: italic;">'a'</span>), (1, <span style="font
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="/theme/js/modernizr-2.0.js"></script>
-  <script src="/theme/js/ender.js"></script>
-  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

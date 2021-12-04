@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="/favicon.png" rel="icon">
+    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
 
-  <link href="/theme/css/main.css" media="screen, projection"
+  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="/category/blog.html">Blog</a>
+        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="/category/english.html">English</a>
+        <a href="http://achiwa912.github.io/category/english.html">English</a>
       </li>
       <li >
-        <a href="/category/linux.html">Linux</a>
+        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
       </li>
       <li class="active">
-        <a href="/category/python.html">Python</a>
+        <a href="http://achiwa912.github.io/category/python.html">Python</a>
       </li>
       <li >
-        <a href="/category/tech.html">Tech</a>
+        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc1dfbfb">1. はじめに</a></li>
-<li><a href="#orge73a477">2. bus3概要</a></li>
-<li><a href="#org497d05f">3. bus3特徴</a>
+<li><a href="#org50b175b">1. はじめに</a></li>
+<li><a href="#org037cbdd">2. bus3概要</a></li>
+<li><a href="#org3a9df31">3. bus3特徴</a>
 <ul>
-<li><a href="#org304af01">3.1. 機能</a></li>
-<li><a href="#orgb4041b8">3.2. 技術面で</a></li>
+<li><a href="#org93a6658">3.1. 機能</a></li>
+<li><a href="#orgb4dba68">3.2. 技術面で</a></li>
 </ul>
 </li>
-<li><a href="#org849054a">4. 使用法</a></li>
-<li><a href="#org439b307">5. 今回学んだこと</a>
+<li><a href="#orgc518319">4. 使用法</a></li>
+<li><a href="#org50f1d45">5. 今回学んだこと</a>
 <ul>
-<li><a href="#org449d4a5">5.1. asyncio</a></li>
-<li><a href="#org86af096">5.2. データベース</a></li>
-<li><a href="#orgede7a7b">5.3. 性能ボトルネック解析</a></li>
-<li><a href="#orgf045afe">5.4. python</a></li>
-<li><a href="#org7fcd359">5.5. 開発環境</a></li>
+<li><a href="#org90a5206">5.1. asyncio</a></li>
+<li><a href="#orgf92a515">5.2. データベース</a></li>
+<li><a href="#orgad7a752">5.3. 性能ボトルネック解析</a></li>
+<li><a href="#org77f888c">5.4. python</a></li>
+<li><a href="#orgf56ed6a">5.5. 開発環境</a></li>
 </ul>
 </li>
 </ul>
@@ -92,8 +92,8 @@
 </div>
 
 
-<div id="outline-container-orgc1dfbfb" class="outline-2">
-<h2 id="orgc1dfbfb"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org50b175b" class="outline-2">
+<h2 id="org50b175b"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレージへのバックアップツールbus3.pyを作りました。<a href="https://github.com/achiwa912/bus3">https://github.com/achiwa912/bus3</a>
@@ -101,8 +101,8 @@ Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレ�
 </div>
 </div>
 
-<div id="outline-container-orge73a477" class="outline-2">
-<h2 id="orge73a477"><span class="section-number-2">2</span> bus3概要</h2>
+<div id="outline-container-org037cbdd" class="outline-2">
+<h2 id="org037cbdd"><span class="section-number-2">2</span> bus3概要</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 bus3は指定ディレクトリ以下のファイルやディレクトリをバックアップします。ファイルのコンテンツはS3ストレージに、メタデータはデータベースに保管します。
@@ -122,12 +122,12 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-org497d05f" class="outline-2">
-<h2 id="org497d05f"><span class="section-number-2">3</span> bus3特徴</h2>
+<div id="outline-container-org3a9df31" class="outline-2">
+<h2 id="org3a9df31"><span class="section-number-2">3</span> bus3特徴</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org304af01" class="outline-3">
-<h3 id="org304af01"><span class="section-number-3">3.1</span> 機能</h3>
+<div id="outline-container-org93a6658" class="outline-3">
+<h3 id="org93a6658"><span class="section-number-3">3.1</span> 機能</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>指定ファイルやディレクトリのバックアップ、リストアを行います</li>
@@ -139,8 +139,8 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-orgb4041b8" class="outline-3">
-<h3 id="orgb4041b8"><span class="section-number-3">3.2</span> 技術面で</h3>
+<div id="outline-container-orgb4dba68" class="outline-3">
+<h3 id="orgb4dba68"><span class="section-number-3">3.2</span> 技術面で</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>asyncio</code> をフルに活用してバックアップ・リストアの多重度を上げています
@@ -157,8 +157,8 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-org849054a" class="outline-2">
-<h2 id="org849054a"><span class="section-number-2">4</span> 使用法</h2>
+<div id="outline-container-orgc518319" class="outline-2">
+<h2 id="orgc518319"><span class="section-number-2">4</span> 使用法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 githubのREADMEを参照ください。
@@ -166,12 +166,12 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-org439b307" class="outline-2">
-<h2 id="org439b307"><span class="section-number-2">5</span> 今回学んだこと</h2>
+<div id="outline-container-org50f1d45" class="outline-2">
+<h2 id="org50f1d45"><span class="section-number-2">5</span> 今回学んだこと</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org449d4a5" class="outline-3">
-<h3 id="org449d4a5"><span class="section-number-3">5.1</span> asyncio</h3>
+<div id="outline-container-org90a5206" class="outline-3">
+<h3 id="org90a5206"><span class="section-number-3">5.1</span> asyncio</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>単純に <code>await</code> を使っても多重度が上がる訳ではないことがわかりました。 多重度を上げるには、 <code>asyncio.create_task()</code> を使ってasyncタスク化しなくてはいけません</li>
@@ -183,8 +183,8 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-org86af096" class="outline-3">
-<h3 id="org86af096"><span class="section-number-3">5.2</span> データベース</h3>
+<div id="outline-container-orgf92a515" class="outline-3">
+<h3 id="orgf92a515"><span class="section-number-3">5.2</span> データベース</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>sqlite3はとても気軽に使えますが、グローバルライトロックがあるため、多重度を上げる技術である <code>asyncio</code> とは相性が悪いと感じました</li>
@@ -194,8 +194,8 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-orgede7a7b" class="outline-3">
-<h3 id="orgede7a7b"><span class="section-number-3">5.3</span> 性能ボトルネック解析</h3>
+<div id="outline-container-orgad7a752" class="outline-3">
+<h3 id="orgad7a752"><span class="section-number-3">5.3</span> 性能ボトルネック解析</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>CPUやメモリの利用率は <code>top</code> コマンドを使って見ました</li>
@@ -214,8 +214,8 @@ snakeviz prof.bin
 </div>
 
 
-<div id="outline-container-orgf045afe" class="outline-3">
-<h3 id="orgf045afe"><span class="section-number-3">5.4</span> python</h3>
+<div id="outline-container-org77f888c" class="outline-3">
+<h3 id="org77f888c"><span class="section-number-3">5.4</span> python</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li><code>argparse</code> が思ったように動いてくれず、とても使いづらかったです。</li>
@@ -223,8 +223,8 @@ snakeviz prof.bin
 </div>
 </div>
 
-<div id="outline-container-org7fcd359" class="outline-3">
-<h3 id="org7fcd359"><span class="section-number-3">5.5</span> 開発環境</h3>
+<div id="outline-container-orgf56ed6a" class="outline-3">
+<h3 id="orgf56ed6a"><span class="section-number-3">5.5</span> 開発環境</h3>
 <div class="outline-text-3" id="text-5-5">
 <ul class="org-ul">
 <li>私はemacs + elpyで開発していますが、どうもセーブ時の自動整形が変だと思ったら、必要なバックエンド機能が動いていなかった、ということがありました。 <code>M-x elpy-config</code> で確認するまでわかりませんでした</li>
@@ -244,10 +244,10 @@ snakeviz prof.bin
     </span>
   </span>
 <time datetime="2021-08-17T00:00:00-04:00" pubdate>Tue 17 August 2021</time>  <span class="categories">
-    <a class='category' href='/category/python.html'>Python</a>
+    <a class='category' href='http://achiwa912.github.io/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>  </span>
+    <a class="category" href="http://achiwa912.github.io/tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -258,19 +258,19 @@ snakeviz prof.bin
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="/medical.html">アメリカで健康診断</a>
+          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="/bline.html">Brooklineってどんなところ</a>
+          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -278,18 +278,18 @@ snakeviz prof.bin
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="/category/blog.html">Blog</a></li>
-        <li><a href="/category/english.html">English</a></li>
-        <li><a href="/category/linux.html">Linux</a></li>
-        <li><a href="/category/python.html">Python</a></li>
-        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
+        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
+        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
+        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
+        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -316,8 +316,8 @@ snakeviz prof.bin
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="/theme/js/modernizr-2.0.js"></script>
-  <script src="/theme/js/ender.js"></script>
-  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

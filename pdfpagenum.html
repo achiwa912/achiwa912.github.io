@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="/favicon.png" rel="icon">
+    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
 
-  <link href="/theme/css/main.css" media="screen, projection"
+  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="/category/blog.html">Blog</a>
+        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="/category/english.html">English</a>
+        <a href="http://achiwa912.github.io/category/english.html">English</a>
       </li>
       <li >
-        <a href="/category/linux.html">Linux</a>
+        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
       </li>
       <li class="active">
-        <a href="/category/python.html">Python</a>
+        <a href="http://achiwa912.github.io/category/python.html">Python</a>
       </li>
       <li >
-        <a href="/category/tech.html">Tech</a>
+        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3d9fc71">1. はじめに</a></li>
-<li><a href="#orgfab1141">2. ReportLab PDFライブラリ</a></li>
-<li><a href="#org3781a7a">3. ReportLab + pdfrwを組み合わせる</a></li>
-<li><a href="#org43d930d">4. 使用方法</a>
+<li><a href="#orgf8068ae">1. はじめに</a></li>
+<li><a href="#org8216c5f">2. ReportLab PDFライブラリ</a></li>
+<li><a href="#org63881ea">3. ReportLab + pdfrwを組み合わせる</a></li>
+<li><a href="#org547f904">4. 使用方法</a>
 <ul>
-<li><a href="#orgd0a152a">4.1. カスタマイズ方法</a></li>
+<li><a href="#org14840a8">4.1. カスタマイズ方法</a></li>
 </ul>
 </li>
-<li><a href="#orgd39f712">5. 終わりに</a></li>
+<li><a href="#org2d56b01">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3d9fc71" class="outline-2">
-<h2 id="org3d9fc71"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgf8068ae" class="outline-2">
+<h2 id="orgf8068ae"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 小学生の娘が算数で間違った問題を、スキャンしてまとめてPDF化しています。しかし、必要なページだけ印刷したつもりが、結構ページ番号がずれていて、何度もやりなおしたりしています。電子化したつもりが意外とアナログです。そこで、自動でPDFファイルにページ番号を付けたいと思いました。ヒューマンエラーによるページ番号のずれが防げる、またはずれてもすぐに気がつくので。
@@ -99,8 +99,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgfab1141" class="outline-2">
-<h2 id="orgfab1141"><span class="section-number-2">2</span> ReportLab PDFライブラリ</h2>
+<div id="outline-container-org8216c5f" class="outline-2">
+<h2 id="org8216c5f"><span class="section-number-2">2</span> ReportLab PDFライブラリ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりのようです。これらは、複数のPDFファイルをマージしたり、逆に分割したり、ページを入れ替えたりといったことが得意ですが、「既存PDFファイルにページ番号を付加する」というユースケースには対応していないようです。
@@ -126,8 +126,8 @@ PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりの�
 </div>
 </div>
 
-<div id="outline-container-org3781a7a" class="outline-2">
-<h2 id="org3781a7a"><span class="section-number-2">3</span> ReportLab + pdfrwを組み合わせる</h2>
+<div id="outline-container-org63881ea" class="outline-2">
+<h2 id="org63881ea"><span class="section-number-2">3</span> ReportLab + pdfrwを組み合わせる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 それでも諦めずに検索を続けたところ、見つけました。
@@ -197,8 +197,8 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-org43d930d" class="outline-2">
-<h2 id="org43d930d"><span class="section-number-2">4</span> 使用方法</h2>
+<div id="outline-container-org547f904" class="outline-2">
+<h2 id="org547f904"><span class="section-number-2">4</span> 使用方法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 f-stringを使っているので、python 3.6以降で使ってください。
@@ -230,8 +230,8 @@ python addpagenum.py &lt;pdf_filename&gt;
 </p>
 </div>
 
-<div id="outline-container-orgd0a152a" class="outline-3">
-<h3 id="orgd0a152a"><span class="section-number-3">4.1</span> カスタマイズ方法</h3>
+<div id="outline-container-org14840a8" class="outline-3">
+<h3 id="org14840a8"><span class="section-number-3">4.1</span> カスタマイズ方法</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 このあたりを適当に変えてください。
@@ -257,8 +257,8 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
 </div>
 </div>
 
-<div id="outline-container-orgd39f712" class="outline-2">
-<h2 id="orgd39f712"><span class="section-number-2">5</span> 終わりに</h2>
+<div id="outline-container-org2d56b01" class="outline-2">
+<h2 id="org2d56b01"><span class="section-number-2">5</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このスクリプトはgithubにも載せました。
@@ -279,10 +279,10 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
     </span>
   </span>
 <time datetime="2020-08-02T00:00:00-04:00" pubdate>Sun 02 August 2020</time>  <span class="categories">
-    <a class='category' href='/category/python.html'>Python</a>
+    <a class='category' href='http://achiwa912.github.io/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>  </span>
+    <a class="category" href="http://achiwa912.github.io/tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -293,19 +293,19 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="/medical.html">アメリカで健康診断</a>
+          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="/bline.html">Brooklineってどんなところ</a>
+          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -313,18 +313,18 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="/category/blog.html">Blog</a></li>
-        <li><a href="/category/english.html">English</a></li>
-        <li><a href="/category/linux.html">Linux</a></li>
-        <li><a href="/category/python.html">Python</a></li>
-        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
+        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
+        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
+        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
+        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -351,8 +351,8 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="/theme/js/modernizr-2.0.js"></script>
-  <script src="/theme/js/ender.js"></script>
-  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

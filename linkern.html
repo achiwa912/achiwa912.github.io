@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="/favicon.png" rel="icon">
+    <link href="http://achiwa912.github.io/favicon.png" rel="icon">
 
-  <link href="/theme/css/main.css" media="screen, projection"
+  <link href="http://achiwa912.github.io/theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
 
   <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
@@ -31,7 +31,7 @@
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+  <h1><a href="http://achiwa912.github.io/">Dreaming in Brookline, MA 02445</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
 </ul>
@@ -40,19 +40,19 @@
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About me</a></li>
       <li >
-        <a href="/category/blog.html">Blog</a>
+        <a href="http://achiwa912.github.io/category/blog.html">Blog</a>
       </li>
       <li >
-        <a href="/category/english.html">English</a>
+        <a href="http://achiwa912.github.io/category/english.html">English</a>
       </li>
       <li class="active">
-        <a href="/category/linux.html">Linux</a>
+        <a href="http://achiwa912.github.io/category/linux.html">Linux</a>
       </li>
       <li >
-        <a href="/category/python.html">Python</a>
+        <a href="http://achiwa912.github.io/category/python.html">Python</a>
       </li>
       <li >
-        <a href="/category/tech.html">Tech</a>
+        <a href="http://achiwa912.github.io/category/tech.html">Tech</a>
       </li>
 </ul></nav>
   <div id="main">
@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org52e471d">1. はじめに</a>
+<li><a href="#org43262b0">1. はじめに</a>
 <ul>
-<li><a href="#org5d5701d">1.1. ソースコードの入手</a></li>
-<li><a href="#orgefeba93">1.2. 最初の一歩?</a></li>
+<li><a href="#orge6c35a3">1.1. ソースコードの入手</a></li>
+<li><a href="#org643801f">1.2. 最初の一歩?</a></li>
 </ul>
 </li>
-<li><a href="#orgaa69f23">2. list head構造体</a>
+<li><a href="#org5831c97">2. list head構造体</a>
 <ul>
-<li><a href="#orgf1a891a">2.1. 背景</a></li>
-<li><a href="#org9dc639c">2.2. list head構造体の定義</a></li>
-<li><a href="#org313b76e">2.3. Linuxカーネルでの使われ方</a></li>
-<li><a href="#org19b5334">2.4. ペアレント構造体へのポインタを得る</a></li>
+<li><a href="#org517ecf5">2.1. 背景</a></li>
+<li><a href="#org7ce2ade">2.2. list head構造体の定義</a></li>
+<li><a href="#org5d7b41a">2.3. Linuxカーネルでの使われ方</a></li>
+<li><a href="#org2d0356d">2.4. ペアレント構造体へのポインタを得る</a></li>
 </ul>
 </li>
-<li><a href="#org42eae9c">3. まとめ</a></li>
-<li><a href="#orgb7244c7">4. 参考文献</a></li>
+<li><a href="#org8c1b2eb">3. まとめ</a></li>
+<li><a href="#org96b3328">4. 参考文献</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org52e471d" class="outline-2">
-<h2 id="org52e471d"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org43262b0" class="outline-2">
+<h2 id="org43262b0"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Linuxユーザーのエンジニアであれば、Linuxがどのように動くのかに興味ありますよね。いつかはLinuxカーネルについて勉強してみたいと思っている方も少なくないのではないでしょうか。
@@ -101,8 +101,8 @@ Linuxユーザーのエンジニアであれば、Linuxがどのように動く�
 </p>
 </div>
 
-<div id="outline-container-org5d5701d" class="outline-3">
-<h3 id="org5d5701d"><span class="section-number-3">1.1</span> ソースコードの入手</h3>
+<div id="outline-container-orge6c35a3" class="outline-3">
+<h3 id="orge6c35a3"><span class="section-number-3">1.1</span> ソースコードの入手</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 まずはLinuxカーネルのソースコードを入手しましょう。
@@ -170,8 +170,8 @@ colliding group is in the working tree:
 </div>
 </div>
 
-<div id="outline-container-orgefeba93" class="outline-3">
-<h3 id="orgefeba93"><span class="section-number-3">1.2</span> 最初の一歩?</h3>
+<div id="outline-container-org643801f" class="outline-3">
+<h3 id="org643801f"><span class="section-number-3">1.2</span> 最初の一歩?</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Linuxのカーネルは巨大です。一体、どこから見始めればよいのか検討もつきません。普通は参考文献にあるようなLinuxカーネル本をガイドにするのがよいと思います。ところで、私の場合はVFSに興味があります。inodeとかsuperblockとかのあれです。若干いきなりすぎる感もありますが、superblockのデータ構造を見てみましょう。
@@ -216,12 +216,12 @@ struct list_head        s_list;         /* Keep this first */
 </div>
 </div>
 
-<div id="outline-container-orgaa69f23" class="outline-2">
-<h2 id="orgaa69f23"><span class="section-number-2">2</span> list head構造体</h2>
+<div id="outline-container-org5831c97" class="outline-2">
+<h2 id="org5831c97"><span class="section-number-2">2</span> list head構造体</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf1a891a" class="outline-3">
-<h3 id="orgf1a891a"><span class="section-number-3">2.1</span> 背景</h3>
+<div id="outline-container-org517ecf5" class="outline-3">
+<h3 id="org517ecf5"><span class="section-number-3">2.1</span> 背景</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 LinuxカーネルはC言語で書かれています。C言語には、よりモダンなプログラミング言語と違って、サポートするデータ構造は貧弱で、オブジェクト指向の仕組みも入っていません。例えば、Python等にあるリスト構造(['abc', 'def']みたいなやつ)はとても便利で、無くてはかったるくてプログラムなど書いていられないほどですが、C言語にリストはありません。同様にC言語にはクラスもありません。あるのは構造体のみ。
@@ -233,8 +233,8 @@ Linuxカーネル開発者達はこれらのモダンなデータ構造を、ユ
 </div>
 </div>
 
-<div id="outline-container-org9dc639c" class="outline-3">
-<h3 id="org9dc639c"><span class="section-number-3">2.2</span> list head構造体の定義</h3>
+<div id="outline-container-org7ce2ade" class="outline-3">
+<h3 id="org7ce2ade"><span class="section-number-3">2.2</span> list head構造体の定義</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 では、list head構造体の定義を見てみましょう。
@@ -259,8 +259,8 @@ struct list_head {
 </div>
 </div>
 
-<div id="outline-container-org313b76e" class="outline-3">
-<h3 id="org313b76e"><span class="section-number-3">2.3</span> Linuxカーネルでの使われ方</h3>
+<div id="outline-container-org5d7b41a" class="outline-3">
+<h3 id="org5d7b41a"><span class="section-number-3">2.3</span> Linuxカーネルでの使われ方</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 いや、ちょっと待ってください。リストって、前後のポインタだけ入っていても意味が無いです。リストを構成する各ノードのデータが入っていないと。例えばinodeをリンクトリストで持つ場合、inodeはinode自身のデータをたくさん持っているはずです。ファイル名とか、オーナーとか、パーミッションとか。上の図で言うと・・・の部分です。
@@ -291,8 +291,8 @@ struct super_block {
 </div>
 </div>
 
-<div id="outline-container-org19b5334" class="outline-3">
-<h3 id="org19b5334"><span class="section-number-3">2.4</span> ペアレント構造体へのポインタを得る</h3>
+<div id="outline-container-org2d0356d" class="outline-3">
+<h3 id="org2d0356d"><span class="section-number-3">2.4</span> ペアレント構造体へのポインタを得る</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 リストを持たないC言語でリンクトリストを実現するため、という目的はわかりましたが、一つ問題が残っています。リストヘッド構造体は、同じリストヘッド構造体同士を結びつけるだけなのですが、本当に欲しいのはそれを埋め込んだペアレント構造体へのポインタです。ペアレント構造体をリンクトリスト化したいのですから。
@@ -394,8 +394,8 @@ grepで探したところ、&lt;linux-stable/include/linux/kernel.h&gt;に定義
 </div>
 </div>
 
-<div id="outline-container-org42eae9c" class="outline-2">
-<h2 id="org42eae9c"><span class="section-number-2">3</span> まとめ</h2>
+<div id="outline-container-org8c1b2eb" class="outline-2">
+<h2 id="org8c1b2eb"><span class="section-number-2">3</span> まとめ</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Linuxカーネルで定義するデータ構造において、list_head構造体が埋め込まれた構造体があったら、それは何かのリンクトリストに含まれるということがわかりましたね。ソースのコメントを読めば、大抵は何のリンクトリストかが書いてあります。
@@ -407,8 +407,8 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
 </div>
 </div>
 
-<div id="outline-container-orgb7244c7" class="outline-2">
-<h2 id="orgb7244c7"><span class="section-number-2">4</span> 参考文献</h2>
+<div id="outline-container-org96b3328" class="outline-2">
+<h2 id="org96b3328"><span class="section-number-2">4</span> 参考文献</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468">Linux Kernel Development 3rd Edition</a>, Robert Love</li>
@@ -424,10 +424,10 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
     </span>
   </span>
 <time datetime="2020-08-01T00:00:00-04:00" pubdate>Sat 01 August 2020</time>  <span class="categories">
-    <a class='category' href='/category/linux.html'>Linux</a>
+    <a class='category' href='http://achiwa912.github.io/category/linux.html'>Linux</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/linux.html">Linux</a>  </span>
+    <a class="category" href="http://achiwa912.github.io/tag/linux.html">Linux</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -438,19 +438,19 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
+          <a href="http://achiwa912.github.io/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
       </li>
       <li class="post">
-          <a href="/medical.html">アメリカで健康診断</a>
+          <a href="http://achiwa912.github.io/medical.html">アメリカで健康診断</a>
       </li>
       <li class="post">
-          <a href="/dentist.html">アメリカで歯医者にかかる</a>
+          <a href="http://achiwa912.github.io/dentist.html">アメリカで歯医者にかかる</a>
       </li>
       <li class="post">
-          <a href="/rtnctree.html">クリスマスツリーを返品</a>
+          <a href="http://achiwa912.github.io/rtnctree.html">クリスマスツリーを返品</a>
       </li>
       <li class="post">
-          <a href="/bline.html">Brooklineってどんなところ</a>
+          <a href="http://achiwa912.github.io/bline.html">Brooklineってどんなところ</a>
       </li>
     </ul>
   </section>
@@ -458,18 +458,18 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="/category/blog.html">Blog</a></li>
-        <li><a href="/category/english.html">English</a></li>
-        <li><a href="/category/linux.html">Linux</a></li>
-        <li><a href="/category/python.html">Python</a></li>
-        <li><a href="/category/tech.html">Tech</a></li>
+        <li><a href="http://achiwa912.github.io/category/blog.html">Blog</a></li>
+        <li><a href="http://achiwa912.github.io/category/english.html">English</a></li>
+        <li><a href="http://achiwa912.github.io/category/linux.html">Linux</a></li>
+        <li><a href="http://achiwa912.github.io/category/python.html">Python</a></li>
+        <li><a href="http://achiwa912.github.io/category/tech.html">Tech</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="http://achiwa912.github.io/tag/blog.html">Blog</a>,    <a href="http://achiwa912.github.io/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="http://achiwa912.github.io/tag/python.html">Python</a>,    <a href="http://achiwa912.github.io/tag/toraburu.html">トラブル</a>,    <a href="http://achiwa912.github.io/tag/linux.html">Linux</a>,    <a href="http://achiwa912.github.io/tag/game.html">game</a>,    <a href="http://achiwa912.github.io/tag/english.html">English</a>,    <a href="http://achiwa912.github.io/tag/investment.html">Investment</a>,    <a href="http://achiwa912.github.io/tag/tech.html">Tech</a>,    <a href="http://achiwa912.github.io/tag/emacs.html">emacs</a>,    <a href="http://achiwa912.github.io/tag/vacation.html">Vacation</a>,    <a href="http://achiwa912.github.io/tag/ying-yu.html">英語</a>,    <a href="http://achiwa912.github.io/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="http://achiwa912.github.io/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -496,8 +496,8 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
     Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
-  <script src="/theme/js/modernizr-2.0.js"></script>
-  <script src="/theme/js/ender.js"></script>
-  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+  <script src="http://achiwa912.github.io/theme/js/modernizr-2.0.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/ender.js"></script>
+  <script src="http://achiwa912.github.io/theme/js/octopress.js" type="text/javascript"></script>
 </body>
 </html>

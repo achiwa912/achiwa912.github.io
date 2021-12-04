@@ -1,0 +1,1813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dreaming in Brookline, MA 02445 - English</title><link href="http://achiwa912.github.io/" rel="alternate"></link><link href="http://achiwa912.github.io/feeds/english.atom.xml" rel="self"></link><id>http://achiwa912.github.io/</id><updated>2021-12-03T00:00:00-05:00</updated><entry><title>ボキャビル用ツールVocaBullの紹介</title><link href="http://achiwa912.github.io/vocabull.html" rel="alternate"></link><published>2021-02-15T00:00:00-05:00</published><updated>2021-12-03T00:00:00-05:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2021-02-15:/vocabull.html</id><summary type="html">a Python tool for vocabulary building</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org89632d9"&gt;1. はじめに&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgd96b5e7"&gt;1.1. ボキャビルの勧め&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org486f9a3"&gt;1.2. 効率よくボキャビルしたい&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orge5524ae"&gt;1.3. VocaBullについて&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org2ee92e1"&gt;2. VocaBullを使ったボキャビル&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org5ada38b"&gt;2.1. 起動&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgc03031d"&gt;2.2. 学習&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org2298be5"&gt;2.3. 学習進捗のセーブとロード&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4519c47"&gt;3. Tips&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgfd576f9"&gt;3.1. イメージ化しよう&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org0696e3a"&gt;3.2. 例文を活用しよう&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org9f4f2f3"&gt;3.3. 繰り返そう&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orge0cd519"&gt;3.4. ワードブックファイルの調達方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org89632d9" class="outline-2"&gt;
+&lt;h2 id="org89632d9"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgd96b5e7" class="outline-3"&gt;
+&lt;h3 id="orgd96b5e7"&gt;&lt;span class="section-number-3"&gt;1.1&lt;/span&gt; ボキャビルの勧め&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-1-1"&gt;
+&lt;p&gt;
+英語の勉強を継続していると、自分の英語語彙の少なさを痛感する時が来ると思います。TOEICの点数はそれなりに上がっているのに、洋書が読めないのは、語彙の少なさが原因であることが多いです。
+&lt;/p&gt;
+
+&lt;p&gt;
+そこでボキャビルです。500〜1000単語増やすと効果は絶大で、これまで読めなかった洋書が読めるようになったり、自分の英語力が一気に2,3レベル上がった気分になります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org486f9a3" class="outline-3"&gt;
+&lt;h3 id="org486f9a3"&gt;&lt;span class="section-number-3"&gt;1.2&lt;/span&gt; 効率よくボキャビルしたい&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-1-2"&gt;
+&lt;p&gt;
+ボキャビルのやり方で最も効果的なものは、&lt;a href="http://mutuno.o.oo7.jp/05_training/05_training06.html"&gt;英語完全上達マップ&lt;/a&gt; で説明されている「サイクル回し」だと個人的に思っています。これは、
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;例文を繰り返し読み解くことでまずは短期記憶に入れる&lt;/li&gt;
+&lt;li&gt;生覚えな単語を何十回も繰り返し「回す」ことで長期記憶に定着させる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+というプロセスで覚えていきます。
+&lt;/p&gt;
+
+&lt;p&gt;
+根本的には、新たな単語を覚えるには繰り返し出会う(覚えようとする)しかなく、サイクル回しはこの繰り返しをシステマティックに、挫折しづらいやり方で実現しています。
+&lt;/p&gt;
+
+&lt;p&gt;
+しかし一方で、サイクル回しは覚えにくい単語と覚えやすい単語を同列に扱って回していくため、若干効率が悪いと感じていました。
+&lt;/p&gt;
+
+&lt;p&gt;
+そこで、覚えにくい単語を集中して繰り返すためのツール VocaBull を作り、githubで&lt;a href="https://github.com/achiwa912/vocabull"&gt;公開&lt;/a&gt; しました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge5524ae" class="outline-3"&gt;
+&lt;h3 id="orge5524ae"&gt;&lt;span class="section-number-3"&gt;1.3&lt;/span&gt; VocaBullについて&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-1-3"&gt;
+&lt;p&gt;
+VocaBullは以下の特徴があります。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;一度に未知の10単語にフォーカスして繰り返し学習する&lt;/li&gt;
+&lt;li&gt;覚えたかどうかをトラックしており、VocaBullが「(とりあえず)覚えた」と判断した単語は新たな単語で置き換える&lt;/li&gt;
+&lt;li&gt;これにより、常に未知の10単語を学習し続けることができる&lt;/li&gt;
+&lt;li&gt;10個の学習中ウインドウは単語ブック内を移動し、完全に覚えるまで繰り返し学習できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+ある時点では10個の単語を覚えることにフォーカスすることで、いったん短期記憶に入るまでを効率化しています。その後も繰り返し練習することで、長期記憶への定着を図ります。「何度も繰り返し学習させる」という基本コンセプトのレベルでは「サイクル回し」と同様です。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2ee92e1" class="outline-2"&gt;
+&lt;h2 id="org2ee92e1"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; VocaBullを使ったボキャビル&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5ada38b" class="outline-3"&gt;
+&lt;h3 id="org5ada38b"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; 起動&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+まずはVocaBullをインストールして、ワードブックファイルを用意します。ワードブックは「単語」「意味」「例文」をタブ('\t')で区切って書いた行をたくさん並べたファイル形式です。「例文」はオプションです。例えば、
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+Abhor	hate
+Bigot	narrow-minded, prejudiced person
+Counterfeit	fake; false
+&lt;/pre&gt;
+
+&lt;p&gt;
+のような感じです(上記で例文はありません)。
+&lt;/p&gt;
+
+&lt;p&gt;
+とりあえず試したい方は、サンプルのワードブックファイル(samples.txt)を用意してあるので使って下さい。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+python vb.py &amp;lt;ワードブックファイル&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;
+で起動し、以下のようなメッセージが出力されます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% python vb.py samples.txt 
+    *** VocaBull - Help your vocabulary building ***
+    10 words loaded.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc03031d" class="outline-3"&gt;
+&lt;h3 id="orgc03031d"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; 学習&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+いきなり単語の入力を求められます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+*** S: save, L: show learning set, Q: save and quit
+exaggerated figure of speech? 
+&lt;/pre&gt;
+
+&lt;p&gt;
+わからないので単にリターンキーを押すと、正解が出て、4回繰り返すように言われます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+    exaggerated figure of speech? 
+    *** Incorrect.  Let's practice 4 times.
+    &amp;gt; The rhetoric soared into lagrant hyperbole.
+    exaggerated figure of speech: hyperbole
+1/4 exaggerated figure of speech? 
+&lt;/pre&gt;
+
+&lt;p&gt;
+'&amp;gt;'の行は例文です。そしてここからが肝です。
+&lt;/p&gt;
+
+&lt;p&gt;
+単語とその意味を確認し、例文を読み解きます。例文のイメージがはっきり沸くまでじっくり考えて下さい。それが出来たら単語をタイプしていきます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+    &amp;gt; The rhetoric soared into lagrant hyperbole.
+    exaggerated figure of speech: hyperbole
+1/4 exaggerated figure of speech? hyperbole
+2/4 exaggerated figure of speech? hyperbole
+3/4 exaggerated figure of speech? hyperbole
+4/4 exaggerated figure of speech? hyperbole
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+毎回、意味と単語、例文を読んでイメージを沸かせた状態で単語をタイプします。イメージが重要です。頭が半分ぼーっとした状態で、指だけが単語をタイプするようなことは、暗記という点で意味が無いのでしてはいけません。
+&lt;/p&gt;
+
+&lt;p&gt;
+正解すると、やはり2回繰り返してタイプするように言われます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+    generous? munificent
+    *** Correct.  Practice a little more.
+    &amp;gt; He was surprised by the munificent gratuity given by the usually parismonious termagant.
+    generous: munificent
+1/2 generous? 
+&lt;/pre&gt;
+
+&lt;p&gt;
+意味を再確認してイメージを浮かべながら、2回タイプします。
+&lt;/p&gt;
+
+&lt;p&gt;
+VocaBullは覚えていない単語10個(learning windowと呼びます)にフォーカスして、そこから順に単語クイズを出します。数回正解するとVocaBullは(とりあえず)その単語を覚えたと判断します。覚えた単語は新たな単語で置き換えられ、leaning window内は常に覚えていない単語10個が入っています。
+&lt;/p&gt;
+
+&lt;p&gt;
+こうして、learning windowは単語ブックのリストを上からシフトしていきます。リストの下まで来たら、いったん覚えた一番上の単語がleaning windowに再度入ってきます。このように、VocaBullでは、覚えたはずの単語を何度も繰り返し学習することができます。
+&lt;/p&gt;
+
+&lt;p&gt;
+なお、ワードブック内の単語数が100を超える場合には、ブックを100個単位の「セット(または章)」に分け、セットの単位で学習することになります。あまりに多いと最初に覚えた筈の単語をすっかり忘れてしまうので、100個単位に学習するようにしました。この100個をlearning setと呼びます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2298be5" class="outline-3"&gt;
+&lt;h3 id="org2298be5"&gt;&lt;span class="section-number-3"&gt;2.3&lt;/span&gt; 学習進捗のセーブとロード&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-3"&gt;
+&lt;pre class="example"&gt;
+*** S: save, L: show learning set, Q: save and quit
+generous?
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+このように"&lt;b&gt;*&lt;/b&gt; S: save, L: show learning set, Q: save and quit"が表示されている時は、単語を入力するかわりに1文字のコマンドを入力、実行することができます。
+&lt;/p&gt;
+
+&lt;p&gt;
+'S'は学習の進捗をセーブします。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+    *** S: save, L: show learning set, Q: save and quit
+    high praise? S
+Saved 10 words to samples.pickle
+    *** S: save, L: show learning set, Q: save and quit
+    high praise?
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+'L'はlearning setを表示します。3桁の数字は左から、
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;VocaBullが何回この単語を(とりあえず)覚えたと判断したか。この値が最も小さい単語が次のlearning windowに加わる単語の候補になります&lt;/li&gt;
+&lt;li&gt;これまでの間違い数&lt;/li&gt;
+&lt;li&gt;これまでの総学習数(間違い数+正解数)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre class="example"&gt;
+    *** S: save, L: show learning set, Q: save and quit
+    high praise? L
+0 hyperbole - 0/0/1
+1 munificent - 0/1/1
+2 prevarication - 0/1/1
+3 tyro - 0/1/1
+&amp;lt;snip&amp;gt;
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+'Q'はセーブして学習を終了します。セーブせずに終了したい場合は(いつでもよいので)Ctrl-Cを押して下さい。
+&lt;/p&gt;
+
+&lt;p&gt;
+次にVocaBullを起動したときに、セーブデータは自動的にロードされます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4519c47" class="outline-2"&gt;
+&lt;h2 id="org4519c47"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Tips&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgfd576f9" class="outline-3"&gt;
+&lt;h3 id="orgfd576f9"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; イメージ化しよう&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-1"&gt;
+&lt;p&gt;
+上の使い方でも書きましたが、漫然と単語を繰り返しタイプするだけでは効果は出ません。意味と例文のイメージを浮かべながら単語をタイプするようにしてください。特に英語オンリーの単語リストを使う場合には、これが極めて重要になります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0696e3a" class="outline-3"&gt;
+&lt;h3 id="org0696e3a"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; 例文を活用しよう&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-2"&gt;
+&lt;p&gt;
+英語と日本語の単語はあまりに違うために、単なる丸暗記はとても大変です。そこで、例文の力を借りて単語の使われ方のコンテキストを加えることで、暗記を容易にすることができます。ワードブックを用意する際に例文まで入力するのは大変ですが、例文の有無で学習効率が変わってくるため、多少面倒でも例文を用意したほうがよいです。
+&lt;/p&gt;
+
+&lt;p&gt;
+なお、ワードブックは例文の追加に対応しています。まずは単語と意味だけのブックを作り、後からすこしずつ例文を足していく、といったことが可能です。覚えるのがどうしても辛い単語だけでも例文を加えると、覚えるためのとっかかりができるのでお勧めです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9f4f2f3" class="outline-3"&gt;
+&lt;h3 id="org9f4f2f3"&gt;&lt;span class="section-number-3"&gt;3.3&lt;/span&gt; 繰り返そう&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-3"&gt;
+&lt;p&gt;
+上でも書きましたが、ボキャビルの基本は繰り返しです。どんなに覚えづらい単語でも、覚えるまで繰り返すだけでよいのです。中には何十回も間違える単語が出てくると思いますが、大抵はどんな単語も100回以上繰り返せば覚えてしまいます。もし100回間違えたら、それだけで400回はタイプしているのです。暗記の苦手な人、50才を超えて暗記力が目に見えて衰えた気分になっている人、そういう人こそ100回間違える気で頑張って下さい。まずは100単語覚えてみて下さい。繰り返しのパワーを実感できると思います。
+&lt;/p&gt;
+
+&lt;p&gt;
+なお、語学力は一生伸び続けるらしいですよ。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orge0cd519" class="outline-3"&gt;
+&lt;h3 id="orge0cd519"&gt;&lt;span class="section-number-3"&gt;3.4&lt;/span&gt; ワードブックファイルの調達方法&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-4"&gt;
+&lt;p&gt;
+"SAT" "vocabulary" "list"あたりのキーワードでgoogle等で検索すると、うまくコピペできるページがヒットすることがあります。例えば &lt;a href="https://www.majortests.com/sat/wordlist.php"&gt;https://www.majortests.com/sat/wordlist.php&lt;/a&gt; のリストはそのままコピペしてセーブするとワードブックとして使えます。"SAT"のところを自分の覚えたいキーワードに置き換えて、いろいろ検索してみてください。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="English"></category><category term="Python"></category><category term="English"></category></entry><entry><title>googleの英語発音判定サービス</title><link href="http://achiwa912.github.io/pronounce.html" rel="alternate"></link><published>2021-01-16T00:00:00-05:00</published><updated>2021-01-17T00:00:00-05:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2021-01-16:/pronounce.html</id><summary type="html">英語の発音が悪い?</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org6221b9c"&gt;1. 「パパの英語、発音悪いよ」&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org1fee249"&gt;2. googleの発音判定サービス&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6221b9c" class="outline-2"&gt;
+&lt;h2 id="org6221b9c"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; 「パパの英語、発音悪いよ」&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+アメリカの現地小学校に通って(?)いて半ば現地人化している子供から、最近よく英語の発音が悪いと言われます。昔、とある日本人の先生から発音のトレーニングをしていただいたことがあって、日本人の苦手なLとR、母音の違い、子音のスピードなど、多少なりとも克服した気になっていました。
+&lt;/p&gt;
+
+&lt;p&gt;
+話を聞いてみると、リモート会議で"really"をよく"reuhrey"のように発音していているとか。その他にも聞いていて違和感を感じることが多い、などと生意気なことを言っています。これまで英語は通じればOKと、半ば開き直ってきましたが、相手に違和感を与えて続けているとなると、気になります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1fee249" class="outline-2"&gt;
+&lt;h2 id="org1fee249"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; googleの発音判定サービス&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+googleに発音判定サービスがあるのをご存じでしょうか。googleの検索画面で &lt;code&gt;How to pronounce &amp;lt;word&amp;gt;&lt;/code&gt; のように入れて検索すると、発音判定ができるようになります。なぜか判定できない単語もあります。
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;img src="./images/pronounce.png" alt="pronounce.png" /&gt;
+右下の &lt;code&gt;Practice&lt;/code&gt; アイコンを押してマイクに向かって単語を話すとgoogleがあなたの発音を判定してくれます。この例では、私はree-leeと発音すべきところをree-reeと言っているよ、と教えてくれています。LがRに聞こえたという指摘です。
+&lt;/p&gt;
+
+&lt;p&gt;
+青いスピーカーアイコンを押すと、あなたの発音を聞くことができます。そうかなー、Lの音になっていると思うけど。。。アメリカ式(?)の見慣れない発音記号の右にある黒のスピーカーアイコンを押すとお手本を聞くことが出来ます。
+&lt;/p&gt;
+
+&lt;p&gt;
+googleの発音判定はかなりシビアで、私は基本単語に多くの駄目出しをされてショックです。通じる発音と正しい発音には大きなギャップがあることを思い知らされました。私の場合はこのreallyとwilliamsがどうしてもOKになりませんでした。多分"will"も駄目なんだと思いますが、この単語は何故かgoogleが判定してくれません。
+&lt;/p&gt;
+
+&lt;p&gt;
+このサービスの問題は、How to improveを押して見られるアドバイスが大して役に立たないことです。この例のように「LがRに聞こえる」くらいならわかりやすいのですが、例えば &lt;code&gt;i&lt;/code&gt; の音が違うと言われて舌の位置がどうこうと文字で書かれても、それを読んで改善できないのです。アルゴリズムの改善が望まれます。このサービスを使って発音矯正ができるようになれば、日本人の英語の発音も一気に向上できますね。まだベータ版ですが、今後に期待大のサービスです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="English"></category><category term="English"></category><category term="Tech"></category></entry><entry><title>英語でプレゼンできますか?</title><link href="http://achiwa912.github.io/presen.html" rel="alternate"></link><published>2020-08-13T00:00:00-04:00</published><updated>2020-08-13T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-08-13:/presen.html</id><summary type="html">日本人のための英語プレゼン指南</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgcb77f40"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org14b3a3b"&gt;2. 日本人にありがちな(?)パターン&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org713396e"&gt;3. 典型的な英語でのプレゼン&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6079c5e"&gt;4. 日本人のための英語プレゼン指南&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgfcd64cf"&gt;4.1. 必要なことを全て箇条書きにする&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org38c7435"&gt;4.2. スライドの中のキーワードを目立たせる&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga9e9200"&gt;4.3. 話す内容に、スライドに書いていないことを盛り込む&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgca7bbda"&gt;4.4. 重要点をまとめる&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5a98cdc"&gt;4.5. ひたすら練習をする&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org9cad039"&gt;4.6. 相手に話しかける&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org800a5bf"&gt;5. 終わりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcb77f40" class="outline-2"&gt;
+&lt;h2 id="orgcb77f40"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+英語が少し得意な人だと、英語で外国人相手にプレゼンせよ、と突然言われることがあると思います。今回の記事では、そのようなチャンスで大失敗しないための、日本人向けの英語プレゼンについて考えてみます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org14b3a3b" class="outline-2"&gt;
+&lt;h2 id="org14b3a3b"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; 日本人にありがちな(?)パターン&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+次のような場面を思い浮かべてみてください。
+&lt;/p&gt;
+
+&lt;p&gt;
+プレゼンに慣れていない日本の方が英語でプレゼンしています。以下のような、ありがちなパターンに陥っています。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;英語で話すのにいっぱいいっぱいになっている&lt;/li&gt;
+&lt;li&gt;ぼそぼそとしゃべっている&lt;/li&gt;
+&lt;li&gt;スライドに書いてあることを読むだけ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+外国人ゲスト達は居心地悪そうに見ています。その内、ややずうずうしいタイプの一人がこう言います。「お前は話さなくて良い。我々がスライドを読む方がずっと速い。わからないところを質問するから、それに答えるだけでいい。」
+&lt;/p&gt;
+
+&lt;p&gt;
+この外国人は大変失礼ですが、気持ちはよくわかります。このプレゼンから最短の時間で最大の効果を得るには、その人の言うとおりにすることが手っ取り早いです。
+&lt;/p&gt;
+
+&lt;p&gt;
+まあ、普通はそこまでずうずうしい＆失礼な人はいないので、プレゼンは最後まで続いてしまいます。そして、終わった後でやんわりとダメ出しを受けることがあります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org713396e" class="outline-2"&gt;
+&lt;h2 id="org713396e"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; 典型的な英語でのプレゼン&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+私はこれまで英語のプレゼンを見てきて、あることに気がつきました。私を含めて日本人は、プレゼンに言いたいことを全て書いてしまい、基本的にはそれを読むだけです。ところが、日本人以外の人でスライドを読んでいる人は見たことがありません。彼らは聴衆に話しかけるようにプレゼンしています。
+&lt;/p&gt;
+
+&lt;p&gt;
+彼らのスライドにはキーワードだけが書いてあったり、更に上手な人だと、話題のイメージを補強する絵だけが描いてあったりします。
+&lt;/p&gt;
+
+&lt;p&gt;
+なるほど。プレゼンの指南書やWebサイト(&lt;a href="https://firstround.com/review/This-Advice-From-IDEOs-Nicole-Kahn-Will-Transform-the-Way-You-Give-Presentations/"&gt;の一例&lt;/a&gt;)によると、言いたいことを全てスライドに書いておくのはまずいやり方のようです。何故なら、聞いている人の方が先にスライドを読んでしまい、それを説明するだけの人の話はどうでもよくなってしまうからです。これだったら、スライドだけメールで送って「読んでおいて」と言うのと変わりません。わざわざ海外出張してまで聞く価値があるでしょうか?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6079c5e" class="outline-2"&gt;
+&lt;h2 id="org6079c5e"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; 日本人のための英語プレゼン指南&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
+それでは、私たち英語でのプレゼンに慣れていない日本人も、絵だけが描いてあるようなスライドを作るべきでしょうか? 
+&lt;/p&gt;
+
+&lt;p&gt;
+私はそうは思いません。何故なら、英語で話すことに慣れていない人の英語は、結構な割合で相手に通じていないためです。話の内容を補強する絵だけがあっても、内容が伝わっていなければ意味がありません。更に、このプレゼンで一番伝えたいことさえ、相手に通じているかどうかわからないのです。
+&lt;/p&gt;
+
+&lt;p&gt;
+それでは、どうすればいいのでしょうか?
+&lt;/p&gt;
+
+&lt;p&gt;
+私は、以下のように考えます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgfcd64cf" class="outline-3"&gt;
+&lt;h3 id="orgfcd64cf"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; 必要なことを全て箇条書きにする&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-1"&gt;
+&lt;p&gt;
+英語で話すことが得意でない日本人は、話している内容が相手に伝わらないリスクがあります。しかし、言う必要のあることを全て書いておけば、このリスクを回避することが出来ます。確かにあまりうまい方法ではありませんが、言いたいことが伝わらないよりマシです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org38c7435" class="outline-3"&gt;
+&lt;h3 id="org38c7435"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; スライドの中のキーワードを目立たせる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-2"&gt;
+&lt;p&gt;
+1ページあたり2, 3個の重要なキーワードの色を変え、boldにすると強調したい部分がはっきりし、更にメリハリが出て聞きやすいプレゼンになります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga9e9200" class="outline-3"&gt;
+&lt;h3 id="orga9e9200"&gt;&lt;span class="section-number-3"&gt;4.3&lt;/span&gt; 話す内容に、スライドに書いていないことを盛り込む&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-3"&gt;
+&lt;p&gt;
+書いてあることをひたすら読むだけでは相手が退屈してしまいます。基本はスライドの内容を読みますが、スライドに書いてないことも盛り込むとよいでしょう。これは補足情報のため、最悪相手に伝わらなくてもよいことを話します。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgca7bbda" class="outline-3"&gt;
+&lt;h3 id="orgca7bbda"&gt;&lt;span class="section-number-3"&gt;4.4&lt;/span&gt; 重要点をまとめる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-4"&gt;
+&lt;p&gt;
+プレゼンの最後、Q&amp;amp;Aに入る前に、ここだけは伝えたいというポイントを1ページにまとめましょう。このスライドでは、内容が確実に伝わっているかどうかリスナーをよく観察します。判断がつかなければ、一点一点、誰かを指名して感想なり意見なりを直接聞いてしまうと確実です。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5a98cdc" class="outline-3"&gt;
+&lt;h3 id="org5a98cdc"&gt;&lt;span class="section-number-3"&gt;4.5&lt;/span&gt; ひたすら練習をする&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-5"&gt;
+&lt;p&gt;
+2, 3回練習して本番に臨むようなことをしてはいけません。少なくとも色を変えたキーワードをちらっと見ただけで、すらすらと話ができるまでには練習してください。
+&lt;/p&gt;
+
+&lt;p&gt;
+長い文章で入れる切れ目には気をつけてください。英語には切れ目を入れるのに自然なポイントがあります。カンマやthat節の前に入れるはもちろん、よい箇所がなければ前置詞の「前」に入れます。
+&lt;/p&gt;
+
+&lt;p&gt;
+話す際に、大げさに抑揚を付けてください。日本人に多いのは、単調にぼそぼそ話すパターンです(日本語がそういう言語なので)。多少芝居がかっているくらいで丁度良いと思います。気持ちを入れましょう。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9cad039" class="outline-3"&gt;
+&lt;h3 id="org9cad039"&gt;&lt;span class="section-number-3"&gt;4.6&lt;/span&gt; 相手に話しかける&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-6"&gt;
+&lt;p&gt;
+本番では、そこにいる相手に話しかけるようにプレゼンします。伝えたいことを訴えかけましょう。スライドをずっと見ているのも駄目です。緊張を和らげるために「野菜が並んでいると思え」というアドバイスを聞いたことがありますが、これはよくありません。目の前にいるあの人やあの人に、直接話しかけましょう。
+&lt;/p&gt;
+
+
+&lt;p&gt;
+余裕があれば、聴衆の反応を見ながら、話す内容を減らしたり、もう少しゆっくり話したりといった微調整をしましょう。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org800a5bf" class="outline-2"&gt;
+&lt;h2 id="org800a5bf"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; 終わりに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;p&gt;
+偉そうなことを書きましたが、私のプレゼンはお世辞にも上手ではありません。それでも上記で挙げた方法を使って、これまで言いたいことを伝えてきました。私がアメリカに最初に出向となるきっかけ(の一つ)は、私の行った交渉プレゼンに対して現地会社のSenior Vice Presidentが"outstanding"と言って、その会社への私の出向を日本の幹部に打診してくれたことです。(その人には今でもとても感謝しています)
+&lt;/p&gt;
+
+&lt;p&gt;
+あまり格好良いやり方ではありませんが、英語でのプレゼンに慣れていない日本の方に、少しでもお役に立てればうれしいです。Good luck and have fun!
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="English"></category><category term="English"></category></entry><entry><title>日本企業エンジニアが米国の開発チームに参加してみた</title><link href="http://achiwa912.github.io/enginus.html" rel="alternate"></link><published>2020-08-05T00:00:00-04:00</published><updated>2020-08-05T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-08-05:/enginus.html</id><summary type="html">日本企業エンジニアはアメリカ企業で活躍できるか</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgde15ef8"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org9f0b119"&gt;2. さんざんな出向開始&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org854d3f6"&gt;2.1. 新卒扱いでのスタート&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb6006d4"&gt;2.2. 武器だったはずの英語力が&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org1d3b4b8"&gt;3. 出向してみてわかったこと&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org3653353"&gt;3.1. エンジニアに必要なものは技術力&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org22ec1e9"&gt;3.2. マネージャーにはなれるのか&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd171bee"&gt;3.3. どのくらいいると英語は人並みになるか&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgcf86cae"&gt;4. 日本とアメリカの違い&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orga32b813"&gt;4.1. 開発スタイルの違い&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4f270de"&gt;4.2. 文化の違い&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org7a1f87e"&gt;4.2.1. 品質&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org80d08ba"&gt;4.2.2. 意思決定&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org00beb36"&gt;5. アメリカで働きたいと思っている人へ&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgff7128c"&gt;5.1. どのような人がアメリカに向いているか&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd0ebe7d"&gt;5.2. アメリカの職場環境&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4856161"&gt;5.3. 生活環境&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org9418662"&gt;6. 終わりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgde15ef8" class="outline-2"&gt;
+&lt;h2 id="orgde15ef8"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+こんにちは。日本の企業からアメリカに出向し、現地開発チームでProduct Ownerをやっている きょうす です。
+&lt;/p&gt;
+
+&lt;p&gt;
+日本の企業から現地企業にエンジニアが出向する場合、通常は両企業の間を取り持つ役割(リエゾン)として行く場合が多いと思います。現地企業でエンジニアが欲しい場合は、普通に現地で雇った方が圧倒的に安いのです。
+&lt;/p&gt;
+
+&lt;p&gt;
+ところが、私が6年前に初めてアメリカ企業に出向した時は、リエゾンではなく、現地開発チームの一員として入ることになりました。この記事では、英語が少し得意なだけの日本企業エンジニアがアメリカの開発チームでどこまで活躍できるか(できないか)ということをお話ししたいと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9f0b119" class="outline-2"&gt;
+&lt;h2 id="org9f0b119"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; さんざんな出向開始&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org854d3f6" class="outline-3"&gt;
+&lt;h3 id="org854d3f6"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; 新卒扱いでのスタート&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+現地上長との最初の面談で「お前は何ができるのか?」と聞かれました。日本ではマネージャーだったので「プロジェクトのマネージメントをしていた」と答えたところ、「ここでは専任のマネージャーはいらない」と言われてしまいました。プログラミングを卒業してからは15年も経っていたし、特にアピールできるスキルは持っていません。結局、QAメンバーとして開発チームに入ることになりました。QAは特にスキルを持っていない新卒エンジニアが最初に配属される役割です(もちろんQAのプロもいます)。新卒エンジニア扱いでのスタートです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb6006d4" class="outline-3"&gt;
+&lt;h3 id="orgb6006d4"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; 武器だったはずの英語力が&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+私は日本では英語ができる人のカテゴリーにいました。10年以上前に受けたTOEIC IPは930点でしたし、これまで多くの海外企業との窓口役をしてきたので、英語力は更に上がっている自信がありました。まさか得意の英語がネックでまともに活躍できないとは思っていませんでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+開発チームでは、毎日のstandup meetingとして状況報告の場がありました。一人30秒くらいで、昨日やったこと、現在取り組んでいること、直面している問題を報告します。ここでは自分が何を話すかを考えるのに精一杯で、他のメンバーの報告を聞いている余裕はありません。
+&lt;/p&gt;
+
+&lt;p&gt;
+ブレインストーミングのようなミーティングもあります。メンバー達の話す勢いにびっくりです。拠点が東海岸にあるせいかもしれませんが、彼らの話す英語はとても速く、話の内容を理解するだけで大変です。人によっては半分も聞き取れない場合もあります。更に、前の人の話がまだ終わっていないのに、次の人が発言を始めます。
+&lt;/p&gt;
+
+&lt;p&gt;
+話している内容はそれほど高度ではなく、自分も議論に参加できる筈です。しかし、話す内容を考えていたり口を挟むタイミングを探っていると、すぐに次の話題に移ってしまうため、結果的に議論に参加することができません。会議が終わってから「もっと良い発言ができたのに」と後悔する日々が続きます。
+&lt;/p&gt;
+
+&lt;p&gt;
+チームメンバーには非ネイティブな人もいますが、彼らはアクセントのきつい英語でマシンガンのように話します。やはりアメリカで大学を卒業して、10年も働いているような人には勝てないです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1d3b4b8" class="outline-2"&gt;
+&lt;h2 id="org1d3b4b8"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; 出向してみてわかったこと&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org3653353" class="outline-3"&gt;
+&lt;h3 id="org3653353"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; エンジニアに必要なものは技術力&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-1"&gt;
+&lt;p&gt;
+プログラミングからは遠ざかっていたものの、数ヶ月もすると、地味ではありますが少しは役に立っていると実感できるようになってきました。会議以外の時間は自分のキューブにいて、テストケースを消化したり、バグ修正を確認したりしているため、英語力のハンディはありません。Developer(コーディングする人)と会話する際にも、チャットが主で、話が込み入ってきたときに一対一の会話になります。二人だけの会話であれば、こちらのペースで、こちらが納得するまで繰り返してもらうことも可能です。
+&lt;/p&gt;
+
+&lt;p&gt;
+このような時に、技術的にきちんとした発言をしていれば、相手も嫌がらず、対等に話してくれます。やはり、エンジニアに必要な物は技術力だということを再認識します。ネイティブな技術者にもおとなしい人は多く、そういう人は技術力で周りに認められています。日本人に不足する英語力を補ってくれるのが技術力です。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org22ec1e9" class="outline-3"&gt;
+&lt;h3 id="org22ec1e9"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; マネージャーにはなれるのか&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-2"&gt;
+&lt;p&gt;
+私は日本の肩書きのままアメリカに来ましたし、ビザも管理者ビザだったので、名目上はマネージャーでした。しかし、実質的には現地チームのマネージャーにはなれませんでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+アメリカ企業のマネージャー達を見ているとわかりますが、彼らは恐ろしく話し好きです。放っておくと会議の間中ずっと話しています。会話や議論のイニシアチブを取ることが、アメリカ企業でリーダーシップを発揮するための前提条件のようです。
+&lt;/p&gt;
+
+&lt;p&gt;
+考えてみれば当たり前です。管理者は、組織の方針を部下に伝え、状況を正しく判断してチームを引っ張っていかなければいかないのです。特にアメリカでは「上長の言うことだから聞かねば」という意識が希薄なため、マネージャー個人に実力があり、発言に説得力があることが求められます。
+&lt;/p&gt;
+
+&lt;p&gt;
+そういう意味で英語にハンディのある日本人が、日本企業のバックの無い状態でアメリカ企業に来た場合、マネージャーとして実質機能することは相当にチャレンジングだと思います。上長や部下の言っていることの半分くらいしか理解できない人にマネージャーが務まるでしょうか。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd171bee" class="outline-3"&gt;
+&lt;h3 id="orgd171bee"&gt;&lt;span class="section-number-3"&gt;3.3&lt;/span&gt; どのくらいいると英語は人並みになるか&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-3"&gt;
+&lt;p&gt;
+個人と環境によると思いますが、ネイティブと同じようなスピードと流暢さで読んだり聞いたり話したりは永久にできるようにならないかもしれません。
+&lt;/p&gt;
+
+&lt;p&gt;
+私は日本にいた時から洋書を読むことを半ば趣味にしていたため、文学作品も含めて100冊以上の本を英語で読んでいますが、今でも読むスピードは150 - 200 words/min と思います。非ネイティブとしては速い方ですが、大卒以上のネイティブは平均250 - 300 words/min 読めるらしいので、アメリカ人基準ではだいぶslow readerの部類です。
+&lt;/p&gt;
+
+&lt;p&gt;
+リスニングは英検1級の一次試験で2問間違えた程度ですが、会議では聞き取れないこともよくあります。特にインド訛りと、ぼそぼそしゃべる人の英語が厳しいです。映画は字幕なしで見られますが、実は理解度は半分以下でも画面を見ていてキーワードがある程度わかれば十分に楽しめます。
+&lt;/p&gt;
+
+&lt;p&gt;
+スピーキングは、今でも言いたいことが十分には言えません。去年の時点で英検1級の二次試験に落ちているのでスピーキング力は知れたものですが。元々苦手だったとはいえ、3年アメリカにいてもこの程度です。
+&lt;/p&gt;
+
+&lt;p&gt;
+そこで、狙うべきはネイティブレベルではなく、非ネイティブとしてアメリカに来ている人たちです。そういう人たちと自分を比べて、圧倒的に弱いと感じるのがスピーキング力と、次にリスニング力です。
+&lt;/p&gt;
+
+&lt;p&gt;
+英語や発音は多少ブロークンでも、他の人がまだ話しているのに割り込んで自分の言いたいことを言うくらいでないと、議論に参加できません。彼らはそうやって、英語力のハンディを克服して、チーム内で活躍しています。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgcf86cae" class="outline-2"&gt;
+&lt;h2 id="orgcf86cae"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; 日本とアメリカの違い&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orga32b813" class="outline-3"&gt;
+&lt;h3 id="orga32b813"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; 開発スタイルの違い&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-1"&gt;
+&lt;p&gt;
+これはたまたま私がいた会社や部署の特徴になりますが、日本での開発はウォーターフォール型で、長年かけて改善してきたプロセスを持っていました。あらゆる状況、レベルのエンジニアに対応するプロセスは重厚長大で、特に開発のフェーズゲートとして大人数で行う会議は非常に重いものでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+一方、アメリカでの開発チームはスクラム/agileを採用していました。元々スタートアップ出身で、開発効率を重視し、開発プロセスは日本と比べてずいぶんと軽い物でした。
+&lt;/p&gt;
+
+&lt;p&gt;
+年功序列、終身雇用の文化が無いこともあり、人員の入れ替わりも多かったです。一緒に働いていたチームメンバーがある日突然、farewellメールを出していなくなってしまうこともよくありました。辞めた理由は周りに通知されないのでわかりませんが、少なくないケースでクビになっているものと思われます。これは日本人社員の目から見ると衝撃的です。彼らは常にクビになるリスクを抱えながら働いているわけです。
+&lt;/p&gt;
+
+&lt;p&gt;
+多くの社員をクビにした結果、優秀かつその開発チームの文化になじんだ社員だけが残ります。彼らの開発は、そういった優秀な社員を前提に、最少のコミュニケーションコストで済む必要最低限のプロセスで回せるようになっています。
+&lt;/p&gt;
+
+&lt;p&gt;
+そして、軽いプロセスを補うものが論理です。こちらの開発チームでは、大抵の物事が論理的に決まります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4f270de" class="outline-3"&gt;
+&lt;h3 id="org4f270de"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; 文化の違い&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7a1f87e" class="outline-4"&gt;
+&lt;h4 id="org7a1f87e"&gt;&lt;span class="section-number-4"&gt;4.2.1&lt;/span&gt; 品質&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-1"&gt;
+&lt;p&gt;
+海外に住んでみるとわかることですが、日本はかなり「特殊な」国です。日本にいると当たり前になっている郵便や鉄道、店舗での接客は本当に素晴らしいと思います。アメリカのスーパーに消費期限切れの商品が並んでいることは、珍しいことではありません。Made in Japan製品は世界基準では過剰品質なほどです。
+&lt;/p&gt;
+
+&lt;p&gt;
+私もアメリカに来るまで、日本はごく普通の、真面目が取り柄の国だと思っていました。アメリカに来てしばらくたった頃、テレビ番組で国際政治の専門家が、安倍首相のTrump表敬訪問に関して「日本はイスラエルのようなextremeな国」と言っているのを聞いて「日本は海外ではそのように捉えられているのだな」と、妙に納得したことを覚えています。
+&lt;/p&gt;
+
+&lt;p&gt;
+製品開発において、日本は過剰なほど品質にコストをかけています。出来上がる製品は高品質なのですが、それを実現するためのコストは、世界基準では異常なほどです。日本と海外の企業が製品開発において協業する時、品質保証をどのように、どこまでするかということで折り合わないことがよくあります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org80d08ba" class="outline-4"&gt;
+&lt;h4 id="org80d08ba"&gt;&lt;span class="section-number-4"&gt;4.2.2&lt;/span&gt; 意思決定&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-2"&gt;
+&lt;p&gt;
+品質と同様に日本とアメリカで大きく異なるのが、意思決定とその徹底の仕方です。日本ではなぜそのような意思決定がなされたかよりも、誰が発言したかが非常に重要に思います。「**さんがこれをやれと言っている」で、これまでの方針が簡単にひっくり返ります。一見不合理な判断に対しても、誰も「何故?」と聞きません。
+&lt;/p&gt;
+
+&lt;p&gt;
+製品開発において、論理で解決できないことはたくさんあり、幹部なりdirectorなり、チームなりが判断を下しています。アメリカでは、そのような判断に対して社員が質問することは普通のことです。重要な判断は説明と質問の機会がもうけられます。100％では無いにしろ、全員がそれなりに納得して、初めて物事が進みます。
+&lt;/p&gt;
+
+&lt;p&gt;
+そして、為された意思決定の方針に従って、物事は論理的に進みます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org00beb36" class="outline-2"&gt;
+&lt;h2 id="org00beb36"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; アメリカで働きたいと思っている人へ&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgff7128c" class="outline-3"&gt;
+&lt;h3 id="orgff7128c"&gt;&lt;span class="section-number-3"&gt;5.1&lt;/span&gt; どのような人がアメリカに向いているか&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-1"&gt;
+&lt;p&gt;
+以下を全て満たす人は、是非アメリカに来て働くことに挑戦していただきたいです。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;技術力に自信がある&lt;/li&gt;
+&lt;li&gt;絶対にアメリカで働きたい&lt;/li&gt;
+&lt;li&gt;英語力に自信がある&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+技術力のある優秀なエンジニアにとって、アメリカの開発チームは理想的な居場所だと思います。物事が大抵論理的に納得できる形で進むため、居心地がよいのです。英語のハンディがあっても、発言内容がしっかりしていれば、周りは受け入れてくれます。職場でのストレスレベルは日本と比べてとても低いと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd0ebe7d" class="outline-3"&gt;
+&lt;h3 id="orgd0ebe7d"&gt;&lt;span class="section-number-3"&gt;5.2&lt;/span&gt; アメリカの職場環境&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-2"&gt;
+&lt;p&gt;
+一人一人にキューブが与えられ、私の職場では開発用PCに複数ディスプレイ、更にノートPCまで専用に使えます。クローズドな環境の中で、しっかりとアウトプットさえ出していれば、ゲームしていようが、寝ていようが自由です。クビがかかっているので、遊んでいる人はあまりいませんが。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+何時にオフィスに来て、何時に帰るかは自由です。どちらかというと、朝方の人が多いように思います。休日出勤はめったにありません。残業は自由で、日本と比べると少ないですし、必要無いのにダラダラと残業しているような人はいません。
+&lt;/p&gt;
+
+&lt;p&gt;
+休日は意外と少ないです。日本の3分の1くらいでしょうか。普段はあまり休まず、長めのバケーションを取ることが一般的です。
+&lt;/p&gt;
+
+&lt;p&gt;
+職場によるかもしれませんが、コーヒーや紅茶、ソーダ、ポテトチップ等のスナックが無料で食べ放題です。これ、日本にも導入してくれないかな。。。社員の定着率を上げるための方策なので、社員の流動性が低い日本では無理でしょうか。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4856161" class="outline-3"&gt;
+&lt;h3 id="org4856161"&gt;&lt;span class="section-number-3"&gt;5.3&lt;/span&gt; 生活環境&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-3"&gt;
+&lt;p&gt;
+理想的な職場環境と比べて、生活環境は全般的に日本よりもだいぶ劣ると思います。
+&lt;/p&gt;
+
+&lt;p&gt;
+まず、周りが全て英語というのはものすごくストレスフルです。疲れていて会議に集中できないと、議論が全く頭に入ってきません。英語で必要な電話をかけることが億劫でたまらなくなります。スーパーやファストフードの店員に簡単な単語が通じずに馬鹿にされると落ち込みます。
+&lt;/p&gt;
+
+&lt;p&gt;
+上でも書きましたが、日本のサービスは高品質です。例えばアメリカの郵便局の配達員は、確認もせずに不在通知を平気で置いていきます。再配達させると、また不在通知を置いていきます。これで何度郵便局まで日本からのEMS便を取りに行ったか。。。タクシー運転手も無愛想で、カードで支払おうとすると現金を要求してきます。その上、このような劣悪なサービスにチップまで支払わなくてはなりません。空港に行くために早朝に予約したタクシーが来ず、電話をかけたら「そんな予約は知らない」と言われたこともあります。
+&lt;/p&gt;
+
+&lt;p&gt;
+食事も日本の方がおいしいです。日本食は高級なのでいい値段を取るのですが、質が伴いません。納豆を探すと3パック3〜5ドルします。魚はサーモンとタラ、ホタテくらいしかありません(あとロブスター)。渡米当初は毎日のように安くて美味しいステーキを自分で焼いて食べますが、2週間もすると、あのガーリックオイルのにおいを嗅ぐのも嫌になります。米は日本基準の美味しい米が、日本よりも少し安いくらいで手に入ります。
+&lt;/p&gt;
+
+&lt;p&gt;
+まあ、2年も住んでいると不自由さにも慣れてきて、住み心地はそんなに悪くないと思うようになってきます。日本よりも良い点がたくさん見つかり、まだいても良いと思うようになるでしょう。このあたり、個人差が大きいと思いますが。。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9418662" class="outline-2"&gt;
+&lt;h2 id="org9418662"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; 終わりに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-6"&gt;
+&lt;p&gt;
+この記事では、私の経験を元に、英語が少し得意なだけのエンジニアがアメリカのソフトウエア開発チームに入ったらどうなるか、について書いてみました。アメリカで働くことに興味ある方の参考になれば幸いです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="English"></category><category term="English"></category></entry><entry><title>ITエンジニアは英語を身につけよう</title><link href="http://achiwa912.github.io/engineerenglish.html" rel="alternate"></link><published>2020-07-26T00:00:00-04:00</published><updated>2020-08-13T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-07-26:/engineerenglish.html</id><summary type="html">ITエンジニアにとって英語は武器になります</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org52f0a11"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga9ed085"&gt;2. 筆者の英語力&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org1846f6c"&gt;3. 英語のメリット&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgd9f0a4f"&gt;3.1. より多くの情報が入手できる&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org1b4fec5"&gt;3.2. 最新の情報が入手できる&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org57827e2"&gt;3.3. 一次情報は英語で書かれている&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org7eebee6"&gt;3.4. 世界を相手にできる&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org350f3cc"&gt;4. エンジニアに必要な英語力&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgc03ac19"&gt;4.1. 何の能力が必要か&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org7b9a0e9"&gt;4.1.1. TOEICで言うと&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb51282c"&gt;4.1.2. リーディング&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org672be38"&gt;4.1.3. リスニング&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org210722e"&gt;4.1.4. ボキャブラリー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5b598c8"&gt;4.1.5. ライティング&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org963302d"&gt;4.1.6. スピーキング&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4cb64f1"&gt;4.2. 勉強方法&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgc3c1fe8"&gt;4.2.1. リーディングの学習&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org9800b10"&gt;4.2.2. リスニングの学習&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org8dcaef7"&gt;4.2.3. ボキャビル&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org56bcefe"&gt;4.2.4. ライティングの学習&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orge9c91da"&gt;4.2.5. スピーキングの学習&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org0fe1ca6"&gt;4.3. 学習教材について&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgf647d80"&gt;4.3.1. NHKのラジオ講座&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd308b15"&gt;4.3.2. 英会話教室&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3103754"&gt;4.3.3. Skype英会話&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgae17d61"&gt;5. 英語での技術情報の探し方&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orge086903"&gt;5.1. Youtube&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3fe9e12"&gt;5.2. 検索方法&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org91cfe9f"&gt;5.3. 技術書&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org90cfaaf"&gt;6. 終わりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org52f0a11" class="outline-2"&gt;
+&lt;h2 id="org52f0a11"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+ITの新しい技術情報は大抵英語で書かれ、しばらくしてから、一部が翻訳されて
+日本に入ってきます。日本語に翻訳された技術書は版が古いことがよくあります。
+良書でもマイナーな分野の技術書は、そもそも翻訳されないことが多いのです。
+&lt;/p&gt;
+
+&lt;p&gt;
+日本にいて、日本で仕事をしているエンジニアにとっても、英語ができることは、
+プラスになります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga9ed085" class="outline-2"&gt;
+&lt;h2 id="orga9ed085"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; 筆者の英語力&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+先日の記事でも書きましたが、私は去年、英検1級2次試験の面接で落ちています。
+&lt;img src="./images/eikenfailed.png" alt="eikenfailed.png" /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+いきなり不合格の恥ずかしい写真で恐縮ですが、一次試験は比較的余裕を持って
+合格しています。(スピーキングの合格点は602点でした。。) TOEICは10年以上前になりますが、最後に受けたIPテストでは930点くらいでした。その他の英語のテストは受けていません。
+&lt;/p&gt;
+
+&lt;p&gt;
+現在は2回目の海外出向でアメリカに来ており、Product Ownerとして現地開発チームに入り込んでいます。リスニングとスピーキングが元々苦手だったこともあると思いますが、ミーティングにおいて議論の流れに乗って発言できるようになったのは、ごく最近のことです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1846f6c" class="outline-2"&gt;
+&lt;h2 id="org1846f6c"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; 英語のメリット&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgd9f0a4f" class="outline-3"&gt;
+&lt;h3 id="orgd9f0a4f"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; より多くの情報が入手できる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-1"&gt;
+&lt;p&gt;
+英語で技術情報を発信している人の数は英語ネイティブのアメリカ人や
+イギリス人たちだけではありません。ヨーロッパの技術者、インド人技術者
+達も公用語である英語で情報を発信しています。英語で書かれた技術情報の
+量は日本語よりも圧倒的に多いのです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org1b4fec5" class="outline-3"&gt;
+&lt;h3 id="org1b4fec5"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; 最新の情報が入手できる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-2"&gt;
+&lt;p&gt;
+新しい技術は英語圏で生まれることが多く、仮にそうでなくても、公用語の
+英語で表現されてはじめて世界中に普及します。日本語の技術情報は多くの
+場合英語からの翻訳から始まるため、どうしてもワンテンポ遅れてしまいます。
+&lt;/p&gt;
+
+&lt;p&gt;
+最新の情報は英語で書かれたものにあたるしかないのです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org57827e2" class="outline-3"&gt;
+&lt;h3 id="org57827e2"&gt;&lt;span class="section-number-3"&gt;3.3&lt;/span&gt; 一次情報は英語で書かれている&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-3"&gt;
+&lt;p&gt;
+同様に、一次情報にあたりたい場合は、英語しか選択肢がありません。
+エンジニアであれば一次情報にアクセスすることの重要性は理解されていると思いますが、日本語だとそもそも一次情報が無い場合がほとんどです。例えばRFCには日本語版もありますが、これらはあくまで翻訳です。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7eebee6" class="outline-3"&gt;
+&lt;h3 id="org7eebee6"&gt;&lt;span class="section-number-3"&gt;3.4&lt;/span&gt; 世界を相手にできる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-4"&gt;
+&lt;p&gt;
+英語は事実上世界の公用語であるため、英語で表現されて初めて世界で
+認知されるスタート地点に立つことができます。英語が使えることが、
+世界で活躍するための前提条件になります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-org350f3cc" class="outline-2"&gt;
+&lt;h2 id="org350f3cc"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; エンジニアに必要な英語力&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgc03ac19" class="outline-3"&gt;
+&lt;h3 id="orgc03ac19"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; 何の能力が必要か&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-1"&gt;
+&lt;p&gt;
+英語力と一言で言っても、リーディング、リスニング、ボキャブラリー、
+ライティング、スピーキングのどの能力をどれだけ身につけるべきでしょうか。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7b9a0e9" class="outline-4"&gt;
+&lt;h4 id="org7b9a0e9"&gt;&lt;span class="section-number-4"&gt;4.1.1&lt;/span&gt; TOEICで言うと&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-1-1"&gt;
+&lt;p&gt;
+私の経験上、TOEICで800点を超えるようになると、英語で書かれた生の情報を
+吸収できるようになってくるようです。もちろん800点で十分というわけ
+ではありませんが、いったん翻訳する、辞書を引きまくる、などのオーバーヘッド
+があまり生じずに、英語の情報を利用できるようになるのが800点という意味
+です。そのため、まずはTOEIC 800点が一つの目標になります。
+&lt;/p&gt;
+
+&lt;p&gt;
+「英語ができる」目安としてTOEIC 900点という風潮があるようですが、私は
+900点を目指すことは勧めません。そのためにかかる労力と得られる効果が
+釣り合わない(コストパフォーマンスが悪い)ためです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb51282c" class="outline-4"&gt;
+&lt;h4 id="orgb51282c"&gt;&lt;span class="section-number-4"&gt;4.1.2&lt;/span&gt; リーディング&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-1-2"&gt;
+&lt;p&gt;
+日本にいるエンジニアに一番必要なのはリーディング力と考えます。
+技術的な問題に出くわしたとき、ネットで調査すると思いますが、
+ニッチな問題になればなるほど、英語の情報しか無い場合が増えてい
+きます。日本人は一億人、アメリカ人は2億人以上、ヨーロッパ数億人、
+インド人は13億人。英語の情報が質、量共に圧倒的であることは明らかです。
+&lt;/p&gt;
+
+&lt;p&gt;
+リーディングでは、比較的簡単な英文を大量に処理できる力が役に立ちます。
+技術文書の英語は難しくありません。高校で学ぶ程度の英語が使えれば
+よいでしょう。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org672be38" class="outline-4"&gt;
+&lt;h4 id="org672be38"&gt;&lt;span class="section-number-4"&gt;4.1.3&lt;/span&gt; リスニング&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-1-3"&gt;
+&lt;p&gt;
+リスニング力はリーディングほど重要でないように思います。アメリカ人
+等と一緒に働くというなら、リスニングができないと話になりませんが、
+日本のエンジニアがネイティブの発言をリアルタイムに聞く機会がどれ
+ほどあるでしょうか。
+&lt;/p&gt;
+
+&lt;p&gt;
+リスニングは、Youtubeの技術説明ビデオが理解できる程度あれば十分
+でしょう。逆に、これらの解説ビデオが理解できないようであれば、
+リスニング力の底上げをすべきです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org210722e" class="outline-4"&gt;
+&lt;h4 id="org210722e"&gt;&lt;span class="section-number-4"&gt;4.1.4&lt;/span&gt; ボキャブラリー&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-1-4"&gt;
+&lt;p&gt;
+自分に必要な英文ドキュメントを読んでいて、あまりに知らない単語が
+たくさん出てくるようなら、ボキャビルすることは有効です。ボキャビル
+するときには一気に500〜1000語増やすと、実感として効果が感じられます。
+&lt;/p&gt;
+
+&lt;p&gt;
+必要性を感じないのにボキャビルをすることは、大して意味が無いように
+思います。使わない単語は忘れていきますので。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5b598c8" class="outline-4"&gt;
+&lt;h4 id="org5b598c8"&gt;&lt;span class="section-number-4"&gt;4.1.5&lt;/span&gt; ライティング&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-1-5"&gt;
+&lt;p&gt;
+これは人によると思います。今後OSS活動などで、日本人以外とやりとり
+をしていきたい場合は、相手が読んで理解できる程度の最低限の
+ライティング力を付けなくてはいけません。
+&lt;/p&gt;
+
+&lt;p&gt;
+日本にいて、特に外国人と関わることがないなら、ライティング力は
+ほとんどいりません。
+&lt;/p&gt;
+
+&lt;p&gt;
+なお、私はいまでも変な文法で英文を書いています。意味はほぼ100％
+通じる英語が書けますが、ネイティブから見て違和感を感じる英語に
+なっているようです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org963302d" class="outline-4"&gt;
+&lt;h4 id="org963302d"&gt;&lt;span class="section-number-4"&gt;4.1.6&lt;/span&gt; スピーキング&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-1-6"&gt;
+&lt;p&gt;
+ライティング以上に、スピーキング力は必要ありません。
+正しい英語を話すよりも、問題は中身です。プレゼンでは、練習すれば
+いいのです。あなたが聞くに値する内容を持っているなら、相手は
+聞こうと努力してくれます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org4cb64f1" class="outline-3"&gt;
+&lt;h3 id="org4cb64f1"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; 勉強方法&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgc3c1fe8" class="outline-4"&gt;
+&lt;h4 id="orgc3c1fe8"&gt;&lt;span class="section-number-4"&gt;4.2.1&lt;/span&gt; リーディングの学習&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-1"&gt;
+&lt;p&gt;
+逆説的に聞こえるかもしれませんが、リーディング力は英文を読む量に
+比例します。よって、ひたすら読めばいいのです。辞書を引きながら
+でも内容が取れるようであれば、とにかく読みます。
+&lt;/p&gt;
+
+&lt;p&gt;
+問題は、読んでもさっぱり理解できない場合です。このような場合は
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;知らない単語が1行に2, 3個以上でてくる&lt;/li&gt;
+&lt;li&gt;英文の構造が理解できない&lt;/li&gt;
+&lt;li&gt;英文を読むことに慣れていない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+ことが考えられます。
+&lt;/p&gt;
+
+&lt;p&gt;
+知らない単語がたくさん出てくるようであれば、ボキャビルが有効です。
+ボキャビルのやり方は後述します。
+&lt;/p&gt;
+
+&lt;p&gt;
+英文の構造が全く理解できない場合は、文法をやり直した方がよさそう
+です。自分のレベルに合う文法の本を買って、腰を落ち着けて取り組む
+とよいと思います。
+&lt;/p&gt;
+
+&lt;p&gt;
+英語で読んで意味がとれず、結局全文翻訳してやっと理解できる場合は、
+英文を読むことに慣れていないことが考えられます。翻訳できるので
+あれば、あとは慣れの問題です。簡単な英文を繰り返し読み、英語を
+英語で理解できる(直読直解)ようにしていきます。
+&lt;/p&gt;
+
+&lt;p&gt;
+直読直解の練習として、英文の音読が有効です。意味が思い浮かぶよう
+になるまで繰り返し音読します。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9800b10" class="outline-4"&gt;
+&lt;h4 id="org9800b10"&gt;&lt;span class="section-number-4"&gt;4.2.2&lt;/span&gt; リスニングの学習&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-2"&gt;
+&lt;p&gt;
+ディクテーションが有効です。逆に、リスニング力を付けるために
+効果が無い方法は、BGMのように英語を流しっぱなしにすることです。
+&lt;/p&gt;
+
+&lt;p&gt;
+ディクテーションは、テキストを見ずに聞いた英文を書き留めていき
+ます。聞き取れない部分は何度も聞きます。これ以上無理、となったら
+テキストを見て、なんと言っていたのか理解します。
+&lt;/p&gt;
+
+&lt;p&gt;
+そしてここが重要なのですが、更に何度も繰り返し聞き取れなかった
+部分の英語を聞いて、聞き取れなかった音を意識的に体に覚え込ませ
+ていきます。この後半ステップをする、しないでディクテーションの
+効果に差が出てしまいます。
+&lt;/p&gt;
+
+&lt;p&gt;
+ある程度ディクテーションすることに慣れてきたら、書き留める
+ステップをスキップしてもよいでしょう。
+&lt;/p&gt;
+
+&lt;p&gt;
+なお、読んで理解できない英文は聞いても理解できません。
+リーディングの勉強と並行して行いましょう。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8dcaef7" class="outline-4"&gt;
+&lt;h4 id="org8dcaef7"&gt;&lt;span class="section-number-4"&gt;4.2.3&lt;/span&gt; ボキャビル&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-3"&gt;
+&lt;p&gt;
+ボキャビルはボキャブラリービルディングの略(和製英語)です。
+1行に知らない単語が2, 3個以上でてくるようだと、その英文を読む
+ことは厳しいです。そのような状況が続く場合は、単語集を使って
+まとめてボキャビルすると効果が感じられます。
+&lt;/p&gt;
+
+&lt;p&gt;
+ボキャビルのやり方は&lt;a href="http://mutuno.o.oo7.jp/05_training/05_training06.html"&gt;英語上達完全マップ&lt;/a&gt;の「サイクル回し」方式が
+とても参考になります。私も英検1級受験に際してお世話になりました
+が、それまでにやってきたどのボキャビル方法よりも効果的でした。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org56bcefe" class="outline-4"&gt;
+&lt;h4 id="org56bcefe"&gt;&lt;span class="section-number-4"&gt;4.2.4&lt;/span&gt; ライティングの学習&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-4"&gt;
+&lt;p&gt;
+英文をたくさん読んでいると、少しずつライティングもできる
+ようになってきます。通じる英語を書くには、正しい英文のパターン
+が頭の中にできている必要がありますが、このためには大量に読む
+ことが自然かつ有効です。
+&lt;/p&gt;
+
+&lt;p&gt;
+リーディングを続けていると語感が身につき、直感的に正しい英語
+と間違った英語が区別できるようになります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge9c91da" class="outline-4"&gt;
+&lt;h4 id="orge9c91da"&gt;&lt;span class="section-number-4"&gt;4.2.5&lt;/span&gt; スピーキングの学習&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-2-5"&gt;
+&lt;p&gt;
+スピーキング力は、話した量に比例します。Skype英会話でよい講師
+を見つけて、ひたすらしゃべる訓練をするとよいでしょう。
+&lt;/p&gt;
+
+&lt;p&gt;
+Skype英会話に抵抗がある場合には、この本を薦めます。
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;a href="https://www.amazon.co.jp/%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E5%8F%A3%E8%AA%9E%E6%95%99%E6%9C%AC%E3%83%BB%E5%88%9D%E7%B4%9A%E7%94%A8-%E6%9C%80%E6%96%B0%E6%94%B9%E8%A8%82%E7%89%88-W-L-%E3%82%AF%E3%83%A9%E3%83%BC%E3%82%AF/dp/4327440884/ref=pd_lpo_14_t_0/355-3561755-8960312?_encoding=UTF8&amp;amp;pd_rd_i=4327440884&amp;amp;pd_rd_r=a2719e80-8a38-411c-a7dc-bf19c9e043a8&amp;amp;pd_rd_w=OBcnR&amp;amp;pd_rd_wg=OpBU9&amp;amp;pf_rd_p=4b55d259-ebf0-4306-905a-7762d1b93740&amp;amp;pf_rd_r=4QAMSG42V0BN4MW4ASED&amp;amp;psc=1&amp;amp;refRID=4QAMSG42V0BN4MW4ASED"&gt;アメリカ口語教本・初級用&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+入門用もあります。いきなり中、上級用に手を出さないようにしてください。
+この本では、英語を体で覚えるための繰り返しトレーニングを行います。
+苦痛ですが、効果的です。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0fe1ca6" class="outline-3"&gt;
+&lt;h3 id="org0fe1ca6"&gt;&lt;span class="section-number-3"&gt;4.3&lt;/span&gt; 学習教材について&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-3"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgf647d80" class="outline-4"&gt;
+&lt;h4 id="orgf647d80"&gt;&lt;span class="section-number-4"&gt;4.3.1&lt;/span&gt; NHKのラジオ講座&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-1"&gt;
+&lt;p&gt;
+NHKのラジオ講座は非常によくできています。レベル別に講座がある
+ので、万人に勧められると思います。何か一つ英語教材を挙げるよう
+に言われたら、私はNHKのラジオ講座を挙げます。
+&lt;/p&gt;
+
+&lt;p&gt;
+ラジオ講座を効果的に使うためには、受け身でなく、プロアクティブ
+に取り組む必要があります。放送の時間に聞くだけでは不足です。
+繰り返し復習しましょう。ラジオ講座の毎回のテキストは比較的
+短く、よい英文が凝縮されているため、音読するのに適しています。
+&lt;/p&gt;
+
+&lt;p&gt;
+私の場合、中上級編と上級編(当時の「やさしいビジネス英語」)を選び、
+1週間分の本文を毎日10回ずつ音読しました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd308b15" class="outline-4"&gt;
+&lt;h4 id="orgd308b15"&gt;&lt;span class="section-number-4"&gt;4.3.2&lt;/span&gt; 英会話教室&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-2"&gt;
+&lt;p&gt;
+英会話教室はコストパフォーマンスが悪いので勧めません。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3103754" class="outline-4"&gt;
+&lt;h4 id="org3103754"&gt;&lt;span class="section-number-4"&gt;4.3.3&lt;/span&gt; Skype英会話&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-3"&gt;
+&lt;p&gt;
+最近では英会話教室よりもSkype英会話が主流でしょうか。
+私はNativeCampとiTalkiについてしか知りませんが、前者は講師の
+英語の質が悪いと感じました。しかし非常に安価なため、量をこなす
+にはよいかもしれません。
+&lt;/p&gt;
+
+&lt;p&gt;
+iTalkiは講師が作成した自己紹介動画を見て(英語を聞いて)、
+習いたい講師を選択できるために、NativeCampよりもお勧めです。
+私は、子供向けのライティングを見てくれる講師をiTalkiで
+探しましたが、まれに安価かつ非常に優秀な講師が見つかります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgae17d61" class="outline-2"&gt;
+&lt;h2 id="orgae17d61"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; 英語での技術情報の探し方&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge086903" class="outline-3"&gt;
+&lt;h3 id="orge086903"&gt;&lt;span class="section-number-3"&gt;5.1&lt;/span&gt; Youtube&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-1"&gt;
+&lt;p&gt;
+何か新しい技術について知りたいとき、Youtubeの入門動画を見る
+のがお勧めです。例えばKubernetesって何だろうと思ったら、
+"kubernetes" "101"のキーワードでYoutube検索すると、
+&lt;a href="https://www.youtube.com/watch?v=PH-2FfFD2PU"&gt;こんな動画&lt;/a&gt;がヒットします。"101"は「入門編」のような意味で、
+実際にアメリカではよく使う表現です。
+&lt;/p&gt;
+
+&lt;p&gt;
+入門動画は、何かの概念を素早く理解するために優れた手段です。
+英語の技術系ブログは概念図を示さずに、だらだらと英文で説明する傾向があり、初心者には敷居が高いと思います。
+&lt;/p&gt;
+
+&lt;p&gt;
+日本ではqiitaの技術紹介記事がとても役に立ちますが、動画で
+概要をつかんでからqiita記事にあたるのが効率的と思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3fe9e12" class="outline-3"&gt;
+&lt;h3 id="org3fe9e12"&gt;&lt;span class="section-number-3"&gt;5.2&lt;/span&gt; 検索方法&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-2"&gt;
+&lt;p&gt;
+知りたいことのキーワードをなるべく具体的に検索することで、
+欲しい情報がヒットする確率が上がります。
+&lt;/p&gt;
+
+&lt;p&gt;
+例えば、Pythonのライブラリがエラーを吐いた時には、ライブラリ
+名とエラーのポイントとなる部分を丸々コピペして検索すると、
+同じ問題で相談しているStack OverflowやStack ExchangeのQ&amp;amp;A記事
+が見つかることが多いです。
+&lt;/p&gt;
+
+&lt;p&gt;
+欲しい情報の書いてある文脈を想定し、具体的な検索キーワードを複数指定することがコツです。一般名詞よりも固有名詞を使いましょう。そして、指定検索ワードの試行錯誤をしながら欲しい情報に近づくように絞り込んでいきます。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org91cfe9f" class="outline-3"&gt;
+&lt;h3 id="org91cfe9f"&gt;&lt;span class="section-number-3"&gt;5.3&lt;/span&gt; 技術書&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-3"&gt;
+&lt;p&gt;
+技術書は翻訳版よりもオリジナルの英語版を読むのがおすすめです。
+翻訳のまずさで意味が伝わらなくなっているケースはよくあります。
+日本語版は版が古いことも多いです。
+&lt;/p&gt;
+
+&lt;p&gt;
+書籍によっては、著者が無償でPDF版を公開しているものもあります。
+書籍名、著者名に"PDF"のキーワードで検索すると出てきたりします。
+ただし、違法に無断公開している場合もありますので、そのような
+情報にはアクセスしないようにしましょう。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org90cfaaf" class="outline-2"&gt;
+&lt;h2 id="org90cfaaf"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; 終わりに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-6"&gt;
+&lt;p&gt;
+日本のエンジニアの中には、英語が不得意な方も多いと思いますが、
+技術力と英語力を両方持っているととても有利になりますので、
+是非とも使えるレベルの英語力を身につけていただければ、と思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="English"></category><category term="英語"></category></entry><entry><title>キンダーで帰国した子供に、小4で英検1級を取らせた方法</title><link href="http://achiwa912.github.io/kideiken.html" rel="alternate"></link><published>2020-07-23T00:00:00-04:00</published><updated>2020-07-26T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-07-23:/kideiken.html</id><summary type="html">帰国子女が小学4年で英検1級を取る方法</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orge871925"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org793cf9c"&gt;2. 2年間の米国滞在&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org2f0ef39"&gt;2.1. 渡米後&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org2aa78de"&gt;2.2. 帰国直前&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org16aaa00"&gt;3. 帰国後の英語力維持&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org8248d7e"&gt;3.1. iTalki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3c4d8c0"&gt;3.2. 読書&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb0816df"&gt;3.3. NetflixとAppleTV&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org2625604"&gt;3.4. 現地の子供向けテキスト&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org0ae75d2"&gt;4. 英検対策&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgc34b787"&gt;4.1. 準1級&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgdda9e29"&gt;4.2. 1級&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgfd62b71"&gt;5. その後&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org3220de1"&gt;5.1. 近況&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org13baa0f"&gt;5.2. 現在の英語力&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga44eaaf"&gt;6. クロージング&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orge353f24"&gt;6.1. 小学生が英検1級に合格するために&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga71f980"&gt;6.2. (おまけ)英検1級について&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orge871925" class="outline-2"&gt;
+&lt;h2 id="orge871925"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+親の海外赴任に帯同して英語圏で数年間を過ごした子供が、小学校低学年以下で
+帰国した場合、せっかく身につけた英語力を失ってしまうことが多いと聞きます。
+我が家には、2年間の米国滞在の後5月に日本に帰国し、小学1年生として普通の
+公立小学校に編入した娘がいますが、小学2年生で英検準1級に、小学4年生で
+英検1級に合格しました。
+この記事では、日本にいてどのように英語力を伸ばしたかを紹介したいと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org793cf9c" class="outline-2"&gt;
+&lt;h2 id="org793cf9c"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; 2年間の米国滞在&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org2f0ef39" class="outline-3"&gt;
+&lt;h3 id="org2f0ef39"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; 渡米後&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+私の海外赴任が決まったのが突然であったこともあり、子供には特に小さい頃
+からの英語教育はしていませんでした。渡米前の数ヶ月からセサミストリート等の
+DVDを見せたくらいで、米国に来たときに子供は英語を一言も話せませんでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+日本の幼稚園は2年または3年保育がありますが、米国のキンダーガーテンは
+1年間のみです。子供はまだその年になっていなかったので、現地のプリスクール
+に入れました。週に5日間フルタイムで通うと、月に1600ドルもしたため、
+週に3日だけ通わせました。
+&lt;/p&gt;
+
+&lt;p&gt;
+母親はあまり英語を話せないため、自宅アパートの中はほぼ日本でした。日本の
+ケーブルテレビ番組がずっと映っている状況でした。それでも娘は異国の生活に
+拒否反応を示さず、少しずつ英語に慣れていきました。
+&lt;/p&gt;
+
+&lt;p&gt;
+年度の切り替わりで、プリキンダー(キンダーガーテンの前年)として私立の
+学校に入りました。こちらは学費がプリスクールの半額くらいだったので
+週5日間、普通に通わせました。
+&lt;/p&gt;
+
+&lt;p&gt;
+一年後、公立小学校に付属しているキンダーガーテンに入学しました。私たちの
+住む地域には、比較的日本人の多い小学校もあったのですが、子供の意思で、
+あえて日本人のほぼいない近所の小学校に入りました。英語のスクリーニング
+テストは問題なくパスしました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2aa78de" class="outline-3"&gt;
+&lt;h3 id="org2aa78de"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; 帰国直前&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+渡米後二年が経過し、帰国の時は突然訪れました。娘はキンダーガーテンに
+入って半年強となり、現地の親友もでき、端から見るとペラペラな英語を
+話していました。
+&lt;/p&gt;
+
+&lt;p&gt;
+私たちは、子供の英語力をなんとか維持したいと考えました。
+ネットでいろいろ調べたところ、海外赴任経験のある親御さんは、お子さんの
+英語力維持に非常に苦労されていることがわかりました。中には、学費が何百万円
+もするインタースクールに入れられている方もいらっしゃいました。
+&lt;/p&gt;
+
+&lt;p&gt;
+また、小学生低学年以下で帰国すると、英語力は失われてしまうことが多い
+ということも知りました。(米国)小学校の先生にも相談しましたが、娘は
+読む力が発達しているため、英語を忘れてしまうことは無いだろう、との
+ことでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+帰国後の英語力維持において、我が家が一つ有利だったのは、娘は読むことが
+好きだったことです。子供向けの簡単な本ですが、おそらく分に150ワード
+ほどのスピードで読めていました。
+&lt;/p&gt;
+
+&lt;p&gt;
+中古の子供向け本を大量に買って帰国しました。また、リスニングも維持
+できるようにCDブックをたくさん集めました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org16aaa00" class="outline-2"&gt;
+&lt;h2 id="org16aaa00"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; 帰国後の英語力維持&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+帰国後は、なるべく多くの英語に触れるように努力しました。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8248d7e" class="outline-3"&gt;
+&lt;h3 id="org8248d7e"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; iTalki&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-1"&gt;
+&lt;p&gt;
+英会話レッスンでは、&lt;a href="https://www.italki.com/"&gt;iTalki&lt;/a&gt;という語学学習サイト(?)を選びました。日本では
+あまりメジャーではありませんが、質が高くて比較的安価な講師が選べるので
+大変重宝しています。1時間15ドル以下で、ネイティブまたはそれに準ずる講師
+という条件を決め、紹介ビデオを見て(話す英語を聞いて)講師を選んでいます。
+これまでのところ、主にイギリス人、ロシア人、インド人講師にお世話になり
+ました。
+&lt;/p&gt;
+
+&lt;p&gt;
+Skypeレッスンではありますが、会話よりもライティングを見てもらうように
+お願いしました。週に平均して3〜4レッスン受けたと思います。帰国してから
+の投資としては、ここに一番お金がかかっています。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3c4d8c0" class="outline-3"&gt;
+&lt;h3 id="org3c4d8c0"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; 読書&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-2"&gt;
+&lt;p&gt;
+帰国前に集めた本に加え、帰国してからもネットで購入した本で、我が家の
+本棚は娘の本でほぼ埋まってしまいました。誕生日やクリスマスプレゼント
+にもシリーズ物を買い与えました。
+&lt;/p&gt;
+
+&lt;p&gt;
+前述のSkypeレッスンと読書が、娘の英語力を伸ばしてくれたと思います。
+小学2年でナルニア国物語を一通り読み、3年か4年でハリーポッターを
+全巻読んでしまいました。ハリーポッターはお気に入りで、3回ほど読んだ
+のではないかと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb0816df" class="outline-3"&gt;
+&lt;h3 id="orgb0816df"&gt;&lt;span class="section-number-3"&gt;3.3&lt;/span&gt; NetflixとAppleTV&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-3"&gt;
+&lt;p&gt;
+帰国して1年ほどはNetflixを契約し、My Little Pony等の子供向け番組を
+見ていました。週末はAppleTVの映画を見ました。週末の映画を除くと、
+一日30分くらいだったと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2625604" class="outline-3"&gt;
+&lt;h3 id="org2625604"&gt;&lt;span class="section-number-3"&gt;3.4&lt;/span&gt; 現地の子供向けテキスト&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-4"&gt;
+&lt;p&gt;
+読書によってボキャブラリーは増やすことができますが、現地小学生向け
+の単語テキストを買ってやらせました。小学生低学年だと、日本語を介して
+英単語を覚える意味はほとんど無いためです。
+&lt;/p&gt;
+
+&lt;p&gt;
+また、英語でものを考えることになれるために、英語の算数テキストを
+使いました。ただ、不明点などを教えるのは母親なので、日本語でした。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0ae75d2" class="outline-2"&gt;
+&lt;h2 id="org0ae75d2"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; 英検対策&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
+日本にいて子供の英語力有利に働かせるためには、英検を取っておくのが
+よさそうでした。中学受験をする際に、英検を取っておくと加点してくれる
+学校が結構あります。大学受験くらいまでは、TOEICよりも英検が主流です。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc34b787" class="outline-3"&gt;
+&lt;h3 id="orgc34b787"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; 準1級&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-1"&gt;
+&lt;p&gt;
+子供が小学2年生になると、準1級を受けさせることにしました。
+読書量が十分足りていたので、リーディング対策は特になにもしません
+でした。リスニング対策もしませんでした。ただ、英検ではボキャブラリー
+の難易度だけが高いので、上述の現地小学生向けボキャビルテキストを
+使って補いました。
+&lt;/p&gt;
+
+&lt;p&gt;
+ライティングはSkypeレッスンで重点的に見てもらった他、英検のライティング
+テキストを買ってエッセイを書かせ、私が採点、駄目だしをしました。
+正直に言って、英検準1級のライティングは小学2年生には厳しいです。
+英検準1級の合格基準は&lt;a href="https://www.eiken.or.jp/eiken/exam/about/"&gt;大学中級程度&lt;/a&gt;とあり、論理的な英文エッセイを
+書かねばなりません。
+&lt;/p&gt;
+
+&lt;p&gt;
+案の定、最初の受験ではライティング0点のさんざんな結果となりました。
+これはトピック間違いと言われ、見当違いの内容を書いたときに0点になる
+そうです。英検はそもそも小学生を念頭においた試験では無いため、
+小学生では理解できないようなトピックもたびたび出題されています。
+&lt;/p&gt;
+
+&lt;p&gt;
+2回目の受験に向けては、ライティングのテキストを数回繰り返して行い、
+完全にパターン化したエッセイが書けるように特訓しました。英検にしか
+通用しないのですが、小学2年生を合格させるにはこれしかありません。
+&lt;/p&gt;
+
+&lt;p&gt;
+また、試験に慣れるようにするため、過去問テキストを2回ずつやりました。
+&lt;/p&gt;
+
+&lt;p&gt;
+意外にも、2回目の受験ですんなり準1級に合格してしまいました。2次試験
+対策も一応はしましたが、比較的簡単なテーマが出たようです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgdda9e29" class="outline-3"&gt;
+&lt;h3 id="orgdda9e29"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; 1級&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-2"&gt;
+&lt;p&gt;
+準1級に合格すると、次は1級です。
+1級は準1級から難易度が数段階上がります。特に単語は、古典英米文学
+にしか出てこないようなマニアックなものが出題され、知っている単語
+の数を13000くらいまで増やさなくてはなりません(とはいえ、現地の
+中高生レベルです)。長期戦になります。子供のモチベーションを維持する
+ため、私も一緒に受験することにしました。
+&lt;/p&gt;
+
+&lt;p&gt;
+1級向けボキャビルテキストとしては&lt;a href="https://www.amazon.co.jp/%E8%8B%B1%E6%A4%9C1%E7%B4%9A%E3%81%A7%E3%82%8B%E9%A0%86%E3%83%91%E3%82%B9%E5%8D%98-%E6%97%BA%E6%96%87%E7%A4%BE%E8%8B%B1%E6%A4%9C%E6%9B%B8-%E6%97%BA%E6%96%87%E7%A4%BE/dp/4010947020"&gt;パス単&lt;/a&gt;がよくできていて、私も
+これを使いましたが、小学3〜4年生の娘には不向きです。そこで、
+娘にはBarron's 1100 words you need to knowの&lt;a href="https://www.amazon.com/1100-Words-Need-Know-Flashcards/dp/143807526X/ref=pd_lpo_14_t_1/146-9915232-2541555?_encoding=UTF8&amp;amp;pd_rd_i=143807526X&amp;amp;pd_rd_r=1ec6e6f4-2e2d-4f10-aae0-06ae017e4a2d&amp;amp;pd_rd_w=u7dcp&amp;amp;pd_rd_wg=4W7pU&amp;amp;pf_rd_p=7b36d496-f366-4631-94d3-61b87b52511b&amp;amp;pf_rd_r=AT9NG5BDMXAKFX9Z96GH&amp;amp;psc=1&amp;amp;refRID=AT9NG5BDMXAKFX9Z96GH"&gt;単語カード&lt;/a&gt;をやらせました。
+これだと13000語には不足するのですが、単語は合格ラインをパスする
+ことを目標にしました。
+&lt;/p&gt;
+
+&lt;p&gt;
+準1級と同様に、過去問を除いて、リーディングとリスニング対策は
+親子揃ってしませんでした。ライティングは、1級向けの&lt;a href="https://www.amazon.co.jp/%E6%97%BA%E6%96%87%E7%A4%BE/dp/4010948515/ref=zg_bs_503684_12?_encoding=UTF8&amp;amp;psc=1&amp;amp;refRID=M6MGE0Z9QQGBM1EVBD4S"&gt;テキスト&lt;/a&gt;を
+最終的に3巡くらいやりました。
+&lt;/p&gt;
+
+&lt;p&gt;
+小学4年生になって、とりあえず経験のために(受験料が高いため子供
+だけ)1級を受けてみました。あと少しで合格というわけでなく、
+箸にも棒にもかからない感じでもありませんでした。この結果を
+見て、次々回の試験をターゲットに設定しました。
+&lt;/p&gt;
+
+&lt;p&gt;
+試験直前は、課題のライティングと過去問を中心にやりました。
+一次試験の結果は、子供はなんとか、私は少し余裕をもって合格でした。
+&lt;/p&gt;
+
+&lt;p&gt;
+二次試験に向けては、ひたすらテーマを決めて話す練習をしました。
+2週間しかないので、大したことはできません。ライティング向けの
+特訓の成果に期待します。
+&lt;/p&gt;
+
+&lt;p&gt;
+その結果、子供はぎりぎり合格、私は2点不足で不合格でした。
+子供は流ちょうさでだいぶ稼ぎました。さすがは帰国子女(ずるい)
+です。私は結果を見るまで合格を疑っていませんでしたが、
+厳しい現実に直面してしまいました。
+&lt;/p&gt;
+
+
+&lt;div id="orgeb5e326" class="figure"&gt;
+&lt;p&gt;&lt;img src="./images/eikenpass.png" alt="eikenpass.png" /&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgfd62b71" class="outline-2"&gt;
+&lt;h2 id="orgfd62b71"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; その後&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org3220de1" class="outline-3"&gt;
+&lt;h3 id="org3220de1"&gt;&lt;span class="section-number-3"&gt;5.1&lt;/span&gt; 近況&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-1"&gt;
+&lt;p&gt;
+英検から数ヶ月して、再び私の海外出向が決まりました。
+現在、米国ボストン近郊のアパートにいます。娘は以前通っていた
+小学校に再び入学しています(COVID-19のために自宅にいますが)。
+&lt;/p&gt;
+
+&lt;p&gt;
+娘は、中学受験に向けて算数に苦戦しています。語学という意味では、
+スペイン語に興味を示し、サマーキャンプ(リモートですが)のコース
+を受けています。
+&lt;/p&gt;
+
+&lt;p&gt;
+私の英検1級チャレンジは、元々子供のモチベーション維持のためで
+あったため、中止することにしました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org13baa0f" class="outline-3"&gt;
+&lt;h3 id="org13baa0f"&gt;&lt;span class="section-number-3"&gt;5.2&lt;/span&gt; 現在の英語力&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-5-2"&gt;
+&lt;p&gt;
+英文を読むスピードはとても速いです。分あたり250〜300ワードで
+読んでいるようです。これはネイティブの子供と比較しても相当
+速い数字です。理解度に関してはだいぶ怪しいところもありますが、
+楽しく読んでいるのでよいでしょう。
+&lt;/p&gt;
+
+&lt;p&gt;
+娘に聞くと、スピーキング能力が課題のようです。クラスで発言が
+思ったほどできず、また、長いセンテンスを話すことができないため
+悔しいそうです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga44eaaf" class="outline-2"&gt;
+&lt;h2 id="orga44eaaf"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; クロージング&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-6"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orge353f24" class="outline-3"&gt;
+&lt;h3 id="orge353f24"&gt;&lt;span class="section-number-3"&gt;6.1&lt;/span&gt; 小学生が英検1級に合格するために&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-6-1"&gt;
+&lt;p&gt;
+小学生が英検1級を取るのは相当に難しく、以下が必要条件になってくる
+と思います。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;数年間の海外居住経験&lt;/li&gt;
+&lt;li&gt;大量の読書(英語)&lt;/li&gt;
+&lt;li&gt;ボキャビルによる単語力増強&lt;/li&gt;
+&lt;li&gt;英文ライティングの特訓&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+数年の海外居住経験は、スピーキングの流ちょうさとリスニング力で
+小学生としての論理的思考力不足をカバーするために、避けられない
+条件になると思います。大人向けの試験ですので、何らかの武器が
+必要です。
+&lt;/p&gt;
+
+&lt;p&gt;
+我が家の場合、海外居住経験もそうですが、iTalkiでライティングを
+教えてくれる優秀な講師3名(イギリス2名、インド1名)に出会えた
+ことが幸運でした。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga71f980" class="outline-3"&gt;
+&lt;h3 id="orga71f980"&gt;&lt;span class="section-number-3"&gt;6.2&lt;/span&gt; (おまけ)英検1級について&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-6-2"&gt;
+&lt;p&gt;
+子供には1級まで取らせたものの、私は英検についてあまりよく思って
+いません。ボキャブラリーだけが配点も難易度も他と比べて高く、
+バランスの悪い試験になっていると思います。
+&lt;/p&gt;
+
+&lt;p&gt;
+一次試験のリーディング、ボキャブラリー、リスニング、ライティング
+はどれかで失敗しても他で補えるのに、二次試験のスピーキングだけ
+は単体で合否が決まることも変です。(済みません。負け惜しみです。)
+&lt;/p&gt;
+
+&lt;p&gt;
+英検対策にかける時間を、例えば一冊でも多くの洋書を読む時間に
+充てた方が、英語の運用能力は上がるのにな、と思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="English"></category><category term="英語教育"></category><category term="英検"></category></entry></feed>

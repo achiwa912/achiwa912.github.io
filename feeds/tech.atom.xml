@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dreaming in Brookline, MA 02445 - Tech</title><link href="http://achiwa912.github.io/" rel="alternate"></link><link href="http://achiwa912.github.io/feeds/tech.atom.xml" rel="self"></link><id>http://achiwa912.github.io/</id><updated>2021-08-13T00:00:00-04:00</updated><entry><title>Learning SQL 3rd Editionを読みました</title><link href="http://achiwa912.github.io/learnsql.html" rel="alternate"></link><published>2021-01-10T00:00:00-05:00</published><updated>2021-01-10T00:00:00-05:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2021-01-10:/learnsql.html</id><summary type="html">Learning SQL by Alan Beaulieu</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org296c593"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5225c25"&gt;2. Learning SQL&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orga2fe9a0"&gt;2.1. SQL入門書として&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org05756e7"&gt;2.2. サンドボックス&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgc3949ec"&gt;2.3. MySQL準拠&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org298a928"&gt;2.4. データベースの内部構造について&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd34971e"&gt;2.5. 効果&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3698eb5"&gt;3. 終わりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org296c593" class="outline-2"&gt;
+&lt;h2 id="org296c593"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+SQLの入門書、Learning SQL Third Edition by Alan Beaulieuを読みました。Pythonの「お勉強」にもだいぶ飽きが来ていたのですが、多少なりともまともなアプリケーションを書くために、データベースの知識が必要と考えたためです。
+&lt;/p&gt;
+
+&lt;p&gt;
+私はSQLについてほとんど知りませんでした。職場でQAテストを手伝う際に、手順書に書いてある &lt;code&gt;SELECT * FROM ... WHERE ...&lt;/code&gt; のようなSQLをおまじないのように使うことがあったくらいで、それが何を意味するかほとんど理解してませんでした。
+&lt;/p&gt;
+
+&lt;p&gt;
+ネットでSQLの入門書を検索して、評判の良さそうな本書を読むことにしました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5225c25" class="outline-2"&gt;
+&lt;h2 id="org5225c25"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Learning SQL&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+
+&lt;div id="org74ee2bf" class="figure"&gt;
+&lt;p&gt;&lt;img src="./images/LearnSQL.jpg" alt="LearnSQL.jpg" /&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近のオライリー本は表紙がカラーになっていますが、この本もキモい干からびたようなカエルが描かれています。表紙は以前の方が好みです。
+&lt;/p&gt;
+
+&lt;p&gt;
+本書はMySQL準拠で書かれています。私の職場ではPostgreSQLやsqlite3をつかっているのですが、基本コマンドに見えたshow tablesやdesc &amp;lt;table&amp;gt;がこれらのデータベースで使えないことを知ったときにはショックでした。SQL以外の部分には互換性はほとんど無いのですね。。。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga2fe9a0" class="outline-3"&gt;
+&lt;h3 id="orga2fe9a0"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; SQL入門書として&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+完全な初心者向けではない、というレビューを見かけて、ついて行けるか若干心配だったのですが、特に問題なく読み通すことができました。
+&lt;/p&gt;
+
+&lt;p&gt;
+プログラミングは特に入門者は、頭で理解するだけでなく、手で覚えることがとても重要ですが、その意味でも本書はよくできていると思います。私はサンプルを一通り入力して動きを確認し、各チャプターの最後に載っている演習問題もやりました。この演習問題がよく出来ていて、消化不良気味な理解をうまく補完してくれました。
+&lt;/p&gt;
+
+&lt;p&gt;
+本書を読むにあたって、トランザクションやインデックスが何を意味するか、くらいのデータベースの基本的な知識はあった方がよいと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org05756e7" class="outline-3"&gt;
+&lt;h3 id="org05756e7"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; サンドボックス&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+自分でMySQLをインストールしなくても、MySQLがインストールされていて本書で使うテーブルを持つサンドボックスをオライリーが用意してくれています。登録が必要ですが無料で使えます。数十分でセッションがexpireするので、そのたびにブラウザーをリフレッシュして読み直さなくてはいけません。このとき、入力途中だったものは全て消えてしまうので、手元のエディタ等を使って書いたSQLをコピペするようにした方がよいでしょう。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgc3949ec" class="outline-3"&gt;
+&lt;h3 id="orgc3949ec"&gt;&lt;span class="section-number-3"&gt;2.3&lt;/span&gt; MySQL準拠&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-3"&gt;
+&lt;p&gt;
+PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の互換性がほとんどないので、できれば自分の使うデータベースに準拠したテキストを使うのがよいかもしれません。ただ、私のような入門レベルでは、ネット検索ですぐに答えの見つかる、表面的なコマンドの違いを除いて、大きな問題はありませんでした。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org298a928" class="outline-3"&gt;
+&lt;h3 id="org298a928"&gt;&lt;span class="section-number-3"&gt;2.4&lt;/span&gt; データベースの内部構造について&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-4"&gt;
+&lt;p&gt;
+本書はSQLの入門書であって、データベースの内部的な構造や動きについてはほとんど説明がありません。しかしデータベースを道具として使えればよいのであれば問題はありません。個人的には、インデックスがb-treeで出来ている(別の場合もあり)ことがわかったのは収穫でした。私にとってデータベースのインデックスは極めて不可思議で魔法的な存在だったので。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgd34971e" class="outline-3"&gt;
+&lt;h3 id="orgd34971e"&gt;&lt;span class="section-number-3"&gt;2.5&lt;/span&gt; 効果&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-5"&gt;
+&lt;p&gt;
+本書をこなせば、テーブル作成からデータの入力(INSERT)、取り出し(SELECT)、インデックス作成など、基本的なSQL操作が一通り使えるようになるでしょう。SQL入門書として、よく出来ていると思います。もっと早く読んでおけばよかったです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3698eb5" class="outline-2"&gt;
+&lt;h2 id="org3698eb5"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; 終わりに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+大量のデータを扱うアプリケーションを作ろうとすると、言語によらず、データベースの知識が必要になってきます。その意味で、早い内にSQLに入門しておくことは、エンジニアとして大事なことと思います。本書はSQLの入門書として非常に優れていると思います。お勧めです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="Tech"></category></entry><entry><title>Google Search Consoleに当ブログを登録する</title><link href="http://achiwa912.github.io/googlesc.html" rel="alternate"></link><published>2020-08-12T00:00:00-04:00</published><updated>2020-08-12T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-08-12:/googlesc.html</id><summary type="html">当ブログをgoogleに認識させる</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org9335016"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org9940d0b"&gt;2. Google Search Console&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orge9081a6"&gt;2.1. サイトを登録する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgdbb5d55"&gt;2.2. サイトマップを登録する&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga2a0c54"&gt;3. 終わりに&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9335016" class="outline-2"&gt;
+&lt;h2 id="org9335016"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+ブログは作りましたが、検索エンジンがまだ私のブログの存在を認識していないので、訪問者数は自分を除くとゼロの記録を更新中です。とても寂しいので、いつもお世話になっているgoogleに認識していただくことにしました。それでも3ヶ月〜半年くらいは寂しい状況が続くようですが。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+今回は短い単発ネタな上に、pelicanサイトジェネレーター + github pagesでブログを公開している私の環境を前提に書いているので、ほとんど参考にならないかもしれません。まあ、訪問者数ゼロなので実害は無いでしょうか。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9940d0b" class="outline-2"&gt;
+&lt;h2 id="org9940d0b"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Google Search Console&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+何はともあれ、"google search console"をgoogleで検索して(ここからです 笑)、サイトに行ってみます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+https://search.google.com/search-console/welcome
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge9081a6" class="outline-3"&gt;
+&lt;h3 id="orge9081a6"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; サイトを登録する&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+お持ちのgoogleアカウントでログインしている場合、以下のような画面が出るので、右側の入力欄に自分のサイトのURLを入れてcontinueを押します。
+&lt;/p&gt;
+
+
+&lt;div id="org6a94070" class="figure"&gt;
+&lt;p&gt;&lt;img src="./images/gsctop.png" alt="gsctop.png" /&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+するとgoogle*****.htmlというファイルをダウンロードして自分のサイトのトップにアップロードせよ、と言ってきます。
+&lt;/p&gt;
+
+
+&lt;div id="orge6cadea" class="figure"&gt;
+&lt;p&gt;&lt;img src="./images/gschtml.png" alt="gschtml.png" /&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+もちろん、言われたとおりにします。私の場合はPelicanという静的サイトジェネレーターを使っているので、参考にならないかもしれませんが、その手順を書くと、
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;&amp;lt;blog folder&amp;gt;/output/にgoogle****.htmlファイルを置く&lt;/li&gt;
+&lt;li&gt;以下を実行して変更をプッシュする&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class="example"&gt;
+ghp-import output
+git push https://github.com/achiwa912/achiwa912.github.io.git gh-pages:master
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+無事にgoogle****.htmlファイルがプッシュされた気がします。
+&lt;/p&gt;
+
+&lt;p&gt;
+そして、先ほどの画面でverifyをクリックすると、googleが私のサイトを認識してくれました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgdbb5d55" class="outline-3"&gt;
+&lt;h3 id="orgdbb5d55"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; サイトマップを登録する&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+なんだか、いろいろググっていると、google search consoleに登録しただけでは駄目で、更にsitemapなるものを用意しないといけないようです。これがあると、googleのcrawlerが優先的に見に来てくれるという噂です。取りこぼしが無いように、サイトの構造を教えているだけな気もしますが。。。
+&lt;/p&gt;
+
+&lt;p&gt;
+Pelicanには簡単にsitemapを出力できるプラグインが用意されています。以下のようにpalicanconf.pyを変更するだけなのですが、SITEURL変数を設定するとローカルでの作業時にリンクがgithub.ioを見に行ってしまうという副作用が出てしまいました。
+&lt;/p&gt;
+
+&lt;p&gt;
+逆にSITEURLを設定しないと、生成されるsitemap.xmlのURLが相対アドレスになってしまい、google search consoleが読めずにエラーとなってしまいます。
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+PLUGINS = ['org_reader', 'sitemap']
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+	'articles': 1,
+	'indexes': 0.5,
+	'pages': 0.5,
+    },
+    'changefreqs': {
+	'articles': 'always',
+	'indexes': 'hourly',
+	'pages': 'monthly'
+    }
+}
+SITEURL = 'https://achiwa912.github.io'
+&lt;/pre&gt;
+
+&lt;p&gt;
+そこで解決策を1時間ほどググって、ようやく以下のページを見つけました。解決策を提示くださって、どうもありがとうございます。
+&lt;/p&gt;
+
+&lt;p&gt;
+&lt;a href="https://yamachaaan.net/2018/11/07/generate-sitmap-on-pelican.html"&gt;pelicanでのSitemap.xmlの生成方法&lt;/a&gt;
+&lt;a href="https://github.com/getpelican/pelican/wiki/Tips-n-Tricks#generate-sitemapxml"&gt;https://github.com/getpelican/pelican/wiki/Tips-n-Tricks#generate-sitemapxml&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+まずは、使用しているテーマのtemplatesディレクトリにsitemap.htmlとして以下のファイルを作成します。私の環境では: themes/pelican-octopress-theme-master/templates/sitemap.html
+&lt;/p&gt;
+
+&lt;pre class="example"&gt;
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&amp;gt;
+
+{% for article in articles %}
+  &amp;lt;url&amp;gt;
+    &amp;lt;loc&amp;gt;{{ ROOTURL }}/{{ article.url }}&amp;lt;/loc&amp;gt;
+    &amp;lt;priority&amp;gt;0.8&amp;lt;/priority&amp;gt;
+  &amp;lt;/url&amp;gt;
+
+  {% for translation in article.translations %}
+  &amp;lt;url&amp;gt;
+    &amp;lt;loc&amp;gt;{{ ROOTURL }}/{{ translation.url }}&amp;lt;/loc&amp;gt;
+    &amp;lt;priority&amp;gt;0.8&amp;lt;/priority&amp;gt;
+  &amp;lt;/url&amp;gt;
+  {% endfor %}
+{% endfor %}
+
+{% for page in pages %}
+  &amp;lt;url&amp;gt;
+    &amp;lt;loc&amp;gt;{{ ROOTURL }}/{{ page.url }}&amp;lt;/loc&amp;gt;
+    &amp;lt;priority&amp;gt;1.0&amp;lt;/priority&amp;gt;
+  &amp;lt;/url&amp;gt;
+
+  {% for translation in page.translations %}
+  &amp;lt;url&amp;gt;
+    &amp;lt;loc&amp;gt;{{ ROOTURL }}/{{ translation.url }}&amp;lt;/loc&amp;gt;
+    &amp;lt;priority&amp;gt;1.0&amp;lt;/priority&amp;gt;
+  &amp;lt;/url&amp;gt;
+  {% endfor %}
+{% endfor %}
+
+&amp;lt;/urlset&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;
+そして、以下をpelicanconf.pyに追記します。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+ROOTURL = 'https://achiwa912.github.io'
+DIRECT_TEMPLATES = ('index', 'tags', 'categories', 'archives', 'sitemap')
+SITEMAP_SAVE_AS = 'sitemap.xml'
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+pelicanコマンドでmakeして確認したところ、ちゃんとsitemap.xml内のURLは正しく設定されているようです。&amp;lt;loc&amp;gt;の行に注目。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
+&amp;lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&amp;gt;
+
+  &amp;lt;url&amp;gt;
+    &amp;lt;loc&amp;gt;https://achiwa912.github.io/googlesc.html&amp;lt;/loc&amp;gt;
+    &amp;lt;priority&amp;gt;0.8&amp;lt;/priority&amp;gt;
+  &amp;lt;/url&amp;gt;
+snip
+&lt;/pre&gt;
+
+&lt;p&gt;
+ローカルでの作業時に、リンクはきちんとローカルのページに飛びます。うまく行きました。
+&lt;/p&gt;
+
+&lt;p&gt;
+これで先ほどと同じようにgithub pagesのサイトにプッシュします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+ghp-import output
+git push https://github.com/achiwa912/achiwa912.github.io.git gh-pages:master
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+最後にgoogle search consoleに登録します。
+google search consoleの左上にある、3本横線のメニューアイコンをクリックし、sitemapsを選びます。
+&lt;/p&gt;
+
+
+&lt;div id="org2a36689" class="figure"&gt;
+&lt;p&gt;&lt;img src="./images/gscmenu.png" alt="gscmenu.png" /&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+次の画面でEnter sitemap URLとあるところに、sitemap.xmlと入れてsubmitすると、Status: Successと出て、googleが当サイトの構造を認識してくれたようです。
+&lt;/p&gt;
+
+
+&lt;div id="org91b1861" class="figure"&gt;
+&lt;p&gt;&lt;img src="./images/gscsitemap.png" alt="gscsitemap.png" /&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga2a0c54" class="outline-2"&gt;
+&lt;h2 id="orga2a0c54"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; 終わりに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+先ほど登録したばかりなので、まだ何の効果があったのかわかりません。いや、まだ無いはず。のんびりと待つことにします。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="Tech"></category></entry><entry><title>RFC3507 (ICAP)読書メモ</title><link href="http://achiwa912.github.io/icap.html" rel="alternate"></link><published>2020-07-27T00:00:00-04:00</published><updated>2020-07-27T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-07-27:/icap.html</id><summary type="html">RFC3507 (ICAP)読書メモ</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org8a6cb91"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgc0779b6"&gt;2. Abstract&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgc6b16dd"&gt;3. ICAP Overall Operation&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org85480b4"&gt;3.1. リクエスト修正モード&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgda39c80"&gt;3.2. レスポンス修正モード&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org7218985"&gt;4. プロトコルの説明(セマンティクス)&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org9fa801a"&gt;4.1. 一般的なオペレーション&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6918ccd"&gt;4.2. ICAP URIs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb259136"&gt;4.3. ICAPヘッダー&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org2ac566c"&gt;4.3.1. リクエストとレスポンスに共通なヘッダー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orge5e22d6"&gt;4.3.2. リクエストヘッダー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3a2143e"&gt;4.3.3. レスポンスヘッダー&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3bdf402"&gt;4.3.4. HTTPメッセージにおけるICAP関連ヘッダー&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgca4242b"&gt;5. RFC 3507のcopyright statement&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8a6cb91" class="outline-2"&gt;
+&lt;h2 id="org8a6cb91"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+ウイルススキャンサーバーで使われる
+ICAP (Internet Content Adaption Protocol)の概要が知りたかったので、
+RFC 3507を読んでみます。概要プラスアルファくらいまで。
+&lt;a href="https://tools.ietf.org/html/rfc3507"&gt;https://tools.ietf.org/html/rfc3507&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+私の独り言をクオートでつぶやきます。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc0779b6" class="outline-2"&gt;
+&lt;h2 id="orgc0779b6"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Abstract&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+ICAPは、HTTPのサービスに対して、シンプルなオブジェクトベースのcontent vectoringを提供する。
+&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;
+content vectoring protocol (CVP)は初耳でした。ファイヤーウォールを通過しようとするデータをフィルタリングするプロトコル、だそうです。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;
+ICAPは、その本質としては、HTTPメッセージに"remote procedure call"を実行するためのlight weightなプロトコルである。
+ICAPクライアントはICAPサーバーにHTTPメッセージを送って、何らかの変換等の処理("adaptation"という)をさせることができる。サーバーはメッセージに対して変換サービスを実施し、通常は変更されたメッセージと共にクライアントにレスポンスを返す。
+通常、アダプトされるメッセージはHTTPリクエストまたはHTTPレスポンスである。
+&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+つまり、ICAPクライアントが転送したメッセージに、ICAPサーバーが手を加えて返すしかけ、ということですね。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc6b16dd" class="outline-2"&gt;
+&lt;h2 id="orgc6b16dd"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; ICAP Overall Operation&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org85480b4" class="outline-3"&gt;
+&lt;h3 id="org85480b4"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; リクエスト修正モード&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-1"&gt;
+&lt;p&gt;
+"request modificaiton" (reqmod) モードでは、ICAPクライアントはHTTPリクエストをICAPサーバーに送る。
+ICAPサーバーは以下をしてもよい(may)。
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;リクエストの修正したバージョンを送り返す。ICAPクライアントはそれから、元のサーバーにコンタクトして修正されたリクエストを処理するか、別のICAPサーバーで更に修正するために、修正されたリクエストをパイプラインしてもよい。&lt;/li&gt;
+&lt;li&gt;HTTPレスポンスをリクエストに対して返す。これはエラーを返す時に使える。&lt;/li&gt;
+&lt;li&gt;エラーを返す。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+ICAPクライアントはこれら三つのレスポンスタイプを全て扱えなくてはならない。しかし、エラーの扱いについては多少の自由が与えられている。エラーをすぐに返す、リトライする、など。
+&lt;/p&gt;
+
+&lt;p&gt;
+コンテントフィルタリングのアプリケーション例を使って、この方法を説明する。
+元のサーバー上にあるウェブページに対するクライアントの要求を受けた代理(surrogate)について考えてみる。
+&lt;/p&gt;
+
+&lt;p&gt;
+ICAPクライアントとして働くこの代理は、クライアントの要求をICAPサーバーに送り、そこでURIベースのコンテントフィルタリングを行う。
+要求されたURIへのアクセスが許可されるなら、その要求はICAPクライアントに修正なしで戻される。しかしICAPサーバーが、要求されたリソースへのアクセスを許可しないなら、サーバーは以下のいずれかをしても良い:
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;リクエストを修正し、元のURIの代わりにエラーメッセージを含むページをポイントする&lt;/li&gt;
+&lt;li&gt;HTTPエラーを示す、カプセル化されたHTTPレスポンスを返す&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+この方法は、様々な種類のアプリケーションで使うことができる。
+典型的なデータの流れは以下のようになる。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+origin-server
+    | /|\
+    |  |
+ 5  |  |  4
+    |  |
+   \|/ |              2
+ICAP-client    --------------&amp;gt;   ICAP-resource
+(surrogate)    &amp;lt;--------------   on ICAP-server
+    | /|\             3
+    |  |
+ 6  |  |  1
+    |  |
+   \|/ |
+   client
+&lt;/pre&gt;
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;クライアントはICAPクライアント(=代理)に、オリジンサーバー上にあるオブジェクトへのリクエストを行う。&lt;/li&gt;
+&lt;li&gt;代理はそのリクエストをICAPサーバーに送る&lt;/li&gt;
+&lt;li&gt;ICAPサーバーは、リクエストに対するそのICAPリソースのサービスを実行し、修正されたリクエストを送るか、リクエストに対するレスポンスをICAPクライアントに返す。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+もしステップ3においてリクエストを戻したら、
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;代理はそのリクエスト(元々のクライアントリクエストとは異なるかもしれない)をオリジンサーバーに送る&lt;/li&gt;
+&lt;li&gt;オリジンサーバーはリクエストに対するレスポンスを返す&lt;/li&gt;
+&lt;li&gt;代理はそのリプライ(ICAPサーバーまたはオリジンサーバーからの)をクライアントに返す&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+ウイルススキャンで言うと、例えばエンドユーザーのPCがファイルサーバーにファイルをアップロードする時にスキャンするモードです。ファイルサーバーにウイルスが入らないようにする。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;div id="outline-container-orgda39c80" class="outline-3"&gt;
+&lt;h3 id="orgda39c80"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; レスポンス修正モード&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-3-2"&gt;
+&lt;p&gt;
+"response modificaiton" (respmod)モードでは、ICAPクライアントはHTTPレスポンスをICAPサーバーに送る。(ICAPクライアントが送るレスポンスは、普通はオリジンサーバーによって生成されたものである)
+ICAPサーバーはそれから以下をしても良い:
+&lt;/p&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;修正版のレスポンスを返す&lt;/li&gt;
+&lt;li&gt;エラーを返す&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;
+レスポンス修正方式は、HTTPレスポンスをクライアントに渡す前に行う事後処理(post-processing)を意図している。例として、特殊デバイスに表示するためのHTMLフォーマッティングや、言語翻訳、ウイルスチェック等がある。典型的なデータの流れは以下のようになる。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+origin-server
+    | /|\
+    |  |
+ 3  |  |  2
+    |  |
+   \|/ |            4
+ICAP-client    --------------&amp;gt;   ICAP-resource
+(surrogate)    &amp;lt;--------------   on ICAP-server
+    | /|\            5
+    |  |
+ 6  |  |  1
+    |  |
+   \|/ |
+   client
+&lt;/pre&gt;
+
+&lt;ol class="org-ol"&gt;
+&lt;li&gt;クライアントはICAPクライアント(=代理)に、オリジンサーバー上にあるオブジェクトへのリクエストを行う。&lt;/li&gt;
+&lt;li&gt;代理はそのリクエストをオリジンサーバーに送る&lt;/li&gt;
+&lt;li&gt;オリジンサーバーはリクエストに対するレスポンスを返す&lt;/li&gt;
+&lt;li&gt;代理はオリジンサーバーのリプライをICAPサーバーに送る&lt;/li&gt;
+&lt;li&gt;ICAPサーバーは、オリジンサーバーのリプライに対してそのICAPリソースのサービスを実行し、修正された可能性のあるリプライをICAPクライアントに返す&lt;/li&gt;
+&lt;li&gt;代理はそのリプライ(ICAPサーバーまたはオリジンサーバーからの)をクライアントに返す&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+こちらのモードは、ファイルサーバーにすでにウイルス付きのファイルが入ってしまっている時に、エンドユーザーのPCにそれをダウンロードできないように、水際で食い止めるのが目的。ウイルス定義ファイルの更新が間に合わないときなど、サーバーへのウイルス潜入がありえます。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org7218985" class="outline-2"&gt;
+&lt;h2 id="org7218985"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; プロトコルの説明(セマンティクス)&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org9fa801a" class="outline-3"&gt;
+&lt;h3 id="org9fa801a"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; 一般的なオペレーション&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-1"&gt;
+&lt;p&gt;
+ICAPはHTTP/1.1にセマンティクスも使用法もよく似た、リクエスト/レスポンスプロトコルである。似ているが、ICAPはHTTPでは無く、HTTP上で動くアプリケーションプロトコルでも無い。例えばこれはつまり、HTTP surrogateがICAPメッセージをフォワードできないことを意味する。
+&lt;/p&gt;
+
+&lt;p&gt;
+ICAPはトランスポートプロトコルとしてTCP/IPを使う。デフォルトポートは1344であるが、他のポートを使っても良い。TCPフローは、ICAPクライアントが、受け身でリスニングしているICAPサーバーにinitiateする。
+&lt;/p&gt;
+
+&lt;p&gt;
+ICAPメッセージは、クライアントからサーバーへのリクエストと、サーバーからクライアントへのレスポンスからなる。リクエストとレスポンスは RFC 2822の一般的なメッセージフォーマットを使う。つまり、スタート行(リクエスト行またはステータス行)、ヘッダーフィールドの数("headers"としても知られる)、ヘッダーフィールドの終わりを示す空行、そしてメッセージボディーからなる。
+&lt;/p&gt;
+
+&lt;p&gt;
+ICAPメッセージのヘッダー行は、リクエストされているICAPリソースや、キャッシュ制御情報のようなメタデータを指定する。ICAPリクエストのメッセージボディーは、修正されようとしている(カプセル化された)HTTPメッセージを保持する。
+&lt;/p&gt;
+
+&lt;p&gt;
+HTTP/1.1の場合と同様、一つのトランスポートコネクションが、複数のリクエスト/レスポンスペアに対して再利用されてもよい。そのルールを具体的に言うと、複数のリクエストは、ある時点において、一つのトランスポートコネクション上にoutstandingなリクエストを一つしか許さないことで、レスポンスと対応づけられる。HTTPと同様に、複数の並列コネクションを使っても良い。
+&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+HTTPとよく似ているけどHTTPではなく、HTTP上で動く何かでもない。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org6918ccd" class="outline-3"&gt;
+&lt;h3 id="org6918ccd"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; ICAP URIs&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-2"&gt;
+&lt;p&gt;
+全てのICAPリクエストはICAP URIを使って、サーバーから要求するICAPリソースを指定する。これは、完全なホスト名と要求するリソースのパスを両方指定する、絶対URIでなくてはならない。URIについてはRFC 2396参照。ICAPによって規定されるURIは、
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+icap://icap.example.net:2000/services/icap-service-1
+&lt;/pre&gt;
+
+&lt;p&gt;
+のようになる。ICAPサーバーは全てのホスト名を認識できる必要がある。これはエイリアス、ローカルのvariations、数字表記するIPアドレスなど。
+&lt;/p&gt;
+
+&lt;p&gt;
+サービスの性質を変えるために、ICAPクライアントがICAPサーバーに渡したい引数は、ICAP-URIの一部として、HTTPで使われる標準的な"?"-エンコードされた引数-値のペアとして渡しても良い。例えば:
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+icap://icap.net/servies?mode=translate&amp;amp;lang=french
+&lt;/pre&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;
+なるほど。HTTPのURIと同じパターンです。http/httpsの代わりにicapと書く。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb259136" class="outline-3"&gt;
+&lt;h3 id="orgb259136"&gt;&lt;span class="section-number-3"&gt;4.3&lt;/span&gt; ICAPヘッダー&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-4-3"&gt;
+&lt;p&gt;
+以下のセクションでICAPメッセージで有効なヘッダーを定義する。
+最初にリクエストとレスポンスに共通のヘッダーを説明する。リクエスト限定、レスポンス限定のヘッダーを次いで説明する。
+&lt;/p&gt;
+
+&lt;p&gt;
+ユーザー定義ヘッダー拡張を使っても良い。インターネットメールフォーマットで確立され、後にHTTPが採用した前例に適合するために、全てのユーザー定義ヘッダーは"X-"のnaming convention ("X-Extension-Header: Foo")に従う必要がある。ICAPの実装はどの"X-"ヘッダーを無視してもよい。
+&lt;/p&gt;
+
+&lt;p&gt;
+各ヘッダーフィールドは、name + ":" + フィールド値からなる。フィールド名は大文字、小文字の区別をしない。
+&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+”X-"ヘッダーまでHTTPと同じ。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2ac566c" class="outline-4"&gt;
+&lt;h4 id="org2ac566c"&gt;&lt;span class="section-number-4"&gt;4.3.1&lt;/span&gt; リクエストとレスポンスに共通なヘッダー&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-1"&gt;
+&lt;p&gt;
+全てのICAPメッセージのヘッダーは以下のディレクティブを含んでも良い:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Cache-Control&lt;/li&gt;
+&lt;li&gt;Connection&lt;/li&gt;
+&lt;li&gt;Date&lt;/li&gt;
+&lt;li&gt;Expires&lt;/li&gt;
+&lt;li&gt;Pragma&lt;/li&gt;
+&lt;li&gt;Trailer&lt;/li&gt;
+&lt;li&gt;Upgrade&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+"Transfer-Encoding"が許されないことに特に注意。ICAPボディーの特別なtransfer-encodingの条件については後述する。
+&lt;/p&gt;
+
+&lt;p&gt;
+Upgradeヘッダーは、HTTP/1.1にある通り、ICAPコネクションのTLSを交渉するのに使う。
+&lt;/p&gt;
+
+&lt;p&gt;
+ICAP特有のヘッダーは以下である。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Encapsulated&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge5e22d6" class="outline-4"&gt;
+&lt;h4 id="orge5e22d6"&gt;&lt;span class="section-number-4"&gt;4.3.2&lt;/span&gt; リクエストヘッダー&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-2"&gt;
+&lt;p&gt;
+HTTPと同様に、ICAPリクエストはメソッド、リクエストするICAPリソースの完全なURI、ICAPバージョン文字列を含むリクエスト行で始まる必要がある。最新バージョン番号は"1.0"である。
+&lt;/p&gt;
+
+&lt;p&gt;
+このバージョンのICAPは3つのメソッドを定義する。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;REQMOD - リクエスト修正のため&lt;/li&gt;
+&lt;li&gt;RESPMOD - レスポンス修正のため&lt;/li&gt;
+&lt;li&gt;OPTIONS - 構成について知るため&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+OPTIONSメソッドは全てのICAPサーバーが実装しなくてはならない。他のメソッドはオプションで、インプリメントしてもしなくてもよい。
+&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+REQMOD、RESPMOD片方しかサポートしていなくても(厳密には、両方サポートしていなくても)ICAPサポートと言えるのですね。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;
+ユーザー定義の拡張メソッドを使っても良い。拡張メソッドを使おうとする前に、ICAPクライアントはOPTIONSメソッドを使って、ICAPサーバーがサポートするメソッドのリストを問い合わせるべき。(ICAPサーバーが未知のメソッドを受け取ったら、次のセクションで示すように501エラーを返さなくてはならない。)
+&lt;/p&gt;
+
+&lt;p&gt;
+前に説明したURIルールの通り、正しいICAPリクエスト行は以下の例のようになる。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+RESPMOD icap://icap.example.net/translate?mode=french ICAP/1.0
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+いくつものリクエスト特有ヘッダーがICAPリクエストにおいて使え、これは対応するHTTPリクエストヘッダーのセマンティクスと同じである。これらは、
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Authorization&lt;/li&gt;
+&lt;li&gt;Allow&lt;/li&gt;
+&lt;li&gt;From&lt;/li&gt;
+&lt;li&gt;Host (REQUIRED in ICAP as it is in HTTP/1.1)&lt;/li&gt;
+&lt;li&gt;Referer&lt;/li&gt;
+&lt;li&gt;User-Agent&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+HTTPライクなヘッダーに加え、ICAP特有のリクエストヘッダーもある。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Preview&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3a2143e" class="outline-4"&gt;
+&lt;h4 id="org3a2143e"&gt;&lt;span class="section-number-4"&gt;4.3.3&lt;/span&gt; レスポンスヘッダー&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-3"&gt;
+&lt;p&gt;
+ICAPのレスポンスは、フォーマットがHTTPによく似た、ICAPバージョンとステータスコードを含むICAPステータス行で始まる必要がある。例えば、
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+ICAP/1.0 200 OK
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+ICAPのステータスコードは、このドキュメントで規定されているもの(100と204)の他は、対応するHTTPのステータスコードの意味と同じである。
+&lt;/p&gt;
+
+&lt;p&gt;
+HTTPと異なるICAPのエラーコードは、
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;100 - ICAPプレビューの後に続く&lt;/li&gt;
+&lt;li&gt;204 - 修正は不要&lt;/li&gt;
+&lt;li&gt;400 - Bad request&lt;/li&gt;
+&lt;li&gt;404 - ICAP sesrvice not found&lt;/li&gt;
+&lt;li&gt;405 - そのメソッドは使えない(例: REQMODしかサポートしないサービスにRESPMODを要求した)&lt;/li&gt;
+&lt;li&gt;408 - Request timeout&lt;/li&gt;
+&lt;li&gt;500 - Server error.  ICAPサーバー上のエラー例えばディスク不足。&lt;/li&gt;
+&lt;li&gt;501 - メソッド未実装&lt;/li&gt;
+&lt;li&gt;502 - Bad Gateway.  ICAP proxyがエラーを出した&lt;/li&gt;
+&lt;li&gt;503 - サービス過負荷。ICAPサーバーが最大コネクション数を超えた。ICAPは今後、その負荷を超えてはならない。&lt;/li&gt;
+&lt;li&gt;505 - サーバーがサポートしていないICAPバージョン&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+HTTPの場合と同様に、4xxクラスのエラーはクライアントエラー、5xxクラスはサーバーエラーを意味する。
+&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;
+curlコマンドなどで、直接HTTPを使うことがある方にはおなじみのエラーコードばかりですね。
+&lt;/p&gt;
+&lt;/blockquote&gt;
+
+
+&lt;p&gt;
+ICAPレスポンスヘッダーフィールドには、ICAPのステータス行に書けない追加のレスポンス情報をサーバーが記載することができる。
+&lt;/p&gt;
+
+&lt;p&gt;
+あるレスポンス特有のヘッダーはICAPリクエストで使って良く、この場合、対応するHTTPレスポンスヘッダーと同じ意味を持つ。これは、
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Server&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+HTTPライクなヘッダーに加え、ICAP特有のレスポンスヘッダーもある。
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;ISTag&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3bdf402" class="outline-4"&gt;
+&lt;h4 id="org3bdf402"&gt;&lt;span class="section-number-4"&gt;4.3.4&lt;/span&gt; HTTPメッセージにおけるICAP関連ヘッダー&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-4-3-4"&gt;
+&lt;p&gt;
+(気が向いたら続く)
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgca4242b" class="outline-2"&gt;
+&lt;h2 id="orgca4242b"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; RFC 3507のcopyright statement&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-5"&gt;
+&lt;pre class="example"&gt;
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (2003).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="Tech"></category></entry><entry><title>org-mode + pelican + githubでブログを始めてみる</title><link href="http://achiwa912.github.io/startblog.html" rel="alternate"></link><published>2020-07-01T00:00:00-04:00</published><updated>2021-08-13T00:00:00-04:00</updated><author><name>きょうす</name></author><id>tag:achiwa912.github.io,2020-07-01:/startblog.html</id><summary type="html">emacsのorg-modeでブログに挑戦</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org2a8af06"&gt;1. はじめに&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orge639ae6"&gt;2. ブログを作る&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgd263e07"&gt;2.1. emacs + org-mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgc2758eb"&gt;2.2. どこのブログを使うか&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org51e9ab2"&gt;2.3. どのサイトジェネレーターを使うか&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga7cd034"&gt;2.4. Pelicanを使ってみる&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org87c52a5"&gt;2.4.1. 仮想環境作成&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org86db1e9"&gt;2.4.2. Pelicanの設定&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org91d0d2f"&gt;2.4.3. テーマを設定する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org65053dc"&gt;2.4.4. org-modeでPelicanを使う&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb6a7cb8"&gt;3. ブログを公開する&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org2a8af06" class="outline-2"&gt;
+&lt;h2 id="org2a8af06"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; はじめに&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+こんにちは、初めまして。きょうす です。
+最近20年振りにPythonでプログラミングすることを覚えて、作ったゲームを
+githubに公開したのですが、調子に乗ってブログまで始めてみる気になりました。
+折角なので、メモ代わりに使っているemacs + org-modeでできないか調べてみたら、
+Pelicanというジェネレーターを使えばできそうなことがわかったので、挑戦して
+みることにしました。
+&lt;/p&gt;
+
+&lt;p&gt;
+初回からいきなりマニアックな話題ですが、このブログでは技術的なことだけ
+でなく、英語学習や英語教育についても取り上げていきたいと思います。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orge639ae6" class="outline-2"&gt;
+&lt;h2 id="orge639ae6"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; ブログを作る&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgd263e07" class="outline-3"&gt;
+&lt;h3 id="orgd263e07"&gt;&lt;span class="section-number-3"&gt;2.1&lt;/span&gt; emacs + org-mode&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-1"&gt;
+&lt;p&gt;
+emacsというエディタをご存じでしょうか? かつて、vimと人気を2分するくらい
+ポピュラーなエディタだったのですが、とにかくマニアックで、とてつもなく
+急なラーニングカーブを誇っているためか、最近ではすっかり人気も陰り、
+少なくとも私の周囲で使っている人は見当たりません。
+&lt;/p&gt;
+
+&lt;p&gt;
+私は今の会社に入社したときに、viとemacsの選択を迫られ、emacsの方が名前が
+クールという理由で使い始めました。その後20余年、emacsが廃れずに生き残って
+いるのは驚きです。私は指がemacsのキー操作に慣れてしまったため、もはや
+他のエディタに行く気にはなりません。もちろん、他の人にはemacsは勧めません。
+&lt;/p&gt;
+
+&lt;p&gt;
+emacsは勧めませんが、emacsのキーバインドを覚えてもよいという奇特な方が
+いらっしゃいましたら、是非ともorg-modeを使っていただきたいです。
+というか、当然バリバリと使われているものと思います。もしご存じないなら
+org-modeについては、&lt;a href="http://emacs.rubikitch.com/sd1502-org-mode/"&gt;るびきちさんのサイト&lt;/a&gt;を見ていただくのがよいでしょう。
+emacsへの愛に溢れたページです。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgc2758eb" class="outline-3"&gt;
+&lt;h3 id="orgc2758eb"&gt;&lt;span class="section-number-3"&gt;2.2&lt;/span&gt; どこのブログを使うか&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-2"&gt;
+&lt;p&gt;
+ネットでいろいろと検索してみましたが、最初はgoogleの&lt;a href="https://www.blogger.com/about/"&gt;Blogger&lt;/a&gt;を使う気で
+いました。無料の割に広告が出ず、自由度も高くてよさそうです。Bloggerに
+ついていろいろと調べるうちにふと、先日アカウントを取得したgithubに
+書けるのではないか、と思い当たりました。更にgithubでのブログについて
+調べると、&lt;a href="https://pages.github.com/"&gt;github pages&lt;/a&gt;というものがあることがわかりました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org51e9ab2" class="outline-3"&gt;
+&lt;h3 id="org51e9ab2"&gt;&lt;span class="section-number-3"&gt;2.3&lt;/span&gt; どのサイトジェネレーターを使うか&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-3"&gt;
+&lt;p&gt;
+次に、github pagesに使えるサイトジェネレーターを調べたところ、github
+純正のJekyllとHugoあたりが人気なことがわかりましたが、せっかくPython
+を覚えたことだし、Pythonで書かれた&lt;a href="https://blog.getpelican.com/"&gt;Pelican&lt;/a&gt;に挑戦することにしました。
+参考: &lt;a href="https://mizunashi-mana.github.io/blog/posts/2019/03/start-blog/"&gt;ブログ始めました 続くといいな日記&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+ブログを書くのに、emacs + org-modeが使えるとよいなと思っていたので
+調べたところ、ドンピシャなページを見つけました:
+&lt;a href="https://kwpav.github.io/pelican_org_mode.html"&gt;Kevins Notes : Pelican and Org Mode&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+方針が決まったので、早速ブログ作成に取りかかります。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga7cd034" class="outline-3"&gt;
+&lt;h3 id="orga7cd034"&gt;&lt;span class="section-number-3"&gt;2.4&lt;/span&gt; Pelicanを使ってみる&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-2-4"&gt;
+&lt;p&gt;
+Pelicanを使うにあたって、このサイトに全面的にお世話になりました。
+&lt;a href="https://blog.sotm.jp/2014/01/04/Pelican-Markdown-GithubPages-install-guide/"&gt;Pelican + Markdown + GitHub Pagesで管理するブログの作り方&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+まずはこのサイトに従って、githubのブログ用レポジトリを作成します。
+ここはそのままなので略します。
+&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org87c52a5" class="outline-4"&gt;
+&lt;h4 id="org87c52a5"&gt;&lt;span class="section-number-4"&gt;2.4.1&lt;/span&gt; 仮想環境作成&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-2-4-1"&gt;
+&lt;p&gt;
+次いで、仮想環境を作ります。上記のサイトにも書かれていますが、
+私のpyenv環境はこのようになっています。(一部ぼかしています)
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+(blg) ~/***** % pyenv versions
+ system
+ 3.7.7
+* 3.8.3 (set by /Users/*****/.pyenv/version)
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+venvを使って、ブログ用の仮想環境を作成します。venvを使った仮想環境
+作成については&lt;a href="https://qiita.com/fiftystorm36/items/b2fd47cf32c7694adc2e"&gt;ここ&lt;/a&gt;などを参考にしてください。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% python -m venv blg
+% cd blg
+% source bin/activate
+(blg) ~/****/blg %
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org86db1e9" class="outline-4"&gt;
+&lt;h4 id="org86db1e9"&gt;&lt;span class="section-number-4"&gt;2.4.2&lt;/span&gt; Pelicanの設定&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-2-4-2"&gt;
+&lt;p&gt;
+Pelicanをインストールします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% pip3 install pelican
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+github pagesへのアップロードに使う ghp-import もインストールします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% pip3 install ghp-import
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+pelican-quickstartを使ってサイトにひな形を作ります。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% pelican-quickstart
+&lt;/pre&gt;
+
+&lt;p&gt;
+質問に答えていくと完了します。具体的には、上記のサイトを参考にして
+ください。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org91d0d2f" class="outline-4"&gt;
+&lt;h4 id="org91d0d2f"&gt;&lt;span class="section-number-4"&gt;2.4.3&lt;/span&gt; テーマを設定する&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-2-4-3"&gt;
+&lt;p&gt;
+いくつかPelican向けの&lt;a href="http://www.pelicanthemes.com/"&gt;themes&lt;/a&gt;を試してみましたが、いまいちどうもしっくり
+きません。結局は上記サイト推奨の&lt;a href="https://github.com/duilio/pelican-octopress-theme"&gt;pelican-octopress-theme&lt;/a&gt;に落ち着きました。
+格好いいです。日本人好みなのでしょうか。。。インストールは上記サイトの
+手順そのまま使わせていただきました。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% wget https://github.com/duilio/pelican-octopress-theme/archive/master.zip ; unzip -q master.zip ; rm -rf master.zip
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+うちのMacにはなぜかwgetが入っていなかったのでインストールしています。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% brew install wget
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org65053dc" class="outline-4"&gt;
+&lt;h4 id="org65053dc"&gt;&lt;span class="section-number-4"&gt;2.4.4&lt;/span&gt; org-modeでPelicanを使う&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-2-4-4"&gt;
+&lt;p&gt;
+ここからは&lt;a href="https://kwpav.github.io/pelican_org_mode.html"&gt;Kevins Notes : Pelican and Org Mode&lt;/a&gt;に従います。
+プラグインをインストールします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% git clone --recursive https://github.com/getpelican/pelican-plugins
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+そしてpelicanconf.pyに以下を設定します。(一部ぼかしています)
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+AUTHOR = 'きょうす kyos'
+SITENAME = 'Dreaming in Brookline, MA 02446'
+
+PATH = 'content'
+STATIC_PATHS = ['images']
+
+TIMEZONE = 'America/New_York'
+
+DEFAULT_LANG = 'ja'
+
+THEME = "/Users/*****/blg/themes/pelican-octopress-theme-master"
+PLUGIN_PATHS = ["/Users/*****/blg/pelican-plugins"]
+PLUGINS = ['org_reader']
+ORG_READER_EMACS_LOCATION = '/Applications/Emacs.app/Contents/MacOS/Emacs'
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+contentディレクトリに*.orgファイルを置き、ローカルで試してみます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% ls content 
+images		kideng.org	learnPython.org	startblog.org
+&lt;/pre&gt;
+
+&lt;p&gt;
+imagesはイメージファイルを置くディレクトリです。
+orgファイルの先頭に、以下のようにヘッダーを追記しています。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+#+TITLE: org-mode + pelican + githubでブログを始めてみる
+#+DATE: 2020-07-01
+#+CATEGORY: Blog
+#+AUTHOR: kyos
+#+PROPERTY: LANGUAGE ja
+#+PROPERTY: SUMMARY emacsのorg-modeでブログに挑戦
+#+PROPERTY: SLUG startblog
+#+PROPERTY: MODIFIED [2020-07-25]
+#+PROPERTY: TAGS blog, python, emacs
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+いよいよ、orgファイルからサイトジェネレートし、Webサーバーを立ち上げます。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% pelican
+% make serve
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+ブラウザーから &lt;a href="http://localhost:8000/"&gt;http://localhost:8000/&lt;/a&gt; にアクセスしてみます。
+&lt;img src="./images/blog.png" alt="blog.png" /&gt;
+感動です。格好良くできました。
+&lt;/p&gt;
+
+&lt;p&gt;
+実は、イメージファイルの埋め込みにかなり苦労しました。どこにイメージ
+ファイルを置き、orgファイルからどのように参照するかで、だいぶ試行錯誤
+しました。結局は、content/imagesディレクトリを作成してそこにイメージ
+ファイルを置き、orgファイルからは
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+[[./images/blog.png]]
+&lt;/pre&gt;
+
+&lt;p&gt;
+のように参照すればよいことがわかりました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb6a7cb8" class="outline-2"&gt;
+&lt;h2 id="orgb6a7cb8"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; ブログを公開する&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+いよいよ全世界に向けて公開します。おそらく誰も気がつきませんが。。
+再びこのサイトにお世話になります。
+&lt;a href="https://blog.sotm.jp/2014/01/04/Pelican-Markdown-GithubPages-install-guide/"&gt;Pelican + Markdown + GitHub Pagesで管理するブログの作り方&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+gitを初期化します。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% git init
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+ついで、アップロードするディレクトリを指定します。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% ghp-import output
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+いよいよ、githubにアップロードします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% git push https://github.com/achiwa912/achiwa912.github.io.git gh-pages:master
+Enumerating objects: 72, done.
+Counting objects: 100% (72/72), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (72/72), done.
+Writing objects: 100% (72/72), 4.78 MiB | 747.00 KiB/s, done.
+Total 72 (delta 20), reused 0 (delta 0)
+remote: Resolving deltas: 100% (20/20), done.
+To https://github.com/achiwa912/achiwa912.github.io.git
+ * [new branch]      gh-pages -&amp;gt; master
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+なんだかえらく簡単ですが、おそるおそる見に行っています。
+&lt;img src="./images/upload.png" alt="upload.png" /&gt;
+素晴らしい！ やりました！
+&lt;/p&gt;
+
+&lt;p&gt;
+修正、追加して再びアップロードするときは以下をします。
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% ghp-import output
+% git push https://github.com/achiwa912/achiwa912.github.io.git gh-pages:master
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+私はsshに乗り換えたので、
+&lt;/p&gt;
+&lt;pre class="example"&gt;
+% git push git@github.com:achiwa912/achiwa912.github.io.git gh-pages:master
+&lt;/pre&gt;
+
+
+&lt;p&gt;
+(8/13/2021更新)
+しばらく放置していたら、pelicanがエラーを出力して動かなくなりました。OSをBig Surに上げたり、brewをアップデートしたりしたせいかもしれません。さんざんトラブルシュートした結果、 &lt;code&gt;pip install --upgrade pelican&lt;/code&gt; と &lt;code&gt;git pull&lt;/code&gt; で(とりあえず)解決しました。
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="Tech"></category><category term="blog"></category><category term="python"></category><category term="emacs"></category></entry></feed>
