@@ -69,20 +69,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfdcea9d">1. はじめに</a></li>
-<li><a href="#org3ea9f55">2. データベース対応</a>
+<li><a href="#org59dd2a3">1. はじめに</a></li>
+<li><a href="#orgbeb3639">2. データベース対応</a>
 <ul>
-<li><a href="#orgdb654da">2.1. DLのデータベース対応</a></li>
-<li><a href="#org1bd247a">2.2. データベース/SQLAlchemyを使ってみて</a></li>
+<li><a href="#orgd23b40b">2.1. DLのデータベース対応</a></li>
+<li><a href="#org32fafc8">2.2. データベース/SQLAlchemyを使ってみて</a></li>
 </ul>
 </li>
-<li><a href="#orgce3ecac">3. 次の構想</a></li>
+<li><a href="#orga3ea7fd">3. 次の構想</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfdcea9d" class="outline-2">
-<h2 id="orgfdcea9d"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org59dd2a3" class="outline-2">
+<h2 id="org59dd2a3"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの12回目です。
@@ -94,12 +94,12 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org3ea9f55" class="outline-2">
-<h2 id="org3ea9f55"><span class="section-number-2">2</span> データベース対応</h2>
+<div id="outline-container-orgbeb3639" class="outline-2">
+<h2 id="orgbeb3639"><span class="section-number-2">2</span> データベース対応</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgdb654da" class="outline-3">
-<h3 id="orgdb654da"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
+<div id="outline-container-orgd23b40b" class="outline-3">
+<h3 id="orgd23b40b"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 DLはこれまでセーブデータをpickleしてファイルにセーブしていたのですが、データベースを使ってみたかったのでサポートしてみました。セーブするときには全部セーブして、ロードするときも同様という使い方なので、データベースにしたメリットは今のところほぼありません。それどころか、セーブに数秒かかるようになってしまいました。
@@ -115,8 +115,8 @@ DLはこれまでセーブデータをpickleしてファイルにセーブして
 </div>
 </div>
 
-<div id="outline-container-org1bd247a" class="outline-3">
-<h3 id="org1bd247a"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
+<div id="outline-container-org32fafc8" class="outline-3">
+<h3 id="org32fafc8"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/dp/1492057614/">Learning SQL</a>という入門書を読んだくらいで、ネットで検索しながら基本的なSELECT * FROM &lt;table&gt;のようなコマンドが使える程度でした。<a href="https://docs.sqlalchemy.org/en/14/orm/tutorial.html">SQLAlchemyのチュートリアル</a>も目を通しました。
@@ -141,8 +141,8 @@ SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/
 </div>
 </div>
 
-<div id="outline-container-orgce3ecac" class="outline-2">
-<h2 id="orgce3ecac"><span class="section-number-2">3</span> 次の構想</h2>
+<div id="outline-container-orga3ea7fd" class="outline-2">
+<h2 id="orga3ea7fd"><span class="section-number-2">3</span> 次の構想</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 次回作ですが、特に面白いアイデアがあるわけでも無いので、使ってみたい技術を使ってDLをマルチプレイヤー化してみたいと考えています。実はDLのデータベース化はその準備の一環です。他には、クライアント-サーバー化と、サーバーのasync対応をやりたいと考えています。ライブラリとしては<a href="https://python-socketio.readthedocs.io/en/latest/">python-socketio</a>や<a href="https://flask-socketio.readthedocs.io/en/latest/">flask-socketio</a>あたりに目を付けています。
