@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>DL-11; DLのアルファ版を公開しました &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>Oral-Bの電動歯ブラシ &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -39,7 +39,7 @@
 
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About</a></li>
-      <li >
+      <li class="active">
         <a href="/category/blog.html">Blog</a>
       </li>
       <li >
@@ -48,7 +48,7 @@
       <li >
         <a href="/category/linux.html">Linux</a>
       </li>
-      <li class="active">
+      <li >
         <a href="/category/python.html">Python</a>
       </li>
       <li >
@@ -60,97 +60,86 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">DL-11; DLのアルファ版を公開しました</h1>
+      <h1 class="entry-title">Oral-Bの電動歯ブラシ</h1>
     <p class="meta">
-<time datetime="2021-04-18T00:00:00-04:00" pubdate>Sun 18 April 2021</time>    </p>
+<time datetime="2021-12-21T00:00:00-05:00" pubdate>Tue 21 December 2021</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgae71c65">1. はじめに</a></li>
-<li><a href="#org8dffe92">2. アルファ版リリース</a></li>
-<li><a href="#org858d467">3. issuesをgithubで管理</a></li>
-<li><a href="#orgf084e4a">4. 開発での経験</a>
-<ul>
-<li><a href="#orgdc402a7">4.1. 学んだこと</a></li>
-<li><a href="#org488e069">4.2. まだまだなこと</a></li>
-</ul>
-</li>
-<li><a href="#orgdefde44">5. 次は、、</a></li>
+<li><a href="#org7782e4a">1. はじめに</a></li>
+<li><a href="#orgd66edce">2. iO Series 9</a></li>
+<li><a href="#org0a90f50">3. 使ってみる</a></li>
+<li><a href="#org0e210b8">4. 連携アプリ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgae71c65" class="outline-2">
-<h2 id="orgae71c65"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org7782e4a" class="outline-2">
+<h2 id="org7782e4a"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの11回目です。
-</p>
-
-<p>
-githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未検証です。(いちおうWindows用のコードは入れてみました)
+私の加入しているものも含めて、アメリカの歯科保健は検査は無料、治療は有料、そして上限無しなことが多いようです。歯磨きをサボるとダイレクトに治療費に跳ね返ってくるので歯磨きは日本にいた時以上にしっかりすることにしています。そんなこともあって、ついにブラックフライデーセールで気になっていた電動歯ブラシを買ってしまいました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org8dffe92" class="outline-2">
-<h2 id="org8dffe92"><span class="section-number-2">2</span> アルファ版リリース</h2>
+<div id="outline-container-orgd66edce" class="outline-2">
+<h2 id="orgd66edce"><span class="section-number-2">2</span> iO Series 9</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-一通り実装が終わり、ゲームを通しでプレイして致命的なバグが出ないようになってきたので、アルファ版をリリースしました。zen tetrisを作った時と同じようにpygameに登録して(pygame使っていませんが、それでもいいらしいので)、twitterでつぶやいただけなので、誰か見てくれるのか分かりません。
+買ったのはOral-BのiO Series 9という最新モデルです。定価$300もする高級歯ブラシですが、ブラックフライデー割引で$250まで下がった時に買いました。交換用含めてブラシが4本付いているため、家族で共用しています。
 </p>
 
 <p>
-そもそも30〜40年前のゲームのリメイクなので、需要がほぼゼロだとは思います。まあ、Pythonの勉強という意味では役に立ったのでいいでしょう。不足していた実践経験を少し補うことはできたと思います。
+<img src="./images/io9.png" alt="io9.png" />
+(amazon.comから借用)
+</p>
+
+<p>
+ハイエンド製品らしく、非接触型の充電器が付属しています。洗面所は水を使う場所なので、非接触型充電器との相性が良いです。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org858d467" class="outline-2">
-<h2 id="org858d467"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
+<div id="outline-container-org0a90f50" class="outline-2">
+<h2 id="org0a90f50"><span class="section-number-2">3</span> 使ってみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-バグなどの問題点管理をgithub上でするようにしました。自分でissue登録して自分でfix、closeしていくだけなので少し寂しい感じです。前近代的にexcelでバグ管理するよりは、職場で使っているjiraに近くていい感じです。
+実は、電動歯ブラシは初めてです。ブラシに歯磨き粉を少しつけて本体に差し、動かしてみます。このモデルには圧力センサーが付いていて、力の過不足をランプの色で表示してくれます。どうも私の持ち方だと弱すぎるようで、普通に持っていたら、圧力が弱いことを示すピンク色になってしまいました。適度な圧力を示す緑色にするには、思ったよりも強く持たないと駄目なようです。
+</p>
+
+<p>
+また、ブラシのサイズは一見小さいように見えますが、唇と歯の間に入れるのが結構大変で、指で唇を浮かせないとうまく入りません。まあ、アメリカの歯ブラシは何故かどれも大きいので、アメリカ人にはこのサイズでも普通なのかもしれません。
+</p>
+
+<p>
+3,4分かけてとりあえず一通り磨きました。初回だけ、少し歯茎から出血しました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf084e4a" class="outline-2">
-<h2 id="orgf084e4a"><span class="section-number-2">4</span> 開発での経験</h2>
+<div id="outline-container-org0e210b8" class="outline-2">
+<h2 id="org0e210b8"><span class="section-number-2">4</span> 連携アプリ</h2>
 <div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-orgdc402a7" class="outline-3">
-<h3 id="orgdc402a7"><span class="section-number-3">4.1</span> 学んだこと</h3>
-<div class="outline-text-3" id="text-4-1">
 <p>
-Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデータ構造にだいぶ慣れました。setは重複排除できるだけの使いにくい(順番が変わるので)listといった印象で、ほとんど使いませんでした。list comprehensionやgenerator expressionの便利さに感動しました。walrus expression(<code>:=</code>)は結構微妙でした。うまく使っても1,2行減るくらいで、可読性が上がるわけでもないので。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org488e069" class="outline-3">
-<h3 id="org488e069"><span class="section-number-3">4.2</span> まだまだなこと</h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-クラスの設計が下手だと思います。後から様々なフラグアトリビュートを追加して複雑になる傾向がありました。今回はリアルタイムキースキャン以外はほぼ標準ライブラリのみのため、サードパーティーライブラリの使用スキルも身についていません。
+Oral-Bの電動歯ブラシにはスマホ用のアプリがあります。自分のPixel 4 (Android)に入れて使ってみます。
 </p>
 
 <p>
-きちんとしたプロジェクトでは致命的と思いますが、今回はユニットテストを全くしませんでした。作ったきり、一度も通っていないコードパスが結構残っていそうです。
+iO Series 9には3Dセンサーが付いていて、スマホと連動すると、磨き残しがわかるようになっています。これは磨き終わって100%にしたところ。
+<img src="./images/oralbapp1.png" alt="oralbapp1.png" />
 </p>
-</div>
-</div>
-</div>
 
-
-<div id="outline-container-orgdefde44" class="outline-2">
-<h2 id="orgdefde44"><span class="section-number-2">5</span> 次は、、</h2>
-<div class="outline-text-2" id="text-5">
 <p>
-バグが見つかったら直して、というようにペースを落として開発継続していくつもりです。
+当然ですが100%にしないと気持ち悪いので、無理矢理にでも100%にします。しかし、この3Dセンサーの精度がいまいち微妙で、磨いていない部分が磨いたことになっていたりします。100%にするために、最後に何度も同じところを磨くことになりますが、あまり意味がないです。。。
+<img src="./images/oralbapp2.png" alt="oralbapp2.png" />
+</p>
+
+<p>
+(続く)
 </p>
 </div>
 </div>
@@ -162,11 +151,11 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
         きょうす
     </span>
   </span>
-<time datetime="2021-04-18T00:00:00-04:00" pubdate>Sun 18 April 2021</time>  <span class="categories">
-    <a class='category' href='/category/python.html'>Python</a>
+<time datetime="2021-12-21T00:00:00-05:00" pubdate>Tue 21 December 2021</time>  <span class="categories">
+    <a class='category' href='/category/blog.html'>Blog</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+    <a class="category" href="/tag/blog.html">Blog</a>,    <a class="category" href="/tag/amerikasheng-huo.html">アメリカ生活</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
