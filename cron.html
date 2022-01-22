@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbfb6241">1. はじめに</a></li>
-<li><a href="#orge82aaee">2. venv環境を使う</a></li>
-<li><a href="#org3ec4b75">3. crontabに登録する</a></li>
-<li><a href="#org89adb59">4. 終わりに</a></li>
+<li><a href="#org7ecdbf3">1. はじめに</a></li>
+<li><a href="#org049dc02">2. venv環境を使う</a></li>
+<li><a href="#orgef43f23">3. crontabに登録する</a></li>
+<li><a href="#org0a13247">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbfb6241" class="outline-2">
-<h2 id="orgbfb6241"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org7ecdbf3" class="outline-2">
+<h2 id="org7ecdbf3"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使いたいので、少し工夫が必要です。
@@ -86,22 +86,22 @@ PythonのスクリプトをLinuxマシン上で定期実行することを考え
 </div>
 </div>
 
-<div id="outline-container-orge82aaee" class="outline-2">
-<h2 id="orge82aaee"><span class="section-number-2">2</span> venv環境を使う</h2>
+<div id="outline-container-org049dc02" class="outline-2">
+<h2 id="org049dc02"><span class="section-number-2">2</span> venv環境を使う</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-venv環境をactivateしてPythonスクリプトを実行するために、cronから
+venv環境をactivateしてPythonスクリプトを実行するためには、cronから
 </p>
 <pre class="example">
 python &lt;script&gt;.py
 </pre>
 
 <p>
-のように直接スクリプトを実行するのではなく、ヘルパーのシェルスクリプトを利用します。
+のように直接Pythonスクリプトを実行するのではなく、ヘルパーのシェルスクリプトを作ります。
 </p>
 
 <p>
-しかし、ここで次の問題が出てきます。venv環境をactivateするsourceコマンドは普通のshにはなく、bashを使わなくてはいけません。そこで、例えば次のようなスクリプトを使います。
+しかし、venv環境をactivateするsourceコマンドは普通のshにはなく、bashを使わなくてはいけません。そこで、例えば次のようなスクリプトになります。
 </p>
 <pre class="example">
 #!/usr/bin/bash
@@ -118,8 +118,8 @@ chmod a+x run_script.sh
 </div>
 </div>
 
-<div id="outline-container-org3ec4b75" class="outline-2">
-<h2 id="org3ec4b75"><span class="section-number-2">3</span> crontabに登録する</h2>
+<div id="outline-container-orgef43f23" class="outline-2">
+<h2 id="orgef43f23"><span class="section-number-2">3</span> crontabに登録する</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 crontabに登録してcron実行するために、
@@ -136,11 +136,11 @@ sudo crontab -e
 </pre>
 
 <p>
-のような行を追加します。上記は4時間毎の実行です。
+のような行を追加します。上記は4時間毎の実行です。 <code>0</code> は(毎時)ゼロ分を、 <code>*/4</code> は4時間毎を意味します。
 </p>
 
 <p>
-きちんと登録されたかどうかは以下のコマンドで確認できます。
+きちんと登録されたかどうかは以下のコマンドで表示、確認できます。
 </p>
 <pre class="example">
 sudo crontab -l
@@ -148,7 +148,7 @@ sudo crontab -l
 
 
 <p>
-デバッグのためには、もっと頻繁に例えば2分に1回の実行とし、print文やエラーをファイルに出力させるといいと思います。
+デバッグのためには、もっと頻繁に、例えば2分に1回の実行とし、print文やエラーをファイルに出力させるといいと思います。
 </p>
 <pre class="example">
 */2 * * * * &lt;/path/to/venv/folder&gt;/run_script.sh &gt;&gt; /tmp/out.txt 2&gt;&amp;1
@@ -167,8 +167,8 @@ sudo tail -f /var/log/cron
 </div>
 </div>
 
-<div id="outline-container-org89adb59" class="outline-2">
-<h2 id="org89adb59"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-org0a13247" class="outline-2">
+<h2 id="org0a13247"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセーをポストするようにしました。
