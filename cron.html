@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>クリスマスツリーを新調 &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>Pythonスクリプトをcronから定期実行する &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -39,13 +39,13 @@
 
 <ul class="main-navigation">
     <li><a href="/pages/about.html">About</a></li>
-      <li class="active">
+      <li >
         <a href="/category/blog.html">Blog</a>
       </li>
       <li >
         <a href="/category/english.html">English</a>
       </li>
-      <li >
+      <li class="active">
         <a href="/category/linux.html">Linux</a>
       </li>
       <li >
@@ -60,83 +60,118 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">クリスマスツリーを新調</h1>
+      <h1 class="entry-title">Pythonスクリプトをcronから定期実行する</h1>
     <p class="meta">
-<time datetime="2021-12-07T00:00:00-05:00" pubdate>Tue 07 December 2021</time>    </p>
+<time datetime="2022-01-22T00:00:00-05:00" pubdate>Sat 22 January 2022</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3cfdefb">1. はじめに</a></li>
-<li><a href="#org3d5a745">2. 購入</a></li>
-<li><a href="#orgead0480">3. 開封＆組み立て</a></li>
-<li><a href="#org600c6af">4. 終わりに</a></li>
+<li><a href="#orgbfb6241">1. はじめに</a></li>
+<li><a href="#orge82aaee">2. venv環境を使う</a></li>
+<li><a href="#org3ec4b75">3. crontabに登録する</a></li>
+<li><a href="#org89adb59">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3cfdefb" class="outline-2">
-<h2 id="org3cfdefb"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgbfb6241" class="outline-2">
+<h2 id="orgbfb6241"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-アパートの契約書に、生きたクリスマスツリーは駄目、と書かれてしまっているので、代替ツリーを用意することにしました。前回、現物を見ずに購入したCrate &amp; Barrelのツリーはあまりに大きく重いので、結局返品してしまいました。
+PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使いたいので、少し工夫が必要です。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org3d5a745" class="outline-2">
-<h2 id="org3d5a745"><span class="section-number-2">2</span> 購入</h2>
+<div id="outline-container-orge82aaee" class="outline-2">
+<h2 id="orge82aaee"><span class="section-number-2">2</span> venv環境を使う</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-新たに購入したのは、フィンランドのloviというブランドの<a href="https://lovi.fi/product/lovi-spruce-120cm/">120cmツリー</a> です。返品したツリーと同じ高さですが、loviのツリーは重さが2〜3kgらしいので安心です。なにせ、前回は梱包重量20kgありましたから。。。
-<img src="./images/ctreelovi.png" alt="ctreelovi.png" />
-(loviのサイトからお借りしました。)
+venv環境をactivateしてPythonスクリプトを実行するために、cronから
+</p>
+<pre class="example">
+python &lt;script&gt;.py
+</pre>
+
+<p>
+のように直接スクリプトを実行するのではなく、ヘルパーのシェルスクリプトを利用します。
 </p>
 
 <p>
-ブラックフライデーセールで買って、一週間で届きました。返品したツリーと箱のイメージがそっくりですが、二周り小さいです。まあ、これなら狭い我が家の収納スペースにも押し込めそうです。
-<img src="./images/ctreebox.png" alt="ctreebox.png" />
+しかし、ここで次の問題が出てきます。venv環境をactivateするsourceコマンドは普通のshにはなく、bashを使わなくてはいけません。そこで、例えば次のようなスクリプトを使います。
 </p>
-
+<pre class="example">
+#!/usr/bin/bash
+cd &lt;/path/to/venv/folder&gt;
+source bin/activate
+bin/python &lt;python_script&gt;.py
+</pre>
 <p>
-外箱の内側には、ほぼ同じサイズの内箱が入っていました。
-<img src="./images/ctreeboxin.png" alt="ctreeboxin.png" />
+これをrun_script.sh としてセーブし、実行可能にします。
 </p>
+<pre class="example">
+chmod a+x run_script.sh
+</pre>
 </div>
 </div>
 
-<div id="outline-container-orgead0480" class="outline-2">
-<h2 id="orgead0480"><span class="section-number-2">3</span> 開封＆組み立て</h2>
+<div id="outline-container-org3ec4b75" class="outline-2">
+<h2 id="org3ec4b75"><span class="section-number-2">3</span> crontabに登録する</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-上蓋を開けるとダンボールに何か書いてあります。よく見るとインストラクションのようです。そう言えば、他にインストラクションらしき紙は入っていません。こういった細部のこだわりに高級感を感じるかも。
-<img src="./images/ctreeinst.png" alt="ctreeinst.png" />
+crontabに登録してcron実行するために、
+</p>
+<pre class="example">
+sudo crontab -e
+</pre>
+
+<p>
+を実行します。すると、viでcrontabが開かれるので、
+</p>
+<pre class="example">
+0 */4 * * * &lt;/path/to/venv/folder&gt;/run_script.sh
+</pre>
+
+<p>
+のような行を追加します。上記は4時間毎の実行です。
 </p>
 
 <p>
-内蓋になっているインストラクションをめくると、無造作にパーツが入っていました。バルサ風な感じですが、白樺のベニア板から切り出しているそうです。返品したCrate &amp; Barrelのツリーは120cmのツリーが、パーツに分解せずにそのまま(!)入っていましたから。。。
-<img src="./images/ctreeparts.png" alt="ctreeparts.png" />
+きちんと登録されたかどうかは以下のコマンドで確認できます。
+</p>
+<pre class="example">
+sudo crontab -l
+</pre>
+
+
+<p>
+デバッグのためには、もっと頻繁に例えば2分に1回の実行とし、print文やエラーをファイルに出力させるといいと思います。
+</p>
+<pre class="example">
+*/2 * * * * &lt;/path/to/venv/folder&gt;/run_script.sh &gt;&gt; /tmp/out.txt 2&gt;&amp;1
+</pre>
+
+<p>
+上記において、 <code>2&gt;&amp;1</code> の部分は、エラーを標準出力にリダイレクトしています。
 </p>
 
 <p>
-インストラクションを見ながら組み立てます。釘などは一切使わず、パーツをはめ込んでいくだけです。20分くらいで完成しました。
-<img src="./images/ctreecmp.png" alt="ctreecmp.png" />
+実際にこれが実行されたかどうかはログを見ます。
 </p>
-
-<p>
-飾り付けしてみました。葉が無い分、ボリューム不足気味でしょうか。対称性のある幹のデザインが気に入っています。
-<img src="./images/ctreelight.png" alt="ctreelight.png" />
-</p>
+<pre class="example">
+sudo tail -f /var/log/cron
+</pre>
 </div>
 </div>
 
-<div id="outline-container-org600c6af" class="outline-2">
-<h2 id="org600c6af"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-org89adb59" class="outline-2">
+<h2 id="org89adb59"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-返品したCrate &amp; Barrelのツリーと同じ120cmサイズの、フィンランド製ツリーを新調しました。これからしばらくは、このツリーとクリスマスを過ごすことになると思います。
+上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセーをポストするようにしました。
 </p>
 </div>
 </div>
@@ -148,11 +183,11 @@
         きょうす
     </span>
   </span>
-<time datetime="2021-12-07T00:00:00-05:00" pubdate>Tue 07 December 2021</time>  <span class="categories">
-    <a class='category' href='/category/blog.html'>Blog</a>
+<time datetime="2022-01-22T00:00:00-05:00" pubdate>Sat 22 January 2022</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/blog.html">Blog</a>,    <a class="category" href="/tag/amerikasheng-huo.html">アメリカ生活</a>  </span>
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>

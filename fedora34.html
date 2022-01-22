@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org52758d9">1. はじめに</a></li>
-<li><a href="#orgcb2511c">2. Fedora34インストール</a>
+<li><a href="#org11eeacd">1. はじめに</a></li>
+<li><a href="#org5c723f5">2. Fedora34インストール</a>
 <ul>
-<li><a href="#orgc7d2afb">2.1. VM作成</a></li>
-<li><a href="#orgf93ea20">2.2. fedoraインストーラー</a></li>
-<li><a href="#org323dc56">2.3. fedora起動</a></li>
-<li><a href="#orgad1d709">2.4. Guest Additions</a></li>
+<li><a href="#orga8cdf19">2.1. VM作成</a></li>
+<li><a href="#orga58fecb">2.2. fedoraインストーラー</a></li>
+<li><a href="#org8621ebc">2.3. fedora起動</a></li>
+<li><a href="#org4c63ebc">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org8f6eaa3">3. emacsの設定</a></li>
-<li><a href="#org122803d">4. pythonの設定</a>
+<li><a href="#orgcdd638d">3. emacsの設定</a></li>
+<li><a href="#org4abda17">4. pythonの設定</a>
 <ul>
-<li><a href="#org16b37a2">4.1. pyenvを入れる</a></li>
+<li><a href="#org87133dc">4.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org52758d9" class="outline-2">
-<h2 id="org52758d9"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org11eeacd" class="outline-2">
+<h2 id="org11eeacd"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora34を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora34インストール及び設定の備忘録です。
@@ -102,12 +102,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-orgcb2511c" class="outline-2">
-<h2 id="orgcb2511c"><span class="section-number-2">2</span> Fedora34インストール</h2>
+<div id="outline-container-org5c723f5" class="outline-2">
+<h2 id="org5c723f5"><span class="section-number-2">2</span> Fedora34インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc7d2afb" class="outline-3">
-<h3 id="orgc7d2afb"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-orga8cdf19" class="outline-3">
+<h3 id="orga8cdf19"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 34 download</code> で検索して、isoファイルをダウンロードします。
@@ -134,8 +134,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-orgf93ea20" class="outline-3">
-<h3 id="orgf93ea20"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-orga58fecb" class="outline-3">
+<h3 id="orga58fecb"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora34のインストーラー起動画面が出ます。
@@ -153,8 +153,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org323dc56" class="outline-3">
-<h3 id="org323dc56"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-org8621ebc" class="outline-3">
+<h3 id="org8621ebc"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。しばらく不安になる画面で放置されますが、数十秒で使えるようになります。
@@ -178,8 +178,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-orgad1d709" class="outline-3">
-<h3 id="orgad1d709"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-org4c63ebc" class="outline-3">
+<h3 id="org4c63ebc"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -212,8 +212,8 @@ Fedora34としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-org8f6eaa3" class="outline-2">
-<h2 id="org8f6eaa3"><span class="section-number-2">3</span> emacsの設定</h2>
+<div id="outline-container-orgcdd638d" class="outline-2">
+<h2 id="orgcdd638d"><span class="section-number-2">3</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Fedoraには最初からviが入っていますが、私はあまり使えないためにemacsを入れます。ついでにvimも。
@@ -475,8 +475,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-org122803d" class="outline-2">
-<h2 id="org122803d"><span class="section-number-2">4</span> pythonの設定</h2>
+<div id="outline-container-org4abda17" class="outline-2">
+<h2 id="org4abda17"><span class="section-number-2">4</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Fedora34を入れたら、いきなりpython 3.9.6が/usr/bin/pythonとしてインストールされていました。
@@ -490,8 +490,8 @@ Python 3.9.6
 </pre>
 </div>
 
-<div id="outline-container-org16b37a2" class="outline-3">
-<h3 id="org16b37a2"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
+<div id="outline-container-org87133dc" class="outline-3">
+<h3 id="org87133dc"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.9.6なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -577,6 +577,9 @@ Python 3.9.6
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/cron.html">Pythonスクリプトをcronから定期実行する</a>
+      </li>
+      <li class="post">
           <a href="/oralb.html">Oral-Bの電動歯ブラシ</a>
       </li>
       <li class="post">
@@ -587,9 +590,6 @@ Python 3.9.6
       </li>
       <li class="post">
           <a href="/addadrs.html">アメリカから日本に自作ポストカードを送る</a>
-      </li>
-      <li class="post">
-          <a href="/medical.html">アメリカで健康診断</a>
       </li>
     </ul>
   </section>
@@ -608,7 +608,7 @@ Python 3.9.6
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
@@ -632,7 +632,7 @@ Python 3.9.6
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy;  2020&ndash;2021  きょうす kyos &mdash;
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
   <script src="/theme/js/modernizr-2.0.js"></script>
