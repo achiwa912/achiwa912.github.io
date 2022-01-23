@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>gitのmainブランチ &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">gitのmainブランチ</h1>
+    <p class="meta">
+<time datetime="2022-01-23T00:00:00-05:00" pubdate>Sun 23 January 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org618ec15">1. はじめに</a></li>
+<li><a href="#org99b255d">2. mainとmasterブランチ</a></li>
+<li><a href="#org47c9204">3. リモートのmainブランチにpushする</a></li>
+<li><a href="#orgce77026">4. まとめ</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org618ec15" class="outline-2">
+<h2 id="org618ec15"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+会社のgitlabにプロジェクトを作って、ローカルブランチをgit pushしたら、masterブランチへのマージリクエストになってしまいました。gitlabに作ったプロジェクトにはデフォルトで作られたmainブランチが既にあり、なんとかしなくてはいけません。
+</p>
+
+<p>
+これまでgit関係の操作は、ネットで検索しながらおまじないのようにコピペするだけでしたが、少し真面目にgitを勉強しないとダメそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99b255d" class="outline-2">
+<h2 id="org99b255d"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+githubが、master - slaveという単語がoffensiveなため、デフォルトのブランチをmainにしたことは知っていましたが、gitlabの <a href="https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/">このページ</a> によると、gitlabも去年の5月にデフォルトブランチをmasterからmainに変更したようです。
+</p>
+
+<p>
+今回検索して実行した一連のgitコマンドが載っていたWebサイトの情報が古くて、masterブランチを使うことを前提に書いてあったため、困った状況になってしまったものと思われます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org47c9204" class="outline-2">
+<h2 id="org47c9204"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+ということは、masterではなくmainにpushすれば良さそうです。しかし、
+</p>
+<pre class="example">
+(master)$ git push origin main
+</pre>
+
+<p>
+をすると、エラーが出ました。
+</p>
+<pre class="example">
+error: src refspec main does not match any.
+error: failed to push some refs to 'git@gitlab.&lt;snip&gt;/&lt;snip&gt;.git'
+</pre>
+
+
+<p>
+エラーメッセージでネット検索すると、<a href="https://stackoverflow.com/questions/65173291/git-push-error-src-refspec-main-does-not-match-any-on-linux">stackoverflowのページ</a> がヒットしました。ローカルに存在しないブランチにpushしようとしたためのようです。確認してみます。
+</p>
+<pre class="example">
+(master)$ git branch
+* master
+</pre>
+
+<p>
+あ、確かに。まずはローカルのmasterをmainにリネームします。
+</p>
+<pre class="example">
+(master)$ git branch -m master main
+(main)$ git branch
+* main
+</pre>
+
+<p>
+変わりました。
+</p>
+
+<p>
+再度、origin mainに pushします。
+</p>
+<pre class="example">
+$ git push origin main
+</pre>
+
+<p>
+またエラーが出ました。
+</p>
+<pre class="example">
+ ! [rejected]        main -&gt; main (fetch first)
+error: failed to push some refs to 'git@gitlab.&lt;snip&gt;/&lt;snip&gt;.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+</pre>
+<p>
+エラーメッセージで検索します。 <a href="https://stackoverflow.com/questions/24357108/updates-were-rejected-because-the-remote-contains-work-that-you-do-not-have-loca">別のstackoverflowのページ</a> がヒットしました。最初の回答にあったforceオプション(-f)を付けてみましたが、うまくいきません。もう少し下まで読んでみると、一度pullしてからpushすべしとのこと。
+</p>
+<pre class="example">
+$ git pull origin main
+&lt;snip&gt;
+ * branch            main       -&gt; FETCH_HEAD
+fatal: refusing to merge unrelated histories
+</pre>
+
+<p>
+泣きたい気分になってきました。検索してみると、これはリモートとローカルのmainブランチが全然バラバラなためだそうです。forceオプション(-f)も効きませんが、 <code>--allow-unrelated-histories</code> オプションを付けるとよさそうです。
+</p>
+<pre class="example">
+$ git pull origin main --allow-unrelated-histories
+&lt;snip&gt;
+ * branch            main       -&gt; FETCH_HEAD
+Merge made by the 'recursive' strategy.
+ README.md | 3 +++
+ 1 file changed, 3 insertions(+)
+ create mode 100644 README.md
+</pre>
+
+<p>
+やっとうまくいきました。
+この状態でpushします。
+</p>
+<pre class="example">
+$ git push origin main
+Counting objects: 5, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 689 bytes | 689.00 KiB/s, done.
+Total 5 (delta 1), reused 0 (delta 0)
+To gitlab.&lt;snip&gt;.git
+   ca59bc7..b2b785c  main -&gt; main
+</pre>
+<p>
+これでやりたかったことができました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce77026" class="outline-2">
+<h2 id="orgce77026"><span class="section-number-2">4</span> まとめ</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+今回の問題は、gitlabがデフォルトブランチをmainにしたのに、ローカルのgitはmasterのままだったことが出発点でした。対策として、以下のステップが必要でした。
+</p>
+<ol class="org-ol">
+<li>ローカルブランチをmasterからmainにリネームする(<code>git branch -m master main</code>)</li>
+<li>リモートのmainブランチをヒストリー無視オプションをつけてpullする(<code>git pull origin main --allow-unrelated-histories</code>)</li>
+<li>リモートのmainブランチにpushする(<code>git push origin main</code>)</li>
+</ol>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-01-23T00:00:00-05:00" pubdate>Sun 23 January 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/git_main.html">gitのmainブランチ</a>
+      </li>
+      <li class="post">
+          <a href="/cron.html">Pythonスクリプトをcronから定期実行する</a>
+      </li>
+      <li class="post">
+          <a href="/oralb.html">Oral-Bの電動歯ブラシ</a>
+      </li>
+      <li class="post">
+          <a href="/oilheater.html">デロンギのオイルヒーター</a>
+      </li>
+      <li class="post">
+          <a href="/newctree.html">クリスマスツリーを新調</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
