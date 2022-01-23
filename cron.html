@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7ecdbf3">1. はじめに</a></li>
-<li><a href="#org049dc02">2. venv環境を使う</a></li>
-<li><a href="#orgef43f23">3. crontabに登録する</a></li>
-<li><a href="#org0a13247">4. 終わりに</a></li>
+<li><a href="#org56addaa">1. はじめに</a></li>
+<li><a href="#orgb0084ea">2. venv環境を使う</a></li>
+<li><a href="#org450d145">3. crontabに登録する</a></li>
+<li><a href="#orgfb646d2">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7ecdbf3" class="outline-2">
-<h2 id="org7ecdbf3"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org56addaa" class="outline-2">
+<h2 id="org56addaa"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使いたいので、少し工夫が必要です。
@@ -86,8 +86,8 @@ PythonのスクリプトをLinuxマシン上で定期実行することを考え
 </div>
 </div>
 
-<div id="outline-container-org049dc02" class="outline-2">
-<h2 id="org049dc02"><span class="section-number-2">2</span> venv環境を使う</h2>
+<div id="outline-container-orgb0084ea" class="outline-2">
+<h2 id="orgb0084ea"><span class="section-number-2">2</span> venv環境を使う</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 venv環境をactivateしてPythonスクリプトを実行するためには、cronから
@@ -118,8 +118,8 @@ chmod a+x run_script.sh
 </div>
 </div>
 
-<div id="outline-container-orgef43f23" class="outline-2">
-<h2 id="orgef43f23"><span class="section-number-2">3</span> crontabに登録する</h2>
+<div id="outline-container-org450d145" class="outline-2">
+<h2 id="org450d145"><span class="section-number-2">3</span> crontabに登録する</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 crontabに登録してcron実行するために、
@@ -167,11 +167,16 @@ sudo tail -f /var/log/cron
 </div>
 </div>
 
-<div id="outline-container-org0a13247" class="outline-2">
-<h2 id="org0a13247"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgfb646d2" class="outline-2">
+<h2 id="orgfb646d2"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセーをポストするようにしました。
+更に、サーバーにインストール済みのバージョンよりも新しいバージョンが無いか、Jenkinsをチェックして比較しています。
+</p>
+
+<p>
+このように、社内システムのAPIを使って「退屈なこと(boring stuff)」を自動化するのに、手軽に使えて高機能なPythonは向いていると思います。
 </p>
 </div>
 </div>
