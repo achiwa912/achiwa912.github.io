@@ -69,35 +69,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgef40a0a">1. はじめに</a></li>
-<li><a href="#orgc5cf3e2">2. Abstract</a></li>
-<li><a href="#orgf6e22c7">3. ICAP Overall Operation</a>
+<li><a href="#org62810d9">1. はじめに</a></li>
+<li><a href="#org9d47eae">2. Abstract</a></li>
+<li><a href="#org1c1caa9">3. ICAP Overall Operation</a>
 <ul>
-<li><a href="#org423a564">3.1. リクエスト修正モード</a></li>
-<li><a href="#org6a9e305">3.2. レスポンス修正モード</a></li>
+<li><a href="#org6788cf7">3.1. リクエスト修正モード</a></li>
+<li><a href="#org832e877">3.2. レスポンス修正モード</a></li>
 </ul>
 </li>
-<li><a href="#orgf4f2712">4. プロトコルの説明(セマンティクス)</a>
+<li><a href="#org8fa6c59">4. プロトコルの説明(セマンティクス)</a>
 <ul>
-<li><a href="#orgcf86c8d">4.1. 一般的なオペレーション</a></li>
-<li><a href="#org2a01ddf">4.2. ICAP URIs</a></li>
-<li><a href="#orgf124f0c">4.3. ICAPヘッダー</a>
+<li><a href="#org517c22a">4.1. 一般的なオペレーション</a></li>
+<li><a href="#orgab6f0dc">4.2. ICAP URIs</a></li>
+<li><a href="#orgab75ca5">4.3. ICAPヘッダー</a>
 <ul>
-<li><a href="#orgdcb4434">4.3.1. リクエストとレスポンスに共通なヘッダー</a></li>
-<li><a href="#orga56b8f2">4.3.2. リクエストヘッダー</a></li>
-<li><a href="#orgfd1c8a6">4.3.3. レスポンスヘッダー</a></li>
-<li><a href="#orgc17ff7b">4.3.4. HTTPメッセージにおけるICAP関連ヘッダー</a></li>
+<li><a href="#org5f3e1b3">4.3.1. リクエストとレスポンスに共通なヘッダー</a></li>
+<li><a href="#orgadb1fcf">4.3.2. リクエストヘッダー</a></li>
+<li><a href="#org3dbbe8e">4.3.3. レスポンスヘッダー</a></li>
+<li><a href="#org00b1a03">4.3.4. HTTPメッセージにおけるICAP関連ヘッダー</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org89162e9">5. RFC 3507のcopyright statement</a></li>
+<li><a href="#org6683769">5. RFC 3507のcopyright statement</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgef40a0a" class="outline-2">
-<h2 id="orgef40a0a"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org62810d9" class="outline-2">
+<h2 id="org62810d9"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 ウイルススキャンサーバーで使われる
@@ -114,8 +114,8 @@ RFC 3507を読んでみます。概要プラスアルファくらいまで。
 </div>
 </div>
 
-<div id="outline-container-orgc5cf3e2" class="outline-2">
-<h2 id="orgc5cf3e2"><span class="section-number-2">2</span> Abstract</h2>
+<div id="outline-container-org9d47eae" class="outline-2">
+<h2 id="org9d47eae"><span class="section-number-2">2</span> Abstract</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ICAPは、HTTPのサービスに対して、シンプルなオブジェクトベースのcontent vectoringを提供する。
@@ -140,12 +140,12 @@ ICAPクライアントはICAPサーバーにHTTPメッセージを送って、�
 </div>
 </div>
 
-<div id="outline-container-orgf6e22c7" class="outline-2">
-<h2 id="orgf6e22c7"><span class="section-number-2">3</span> ICAP Overall Operation</h2>
+<div id="outline-container-org1c1caa9" class="outline-2">
+<h2 id="org1c1caa9"><span class="section-number-2">3</span> ICAP Overall Operation</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org423a564" class="outline-3">
-<h3 id="org423a564"><span class="section-number-3">3.1</span> リクエスト修正モード</h3>
+<div id="outline-container-org6788cf7" class="outline-3">
+<h3 id="org6788cf7"><span class="section-number-3">3.1</span> リクエスト修正モード</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 "request modificaiton" (reqmod) モードでは、ICAPクライアントはHTTPリクエストをICAPサーバーに送る。
@@ -222,8 +222,8 @@ ICAP-client    --------------&gt;   ICAP-resource
 </div>
 
 
-<div id="outline-container-org6a9e305" class="outline-3">
-<h3 id="org6a9e305"><span class="section-number-3">3.2</span> レスポンス修正モード</h3>
+<div id="outline-container-org832e877" class="outline-3">
+<h3 id="org832e877"><span class="section-number-3">3.2</span> レスポンス修正モード</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 "response modificaiton" (respmod)モードでは、ICAPクライアントはHTTPレスポンスをICAPサーバーに送る。(ICAPクライアントが送るレスポンスは、普通はオリジンサーバーによって生成されたものである)
@@ -273,12 +273,12 @@ ICAP-client    --------------&gt;   ICAP-resource
 </div>
 </div>
 
-<div id="outline-container-orgf4f2712" class="outline-2">
-<h2 id="orgf4f2712"><span class="section-number-2">4</span> プロトコルの説明(セマンティクス)</h2>
+<div id="outline-container-org8fa6c59" class="outline-2">
+<h2 id="org8fa6c59"><span class="section-number-2">4</span> プロトコルの説明(セマンティクス)</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgcf86c8d" class="outline-3">
-<h3 id="orgcf86c8d"><span class="section-number-3">4.1</span> 一般的なオペレーション</h3>
+<div id="outline-container-org517c22a" class="outline-3">
+<h3 id="org517c22a"><span class="section-number-3">4.1</span> 一般的なオペレーション</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 ICAPはHTTP/1.1にセマンティクスも使用法もよく似た、リクエスト/レスポンスプロトコルである。似ているが、ICAPはHTTPでは無く、HTTP上で動くアプリケーションプロトコルでも無い。例えばこれはつまり、HTTP surrogateがICAPメッセージをフォワードできないことを意味する。
@@ -308,8 +308,8 @@ HTTPとよく似ているけどHTTPではなく、HTTP上で動く何かでも�
 </div>
 </div>
 
-<div id="outline-container-org2a01ddf" class="outline-3">
-<h3 id="org2a01ddf"><span class="section-number-3">4.2</span> ICAP URIs</h3>
+<div id="outline-container-orgab6f0dc" class="outline-3">
+<h3 id="orgab6f0dc"><span class="section-number-3">4.2</span> ICAP URIs</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 全てのICAPリクエストはICAP URIを使って、サーバーから要求するICAPリソースを指定する。これは、完全なホスト名と要求するリソースのパスを両方指定する、絶対URIでなくてはならない。URIについてはRFC 2396参照。ICAPによって規定されるURIは、
@@ -338,8 +338,8 @@ icap://icap.net/servies?mode=translate&amp;lang=french
 </div>
 </div>
 
-<div id="outline-container-orgf124f0c" class="outline-3">
-<h3 id="orgf124f0c"><span class="section-number-3">4.3</span> ICAPヘッダー</h3>
+<div id="outline-container-orgab75ca5" class="outline-3">
+<h3 id="orgab75ca5"><span class="section-number-3">4.3</span> ICAPヘッダー</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 以下のセクションでICAPメッセージで有効なヘッダーを定義する。
@@ -361,8 +361,8 @@ icap://icap.net/servies?mode=translate&amp;lang=french
 </blockquote>
 </div>
 
-<div id="outline-container-orgdcb4434" class="outline-4">
-<h4 id="orgdcb4434"><span class="section-number-4">4.3.1</span> リクエストとレスポンスに共通なヘッダー</h4>
+<div id="outline-container-org5f3e1b3" class="outline-4">
+<h4 id="org5f3e1b3"><span class="section-number-4">4.3.1</span> リクエストとレスポンスに共通なヘッダー</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 全てのICAPメッセージのヘッダーは以下のディレクティブを含んでも良い:
@@ -393,8 +393,8 @@ ICAP特有のヘッダーは以下である。
 </div>
 </div>
 
-<div id="outline-container-orga56b8f2" class="outline-4">
-<h4 id="orga56b8f2"><span class="section-number-4">4.3.2</span> リクエストヘッダー</h4>
+<div id="outline-container-orgadb1fcf" class="outline-4">
+<h4 id="orgadb1fcf"><span class="section-number-4">4.3.2</span> リクエストヘッダー</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 HTTPと同様に、ICAPリクエストはメソッド、リクエストするICAPリソースの完全なURI、ICAPバージョン文字列を含むリクエスト行で始まる必要がある。最新バージョン番号は"1.0"である。
@@ -452,8 +452,8 @@ HTTPライクなヘッダーに加え、ICAP特有のリクエストヘッダー
 </div>
 </div>
 
-<div id="outline-container-orgfd1c8a6" class="outline-4">
-<h4 id="orgfd1c8a6"><span class="section-number-4">4.3.3</span> レスポンスヘッダー</h4>
+<div id="outline-container-org3dbbe8e" class="outline-4">
+<h4 id="org3dbbe8e"><span class="section-number-4">4.3.3</span> レスポンスヘッダー</h4>
 <div class="outline-text-4" id="text-4-3-3">
 <p>
 ICAPのレスポンスは、フォーマットがHTTPによく似た、ICAPバージョンとステータスコードを含むICAPステータス行で始まる必要がある。例えば、
@@ -515,8 +515,8 @@ HTTPライクなヘッダーに加え、ICAP特有のレスポンスヘッダー
 </div>
 </div>
 
-<div id="outline-container-orgc17ff7b" class="outline-4">
-<h4 id="orgc17ff7b"><span class="section-number-4">4.3.4</span> HTTPメッセージにおけるICAP関連ヘッダー</h4>
+<div id="outline-container-org00b1a03" class="outline-4">
+<h4 id="org00b1a03"><span class="section-number-4">4.3.4</span> HTTPメッセージにおけるICAP関連ヘッダー</h4>
 <div class="outline-text-4" id="text-4-3-4">
 <p>
 (気が向いたら続く)
@@ -526,8 +526,8 @@ HTTPライクなヘッダーに加え、ICAP特有のレスポンスヘッダー
 </div>
 </div>
 
-<div id="outline-container-org89162e9" class="outline-2">
-<h2 id="org89162e9"><span class="section-number-2">5</span> RFC 3507のcopyright statement</h2>
+<div id="outline-container-org6683769" class="outline-2">
+<h2 id="org6683769"><span class="section-number-2">5</span> RFC 3507のcopyright statement</h2>
 <div class="outline-text-2" id="text-5">
 <pre class="example">
 Full Copyright Statement
