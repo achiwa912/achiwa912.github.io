@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7669692">1. はじめに</a></li>
-<li><a href="#org4d51f53">2. mainとmasterブランチ</a></li>
-<li><a href="#orgcd8ad37">3. リモートのmainブランチにpushする</a></li>
-<li><a href="#org7a293b8">4. まとめ</a></li>
+<li><a href="#org5fffdb0">1. はじめに</a></li>
+<li><a href="#org430928b">2. mainとmasterブランチ</a></li>
+<li><a href="#orgd57f17c">3. リモートのmainブランチにpushする</a></li>
+<li><a href="#orge9a280b">4. まとめ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7669692" class="outline-2">
-<h2 id="org7669692"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org5fffdb0" class="outline-2">
+<h2 id="org5fffdb0"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社のgitlabにプロジェクトを作って、ローカルブランチをgit pushしたら、masterブランチへのマージリクエストになってしまいました。gitlabに作ったプロジェクトにはデフォルトで作られたmainブランチが既にあり、なんとかしなくてはいけません。
@@ -90,8 +90,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4d51f53" class="outline-2">
-<h2 id="org4d51f53"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
+<div id="outline-container-org430928b" class="outline-2">
+<h2 id="org430928b"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 githubが、master - slaveという単語がoffensiveなため、デフォルトのブランチをmainにしたことは知っていましたが、gitlabの <a href="https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/">このページ</a> によると、gitlabも去年の5月にデフォルトブランチをmasterからmainに変更したようです。
@@ -103,8 +103,8 @@ githubが、master - slaveという単語がoffensiveなため、デフォルト
 </div>
 </div>
 
-<div id="outline-container-orgcd8ad37" class="outline-2">
-<h2 id="orgcd8ad37"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
+<div id="outline-container-orgd57f17c" class="outline-2">
+<h2 id="orgd57f17c"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ということは、masterではなくmainにpushすれば良さそうです。しかし、
@@ -173,7 +173,7 @@ fatal: refusing to merge unrelated histories
 </pre>
 
 <p>
-検索してみると、これはリモートとローカルのmainブランチが全然バラバラなためだそうです。forceオプション(-f)も効きませんでしたが、 <code>--allow-unrelated-histories</code> オプションを付けるとよさそうです。
+しかしまたエラーです。検索してみると、これはリモートとローカルのmainブランチが全然バラバラなためだそうです。forceオプション(-f)も効きませんでしたが、 <code>--allow-unrelated-histories</code> オプションを付けるとよさそうです。
 </p>
 <pre class="example">
 $ git pull origin main --allow-unrelated-histories
@@ -205,8 +205,8 @@ To gitlab.&lt;snip&gt;.git
 </div>
 </div>
 
-<div id="outline-container-org7a293b8" class="outline-2">
-<h2 id="org7a293b8"><span class="section-number-2">4</span> まとめ</h2>
+<div id="outline-container-orge9a280b" class="outline-2">
+<h2 id="orge9a280b"><span class="section-number-2">4</span> まとめ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 今回の問題は、gitlabがデフォルトブランチをmainにしたのに、ローカルのgitはmasterのままだったことが出発点でした。対策として、以下のステップが必要でした。
