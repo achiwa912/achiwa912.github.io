@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc1ed0d1">1. はじめに</a></li>
-<li><a href="#org704cb0d">2. mainとmasterブランチ</a></li>
-<li><a href="#org28da92b">3. リモートのmainブランチにpushする</a></li>
-<li><a href="#org17b14ed">4. まとめ</a></li>
+<li><a href="#org7669692">1. はじめに</a></li>
+<li><a href="#org4d51f53">2. mainとmasterブランチ</a></li>
+<li><a href="#orgcd8ad37">3. リモートのmainブランチにpushする</a></li>
+<li><a href="#org7a293b8">4. まとめ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc1ed0d1" class="outline-2">
-<h2 id="orgc1ed0d1"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org7669692" class="outline-2">
+<h2 id="org7669692"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社のgitlabにプロジェクトを作って、ローカルブランチをgit pushしたら、masterブランチへのマージリクエストになってしまいました。gitlabに作ったプロジェクトにはデフォルトで作られたmainブランチが既にあり、なんとかしなくてはいけません。
@@ -90,8 +90,8 @@
 </div>
 </div>
 
-<div id="outline-container-org704cb0d" class="outline-2">
-<h2 id="org704cb0d"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
+<div id="outline-container-org4d51f53" class="outline-2">
+<h2 id="org4d51f53"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 githubが、master - slaveという単語がoffensiveなため、デフォルトのブランチをmainにしたことは知っていましたが、gitlabの <a href="https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/">このページ</a> によると、gitlabも去年の5月にデフォルトブランチをmasterからmainに変更したようです。
@@ -103,8 +103,8 @@ githubが、master - slaveという単語がoffensiveなため、デフォルト
 </div>
 </div>
 
-<div id="outline-container-org28da92b" class="outline-2">
-<h2 id="org28da92b"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
+<div id="outline-container-orgcd8ad37" class="outline-2">
+<h2 id="orgcd8ad37"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ということは、masterではなくmainにpushすれば良さそうです。しかし、
@@ -163,7 +163,7 @@ hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 </pre>
 <p>
-エラーメッセージで検索します。 <a href="https://stackoverflow.com/questions/24357108/updates-were-rejected-because-the-remote-contains-work-that-you-do-not-have-loca">別のstackoverflowのページ</a> がヒットしました。最初の回答にあったforceオプション(-f)を付けてみましたが、うまくいきません。もう少し下まで読んでみると、一度pullしてからpushすべしとのこと。
+ヒントによると、一度pullしてからpushすべしとのこと。
 </p>
 <pre class="example">
 $ git pull origin main
@@ -173,7 +173,7 @@ fatal: refusing to merge unrelated histories
 </pre>
 
 <p>
-泣きたい気分になってきました。検索してみると、これはリモートとローカルのmainブランチが全然バラバラなためだそうです。forceオプション(-f)も効きませんが、 <code>--allow-unrelated-histories</code> オプションを付けるとよさそうです。
+検索してみると、これはリモートとローカルのmainブランチが全然バラバラなためだそうです。forceオプション(-f)も効きませんでしたが、 <code>--allow-unrelated-histories</code> オプションを付けるとよさそうです。
 </p>
 <pre class="example">
 $ git pull origin main --allow-unrelated-histories
@@ -186,7 +186,7 @@ Merge made by the 'recursive' strategy.
 </pre>
 
 <p>
-やっとうまくいきました。
+うまくいきました。
 この状態でpushします。
 </p>
 <pre class="example">
@@ -200,13 +200,13 @@ To gitlab.&lt;snip&gt;.git
    ca59bc7..b2b785c  main -&gt; main
 </pre>
 <p>
-これでやりたかったことができました。
+これでやっと、やりたかったことができました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org17b14ed" class="outline-2">
-<h2 id="org17b14ed"><span class="section-number-2">4</span> まとめ</h2>
+<div id="outline-container-org7a293b8" class="outline-2">
+<h2 id="org7a293b8"><span class="section-number-2">4</span> まとめ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 今回の問題は、gitlabがデフォルトブランチをmainにしたのに、ローカルのgitはmasterのままだったことが出発点でした。対策として、以下のステップが必要でした。
