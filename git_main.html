@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>gitのmainブランチ &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>gitlabのmasterとmainブランチ &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -60,7 +60,7 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">gitのmainブランチ</h1>
+      <h1 class="entry-title">gitlabのmasterとmainブランチ</h1>
     <p class="meta">
 <time datetime="2022-01-23T00:00:00-05:00" pubdate>Sun 23 January 2022</time>    </p>
 </header>
@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org618ec15">1. はじめに</a></li>
-<li><a href="#org99b255d">2. mainとmasterブランチ</a></li>
-<li><a href="#org47c9204">3. リモートのmainブランチにpushする</a></li>
-<li><a href="#orgce77026">4. まとめ</a></li>
+<li><a href="#orgc1ed0d1">1. はじめに</a></li>
+<li><a href="#org704cb0d">2. mainとmasterブランチ</a></li>
+<li><a href="#org28da92b">3. リモートのmainブランチにpushする</a></li>
+<li><a href="#org17b14ed">4. まとめ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org618ec15" class="outline-2">
-<h2 id="org618ec15"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgc1ed0d1" class="outline-2">
+<h2 id="orgc1ed0d1"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社のgitlabにプロジェクトを作って、ローカルブランチをgit pushしたら、masterブランチへのマージリクエストになってしまいました。gitlabに作ったプロジェクトにはデフォルトで作られたmainブランチが既にあり、なんとかしなくてはいけません。
@@ -90,8 +90,8 @@
 </div>
 </div>
 
-<div id="outline-container-org99b255d" class="outline-2">
-<h2 id="org99b255d"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
+<div id="outline-container-org704cb0d" class="outline-2">
+<h2 id="org704cb0d"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 githubが、master - slaveという単語がoffensiveなため、デフォルトのブランチをmainにしたことは知っていましたが、gitlabの <a href="https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/">このページ</a> によると、gitlabも去年の5月にデフォルトブランチをmasterからmainに変更したようです。
@@ -103,8 +103,8 @@ githubが、master - slaveという単語がoffensiveなため、デフォルト
 </div>
 </div>
 
-<div id="outline-container-org47c9204" class="outline-2">
-<h2 id="org47c9204"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
+<div id="outline-container-org28da92b" class="outline-2">
+<h2 id="org28da92b"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ということは、masterではなくmainにpushすれば良さそうです。しかし、
@@ -205,8 +205,8 @@ To gitlab.&lt;snip&gt;.git
 </div>
 </div>
 
-<div id="outline-container-orgce77026" class="outline-2">
-<h2 id="orgce77026"><span class="section-number-2">4</span> まとめ</h2>
+<div id="outline-container-org17b14ed" class="outline-2">
+<h2 id="org17b14ed"><span class="section-number-2">4</span> まとめ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 今回の問題は、gitlabがデフォルトブランチをmainにしたのに、ローカルのgitはmasterのままだったことが出発点でした。対策として、以下のステップが必要でした。
@@ -241,7 +241,7 @@ To gitlab.&lt;snip&gt;.git
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/git_main.html">gitのmainブランチ</a>
+          <a href="/git_main.html">gitlabのmasterとmainブランチ</a>
       </li>
       <li class="post">
           <a href="/cron.html">Pythonスクリプトをcronから定期実行する</a>
