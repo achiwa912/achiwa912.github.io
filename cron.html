@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org58769b6">1. はじめに</a></li>
-<li><a href="#org843565b">2. venv環境を使う</a></li>
-<li><a href="#org5c48aea">3. crontabに登録する</a></li>
-<li><a href="#org98701d5">4. 終わりに</a></li>
+<li><a href="#orgd068174">1. はじめに</a></li>
+<li><a href="#orgd3957e8">2. venv環境を使う</a></li>
+<li><a href="#orgb369153">3. crontabに登録する</a></li>
+<li><a href="#org5882dde">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org58769b6" class="outline-2">
-<h2 id="org58769b6"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgd068174" class="outline-2">
+<h2 id="orgd068174"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはジョブスケジューラーのcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使うには少し工夫が必要です。
@@ -86,8 +86,8 @@ PythonのスクリプトをLinuxマシン上で定期実行することを考え
 </div>
 </div>
 
-<div id="outline-container-org843565b" class="outline-2">
-<h2 id="org843565b"><span class="section-number-2">2</span> venv環境を使う</h2>
+<div id="outline-container-orgd3957e8" class="outline-2">
+<h2 id="orgd3957e8"><span class="section-number-2">2</span> venv環境を使う</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 venv環境をactivateしてPythonスクリプトを実行するためには、cronから
@@ -97,11 +97,11 @@ python &lt;script&gt;.py
 </pre>
 
 <p>
-のように直接Pythonスクリプトを実行するのではなく、ヘルパーのシェルスクリプトを作ります。
+のように直接Pythonを呼んでスクリプトを実行するのではなく、ヘルパーのシェルスクリプトに頼ります。
 </p>
 
 <p>
-しかし、venv環境をactivateするsourceコマンドは普通のshにはなく、bashを使わなくてはいけません。そこで、例えば次のようなスクリプトになります。
+しかし、venv環境をactivateするsourceコマンドは普通のshにはなく、bashを使わなくてはいけません。そこで、例えば次のようなスクリプトを作ります。
 </p>
 <pre class="example">
 #!/usr/bin/bash
@@ -118,8 +118,8 @@ chmod a+x run_script.sh
 </div>
 </div>
 
-<div id="outline-container-org5c48aea" class="outline-2">
-<h2 id="org5c48aea"><span class="section-number-2">3</span> crontabに登録する</h2>
+<div id="outline-container-orgb369153" class="outline-2">
+<h2 id="orgb369153"><span class="section-number-2">3</span> crontabに登録する</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 crontabに登録してcron実行するために、
@@ -180,8 +180,8 @@ sudo tail -f /var/log/cron
 </div>
 </div>
 
-<div id="outline-container-org98701d5" class="outline-2">
-<h2 id="org98701d5"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-org5882dde" class="outline-2">
+<h2 id="org5882dde"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセージをポストするようにしました。更に、サーバーにインストール済みのバージョンよりも新しいバージョンが無いか、Jenkinsをチェックして比較しています。
