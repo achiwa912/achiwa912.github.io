@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>org-mode + githubで個人用Wikiを作る &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">org-mode + githubで個人用Wikiを作る</h1>
+    <p class="meta">
+<time datetime="2022-01-31T00:00:00-05:00" pubdate>Mon 31 January 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgfd16af9">1. はじめに</a></li>
+<li><a href="#orgb250d68">2. githubを使う</a>
+<ul>
+<li><a href="#org05bb95d">2.1. org-modeのレンダリング</a></li>
+<li><a href="#org788499d">2.2. githubのプライベートレポジトリ</a></li>
+<li><a href="#orga7f887a">2.3. 複数デバイスでの共有</a></li>
+<li><a href="#org241b243">2.4. コンパイル等不要</a></li>
+</ul>
+</li>
+<li><a href="#org2cc3b03">3. Tips</a>
+<ul>
+<li><a href="#orgc221660">3.1. READMEからリンクを貼る</a></li>
+</ul>
+</li>
+<li><a href="#orgbdb0cce">4. 終わりに</a></li>
+<li><a href="#org815aadf">5. おまけ</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfd16af9" class="outline-2">
+<h2 id="orgfd16af9"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+私はemacsのorg-modeでメモを書いていますが、複数台のPCで編集したり、モバイルデバイスから閲覧するよい方法が無いか探していました。ブログに使っているgithub pagesにアクセス制限をかけられればよいのですが、そのためには有償のプランを契約しないとだめそうです。また、Pelican等の静的サイトジェネレーターでHTMLにレンダリングする必要があり、手間がかかります。
+</p>
+
+<p>
+一方で、Dropbox等のクラウドストレージに作成したorgファイルを置くだけでは、テキストファイルとしての閲覧しかできないため、見やすいようにレンダリングして欲しいところです。
+</p>
+
+<p>
+求める要件を並べると、こんな感じです:
+</p>
+<ol class="org-ol">
+<li>複数デバイスで編集、閲覧したい</li>
+<li>個人用のWikiなので、アクセス制限をかけたい</li>
+<li>orgファイルそのままでなく、見やすくレンダリングして表示しして欲しい</li>
+<li>コンパイルやエキスポートの手間はなるべくかけたくない</li>
+<li>できれば無料が良い</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgb250d68" class="outline-2">
+<h2 id="orgb250d68"><span class="section-number-2">2</span> githubを使う</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+いろいろと検索したところ、githubとorg-modeの相性が良さそうであることがわかりました。
+</p>
+</div>
+
+<div id="outline-container-org05bb95d" class="outline-3">
+<h3 id="org05bb95d"><span class="section-number-3">2.1</span> org-modeのレンダリング</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+これまで私はREADMEをわざわざ慣れないマークダウン記法で書いていましたが、なんと、githubは <code>README.org</code> ファイルを作成すればレンダリングして表示してくれるという <a href="http://yasuyk.github.io/blog/2013/04/27/github-readme-org-mode/">うれしい情報</a> を見つけました。(yasuykさんありがとうございます!)
+</p>
+
+<p>
+そして、READMEだけでなく、レポジトリに置いた他の <code>*.org</code> ファイルもレンダリングして表示してくれるようです。
+</p>
+
+<p>
+orgファイルのレンダリング例:
+<img src="./images/orgrender.png" alt="orgrender.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org788499d" class="outline-3">
+<h3 id="org788499d"><span class="section-number-3">2.2</span> githubのプライベートレポジトリ</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+更に、githubは2019年からプライベートレポジトリの作成を <a href="https://github.blog/2019-01-07-new-year-new-github/">無制限に無償化していた</a> ようです。私はgithubに複数レポジトリを持って、ブログもgithub pagesで公開していましたが、このことは知りませんでした。これはありがたい変更です。
+</p>
+
+<p>
+レポジトリ作成の際に、publicでなくprivateを選択します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga7f887a" class="outline-3">
+<h3 id="orga7f887a"><span class="section-number-3">2.3</span> 複数デバイスでの共有</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+普通のgithubレポジトリなので、もちろん複数デバイスでの閲覧、変更が可能です。githubに同じアカウントでサインインするだけです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org241b243" class="outline-3">
+<h3 id="org241b243"><span class="section-number-3">2.4</span> コンパイル等不要</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+私のgithub pagesのブログは静的サイトジェネレーターのPelicanを使っていますが、だいぶ記事がたまってきたせいか、コンパイルに1分以上かかるようになっています。
+</p>
+
+<p>
+githubがorgファイルのレンダリングをしてくれるので、レポジトリにorgファイルのままgit pushするだけで済みます。毎回プッシュのたびに1分時間が節約できるのは、大きなメリットです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2cc3b03" class="outline-2">
+<h2 id="org2cc3b03"><span class="section-number-2">3</span> Tips</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgc221660" class="outline-3">
+<h3 id="orgc221660"><span class="section-number-3">3.1</span> READMEからリンクを貼る</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+githubではご存知のように、レポジトリのトップページにREADMEファイルをレンダリングして表示します。README.orgに各orgファイル(=メモ)へのリンクを貼っておくことで、使い勝手が良くなると思います。
+</p>
+
+<p>
+パーソナルWikiトップページ:
+<img src="./images/readmeorg.png" alt="readmeorg.png" />
+</p>
+
+<p>
+現在、手動でREADME.orgを作成して各記事へのリンクを貼っています。自動で作成してくれるともっとよいのですが、既に先人が作っているような気もするので、うまい方法がないか探してみたいと思います。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbdb0cce" class="outline-2">
+<h2 id="orgbdb0cce"><span class="section-number-2">4</span> 終わりに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+org-mode と github のプライベートレポジトリを利用して、複数デバイスから編集、閲覧できる個人用のWikiページを持てることがわかりました。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org815aadf" class="outline-2">
+<h2 id="org815aadf"><span class="section-number-2">5</span> おまけ</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+いつの頃からか、org-modeで改行すると、勝手にインデントされるようになりました。ものすごく使い勝手が悪いので、抑止する方法を探しました。
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="font-weight: bold; font-style: italic;">;; </span><span style="font-weight: bold; font-style: italic;">Suppress auto-indent for org-mode</span>
+(add-hook 'org-mode-hook '(<span style="font-weight: bold;">lambda</span> () (electric-indent-local-mode -1)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-01-31T00:00:00-05:00" pubdate>Mon 31 January 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>,    <a class="category" href="/tag/emacs.html">emacs</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/ortgithub.html">org-mode + githubで個人用Wikiを作る</a>
+      </li>
+      <li class="post">
+          <a href="/git_main.html">gitlabのmasterとmainブランチ</a>
+      </li>
+      <li class="post">
+          <a href="/cron.html">Pythonスクリプトをcronから定期実行する</a>
+      </li>
+      <li class="post">
+          <a href="/oralb.html">Oral-Bの電動歯ブラシ</a>
+      </li>
+      <li class="post">
+          <a href="/oilheater.html">デロンギのオイルヒーター</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
