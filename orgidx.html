@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rogue+Wizライクゲームのリメイク構想 &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>org-mode + github Wikiのインデックスを自動生成する &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -60,94 +60,88 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Rogue+Wizライクゲームのリメイク構想</h1>
+      <h1 class="entry-title">org-mode + github Wikiのインデックスを自動生成する</h1>
     <p class="meta">
-<time datetime="2021-02-23T00:00:00-05:00" pubdate>Tue 23 February 2021</time>    </p>
+<time datetime="2022-02-01T00:00:00-05:00" pubdate>Tue 01 February 2022</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7f787ad">1. はじめに</a></li>
-<li><a href="#orgcb8d641">2. どんなゲームを作るか</a></li>
-<li><a href="#org0617539">3. どこから手を付けるか</a></li>
+<li><a href="#org351ec9f">1. はじめに</a></li>
+<li><a href="#orga69aac5">2. orgidx.py</a>
+<ul>
+<li><a href="#org42e20b1">2.1. 使い方</a></li>
+<li><a href="#org16efe36">2.2. ポイント</a></li>
+</ul>
+</li>
+<li><a href="#orgb70a285">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7f787ad" class="outline-2">
-<h2 id="org7f787ad"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org351ec9f" class="outline-2">
+<h2 id="org351ec9f"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-20年ほど前に、Rogue風のマップとWizardryの戦闘システムを組み合わせたような、Daemonという名のゲームをC言語で作って公開していたのですが、去年末くらいにホストしていたWebサイトがひっそりとクローズしていました。
-</p>
-
-<p>
-私はPythonの修行中で、中級者向けの本を何冊か読んだのですが、実践不足で本の内容が消化不良になっていることは否めません。そこで、Rogue+WizardryのゲームDaemonをPythonでリメイクしてしばらく実戦経験を積むことにします。Wizardryは古いゲームにしては扱うデータが多く複雑で、データ構造の経験を積むのに適している気がします。当時、C言語で双方向リストを作ってパーティーを表現したりするのが大変だったと記憶していますが、Pythonを使うとどこまで楽になるでしょうか。
-</p>
-
-<p>
-とは言え、当時のソースコードや資料は全く残っておらず、全く一から作り直しです。とほほ。
+前回の記事で、emacsのorg-modeとgithubでプライベートなWikiを作る提案をしましたが、各orgファイルへのリンクをカテゴリ分けしてインデックス化したREADME.orgファイルの手動作成が課題でした。これまで作成したメモをいくつかプライベートWikiに追加したのですが、それに伴うリンクの手動でのメンテナンスが相当に面倒であることがわかりました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgcb8d641" class="outline-2">
-<h2 id="orgcb8d641"><span class="section-number-2">2</span> どんなゲームを作るか</h2>
+<div id="outline-container-orga69aac5" class="outline-2">
+<h2 id="orga69aac5"><span class="section-number-2">2</span> orgidx.py</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-私はWizardryが大好きなのですが、あの3Dマップだけは苦手です。Daemonを作ったときの動機が、マップ移動の楽なWizardryで遊びたいというものでした。かと言って、立派なグラフィックの2Dマップを作る余裕もセンスもありません。そこで今回もRogue風のテキストベースマップのお世話になります。
+というわけで、Pythonスクリプトのorgidx.pyを作成し、githubで <a href="https://github.com/achiwa912/orgidx">公開</a> しました。
 </p>
+</div>
 
-<p>
-マップ画面イメージ:
-</p>
-<pre class="example">
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........###
-^^^^^######################..........##.
-^^^^^########.......########+###+######.
-^^^^^########.......@#######.###.######.
-^^^^^########.......+............#######
-^^^^^########.......########.########...
-^^^^^###########+###########*########...
-^^^^^###########.#######.........####...
-^^^^^...........+#######.........####...
-^^^^^...........+##....*.........####...
-</pre>
-
-<p>
-戦闘システムはWizardryを踏襲し、6人パーティー制です。戦闘は文章だけで進行します。魔法使い、僧侶のスペルは著作権の関係で同じ物(Katino, mahalito, dios等)が使えないので、名前は考えなくてはなりません。今回は日本風にしようかな。
-</p>
-
-<p>
-Daemonではダンジョンマップをデータとして用意しましたが、10階分も用意するのはかなり大変だったので、今回はRogueライクを見習って自動生成します。アイテムやモンスターも入力が面倒なので、固定のものを除いて自動生成にしましょうか。うまくゲームバランスが取れるでしょうか。
-</p>
-
-<p>
-城や街はマップ無し、メッセージのみのWizardry風です。Wizardryでは年を取るのが怖くて馬小屋ばかり使っていましたが、なんだか可哀想なので年は取らないようにし、年齢ペナルティーも撤廃しましょう。
-</p>
+<div id="outline-container-org42e20b1" class="outline-3">
+<h3 id="org42e20b1"><span class="section-number-3">2.1</span> 使い方</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>Wiki用ディレクトリを用意する(eg, /home/jon/wiki)</li>
+<li>その下にカテゴリー(のキー)となるサブディレクトリを作成する</li>
+<li><code>.org</code> ファイルをそれぞれのカテゴリーになるサブディレクトリ下に置く
+<ul class="org-ul">
+<li>各 <code>.org</code> ファイルに <code>#+TITLE+</code> メタデータを用意してください</li>
+</ul></li>
+<li>Python 3.6以降をインストールする
+<ul class="org-ul">
+<li><code>pip</code> によるライブラリ等の追加は不要です</li>
+</ul></li>
+<li>好きな場所に <code>orgidx.py</code> を置く</li>
+<li><code>orgidx.py</code> をエディタで開いて、 <code>categ_dict</code> を編集する
+<ul class="org-ul">
+<li>これはしなくてもよいですが、 <code>categ_dict</code> に無いサブディレクトリ名は、そのままカテゴリー文字列として使用されます。</li>
+</ul></li>
+<li>スクリプトを実行する(eg, <code>python orgidx.py /home/jon/wiki</code>)</li>
+<li><code>README.org</code> がトップWikiディレクトリ下に作られる</li>
+</ol>
 </div>
 </div>
 
-<div id="outline-container-org0617539" class="outline-2">
-<h2 id="org0617539"><span class="section-number-2">3</span> どこから手を付けるか</h2>
+<div id="outline-container-org16efe36" class="outline-3">
+<h3 id="org16efe36"><span class="section-number-3">2.2</span> ポイント</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>各リンクに使われる文字列は <code>#+TITLE+</code> メタデータを使います。各 <code>.org</code> ファイルに必ず用意してください</li>
+<li><code>categ_dict</code> をうまく用意すると、とても見やすくなります
+<ul class="org-ul">
+<li>複数のサブディレクトリ名が同じカテゴリー文字列を使う場合、これらはまとめられて一つのカテゴリーとなります</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb70a285" class="outline-2">
+<h2 id="orgb70a285"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-まずはキー入力(リアルタイムキースキャン)と画面表示(任意の位置に文字を表示)から始めます。低レベル機能のため、Pythonなのに機種依存が出てくるかもしれません。なるべくPyGameのような大がかりなライブラリには手を出したくないところです。
-</p>
-
-<p>
-次はダンジョンマップの自動生成とスクロールマップの表示にチャレンジします。Pythonでローグライクを作るチュートリアルを斜め読みして予習したので、マップの自動生成は多分行けるでしょう。むしろ、ここで十分な性能が出ないと、プロジェクトを断念することになるかも。
-</p>
-
-<p>
-次回のアップデートはこのあたりが出来たらになると思います。それでは。
+プライベートなレポジトリの用意、 <code>.org</code> ファイルのレンダリング、複数デバイスからの閲覧・編集といったことは github が用意してくれています。唯一、欠けているピースがインデックスの作成だったのですが、今回それを用意しました。良いプライベートWikiライフを！
 </p>
 </div>
 </div>
@@ -159,11 +153,11 @@ Daemonではダンジョンマップをデータとして用意しましたが�
         きょうす
     </span>
   </span>
-<time datetime="2021-02-23T00:00:00-05:00" pubdate>Tue 23 February 2021</time>  <span class="categories">
+<time datetime="2022-02-01T00:00:00-05:00" pubdate>Tue 01 February 2022</time>  <span class="categories">
     <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/emacs.html">emacs</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>

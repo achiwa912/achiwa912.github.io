@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb69d47f">1. はじめに</a></li>
-<li><a href="#org26b5150">2. ReportLab PDFライブラリ</a></li>
-<li><a href="#org0133572">3. ReportLab + pdfrwを組み合わせる</a></li>
-<li><a href="#org153e34b">4. 使用方法</a>
+<li><a href="#org14c214b">1. はじめに</a></li>
+<li><a href="#orgf35b210">2. ReportLab PDFライブラリ</a></li>
+<li><a href="#orge65f52f">3. ReportLab + pdfrwを組み合わせる</a></li>
+<li><a href="#org3fc550f">4. 使用方法</a>
 <ul>
-<li><a href="#org69f396f">4.1. カスタマイズ方法</a></li>
+<li><a href="#org134e684">4.1. カスタマイズ方法</a></li>
 </ul>
 </li>
-<li><a href="#org4fc6664">5. 終わりに</a></li>
+<li><a href="#orge60f514">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb69d47f" class="outline-2">
-<h2 id="orgb69d47f"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org14c214b" class="outline-2">
+<h2 id="org14c214b"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 小学生の娘が算数で間違った問題を、スキャンしてまとめてPDF化しています。しかし、必要なページだけ印刷したつもりが、結構ページ番号がずれていて、何度もやりなおしたりしています。電子化したつもりが意外とアナログです。そこで、自動でPDFファイルにページ番号を付けたいと思いました。ヒューマンエラーによるページ番号のずれが防げる、またはずれてもすぐに気がつくので。
@@ -99,8 +99,8 @@
 </div>
 </div>
 
-<div id="outline-container-org26b5150" class="outline-2">
-<h2 id="org26b5150"><span class="section-number-2">2</span> ReportLab PDFライブラリ</h2>
+<div id="outline-container-orgf35b210" class="outline-2">
+<h2 id="orgf35b210"><span class="section-number-2">2</span> ReportLab PDFライブラリ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりのようです。これらは、複数のPDFファイルをマージしたり、逆に分割したり、ページを入れ替えたりといったことが得意ですが、「既存PDFファイルにページ番号を付加する」というユースケースには対応していないようです。
@@ -126,8 +126,8 @@ PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりの�
 </div>
 </div>
 
-<div id="outline-container-org0133572" class="outline-2">
-<h2 id="org0133572"><span class="section-number-2">3</span> ReportLab + pdfrwを組み合わせる</h2>
+<div id="outline-container-orge65f52f" class="outline-2">
+<h2 id="orge65f52f"><span class="section-number-2">3</span> ReportLab + pdfrwを組み合わせる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 それでも諦めずに検索を続けたところ、見つけました。
@@ -197,8 +197,8 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-org153e34b" class="outline-2">
-<h2 id="org153e34b"><span class="section-number-2">4</span> 使用方法</h2>
+<div id="outline-container-org3fc550f" class="outline-2">
+<h2 id="org3fc550f"><span class="section-number-2">4</span> 使用方法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 f-stringを使っているので、python 3.6以降で使ってください。
@@ -230,8 +230,8 @@ python addpagenum.py &lt;pdf_filename&gt;
 </p>
 </div>
 
-<div id="outline-container-org69f396f" class="outline-3">
-<h3 id="org69f396f"><span class="section-number-3">4.1</span> カスタマイズ方法</h3>
+<div id="outline-container-org134e684" class="outline-3">
+<h3 id="org134e684"><span class="section-number-3">4.1</span> カスタマイズ方法</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 このあたりを適当に変えてください。
@@ -257,8 +257,8 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
 </div>
 </div>
 
-<div id="outline-container-org4fc6664" class="outline-2">
-<h2 id="org4fc6664"><span class="section-number-2">5</span> 終わりに</h2>
+<div id="outline-container-orge60f514" class="outline-2">
+<h2 id="orge60f514"><span class="section-number-2">5</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このスクリプトはgithubにも載せました。
@@ -293,6 +293,9 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
+      </li>
+      <li class="post">
           <a href="/ortgithub.html">org-mode + githubで個人用Wikiを作る</a>
       </li>
       <li class="post">
@@ -303,9 +306,6 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
       </li>
       <li class="post">
           <a href="/oralb.html">Oral-Bの電動歯ブラシ</a>
-      </li>
-      <li class="post">
-          <a href="/oilheater.html">デロンギのオイルヒーター</a>
       </li>
     </ul>
   </section>
@@ -324,7 +324,7 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
