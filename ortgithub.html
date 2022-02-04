@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>org-mode + githubで個人用Wikiを作る &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>org-mode + github(/gitlab)で個人用Wikiを作る &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -60,7 +60,7 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">org-mode + githubで個人用Wikiを作る</h1>
+      <h1 class="entry-title">org-mode + github(/gitlab)で個人用Wikiを作る</h1>
     <p class="meta">
 <time datetime="2022-01-31T00:00:00-05:00" pubdate>Mon 31 January 2022</time>    </p>
 </header>
@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org920c2b0">1. はじめに</a></li>
-<li><a href="#orgeda4d61">2. org-mode + github(/gitlab)でパーソナルWiki</a>
+<li><a href="#org97c0fea">1. はじめに</a></li>
+<li><a href="#orgae3e7fb">2. org-mode + github(/gitlab)でパーソナルWiki</a>
 <ul>
-<li><a href="#org0ddca33">2.1. org-modeのレンダリング</a></li>
-<li><a href="#org5b6d76f">2.2. githubのプライベートレポジトリ</a></li>
-<li><a href="#org43e9dfd">2.3. 複数デバイスでの共有</a></li>
-<li><a href="#orga448406">2.4. コンパイル等不要</a></li>
+<li><a href="#org87140f9">2.1. org-modeのレンダリング</a></li>
+<li><a href="#org8aa274b">2.2. githubのプライベートレポジトリ</a></li>
+<li><a href="#org53f0e39">2.3. 複数デバイスでの共有</a></li>
+<li><a href="#org71a1e70">2.4. コンパイル等不要</a></li>
 </ul>
 </li>
-<li><a href="#orga08ad44">3. Tips</a>
+<li><a href="#org7320e4b">3. Tips</a>
 <ul>
-<li><a href="#org0077710">3.1. READMEからリンクを貼る</a></li>
+<li><a href="#org8f4fce0">3.1. READMEからリンクを貼る</a></li>
 </ul>
 </li>
-<li><a href="#org777c49d">4. 終わりに</a></li>
-<li><a href="#org4d5ea24">5. おまけ</a></li>
+<li><a href="#orgd60b61c">4. 終わりに</a></li>
+<li><a href="#orgf152d76">5. おまけ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org920c2b0" class="outline-2">
-<h2 id="org920c2b0"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org97c0fea" class="outline-2">
+<h2 id="org97c0fea"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はemacsのorg-modeでメモを書いていますが、複数台のPCで編集したり、モバイルデバイスから閲覧するよい方法が無いか探していました。ブログに使っているgithub pagesにアクセス制限をかけられればよいのですが、そのためには有償のプランを契約しないとだめそうです。また、Pelican等の静的サイトジェネレーターでHTMLにレンダリングする必要があり、手間がかかります。
@@ -113,16 +113,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgeda4d61" class="outline-2">
-<h2 id="orgeda4d61"><span class="section-number-2">2</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
+<div id="outline-container-orgae3e7fb" class="outline-2">
+<h2 id="orgae3e7fb"><span class="section-number-2">2</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いろいろと検索したところ、org-modeとgithub(/gitlabも)の相性が良さそうであることがわかりました。
 </p>
 </div>
 
-<div id="outline-container-org0ddca33" class="outline-3">
-<h3 id="org0ddca33"><span class="section-number-3">2.1</span> org-modeのレンダリング</h3>
+<div id="outline-container-org87140f9" class="outline-3">
+<h3 id="org87140f9"><span class="section-number-3">2.1</span> org-modeのレンダリング</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 これまで私はレポジトリのREADMEをわざわざ慣れないマークダウン記法で書いていましたが、なんと、githubは <code>README.org</code> ファイルを作成すればレンダリングして表示してくれるという <a href="http://yasuyk.github.io/blog/2013/04/27/github-readme-org-mode/">うれしい情報</a> を見つけました。(yasuykさんありがとうございます!)
@@ -139,30 +139,34 @@ orgファイルのレンダリング例:
 </div>
 </div>
 
-<div id="outline-container-org5b6d76f" class="outline-3">
-<h3 id="org5b6d76f"><span class="section-number-3">2.2</span> githubのプライベートレポジトリ</h3>
+<div id="outline-container-org8aa274b" class="outline-3">
+<h3 id="org8aa274b"><span class="section-number-3">2.2</span> githubのプライベートレポジトリ</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 更に、githubは2019年からプライベートレポジトリの作成を <a href="https://github.blog/2019-01-07-new-year-new-github/">無制限に無償化していた</a> ようです。私はgithubに複数レポジトリを持って、ブログもgithub pagesで公開していましたが、このことは知りませんでした。これはありがたい変更です。
 </p>
 
 <p>
-レポジトリ作成の際に、publicでなくprivateを選択します。
+レポジトリ作成の際に、publicでなくprivateを選択します。gitlabでも同様ですね。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org43e9dfd" class="outline-3">
-<h3 id="org43e9dfd"><span class="section-number-3">2.3</span> 複数デバイスでの共有</h3>
+<div id="outline-container-org53f0e39" class="outline-3">
+<h3 id="org53f0e39"><span class="section-number-3">2.3</span> 複数デバイスでの共有</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-普通のgithub(/gitlab)レポジトリなので、もちろん複数デバイスでの閲覧、変更が可能です。github(/gitlab)に同じアカウントでサインインするだけです。
+普通のgithubレポジトリなので、もちろん複数デバイスでの閲覧、変更が可能です。githubに同じアカウントでサインインするだけです。
+</p>
+
+<p>
+gitlabでも同様ですが、個人モバイルデバイスからオフィスのgitlabにアクセスすることはあまり無いかもしれません。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga448406" class="outline-3">
-<h3 id="orga448406"><span class="section-number-3">2.4</span> コンパイル等不要</h3>
+<div id="outline-container-org71a1e70" class="outline-3">
+<h3 id="org71a1e70"><span class="section-number-3">2.4</span> コンパイル等不要</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 私のgithub pagesのブログは静的サイトジェネレーターのPelicanを使っていますが、だいぶ記事がたまってきたせいか、コンパイルに1分以上かかるようになっています。
@@ -175,12 +179,12 @@ githubがorgファイルのレンダリングをしてくれるので、レポ�
 </div>
 </div>
 
-<div id="outline-container-orga08ad44" class="outline-2">
-<h2 id="orga08ad44"><span class="section-number-2">3</span> Tips</h2>
+<div id="outline-container-org7320e4b" class="outline-2">
+<h2 id="org7320e4b"><span class="section-number-2">3</span> Tips</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org0077710" class="outline-3">
-<h3 id="org0077710"><span class="section-number-3">3.1</span> READMEからリンクを貼る</h3>
+<div id="outline-container-org8f4fce0" class="outline-3">
+<h3 id="org8f4fce0"><span class="section-number-3">3.1</span> READMEからリンクを貼る</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 githubではご存知のように、レポジトリのトップページにREADMEファイルをレンダリングして表示します。パーソナルWikiのトップページとして、README.orgに各orgファイル(=メモ)へのリンクを貼っておくことで、使い勝手が良くなると思います。
@@ -203,8 +207,8 @@ githubではご存知のように、レポジトリのトップページにREADM
 </div>
 
 
-<div id="outline-container-org777c49d" class="outline-2">
-<h2 id="org777c49d"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgd60b61c" class="outline-2">
+<h2 id="orgd60b61c"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 org-mode と github(/gitlab) のプライベートレポジトリを利用して、複数デバイスから編集、閲覧できる個人用のWikiページを持てることがわかりました。
@@ -213,8 +217,8 @@ org-mode と github(/gitlab) のプライベートレポジトリを利用して
 </div>
 
 
-<div id="outline-container-org4d5ea24" class="outline-2">
-<h2 id="org4d5ea24"><span class="section-number-2">5</span> おまけ</h2>
+<div id="outline-container-orgf152d76" class="outline-2">
+<h2 id="orgf152d76"><span class="section-number-2">5</span> おまけ</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 いつの頃からか、org-modeで改行すると、勝手にインデントされるようになりました。ものすごく使い勝手が悪いので、抑止する方法を探したところ、案の定、<a href="https://blue.hatenadiary.jp/entry/2014/11/20/211335">先人が解決</a> してくれていました。(あお日記さん、どうもありがとうございます。)
@@ -263,7 +267,7 @@ org-modeでのみ有効となるようにしました。
           <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
       </li>
       <li class="post">
-          <a href="/ortgithub.html">org-mode + githubで個人用Wikiを作る</a>
+          <a href="/ortgithub.html">org-mode + github(/gitlab)で個人用Wikiを作る</a>
       </li>
       <li class="post">
           <a href="/git_main.html">gitlabのmasterとmainブランチ</a>

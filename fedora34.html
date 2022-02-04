@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb0aa9e8">1. はじめに</a></li>
-<li><a href="#orge8a2577">2. Fedora34インストール</a>
+<li><a href="#orgde8d0dc">1. はじめに</a></li>
+<li><a href="#orgaaae4fb">2. Fedora34インストール</a>
 <ul>
-<li><a href="#orgb5bb3ff">2.1. VM作成</a></li>
-<li><a href="#org5743567">2.2. fedoraインストーラー</a></li>
-<li><a href="#org02a97d7">2.3. fedora起動</a></li>
-<li><a href="#org2ce5fe6">2.4. Guest Additions</a></li>
+<li><a href="#org47ae663">2.1. VM作成</a></li>
+<li><a href="#orgce0ad8f">2.2. fedoraインストーラー</a></li>
+<li><a href="#org7870639">2.3. fedora起動</a></li>
+<li><a href="#org4eea996">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org1590e26">3. emacsの設定</a></li>
-<li><a href="#orgb86f3ff">4. pythonの設定</a>
+<li><a href="#org29ab5cf">3. emacsの設定</a></li>
+<li><a href="#org87ab72b">4. pythonの設定</a>
 <ul>
-<li><a href="#orge09cd75">4.1. pyenvを入れる</a></li>
+<li><a href="#orgcb8496a">4.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb0aa9e8" class="outline-2">
-<h2 id="orgb0aa9e8"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgde8d0dc" class="outline-2">
+<h2 id="orgde8d0dc"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora34を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora34インストール及び設定の備忘録です。
@@ -102,12 +102,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-orge8a2577" class="outline-2">
-<h2 id="orge8a2577"><span class="section-number-2">2</span> Fedora34インストール</h2>
+<div id="outline-container-orgaaae4fb" class="outline-2">
+<h2 id="orgaaae4fb"><span class="section-number-2">2</span> Fedora34インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb5bb3ff" class="outline-3">
-<h3 id="orgb5bb3ff"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org47ae663" class="outline-3">
+<h3 id="org47ae663"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 34 download</code> で検索して、isoファイルをダウンロードします。
@@ -134,8 +134,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org5743567" class="outline-3">
-<h3 id="org5743567"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-orgce0ad8f" class="outline-3">
+<h3 id="orgce0ad8f"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora34のインストーラー起動画面が出ます。
@@ -153,8 +153,8 @@ fedora34 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org02a97d7" class="outline-3">
-<h3 id="org02a97d7"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-org7870639" class="outline-3">
+<h3 id="org7870639"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。しばらく不安になる画面で放置されますが、数十秒で使えるようになります。
@@ -178,8 +178,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-org2ce5fe6" class="outline-3">
-<h3 id="org2ce5fe6"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-org4eea996" class="outline-3">
+<h3 id="org4eea996"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -212,8 +212,8 @@ Fedora34としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-org1590e26" class="outline-2">
-<h2 id="org1590e26"><span class="section-number-2">3</span> emacsの設定</h2>
+<div id="outline-container-org29ab5cf" class="outline-2">
+<h2 id="org29ab5cf"><span class="section-number-2">3</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Fedoraには最初からviが入っていますが、私はあまり使えないためにemacsを入れます。ついでにvimも。
@@ -475,8 +475,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-orgb86f3ff" class="outline-2">
-<h2 id="orgb86f3ff"><span class="section-number-2">4</span> pythonの設定</h2>
+<div id="outline-container-org87ab72b" class="outline-2">
+<h2 id="org87ab72b"><span class="section-number-2">4</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Fedora34を入れたら、いきなりpython 3.9.6が/usr/bin/pythonとしてインストールされていました。
@@ -490,8 +490,8 @@ Python 3.9.6
 </pre>
 </div>
 
-<div id="outline-container-orge09cd75" class="outline-3">
-<h3 id="orge09cd75"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
+<div id="outline-container-orgcb8496a" class="outline-3">
+<h3 id="orgcb8496a"><span class="section-number-3">4.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.9.6なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -580,7 +580,7 @@ Python 3.9.6
           <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
       </li>
       <li class="post">
-          <a href="/ortgithub.html">org-mode + githubで個人用Wikiを作る</a>
+          <a href="/ortgithub.html">org-mode + github(/gitlab)で個人用Wikiを作る</a>
       </li>
       <li class="post">
           <a href="/git_main.html">gitlabのmasterとmainブランチ</a>
