@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0fd5b47">1. はじめに</a></li>
-<li><a href="#org111eb03">2. アルファ版リリース</a></li>
-<li><a href="#org63d03f0">3. issuesをgithubで管理</a></li>
-<li><a href="#org0bf2014">4. 開発での経験</a>
+<li><a href="#orgc4b0c54">1. はじめに</a></li>
+<li><a href="#org23a2c07">2. アルファ版リリース</a></li>
+<li><a href="#org3404a40">3. issuesをgithubで管理</a></li>
+<li><a href="#org3d4fd08">4. 開発での経験</a>
 <ul>
-<li><a href="#orgb8c3c35">4.1. 学んだこと</a></li>
-<li><a href="#org53dc660">4.2. まだまだなこと</a></li>
+<li><a href="#orga3adfb1">4.1. 学んだこと</a></li>
+<li><a href="#org8bb790b">4.2. まだまだなこと</a></li>
 </ul>
 </li>
-<li><a href="#orge62597f">5. 次は、、</a></li>
+<li><a href="#org901c5e4">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0fd5b47" class="outline-2">
-<h2 id="org0fd5b47"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgc4b0c54" class="outline-2">
+<h2 id="orgc4b0c54"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの11回目です。
@@ -96,8 +96,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org111eb03" class="outline-2">
-<h2 id="org111eb03"><span class="section-number-2">2</span> アルファ版リリース</h2>
+<div id="outline-container-org23a2c07" class="outline-2">
+<h2 id="org23a2c07"><span class="section-number-2">2</span> アルファ版リリース</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 一通り実装が終わり、ゲームを通しでプレイして致命的なバグが出ないようになってきたので、アルファ版をリリースしました。zen tetrisを作った時と同じようにpygameに登録して(pygame使っていませんが、それでもいいらしいので)、twitterでつぶやいただけなので、誰か見てくれるのか分かりません。
@@ -109,8 +109,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org63d03f0" class="outline-2">
-<h2 id="org63d03f0"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
+<div id="outline-container-org3404a40" class="outline-2">
+<h2 id="org3404a40"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 バグなどの問題点管理をgithub上でするようにしました。自分でissue登録して自分でfix、closeしていくだけなので少し寂しい感じです。前近代的にexcelでバグ管理するよりは、職場で使っているjiraに近くていい感じです。
@@ -118,12 +118,12 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org0bf2014" class="outline-2">
-<h2 id="org0bf2014"><span class="section-number-2">4</span> 開発での経験</h2>
+<div id="outline-container-org3d4fd08" class="outline-2">
+<h2 id="org3d4fd08"><span class="section-number-2">4</span> 開発での経験</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgb8c3c35" class="outline-3">
-<h3 id="orgb8c3c35"><span class="section-number-3">4.1</span> 学んだこと</h3>
+<div id="outline-container-orga3adfb1" class="outline-3">
+<h3 id="orga3adfb1"><span class="section-number-3">4.1</span> 学んだこと</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデータ構造にだいぶ慣れました。setは重複排除できるだけの使いにくい(順番が変わるので)listといった印象で、ほとんど使いませんでした。list comprehensionやgenerator expressionの便利さに感動しました。walrus expression(<code>:=</code>)は結構微妙でした。うまく使っても1,2行減るくらいで、可読性が上がるわけでもないので。
@@ -131,8 +131,8 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 </div>
 </div>
 
-<div id="outline-container-org53dc660" class="outline-3">
-<h3 id="org53dc660"><span class="section-number-3">4.2</span> まだまだなこと</h3>
+<div id="outline-container-org8bb790b" class="outline-3">
+<h3 id="org8bb790b"><span class="section-number-3">4.2</span> まだまだなこと</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 クラスの設計が下手だと思います。後から様々なフラグアトリビュートを追加して複雑になる傾向がありました。今回はリアルタイムキースキャン以外はほぼ標準ライブラリのみのため、サードパーティーライブラリの使用スキルも身についていません。
@@ -146,8 +146,8 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 </div>
 
 
-<div id="outline-container-orge62597f" class="outline-2">
-<h2 id="orge62597f"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org901c5e4" class="outline-2">
+<h2 id="org901c5e4"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 バグが見つかったら直して、というようにペースを落として開発継続していくつもりです。
@@ -177,6 +177,9 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/macvmmem.html">macOS Big SurでVMのメモリ使用量が倍</a>
+      </li>
+      <li class="post">
           <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
       </li>
       <li class="post">
@@ -187,9 +190,6 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
       </li>
       <li class="post">
           <a href="/cron.html">Pythonスクリプトをcronから定期実行する</a>
-      </li>
-      <li class="post">
-          <a href="/oralb.html">Oral-Bの電動歯ブラシ</a>
       </li>
     </ul>
   </section>
@@ -208,7 +208,7 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

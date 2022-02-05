@@ -69,20 +69,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org20140df">1. はじめに</a></li>
-<li><a href="#org398aa2b">2. データベース対応</a>
+<li><a href="#org5cf89b4">1. はじめに</a></li>
+<li><a href="#org7af33cd">2. データベース対応</a>
 <ul>
-<li><a href="#org321f966">2.1. DLのデータベース対応</a></li>
-<li><a href="#org2ae7196">2.2. データベース/SQLAlchemyを使ってみて</a></li>
+<li><a href="#org52265cf">2.1. DLのデータベース対応</a></li>
+<li><a href="#orgeaf359d">2.2. データベース/SQLAlchemyを使ってみて</a></li>
 </ul>
 </li>
-<li><a href="#org059bc79">3. 次の構想</a></li>
+<li><a href="#org2bea046">3. 次の構想</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org20140df" class="outline-2">
-<h2 id="org20140df"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org5cf89b4" class="outline-2">
+<h2 id="org5cf89b4"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの12回目です。
@@ -94,12 +94,12 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org398aa2b" class="outline-2">
-<h2 id="org398aa2b"><span class="section-number-2">2</span> データベース対応</h2>
+<div id="outline-container-org7af33cd" class="outline-2">
+<h2 id="org7af33cd"><span class="section-number-2">2</span> データベース対応</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org321f966" class="outline-3">
-<h3 id="org321f966"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
+<div id="outline-container-org52265cf" class="outline-3">
+<h3 id="org52265cf"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 DLはこれまでセーブデータをpickleしてファイルにセーブしていたのですが、データベースを使ってみたかったのでサポートしてみました。セーブするときには全部セーブして、ロードするときも同様という使い方なので、データベースにしたメリットは今のところほぼありません。それどころか、セーブに数秒かかるようになってしまいました。
@@ -115,8 +115,8 @@ DLはこれまでセーブデータをpickleしてファイルにセーブして
 </div>
 </div>
 
-<div id="outline-container-org2ae7196" class="outline-3">
-<h3 id="org2ae7196"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
+<div id="outline-container-orgeaf359d" class="outline-3">
+<h3 id="orgeaf359d"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/dp/1492057614/">Learning SQL</a>という入門書を読んだくらいで、ネットで検索しながら基本的なSELECT * FROM &lt;table&gt;のようなコマンドが使える程度でした。<a href="https://docs.sqlalchemy.org/en/14/orm/tutorial.html">SQLAlchemyのチュートリアル</a>も目を通しました。
@@ -141,8 +141,8 @@ SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/
 </div>
 </div>
 
-<div id="outline-container-org059bc79" class="outline-2">
-<h2 id="org059bc79"><span class="section-number-2">3</span> 次の構想</h2>
+<div id="outline-container-org2bea046" class="outline-2">
+<h2 id="org2bea046"><span class="section-number-2">3</span> 次の構想</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 次回作ですが、特に面白いアイデアがあるわけでも無いので、使ってみたい技術を使ってDLをマルチプレイヤー化してみたいと考えています。実はDLのデータベース化はその準備の一環です。他には、クライアント-サーバー化と、サーバーのasync対応をやりたいと考えています。ライブラリとしては<a href="https://python-socketio.readthedocs.io/en/latest/">python-socketio</a>や<a href="https://flask-socketio.readthedocs.io/en/latest/">flask-socketio</a>あたりに目を付けています。
@@ -176,6 +176,9 @@ WizardryクローンであるDLの戦闘はターン制なので、マルチプ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/macvmmem.html">macOS Big SurでVMのメモリ使用量が倍</a>
+      </li>
+      <li class="post">
           <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
       </li>
       <li class="post">
@@ -186,9 +189,6 @@ WizardryクローンであるDLの戦闘はターン制なので、マルチプ�
       </li>
       <li class="post">
           <a href="/cron.html">Pythonスクリプトをcronから定期実行する</a>
-      </li>
-      <li class="post">
-          <a href="/oralb.html">Oral-Bの電動歯ブラシ</a>
       </li>
     </ul>
   </section>
@@ -207,7 +207,7 @@ WizardryクローンであるDLの戦闘はターン制なので、マルチプ�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

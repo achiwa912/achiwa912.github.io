@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Pythonスクリプトをcronから定期実行する &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>macOS Big SurでVMのメモリ使用量が倍 &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -45,13 +45,13 @@
       <li >
         <a href="/category/english.html">English</a>
       </li>
-      <li class="active">
+      <li >
         <a href="/category/linux.html">Linux</a>
       </li>
       <li >
         <a href="/category/python.html">Python</a>
       </li>
-      <li >
+      <li class="active">
         <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
@@ -60,151 +60,95 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Pythonスクリプトをcronから定期実行する</h1>
+      <h1 class="entry-title">macOS Big SurでVMのメモリ使用量が倍</h1>
     <p class="meta">
-<time datetime="2022-01-22T00:00:00-05:00" pubdate>Sat 22 January 2022</time>    </p>
+<time datetime="2022-02-04T00:00:00-05:00" pubdate>Fri 04 February 2022</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org2299c6f">1. はじめに</a></li>
-<li><a href="#org9c4ee62">2. venv環境を使う</a></li>
-<li><a href="#org9157cd8">3. crontabに登録する</a></li>
-<li><a href="#org9625cac">4. 終わりに</a></li>
+<li><a href="#org722df8a">1. はじめに</a></li>
+<li><a href="#orgbabe195">2. VMが倍のメモリを使っている!?</a></li>
+<li><a href="#org1ec1e7a">3. macOSの問題でした</a></li>
+<li><a href="#org423f5d9">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2299c6f" class="outline-2">
-<h2 id="org2299c6f"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org722df8a" class="outline-2">
+<h2 id="org722df8a"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはジョブスケジューラーのcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使うには少し工夫が必要です。
+Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメモリ量よりも少ないので、VMWare ESXi等ではVMへのメモリのオーバープロビジョニング(実際のメモリ量以上に割り当てること)をすることがよくあるそうです。実際にどの程度、メモリがVMに使われているのかをMacBook (macOS Big Sur)上で確認したところ、とんでもないことに気が付いてしまいました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9c4ee62" class="outline-2">
-<h2 id="org9c4ee62"><span class="section-number-2">2</span> venv環境を使う</h2>
+<div id="outline-container-orgbabe195" class="outline-2">
+<h2 id="orgbabe195"><span class="section-number-2">2</span> VMが倍のメモリを使っている!?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-venv環境をactivateしてPythonスクリプトを実行するためには、cronから
-</p>
-<pre class="example">
-python &lt;script&gt;.py
-</pre>
-
-<p>
-のように直接Pythonを呼んでスクリプトを実行するのではなく、ヘルパーのシェルスクリプトに頼ります。
+うちのMacBook ProはLate 2013のお年寄りで、メモリは8GBしか積んでいませんので、VM(Fedora34)には2GBしかメモリを割り当てていません。しかし、Activity Monitorで見たところ、なんと倍の4GBもメモリを消費していることがわかりました。
 </p>
 
-<p>
-しかし、venv環境をactivateするsourceコマンドは普通のshにはなく、bashを使わなくてはいけません。そこで、例えば次のようなスクリプトを作ります。
+
+<div id="org303bfa3" class="figure">
+<p><img src="./content/memalloc.png" alt="memalloc.png" />
 </p>
-<pre class="example">
-#!/usr/bin/bash
-cd &lt;/path/to/venv/folder&gt;
-source bin/activate
-bin/python &lt;python_script&gt;.py
-</pre>
-<p>
-よく目にする <code>#!/bin/sh</code> でなくbashを指定することと、 <code>&lt;/path/to/venv/folder&gt;/bin/python</code> を使うところがポイントです。
-</p>
+</div>
 
 <p>
-これをrun_script.sh としてセーブし、実行可能にします。
+これは困ります。オーバープロビジョニングどころの話ではありません。
 </p>
-<pre class="example">
-chmod a+x run_script.sh
-</pre>
 </div>
 </div>
 
-<div id="outline-container-org9157cd8" class="outline-2">
-<h2 id="org9157cd8"><span class="section-number-2">3</span> crontabに登録する</h2>
+<div id="outline-container-org1ec1e7a" class="outline-2">
+<h2 id="org1ec1e7a"><span class="section-number-2">3</span> macOSの問題でした</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-crontabに登録してcron実行するために、
-</p>
-<pre class="example">
-sudo crontab -e
-</pre>
-
-<p>
-を実行します。すると、viでcrontabが開かれるので、
-</p>
-<pre class="example">
-0 */4 * * * &lt;/path/to/venv/folder&gt;/run_script.sh
-</pre>
-
-<p>
-のような行を追加します。上記は4時間毎の実行です。 <code>0</code> は(毎時)ゼロ分を、 <code>*/4</code> は4時間毎を意味します。
+まずはVirtualBoxの問題かと思い、ネットで検索したところ見つけました。
+<a href="https://www.virtualbox.org/ticket/19726">Ticket #19726 Reported memory usage doubled in 6.1.4 on MacOS Mojave and later</a>
+同じ問題に遭遇している人たちがたくさんいるようです。このバグレポートを下まで見てみると、VirtualBoxだけでなくDockerでも起きているとのこと。DockerチームからAppleにバグ番号48714544でレポート済みだそうです。
 </p>
 
 <p>
-左端の5個のフィールドは以下のフォーマットになっています。
-</p>
-<pre class="example">
-* * * * *
-| | | | +--- 曜日(0-6; 日曜が0)
-| | | +----- 月(1-12)
-| | +------- 日(1-31)
-| +--------- 時(0-23)
-+----------- 分(0-59)
-</pre>
-
-
-<p>
-きちんと登録されたかどうかは以下のコマンドで表示、確認できます。
-</p>
-<pre class="example">
-sudo crontab -l
-</pre>
-
-
-<p>
-デバッグのためには、もっと頻繁に、例えば2分に1回の実行とし、print文やエラーをファイルに出力させるといいと思います。
-</p>
-<pre class="example">
-*/2 * * * * &lt;/path/to/venv/folder&gt;/run_script.sh &gt;&gt; /tmp/out.txt 2&gt;&amp;1
-</pre>
-
-<p>
-上記において、 <code>2&gt;&amp;1</code> の部分は、エラーを標準出力にリダイレクトしています。
+VirtualBox 6.1.2に戻せば、このメモリ倍使用の問題は回避できるそうですが、Big Surは古いVirtualBoxをブロックしてしまうため、この回避策は使えません。うーむ、はまりです。
 </p>
 
 <p>
-実際にこれが実行されたかどうかはログを見ます。
+上のバグチケットがオープンされたのが19ヶ月前、最後の書き込みが2ヶ月前なので、1年半以上に渡ってAppleはこの問題を放置しているようです。安定性が重要なサーバー用途にmacが使えるようになることは永遠に無いように感じます。
 </p>
-<pre class="example">
-sudo tail -f /var/log/cron
-</pre>
 
 <p>
-次の実行が出力されたら、/tmp/out.txtを見に行きます。
+しかし、長期化しているOSの問題ならそれはそれで、VirtualBox側でも対応して欲しいです。特に、古いバージョンなら起きなかった問題なので、やり方はあるはず。
+</p>
+
+<p>
+この問題に関する日本語のページもいくつか見つけました
 </p>
 <ul class="org-ul">
-<li>そもそも/tmp/out.txtが作成されているか</li>
-<li>out.txtにエラーが出ていないか</li>
+<li><a href="https://ytooyama.hatenadiary.jp/entry/2020/06/11/183746">https://ytooyama.hatenadiary.jp/entry/2020/06/11/183746</a></li>
+<li><a href="https://qiita.com/hirohero/items/1e40c237768fbe1b3395">https://qiita.com/hirohero/items/1e40c237768fbe1b3395</a></li>
 </ul>
 
 <p>
-といったことを見ます。2回目以降は、実行される前に/tmp/out.txtを消しておくと、切り分けが少し楽になります。
+バグの影響度を考えると、もっと騒がれてもいいような気がしますが、MacでVMやらコンテナを使う人は少ないということでしょうか。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9625cac" class="outline-2">
-<h2 id="org9625cac"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-org423f5d9" class="outline-2">
+<h2 id="org423f5d9"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセージをポストするようにしました。更に、サーバーにインストール済みのバージョンよりも新しいバージョンが無いか、Jenkinsをチェックして比較しています。
+MacとPythonの相性があまり良くなく、macOSをアップグレードするたびにPythonが動かなくなったりするので、私はVirtualBoxでLinux VMを日常的につかっていましたが、倍のメモリが使われていることはこれまで気が付きませんでした。
 </p>
 
 <p>
-このように、社内システムのAPIを使って「退屈なこと(boring stuff)」を自動化するのに、手軽に使えて高機能なPythonは向いていると思います。
+普段使うPCに、本当に必要なメモリ量は意外と少ないのかもしれません。
 </p>
 </div>
 </div>
@@ -216,11 +160,11 @@ sudo tail -f /var/log/cron
         きょうす
     </span>
   </span>
-<time datetime="2022-01-22T00:00:00-05:00" pubdate>Sat 22 January 2022</time>  <span class="categories">
-    <a class='category' href='/category/linux.html'>Linux</a>
+<time datetime="2022-02-04T00:00:00-05:00" pubdate>Fri 04 February 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/python.html">Python</a>  </span>
+    <a class="category" href="/tag/tech.html">Tech</a>,    <a class="category" href="/tag/mac.html">Mac</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
