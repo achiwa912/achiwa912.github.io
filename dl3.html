@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org487375e">1. はじめに</a></li>
-<li><a href="#org998d6fd">2. スクロール画面表示</a>
+<li><a href="#orgf2a96cf">1. はじめに</a></li>
+<li><a href="#org61c548e">2. スクロール画面表示</a>
 <ul>
-<li><a href="#orge775b35">2.1. メインメソッド</a></li>
-<li><a href="#orgd3267e3">2.2. マップから仮想画面の作成</a></li>
-<li><a href="#org9159b4e">2.3. 仮想画面を実際に表示</a></li>
+<li><a href="#orgd7ce6a8">2.1. メインメソッド</a></li>
+<li><a href="#org1af28bf">2.2. マップから仮想画面の作成</a></li>
+<li><a href="#org09cef8f">2.3. 仮想画面を実際に表示</a></li>
 </ul>
 </li>
-<li><a href="#orgfc0d585">3. プレイヤーパーティーの移動</a></li>
-<li><a href="#orgcc86c1d">4. 動かしてみる</a></li>
-<li><a href="#orgb73427f">5. 次は、、</a></li>
+<li><a href="#orge2166fd">3. プレイヤーパーティーの移動</a></li>
+<li><a href="#org3d82c10">4. 動かしてみる</a></li>
+<li><a href="#org208b475">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org487375e" class="outline-2">
-<h2 id="org487375e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgf2a96cf" class="outline-2">
+<h2 id="orgf2a96cf"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3回目です。今回はマップのスクロール画面表示を行います。
@@ -93,8 +93,8 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3
 </div>
 </div>
 
-<div id="outline-container-org998d6fd" class="outline-2">
-<h2 id="org998d6fd"><span class="section-number-2">2</span> スクロール画面表示</h2>
+<div id="outline-container-org61c548e" class="outline-2">
+<h2 id="org61c548e"><span class="section-number-2">2</span> スクロール画面表示</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 スクロール画面の表示のために、いったん仮想画面を作ることにします。仮想画面は新旧2面持ち、前回描いた行と全く同じ内容の行は画面書き換えをしないようにすることで、画面全体の書き換え量を節約します。また、マップに重ねてメッセージウインドウ等を表示する場合に、実際の画面書き換えを何度も行わないようにして、画面書換量を減らすと同時に、画面のちらつきを防止します。
@@ -119,8 +119,8 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </p>
 </div>
 
-<div id="outline-container-orge775b35" class="outline-3">
-<h3 id="orge775b35"><span class="section-number-3">2.1</span> メインメソッド</h3>
+<div id="outline-container-orgd7ce6a8" class="outline-3">
+<h3 id="orgd7ce6a8"><span class="section-number-3">2.1</span> メインメソッド</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 スクロール画面表示のメインメソッドはdisp_scrwin()です。ここでは主に、マップから仮想画面を作成し、仮想画面を実際に表示して、仮想画面のビューを切り替えています。
@@ -146,8 +146,8 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </div>
 </div>
 
-<div id="outline-container-orgd3267e3" class="outline-3">
-<h3 id="orgd3267e3"><span class="section-number-3">2.2</span> マップから仮想画面の作成</h3>
+<div id="outline-container-org1af28bf" class="outline-3">
+<h3 id="org1af28bf"><span class="section-number-3">2.2</span> マップから仮想画面の作成</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 マップデータを仮想画面にコピーするのはdraw_map()メソッドで行います。フロア全体のマップデータから、画面表示する部分だけを切り取っています。表示エリアがフロアからはみ出た部分は、いまのところ岩('#')と区別して'^'記号を表示しています。
@@ -181,8 +181,8 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </div>
 </div>
 
-<div id="outline-container-org9159b4e" class="outline-3">
-<h3 id="org9159b4e"><span class="section-number-3">2.3</span> 仮想画面を実際に表示</h3>
+<div id="outline-container-org09cef8f" class="outline-3">
+<h3 id="org09cef8f"><span class="section-number-3">2.3</span> 仮想画面を実際に表示</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 display()メソッドは、仮想画面を実際にprint()文を使ってターミナルに表示します。ロジックはstraight forwardで読みやすくなっていると思います。if文は前回描いた仮想画面と今回描く仮想画面の行同士を比較している部分です。1行まるまる同じであれば、描画をスキップします。
@@ -206,8 +206,8 @@ display()メソッドは、仮想画面を実際にprint()文を使ってター�
 </div>
 </div>
 
-<div id="outline-container-orgfc0d585" class="outline-2">
-<h2 id="orgfc0d585"><span class="section-number-2">3</span> プレイヤーパーティーの移動</h2>
+<div id="outline-container-orge2166fd" class="outline-2">
+<h2 id="orge2166fd"><span class="section-number-2">3</span> プレイヤーパーティーの移動</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 プレイヤーパーティーは常に画面中心に表示するとしているため、パーティーの座標を変えると画面がスクロールします。
@@ -275,8 +275,8 @@ non-blockingなキー入力は初回で紹介したコードスニペットを�
 </div>
 </div>
 
-<div id="outline-container-orgcc86c1d" class="outline-2">
-<h2 id="orgcc86c1d"><span class="section-number-2">4</span> 動かしてみる</h2>
+<div id="outline-container-org3d82c10" class="outline-2">
+<h2 id="org3d82c10"><span class="section-number-2">4</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 動かしてみます。
@@ -310,8 +310,8 @@ non-blockingなキー入力は初回で紹介したコードスニペットを�
 </div>
 </div>
 
-<div id="outline-container-orgb73427f" class="outline-2">
-<h2 id="orgb73427f"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org208b475" class="outline-2">
+<h2 id="org208b475"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 次は画面上にメッセージを表示できるようにします。
