@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org942db6b">1. はじめに</a></li>
-<li><a href="#orgd7ccefe">2. VMが倍のメモリを使っている!?</a></li>
-<li><a href="#org2018e64">3. macOSの問題でした</a></li>
-<li><a href="#org3fd9821">4. 終わりに</a></li>
+<li><a href="#orgbb5b022">1. はじめに</a></li>
+<li><a href="#orgbcfd68f">2. VMが倍のメモリを使っている!?</a></li>
+<li><a href="#org6e415c2">3. macOSの問題でした</a></li>
+<li><a href="#orgdd3dccb">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org942db6b" class="outline-2">
-<h2 id="org942db6b"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgbb5b022" class="outline-2">
+<h2 id="orgbb5b022"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメモリ量よりも少ないので、VMWare ESXi等ではVMへのメモリのオーバープロビジョニング(実際のメモリ量以上に割り当てること)をすることがよくあるそうです。実際にどの程度、メモリがVMに使われているのかをMacBook (macOS Big Sur)上で確認したところ、とんでもないことに気が付いてしまいました。
@@ -86,15 +86,15 @@ Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメ�
 </div>
 </div>
 
-<div id="outline-container-orgd7ccefe" class="outline-2">
-<h2 id="orgd7ccefe"><span class="section-number-2">2</span> VMが倍のメモリを使っている!?</h2>
+<div id="outline-container-orgbcfd68f" class="outline-2">
+<h2 id="orgbcfd68f"><span class="section-number-2">2</span> VMが倍のメモリを使っている!?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 うちのMacBook ProはLate 2013のお年寄りでメモリは8GBしか積んでいませんので、VM(Fedora34)には2GBしかメモリを割り当てていません。しかし、Activity Monitorで見たところ、なんと倍の4GBもメモリを消費していることがわかりました。
 </p>
 
 
-<div id="org3070b0d" class="figure">
+<div id="org46a6ef5" class="figure">
 <p><img src="./images/memalloc.png" alt="memalloc.png" />
 </p>
 </div>
@@ -105,8 +105,8 @@ Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメ�
 </div>
 </div>
 
-<div id="outline-container-org2018e64" class="outline-2">
-<h2 id="org2018e64"><span class="section-number-2">3</span> macOSの問題でした</h2>
+<div id="outline-container-org6e415c2" class="outline-2">
+<h2 id="org6e415c2"><span class="section-number-2">3</span> macOSの問題でした</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはVirtualBoxの問題かと思い、ネットで検索したところ見つけました。
@@ -152,8 +152,8 @@ VirtualBox 6.1.2に戻せば、このメモリ倍使用の問題は回避でき�
 </div>
 </div>
 
-<div id="outline-container-org3fd9821" class="outline-2">
-<h2 id="org3fd9821"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgdd3dccb" class="outline-2">
+<h2 id="orgdd3dccb"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 MacとPythonの相性があまり良くなく、macOSをアップグレードするたびにPythonが動かなくなったりするので、私はMacBookにVirtualBoxをインストールして、Linux VMを日常的につかっていましたが、倍のメモリが使われていることはこれまで気が付きませんでした。
