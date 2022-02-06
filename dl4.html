@@ -69,18 +69,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9c9b285">1. はじめに</a></li>
-<li><a href="#orgd85d26e">2. メッセージウインドウクラス</a></li>
-<li><a href="#org88c4d0e">3. メッセージ表示メソッド</a></li>
-<li><a href="#org8403e55">4. ユーザーインプットメソッド</a></li>
-<li><a href="#org59b17c1">5. 1文字入力メソッド</a></li>
-<li><a href="#orgf252f2e">6. 次は、、</a></li>
+<li><a href="#org3ceae56">1. はじめに</a></li>
+<li><a href="#orgfdd044f">2. メッセージウインドウクラス</a></li>
+<li><a href="#org5352e29">3. メッセージ表示メソッド</a></li>
+<li><a href="#org1a1b9d3">4. ユーザーインプットメソッド</a></li>
+<li><a href="#orgad9d6cb">5. 1文字入力メソッド</a></li>
+<li><a href="#org39a35cd">6. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9c9b285" class="outline-2">
-<h2 id="org9c9b285"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org3ceae56" class="outline-2">
+<h2 id="org3ceae56"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4回目です。今回はメッセージウインドウとその上での文字列入力を実装します。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4
 </div>
 </div>
 
-<div id="outline-container-orgd85d26e" class="outline-2">
-<h2 id="orgd85d26e"><span class="section-number-2">2</span> メッセージウインドウクラス</h2>
+<div id="outline-container-orgfdd044f" class="outline-2">
+<h2 id="orgfdd044f"><span class="section-number-2">2</span> メッセージウインドウクラス</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 仮想スクロール画面クラス(Vscr)の一部にするか悩んだのですが、肥大化するのも嫌なので、メッセージウインドウクラス(Meswin)として独立させました。
@@ -140,8 +140,8 @@ mes_linesに表示するメッセージ(文字列)のリストを入れます。
 </div>
 </div>
 
-<div id="outline-container-org88c4d0e" class="outline-2">
-<h2 id="org88c4d0e"><span class="section-number-2">3</span> メッセージ表示メソッド</h2>
+<div id="outline-container-org5352e29" class="outline-2">
+<h2 id="org5352e29"><span class="section-number-2">3</span> メッセージ表示メソッド</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 print()メソッドでメッセージを表示します。昔のファミコンRPGのように、メッセージの先頭には" * "を付けます。この記号はstart引数で変更できます。
@@ -212,8 +212,8 @@ sublineは更にウインドウの右端&amp;単語の境界で折り返すよ�
 </div>
 </div>
 
-<div id="outline-container-org8403e55" class="outline-2">
-<h2 id="org8403e55"><span class="section-number-2">4</span> ユーザーインプットメソッド</h2>
+<div id="outline-container-org1a1b9d3" class="outline-2">
+<h2 id="org1a1b9d3"><span class="section-number-2">4</span> ユーザーインプットメソッド</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 メッセージウインドウ内でユーザーインプットできるようにしました。"* "の代わりに"&gt; "で入力を促します。
@@ -263,8 +263,8 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 </div>
 </div>
 
-<div id="outline-container-org59b17c1" class="outline-2">
-<h2 id="org59b17c1"><span class="section-number-2">5</span> 1文字入力メソッド</h2>
+<div id="outline-container-orgad9d6cb" class="outline-2">
+<h2 id="orgad9d6cb"><span class="section-number-2">5</span> 1文字入力メソッド</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 次は1文字入力メソッドです。Yes/Noに答える際に'y'または'n'の入力待ちをするようなケースで使用します。
@@ -310,8 +310,8 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 </div>
 </div>
 
-<div id="outline-container-orgf252f2e" class="outline-2">
-<h2 id="orgf252f2e"><span class="section-number-2">6</span> 次は、、</h2>
+<div id="outline-container-org39a35cd" class="outline-2">
+<h2 id="org39a35cd"><span class="section-number-2">6</span> 次は、、</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 メッセージも出力できるようになったので、次はいよいよWizardry画面らしい、パーティーリストの画面表示にチャレンジします。
