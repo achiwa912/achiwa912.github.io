@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org08f111e">1. はじめに</a></li>
-<li><a href="#orgc9c9633">2. mainとmasterブランチ</a></li>
-<li><a href="#orgc8348d3">3. リモートのmainブランチにpushする</a></li>
-<li><a href="#org060538c">4. まとめ</a></li>
+<li><a href="#orgf1adaa7">1. はじめに</a></li>
+<li><a href="#orgbd97aaf">2. mainとmasterブランチ</a></li>
+<li><a href="#org8d59349">3. リモートのmainブランチにpushする</a></li>
+<li><a href="#org15282b9">4. まとめ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org08f111e" class="outline-2">
-<h2 id="org08f111e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgf1adaa7" class="outline-2">
+<h2 id="orgf1adaa7"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社のgitlabにプロジェクトを作って、ローカルブランチをgit pushしたら、masterブランチへのマージリクエストになってしまいました。gitlabに作ったプロジェクトにはデフォルトで作られたmainブランチが既にあり、なんとかしなくてはいけません。
@@ -90,8 +90,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc9c9633" class="outline-2">
-<h2 id="orgc9c9633"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
+<div id="outline-container-orgbd97aaf" class="outline-2">
+<h2 id="orgbd97aaf"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 githubが、master - slaveという単語がoffensiveなため、デフォルトのブランチをmainにしたことは知っていましたが、gitlabの <a href="https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/">このページ</a> によると、gitlabも去年の5月にデフォルトブランチをmasterからmainに変更したようです。
@@ -103,8 +103,8 @@ githubが、master - slaveという単語がoffensiveなため、デフォルト
 </div>
 </div>
 
-<div id="outline-container-orgc8348d3" class="outline-2">
-<h2 id="orgc8348d3"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
+<div id="outline-container-org8d59349" class="outline-2">
+<h2 id="org8d59349"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ということは、masterではなくmainにpushすれば良さそうです。しかし、
@@ -205,8 +205,8 @@ To gitlab.&lt;snip&gt;.git
 </div>
 </div>
 
-<div id="outline-container-org060538c" class="outline-2">
-<h2 id="org060538c"><span class="section-number-2">4</span> まとめ</h2>
+<div id="outline-container-org15282b9" class="outline-2">
+<h2 id="org15282b9"><span class="section-number-2">4</span> まとめ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 今回の問題は、gitlabがデフォルトブランチをmainにしたのに、ローカルのgitはmasterのままだったことが出発点でした。対策として、以下のステップが必要でした。
