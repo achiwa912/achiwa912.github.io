@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org42312d7">1. はじめに</a></li>
-<li><a href="#orgc382aee">2. orgidx.py</a>
+<li><a href="#org2ea11d9">1. はじめに</a></li>
+<li><a href="#org31c89a1">2. orgidx.py</a>
 <ul>
-<li><a href="#org28e4bcd">2.1. 使い方</a></li>
-<li><a href="#org4c585e6">2.2. ポイント</a></li>
-<li><a href="#org32380b8">2.3. config.json</a></li>
+<li><a href="#org8fcd449">2.1. 使い方</a></li>
+<li><a href="#org3ee5502">2.2. ポイント</a></li>
+<li><a href="#org9acfd98">2.3. config.json</a></li>
 </ul>
 </li>
-<li><a href="#org83023fe">3. gitlabは?</a></li>
-<li><a href="#org5702462">4. 終わりに</a></li>
-<li><a href="#org8a9132a">5. Appendix</a></li>
+<li><a href="#org8421234">3. gitlabは?</a></li>
+<li><a href="#orgcaecf12">4. 終わりに</a></li>
+<li><a href="#org1e49911">5. Appendix</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org42312d7" class="outline-2">
-<h2 id="org42312d7"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org2ea11d9" class="outline-2">
+<h2 id="org2ea11d9"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 前回の記事で、emacsのorg-modeとgithub(/gitlab)でプライベートなWikiを作る提案をしましたが、各ドキュメント(<code>.org</code> ファイル)をカテゴリ分けしてリンクするトップページ(README.orgファイル)の手動作成が課題でした。これまで作成したメモをいくつかプライベートWikiに追加したのですが、それに伴うリンクの手動でのメンテナンスが相当に面倒であることがわかりました。
@@ -93,16 +93,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgc382aee" class="outline-2">
-<h2 id="orgc382aee"><span class="section-number-2">2</span> orgidx.py</h2>
+<div id="outline-container-org31c89a1" class="outline-2">
+<h2 id="org31c89a1"><span class="section-number-2">2</span> orgidx.py</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 というわけで、Pythonスクリプトの <code>orgidx.py</code> を作成し、githubで <a href="https://github.com/achiwa912/orgidx">公開</a> しました。
 </p>
 </div>
 
-<div id="outline-container-org28e4bcd" class="outline-3">
-<h3 id="org28e4bcd"><span class="section-number-3">2.1</span> 使い方</h3>
+<div id="outline-container-org8fcd449" class="outline-3">
+<h3 id="org8fcd449"><span class="section-number-3">2.1</span> 使い方</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Wiki用ディレクトリを用意する(eg, /home/jon/wiki)</li>
@@ -126,8 +126,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4c585e6" class="outline-3">
-<h3 id="org4c585e6"><span class="section-number-3">2.2</span> ポイント</h3>
+<div id="outline-container-org3ee5502" class="outline-3">
+<h3 id="org3ee5502"><span class="section-number-3">2.2</span> ポイント</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>各リンクに使われる文字列は <code>#+TITLE+</code> メタデータを使います。各 <code>.org</code> ファイルに必ず用意してください</li>
@@ -139,8 +139,8 @@
 </div>
 </div>
 
-<div id="outline-container-org32380b8" class="outline-3">
-<h3 id="org32380b8"><span class="section-number-3">2.3</span> config.json</h3>
+<div id="outline-container-org9acfd98" class="outline-3">
+<h3 id="org9acfd98"><span class="section-number-3">2.3</span> config.json</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <code>config.json</code> は以下のようになっています。
@@ -176,8 +176,8 @@
 </div>
 
 
-<div id="outline-container-org83023fe" class="outline-2">
-<h2 id="org83023fe"><span class="section-number-2">3</span> gitlabは?</h2>
+<div id="outline-container-org8421234" class="outline-2">
+<h2 id="org8421234"><span class="section-number-2">3</span> gitlabは?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレンダリングをしてくれることがわかりました。前回と今回の記事で紹介したパーソナルWikiページの作り方や、今回のPythonスクリプトがそのままgitlabにも適用可能です。
@@ -189,8 +189,8 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
 </div>
 </div>
 
-<div id="outline-container-org5702462" class="outline-2">
-<h2 id="org5702462"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgcaecf12" class="outline-2">
+<h2 id="orgcaecf12"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 プライベートなレポジトリの用意、 <code>.org</code> ファイルのレンダリング、複数デバイスからの閲覧・編集といったことは github(/gitlab) が用意してくれています。唯一、欠けているピースがインデックスの作成だったのですが、今回それを用意しました。良いプライベートWikiライフを！
@@ -198,8 +198,8 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
 </div>
 </div>
 
-<div id="outline-container-org8a9132a" class="outline-2">
-<h2 id="org8a9132a"><span class="section-number-2">5</span> Appendix</h2>
+<div id="outline-container-org1e49911" class="outline-2">
+<h2 id="org1e49911"><span class="section-number-2">5</span> Appendix</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 短いので、ソースを貼っておきます。
@@ -310,6 +310,9 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/colono.html">アメリカで大腸内視鏡検査(Colonoscopy)を受けた</a>
+      </li>
+      <li class="post">
           <a href="/resumeinvest.html">投資を再開</a>
       </li>
       <li class="post">
@@ -320,9 +323,6 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
       </li>
       <li class="post">
           <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
-      </li>
-      <li class="post">
-          <a href="/ortgithub.html">org-mode + github(/gitlab)で個人用Wikiを作る</a>
       </li>
     </ul>
   </section>

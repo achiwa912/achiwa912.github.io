@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9c4716a">1. テストSMTPサーバーを立てる</a></li>
-<li><a href="#orgcf9edac">2. テストメールを送る</a></li>
-<li><a href="#org7b13368">3. テストしてみる</a></li>
-<li><a href="#org6894bce">4. 宛先が表示されない?</a></li>
-<li><a href="#orgf5a5e53">5. 参考リンク</a></li>
+<li><a href="#org4f25eeb">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#org7885f0f">2. テストメールを送る</a></li>
+<li><a href="#org0890efe">3. テストしてみる</a></li>
+<li><a href="#orgca72de0">4. 宛先が表示されない?</a></li>
+<li><a href="#org85366cd">5. 参考リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9c4716a" class="outline-2">
-<h2 id="org9c4716a"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
+<div id="outline-container-org4f25eeb" class="outline-2">
+<h2 id="org4f25eeb"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
@@ -112,8 +112,8 @@ python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
 </div>
 </div>
 
-<div id="outline-container-orgcf9edac" class="outline-2">
-<h2 id="orgcf9edac"><span class="section-number-2">2</span> テストメールを送る</h2>
+<div id="outline-container-org7885f0f" class="outline-2">
+<h2 id="org7885f0f"><span class="section-number-2">2</span> テストメールを送る</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
@@ -143,8 +143,8 @@ SMTPサーバーを立てるほどではありませんが、テストメール�
 </div>
 </div>
 
-<div id="outline-container-org7b13368" class="outline-2">
-<h2 id="org7b13368"><span class="section-number-2">3</span> テストしてみる</h2>
+<div id="outline-container-org0890efe" class="outline-2">
+<h2 id="org0890efe"><span class="section-number-2">3</span> テストしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
@@ -209,8 +209,8 @@ reply: retcode (221); Msg: b'Bye'
 </div>
 </div>
 
-<div id="outline-container-org6894bce" class="outline-2">
-<h2 id="org6894bce"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
+<div id="outline-container-orgca72de0" class="outline-2">
+<h2 id="orgca72de0"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
@@ -281,8 +281,8 @@ End of msg
 </div>
 
 
-<div id="outline-container-orgf5a5e53" class="outline-2">
-<h2 id="orgf5a5e53"><span class="section-number-2">5</span> 参考リンク</h2>
+<div id="outline-container-org85366cd" class="outline-2">
+<h2 id="org85366cd"><span class="section-number-2">5</span> 参考リンク</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
@@ -314,6 +314,9 @@ End of msg
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/colono.html">アメリカで大腸内視鏡検査(Colonoscopy)を受けた</a>
+      </li>
+      <li class="post">
           <a href="/resumeinvest.html">投資を再開</a>
       </li>
       <li class="post">
@@ -324,9 +327,6 @@ End of msg
       </li>
       <li class="post">
           <a href="/orgidx.html">org-mode + github Wikiのインデックスを自動生成する</a>
-      </li>
-      <li class="post">
-          <a href="/ortgithub.html">org-mode + github(/gitlab)で個人用Wikiを作る</a>
       </li>
     </ul>
   </section>
