@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9851b6f">1. はじめに</a></li>
-<li><a href="#org8c8f486">2. 表示バグの解決</a></li>
-<li><a href="#org5cf76e7">3. キャンプ</a></li>
-<li><a href="#org19ee985">4. 戦闘基本</a></li>
-<li><a href="#orgf88a140">5. 次は、、</a></li>
+<li><a href="#orgd3398f3">1. はじめに</a></li>
+<li><a href="#org0d02821">2. 表示バグの解決</a></li>
+<li><a href="#org997304f">3. キャンプ</a></li>
+<li><a href="#org2d900a5">4. 戦闘基本</a></li>
+<li><a href="#org13a177f">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9851b6f" class="outline-2">
-<h2 id="org9851b6f"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgd3398f3" class="outline-2">
+<h2 id="orgd3398f3"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの8回目です。今回はキャンプと戦闘の非常に基本的な部分を実装しています(現在進行形)。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org8c8f486" class="outline-2">
-<h2 id="org8c8f486"><span class="section-number-2">2</span> 表示バグの解決</h2>
+<div id="outline-container-org0d02821" class="outline-2">
+<h2 id="org0d02821"><span class="section-number-2">2</span> 表示バグの解決</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 これまでずっと妙な表示バグに悩まされてきました。DL(Daemon Lord)では仮想画面を使ったダブルバッファリングをしているのですが、ふと、一部古い画面を表示してしまうのです。致命的なバグではないのでしばらく放置してきましたが、ようやく原因がわかりました。メッセージ表示メソッドにおいて、メッセージウインドウのみを書き換えて他は前回の画面のまま表示していたのです。現象から原因を推測するのが難しいバグでした。
@@ -100,8 +100,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org5cf76e7" class="outline-2">
-<h2 id="org5cf76e7"><span class="section-number-2">3</span> キャンプ</h2>
+<div id="outline-container-org997304f" class="outline-2">
+<h2 id="org997304f"><span class="section-number-2">3</span> キャンプ</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 キャンプはキャラクター表示からの魔法(スペル)使用やアイテムの装備など、使い回しでそれなりに実装できました。キャンプ途中のみとはいえ、回復魔法が使えるのは心強いです。
@@ -109,8 +109,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org19ee985" class="outline-2">
-<h2 id="org19ee985"><span class="section-number-2">4</span> 戦闘基本</h2>
+<div id="outline-container-org2d900a5" class="outline-2">
+<h2 id="org2d900a5"><span class="section-number-2">4</span> 戦闘基本</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Wizardryのシステムにおいて、戦闘は最も複雑な部分です。その中で、逃亡、単純な打撃、parry(身を守る)と戦闘終了時の経験値とgoldの取得のみを実装しました。打撃は更に属性攻撃やドレイン、クリティカルなどの効果があります。
@@ -150,8 +150,8 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
 </div>
 </div>
 
-<div id="outline-container-orgf88a140" class="outline-2">
-<h2 id="orgf88a140"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org13a177f" class="outline-2">
+<h2 id="org13a177f"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 戦闘の実装を進めます。魔法がキャンプと戦闘で思ったよりも共通化が難しいので、工夫が必要です。不本意ながら、それぞれ独立した実装になってしまうかもしれません。
@@ -181,6 +181,9 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/bkup_blog.html">ブログをバックアップする</a>
+      </li>
+      <li class="post">
           <a href="/ukraine.html">ウクライナ情勢メモ</a>
       </li>
       <li class="post">
@@ -191,9 +194,6 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
       </li>
       <li class="post">
           <a href="/unclogged.html">トイレが詰まった話</a>
-      </li>
-      <li class="post">
-          <a href="/macvmmem.html">最近のmacOSでVMのメモリ使用量が倍</a>
       </li>
     </ul>
   </section>
@@ -212,7 +212,7 @@ Wizardryのシステムにおいて、戦闘は最も複雑な部分です。そ
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfd60f92">1. はじめに</a></li>
-<li><a href="#org63d2131">2. org-mode + github(/gitlab)でパーソナルWiki</a>
+<li><a href="#orgd65b359">1. はじめに</a></li>
+<li><a href="#org257fe39">2. org-mode + github(/gitlab)でパーソナルWiki</a>
 <ul>
-<li><a href="#org6c44f56">2.1. org-modeのレンダリング</a></li>
-<li><a href="#org2eec5c2">2.2. githubのプライベートレポジトリ</a></li>
-<li><a href="#org2218f55">2.3. 複数デバイスでの共有</a></li>
-<li><a href="#org09c00b8">2.4. コンパイル等不要</a></li>
+<li><a href="#orga5898e5">2.1. org-modeのレンダリング</a></li>
+<li><a href="#org86b3c1e">2.2. githubのプライベートレポジトリ</a></li>
+<li><a href="#org37bf796">2.3. 複数デバイスでの共有</a></li>
+<li><a href="#org2a45707">2.4. コンパイル等不要</a></li>
 </ul>
 </li>
-<li><a href="#org9541ce3">3. Tips</a>
+<li><a href="#org88231a6">3. Tips</a>
 <ul>
-<li><a href="#orgab8d37e">3.1. READMEからリンクを貼る</a></li>
+<li><a href="#org06d52ee">3.1. READMEからリンクを貼る</a></li>
 </ul>
 </li>
-<li><a href="#org63f6250">4. 終わりに</a></li>
-<li><a href="#org7f008ac">5. おまけ</a></li>
+<li><a href="#orgdd6de1a">4. 終わりに</a></li>
+<li><a href="#orgad0bf26">5. おまけ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfd60f92" class="outline-2">
-<h2 id="orgfd60f92"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgd65b359" class="outline-2">
+<h2 id="orgd65b359"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はemacsのorg-modeでメモを書いていますが、複数台のPCで編集したり、モバイルデバイスから閲覧するよい方法が無いか探していました。ブログに使っているgithub pagesにアクセス制限をかけられればよいのですが、そのためには有償のプランを契約しないとだめそうです。また、Pelican等の静的サイトジェネレーターでHTMLにレンダリングする必要があり、手間がかかります。
@@ -113,16 +113,16 @@
 </div>
 </div>
 
-<div id="outline-container-org63d2131" class="outline-2">
-<h2 id="org63d2131"><span class="section-number-2">2</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
+<div id="outline-container-org257fe39" class="outline-2">
+<h2 id="org257fe39"><span class="section-number-2">2</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いろいろと検索したところ、org-modeとgithub(/gitlabも)の相性が良さそうであることがわかりました。
 </p>
 </div>
 
-<div id="outline-container-org6c44f56" class="outline-3">
-<h3 id="org6c44f56"><span class="section-number-3">2.1</span> org-modeのレンダリング</h3>
+<div id="outline-container-orga5898e5" class="outline-3">
+<h3 id="orga5898e5"><span class="section-number-3">2.1</span> org-modeのレンダリング</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 これまで私はレポジトリのREADMEをわざわざ慣れないマークダウン記法で書いていましたが、なんと、githubは <code>README.org</code> ファイルを作成すればレンダリングして表示してくれるという <a href="http://yasuyk.github.io/blog/2013/04/27/github-readme-org-mode/">うれしい情報</a> を見つけました。(yasuykさんありがとうございます!)
@@ -139,8 +139,8 @@ orgファイルのレンダリング例:
 </div>
 </div>
 
-<div id="outline-container-org2eec5c2" class="outline-3">
-<h3 id="org2eec5c2"><span class="section-number-3">2.2</span> githubのプライベートレポジトリ</h3>
+<div id="outline-container-org86b3c1e" class="outline-3">
+<h3 id="org86b3c1e"><span class="section-number-3">2.2</span> githubのプライベートレポジトリ</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 更に、githubは2019年からプライベートレポジトリの作成を <a href="https://github.blog/2019-01-07-new-year-new-github/">無制限に無償化していた</a> ようです。私はgithubに複数レポジトリを持って、ブログもgithub pagesで公開していましたが、このことは知りませんでした。これはありがたい変更です。
@@ -152,8 +152,8 @@ orgファイルのレンダリング例:
 </div>
 </div>
 
-<div id="outline-container-org2218f55" class="outline-3">
-<h3 id="org2218f55"><span class="section-number-3">2.3</span> 複数デバイスでの共有</h3>
+<div id="outline-container-org37bf796" class="outline-3">
+<h3 id="org37bf796"><span class="section-number-3">2.3</span> 複数デバイスでの共有</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 普通のgithubレポジトリなので、もちろん複数デバイスでの閲覧、変更が可能です。githubに同じアカウントでサインインするだけです。
@@ -169,8 +169,8 @@ gitlabでも同様ですが、個人モバイルデバイスからオフィス�
 </div>
 </div>
 
-<div id="outline-container-org09c00b8" class="outline-3">
-<h3 id="org09c00b8"><span class="section-number-3">2.4</span> コンパイル等不要</h3>
+<div id="outline-container-org2a45707" class="outline-3">
+<h3 id="org2a45707"><span class="section-number-3">2.4</span> コンパイル等不要</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 私のgithub pagesのブログは静的サイトジェネレーターのPelicanを使っていますが、だいぶ記事がたまってきたせいか、コンパイルに1分以上かかるようになっています。
@@ -183,12 +183,12 @@ githubがorgファイルのレンダリングをしてくれるので、レポ�
 </div>
 </div>
 
-<div id="outline-container-org9541ce3" class="outline-2">
-<h2 id="org9541ce3"><span class="section-number-2">3</span> Tips</h2>
+<div id="outline-container-org88231a6" class="outline-2">
+<h2 id="org88231a6"><span class="section-number-2">3</span> Tips</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgab8d37e" class="outline-3">
-<h3 id="orgab8d37e"><span class="section-number-3">3.1</span> READMEからリンクを貼る</h3>
+<div id="outline-container-org06d52ee" class="outline-3">
+<h3 id="org06d52ee"><span class="section-number-3">3.1</span> READMEからリンクを貼る</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 githubではご存知のように、レポジトリのトップページにREADMEファイルをレンダリングして表示します。パーソナルWikiのトップページとして、README.orgに各orgファイル(=メモ)へのリンクを貼っておくことで、使い勝手が良くなると思います。
@@ -211,8 +211,8 @@ githubではご存知のように、レポジトリのトップページにREADM
 </div>
 
 
-<div id="outline-container-org63f6250" class="outline-2">
-<h2 id="org63f6250"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgdd6de1a" class="outline-2">
+<h2 id="orgdd6de1a"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 org-mode と github(/gitlab) のプライベートレポジトリを利用して、複数デバイスから編集、閲覧できる個人用のWikiページを持てることがわかりました。
@@ -221,8 +221,8 @@ org-mode と github(/gitlab) のプライベートレポジトリを利用して
 </div>
 
 
-<div id="outline-container-org7f008ac" class="outline-2">
-<h2 id="org7f008ac"><span class="section-number-2">5</span> おまけ</h2>
+<div id="outline-container-orgad0bf26" class="outline-2">
+<h2 id="orgad0bf26"><span class="section-number-2">5</span> おまけ</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 いつの頃からか、org-modeで改行すると、勝手にインデントされるようになりました。ものすごく使い勝手が悪いので、抑止する方法を探したところ、案の定、<a href="https://blue.hatenadiary.jp/entry/2014/11/20/211335">先人が解決</a> してくれていました。(あお日記さん、どうもありがとうございます。)
@@ -268,6 +268,9 @@ org-modeでのみ有効となるようにしました。
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/bkup_blog.html">ブログをバックアップする</a>
+      </li>
+      <li class="post">
           <a href="/ukraine.html">ウクライナ情勢メモ</a>
       </li>
       <li class="post">
@@ -278,9 +281,6 @@ org-modeでのみ有効となるようにしました。
       </li>
       <li class="post">
           <a href="/unclogged.html">トイレが詰まった話</a>
-      </li>
-      <li class="post">
-          <a href="/macvmmem.html">最近のmacOSでVMのメモリ使用量が倍</a>
       </li>
     </ul>
   </section>
@@ -299,7 +299,7 @@ org-modeでのみ有効となるようにしました。
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

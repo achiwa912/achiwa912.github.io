@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Python Cookbook 3rd Editionを読みました &mdash; Dreaming in Brookline, MA 02445</title>
+  <title>ブログをバックアップする &mdash; Dreaming in Brookline, MA 02445</title>
   <meta name="author" content="きょうす kyos">
 
 
@@ -48,10 +48,10 @@
       <li >
         <a href="/category/linux.html">Linux</a>
       </li>
-      <li class="active">
+      <li >
         <a href="/category/python.html">Python</a>
       </li>
-      <li >
+      <li class="active">
         <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
@@ -60,109 +60,134 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Python Cookbook 3rd Editionを読みました</h1>
+      <h1 class="entry-title">ブログをバックアップする</h1>
     <p class="meta">
-<time datetime="2021-01-09T00:00:00-05:00" pubdate>Sat 09 January 2021</time>    </p>
+<time datetime="2022-03-04T00:00:00-05:00" pubdate>Fri 04 March 2022</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbb66afa">1. はじめに</a></li>
-<li><a href="#org40ad34d">2. Python Cookbook</a>
+<li><a href="#orge0f0d27">1. はじめに</a></li>
+<li><a href="#org02804fe">2. どうバックアップするか</a>
 <ul>
-<li><a href="#org38ab511">2.1. 内容</a></li>
-<li><a href="#org51f299b">2.2. 難易度</a></li>
-<li><a href="#org6f8589f">2.3. 感想</a></li>
+<li><a href="#org1cdecb9">2.1. tarで固めてクラウドにセーブする</a></li>
+<li><a href="#org5c55788">2.2. github pagesにソースファイルを追加する</a></li>
+<li><a href="#org05291d4">2.3. githubに専用プライベートリポジトリを作る</a></li>
 </ul>
 </li>
-<li><a href="#org7a4a476">3. 久々のアップデート</a></li>
+<li><a href="#org19daebc">3. 別PCにクローンする</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbb66afa" class="outline-2">
-<h2 id="orgbb66afa"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orge0f0d27" class="outline-2">
+<h2 id="orge0f0d27"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Python修行のために中級向けのPython本3冊を4ヶ月かけて立て続けに読みました。
-Python Cookbook 3rd Editionはその3冊目になります。
-これまで以下の本を読んできましたが、初心者向けではなかった最初の一冊を除いて、なかなか良いセレクションと順番だったと思います。
+このブログはgithub pagesに置いていますが、githubにアップロードされているのはpelican site generatorによって生成されたhtmlファイル等で、org-modeで書いたソースファイルはバックアップされていないことに気が付きました。
 </p>
-<ul class="org-ul">
-<li>Introducing Python</li>
-<li>Python Crash Course</li>
-<li>Effective Python</li>
-<li>Fluent Python</li>
-<li>Python Cookbook</li>
-</ul>
 </div>
 </div>
 
-
-
-<div id="outline-container-org40ad34d" class="outline-2">
-<h2 id="org40ad34d"><span class="section-number-2">2</span> Python Cookbook</h2>
+<div id="outline-container-org02804fe" class="outline-2">
+<h2 id="org02804fe"><span class="section-number-2">2</span> どうバックアップするか</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Python Cookbook 3rd Edition, David Beazley, Brian K. Jones
-野ウサギが表紙のO'Reilly本です。
-</p>
-
-
-<div id="orga64cf13" class="figure">
-<p><img src="./images/cookbook.jpg" alt="cookbook.jpg" />
+いくつか案を考えました。
 </p>
 </div>
-</div>
 
-<div id="outline-container-org38ab511" class="outline-3">
-<h3 id="org38ab511"><span class="section-number-3">2.1</span> 内容</h3>
+<div id="outline-container-org1cdecb9" class="outline-3">
+<h3 id="org1cdecb9"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-Pythonicなコードで書かれたレシピ集です。リファレンス本として推薦されていることも多いですが、解説が優秀で学習本としても役に立ちます。私はcover-to-coverで読みました。最後のC extensionsの章は飛ばしても良かった気もしますが、今後役に立つ時が来るかもしれません。
-</p>
-
-<p>
-載っているコードは、レシピとして使うにはやや清廉され過ぎていている気もします。Pythonicなコードに慣れるという意味ではよいのですが、レシピとして使い回す以前に腰を落ち着けて書いてある内容を理解する必要がありそうです。そういう意味で、この本はいったん全て読んでから、リファレンス的なレシピ集として活用するのが良いように思います。
+最初に思いついた案です。単なるバックアップならこれでもいいかもしれませんが、どうにも微妙です。せっかくブログ自体はgitを使って管理しているのに、ソースファイルだけ前近代的な扱いをしなくてはいけません。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org51f299b" class="outline-3">
-<h3 id="org51f299b"><span class="section-number-3">2.2</span> 難易度</h3>
+<div id="outline-container-org5c55788" class="outline-3">
+<h3 id="org5c55788"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-Intermediate(中級)向けの本として紹介されていることもありますが、この本は本当に難しいです。Effective Python &rarr; Fluent Python &rarr; Python Cookbookの順で読むと良い、とどこかに書いてあったのでその通りにしましたが、正解でした。特にFluent Pythonを読んで知識の底上げをしていなかったら、最初の100ページで挫折していたと思います。
+pelican(+org-mode連携)のソースファイルはcontentディレクトリに置いてあるので、
+</p>
+<pre class="example">
+git add content/*.org
+</pre>
+
+<p>
+してコミットし、git管理にソースファイルを追加しました。
 </p>
 
 <p>
-レシピによってだいぶ難易度に差があります。中でも、スレッドの代わりにジェネレーターを使ってコンカレンシーを実現するレシピ(12.12)は、一週間ほど悩み、ノートに流れを整理してやっと理解できました。何度も挫折しそうになりつつ、2ヶ月かけてようやくcover-to-coverで読み終えることができました。
+ここまでは良かったのですが、
+</p>
+<pre class="example">
+git push origin github-pages:master
+</pre>
+
+<p>
+とリモートのgithubにpushしようとしたところ、「pushするものは何もない」と(英語で)言われてしまいました。
+</p>
+
+<p>
+考えてみると、githubにpushしているのはoutputディレクトリ以下にあるオブジェクトファイルだけなので、その外のファイルをgit addしてもうまくいかないということなのでしょうか??? 
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6f8589f" class="outline-3">
-<h3 id="org6f8589f"><span class="section-number-3">2.3</span> 感想</h3>
+<div id="outline-container-org05291d4" class="outline-3">
+<h3 id="org05291d4"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-レシピ集ということで、実際に使用可能なコードを読み込んで実力を付けたい、と思ってあえてcover-to-coverで読みましたが、サンプルコードが高度すぎて読むのに手間取ったこともあり、運用能力はあまり上がった気がしません。今回はサンプルコードを実際に動かさなかったこともあるかもしれません。
+次はcontentディレクトリで <code>git init</code> して独立したローカルリポジトリを作り、それをgithubのプライベートな空レポジトリにpushする案です。
 </p>
 
 <p>
-一方で、一通り読んだ割にはどんなレシピがあったかあまり覚えておらず、このままでは本来のレシピ集として活用できる気もしません。。。。というわけで、Appendixとしてレシピ一覧を自分用に作っておこうと思います。
+レポジトリをネストする場合、普通は git submodule 等を使うようですが、今回のユースケースではネストしたレポジトリは完全に別扱いで参照も不要なため、あえてサブディレクトリで <code>git init</code> します。
+</p>
+
+<p>
+githubのサイトで <code>blog</code> というプライベートレポジトリを作っておき、
+</p>
+<pre class="example">
+cd content
+git init
+git add .
+git commit -m "initial commit"
+git remote add origin git@github.com:achiwa912/blog.git
+git push -u origin main
+</pre>
+<p>
+で無事バックアップに成功しました。
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org7a4a476" class="outline-2">
-<h2 id="org7a4a476"><span class="section-number-2">3</span> 久々のアップデート</h2>
+<div id="outline-container-org19daebc" class="outline-2">
+<h2 id="org19daebc"><span class="section-number-2">3</span> 別PCにクローンする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-またもや3ヶ月ぶりのアップデートです。この記事は12月に書いていたのですが、Python
-やブログ開発環境が壊れていて、更に1ヶ月ほど放置してしまいました。その間にSQLの勉強をしていたので、こちらも後で記事にしたいと思います。
+せっかくgit管理しているので、別PCでもブログファイルの編集をできるようにしたいところです。そこで、別PC(別のMacのfedora35@virtualbox)上にgit cloneします。
+</p>
+<pre class="example">
+git clone git@github.com:achiwa912/blog.git
+</pre>
+
+
+<p>
+ところが、ここでpermission deniedをくらいました。散々トラブルシュートしましたが、原因は大したことなく、このPCの公開鍵(id_rsa.pub)をgithubに登録していないというオチでした。
+</p>
+<pre class="example">
+cat .ssh/id_rsa.pub
+</pre>
+
+<p>
+の出力をクリップボードにコピーし、githubに登録したところ、無事に <code>git clone</code> できました。
 </p>
 </div>
 </div>
@@ -174,11 +199,11 @@ Intermediate(中級)向けの本として紹介されていることもありま
         きょうす
     </span>
   </span>
-<time datetime="2021-01-09T00:00:00-05:00" pubdate>Sat 09 January 2021</time>  <span class="categories">
-    <a class='category' href='/category/python.html'>Python</a>
+<time datetime="2022-03-04T00:00:00-05:00" pubdate>Fri 04 March 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>  </span>
+    <a class="category" href="/tag/tech.html">Tech</a>,    <a class="category" href="/tag/blog.html">Blog</a>,    <a class="category" href="/tag/linux.html">Linux</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
