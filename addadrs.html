@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbbd377c">1. はじめに</a></li>
-<li><a href="#org2c95387">2. Avery 8386</a></li>
-<li><a href="#org8b564f4">3. Avery Webサービス</a></li>
-<li><a href="#org1a52456">4. 宛先リスト</a></li>
-<li><a href="#orgc2424eb">5. 日本語フォントの扱い</a></li>
-<li><a href="#org62a6072">6. Pythonスクリプト</a></li>
-<li><a href="#org3e899ac">7. 使い方</a></li>
-<li><a href="#org0a4f385">8. 印刷</a></li>
-<li><a href="#org37ba429">9. 宛名面レイアウト</a></li>
-<li><a href="#orgb62df0b">10. 切手を貼る</a></li>
-<li><a href="#org6ba7081">11. 終わりに</a></li>
+<li><a href="#org207e353">1. はじめに</a></li>
+<li><a href="#org3d51ce0">2. Avery 8386</a></li>
+<li><a href="#orgc5b51b5">3. Avery Webサービス</a></li>
+<li><a href="#org26d602d">4. 宛先リスト</a></li>
+<li><a href="#orgbdb27c6">5. 日本語フォントの扱い</a></li>
+<li><a href="#orgdbda8cb">6. Pythonスクリプト</a></li>
+<li><a href="#org6b231b1">7. 使い方</a></li>
+<li><a href="#org7753182">8. 印刷</a></li>
+<li><a href="#orgb2f9f7e">9. 宛名面レイアウト</a></li>
+<li><a href="#orgb29d2a9">10. 切手を貼る</a></li>
+<li><a href="#org115eebb">11. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbbd377c" class="outline-2">
-<h2 id="orgbbd377c"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org207e353" class="outline-2">
+<h2 id="org207e353"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 今年は転職及び引越しのご挨拶にグリーティングカードを出すことにしました。
@@ -102,8 +102,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2c95387" class="outline-2">
-<h2 id="org2c95387"><span class="section-number-2">2</span> Avery 8386</h2>
+<div id="outline-container-org3d51ce0" class="outline-2">
+<h2 id="org3d51ce0"><span class="section-number-2">2</span> Avery 8386</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 AmazonやAveryのサイトで探してみると、ポストカードにはAvery 8386番が良さそうです。早速注文してみました。
@@ -117,8 +117,8 @@ AmazonやAveryのサイトで探してみると、ポストカードにはAvery 
 </div>
 </div>
 
-<div id="outline-container-org8b564f4" class="outline-2">
-<h2 id="org8b564f4"><span class="section-number-2">3</span> Avery Webサービス</h2>
+<div id="outline-container-orgc5b51b5" class="outline-2">
+<h2 id="orgc5b51b5"><span class="section-number-2">3</span> Avery Webサービス</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 PCでAvery用ポストカードデータを作成するには、8386番のテンプレートを使用します。Averyサイトの<a href="https://www.avery.com/templates/8386?gclid=Cj0KCQiAy4eNBhCaARIsAFDVtI1fMZfOw9Qzn_yygpqJkxg7CWWjV6C8DzkWu87LeNpkSuWoDBbKV1caAtIbEALw_wcB&amp;gclsrc=aw.ds">8386テンプレートページ</a> からMicrosoft Wordやその他のアプリケーション用テンプレートをダウンロードできます。
@@ -149,8 +149,8 @@ PCでAvery用ポストカードデータを作成するには、8386番のテン
 </div>
 </div>
 
-<div id="outline-container-org1a52456" class="outline-2">
-<h2 id="org1a52456"><span class="section-number-2">4</span> 宛先リスト</h2>
+<div id="outline-container-org26d602d" class="outline-2">
+<h2 id="org26d602d"><span class="section-number-2">4</span> 宛先リスト</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 これまで宛先住所録は はがきデザインキットWeb版 のデータを使っていました。2年前のWeb版サービス終了の際に、csvファイルとしてデータをダウンロードしてありました。
@@ -177,8 +177,8 @@ PCでAvery用ポストカードデータを作成するには、8386番のテン
 </div>
 </div>
 
-<div id="outline-container-orgc2424eb" class="outline-2">
-<h2 id="orgc2424eb"><span class="section-number-2">5</span> 日本語フォントの扱い</h2>
+<div id="outline-container-orgbdb27c6" class="outline-2">
+<h2 id="orgbdb27c6"><span class="section-number-2">5</span> 日本語フォントの扱い</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 少し試してみたところ、日本語が全て四角形シンボルになってしまいました。
@@ -211,8 +211,8 @@ canvas.setFont(<span style="font-style: italic;">'HeiseiMin-W3'</span>, 20)
 </div>
 </div>
 
-<div id="outline-container-org62a6072" class="outline-2">
-<h2 id="org62a6072"><span class="section-number-2">6</span> Pythonスクリプト</h2>
+<div id="outline-container-orgdbda8cb" class="outline-2">
+<h2 id="orgdbda8cb"><span class="section-number-2">6</span> Pythonスクリプト</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 数カ月ぶりにPythonコードを書きました。あまりに久しぶりすぎて、
@@ -355,8 +355,8 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-org3e899ac" class="outline-2">
-<h2 id="org3e899ac"><span class="section-number-2">7</span> 使い方</h2>
+<div id="outline-container-org6b231b1" class="outline-2">
+<h2 id="org6b231b1"><span class="section-number-2">7</span> 使い方</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 PDFライブラリをインストールします。
@@ -385,8 +385,8 @@ Pythonは3.6以降なら動くと思います。開発には3.10を使いまし�
 </div>
 </div>
 
-<div id="outline-container-org0a4f385" class="outline-2">
-<h2 id="org0a4f385"><span class="section-number-2">8</span> 印刷</h2>
+<div id="outline-container-org7753182" class="outline-2">
+<h2 id="org7753182"><span class="section-number-2">8</span> 印刷</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Averyの8386テンプレートを使ってWeb上でポストカードデータを作成したら、自分のプリンターで印刷するためにPDFファイルとしてダウンロードすることができます。
@@ -404,8 +404,8 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 </div>
 </div>
 
-<div id="outline-container-org37ba429" class="outline-2">
-<h2 id="org37ba429"><span class="section-number-2">9</span> 宛名面レイアウト</h2>
+<div id="outline-container-orgb2f9f7e" class="outline-2">
+<h2 id="orgb2f9f7e"><span class="section-number-2">9</span> 宛名面レイアウト</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 アメリカのポストカードレイアウト例です。
@@ -422,8 +422,8 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 </div>
 </div>
 
-<div id="outline-container-orgb62df0b" class="outline-2">
-<h2 id="orgb62df0b"><span class="section-number-2">10</span> 切手を貼る</h2>
+<div id="outline-container-orgb29d2a9" class="outline-2">
+<h2 id="orgb29d2a9"><span class="section-number-2">10</span> 切手を貼る</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 日本に手紙(約30g以内)やポストカードを送るには、グローバルフォーエバー切手を買います。アメリカはインフレで郵便の値段が上がっていきますが、フォーエバー切手を買えば、ずっと使えます。アメリカ国内用と海外用(グローバル)で価格が異なり、グローバルフォーエバー切手は現在1枚$1.3です。
@@ -437,8 +437,8 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 </div>
 
 
-<div id="outline-container-org6ba7081" class="outline-2">
-<h2 id="org6ba7081"><span class="section-number-2">11</span> 終わりに</h2>
+<div id="outline-container-org115eebb" class="outline-2">
+<h2 id="org115eebb"><span class="section-number-2">11</span> 終わりに</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 はがきデザインキットの住所録csvデータを、Avery 8386用のポストカード宛名面PDFファイルに埋め込むという、ものすごくニッチなスクリプトを作りました。需要は無いと思いますが、来年の自分のために記録として残しておきます。
