@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org956f2d4">1. はじめに</a></li>
-<li><a href="#org50e3437">2. 手順</a>
+<li><a href="#org60f924c">1. はじめに</a></li>
+<li><a href="#org1613b1d">2. 手順</a>
 <ul>
-<li><a href="#orgfa74936">2.1. 概要</a></li>
-<li><a href="#org1d192ec">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org9833f5f">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org1bcb4de">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#org18b7e87">2.1. 概要</a></li>
+<li><a href="#org5adc54b">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org09b4bb4">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#orgc64f5ea">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#orgb906aee">3. 終わりに</a></li>
+<li><a href="#orgf2c32c5">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org956f2d4" class="outline-2">
-<h2 id="org956f2d4"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org60f924c" class="outline-2">
+<h2 id="org60f924c"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -98,12 +98,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org50e3437" class="outline-2">
-<h2 id="org50e3437"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org1613b1d" class="outline-2">
+<h2 id="org1613b1d"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgfa74936" class="outline-3">
-<h3 id="orgfa74936"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-org18b7e87" class="outline-3">
+<h3 id="org18b7e87"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -117,8 +117,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org1d192ec" class="outline-3">
-<h3 id="org1d192ec"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-org5adc54b" class="outline-3">
+<h3 id="org5adc54b"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -146,8 +146,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org9833f5f" class="outline-3">
-<h3 id="org9833f5f"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org09b4bb4" class="outline-3">
+<h3 id="org09b4bb4"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -186,8 +186,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-org1bcb4de" class="outline-3">
-<h3 id="org1bcb4de"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-orgc64f5ea" class="outline-3">
+<h3 id="orgc64f5ea"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -231,8 +231,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-orgb906aee" class="outline-2">
-<h2 id="orgb906aee"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-orgf2c32c5" class="outline-2">
+<h2 id="orgf2c32c5"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -262,6 +262,9 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/napolitan.html">スパゲティナポリタンに挑戦</a>
+      </li>
+      <li class="post">
           <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
       </li>
       <li class="post">
@@ -272,9 +275,6 @@ Filesystem      Size  Used Avail Use% Mounted on
       </li>
       <li class="post">
           <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
-      </li>
-      <li class="post">
-          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
       </li>
     </ul>
   </section>

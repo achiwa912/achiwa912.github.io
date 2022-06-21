@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org4cc13c1">1. はじめに</a></li>
-<li><a href="#org90085e9">2. スクロール画面表示</a>
+<li><a href="#orgff0bf38">1. はじめに</a></li>
+<li><a href="#org1022219">2. スクロール画面表示</a>
 <ul>
-<li><a href="#org3bcae01">2.1. メインメソッド</a></li>
-<li><a href="#orga5940b1">2.2. マップから仮想画面の作成</a></li>
-<li><a href="#org22f6979">2.3. 仮想画面を実際に表示</a></li>
+<li><a href="#orgdfe0722">2.1. メインメソッド</a></li>
+<li><a href="#org40466d8">2.2. マップから仮想画面の作成</a></li>
+<li><a href="#org31c1be0">2.3. 仮想画面を実際に表示</a></li>
 </ul>
 </li>
-<li><a href="#org7272339">3. プレイヤーパーティーの移動</a></li>
-<li><a href="#orgd84a59f">4. 動かしてみる</a></li>
-<li><a href="#org2dc1b1c">5. 次は、、</a></li>
+<li><a href="#orgc7e4a86">3. プレイヤーパーティーの移動</a></li>
+<li><a href="#org8a6df3b">4. 動かしてみる</a></li>
+<li><a href="#orgcd3cbec">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4cc13c1" class="outline-2">
-<h2 id="org4cc13c1"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgff0bf38" class="outline-2">
+<h2 id="orgff0bf38"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3回目です。今回はマップのスクロール画面表示を行います。
@@ -93,8 +93,8 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3
 </div>
 </div>
 
-<div id="outline-container-org90085e9" class="outline-2">
-<h2 id="org90085e9"><span class="section-number-2">2</span> スクロール画面表示</h2>
+<div id="outline-container-org1022219" class="outline-2">
+<h2 id="org1022219"><span class="section-number-2">2</span> スクロール画面表示</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 スクロール画面の表示のために、いったん仮想画面を作ることにします。仮想画面は新旧2面持ち、前回描いた行と全く同じ内容の行は画面書き換えをしないようにすることで、画面全体の書き換え量を節約します。また、マップに重ねてメッセージウインドウ等を表示する場合に、実際の画面書き換えを何度も行わないようにして、画面書換量を減らすと同時に、画面のちらつきを防止します。
@@ -119,8 +119,8 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </p>
 </div>
 
-<div id="outline-container-org3bcae01" class="outline-3">
-<h3 id="org3bcae01"><span class="section-number-3">2.1</span> メインメソッド</h3>
+<div id="outline-container-orgdfe0722" class="outline-3">
+<h3 id="orgdfe0722"><span class="section-number-3">2.1</span> メインメソッド</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 スクロール画面表示のメインメソッドはdisp_scrwin()です。ここでは主に、マップから仮想画面を作成し、仮想画面を実際に表示して、仮想画面のビューを切り替えています。
@@ -146,8 +146,8 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </div>
 </div>
 
-<div id="outline-container-orga5940b1" class="outline-3">
-<h3 id="orga5940b1"><span class="section-number-3">2.2</span> マップから仮想画面の作成</h3>
+<div id="outline-container-org40466d8" class="outline-3">
+<h3 id="org40466d8"><span class="section-number-3">2.2</span> マップから仮想画面の作成</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 マップデータを仮想画面にコピーするのはdraw_map()メソッドで行います。フロア全体のマップデータから、画面表示する部分だけを切り取っています。表示エリアがフロアからはみ出た部分は、いまのところ岩('#')と区別して'^'記号を表示しています。
@@ -181,8 +181,8 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </div>
 </div>
 
-<div id="outline-container-org22f6979" class="outline-3">
-<h3 id="org22f6979"><span class="section-number-3">2.3</span> 仮想画面を実際に表示</h3>
+<div id="outline-container-org31c1be0" class="outline-3">
+<h3 id="org31c1be0"><span class="section-number-3">2.3</span> 仮想画面を実際に表示</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 display()メソッドは、仮想画面を実際にprint()文を使ってターミナルに表示します。ロジックはstraight forwardで読みやすくなっていると思います。if文は前回描いた仮想画面と今回描く仮想画面の行同士を比較している部分です。1行まるまる同じであれば、描画をスキップします。
@@ -206,8 +206,8 @@ display()メソッドは、仮想画面を実際にprint()文を使ってター�
 </div>
 </div>
 
-<div id="outline-container-org7272339" class="outline-2">
-<h2 id="org7272339"><span class="section-number-2">3</span> プレイヤーパーティーの移動</h2>
+<div id="outline-container-orgc7e4a86" class="outline-2">
+<h2 id="orgc7e4a86"><span class="section-number-2">3</span> プレイヤーパーティーの移動</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 プレイヤーパーティーは常に画面中心に表示するとしているため、パーティーの座標を変えると画面がスクロールします。
@@ -275,8 +275,8 @@ if __name__ == "__main__":
 </div>
 </div>
 
-<div id="outline-container-orgd84a59f" class="outline-2">
-<h2 id="orgd84a59f"><span class="section-number-2">4</span> 動かしてみる</h2>
+<div id="outline-container-org8a6df3b" class="outline-2">
+<h2 id="org8a6df3b"><span class="section-number-2">4</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 動かしてみます。
@@ -310,8 +310,8 @@ if __name__ == "__main__":
 </div>
 </div>
 
-<div id="outline-container-org2dc1b1c" class="outline-2">
-<h2 id="org2dc1b1c"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-orgcd3cbec" class="outline-2">
+<h2 id="orgcd3cbec"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 次は画面上にメッセージを表示できるようにします。
@@ -342,6 +342,9 @@ if __name__ == "__main__":
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/napolitan.html">スパゲティナポリタンに挑戦</a>
+      </li>
+      <li class="post">
           <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
       </li>
       <li class="post">
@@ -352,9 +355,6 @@ if __name__ == "__main__":
       </li>
       <li class="post">
           <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
-      </li>
-      <li class="post">
-          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
       </li>
     </ul>
   </section>

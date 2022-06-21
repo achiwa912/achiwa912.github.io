@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org32f76b8">1. はじめに</a>
+<li><a href="#org7d2c5f9">1. はじめに</a>
 <ul>
-<li><a href="#org45f2c63">1.1. ソースコードの入手</a></li>
-<li><a href="#org0fc893c">1.2. 最初の一歩?</a></li>
+<li><a href="#orgb57d2c6">1.1. ソースコードの入手</a></li>
+<li><a href="#org68b5526">1.2. 最初の一歩?</a></li>
 </ul>
 </li>
-<li><a href="#org21e5c18">2. list head構造体</a>
+<li><a href="#orgae8ad05">2. list head構造体</a>
 <ul>
-<li><a href="#org0172cd0">2.1. 背景</a></li>
-<li><a href="#org0f19642">2.2. list head構造体の定義</a></li>
-<li><a href="#orgbf7c9b3">2.3. Linuxカーネルでの使われ方</a></li>
-<li><a href="#orgfa9f8e0">2.4. ペアレント構造体へのポインタを得る</a></li>
+<li><a href="#orgc2f01c6">2.1. 背景</a></li>
+<li><a href="#org09feebd">2.2. list head構造体の定義</a></li>
+<li><a href="#org9380679">2.3. Linuxカーネルでの使われ方</a></li>
+<li><a href="#orgad41296">2.4. ペアレント構造体へのポインタを得る</a></li>
 </ul>
 </li>
-<li><a href="#org7002b2b">3. まとめ</a></li>
-<li><a href="#org11035e9">4. 参考文献</a></li>
+<li><a href="#org7a20a00">3. まとめ</a></li>
+<li><a href="#org27d5373">4. 参考文献</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org32f76b8" class="outline-2">
-<h2 id="org32f76b8"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org7d2c5f9" class="outline-2">
+<h2 id="org7d2c5f9"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Linuxユーザーのエンジニアであれば、Linuxがどのように動くのかに興味ありますよね。いつかはLinuxカーネルについて勉強してみたいと思っている方も少なくないのではないでしょうか。
@@ -101,8 +101,8 @@ Linuxユーザーのエンジニアであれば、Linuxがどのように動く�
 </p>
 </div>
 
-<div id="outline-container-org45f2c63" class="outline-3">
-<h3 id="org45f2c63"><span class="section-number-3">1.1</span> ソースコードの入手</h3>
+<div id="outline-container-orgb57d2c6" class="outline-3">
+<h3 id="orgb57d2c6"><span class="section-number-3">1.1</span> ソースコードの入手</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 まずはLinuxカーネルのソースコードを入手しましょう。
@@ -170,8 +170,8 @@ colliding group is in the working tree:
 </div>
 </div>
 
-<div id="outline-container-org0fc893c" class="outline-3">
-<h3 id="org0fc893c"><span class="section-number-3">1.2</span> 最初の一歩?</h3>
+<div id="outline-container-org68b5526" class="outline-3">
+<h3 id="org68b5526"><span class="section-number-3">1.2</span> 最初の一歩?</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Linuxのカーネルは巨大です。一体、どこから見始めればよいのか検討もつきません。普通は参考文献にあるようなLinuxカーネル本をガイドにするのがよいと思います。ところで、私の場合はVFSに興味があります。inodeとかsuperblockとかのあれです。若干いきなりすぎる感もありますが、superblockのデータ構造を見てみましょう。
@@ -216,12 +216,12 @@ struct list_head        s_list;         /* Keep this first */
 </div>
 </div>
 
-<div id="outline-container-org21e5c18" class="outline-2">
-<h2 id="org21e5c18"><span class="section-number-2">2</span> list head構造体</h2>
+<div id="outline-container-orgae8ad05" class="outline-2">
+<h2 id="orgae8ad05"><span class="section-number-2">2</span> list head構造体</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0172cd0" class="outline-3">
-<h3 id="org0172cd0"><span class="section-number-3">2.1</span> 背景</h3>
+<div id="outline-container-orgc2f01c6" class="outline-3">
+<h3 id="orgc2f01c6"><span class="section-number-3">2.1</span> 背景</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 LinuxカーネルはC言語で書かれています。C言語には、よりモダンなプログラミング言語と違って、サポートするデータ構造は貧弱で、オブジェクト指向の仕組みも入っていません。例えば、Python等にあるリスト構造(['abc', 'def']みたいなやつ)はとても便利で、無くてはかったるくてプログラムなど書いていられないほどですが、C言語にリストはありません。同様にC言語にはクラスもありません。あるのは構造体のみ。
@@ -233,8 +233,8 @@ Linuxカーネル開発者達はこれらのモダンなデータ構造を、ユ
 </div>
 </div>
 
-<div id="outline-container-org0f19642" class="outline-3">
-<h3 id="org0f19642"><span class="section-number-3">2.2</span> list head構造体の定義</h3>
+<div id="outline-container-org09feebd" class="outline-3">
+<h3 id="org09feebd"><span class="section-number-3">2.2</span> list head構造体の定義</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 では、list head構造体の定義を見てみましょう。
@@ -259,8 +259,8 @@ struct list_head {
 </div>
 </div>
 
-<div id="outline-container-orgbf7c9b3" class="outline-3">
-<h3 id="orgbf7c9b3"><span class="section-number-3">2.3</span> Linuxカーネルでの使われ方</h3>
+<div id="outline-container-org9380679" class="outline-3">
+<h3 id="org9380679"><span class="section-number-3">2.3</span> Linuxカーネルでの使われ方</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 いや、ちょっと待ってください。リストって、前後のポインタだけ入っていても意味が無いです。リストを構成する各ノードのデータが入っていないと。例えばinodeをリンクトリストで持つ場合、inodeはinode自身のデータをたくさん持っているはずです。ファイル名とか、オーナーとか、パーミッションとか。上の図で言うと・・・の部分です。
@@ -291,8 +291,8 @@ struct super_block {
 </div>
 </div>
 
-<div id="outline-container-orgfa9f8e0" class="outline-3">
-<h3 id="orgfa9f8e0"><span class="section-number-3">2.4</span> ペアレント構造体へのポインタを得る</h3>
+<div id="outline-container-orgad41296" class="outline-3">
+<h3 id="orgad41296"><span class="section-number-3">2.4</span> ペアレント構造体へのポインタを得る</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 リストを持たないC言語でリンクトリストを実現するため、という目的はわかりましたが、一つ問題が残っています。リストヘッド構造体は、同じリストヘッド構造体同士を結びつけるだけなのですが、本当に欲しいのはそれを埋め込んだペアレント構造体へのポインタです。ペアレント構造体をリンクトリスト化したいのですから。
@@ -394,8 +394,8 @@ grepで探したところ、&lt;linux-stable/include/linux/kernel.h&gt;に定義
 </div>
 </div>
 
-<div id="outline-container-org7002b2b" class="outline-2">
-<h2 id="org7002b2b"><span class="section-number-2">3</span> まとめ</h2>
+<div id="outline-container-org7a20a00" class="outline-2">
+<h2 id="org7a20a00"><span class="section-number-2">3</span> まとめ</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Linuxカーネルで定義するデータ構造において、list_head構造体が埋め込まれた構造体があったら、それは何かのリンクトリストに含まれるということがわかりましたね。ソースのコメントを読めば、大抵は何のリンクトリストかが書いてあります。
@@ -407,8 +407,8 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
 </div>
 </div>
 
-<div id="outline-container-org11035e9" class="outline-2">
-<h2 id="org11035e9"><span class="section-number-2">4</span> 参考文献</h2>
+<div id="outline-container-org27d5373" class="outline-2">
+<h2 id="org27d5373"><span class="section-number-2">4</span> 参考文献</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468">Linux Kernel Development 3rd Edition</a>, Robert Love</li>
@@ -438,6 +438,9 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/napolitan.html">スパゲティナポリタンに挑戦</a>
+      </li>
+      <li class="post">
           <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
       </li>
       <li class="post">
@@ -448,9 +451,6 @@ list_entry()関数を使って、list_head構造体のポインタから、そ�
       </li>
       <li class="post">
           <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
-      </li>
-      <li class="post">
-          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
       </li>
     </ul>
   </section>

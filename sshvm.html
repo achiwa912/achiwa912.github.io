@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd73db88">1. はじめに</a></li>
-<li><a href="#org6955758">2. VMにsshで入るための設定</a>
+<li><a href="#orgae24dd3">1. はじめに</a></li>
+<li><a href="#orga9f103e">2. VMにsshで入るための設定</a>
 <ul>
-<li><a href="#orge8b3e5a">2.1. ssh serverの設定</a></li>
-<li><a href="#orgfcc1e8f">2.2. VMネットワークの設定</a></li>
-<li><a href="#org9a7a087">2.3. sshキーのインポート</a></li>
+<li><a href="#orgf0762b4">2.1. ssh serverの設定</a></li>
+<li><a href="#org7381140">2.2. VMネットワークの設定</a></li>
+<li><a href="#orgc4dd363">2.3. sshキーのインポート</a></li>
 </ul>
 </li>
-<li><a href="#orgf578505">3. Resources</a></li>
+<li><a href="#orgece7560">3. Resources</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd73db88" class="outline-2">
-<h2 id="orgd73db88"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgae24dd3" class="outline-2">
+<h2 id="orgae24dd3"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はMacにVirtualBoxを入れ、Fedora VM上でドキュメント(orgファイル)の編集やpythonのスクリプト開発を行っていますが、 <a href="https://mkyong.com/mac/virtualbox-running-slow-and-lag-on-macos-macbook-pro/">このワークアラウンド</a> (2. VirtualBox in Low Resolution) のために解像度が粗く、見た目がやや残念なことになっています。そこで、Mac上のターミナルからFedora VMにssh接続することを考えました。
@@ -92,12 +92,12 @@
 </div>
 
 
-<div id="outline-container-org6955758" class="outline-2">
-<h2 id="org6955758"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
+<div id="outline-container-orga9f103e" class="outline-2">
+<h2 id="orga9f103e"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge8b3e5a" class="outline-3">
-<h3 id="orge8b3e5a"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
+<div id="outline-container-orgf0762b4" class="outline-3">
+<h3 id="orgf0762b4"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはVirtualBoxのFedora 35 VM上でsshサーバーの設定をします。
@@ -113,8 +113,8 @@ ssh &lt;username&gt;@localhost  # 自分自身にsshで入れることを確認�
 </div>
 </div>
 
-<div id="outline-container-orgfcc1e8f" class="outline-3">
-<h3 id="orgfcc1e8f"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
+<div id="outline-container-org7381140" class="outline-3">
+<h3 id="org7381140"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 次に、VirtualBoxのVMに、ホストであるMacからつながるようにネットワーク設定をします。
@@ -155,8 +155,8 @@ Last login: Mon May  9 11:32:14 2022
 </div>
 </div>
 
-<div id="outline-container-org9a7a087" class="outline-3">
-<h3 id="org9a7a087"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
+<div id="outline-container-orgc4dd363" class="outline-3">
+<h3 id="orgc4dd363"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 パスワードレスでssh接続したいので、Mac上のsshパブリックキーをVMにコピーします。まずは.sshディレクトリを作成してそこにsshキーを生成します。すでに作成済みであればスキップしてください。
@@ -223,8 +223,8 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
 </div>
 </div>
 
-<div id="outline-container-orgf578505" class="outline-2">
-<h2 id="orgf578505"><span class="section-number-2">3</span> Resources</h2>
+<div id="outline-container-orgece7560" class="outline-2">
+<h2 id="orgece7560"><span class="section-number-2">3</span> Resources</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://rocky-chen.medium.com/setup-ssh-connection-to-your-ubuntu-vm-of-virtualbox-macos-eed4691fe08">Setup SSH connection to your Ubuntu VM of VirtualBox (MacOS)</a></li>
@@ -256,6 +256,9 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/napolitan.html">スパゲティナポリタンに挑戦</a>
+      </li>
+      <li class="post">
           <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
       </li>
       <li class="post">
@@ -266,9 +269,6 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
       </li>
       <li class="post">
           <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
-      </li>
-      <li class="post">
-          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
       </li>
     </ul>
   </section>
