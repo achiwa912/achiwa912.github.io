@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>自宅のMacからオフィスのLinuxマシンにリモートデスクトップする &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">自宅のMacからオフィスのLinuxマシンにリモートデスクトップする</h1>
+    <p class="meta">
+<time datetime="2022-04-18T00:00:00-04:00" pubdate>Mon 18 April 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org2eb5b34">1. はじめに</a></li>
+<li><a href="#org0b81384">2. X Fowarding</a></li>
+<li><a href="#org18703d1">3. X2Go (単一アプリウインドウ)</a></li>
+<li><a href="#orgf59cce3">4. X2Go(デスクトップ全体)</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2eb5b34" class="outline-2">
+<h2 id="org2eb5b34"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Covidもだいぶ収まってオフィスへの出入りが自由になりましたが、相変わらずリモートワークをしています。自宅にある会社支給のMacBookからオフィスのLinux (Fedora) PCにはVPN経由でsshするくらいで大抵は事足りるのですが、たまにfirefox等のGUIアプリが使いたくなります。
+</p>
+
+<p>
+そんなユースケースでは、 <a href="https://www.nomachine.com/">NoMachine</a> を使ってリモートのLinux PCのデスクトップ全体をローカルのMacBookに飛ばすやり方が評判良いですが、NoMachneはウインドウを一つだけ飛ばすことはできない(ですよね?)ようなので、別の方法を探ってみました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0b81384" class="outline-2">
+<h2 id="org0b81384"><span class="section-number-2">2</span> X Fowarding</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+LinuxマシンのGUIはベースに <a href="https://en.wikipedia.org/wiki/X_Window_System">X Window System (Wikipedia)</a> が使われています。Fedora標準の <a href="https://www.gnome.org/">GNOME</a> もその下ではX Windowが動いています。X Windowのプロトコルを使ってウインドウをリモートマシンに飛ばすのに<a href="https://kb.iu.edu/d/bdnt">X Forwarding</a> という技術が使えます。
+</p>
+
+<p>
+MacにX Windowのウインドウを飛ばすために、Mac側に <a href="https://www.xquartz.org/">XQuartz</a> をインストールします。なお、以下ではMAC用のパッケージ管理ツールである <a href="https://brew.sh/">Homebrew</a> (オススメです)を使っていますが、XQuartzのサイトから dmg ファイルをダウンロードしてインストールすることもできます。
+</p>
+<pre class="example">
+brew install --cask xquartz
+</pre>
+
+<p>
+そして、sshコマンドの <code>-X</code> オプションを使ってfirefoxのようなアプリを指定すれば、リモートのLinuxマシン上でfirefoxを動かして、その画面だけをMacBookに表示させることができます。
+</p>
+<pre class="example">
+ssh -X &lt;user_id&gt;@&lt;remote_host_name&gt; firefox
+</pre>
+
+<p>
+すると、XQuartzが自動で起動し、Macの画面にリモート実行しているfirefoxが出てきます。
+</p>
+
+<p>
+実際にやってみると、ものすごく重いです。画面の描画が上から下に少しずつなされるのが見えます。これは使えませんね。。。
+</p>
+
+<p>
+いろいろと検索したところ、sshに <code>-C</code> オプションを付けて転送データを圧縮するとマシになることがわかりました。早速やってみます。
+</p>
+<pre class="example">
+ssh -X -C &lt;user_id&gt;@&lt;remote_host_name&gt; firefox
+</pre>
+
+
+<p>
+確かに描画は速くなりました。しかし、マウスオーバーしてメニューを開いたり、クリックしたときの反応がだいぶいまいちです。特に、少し時間をおいてからマウスオーバーでメニューを開こうとすると、0.5〜1秒くらいのタイムラグがあります。日常的に使うと随分ストレスがたまりそうです。
+</p>
+
+<p>
+X Forwardingでsshに <code>-C</code> オプションを付けるだけだと圧縮率が全く足りず、モダンなGUIアプリケーションでの使用には耐えられないのですね。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org18703d1" class="outline-2">
+<h2 id="org18703d1"><span class="section-number-2">3</span> X2Go (単一アプリウインドウ)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+更に高速な方法が無いかと検索したところ、<a href="https://wiki.x2go.org/doku.php">X2Go</a> という技術を見つけました。これは、X Window のデータを圧縮し、更にキャッシュする、元々NoMachineが開発したのNXプロトコルのバリエーションを使っている <a href="https://wiki.x2go.org/doku.php/doc:faq:start">そうです</a> 。これを試してみます。
+</p>
+
+<p>
+まずはリモートのLinux PCにX2Goサーバーを入れます。
+</p>
+<pre class="example">
+sudo yum install x2goserver
+</pre>
+
+
+<p>
+次にX2Goクライアントです。X2Goクライアントは先程ローカルMacにインストールしたXQuartzを使います。そして更に、ローカルMacにX2Go Clientの最新版を <a href="https://code.x2go.org/releases/binary-macosx/x2goclient/">ここ</a> からインストールします。dmgファイルを右クリックしてインストーラーをオープンし、アプリのアイコンをApplicationフォルダーにドラッグ＆ドロップすればインストール完了です。
+</p>
+
+<p>
+X2Goクライアントを開くとSession preferencesの画面が開くので、以下の情報を入れます。なお、ここではsshキーのセッティングが終わっていて、リモートのLinux PCにパスワード入力なしでsshできる状態を想定していますが、代わりにユーザー名とパスワードを入れてもよいと思います。
+</p>
+<ul class="org-ul">
+<li>Session name: &lt;自由に付ける&gt;</li>
+<li>Host: &lt;hostname&gt;</li>
+<li>Uses RSA/DSA key for ssh connectin: RSA又はDSAキーを指定します。なお、MacのFinderで <code>.ssh</code> のような隠しフォルダを表示するには <code>Command + Shift + .(ピリオド)</code> キーを同時に押します。</li>
+<li>Session type: <code>Single application</code></li>
+<li>Command: <code>firefox</code></li>
+</ul>
+
+<p>
+X2Goのクライアント、サーバーをそれぞれインストールした後で早速試してみると、うまく動きました。さすがにX Windowを高速化する技術だけあってサクサク動きます。これなら十分日常使用に耐えられるスピードです。
+</p>
+
+<p>
+X Forwardingと比べて画面が若干粗く見えますが、これで圧縮率をだいぶ稼いでいるようです。個人的には十分許容範囲内です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf59cce3" class="outline-2">
+<h2 id="orgf59cce3"><span class="section-number-2">4</span> X2Go(デスクトップ全体)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+X2Goはそもそもリモートデスクトップアプリで、単一ウインドウの表示はごく一部の機能です。せっかくなのでデスクトップ全体を飛ばすことも試してみます。
+</p>
+
+<p>
+Fedoraでは標準でGNOMEというデスクトップ環境が入っていますが、X2Goは最近のGNOMEをサポートして <a href="https://wiki.x2go.org/doku.php/doc:de-compat">いない</a> ようです。試してみると、エラーは出ないものの、サイレントにセッションが終了してしまいます。
+</p>
+
+<p>
+そこで、他のデスクトップ環境、ここでは <code>xfce4</code> をリモートのLinux PCに入れます。sshでリモートPCにログインして、以下を実行します。
+</p>
+<pre class="example">
+sudo yum install @xfce-desktop-environment
+</pre>
+
+<p>
+長々とインストールが走り、完了します。
+</p>
+
+<p>
+そして、先程のX2Go clientのSession preferencesの画面で Session typeを <code>XFCE</code> に設定してセッションを開くと、うまくリモートデスクトップの画面が開きました。全画面表示にも対応していて、スピードも申し分ありません。GNOMEのデスクトップではありませんが、十分にNoMachineの代わりになりそうです。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-04-18T00:00:00-04:00" pubdate>Mon 18 April 2022</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/mac.html">Mac</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

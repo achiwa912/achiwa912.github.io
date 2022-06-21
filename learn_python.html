@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>昔のプログラマーがPython入門に失敗〜対戦テトリスが作れるようになるまで &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">昔のプログラマーがPython入門に失敗〜対戦テトリスが作れるようになるまで</h1>
+    <p class="meta">
+<time datetime="2020-07-21T00:00:00-04:00" pubdate>Tue 21 July 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc73a3fe">1. はじめに</a></li>
+<li><a href="#org8aabee6">2. 自己紹介と挫折遍歴</a>
+<ul>
+<li><a href="#org1409aa8">2.1. 昔はプログラマーでした</a></li>
+<li><a href="#org8c6b1c8">2.2. 脱プログラマー</a></li>
+<li><a href="#orgef6dba6">2.3. 挫折遍歴</a>
+<ul>
+<li><a href="#org151ad78">2.3.1. まずはJavaに挫折</a></li>
+<li><a href="#orga9f561b">2.3.2. Pythonまで挫折</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6d594a1">3. Python再入門</a>
+<ul>
+<li><a href="#org9b91185">3.1. 挫折の原因を分析してみる</a></li>
+<li><a href="#orga129cc5">3.2. フェーズ1 - Introducing Python</a></li>
+<li><a href="#orgebb6497">3.3. フェーズ2 - Python Crash Course</a></li>
+</ul>
+</li>
+<li><a href="#orgb4d2584">4. 初めてのPythonプログラム自作</a>
+<ul>
+<li><a href="#org8dd383b">4.1. 何を作るか</a></li>
+<li><a href="#org0421388">4.2. arcadeライブラリ</a></li>
+<li><a href="#org7391b80">4.3. テトリスの実装</a></li>
+<li><a href="#orgf872f5d">4.4. スプライトエディタ</a></li>
+<li><a href="#orgbafff82">4.5. ブロックを一つ表示する</a></li>
+<li><a href="#orga8160ea">4.6. テトリスブロックの表示</a></li>
+<li><a href="#org59e4fc1">4.7. 対戦テトリス化</a></li>
+<li><a href="#orga416af4">4.8. コズメティクス</a></li>
+</ul>
+</li>
+<li><a href="#orgec7fbf4">5. 公開してみる</a>
+<ul>
+<li><a href="#org4bdb9c0">5.1. githubに公開する</a></li>
+<li><a href="#org5bc1934">5.2. プルリクエストに動揺する</a></li>
+</ul>
+</li>
+<li><a href="#org29ab165">6. クロージング</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc73a3fe" class="outline-2">
+<h2 id="orgc73a3fe"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Pythonの勉強をしたのに、使えるようにならなかった、という経験はありませんか?
+この記事では、自分の挫折経験を元に、そういう方のための道しるべを提示できれば
+と思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8aabee6" class="outline-2">
+<h2 id="org8aabee6"><span class="section-number-2">2</span> 自己紹介と挫折遍歴</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1409aa8" class="outline-3">
+<h3 id="org1409aa8"><span class="section-number-3">2.1</span> 昔はプログラマーでした</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+私は大学生時代、組み込み系プログラマーのアルバイトをしていました。
+アセンブラーやC言語をを使って、人工心肺のステッピングモーターを制御するような
+ニッチなプログラミングをしていました。
+</p>
+
+<p>
+私生活では、NECのPC-88やPC-98向けにゲームを作ることを夢見て、当時の有名ゲーム
+から借用した高速スクロールルーチンをやはりアセンブラーで作ったり、ピクセル
+エディターやマップエディターを作ったりしていました。更には、任天堂の
+スーパーファミコン向けゲームの開発にヘルプ参加しました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8c6b1c8" class="outline-3">
+<h3 id="org8c6b1c8"><span class="section-number-3">2.2</span> 脱プログラマー</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+その後、興味の中心は英語に移りました。業務で必要な本をあえて英語版で読んだり、
+寝ても覚めて英語漬けの日が数年間続き、プログラミングからはすっかり遠ざかり
+ました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef6dba6" class="outline-3">
+<h3 id="orgef6dba6"><span class="section-number-3">2.3</span> 挫折遍歴</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org151ad78" class="outline-4">
+<h4 id="org151ad78"><span class="section-number-4">2.3.1</span> まずはJavaに挫折</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+6年ほど前にエンジニアとして海外勤務する機会を得ました。日本と異なる、効率の
+よい開発に驚くと共に、技術力の重要性を改めて痛感しました。当時、QAあるいは
+Product Ownerとして開発チームに参加しており、プログラミングは必要ありません
+でしたが、Javaの分厚い入門書(<a href="https://www.amazon.com/Head-First-Java-Kathy-Sierra/dp/0596009208">Head First Java</a>)を読みました。
+</p>
+
+<p>
+本人の期待に反して、Javaでプログラミングできるようにはなりませんでした。
+JavaはCと似ているので、Javaのコードはある程度読めるようになりました。
+しかし、自分でコーディングすることはできません。<a href="https://www.amazon.com/Head-First-Design-Patterns-Brain-Friendly/dp/0596007124">Head First Design Patterns</a>
+や<a href="https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997">Effective Java</a>にも手を出しましたが、読むそばから前に書かれたことを忘れて
+いく上に、特に後者は難易度が高く、挫折しました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga9f561b" class="outline-4">
+<h4 id="orga9f561b"><span class="section-number-4">2.3.2</span> Pythonまで挫折</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+自分なりに挫折の原因を考えた結果、Javaは趣味の言語としては本格的すぎる
+との結論に達しました。そこで、プログラミング入門者や子供にも大人気の
+Pythonを学ぶことにしました。
+</p>
+
+<p>
+テキストとして、Webで評判の良かった<a href="https://www.amazon.com/Introducing-Python-Modern-Computing-Packages/dp/1449359361">Introducing Python</a>を選びました。
+一通り制御構造について学んだ頃、何かが違うことに気がつきます。
+前に読んだことをどんどん忘れていくのです。もう一度最初から読み始め
+ました。しばらく進むと、前半を忘れていることがわかり、また最初から
+読み直す、ということを2回ほど繰り返して、なんとPythonまで挫折してしまい
+ました。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6d594a1" class="outline-2">
+<h2 id="org6d594a1"><span class="section-number-2">3</span> Python再入門</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org9b91185" class="outline-3">
+<h3 id="org9b91185"><span class="section-number-3">3.1</span> 挫折の原因を分析してみる</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+今年になって、COVID-19のおかげで自宅アパートに引きこもっていた時に、
+またプログラミングできるようになりたいという意識が再燃しました。
+今度はこれまでのような失敗は繰り返したくありません。自分なりに失敗の
+原因を考えた結果、以下の結論に達しました。
+</p>
+<ul class="org-ul">
+<li>テキストを読み進めると、前に書かれたことを忘れてしまう</li>
+<li>面倒くさがって演習をスキップしていた</li>
+<li>ハンズオンが足りなかった</li>
+<li>手が覚えなかった</li>
+</ul>
+<p>
+ようは、手がプログラミングを覚えるまでのハンズオンが足りなかったという
+ことです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga129cc5" class="outline-3">
+<h3 id="orga129cc5"><span class="section-number-3">3.2</span> フェーズ1 - Introducing Python</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+テキストとして、以前使っていたIntroducing Pythonをまた使います。今回は
+演習もきっちりやります。この本は、説明が簡潔で、多くの範囲をカバーして
+おり、なかなかよい本です。
+今回は途中のコードサンプルを「写経」(エディタで書き写すこと)しながら、
+何とか最後まで読み進めました。
+</p>
+
+<p>
+一定の手応えは感じたものの、やはりプログラミングできるようにはなりま
+せんでした。例えば、「for文でループする方法」や「else ifかelifか」と
+いうことをいちいち見直したり、ネットで検索しないと書けないのです。
+</p>
+
+<p>
+この本はPythonの「入門」には向いていない、ということにようやく気がつき
+ました。入門を終えた人が、頭の中を整理しながら読み進める本だったのです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgebb6497" class="outline-3">
+<h3 id="orgebb6497"><span class="section-number-3">3.3</span> フェーズ2 - Python Crash Course</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+2冊目として選んだのは、いかにも初心者向けな表紙の<a href="https://www.amazon.com/Python-Crash-Course-Eric-Matthes-ebook/dp/B07J4521M3">Python Crash Course</a>
+です。この本はハンズオン中心です。本文に書かれたコードサンプルや演習まで
+やると、実に多くの写経量です。
+</p>
+
+<p>
+この本のPart I: Basicsはよく書かれていますが、Part II: Projectsは
+素晴らしいです。最初のプロジェクトはPygameライブラリを使って、インベーダー
+ゲーム風のゲームを作ります。とりあえずPythonでゲームを作れるようになり
+たかった私のニーズにぴったり一致しました。
+</p>
+
+<p>
+次のプロジェクトは、インターネットで集めてきたデータをグラフを使って
+ビジュアル化するという、実に実践的な内容です。普段、Excelなどを使って
+半ば手動でグラフを描いたりしているかもしれませんが、これをPythonで
+自動で処理するやり方を学べます。
+</p>
+
+<p>
+最後のプロジェクトは野心的で、Djangoを使ってWebアプリケーションを
+作ります。紙面の都合で説明のスペースが十分取れなかったためか、
+いきなり難易度が上がります。しかし、しっかり腰を落ち着けて取り組み、
+復習もしつつ演習のブログ的なWebアプリケーションまでこなすと、
+非常に力が付くと思います。
+</p>
+
+<p>
+この本をこなして、ようやくPythonでプログラムが書ける自信が付きました。
+やはり私のような初心者の段階で必要だったのは、手が覚えるようになるまでの
+ハンズオンだったのです。
+</p>
+
+<p>
+中上級にはほど遠いとは思いますが、ここまで来ると、ネットで検索しながら
+やりたいことをプログラムにしていけるようになると思います。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb4d2584" class="outline-2">
+<h2 id="orgb4d2584"><span class="section-number-2">4</span> 初めてのPythonプログラム自作</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org8dd383b" class="outline-3">
+<h3 id="org8dd383b"><span class="section-number-3">4.1</span> 何を作るか</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+私は最初からゲームが念頭にあったので、昔PC98向けにアセンブラーで
+作った対戦テトリスを作ることにしました。やりたいことが決まっている人
+はそれをやればいいと思いますが、最初から最後まで自分でデザインできる
+ゲームを最初のプロジェクトとして選ぶことはお勧めです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0421388" class="outline-3">
+<h3 id="org0421388"><span class="section-number-3">4.2</span> arcadeライブラリ</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+ネットを調べるうちに、ちまたで人気のpygameライブラリよりも、大学の
+先生が開発する<a href="https://arcade.academy/">arcadeライブラリ</a>の方がコンピューターサイエンス的に
+エレガントと思い、arcadeライブラリを使うことにしました。
+</p>
+
+<p>
+arcadeライブラリのサイトには、チュートリアルやサンプルが多く載って
+おり、まずはそれらを写経するところから始めます。Pythonの言語を学ぶ
+以外に、使用するライブラリやフレームワークについて学ぶことは重要です。
+</p>
+
+<p>
+その際にも、初級者はチュートリアルやサンプルコードを写経するところ
+から始めるのがよいと思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7391b80" class="outline-3">
+<h3 id="org7391b80"><span class="section-number-3">4.3</span> テトリスの実装</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+「Python」「Tetris」あたりのキーワードでネットを検索すると、実に多く
+のサイトがテトリスの作り方を公開してくれています。見た目や細部に
+こだわらなければ、150行くらいで済むようです。
+</p>
+
+<p>
+プレイする仮想画面(二次元配列)やテトリスの形のデータの持ち方は
+先人の知恵を参考させていただきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf872f5d" class="outline-3">
+<h3 id="orgf872f5d"><span class="section-number-3">4.4</span> スプライトエディタ</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+昔作った対戦テトリスは、ブロックが一列揃ったときのキラリと光る
+アニメーションが売りでした。今回もそれをしたいのですが、そのよう
+なアニメーションをするブロックのビットマップデータは見つかりません
+でした。
+</p>
+
+<p>
+そこで、自分で用意することにします。スプライトエディタとして有名な
+<a href="https://www.aseprite.org/">aseprite</a>を購入して、自分でブロックのピクセルアートを作成しました。
+Pythonの勉強という意味では寄り道ですが、こういったことも楽しいもの
+です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbafff82" class="outline-3">
+<h3 id="orgbafff82"><span class="section-number-3">4.5</span> ブロックを一つ表示する</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+いよいよコーディングです。arcadeライブラリサイトにあるチュートリアル
+のコードをベースにします。まずは、画面にブロックを一つ表示するところ
+からです。
+</p>
+
+<p>
+仮想画面上のx, y座標と色を指定すると、その位置に指定色のブロックを
+スプライトとして表示するコードを書きました。簡単なデバッグの後、
+ブロックが表示されます。これが最初の一歩です。
+</p>
+
+<p>
+ついで、ブロックのグレー色を使った画面の枠を描きます。ループを
+組み合わせて、ブロック表示関数を呼ぶだけなので、あっと言う間に
+完成します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga8160ea" class="outline-3">
+<h3 id="orga8160ea"><span class="section-number-3">4.6</span> テトリスブロックの表示</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+いよいよ本番、落ちてくるテトリスブロックの表示です。ネットから
+借りてきた情報を参考に、データ構造は考えてあります。キー入力や
+スプライトの動きといった「足回り」は、arcadeのチュートリアルで
+写経済みですので、本筋のロジックに思考を集中できます。
+</p>
+
+<p>
+テトリスブロックの登場、一定時間ごとの落下、底に着いた判定、
+回転や横移動のキー入力を含んだ長いコードを書き殴ります。しばらく
+苦労してデバッグした後で、リファクタリングして処理のまとまりを
+関数として独立させ、見通しを良くしていきます。リファクタリングの
+考え方、やり方はPython Crash Courseで学んでいます。
+</p>
+
+<p>
+一ライン揃った時のアニメーションとゲームオーバー判定を入れ、
+とりあえずゲームとしての体裁が整います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org59e4fc1" class="outline-3">
+<h3 id="org59e4fc1"><span class="section-number-3">4.7</span> 対戦テトリス化</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+とりあえず、普通のテトリスゲームはできましたが、これだけだと
+初級者が作ってWeb公開した、無数にあるテトリスと何ら変わることが
+ありません。プラスアルファとして、二人のプレイヤーで対戦する
+要素を入れ込みます。
+</p>
+
+<p>
+画面を二分割し、左右で二人のプレイヤーが対戦するのですが、その
+ためにPlayerクラスを定義し、プレイヤーごとに必要なアトリビュートや
+メソッドをそちらに移動します。実質、一日半程度で対戦化が完了しま
+した。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga416af4" class="outline-3">
+<h3 id="orga416af4"><span class="section-number-3">4.8</span> コズメティクス</h3>
+<div class="outline-text-3" id="text-4-8">
+<p>
+この段階で、小学5年生になる娘に感想を求めます。しかし彼女は
+全く興味を示しませんでした。なるほど、見た目がいかにも地味です。
+そこで、タイトル画面を作り、ゲーム画面にきれいな一枚絵を表示する
+ことにしました。「画像」「フリー」他のキーワードで、ゲームに
+使用できそうな画像データを探します。今回は更に「曼荼羅」の
+キーワードも指定しました(きれいなので)。
+</p>
+
+<p>
+単に一枚絵を背景に表示するだけでは芸が無いので、単純なエフェクトを
+かけます。タイトルビューでは、拡大率と透過率を変えて、横に
+スクロールさせます。ゲーム画面では、曼荼羅を少しずつ回転させて
+ます。
+</p>
+
+
+<div id="orgca858b8" class="figure">
+<p><img src="./images/zentetris.png" alt="zentetris.png" />
+</p>
+</div>
+
+<p>
+軽く効果音を入れて、完成です。また娘に見せると、今度は「ずいぶん
+印象が変わったね」というお褒めの言葉をもらいました。相変わらず
+プレイしてくれませんが。。。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec7fbf4" class="outline-2">
+<h2 id="orgec7fbf4"><span class="section-number-2">5</span> 公開してみる</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org4bdb9c0" class="outline-3">
+<h3 id="org4bdb9c0"><span class="section-number-3">5.1</span> githubに公開する</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Pythonで作ったゲームをインストーラー化せずに公開するにはgithubが
+一番よさそうです。githubにアップロードするにはgitを使う必要があり、
+泥縄でgitの用意をします。開発でgitを使うのはもちろん初めてです。
+</p>
+
+<p>
+qiita等の記事を見ながらgithubのアカウントを作り、何とかプッシュ
+に成功します。<a href="https://github.com/achiwa912/tet">https://github.com/achiwa912/tet</a>
+</p>
+
+<p>
+その勢いで、pygameのサイトにも載せてみます。<a href="https://www.pygame.org/project/4904">https://www.pygame.org/project/4904</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5bc1934" class="outline-3">
+<h3 id="org5bc1934"><span class="section-number-3">5.2</span> プルリクエストに動揺する</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+とりあえず世界中に向けて公開したわけですが、もちろん誰の目にも
+止まりません。
+</p>
+
+<p>
+数日後、個人宛てに奇妙なメールが届きます。どうやら、公開した
+ゲームに誰かがプルリクエストしてくれたようです。「プルリクエスト」
+の意味さえ知らない私は動揺します。
+</p>
+
+<p>
+中身を読むと、その人は、私の書いたREADME.mdの英語を添削してくれて
+いました。優しい人もいるものです。ありがたくマージさせていただき
+ました。
+</p>
+
+<p>
+もう一つ、同じ方から、Fedoraで動かないという問題指摘もいただきま
+した。virtualbox上のFedoraで見てみたところ、指摘と同じエラーメッセージ
+が出ました。インストールされているOpenGLバージョンがarcadeライブラリ
+のサポートするバージョンより古いというもので、その旨コメントを返しました。
+</p>
+
+<p>
+よくわかりませんが、OSS活動への入門をしてしまったということなので
+しょうか。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29ab165" class="outline-2">
+<h2 id="org29ab165"><span class="section-number-2">6</span> クロージング</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>Pythonは比較的簡単で気軽に使え、その割に高度なことができるため、とりあえずプログラミングを学びたい人にお勧めの言語です</li>
+<li>入門はハンズオン(写経)に重点を置くとよいと思います。腕は頭より忘れないので</li>
+<li>1冊目としてPython Crash Courseはお勧めです。ハンズオン中心かつ実践的です</li>
+<li>2冊目としてIntroducing Pythonはお勧めです。頭の中が整理され、Pythonで何ができるかがわかります</li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-07-21T00:00:00-04:00" pubdate>Tue 21 July 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Fedora36のインストールと設定 &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Fedora36のインストールと設定</h1>
+    <p class="meta">
+<time datetime="2021-08-16T00:00:00-04:00" pubdate>Mon 16 August 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0d58ced">1. はじめに</a></li>
+<li><a href="#orgd575409">2. Fedora36インストール</a>
+<ul>
+<li><a href="#org39f7a3c">2.1. VM作成</a></li>
+<li><a href="#org0cd1674">2.2. fedoraインストーラー</a></li>
+<li><a href="#org3019a95">2.3. fedora起動</a></li>
+<li><a href="#orgb7b9665">2.4. Guest Additions</a></li>
+</ul>
+</li>
+<li><a href="#org3e773fc">3. gitの設定</a></li>
+<li><a href="#orgf491550">4. emacsの設定</a></li>
+<li><a href="#org0f7011e">5. pythonの設定</a>
+<ul>
+<li><a href="#orgfb5d263">5.1. pyenvを入れる</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0d58ced" class="outline-2">
+<h2 id="org0d58ced"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+MacBook上のVitrualBoxにFedora36を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora36インストール及び設定の備忘録です。
+(5/12/2022追記: 最近出たFedora 36用にアップデートしましたが、Fedora34,35もそのまま行けます)
+</p>
+
+<p>
+Fedoraインストールと設定、emacs設定、python設定までがワンセットです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd575409" class="outline-2">
+<h2 id="orgd575409"><span class="section-number-2">2</span> Fedora36インストール</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org39f7a3c" class="outline-3">
+<h3 id="org39f7a3c"><span class="section-number-3">2.1</span> VM作成</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<code>fedora 36 download</code> で検索して、isoファイルをダウンロードします。
+最初に出てくるリンクが <a href="https://getfedora.org/en/workstation/download/">こちら</a>。ここからFedora 36: x86_64 DVD ISO &gt; Download します。
+</p>
+
+<p>
+30分くらいかけてのんびりダウンロードしている間に、VirtualBoxを最新にして、fedora36用のVMを作成します。VM作成手順:
+</p>
+<ul class="org-ul">
+<li>VirtualBox &gt; Tools tab &gt; New icon &gt; Name: "fedora36" &gt; Continue &gt; memory 3000+ MB &gt; Continue &gt; Create (hard disk) &gt; 略</li>
+</ul>
+
+<p>
+ストレージはthin provisioningで64GBアサインしました。CPUコア数は2にしました。
+ダウンロードが終わったら、isoファイルをVMにマウントします:
+</p>
+<ul class="org-ul">
+<li>VirtualBox &gt; 作成したvm &gt; Settings &gt; Storage &gt; Storage Devices &gt; Controller: IDE &gt; Emptyをクリック &gt; Optical Drive: の右にあるdiscアイコンクリック &gt; choose a disc file &gt; isoを選択 &gt; Open</li>
+</ul>
+
+<p>
+fedora36 VMをダブルクリックして、VMを起動します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0cd1674" class="outline-3">
+<h3 id="org0cd1674"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+しばらく待っているとFedora36のインストーラー起動画面が出ます。
+</p>
+<ul class="org-ul">
+<li>install to hard drive &gt; installer起動 &gt; インストール先ストレージ選択 &gt; Nextを押す &gt; インストール開始 &gt; 終わるまで待つ &gt; Finish</li>
+</ul>
+
+<p>
+若干、ユーザーを突き放したような画面で完了するので、めげずにTermを起動 &gt; poweroffします。rebootでないのは、電源が落ちている間にisoファイルをアンマウントするためです:
+</p>
+<ul class="org-ul">
+<li>VM &gt; Settings &gt; Storage &gt; Storage Devices &gt; Controller: IDE &gt; &#x2026; から手動でアンマウント</li>
+</ul>
+<p>
+改めて考えてみると、 <code>eject</code> &gt; <code>reboot</code> で良かった気がしてきました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3019a95" class="outline-3">
+<h3 id="org3019a95"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。(fedora34ではしばらく不安になる画面で放置されますが、数十秒で使えるようになりました。fedora36ではなぜかログイン画面が出ずに強制電断 &rarr; 電源オンしたところ、何事もなかったようにログイン画面が出ました。何だったんだろう。。。)
+</p>
+
+<p>
+ネットワークは自動で設定されていました。便利になりましたねぇ。確認のために、terminalから <code>ping google.com</code> してみます。
+</p>
+
+<p>
+ネットワークが使えるようになったら、早速OSをアップデートします。
+</p>
+<pre class="example">
+sudo dnf update
+</pre>
+
+
+<p>
+しばらく待って完了したら、poweroffして、念の為にスナップショットを取得しておきます。そしてまたVMを起動します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb7b9665" class="outline-3">
+<h3 id="orgb7b9665"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
+</p>
+
+<p>
+次にGuest Additionsの設定をします。
+</p>
+<ul class="org-ul">
+<li>Devices &gt; Shared Clipboard &gt; Bidirectional</li>
+<li>Devices &gt; Drag and Drop &gt; Bidirectional</li>
+<li>Devices &gt; Shares Folders &gt; Shared Folders Sttings &gt; ホストOSの共有したいフォルダを指定</li>
+</ul>
+
+<p>
+共有フォルダにアクセスしようとするとPermission Deniedでエラーとなるので、ユーザーをvboxsfグループに追加します。
+</p>
+<pre class="example">
+sudo usermod -G vboxsf -a &lt;user name&gt;
+</pre>
+
+
+<p>
+そして、リブート(logout &rarr; loginでもいいかも)する前にホスト名も変えておきます。
+</p>
+<pre class="example">
+sudo hostnamectl set-hostname &lt;hostname&gt;
+</pre>
+
+<p>
+確認します。Static hostnameがきちんと設定されていたらOKです。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ hostnamectl
+ Static hostname: f36
+       Icon name: computer-vm
+	 Chassis: vm 🖴
+      Machine ID: 8044e928d4c04a3689544dd9c04f4980
+	 Boot ID: 96d35b0945f942e68b5d0d392855611a
+  Virtualization: oracle
+Operating System: Fedora Linux 36 (Workstation Edition)
+     CPE OS Name: cpe:/o:fedoraproject:fedora:36
+	  Kernel: Linux 5.17.6-300.fc36.x86_64
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+</pre>
+</div>
+
+<p>
+リブートします。
+Fedora36としての基本的な設定はここで終わりです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3e773fc" class="outline-2">
+<h2 id="org3e773fc"><span class="section-number-2">3</span> gitの設定</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+gitの最低限の設定をしておきます。これを忘れて、コミットでエラーになりました(magitではemacsごと落ちました)。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">git config --global user.email "&lt;user@email.com&gt;"
+git config --global user.name "&lt;your name&gt;"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf491550" class="outline-2">
+<h2 id="orgf491550"><span class="section-number-2">4</span> emacsの設定</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+注) 5/12/2022追記。emacsの設定は最近いろいろ変えているので、アップデートせずにそのまま残しておきます。
+</p>
+
+<p>
+Fedoraには最初からviが入っていますが、私はあまり使えないためにemacsを入れます。ついでにvimも。
+</p>
+<pre class="example">
+sudo dnf install emacs vim
+</pre>
+
+
+<p>
+emacsは別ウインドウでなくterminalから直接使いたいので、.bashrcでaliasしておきます。
+</p>
+<pre class="example">
+alias ll="ls -alF"
+alias l="ls -axF"
+alias em="emacs -nw"
+</pre>
+
+
+<p>
+<code>em</code> でemacsが起動することを確認したら、 <code>~/.emacs.d</code> ディレクトリが作成されているので、そこにinit.elを作成します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(require 'package)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+	("melpa" . "http://melpa.org/packages/")
+	("org" . "http://orgmode.org/elpa/")))
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar myPackages
+  '(better-defaults
+    elpy
+    flycheck            ;; On thr fly syntax checking
+    material-theme
+    htmlize
+    mozc
+    ox-gfm
+    mwim
+    rainbow-delimiters
+    )
+  )
+(mapc #'(lambda (package)
+	  (unless (package-installed-p package)
+	    (package-install package)))
+      myPackages)
+</pre>
+</div>
+
+<p>
+melpaからパッケージが取得できるかを確認するために、まずはこれだけでセーブして、emacsを起動します。このsnippetは<a href="https://realpython.com/emacs-the-best-python-editor/">Real Pythonの記事</a>から頂いてきました。myPackagesに使用するパッケージを並べておくと、必要に応じてインストールしてくれるのでとても便利です。
+</p>
+
+<p>
+エラーが起きるようなら、myPackagesのリストを全てコメントアウトし、少しずつコメントを外してどこでエラーが起きているのかわかるようにします。
+</p>
+
+<p>
+パッケージの取得ができるようになったら、他の設定をしていきます。
+</p>
+
+<pre class="example">
+(load-theme 'material t)
+</pre>
+
+
+<p>
+material-themeは黒基調の落ち着いた色のテーマで、最近のお気に入りです。これも上記Real Pythonの記事で知りました。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; No startup message
+(setq inhibit-startup-message t)
+
+;; no backup files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;; Delete auto-save files
+(setq delete-auto-save-files nil)
+</pre>
+</div>
+
+<p>
+スタートアップメッセージ抑止はお約束でしょうか。
+バックアップファイルや自動セーブファイルの抑止はお好みで。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; columm and line number
+(column-number-mode t)
+</pre>
+</div>
+
+<p>
+私は、すべての行に行番号を表示させるのが嫌なので、現在のカーソル位置を表示するようにしています。こちらのほうがスッキリしていると思います。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; Blink corresponding paren
+(show-paren-mode 1)
+</pre>
+</div>
+
+<p>
+対応するカッコを目立たせます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; 1-line scroll
+(setq scroll-conservatively 1)
+</pre>
+</div>
+
+<p>
+1行ずつスクロールするようにしています。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; dired
+(require 'dired-x)
+</pre>
+</div>
+
+<p>
+あまり使いこなせていませんが、diredも入れます。diredはファイルやディレクトリ操作をリスト表示で行うファイラーです。使いこなしたら便利なはずですが、未だにキーバインドを覚えていません。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; yes or no to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+</pre>
+</div>
+
+<p>
+私は面倒くさがりなので、いちいち'yes'とタイプせずに'y'で済むようにしています。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; hide menu bar
+(menu-bar-mode 0)
+</pre>
+</div>
+
+<p>
+画面を広く使うためにメニューバーを隠します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; add to load-path
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+</pre>
+</div>
+
+<p>
+これは以前からこのままですが、いらないかもしれません。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; suppress warnings
+(setq python-indent-guess-indent-offset-verbose nil)
+</pre>
+</div>
+
+<p>
+これは何だっけ? 既に記憶にありません。うっとおしいwarningを抑止しているのかな。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; disable org-mode truncate-lines
+(add-hook 'org-mode-hook
+	  (lambda () (setq truncate-lines nil)))
+
+;; org-mode export github-flavored markdown
+(eval-after-load "org"
+  '(require 'ox-gfm nil t))
+</pre>
+</div>
+
+<p>
+org-mode用の設定です。org-modeはブログを書いたり、残しておきたい長めのメモ(備忘録)を取ったり、github用のREADMEを書くのに使っています。WikiやConfluenceと似ていますが、表の書きやすさが抜きん出ています。一方で、画像の扱いが面倒です。
+</p>
+
+<p>
+org-modeに移行する前はevernoteを使っていました。evernoteの無料版はデバイス台数などの制限がどんどんきつくなっていったので、使用を断念しました。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; mwim
+(global-set-key (kbd "C-a") 'mwim-beginning)
+(global-set-key (kbd "C-e") 'mwim-end)
+</pre>
+</div>
+
+<p>
+これはCtrl-aとCtrl-eを強化するパッケージです。<a href="https://mako-note.com/python-emacs-ide/">makoのノート - EmacsでのPython開発環境</a>で紹介されていたのを見て知りました。なかなか便利そうです。
+</p>
+
+<p>
+<code>M-x list-packages</code> で mwim をインストールしておきましょう。 <code>C-s mwim</code> で検索して <code>i</code> &gt; <code>x</code> します。
+</p>
+
+<pre class="example">
+;; rainbow-delimiters
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+</pre>
+
+<p>
+こちらもmakoのノートから。対応するカッコをカラフル表示し、ネストしているものは色が変わります。一番外側のカッコが赤なのが趣味に合わないので、そのうちカスタマイズするかも。
+</p>
+
+<p>
+<code>M-x list-packages</code> で <code>rainbow-delimiters</code> のインストールが必要です。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; enable mozc
+(require 'mozc)
+(set-language-environment "Japanese")
+(setq default-input-method "japanese-mozc")
+(prefer-coding-system 'utf-8)
+</pre>
+</div>
+
+<p>
+日本語入力のmozc設定です。別途、コマンドラインから
+</p>
+<pre class="example">
+sudo dnf install mozc
+</pre>
+
+<p>
+が必要です。
+</p>
+
+<p>
+ここからはPython向け設定です。後述するpyenvとvenvの設定が終わってからどうぞ。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; elpy
+(elpy-enable)
+(setq elpy-rpc-virtualenv-path 'current)
+</pre>
+</div>
+
+<p>
+emacsをPythonの統合環境化するelpyの設定です。
+これをする前に、前提ソフトをpipで入れておく必要があります。
+</p>
+<pre class="example">
+pip install jedi black flake8
+</pre>
+
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; black
+(add-hook 'elpy-mode-hook (lambda ()
+			    (add-hook 'before-save-hook
+				      'elpy-black-fix-code nil t)))
+</pre>
+</div>
+
+<p>
+自動フォーマットツールとして、一番人気の(?) black を使っています。
+私はフォーマットには特にこだわりが無く、逆に書き方に自信がないので、キツめな black が合っているようです。割と最近、autopep8から乗り換えました。この設定は、セーブするときにblackで自動整形するようにします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; Flycheck
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+</pre>
+</div>
+
+<p>
+リアルタイムで構文チェックしてくれるflycheckです。評判が良さそうだったので。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0f7011e" class="outline-2">
+<h2 id="org0f7011e"><span class="section-number-2">5</span> pythonの設定</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Fedora36を入れたら、いきなりpython 3.10.4が/usr/bin/pythonとしてインストールされていました。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">[k****@f36 ~]$ which python
+/usr/bin/python
+[k****@f36 ~]$ python -V
+Python 3.10.4
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfb5d263" class="outline-3">
+<h3 id="orgfb5d263"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+pyenvの最新安定pyrhonバージョンも3.10.4なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
+</p>
+
+<p>
+まずは前提ソフトのインストールです。
+</p>
+<pre class="example">
+sudo dnf install make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel
+</pre>
+
+
+<p>
+ついで、pyenvをgit cloneしてきます。
+</p>
+<pre class="example">
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+</pre>
+
+
+<p>
+.bash_profileを書き換えて実行します。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">echo 'export PYENV_ROOT="$HOME/.pyenv"' &gt;&gt; ~/.bash_profile
+echo 'export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"' &gt;&gt; ~/.bash_profile
+echo 'eval "$(pyenv init -)"' &gt;&gt; ~/.bash_profile
+source .bash_profile
+</pre>
+</div>
+<p>
+Fedora 35までは.bashrcを書き換えていましたが、私の環境のFedora 36ではなぜかpyenv initが謎の無限ループに入り込んだ(らしい)ので.bash_profileを書き換えるようにしました。 <a href="https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv">公式README</a> より:
+</p>
+<blockquote>
+<p>
+Bash warning: There are some systems where the BASH_ENV variable is configured to point to .bashrc. On such systems, you should almost certainly put the eval "$(pyenv init -)" line into .bash_profile, and not into .bashrc. Otherwise, you may observe strange behaviour, such as pyenv getting into an infinite loop. See #264 for details.
+</p>
+</blockquote>
+
+<p>
+そして、pyenvを使って最新安定版の3.10.4をインストールします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">pyenv install --list
+</pre>
+</div>
+<p>
+これでインストール可能バージョンを確認して、
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">pyenv install 3.10.4
+pyenv global 3.10.4
+pyenv rehash
+</pre>
+</div>
+<p>
+インストール(しばらくかかります)、グローバルに適用、pyenvのキャッシュ(?)を最新にします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">[k****@fedora ~]$ python -V
+Python 3.10.4
+[k****@fedora ~]$ which python
+~/.pyenv/shims/python
+</pre>
+</div>
+<p>
+無事に、pyenv版のpythonが設定されました。
+</p>
+
+<p>
+更に、python用のlspサーバーをインストールします。eglotをtrampモードで使う時に、リモートのlspサーバーを使うためです。リモートサーバーにeglotの設定は不要です。
+</p>
+<pre class="example">
+pip install 'python-lsp-server[all]'
+</pre>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-08-16T00:00:00-04:00" pubdate>Mon 16 August 2021</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

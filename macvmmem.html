@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>最近のmacOSでVMのメモリ使用量が倍 &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">最近のmacOSでVMのメモリ使用量が倍</h1>
+    <p class="meta">
+<time datetime="2022-02-04T00:00:00-05:00" pubdate>Fri 04 February 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org0c2b6c8">1. はじめに</a></li>
+<li><a href="#org450a765">2. VMが倍のメモリを使っている!?</a></li>
+<li><a href="#orgd67cbf9">3. macOSの問題でした</a></li>
+<li><a href="#orgaa70a7f">4. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0c2b6c8" class="outline-2">
+<h2 id="org0c2b6c8"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメモリ量よりも少ないので、VMWare ESXi等ではVMへのメモリのオーバープロビジョニング(実際のメモリ量以上に割り当てること)をすることがよくあるそうです。実際にどの程度、メモリがVMに使われているのかをMacBook (macOS Big Sur)上で確認したところ、とんでもないことに気が付いてしまいました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org450a765" class="outline-2">
+<h2 id="org450a765"><span class="section-number-2">2</span> VMが倍のメモリを使っている!?</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+うちのMacBook ProはLate 2013のお年寄りでメモリは8GBしか積んでいませんので、VM(Fedora34)には2GBしかメモリを割り当てていません。しかし、Activity Monitorで見たところ、なんと倍の4GBもメモリを消費していることがわかりました。
+</p>
+
+
+<div id="orgd29f444" class="figure">
+<p><img src="./images/memalloc.png" alt="memalloc.png" />
+</p>
+</div>
+
+<p>
+これは困ります。オーバープロビジョニングどころの話ではありません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd67cbf9" class="outline-2">
+<h2 id="orgd67cbf9"><span class="section-number-2">3</span> macOSの問題でした</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+まずはVirtualBoxの問題かと思い、ネットで検索したところ見つけました。
+</p>
+<ul class="org-ul">
+<li><a href="https://www.virtualbox.org/ticket/19726">Ticket #19726 Reported memory usage doubled in 6.1.4 on MacOS Mojave and later</a></li>
+</ul>
+
+<p>
+同じ問題に遭遇している人たちがたくさんいるようです。このバグレポートを下まで見てみると、VirtualBoxだけでなくDockerでも起きているとのこと。DockerチームからAppleにバグ番号48714544でレポート済みだそうです。macOS側の問題のようですね。
+</p>
+
+<p>
+Parallelsでも同様の問題が報告されていました。
+</p>
+<ul class="org-ul">
+<li><a href="https://forum.parallels.com/threads/high-ram-usage-for-vm.353483/">https://forum.parallels.com/threads/high-ram-usage-for-vm.353483/</a></li>
+</ul>
+
+<p>
+VirtualBox 6.1.2に戻せば、このメモリ倍使用の問題は回避できるそうですが、Big Surは古いVirtualBoxをブロックしてしまうため、この回避策は使えません。うーむ、はまりです。
+</p>
+
+<p>
+上のバグチケットがオープンされたのが19ヶ月前、最後の書き込みが2ヶ月前なので、1年半以上に渡ってAppleはこの問題を放置しているようです。安定性が重要なサーバー用途にmacが使えるようになることは永遠に無いように感じます。
+</p>
+
+<p>
+しかし、長期化しているOSの問題ならそれはそれで、VirtualBox側でも対応して欲しいです。特に、古いバージョンに戻せば回避できる問題なので、やり方はあるはず。
+</p>
+
+<p>
+この問題に関する日本語のページもいくつか見つけました
+</p>
+<ul class="org-ul">
+<li><a href="https://ytooyama.hatenadiary.jp/entry/2020/06/11/183746">https://ytooyama.hatenadiary.jp/entry/2020/06/11/183746</a></li>
+<li><a href="https://qiita.com/hirohero/items/1e40c237768fbe1b3395">https://qiita.com/hirohero/items/1e40c237768fbe1b3395</a></li>
+</ul>
+
+<p>
+バグの影響度を考えると、もっと騒がれてもいいような気がしますが、MacでVMやらコンテナを使う人は少ないということでしょうか。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaa70a7f" class="outline-2">
+<h2 id="orgaa70a7f"><span class="section-number-2">4</span> 終わりに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+MacとPythonの相性があまり良くなく、macOSをアップグレードするたびにPythonが動かなくなったりするので、私はMacBookにVirtualBoxをインストールして、Linux VMを日常的につかっていましたが、倍のメモリが使われていることはこれまで気が付きませんでした。
+</p>
+
+<p>
+普段使うPCに、本当に必要なメモリ量は意外と少ないのかもしれませんね。ただ、いくつかLinux VMを立ち上げてVM同士でクラスターを構成する(eg, ceph)ような実験はmac上では厳しくなりました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-02-04T00:00:00-05:00" pubdate>Fri 04 February 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>,    <a class="category" href="/tag/mac.html">Mac</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

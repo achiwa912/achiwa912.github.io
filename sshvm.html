@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>MacからVirtualBoxのFedora VMにsshする &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">MacからVirtualBoxのFedora VMにsshする</h1>
+    <p class="meta">
+<time datetime="2022-05-09T00:00:00-04:00" pubdate>Mon 09 May 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd73db88">1. はじめに</a></li>
+<li><a href="#org6955758">2. VMにsshで入るための設定</a>
+<ul>
+<li><a href="#orge8b3e5a">2.1. ssh serverの設定</a></li>
+<li><a href="#orgfcc1e8f">2.2. VMネットワークの設定</a></li>
+<li><a href="#org9a7a087">2.3. sshキーのインポート</a></li>
+</ul>
+</li>
+<li><a href="#orgf578505">3. Resources</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd73db88" class="outline-2">
+<h2 id="orgd73db88"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+私はMacにVirtualBoxを入れ、Fedora VM上でドキュメント(orgファイル)の編集やpythonのスクリプト開発を行っていますが、 <a href="https://mkyong.com/mac/virtualbox-running-slow-and-lag-on-macos-macbook-pro/">このワークアラウンド</a> (2. VirtualBox in Low Resolution) のために解像度が粗く、見た目がやや残念なことになっています。そこで、Mac上のターミナルからFedora VMにssh接続することを考えました。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org6955758" class="outline-2">
+<h2 id="org6955758"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orge8b3e5a" class="outline-3">
+<h3 id="orge8b3e5a"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+まずはVirtualBoxのFedora 35 VM上でsshサーバーの設定をします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo systemctl status sshd  # sshサーバーが入っていないことを確認する
+sudo dnf install openssh-server
+sudo systemctl enable sshd
+sudo systemctl start sshd  # 設定が終わりました
+ssh &lt;username&gt;@localhost  # 自分自身にsshで入れることを確認する
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfcc1e8f" class="outline-3">
+<h3 id="orgfcc1e8f"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+次に、VirtualBoxのVMに、ホストであるMacからつながるようにネットワーク設定をします。
+</p>
+<ul class="org-ul">
+<li>VMがpowerd offであることを確認 &gt; Settings &gt; Network</li>
+<li>&gt; Advancedを展開 &gt; Port Forwardingをクリック</li>
+<li>&gt; <code>+</code> 付きのネットワークカードのようなアイコンをクリック
+<ul class="org-ul">
+<li>Name: &lt;自由に付ける&gt;</li>
+<li>Protocol: TCP</li>
+<li>Host IP: 127.0.0.1</li>
+<li>Host Port: 2222  # Mac側はポート2222番を使います</li>
+<li>Guest IP: &lt;空欄&gt;</li>
+<li>Guest Port: 22</li>
+</ul></li>
+<li>&gt; OKをクリック &gt; VM起動</li>
+</ul>
+
+<p>
+実際にMacのターミナルからsshしてみます。ポート2222番を指定します。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">~ % ssh 127.0.0.1 -p 2222
+The authenticity of host '[127.0.0.1]:2222 ([127.0.0.1]:2222)' can't be established.
+ECDSA key fingerprint is SHA256:/oidgNx7M..&lt;snip&gt;..5TB7x6Q/A.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[127.0.0.1]:2222' (ECDSA) to the list of known hosts.
+&lt;username&gt;@127.0.0.1's password: 
+Last login: Mon May  9 11:32:14 2022
+[&lt;username&gt;@fedora ~]$
+</pre>
+</div>
+
+<p>
+パスワードを聞かれましたが、無事にsshでログインできることが確認できました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9a7a087" class="outline-3">
+<h3 id="org9a7a087"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+パスワードレスでssh接続したいので、Mac上のsshパブリックキーをVMにコピーします。まずは.sshディレクトリを作成してそこにsshキーを生成します。すでに作成済みであればスキップしてください。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">~ % mkdir .ssh
+~ % chmod 700 .ssh  # パーミッションを700に設定します
+~ % cd ~/.ssh
+~/.ssh % ssh-keygen -t rsa -C "myname@local" -b 4096 
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/&lt;xxxxx&gt;/.ssh/id_rsa): /Users/&lt;xxxxx&gt;/.ssh/id_rsa_fedora35
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /Users/&lt;xxxxx&gt;/.ssh/id_rsa_fedora35.
+Your public key has been saved in /Users/&lt;xxxxx&gt;/.ssh/id_rsa_fedora35.pub.
+The key fingerprint is:
+SHA256:WK05aFso3..&lt;snip&gt;...gUQo9TZjBmdes myname@local
+The key's randomart image is:
++---[RSA 4096]----+
+| .O*X*+..        |
+| ooX=. . +       |
+&lt;snip&gt;
+|       .         |
+|                 |
++----[SHA256]-----+
+~/.ssh/ %
+</pre>
+</div>
+
+<p>
+そして、作成したパブリックキーをsshサーバーであるFedora VMにコピーします。
+そのためには <code>ssh-copy-id</code> コマンドを使います。ポート番号は <code>-p</code> オプションで与えます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">~/.ssh % ssh-copy-id -i id_rsa &lt;username&gt;@127.0.0.1 -p 2222
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+&lt;username&gt;@127.0.0.1's password: &lt;パスワードを入力します&gt;
+
+Number of key(s) added:        1
+
+Now try logging into the machine, with:   "ssh -p '2222' '&lt;username&gt;@127.0.0.1'"
+and check to make sure that only the key(s) you wanted were added.
+
+~/.ssh %
+</pre>
+</div>
+
+<p>
+ログインしてみます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">~/.ssh % ssh 127.0.0.1 -p 2222
+Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
+[&lt;username&gt;@fedora ~]$
+</pre>
+</div>
+
+<p>
+パスワード入力無しでssh接続できました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf578505" class="outline-2">
+<h2 id="orgf578505"><span class="section-number-2">3</span> Resources</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li><a href="https://rocky-chen.medium.com/setup-ssh-connection-to-your-ubuntu-vm-of-virtualbox-macos-eed4691fe08">Setup SSH connection to your Ubuntu VM of VirtualBox (MacOS)</a></li>
+<li><a href="https://linuxconfig.org/how-to-install-start-and-connect-to-ssh-server-on-fedora-linux">How to install, start and connect to SSH Server on Fedora Linux</a></li>
+<li><a href="https://www.ssh.com/academy/ssh/copy-id">Ssh-copy-id for copying SSH keys to servers</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-05-09T00:00:00-04:00" pubdate>Mon 09 May 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/mac.html">Mac</a>,    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

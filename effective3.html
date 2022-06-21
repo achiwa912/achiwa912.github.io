@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Effective Python一人輪読会(Item 37 to 51) &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Effective Python一人輪読会(Item 37 to 51)</h1>
+    <p class="meta">
+<time datetime="2020-08-21T00:00:00-04:00" pubdate>Fri 21 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgcc6f7dd">1. Chapter 5: クラスとインタフェース</a>
+<ul>
+<li><a href="#org3427771">1.1. Item 37: ビルトインタイプを何重にもネストさせるより(複数の)クラスを作れ</a></li>
+<li><a href="#org093ee22">1.2. Item 38: シンプルなインタフェースにはクラスでなく関数を受け入れよ</a></li>
+<li><a href="#orge56d2b0">1.3. Item 39: オブジェクトをgenericに作るためには@classmethodポリモーフィズムを使え</a></li>
+<li><a href="#org426c573">1.4. Item 40: superを使って親クラスを初期化せよ</a></li>
+<li><a href="#org76b140b">1.5. Item 41: Mix-inクラスを使って機能をcomposeすることを考えよ</a></li>
+<li><a href="#orgadaacf0">1.6. Item 42: プライベートなアトリビュートよりもパブリックな方が良い</a></li>
+<li><a href="#org661332e">1.7. Item 43: カスタムコンテナタイプを作るにはcollections.abcを継承せよ</a></li>
+</ul>
+</li>
+<li><a href="#org275f848">2. Chapter 6: メタクラスとアトリビュート</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org70c564f">2.0.1. メタクラスの定義</a></li>
+<li><a href="#orgce76698">2.0.2. typeが持つ別の顔</a></li>
+<li><a href="#org62f20e9">2.0.3. typeの正体</a></li>
+</ul>
+</li>
+<li><a href="#orge2430bb">2.1. Item 44: SetterやGetterメソッドよりもアトリビュートを普通に使え</a></li>
+<li><a href="#orgde948ec">2.2. Item 45: アトリビュートのリファクタリングよりも @property を使え</a></li>
+<li><a href="#orgd90e284">2.3. Item 46: 再利用可能な@propertyメソッドとしてデスクリプターを使え</a></li>
+<li><a href="#org9d2b35a">2.4. Item 47: Lazyアトリビュートのために__getattr__, ​__getattribute__や__setattribute__を使え</a></li>
+<li><a href="#orgbb771e7">2.5. Item 48: ​__init_subclass__を使ってサブクラスをvalidateせよ</a></li>
+<li><a href="#org635cf1d">2.6. Item 49: ​__init_subclass__を使ってクラスを登録せよ</a></li>
+<li><a href="#orgacae296">2.7. Item 50: ​__set_name__を使ってクラスアトリビュートをannotateせよ</a></li>
+<li><a href="#org745df6f">2.8. Item 51: クラス拡張を組み合わせるために、メタクラスよりもクラスデコレーターを使え</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcc6f7dd" class="outline-2">
+<h2 id="orgcc6f7dd"><span class="section-number-2">1</span> Chapter 5: クラスとインタフェース</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3427771" class="outline-3">
+<h3 id="org3427771"><span class="section-number-3">1.1</span> Item 37: ビルトインタイプを何重にもネストさせるより(複数の)クラスを作れ</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+コードを拡張して以下のような複雑なコードになったら、複数のクラスを使うようにリファクタリングした方が良いです。
+</p>
+<ul class="org-ul">
+<li>ディクショナリを含むディクショナリ</li>
+<li>3以上の個数を持つタプルを値として持つディクショナリ</li>
+<li>複雑にネストした他のビルトインタイプ</li>
+</ul>
+
+<p>
+長いタプルはnamedtupleを使う手もありますが、namedtupleには制限があります。
+</p>
+<ul class="org-ul">
+<li>デフォルト値が指定できない</li>
+<li>数値のインデックスやiterationでアトリビュート値がアクセスできる</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org093ee22" class="outline-3">
+<h3 id="org093ee22"><span class="section-number-3">1.2</span> Item 38: シンプルなインタフェースにはクラスでなく関数を受け入れよ</h3>
+<div class="outline-text-3" id="text-1-2">
+<pre class="example">
+current = {'green': 12, 'blue': 3}
+</pre>
+
+<p>
+このディクショナリに、
+</p>
+<pre class="example">
+increments = [('red', 5), ('blue', 17), ('orange', 9)]
+</pre>
+
+<p>
+このタプルのリストを加えて、
+</p>
+<pre class="example">
+result = {'green': 12, 'blue': 20, 'red': 5, 'orange': 9}
+</pre>
+
+<p>
+を得たいとします。
+</p>
+
+<p>
+次の関数は、ステートフルなclosureを使って追加した(=ミスした)色の数をカウントしつつ、上記のことを行います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def increment_with_report(current, increments):
+    added_count = 0
+    def missing():
+	'''カウントを+1して0を返す'''
+	nonlocal added_count  # ステートフルなclosure
+	added_count += 1
+	return 0
+    result = defaultdict(missing, current)  # closureを仕込む
+    for key, amount in increments:
+	result[key] += amount
+    return result, added_count
+</pre>
+</div>
+
+<p>
+以前調べたとき、closuresは以下の定義でした。
+</p>
+<ul class="org-ul">
+<li>関数と、そのインナー関数がある</li>
+<li>インナー関数は、外側の関数で定義された変数を参照する</li>
+<li>外側の関数は、インナー関数を戻り値として返す</li>
+</ul>
+<p>
+上記の例では最後の要件を満たしていませんが、 <code>defaultdict()</code> にインナー関数 <code>missing()</code> を渡すことで、closureとして機能していることになるようです。
+</p>
+
+<p>
+また、上の例ではclosureをステートを保持する目的で使っています。これもclosureのユースケースの一つなのですね。
+</p>
+
+<p>
+しかし、ステートフルなclosureは読みづらいために避けるべきと書いてあります。その代わりにクラスを用意し、更に <code>__call__()</code> を実装することでクラスを関数のように使うことを推奨しています。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class BetterCountMissing:
+    def __init__(self):
+	self.added = 0
+    def __call__(self):
+	self.added += 1
+	return 0
+
+counter = BetterCountMissig()
+result = defaultdict(counter, current)  # counterを関数として渡す
+for key, amount in increments:
+    result[key] += amount
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge56d2b0" class="outline-3">
+<h3 id="orge56d2b0"><span class="section-number-3">1.3</span> Item 39: オブジェクトをgenericに作るためには@classmethodポリモーフィズムを使え</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+えー、MapReduceって何でしたっけ。処理をたくさんのworkersにばらまいて、結果を統合していくやつでしたよね。この本は前提知識が高度すぎて、大変読みづらいです。ぼちぼち見ていきましょう。
+</p>
+
+<p>
+これはインタフェース的な、継承されることを前提としたクラスですね。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class InputData:
+    def read(self):
+	raise NotImplementedError
+</pre>
+</div>
+
+<p>
+パスを渡されてリードする処理を実装した子クラスです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class PathIputData(InputData):
+    def __init__(self, path):
+	super().__init__()
+	self.path = path
+    def read(self):
+	with open(self.path) as f:
+	    return f.read()
+</pre>
+</div>
+
+<p>
+これもインタフェース的workerクラス。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Worker:
+    def __init__(self, input_data):
+	self.input_data = input_data
+	self.result = None
+    def map(self):
+	raise NotImplementedError
+    def reduce(self, other):
+	raise NotImplementedError
+</pre>
+</div>
+
+<p>
+行数をカウントする処理を入れ込んだworker子クラス。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class LineCountWorker(Worker):
+    def map(self):
+	data = self.input_data.read()
+	self.result = data.count('\n')
+    def reduce(self, other):
+	self.result += other.result
+</pre>
+</div>
+
+<p>
+次は、ディレクトリをリストして、その中にあるファイルをリードできる <code>PathInputData</code> オブジェクトをyieldするジェネレーター関数を定義します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import os
+def generate_inputs(data_dir):
+    for name in os.listdir(data_dir):
+	yield PathInputData(os.path.join(data_dir, name))
+</pre>
+</div>
+
+<p>
+そしてworkersを複数用意するところ。ワーカーとして <code>LineCountWorker</code> を渡しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python"># 引数input_listはPathInputDataをyieldするジェネレーター
+def create_workers(input_list):  
+    workers = []
+    for input_data in input_list:
+	workers.append(LineCountWorker(input_data))
+    return workers
+</pre>
+</div>
+
+<p>
+次は用意したworkersを実行するところ。Pythonでスレッド使うやり方習いましたっけ? まあ読めばわかるのでいいや。 <code>thread.join()</code> は作ったスレッドの実行が終わるまで待つ(ブロックされる)ということ。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from threading import Thread
+def execute(workers):
+    threads = [Thread(target=w.map) for w in workers]
+    for thread in threads: thread.start()
+    for thread in threads: thread.join()
+    first, *rest = workers
+    for worker in rest:
+	first.reduce(worker)
+    return first.result
+</pre>
+</div>
+<p>
+おー、なんか格好いいです。これがMapReduceの実装なのですね。先頭の worker に全ての結果を集約しています。
+</p>
+
+<p>
+最後にこれらをまとめます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def mapreduce(data_dir):
+    inputs = generate_inputs(data_dir)  # ジェネレーターを返す
+    workers = create_workers(inputs)
+    return execute(workers)
+</pre>
+</div>
+<p>
+<code>generate_inputs</code> は <code>PathInputData</code> を一つずつ返す iterator を作り、 <code>create_workers</code> でこれらを割り振ったワーカーのリストを用意して、 <code>executee</code> で mapreduce します。うーん、格好いい! 
+</p>
+
+<p>
+ここまで理解したところで、やっと本節のテーマに入ります。導入が長すぎる。。。
+まずは、上記のやり方に対してダメ出しです。問題は、パーツの結びつきがお互いに強すぎて、一つ変更するとみんな変更しなくてはいけないこと。独立性が低すぎるということです。
+</p>
+
+<p>
+これに対する解はクラスメソッドのポリモーフィズムを使うことだと書いてあります。正直言って、意味がわかりません。読み進めましょう。
+</p>
+
+<p>
+まずはgenericな <code>InputData</code> クラスを定義します。追加したのはconfigパラメーターから設定を読み込むクラスメソッド(のインタフェース)。意味深です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class GenericInputData:
+    def read(self):
+	raise NotImplementedError
+    @classmethod
+    def generate_inputs(cls, config):
+	raise NotImplementedError
+</pre>
+</div>
+
+<p>
+<code>PathInputData</code> クラスでこれを継承します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class PathInputData(GenericInputData):
+    def __init__(self, path):
+	super().__init__()
+	self.path = path
+    def read(self):
+	with open(self.path) as f:
+	    return f.read()
+    @classmethod
+    def generate_input(cls, config):
+	data_dir = config['data_dir']
+	for name in os.listdir(data_dir)
+	    yield cls(os.path.join(data_dir, name))
+</pre>
+</div>
+<p>
+別関数だった <code>generate_input</code> を <code>PathInputData</code> にクラスメソッドとして組み込んでいます。
+</p>
+
+<p>
+<code>yield</code> の行は、 <code>PathInputData</code> のインスタンスを作って、その引数としてconfigのディレクトリにある各ファイルのパスを渡しています。 <code>@classmethod</code> を付けてクラスメソッドを用意することで、 <code>__init__()</code> を使わない別のやり方でコンストラクターを定義することができる、ということでした。
+</p>
+
+<p>
+また、genericなクラスではなく具体的な子クラスでそのクラスメソッドを実装することで、子クラスに合わせたフレキシブルな初期化ロジックを入れ込むことができます。
+</p>
+
+<p>
+そしてgenericなworkerクラスです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class GenericWorker:
+    def __init__(self, input_data)
+	self.input_data = input_data
+	self.result = None
+    def map(self):
+	raise NotImplementedError
+    def reduce(self, other):
+	raise NotImplementedError
+
+    @classmethod
+    def create_workers(cls, input_class, config):
+	workers = []
+	for input_data in input_class.generate_inputs(config):
+	    workers.append(cls(input_data))
+	return workers
+</pre>
+</div>
+<p>
+こちらでも別関数だった <code>create_workers</code> をクラスメソッドとして組み込んでいます。今回のポイントはクラスメソッドを使ったポリモーフィズムとのことですが、 <code>create_workers</code> をジェネリックなworkerクラスに組み込んだところを言っているのでしょうか。
+</p>
+
+<p>
+以前は <code>mapreuce</code> 関数で呼び出していた <code>generate_inputs</code> はこの中で呼び出されるようになります。つまり、 <code>create_workers</code> メソッドにおいて <code>PathInputData</code> インスタンスの生成と、それを組み込んだ <code>GenericWorker</code> インスタンスの生成を行っています。
+</p>
+
+<p>
+<code>LineCountWorker</code> は <code>GenericWorker</code> を継承します。他は変更なし。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class LineCountWorker(GenericWorker):
+    def map(self):
+    ...
+    def reduce(self, other):
+    ...
+</pre>
+</div>
+
+<p>
+<code>mapreduce</code> 関数は引数としてconfigを取ります。 <code>generate_inputs</code> の呼び出しは <code>create_workers</code> に含まれたのでここからは無くなっています。シンプルになりました。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def mapreduce(worker_class, input_class, config):
+    workers = worker_class.create_workers(input_class, config)
+    return execute(workers)
+</pre>
+</div>
+
+<p>
+そして、全ての基点がここ。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">config = {'data_dir': tmpdir}
+result = mapreduce(LineCountWorker, PathInputData, config)
+print(f'There are {result} lines')
+
+&gt;&gt;&gt;
+There are 4360 lines
+</pre>
+</div>
+
+<p>
+ところで、独立性が低すぎる件はこれで解決したのでしょうか。クラスのインスタンス生成をクラスメソッドとして組み込んだためスッキリしたとは思いますが、どこが解決されているのか今ひとつわかりません。。。
+</p>
+
+<p>
+今回の節はかなり難しかったです。意味を理解するのに数時間以上悩みました。
+</p>
+
+<p>
+追記です。このようなやり方でオブジェクトを作る方法は、static factory patternというようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org426c573" class="outline-3">
+<h3 id="org426c573"><span class="section-number-3">1.4</span> Item 40: superを使って親クラスを初期化せよ</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+スーパークラスのコンストラクタを呼ぶときは、親クラスを名前で指定するのでなく、 <code>super.__init__()</code> を指定するように、とのこと。普通にやっていますよね。この節はこれで言いたいことはおしまいですが、更に補足します。
+</p>
+
+<p>
+二つの親クラスを継承した子クラスがあるとして、その二つの親クラスのどこかの先祖が同じクラスであるような継承をダイヤモンド継承と呼ぶらしいです。ダイヤモンド継承ではその同じ祖先のコンストラクタを複数回実行してしまうことで、副作用が出ることがあります。
+</p>
+
+<p>
+例えば共有する先祖クラスにおいて、親クラスで操作する変数の初期化をしている場合は、一つの親クラスがその変数の初期化及び値を操作した後に、別の親クラスのコンストラクタでもう一度初期化してしまう場合がありえます。
+</p>
+
+<p>
+しかし、 <code>super</code> を使うと一つの祖先クラスのコンストラクターを1回しか実行しないことを保証してくれます。このあたりのルールは method resolution order (MRO)という仕様にて定義されています。
+</p>
+
+<p>
+<code>super</code> によるMROを使ったコンストラクターは、先祖クラスのコンストラクターを実行する順序が、ぱっと見の感覚と異なる場合があることに注意。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76b140b" class="outline-3">
+<h3 id="org76b140b"><span class="section-number-3">1.5</span> Item 41: Mix-inクラスを使って機能をcomposeすることを考えよ</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Mixinsは知りませんでした。<a href="https://www.residentmar.io/2019/07/07/python-mixins.html#:~:text=A%20mixin%20is%20a%20class,this%20feature%E2%80%94and%20nothing%20else.&amp;text=Mixins%20are%20a%20safe%20form%20of%20multiple%20inheritance.">ここ</a>にわかりやすい定義があります。
+</p>
+<blockquote>
+<p>
+A mixin is a class that defines and implements a single, well-defined feature. Subclasses that inherit from the mixin inherit this feature—and nothing else.
+</p>
+</blockquote>
+<p>
+継承させることを目的に、ある一つの機能だけを定義、実装したクラスで、 <code>xxxMixin</code> のような名前になるそうです。クラスを定義するときに、メインとなる親クラス一つと、複数のmixinクラスを継承するような使い方をします。
+</p>
+<pre class="example">
+class SomeClass(Parent, AaaMixin, BbbMixin, CccMixin):
+</pre>
+
+<p>
+のような感じで。これは便利そうです。Javaのインタフェースがこれに相当するのでしたっけ。
+</p>
+
+<p>
+この中に出てくるバイナリーツリーのコードの意味がピンときません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class BinaryTree(ToDictMixin):
+    def __init__(self, value, left=None, right=None):
+	self.value = value
+	self.left = left
+	self.right = right
+</pre>
+</div>
+<p>
+<code>ToDictMinxin</code> はディクショナリ(リストや相当機能を持つクラスを含む)をたどってPythonのディクショナリに変換する <code>to_dict</code> メソッドを実装したmixinです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">tree = BinaryTree(10, 
+    left=BinaryTree(7, right=BinaryTree(9)),
+    right=BinaryTree(13, left=BinaryTree(11)))
+print(tree.to_dict())
+&gt;&gt;&gt;
+{'value': 10,
+ 'left': {'value': 7, 
+	  'left': None, 
+	  'right: {'value': 9, 'left': None, 'right': None}},
+ 'right': {'value': 13, 
+	  'left': {'value': 11, 'left': None, 'right': None},
+	  'right': None}}
+</pre>
+</div>
+
+<p>
+ここにコードスニップを書いて眺めていたら、ようやく理解できました。
+Kindleデバイスでこの本を読むのは無理があります。。。
+</p>
+
+<p>
+また、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import json
+class JsonMixin:
+    @classmethod
+    def from_json(cls, data):
+	kwargs = json.loads(data)
+	return cls(**kwargs)
+    def to_json(self):
+	return json.dumps(self.to_dict())
+</pre>
+</div>
+<p>
+このクラスメソッド <code>from_json()</code> がわかりづらかったです。
+<code>data</code> はjsonエンコードしてシリアライズされたデータで、これをディクショナリに変換(デコード)して <code>kwargs</code> に入れます。そしてこれを引数に当該クラスのオブジェクトを作成して戻します。 <code>JsonMixin</code> は、当該クラスをjsonにエンコードする機能と、逆にデコードしてクラスに戻す機能を付与する mixin でした。
+</p>
+
+<p>
+これはスタティックファクトリーパターン、、、とは違うのかな。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgadaacf0" class="outline-3">
+<h3 id="orgadaacf0"><span class="section-number-3">1.6</span> Item 42: プライベートなアトリビュートよりもパブリックな方が良い</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+タイトルの通りです。
+</p>
+<ul class="org-ul">
+<li>プライベートアトリビュートは頑張れば子クラスからアクセスできてしまう</li>
+<li>プライベートアトリビュートを親クラスから更にその親クラスに移した場合など、子クラスで無理にアクセスしようとしていると名称が変わってアクセスできなくなる</li>
+<li>プライベートの仕組みを使ってアクセス制御するよりも、注意事項をドキュメントに書いた方がよい</li>
+<li>唯一プライベートアトリビュートを使って良いのは、名前のコンフリクトを避けたい場合</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org661332e" class="outline-3">
+<h3 id="org661332e"><span class="section-number-3">1.7</span> Item 43: カスタムコンテナタイプを作るにはcollections.abcを継承せよ</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+これもタイトルの通りです。
+</p>
+
+<p>
+<code>list</code> や <code>dict</code> 等のPythonで定義されているコンテナタイプを継承してクラスが作れるとは知りませんでした。
+</p>
+
+<p>
+<code>list</code> 等に用意されている便利なメソッドは多く、一から作るのは大変なので、 <code>collections.abc</code> を継承するとよい、ということでした。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org275f848" class="outline-2">
+<h2 id="org275f848"><span class="section-number-2">2</span> Chapter 6: メタクラスとアトリビュート</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+メタクラスって何ですか? StackOverflowの<a href="https://stackoverflow.com/questions/100003/what-are-metaclasses-in-python">what-are-metaclass-in-python</a>に、ものすごく詳しくてわかりやすい解説がありました。
+</p>
+</div>
+
+<div id="outline-container-org70c564f" class="outline-4">
+<h4 id="org70c564f"><span class="section-number-4">2.0.1</span> メタクラスの定義</h4>
+<div class="outline-text-4" id="text-2-0-1">
+<p>
+メタクラスはクラスを作るクラスです。クラスはそのクラスの実体(オブジェクト)がどのように振る舞うかを規定しますが、メタクラスはクラスがどう振る舞うかを規定します。クラスはメタクラスのインスタンスです。
+</p>
+
+<p>
+そういう意味で、クラスはオブジェクトです。オブジェクトは以下の特徴を持ちます。
+</p>
+<ul class="org-ul">
+<li>それを変数にアサインできる</li>
+<li>コピーできる</li>
+<li>それにアトリビュートを追加できる</li>
+<li>関数のパラメーターとして渡すことが出来る</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgce76698" class="outline-4">
+<h4 id="orgce76698"><span class="section-number-4">2.0.2</span> typeが持つ別の顔</h4>
+<div class="outline-text-4" id="text-2-0-2">
+<p>
+ご存じのように、 <code>type</code> には <code>type(1)</code> で <code>&lt;type 'int'&gt;</code> を、 <code>type("1")</code> で <code>&lt;type 'str'&gt;</code> のように返す機能がありますが、その他に全く別のアビリティーを持ちます。それは、クラスを動的に作る機能です。
+</p>
+
+<p>
+この機能の使い方は以下です。
+</p>
+<pre class="example">
+type(name, bases, attrs)
+# name: クラスの名前
+# bases: ペアレントクラスのタプル(空でもよい)
+# attrs: アトリビュートの名前と値を持つディクショナリ
+</pre>
+
+
+<p>
+例えば、
+</p>
+<pre class="example">
+class Foo():
+    bar = True
+</pre>
+
+<p>
+は次のように書けます。
+</p>
+<pre class="example">
+Foo = type('Foo', (), {'bar':True})
+</pre>
+
+<p>
+目からウロコです。なんだかすごくないですか!?
+</p>
+
+<p>
+メソッドを定義することも出来ます。
+</p>
+<pre class="example">
+def echo_bar(self):
+    print(self.bar)
+</pre>
+
+
+<p>
+Fooクラスを継承したFooChildを作ります。
+</p>
+<pre class="example">
+FooChild = type('FooChild', (Foo,), {'echo_bar': echo_bar})
+</pre>
+
+
+<p>
+これが、Pythonがキーワード <code>class</code> を見つけるとメタクラス <code>type</code> を使って行うことだそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org62f20e9" class="outline-4">
+<h4 id="org62f20e9"><span class="section-number-4">2.0.3</span> typeの正体</h4>
+<div class="outline-text-4" id="text-2-0-3">
+<p>
+<code>__class__</code> のアトリビュートを見ると、タイプがわかります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; age = 35
+&gt;&gt;&gt; age.__class__
+&lt;class 'int'&gt;
+&gt;&gt;&gt; name = 'bob'
+&gt;&gt;&gt; name.__class__
+&lt;class 'str'&gt;
+&gt;&gt;&gt; def foo(): pass
+... 
+&gt;&gt;&gt; foo.__class__
+&lt;class 'function'&gt;
+&gt;&gt;&gt; class Bar(object): pass
+... 
+&gt;&gt;&gt; b = Bar()
+&gt;&gt;&gt; b.__class__
+&lt;class '__main__.Bar'&gt;
+</pre>
+</div>
+<p>
+おー、これはわかりやすいです。
+</p>
+
+<p>
+一歩踏み込んで、 <code>__class__</code> の <code>__class__</code> を見てみると、、、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; age.__class__.__class__
+&lt;class 'type'&gt;
+&gt;&gt;&gt; name.__class__.__class__
+&lt;class 'type'&gt;
+&gt;&gt;&gt; foo.__class__.__class__
+&lt;class 'type'&gt;
+&gt;&gt;&gt; b.__class__.__class__
+&lt;class 'type'&gt;
+</pre>
+</div>
+<p>
+なんと、全て <code>type</code> になっていました。つまり、メタクラス <code>type</code> はPythonの様々なタイプオブジェクトのタイプなのでした。
+</p>
+
+<p>
+ここまで踏み込んだところで、ようやく本文に入ります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2430bb" class="outline-3">
+<h3 id="orge2430bb"><span class="section-number-3">2.1</span> Item 44: SetterやGetterメソッドよりもアトリビュートを普通に使え</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+getter, setterを用意するのはpythonicでないそうです。
+</p>
+
+<p>
+<code>@property</code> , <code>@&lt;attr&gt;.setter</code> デコレーターを使うと、アトリビュートの値を普通に参照、 <code>=</code> で設定するときにこれらのメソッドが使われます。Introducing Pythonを見返すまで忘れていましたが。。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Duck():
+    def __init__(self, input_name):
+	self.hidden_name = input_name
+    @property
+    def name(self):
+	return self.hidden_name
+    @name.setter
+    def name(self, input_name):
+	self.hidden_name = input_name
+
+duck = Duck('No name')
+duck.name = 'Donald'
+print(duck.name)
+&gt;&gt;&gt;
+Donald
+</pre>
+</div>
+
+<p>
+注意点として、これらは副作用無く、素早く終わるようにすること、だそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgde948ec" class="outline-3">
+<h3 id="orgde948ec"><span class="section-number-3">2.2</span> Item 45: アトリビュートのリファクタリングよりも @property を使え</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<code>@property</code> のアドバンストな使い方は、アトリビュートをその場で計算して返すこと。Linuxの/procと似てますね。
+</p>
+
+<p>
+本題から外れてまたKindle版の悪口ですが、Click here to view code imageをクリックしてビットマップイメージでコードを見ても、まだインデントが間違っている箇所がたくさんあります。本当にひどい。返品したいくらいです。Kindle版の技術書がひどいのはある程度わかっていましたが、ここまでとは。もう安くても買いません。
+</p>
+
+<p>
+えーと、leaky bucket(穴の開いたバケツ)です。最初、普通に穴の開いたバケツをイメージして読んだのですが、コードの意味がよくわかりません。検索してみると専門用語のようです。ここで言っているクオータは何でしょう。残量? 使用した量? 残量みたいですね。整理しながら読んでいきましょう。
+</p>
+
+<p>
+まずはバケツを定義します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Bucket:
+    def __init__(self, period):
+	self.period_delta = timedelta(seconds=period)
+	self.reset_time = datetime.now()
+	self.quota = 0  # クオータを0に初期化
+    def __repr__(self):
+	return f'Bucket(quota={self.quota})'
+</pre>
+</div>
+<p>
+これはいいですかね。最初はクオータ0始まりです。
+</p>
+
+<p>
+次は <code>fill()</code> です。バケツに水を汲みます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def fill(bucket, amount):
+    now = datatime.now()
+    if (now - bucket.reset_time) &gt; bucket.period_delta:
+	bucket.quota = 0
+	bucket.reset_time = now
+    bucket.quota += amount
+</pre>
+</div>
+<p>
+時間が <code>bucket.period_delta</code> よりも長く経過していたら、タイマーをリセットし、クオータを <code>amount</code> に設定して、まだだったら残量に <code>amount</code> を追加しています。何ですかね。 <code>fill()</code> を呼ばれたときだけ一気に漏れる(そしてフィルする)バケツなのでしょうか。何だかWikiで呼んだleaky bucket algorithmの定義と違うような。。。
+</p>
+
+<p>
+そして、Kindle版でインデントがずれていた <code>deduct()</code> です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def deduct(bucket, amount):
+    now = datetime.now()
+    if (now - bucket.reset_time) &gt; bucket.period_delta:
+	return False  # この期間にバケツはフィルされていない
+    if bucket.quota - amount &lt; 0:
+	return False  # 使いたい量がない
+    bucket.quota -= amount
+    return True
+</pre>
+</div>
+<p>
+あれれ、残量によらず(?)期間にバケツがフィルされていなければ <code>False</code> でリターンするのですね。フィルされずに <code>bucket.period_delta</code> を過ぎていたら、既に漏れてしまっているのでdeductさせません(クオータ(残量)の値は変えないけど)という乱暴な作りなのでしょうか。
+</p>
+
+<p>
+整理してみましょう。
+</p>
+<ul class="org-ul">
+<li>フィルするときに規定時間 <code>buekct.period_delta</code> 経っていなければ残量に追加量を加える</li>
+<li>フィルするときに規定時間経っていれば期間のカウンターをリセットして追加量＝残量とする</li>
+<li>水を使おうとしたときに残量が必要量あり、規定時間経っていなければ、使わせる</li>
+<li>水を使おうとしたときに規定時間経っていたら、(残量がどうあれ)使わせない</li>
+</ul>
+<p>
+やはり、乱暴な作りでした。。。
+</p>
+
+<p>
+この実装の問題は、そもそもバケツの残量がいくつから始まったのかわからないことだ、と書いてあります。そんなに大層な問題ですかね。。。
+</p>
+
+<p>
+で、改善版です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class NewBucket:
+    def __init__(self, period):
+	self.period_delta = timedelta(seconds=period)
+	self.reset_time = datetime.now()
+	self.max_quota = 0
+	self.quota_consumed = 0
+    def __repr__(self):
+	return (f'NewBucket(max_quota={self.max_quota}, '
+	       f'quota_consumed={self.quota_consumed})')
+    @property
+    def quota(self):
+	return self.max_quota - self.quota_consumed
+</pre>
+</div>
+<p>
+<code>quota</code> アトリビュートを廃止して <code>max_quota</code> と <code>quota_consumed</code> を導入しました。そして <code>@property</code> で廃止した <code>quota</code> アトリビュートを動的に作って返します。今回のポイントは実はここだけですかね。
+</p>
+
+<p>
+更にsetterの定義です。上で定義した <code>fill()</code> と <code>deduct()</code> がそのまま使えるように配慮しました、と書いてあります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">@quota.setter
+def quota(self, amount):
+    delta = self.max_quota - amount  # 減少量 = 最大量 - 設定値
+    if amount == 0:
+	# 0を指定した場合は、新たな期間のためにリセットする
+	self.quota_consumed = 0
+	self.max_quota = 0
+    eilf delta &lt; 0:
+	# 新たな期間のために残量をフィルする
+	assert self.quota_comsumed == 0
+	self.max_quota = amount
+    else:
+	# 当該期間において、残量を使う
+	assert self.max_quota &gt;= self.quota_consumed
+	self.quota_consumed += delta  # 消費した量に減少量を加える
+</pre>
+</div>
+<p>
+このメソッドだけ眺めても理解できないので、 <code>fill()</code> や <code>deduct()</code> と付き合わせて読みます。
+</p>
+
+<p>
+まず <code>amount == 0</code> の時は、 <code>fill()</code> で規定時間経過時のフィルのために、いったん残量をゼロにするところです。確かにこれでOKです。
+</p>
+
+<p>
+次の <code>delta &lt; 0</code> は、 <code>fill()</code> で残量をゼロした後にフィルするところです。残量をゼロにしたときに <code>quota_consumed = max_quota = 0</code> にしているので、 <code>delta</code> は必ず負になります。
+</p>
+
+<p>
+それ以外のケースは <code>deduct()</code> された場合です。このメソッドでは残量(quota)に、残量から減少量(<code>amount_deduct</code> とする)を引いた量を代入しているので、これがsetterメソッドで残量に設定する値になるから、setterメソッドの引数を <code>amount_setter</code> と表記すると、、、
+</p>
+<pre class="example">
+self.quota_consumed += delta は、
+self.quota_consumed = self.quota_consumed + delta ということなので、
+    = quota_consumed + (max_quota - amount_setter)  self略
+    = quota_consumed + (max_quota - (max_quota - quota_consumed - amount_deduct))
+    = quota_consumed x 2 + amount_deduct あれあれ???
+</pre>
+<p>
+うーむ、何をどう間違ったのか。 <code>quota_comsumed</code> が2回足されてしまいました。1回で良かったのに。2時間ほど考えてみましたがわかりませんでした。悔しいけど飛ばして進みます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd90e284" class="outline-3">
+<h3 id="orgd90e284"><span class="section-number-3">2.3</span> Item 46: 再利用可能な@propertyメソッドとしてデスクリプターを使え</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<code>@property</code> の大きな問題は再利用性です。同じようなアトリビュートがたくさんあると、それら全てに <code>@property</code> を用意しなければなりません。更に、無関係のクラスでは再利用できません。
+</p>
+
+<p>
+<code>@classmethod</code> はクラスメソッドで、そのクラスのオブジェクトを作らなくても使えるメソッドでした。 <code>@staticmethod</code> は知っているような気もしますがクラスメソッドと何が違うのでしたっけ。<a href="https://stackabuse.com/pythons-classmethod-and-staticmethod-explained/">ここ</a>によると、スタティックメソッドは引数としてclsを取らないところがポイントで、クラスのステータスを扱えません。クラスメソッド(やインスタンスメソッドも?)から下請的に使うもののようです。
+</p>
+
+<p>
+次はデスクリプターです。Pythonのunder the hoodで活躍するもののようです。under the hood話はたまに聞くから良いのであって、これだけ続くとだいぶお腹いっぱいです。が、Real Pythonの<a href="https://realpython.com/python-descriptors/">長い記事</a>を読みます。。。。。 。。。読みました。最後の二つの節は意味が追えなかったので飛ばしましたが。
+</p>
+
+<p>
+デスクリプターは以下のデスクリプタープロトコルを一つ以上実装したクラスで、デスクリプター機能を実現したい他のクラスにアタッチして使います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">__get__(self, obj, type=None) -&gt; object
+__set__(self, obj, value) -&gt; None
+__delete__(self, obj) -&gt; None
+</pre>
+</div>
+
+<p>
+そしてEffective Pythonに戻って話を続けます。あれれ、話の展開がそっくりです。こんなのあり? でもお陰で読みやすいです。
+</p>
+
+<p>
+以下の例で <code>Grade</code> がデスクリプターです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Grade:
+    def __get__(self, instance, instance_type):
+	...
+    def __set__(self, instance, value):
+	...
+
+class Exam:
+    math_grade = Grade()
+    writing_grade = Grade()
+    science_grade = Grade()
+</pre>
+</div>
+<p>
+<code>@property</code> と同様に、デスクリプターをアタッチした変数は、クラスインスタンスのアトリビュートとしてアクセスできるようになります。上の例では、 <code>Exam</code> のインスタンスを作ったとき、例えば <code>Exam_instance.writing_grade</code> のアトリビュートアクセスで、 <code>Exam</code> にアタッチされているデスクリプター <code>Grade</code> の <code>__get__</code> 、 <code>__get__</code> が使われます。
+</p>
+
+<p>
+具体例です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">exam = Exam()
+exam.writing_grade = 40
+</pre>
+</div>
+<p>
+これは、次のように解釈されます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Exam.__dict__['writing_grade'].__set__(exam, 40)
+</pre>
+</div>
+
+<p>
+ここで、 <code>__dict__</code> はPythonの全てのオブジェクトが持っているディクショナリのアトリビュートで、そのオブジェクトの全てのアトリビュートやメソッドが入っています。
+例えば、以下のようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">print(Exam.__dict__)
+&gt;&gt;&gt;
+{'__module__': '__main__', 'math_grade': &lt;__main__.Grade object at 0x10c02afa0&gt;, 'writing_grade': &lt;__main__.Grade object at 0x10c02af70&gt;, 'science_grade': &lt;__main__.Grade object at 0x10c041070&gt;, '__dict__': &lt;attribute '__dict__' of 'Exam' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Exam' objects&gt;, '__doc__': None}
+</pre>
+</div>
+<p>
+<code>__dict__['writing_grade']</code> は <code>Grade</code> オブジェクトであることがわかりますね。同様に、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">exam.writing_grade
+</pre>
+</div>
+<p>
+これは、次のように解釈されます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Exam.__dict__['writing_grade'].__get__(exam, Exam)
+</pre>
+</div>
+
+<p>
+ここからしばらくReal PythonとEffective Pythonで同じストーリー展開で話が進みます。
+</p>
+<ol class="org-ol">
+<li><code>Grade</code> の実体は一つで、複数インスタンスから参照されるため、 <code>Grade</code> が持つアトリビュートに値を入れても駄目(一つのインスタンスで値を変えると、全てのインスタンスで変わってしまう)</li>
+<li>普通のアトリビュートでなく、オブジェクトをキーとするディクショナリにすれば解決、に見える</li>
+<li>そのディクショナリは強参照しているため、オブジェクトが不要となっても参照数が残り、ガベージコレクションがメモリを解放しない。つまり、メモリリークする。</li>
+<li>弱参照にすればいいじゃん(いまここ)</li>
+</ol>
+
+<p>
+何やらマニアックな話です。また新概念の登場です。 <code>weakref</code> モジュールの <code>WeakKeyDictionary</code> は弱参照するディクショナリです(<a href="https://docs.python.org/3/library/weakref.html">ここ</a>)。強参照(strong reference)が普通の参照で、弱参照(weak reference)は弱い参照です。この強弱は何が違うのかと言うと、ガベージコレクションの際に参照数をカウントする、しないになります。
+</p>
+
+<p>
+ガベージコレクション(GC)は参照カウントがゼロのオブジェクトを回収してメモリを解放しますが、弱参照はGCにカウントされません。このため、弱参照しか残っていないオブジェクトはGCによってメモリ解放(&amp;参照を解除)されてしまいます。
+</p>
+
+<p>
+そんな参照が役に立つのかというと、キャッシュなどのユースケースで使えます。キャッシュは本体がどこかにあるため、参照を消されてメモリ解放されても致命的ではないのです。
+</p>
+
+<p>
+<code>WeakKeyDictionary</code> を使った最終版です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from weakref import WeakKeyDictionary
+class Grade:
+    def __init__(self):
+	self._values = WeakKeyDictionary()
+    def __get__(self, instance, instance_type):
+	...
+    def __set__(self, instance, value):
+	...
+</pre>
+</div>
+<p>
+ここでは省略していますが、 <code>__get__</code>, <code>__set__</code> の実装が変わっているはず、、、です。
+</p>
+
+<p>
+<code>Exam</code> の実装は変わりません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Exam:
+    math_grade = Grade()
+    writing_grade = Grade()
+    science_grade = Grade()
+
+first_exam = Exam()
+first_exam.writing_grade = 82
+second_exam = Exam()
+second_exam.writing_grade = 75
+print(f'First {first_exam.writing_grade}')
+print(f'Second {second_exam.writing_grade}')
+&gt;&gt;&gt;
+First 82
+Second 75
+</pre>
+</div>
+<p>
+複数インスタンスで別の値を持つことができました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9d2b35a" class="outline-3">
+<h3 id="org9d2b35a"><span class="section-number-3">2.4</span> Item 47: Lazyアトリビュートのために__getattr__, ​__getattribute__や__setattribute__を使え</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Pythonのスペシャルメソッド <code>__getattr__</code> はLazyなアトリビュート参照(参照された時に初めて見に行く)を実現します。クラスが <code>__getattr__</code> を実装していたら、オブジェクトインスタンスのディクショナリにアトリビュートが見つからなかった際、 <code>__getattr__</code> が呼ばれます。そしてそのアトリビュートはインスタンスディクショナリ <code>__dict__</code> に登録され、次以降のアクセスはそのディクショナリから値を取り出します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class SomeClass:
+    def __init__(self, aaa):
+	self.exists = 5
+    # オブジェクトが指定アトリビュートを持たない時に呼ばれる
+    def __getattr__(self, name):
+	print("getattr is called")
+	value = 15  # 本当は、ここで外部DBなどから値を持ってくる
+	setattr(self, name, value)
+	return value
+
+sc = SomeClass()
+print(sc.exists)
+print("1st: ", sc.foo)
+print("2nd: ", sc.foo)
+&gt;&gt;&gt;
+5
+getattr is called
+1st:  15
+2nd:  15
+</pre>
+</div>
+<p>
+<code>foo</code> を2回読んだとき、 <code>__getattr__</code> が呼ばれたのは最初の1回だけだったことがわかります。
+</p>
+
+<p>
+<code>__dict__</code> にキャッシュされた値を取り出されると困る場合、例えば、アトリビュートが外部データベースの値を参照しているような時は、毎回実体のデータベースの値を読みにいく必要があります。これを実現するのが <code>__getattribute__</code> スペシャルメソッドです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class SomeClass:
+    def __init__(self):
+	self.exists = 5
+    def __getattribute__(self, name):
+	print("__getattribute__ is called")
+	value = 15
+	setattr(self, name, value)
+	return value
+
+sc = SomeClass()
+print(sc.exists)
+print("1st: ", sc.foo)
+print("2nd: ", sc.foo)
+&gt;&gt;&gt;
+__getattribute__ is called
+15
+__getattribute__ is called
+1st:  15
+__getattribute__ is called
+2nd:  15
+</pre>
+</div>
+<p>
+常に <code>__getattribute__</code> が呼ばれていることがわかります。
+</p>
+
+<p>
+Lazyにセットしたい場合は、これらに共通の <code>__setattr__</code> を使います。これは毎回呼ばれるごとに、実体に値を設定します。
+</p>
+
+<p>
+注意点が一つあって、 <code>__getattribute__, __setattr__</code> を使うときにはその中でこれらが再帰的に呼ばれないようにしないと、無限recursiveによって落ちます。 <code>super().__setaddr__</code> のようにします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def __setaddr__(self, name, value):
+    なにかチェックして例外を上げたり。。。
+    super().__setattr__(name, value)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgbb771e7" class="outline-3">
+<h3 id="orgbb771e7"><span class="section-number-3">2.5</span> Item 48: ​__init_subclass__を使ってサブクラスをvalidateせよ</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+メタクラスは <code>type</code> を継承することで定義されます。デフォルトの挙動ではメタクラスは、関係するクラスのステートメントのコンテンツを <code>__new__</code> メソッドで受け取ります。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class Meta(type):
+    def __new__(meta, name, bases, class_dict):
+	print(f'* Running {meta}.__new__ for {name}')
+	print('Bases:', bases)
+	print(class_dict)
+	return type.__new__(meta, name, bases, class_dict)
+
+class MyClass(metaclass=Meta):
+    stuff = 123
+    def foo(self):
+	pass
+
+class MySubclass(MyClass):
+    other = 567
+    def bar(self):
+	pass
+</pre>
+</div>
+
+<p>
+<code>__new__</code> の引数は以下です。
+</p>
+<pre class="example">
+meta: メタクラス
+name: (関連クラスの)名前
+bases: ペアレントクラスのタプル
+class dict: クラスのアトリビュートやメソッドの入ったディクショナリ
+</pre>
+
+<p>
+これを実行すると、以下のようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Running &lt;class '__main__.Meta'&gt;.__new__ for MyClass
+Bases: ()
+{'__module__': '__main__', '__qualname__': 'MyClass', 'stuff': 123, 'foo': &lt;function MyClass.foo at 0x10632f550&gt;}
+Running &lt;class '__main__.Meta'&gt;.__new__ for MySubclass
+Bases: (&lt;class '__main__.MyClass'&gt;,)
+{'__module__': '__main__', '__qualname__': 'MySubclass', 'other': 567, 'bar': &lt;function MySubclass.bar at 0x10632f5e0&gt;}
+</pre>
+</div>
+
+<p>
+このようにメタクラスでは、 <code>__new__</code> メソッドにおいて関係クラスの情報を得たり修正することが出来るため、関連クラスの定義が完了する前に、そのパラメーターの有効性をチェックする目的で使えそうです。
+</p>
+
+<p>
+しかしこのユースケースでは、メタクラスを使わずに、Python 3.6以降で用意されている <code>__init_subclass__</code> スペシャルクラスメソッドを使った方が良いです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class BetterPolygon:
+    sides = None  # サブクラスで指定必要
+
+    def __init_subclass__(cls):
+	super().__init_subclass()
+	if cls.sides &lt; 3:
+	    raise ValueError('Polygons need 3+ sides')
+    @classmethod
+    def interior_angles(cls):
+	return (cls.sides - 2) * 180
+</pre>
+</div>
+
+<p>
+これを継承して、ポリゴンを作ります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Point(BetterPolygon):
+    sides = 1
+&gt;&gt;&gt;
+Traceback ...
+ValueError: Polygons need 3+ sides
+</pre>
+</div>
+<p>
+クラス <code>Point</code> を作ろうとして <code>BetterPolygon.__init_subclass()</code> にて例外が上がりました。
+</p>
+
+<p>
+<code>__init_subclass__</code> を使うと、複数のクラスチェック用クラスを継承したり、更にはダイヤモンド継承をしてもうまくハンドルしてくれます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Top:
+    def __init_subclass__(cls):
+	super().__init_subclass()
+	print(f'Top for {cls}')
+
+class Left(Top):  # これを定義する時にTop.__init_subclass__()が呼ばれる
+    def __init_subclass__(cls):
+	super().__init_subclass()  # Rightにて既に実行済みのため何もしない
+	print(f'Left for {cls}')
+
+class Right(Top):  # これを定義する時にTop.__init_subclass__()が呼ばれる
+    def __init_subclass__(cls):
+	super().__init_subclass()  # Top.__init_subclass__()を呼ぶ
+	print(f'Right for {cls}')
+
+# これを定義する時にRight.__init_subclass__()が呼ばれる
+#   その中で、top.__init_subclass__()を呼ぶ
+# 次に、Left.__init_subclass__()が呼ばれる
+#   その中で、top.__init_subclass__()を呼ばない(Rightが実行済み)
+class Bottom(Left, Right):
+    def __init_subclass__(cls):
+	super().__init_subclass()
+	print(f'Bottom for {cls}')
+</pre>
+</div>
+
+<p>
+これを実行します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">Top for &lt;class '__main__.Left'&gt;  # LeftからTopの__init_subclass__実行
+Top for &lt;class '__main__.Right'&gt;  # RightからTopの__init_subclass__実行
+# BottomからRight.__init_subclass__実行-&gt;Topの__init_subclass__実行
+Top for &lt;class '__main__.Bottom'&gt;  
+Right for &lt;class '__main__.Bottom'&gt;  # BottomからRight.__init_subclass__実行
+Left for &lt;class '__main__.Bottom'&gt;  # BottomからLeft.__init_subclass__実行
+</pre>
+</div>
+<p>
+<code>Bottom</code> は左経由、右経由と両方から <code>Top.__init_subclass__</code> を呼んでしまいそうですが、実際には、 <code>Top.__init_subclass__</code> はRight/Leftクラスで合わせて一度しか呼ばれていないことがわかります。 <code>super().__init_subclass__()</code> のお陰でダイヤモンド継承をうまく処理している証拠です。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org635cf1d" class="outline-3">
+<h3 id="org635cf1d"><span class="section-number-3">2.6</span> Item 49: ​__init_subclass__を使ってクラスを登録せよ</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+モジュラーなPythonプログラムを作るために、次のような関数を使って作成したクラスを全て登録すること(class registration)は役に立つパターンの一つだそうです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">registry = {}
+def registr_class(target_class):
+    registry[target_class.__name__] = target_class
+</pre>
+</div>
+
+<p>
+クラスを作ったら、必ず <code>register_class</code> を呼ぶ必要があるのですが、忘れないようにこれを自動で行うために <code>__init_subclass__</code> が使えます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Register():
+    def __init_subclass__(cls):
+	super().__init_subclass__()
+	register_class(cls)
+
+class NewClass(Register):
+    pass
+
+print(registry)
+&gt;&gt;&gt;
+{'NewClass': &lt;class '__main__.NewClass'&gt;}
+</pre>
+</div>
+
+<p>
+メタクラスも使えますが、 <code>__init_subclass__</code> を使った方がクリアで理解しやすいとのことです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgacae296" class="outline-3">
+<h3 id="orgacae296"><span class="section-number-3">2.7</span> Item 50: ​__set_name__を使ってクラスアトリビュートをannotateせよ</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+<code>__set_name__</code> は<a href="https://www.python.org/dev/peps/pep-0487/">PEP 487</a>で提唱され、Python 3.6以降に入っています。デスクリプターの問題(の一つ)は、それを含むクラスの情報を持たないことです。例えば、アトリビュートを <code>__dict__</code> に登録するユースケースにおいて、 <code>__get__</code> が呼ばれるまで登録するアトリビュートの名前を知りません。
+</p>
+
+<p>
+<code>__set_name__</code> はクラス作成の際に、このデスクリプターをアタッチする全てのアトリビュートに対して呼ばれ、デスクリプターがアトリビュート名の知識を得ることが出来ます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class Field:
+    def __init__(self):
+	self.name = None
+	self.internal_name = None
+    def __set_name__(self, owner, name):
+	# Called on class creation for each descriptor
+	self.name = name
+	self.internal_name = '_' + name
+    def __get__(self, instance , instance_type):
+	if instance is None:
+	    return self
+	return getattr(instance, self.internal_name, '')
+    def __set__(self, instance, value):
+	setattr(instance, self.internal_name, value)
+</pre>
+</div>
+<p>
+<code>Field</code> はデスクリプターです。 <code>__set_name__</code> によって、このデスクリプターをアタッチするクラスのアトリビュート名をとその内部名を覚えておいてくれます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class FixedCustomer:
+    first_name = Field()
+    last_name = Filed()
+    prefix = Field()
+    suffix = Field()
+
+&gt;&gt;&gt; cust = FixedCustomer()
+&gt;&gt;&gt; cust.__dict__
+{}
+&gt;&gt;&gt; cust.first_name.__dict__  # 変数名はデスクリプターField内の__dict__に保持
+{'name': 'first_name', 'internal_name': '_first_name'}
+&gt;&gt;&gt; cust.first_name = 'Joy'
+&gt;&gt;&gt; cust.__dict__  # 変数の値は各custオブジェクトの__dict__に保持
+{'_first_name': 'Joy'}
+&gt;&gt;&gt; cust.first_name.__dict__
+{'name': 'first_name', 'internal_name': '_first_name'}
+</pre>
+</div>
+<p>
+first_nameを設定した時に、 <code>__set__</code> の指定通りに内部名が <code>dict</code> に登録されていることがわかります。
+</p>
+
+<p>
+first_nameは実際にはそのクラスのアトリビュートではなく、デスクリプター内に保持されている情報であるため、当該クラスオブジェクトの <code>__dict__</code> には登録されていません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org745df6f" class="outline-3">
+<h3 id="org745df6f"><span class="section-number-3">2.8</span> Item 51: クラス拡張を組み合わせるために、メタクラスよりもクラスデコレーターを使え</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+クラスの全てのメソッドに対し、ヘルパーを使って引数や戻り値、上がる割り込みをプリントすることを考えます。全てのメソッドにデコレーターを付けることは面倒です。メタクラスを使って仕込むことも、対象クラスの親クラスが別のメタクラスを既に使っていた場合に問題となります。
+</p>
+
+<p>
+これを解決するために、クラスデコレーターがあります。クラスデコレーターはクラス定義の前に <code>@&lt;decorator_name&gt;</code> を付けることで機能します。
+</p>
+
+<p>
+まずはシンプルなクラスデコレーターの例です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def my_class_decorator(klass):
+    klass.extra_param = 'hello'
+    return klass
+
+@my_class_decorator
+class MyClass:
+    pass
+
+print(MyClass)
+print(MyClass.extra_param)
+&gt;&gt;&gt;
+&lt;class '__main__.MyClass'&gt;
+hello
+</pre>
+</div>
+<p>
+デコレーターによって、 <code>extra_param = 'hello'</code> が設定されています。
+</p>
+
+<p>
+次は上で述べたデバッグ用デコレーターです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from functools import wraps
+
+def trace_func(func):
+    if hasattr(func, 'tracing'):  # Only decorate once
+	return func
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+	result = None
+	try:
+	    result = func(*args, **kwargs)
+	    return result
+	except Exception as e:
+	    result = e
+	    raise
+	finally:
+	    print(f'{func.__name__}({args!r}, {kwargs!r}) -&gt; '
+		  f'{result!r}')
+
+    wrapper.tracing = True
+    return wrapper
+</pre>
+</div>
+<p>
+<code>functools</code> の <code>wraps</code> は関数をラッパーするデコレーターです。<a href="./effective2.html">Item 26</a>で学んでいました。 <code>try</code> ブロックの <code>finally</code> は、リターンしようが、例外が上がろうが、実行されます。
+</p>
+
+<p>
+次に示す <code>trace</code> はクラスデコレーターとして機能する関数です。 <code>dir</code> ビルトイン関数によってデコレートするクラスのアトリビュート一式(メソッドなど含む)の名前(キー)を取得し、これが <code>trace_types</code> に含まれるタイプなら(ie, メソッド等だったら) <code>trace_func</code> でラップして、ラップしたものを <code>setattr</code> で <code>__dict__</code> に設定します。つまり、そのメソッドの代わりにラップしたものが呼ばれるようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import types
+trace_types = (
+    types.MethodType,
+    types.FunctionType,
+    types.BuiltinFunctionType,
+    types.BuiltinMethodType,
+    types.MethodDescriptorType,
+    types.ClassMethodDescriptorType)
+
+def trace(klass):
+    for key in dir(klass):
+	value = getattr(klass, key)
+	if isinstance(value, trace_types):
+	    wrapped = trace_func(value)
+	    setattr(klass, key, wrapped)
+    return klass
+</pre>
+</div>
+
+<p>
+<code>@trace</code> クラスデコレーターで、 <code>dict</code> を継承したクラス <code>TraceDict</code> をデコレートします。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; @trace
+... class TraceDict(dict):
+...     pass
+... 
+&gt;&gt;&gt; trace_dict = TraceDict([('hi', 1)])
+__new__((&lt;class '__main__.TraceDict'&gt;, [('hi', 1)]), {}) -&gt; {}
+&gt;&gt;&gt; trace_dict['there'] = 2
+&gt;&gt;&gt; trace_dict['hi']
+__getitem__(({'hi': 1, 'there': 2}, 'hi'), {}) -&gt; 1
+1
+&gt;&gt;&gt; try:
+...     trace_dict['does not exist']
+... except KeyError:
+...     pass  # Expected
+... 
+__getitem__(({'hi': 1, 'there': 2}, 'does not exist'), {}) -&gt; KeyError('does not exist')
+</pre>
+</div>
+<p>
+実行結果を見ると、 <code>trace_func</code> 内のprint文は <code>TraceDict</code> がnewされた時と、キー'hi', 'doesn not exist'の値をそれぞれ参照しようとしたときに動いています。'there'に値2を入れた時に動いていないのはどうしてでしょうか。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; isinstance(trace_dict.__new__, types.MethodType)
+True
+&gt;&gt;&gt; isinstance(trace_dict.__getitem__, types.MethodType)
+True
+&gt;&gt;&gt; isinstance(trace_dict.__setitem__, types.MethodType)
+False  # あれ!?
+&gt;&gt;&gt; trace_dict.__new__
+&lt;bound method dict.__new__ of {'hi': 1, 'there': 2}&gt;
+&gt;&gt;&gt; type(trace_dict.__new__)
+&lt;class 'method'&gt;
+&gt;&gt;&gt; type(trace_dict.__getitem__)
+&lt;class 'method'&gt;
+&gt;&gt;&gt; type(trace_dict.__setitem__)
+&lt;class 'method-wrapper'&gt;
+</pre>
+</div>
+<p>
+<code>__new__, __getitem__</code> 共にmethodタイプなのに対して、 <code>__setitem__</code> はmethod-wrapperという異なるタイプだからのようです。
+</p>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-21T00:00:00-04:00" pubdate>Fri 21 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

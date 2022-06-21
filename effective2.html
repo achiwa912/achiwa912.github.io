@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Effective Python一人輪読会(Item 19 to 36) &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Effective Python一人輪読会(Item 19 to 36)</h1>
+    <p class="meta">
+<time datetime="2020-08-18T00:00:00-04:00" pubdate>Tue 18 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org8637984">1. Chapter 3: 関数</a>
+<ul>
+<li><a href="#orgca5019d">1.1. Item 19: 関数が複数の値を返すとき、4つ以上の変数にunpackするな</a></li>
+<li><a href="#org30dd206">1.2. Item 20: Noneを返すくらいなら例外を上げよ</a></li>
+<li><a href="#orgceb5609">1.3. Item 21: Closuresが変数のスコープにどう影響するかを知っておけ</a></li>
+<li><a href="#org065670a">1.4. Item 22: 可変数のpositional argumentsを使って見やすくしろ</a></li>
+<li><a href="#org7d1cd8c">1.5. Item 23: オプションとなる挙動はキーワード引数で与えよ</a></li>
+<li><a href="#orgc7c8b3e">1.6. Item 24: 動的なデフォルト引数を指定するときはNoneとDocstringsを使え</a></li>
+<li><a href="#org9cc7424">1.7. Item 25: キーワードオンリー引数、位置オンリー引数を使って、明確さを強制せよ</a></li>
+<li><a href="#org6decbaf">1.8. Item 26: 関数のデコレーターをfunctools.wrapsを使って定義せよ</a></li>
+</ul>
+</li>
+<li><a href="#orgd49efe0">2. Chapter 4: Comprehensionsとジェネレーター</a>
+<ul>
+<li><a href="#orga5470af">2.1. Item 27: mapとfilterの代わりにcomprehensionsを使え</a></li>
+<li><a href="#org17ed1df">2.2. Item 28: 3つ以上のコントロールsubexpressionsをcomprehensionsで使うな</a></li>
+<li><a href="#org4b01ece">2.3. Item 29: Assignment表現を使って、comprehensions内での繰り返しを避けよ</a></li>
+<li><a href="#org6e56ba9">2.4. Item 30: リストを返すくらいならジェネレーターを考慮せよ</a></li>
+<li><a href="#orgecd8f4d">2.5. Item 31: 引数をたどるときには保守的になれ</a></li>
+<li><a href="#org7a75590">2.6. Item 32: 大きなリストcomprehensionsの代わりにジェネレーターexpressionsを考えよ</a></li>
+<li><a href="#orgabd3fdf">2.7. Item 33: yield fromを使って複数のジェネレーターを組み合わせよ</a></li>
+<li><a href="#org435b43d">2.8. Item 34: ジェネレーターにsendを使ってデータを送ってはいけない</a></li>
+<li><a href="#org76a009f">2.9. Item 35: throwで例外を投げてジェネレータの状態遷移を起こすな</a></li>
+<li><a href="#org0fa4367">2.10. Item 36: Iteratorやジェネレーターを使うときにはitertoolsの使用を検討せよ</a>
+<ul>
+<li><a href="#org476af6c">2.10.1. Iteratorsをつなぐ</a></li>
+<li><a href="#org04a3173">2.10.2. Iteratorからアイテムをフィルタする</a></li>
+<li><a href="#orgca552fb">2.10.3. 複数iteratorsのアイテムを結びつける</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8637984" class="outline-2">
+<h2 id="org8637984"><span class="section-number-2">1</span> Chapter 3: 関数</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgca5019d" class="outline-3">
+<h3 id="orgca5019d"><span class="section-number-3">1.1</span> Item 19: 関数が複数の値を返すとき、4つ以上の変数にunpackするな</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+うっかり順番を間違えたりするので。catch-allの星付きexpression(eg, *others)を使うか、namedtupleを使う。
+</p>
+
+<p>
+namedtupleについては<a href="https://dbader.org/blog/writing-clean-python-with-namedtuples">ここ</a>の説明がわかりやすかったです。(逆にIntroducing Pythonの説明はさっぱり。。。) 以下のように使います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from collections import namedtuple
+Car = namedtuple('Car', 'color milage')
+または
+Car = namedtuple('Car', ['color', 'milage'])
+</pre>
+</div>
+<p>
+前者の文字列部分(<code>'color milage'</code>)は内部で <code>split()</code> されてリストになるため、後者と等価だそうです。
+</p>
+
+<p>
+メソッドの無いimmutableなクラスのように使えます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">my_car = Car('red', 3812.4)
+</pre>
+</div>
+<p>
+namedtupleは内部ではクラスとして表現されていますが、メモリ効率は良いそうです。
+</p>
+
+
+<p>
+複数の値を返す関数は、それらをタプルにして返すことは知りませんでした。関数の呼び出し元が複数の変数にunpackする時にタプルから取り出します。
+</p>
+
+<p>
+もう一つ。日本語ではあまり馴染みがありませんが、英語ではよく使うmaiden(中央値)。要素が偶数の場合にどうするのか知りませんでした。真ん中の二つの平均を取るのですか。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">if count % 2 == 0:
+    lower = sorted_numbers[middle - 1]
+    upper = sorted_numbers[middle]
+    median = (lower + upper) / 2
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org30dd206" class="outline-3">
+<h3 id="org30dd206"><span class="section-number-3">1.2</span> Item 20: Noneを返すくらいなら例外を上げよ</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<code>None</code> や0, 空の文字列, etc.は全て <code>False</code> と解釈されるので、if文などでの判定でうっかり間違いやすい。
+</p>
+
+<p>
+適切な例外(そのままでなく)を上げて、それをドキュメントに書く。更にtype annotationsする。
+</p>
+<pre class="example">
+def careful_divide(a: float, b: float) -&gt; float:
+    """Divides a by b.
+
+    Raises:
+	ValueError: When the inputs cannot be divided.
+    """"
+    try:
+	return a / b
+    except ZeroDivisionError as e:
+	raise ValueError('Invalid inputs')
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgceb5609" class="outline-3">
+<h3 id="orgceb5609"><span class="section-number-3">1.3</span> Item 21: Closuresが変数のスコープにどう影響するかを知っておけ</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+えーっと、closuresって何でしたっけ? Introducing Pythonを読んだときに消化不良のまま終わったような気が。。
+</p>
+
+<p>
+30分ほど調べてみました。<a href="https://www.programiz.com/python-programming/closure">ここ</a>の定義が一番しっくり来ました。
+</p>
+<ul class="org-ul">
+<li>関数と、そのインナー関数がある</li>
+<li>インナー関数は、外側の関数で定義された変数を参照する</li>
+<li>外側の関数は、インナー関数を戻り値として返す</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python">def print_msg(msg):
+    def printer():    # inner function
+	print(msg)    # msg was defined in the enclosing function
+    return printer    # return the inner function
+</pre>
+</div>
+<p>
+これを使うには、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">another = print_msg("Hello")
+another()
+&gt;&gt;&gt;
+Hello
+</pre>
+</div>
+
+<p>
+メリットの説明は<a href="http://www.trytoprogram.com/python-programming/python-closures/">ここ</a>がわかりやすかったです。
+</p>
+<ul class="org-ul">
+<li>コールバックとして定義されるため、ある意味データ隠蔽(hiding)に使える</li>
+<li>ハードコードされた定数や文字列の代わりに使える</li>
+<li>コードに関数が1, 2個しかないときに有効</li>
+</ul>
+
+<p>
+この節では、やたらと小難しい具体例が続きますが、言っていることは単純です: インナー関数でアサインしている変数のスコープは、インナー関数で閉じる(ie, 外側の関数に届かない)。そして、もし外側の関数にスコープを広げたい場合は <code>nonlocal</code> を付けます。
+</p>
+
+<p>
+この <code>nonlocal</code> の使い方にも注意が必要で、長い関数だと <code>nonlocal</code> であることがわかりづらくなります。単純な関数以外ではヘルパークラスにするのがよい、とのこと。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class SomeClass:
+    def __call__(self, x, y):
+	&lt;snip&gt;
+
+sc = SomeClass()
+sc(5, 7)  # __call__が使われる
+</pre>
+</div>
+<p>
+<code>__call__()</code> スペシャル関数は、クラスを関数であるかのように振る舞わせる関数。なお、この大事なところでKindle版は最後の <code>return (1, x)</code> のインデントがずれています。しかも、Click here to view code imageがここには何故か無い。どうしろと。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org065670a" class="outline-3">
+<h3 id="org065670a"><span class="section-number-3">1.4</span> Item 22: 可変数のpositional argumentsを使って見やすくしろ</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>可変長の引数(0個含む)は関数の定義def文において <code>*args</code> のようにアスタリスク付きで書くことで実現できる</li>
+<li>関数の呼び出し側で、 <code>*vars</code> としてアスタリスクを付けて引数を指定することで、リスト等のシーケンスの中身を(展開して)渡せる</li>
+</ul>
+
+<p>
+二つ目において、呼び出し側がgeneratorにアスタリスクを付けると、呼び出しのたびにgeneratorを全て展開してしまうため、メモリ圧迫＆クラッシュに注意、とのことです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7d1cd8c" class="outline-3">
+<h3 id="org7d1cd8c"><span class="section-number-3">1.5</span> Item 23: オプションとなる挙動はキーワード引数で与えよ</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+ここは特にコメントなしです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7c8b3e" class="outline-3">
+<h3 id="orgc7c8b3e"><span class="section-number-3">1.6</span> Item 24: 動的なデフォルト引数を指定するときはNoneとDocstringsを使え</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def log(message, when=None):
+    “““Log a message with a timestamp.
+    Args:
+	message: Message to print.
+	when: datetime of when the message occurred.
+	    Defaults to the present time.
+    ”””
+    if when is None:
+	when = datetime.now()
+    print(f'{when}: {message}')
+</pre>
+</div>
+
+<p>
+上の関数において、whenのデフォルトはNoneとしておき、関数の中で現在時刻を設定しています。def文で <code>when=datetime.now()</code> を書いても機能しないのは、 <code>datetime.now()</code> が評価されるのが関数のロード時のみだからです。同様に、 <code>{}</code> , <code>[]</code> のような動的な値を使うときにも <code>None</code> をデフォルト値として置きます。
+</p>
+
+<p>
+例えば、以下のケースでは <code>{}</code> の同一オブジェクトが各呼び出し間で共有されてしまいます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def decode(data, dafault={})
+    try:
+	return json.loads(data)
+    except ValueError:
+	return default
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9cc7424" class="outline-3">
+<h3 id="org9cc7424"><span class="section-number-3">1.7</span> Item 25: キーワードオンリー引数、位置オンリー引数を使って、明確さを強制せよ</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+<code>float('inf')</code> は無限大を意味するそうです。
+</p>
+
+<p>
+引数リストにあるアスタリスク <code>*</code> は、位置引数の終わりと、キーワードオンリー引数の始まりを強制します。また、Python 3.8より、引数リストにある <code>/</code> は、これよりも前の引数は位置オンリー引数であることを強制します。例えば、
+</p>
+<pre class="example">
+def func(num, div, /, *, ov_flag=False, zd_flag=True):
+</pre>
+
+<p>
+とあったときに、
+</p>
+<pre class="example">
+func(10, 2, True, False)
+</pre>
+
+<p>
+や
+</p>
+<pre class="example">
+func(num=10, div=2)
+</pre>
+
+<p>
+などと呼び出すとTypeErrorとなります。
+</p>
+
+<p>
+<code>/</code> と <code>*</code> に挟まれた引数は、位置引数としてもキーワード引数としてもどちらでもよいそうです。これがPythonのデフォルトです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6decbaf" class="outline-3">
+<h3 id="org6decbaf"><span class="section-number-3">1.8</span> Item 26: 関数のデコレーターをfunctools.wrapsを使って定義せよ</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+コードスニップを見ていると、見慣れない表現が。。。
+</p>
+<pre class="example">
+{args!r}
+</pre>
+
+<p>
+この <code>!r</code> は、 <code>__repr__()</code> で解釈せよ、という意味だそうです。 f'This string {name!r} is a good one' のように使います。関係ありませんが、 <code>!r</code> はgoogle等で検索しづらいですね。。
+</p>
+
+<p>
+デコレーターは難しいですね。 <a href="https://lerner.co.il/2019/05/05/making-your-python-decorators-even-better-with-functool-wraps/">ここ</a> の説明がわかりやすかったです。なるほど、 <code>__name__</code> や <code>__doc__</code> を表示したり <code>help()</code> を使うと、インナー関数でなくwrapper関数自体の情報が表示されてしまうようです。
+</p>
+
+<p>
+その解決策がfunctools.wrapsを使うことで、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from functools import wraps
+
+def mydeco(func):
+    @wraps(func)
+    def wrapper(*args, *kwargs):
+	return f'{func(args, **kwargs)}!!!'
+    return wrapper
+</pre>
+</div>
+<p>
+<code>wraps</code> デコレーターはインナー関数のdoc stringやその他の情報を外側のwrapper関数にコピーしてくれます。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd49efe0" class="outline-2">
+<h2 id="orgd49efe0"><span class="section-number-2">2</span> Chapter 4: Comprehensionsとジェネレーター</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://jeffknupp.com/blog/2013/04/07/improve-your-python-yield-and-generators-explained/#:~:text=A%20Python%20generator%20is%20a,as%20the%20%22generated%22%20value.">ここ</a>を参考にして、ジェネレーターについて整理します。(このリンクはかなり詳細に説明しています)
+</p>
+<ul class="org-ul">
+<li>ジェネレーター関数は、 <code>return</code> の代わりに <code>yield</code> を持つ関数で、ジェネレーター(=ジェネレーターiterator)を作る。</li>
+<li>ジェネレーターは特定のタイプのiterator。iteratorとして機能するために、ジェネレーターは <code>__next__()</code> メソッドを持つ。</li>
+<li>ジェネレーターから次の値を得るには、iterators: <code>next()</code> を使う。( <code>next()</code> は <code>__next__()</code> メソッドを呼ぶ)</li>
+<li>ジェネレーターは <code>next()</code> の呼び主に対して、 <code>yield</code> 文で値を返す。</li>
+</ul>
+
+<p>
+ジェネレーターの使い方
+</p>
+<ul class="org-ul">
+<li>一通りたどるとジェネレーターは <code>StopIteration</code> 例外を上げる。これは普通のiteratorと同じ挙動で、for文などでは問題視せずにサイレントに抜ける。</li>
+<li>その後、もう一度ジェネレーターを呼ぶと <code>StopIteration</code> 例外を上げる。</li>
+<li>ジェネレーター関数をもう一度呼んで、新たなジェネレーターを作り直すことができる。</li>
+</ul>
+</div>
+
+
+<div id="outline-container-orga5470af" class="outline-3">
+<h3 id="orga5470af"><span class="section-number-3">2.1</span> Item 27: mapとfilterの代わりにcomprehensionsを使え</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<code>map()</code> ビルトイン関数は知りませんでした。<a href="https://www.geeksforgeeks.org/python-map-function/">ここ</a>によると、第二引数のiterable(例: リスト)の各アイテムに、第一引数の関数を適用して、iterableなmapオブジェクトを返す、とのこと。
+</p>
+<pre class="example">
+mapobj = map(lambda x: x ** 2, somelist)
+</pre>
+
+
+<p>
+<code>filter</code> ビルトイン関数も知りませんでしたが、名前から明らかです。
+</p>
+<pre class="example">
+filter(lambda x: x % 2 == 0, somelist)
+</pre>
+
+<p>
+<code>filter</code> もフィルターされたiteratorを返します。
+</p>
+
+<p>
+両方とも返すのはiteratorですが、リストcomprehensionsと似てますね。
+</p>
+
+<p>
+<code>map</code> と <code>filter</code> を組み合わせると読みづらいので、スッキリとかけるcomprehensionsを使え、ということでした。 <code>somelist</code> の中から2で割りきれる要素のみ2乗したいとき、
+</p>
+<pre class="example">
+map(lambda x: x**2, filter(lambda x: x % 2 == 0, somelist))
+</pre>
+
+<p>
+これが、
+</p>
+<pre class="example">
+[x**2 for x in somelist if x % 2 == 0]
+</pre>
+
+<p>
+。。。確かに。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org17ed1df" class="outline-3">
+<h3 id="org17ed1df"><span class="section-number-3">2.2</span> Item 28: 3つ以上のコントロールsubexpressionsをcomprehensionsで使うな</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+初級者的にキツい表現が出ました。やりたいことは、二次元にネストされたリストであるmatrixの中身をflattenする(一次元にする)、です。えーと、ネストされた <code>for</code> は左から解釈するらしいので、、
+</p>
+<pre class="example">
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+flat = [x for row in matrix for x in row]
+</pre>
+
+<p>
+最初の <code>for</code> で <code>matrix</code> の各アイテム= <code>row</code> を取り出して、次の <code>for</code> で <code>row</code> の中の <code>x</code> を取り出し、これを使ってリストを作る、ということでした。
+</p>
+<pre class="example">
+print(flat)
+&gt;&gt;&gt;
+[1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre>
+
+<p>
+これは便利そうです。
+</p>
+
+<p>
+次は、先ほど <code>matrix</code> の要素を二乗する(flattenしない)場合。
+</p>
+<pre class="example">
+squared = [[x ** 2 for x in row] for row in matrix]
+print(squared)
+&gt;&gt;&gt;
+[[1, 4, 9], [16, 25, 36], [49, 64, 81]]
+</pre>
+
+<p>
+このリストcomprehensionのリストが二重になっているので、flattenしないのですね。
+</p>
+
+<p>
+お題のコントロールsubexpressionsは、 <code>for</code> によるループだけでなく、 <code>for</code> に付けられる <code>if</code> も指していました。下の例は <code>for</code> が二つと <code>if</code> があるのでアウト。
+</p>
+<pre class="example">
+[x for wor in matrix for x in row if x % 2 == 0]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4b01ece" class="outline-3">
+<h3 id="org4b01ece"><span class="section-number-3">2.3</span> Item 29: Assignment表現を使って、comprehensions内での繰り返しを避けよ</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Assignment expressions - Walrusのやつです(<code>:=</code>)。これは便利なので、是非とも使っていきたいと思います。
+</p>
+
+<p>
+次のようなストックがあって、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">stock = {
+    'nails': 125,
+    'screws': 35,
+    'wingnuts': 8,
+    'washers': 24,
+}
+</pre>
+</div>
+<p>
+次のようなオーダー(8個単位とする)が来た場合について考えます。
+</p>
+<pre class="example">
+order = ['screws', 'wingnuts', 'clips']
+</pre>
+
+
+<p>
+ディクショナリcomprehensionを使って、次のように書くと良いです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def get_batches(count, size):
+    return count // size
+
+found = {name: batches for name in order
+    if (batches := get_batches(stock.get(name, 0), 8))}
+</pre>
+</div>
+<p>
+<code>get_batches</code> を使って、8個のセットが何セットあるかを求めています。
+ポイントWalrusを使って <code>get_batches</code> の実行をif節の中で1回だけ使っているところ。
+</p>
+<pre class="example">
+print(found)
+&gt;&gt;&gt;
+{'screws': 4, 'wingnuts': 1}
+</pre>
+
+
+<p>
+知りませんでした、generator expressions。<a href="https://dbader.org/blog/python-generator-expressions">ここ</a>の説明がわかりやすかったです。まずは似たようなリストcomprehension:
+</p>
+<pre class="example">
+listcomp = ['Hello' for i in range(3)]
+</pre>
+
+<p>
+これがジェネレーターexpression:
+</p>
+<pre class="example">
+genexpr = ('Hello' for i in range(3))
+</pre>
+
+<p>
+後者が返すのはジェネレーターです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; next(genexpr)
+'Hello'
+&gt;&gt;&gt; next(genexpr)
+'Hello'
+&gt;&gt;&gt; next(genexpr)
+'Hello'
+&gt;&gt;&gt; next(genexpr)
+StopIteration
+</pre>
+</div>
+
+<p>
+先ほどの例はジェネレーターexpressionを使っても書けます。
+</p>
+<pre class="example">
+found = ((name, batches) for name in order 
+    if (batches := get_batches(stock.get(name, 0), 8)))
+</pre>
+
+<p>
+もちろん、返るのはジェネレーター。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">print(next(found))
+print(next(found))
+&gt;&gt;&gt;
+('screws', 4)
+('wingnuts', 1)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6e56ba9" class="outline-3">
+<h3 id="org6e56ba9"><span class="section-number-3">2.4</span> Item 30: リストを返すくらいならジェネレーターを考慮せよ</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+お、なんだか今更ジェネレーターの説明がありました。どうしてジェネレーターexpressionsを説明なしで使った後にこれが来るかな。。。
+</p>
+
+<p>
+この本は、どこから読んでも良いと謳っていますが、逆に、最初から読もうが途中から読もうが読みづらさは変わらない、という残念なことになっていると思います。
+</p>
+
+<ul class="org-ul">
+<li>リストにまとめて返すより、generatorsを使ったほうがよりクリア</li>
+<li>generatorsはメモリ使用量が少ない</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgecd8f4d" class="outline-3">
+<h3 id="orgecd8f4d"><span class="section-number-3">2.5</span> Item 31: 引数をたどるときには保守的になれ</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+ジェネレーター関数の <code>read_visits()</code> は、1行に一つの数字(入場者数)が書いてあるファイルを読んで yield します。
+</p>
+
+<pre class="example">
+def read_visits(data_path):
+    with open(data_path) as f:
+        for line in f:
+            yield int(line)
+</pre>
+
+
+<p>
+<code>normalize_func()</code> は入場者数をyieldするiterator(正確にはiteratorを返すジェネレーター関数)を引数に取り、毎日の入場者数をパーセントに変換したリストを返します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def normalize_func(get_iter):
+    total = sum(get_iter())   # 最初にiteratorを使いきる
+    result = []
+    for value in get_iter():  # 更にiteratorをループで回す
+	percent = 100 * value / total
+	result.append(percent)
+    return result
+</pre>
+</div>
+
+<p>
+この時、以下がどうなるかぱっと見、わかりずらいです。特にlambdaが何をしているのか。
+</p>
+<pre class="example">
+percentages = normalize_func(lambda: read_visits(path))
+</pre>
+
+
+
+<p>
+もしlambdaが無ければ、normalize_funcの引数read_visits(path)はiteratorをそのまま返します。normalize_funcに渡したiteratorは最初にsumを取るところでexhaustされ、次のfor文では既にexhaustしたままのため、このfor文のブロックは一度も実行されません。
+</p>
+
+<p>
+これに <code>lambda</code> が付くと、normalize_func()に渡されるlambdaの無名関数は、iteratorそのものでなく、iteratorを(呼び出しの度に)返す関数です。
+</p>
+
+<p>
+sum関数でiteratorをいったんexhaustさせますが、次のfor文ではまた新たな(ie, exhaustしていない)iteratorが返されるので、for文ブロックが期待通り実行されます。
+</p>
+
+<p>
+ただ、お勧めのやり方はこれではなく、自分で <code>__iter__()</code> メソッドを書いたクラスを用意することでした。 <code>__iter__()</code> メソッドはジェネレーター関数でなくてはならず、iteratorを返します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class ReadVisits:
+    def __init__(self, data_path):
+	self.data_path = data_path
+
+    def __iter__(self):
+	with open(self.data_path) as f:
+	    for line in f:
+		yeild int(line)
+</pre>
+</div>
+<p>
+iteratorを返す <code>__iter__()</code> メソッドを持つクラスを用意することで、このクラスのオブジェクトをfor文などでiterateすることが可能です。
+</p>
+
+<p>
+また、normalize_funcにおいて、引数がiteratorそのものならばexceptionを上げるようにチェックを追加できます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def normalize_defensive(numbers):
+    if iter(numbers) is numbers:  # An iterator -- bad!
+</pre>
+</div>
+<p>
+または、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from collections.abc import Iterator
+
+def normalize_defensive(numbers):
+    if ininstance(numbers, Iterator): 
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org7a75590" class="outline-3">
+<h3 id="org7a75590"><span class="section-number-3">2.6</span> Item 32: 大きなリストcomprehensionsの代わりにジェネレーターexpressionsを考えよ</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+(今更ですが)ジェネレーターexpressionsの説明でした。その戻り値であるiteratorを入力とした、ジェネレーターexpressionsのチェイン実行も可能で効率的。
+</p>
+<pre class="example">
+it = (len(x) for x in open('my_file.txt'))
+roots = ((x, x**0.5) for x in it)
+</pre>
+
+
+<p>
+listcompsは大量のインプットがある時にメモリを使いすぎてしまいますが、genexpsはメモリ効率がとても良いです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgabd3fdf" class="outline-3">
+<h3 id="orgabd3fdf"><span class="section-number-3">2.7</span> Item 33: yield fromを使って複数のジェネレーターを組み合わせよ</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+<code>yield from</code> です。for文で <code>yield</code> を回すところを <code>yeild from</code> とシンプルに書け、リーダビリティーを向上させるだけでなく、ループで <code>yield</code> を回すよりも高速です。 <code>yield</code> を組み合わせるケースでは、可能な限り <code>yeild from</code> を使うべきです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def slow():
+    for i in child():
+	yield i
+</pre>
+</div>
+
+<p>
+は、以下のようによりシンプルに書けます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def fast():
+    yield from child()
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org435b43d" class="outline-3">
+<h3 id="org435b43d"><span class="section-number-3">2.8</span> Item 34: ジェネレーターにsendを使ってデータを送ってはいけない</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+えー、前の項目で何とか理解したばかりだというのに、 <code>send()</code> を使うなと言っています。初心者にわかりづらいのと、 <code>yield from</code> を使って初回に <code>None</code> が返るケースでびっくりすることがあるため。この節はかなり難しいです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def my_generator():
+    received = yield 1
+
+it = iter(my_genarator())
+output = it.send(None)
+</pre>
+</div>
+<p>
+このコードにおいて、最後の行でitに対して(初めて)sendが呼ばれる時、 <code>yield 1</code> 部分のみが実行され、 <code>received =</code> 部分はまだ実行されません。つまり、sendからは何も受け取りません。receivedにsendから値が渡されるのはit.sendが再度呼ばれてジェネレーターが再開するタイミングです。確かに、慣れていないとわかりずらいです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def wave_modulating(steps):
+    step_size = 2 * math.pi / steps
+    amplitude = yield    # Receive initial amplitude
+    for step in range(steps):
+	radians = step * step_size
+	fraction = math.sin(radians)
+	output = amplitude * fraction
+	amplitude = yield output  # Receive next amplitude
+</pre>
+</div>
+
+<p>
+上記で、最初にamplitudeの初期値を受け取るところが、yield fromするとNoneが返る箇所です。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def complex_wave_modulating():
+    yield from wave_modulating(3)
+    yield from wave_modulating(4)
+    yield from wave_modulating(5)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">def run_modulating(it):
+    amplitudes = [
+	None, 7, 7, 7, 2, 2, 2, 2, 10, 10, 10, 10, 10]
+    for amplitude in amplitudes:
+       output = it.send(amplitude)
+       transmit(output)  # outputをprintする
+</pre>
+</div>
+
+<p>
+complex_wave_modulatingの <code>yield from</code> と、run_modulatingの <code>send</code> を以下のように組み合わせます。複雑でだいぶ頭が混乱しますが、、、
+</p>
+<div class="org-src-container">
+<pre class="src src-python"> run_modulating(complex_wave_omdulating())
+
+&gt;&gt;&gt;
+Output is None
+Output:   0.0
+Output:   6.1
+Output:  -6.1
+Output is None
+Output:   0.0
+Output:   2.0
+Output:   0.0
+Output: -10.0
+Output is None
+Output:   0.0
+Output:   9.5
+Output:   5.9
+</pre>
+</div>
+<p>
+。。。うまくありません。yield fromで引数を渡すところがNoneを返すため、出力にNoneが入り込んでしまいます。yield fromとsendの組み合わせはいまいちです。
+</p>
+
+<p>
+これを、 <code>send()</code> を使わずに、iteratorを引数で渡しておくように修正します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def wave_cascading(amplitude_it, steps):
+    step_size = 2 * math.pi / steps
+    for step in range(steps):
+	radians = step * step_size
+	fraction = math.sin(radians)
+	amplitude = next(amplitude_it)  # Get next input
+	output = amplitude * fraction
+	yield output
+</pre>
+</div>
+<p>
+最初の呼び出しでNoneをyieldすることが無くなりました。
+</p>
+
+<p>
+そして、次のcomplex_cascadingから、このwave_cascadingをyield fromで組み合わせてジェネレーター関数のカスケードをします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def complex_cascading(amplitude_it):
+    yield from wave_cascading(amplitude_it, 3)
+    yield from wave_cascading(amplitude_it, 4)
+    yield from wave_cascading(amplitude_it, 5)
+</pre>
+</div>
+
+<p>
+そして更に、
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def run_cascading():
+    amplitudes = [7, 7, 7, 2, 2, 2, 2, 10, 10, 10, 10, 10]
+    it = complex_cascading(iter(amplitudes))
+    for amplitude in amplitudes:
+	output = next(it)
+	transmit(output)
+</pre>
+</div>
+<p>
+amplitudesから抽出したiteratorをcomplex_cascadingに渡してiterator <code>it</code> を作ります。そして、amplitudesをループで回し、 <code>it</code> からyieldした値をtransmitします。
+</p>
+
+<p>
+なんだかやたらと複雑ですが、transmitでNoneが返らずに正しく動くようになりました。
+</p>
+
+<p>
+まとめると、カスケードさせたジェネレーターとsendを組み合わせるのは筋が悪く、iteratorを引数として渡した方がよい、ということでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76a009f" class="outline-3">
+<h3 id="org76a009f"><span class="section-number-3">2.9</span> Item 35: throwで例外を投げてジェネレータの状態遷移を起こすな</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+<code>throw</code> を使う駄目な例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def run():
+    it = timer(4)
+    while True:
+	try:
+	    if check_for_reset():
+		current = it.throw(Reset())  # 自分で例外を投げている
+	    else:
+		current = next(it)  # ここで例外が発生する可能性あり
+	except StopIteration:
+	    break
+	else:  # 例外が発生しなかったら
+	    announce(current)
+</pre>
+</div>
+<p>
+何だか、何がしたいのかよくわかりません。。。。ので調べます。<a href="https://stackoverflow.com/questions/11485591/what-is-generator-throw-good-for">ここ</a>によると、 <code>it.throw()</code> はit内部で例外を発生させるようです。 <code>it</code> の <code>Reset()</code> 例外ハンドラーでタイマーをリセットしているのかな。確かに、少し読みづらいですかね。
+</p>
+
+<p>
+ジェネレーターの <code>__iter__()</code> を持つクラスを用意して <code>run()</code> を書き換えます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class Timer:
+    def __init__(self, period):
+	self.current = period
+	self.period = period
+
+    def reset(self):
+	self.current = self.period
+
+    def __iter__(self):
+	while self.current:
+	    self.current -= 1
+	    yield self.current
+</pre>
+</div>
+<p>
+<code>run()</code> 関数はずっとシンプルになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def run():
+    timer = Timer(4)
+    for current in timer:
+	if check_for_reset():
+	    timer.reset()
+	announce(current)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0fa4367" class="outline-3">
+<h3 id="org0fa4367"><span class="section-number-3">2.10</span> Item 36: Iteratorやジェネレーターを使うときにはitertoolsの使用を検討せよ</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+itertoolsには便利な関数がたくさんあるので使うとよい、という節でした。
+</p>
+</div>
+
+<div id="outline-container-org476af6c" class="outline-4">
+<h4 id="org476af6c"><span class="section-number-4">2.10.1</span> Iteratorsをつなぐ</h4>
+<div class="outline-text-4" id="text-2-10-1">
+</div>
+<ol class="org-ol">
+<li><a id="org803571e"></a>chain<br />
+<div class="outline-text-5" id="text-2-10-1-1">
+<div class="org-src-container">
+<pre class="src src-python">it = itertools.chain([1, 2, 3], [4, 5, 6])
+print(list(it))
+&gt;&gt;&gt;
+[1, 2, 3, 4, 5, 6]
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org0bdbea1"></a>repeat<br />
+<div class="outline-text-5" id="text-2-10-1-2">
+<div class="org-src-container">
+<pre class="src src-python">it = itertools.repeat('hello', 3)
+print(list(it))
+&gt;&gt;&gt;
+['hello', 'hello', 'hello']
+</pre>
+</div>
+
+<p>
+もっと簡単な方法はないのでしょうか。実験してみます。
+</p>
+<pre class="example">
+&gt;&gt;&gt; 'hello' * 3
+'hellohellohello'
+&gt;&gt;&gt; ['hello' * 3]
+['hellohellohello']
+&gt;&gt;&gt; list('hello' * 3)
+['h', 'e', 'l', 'l', 'o', 'h', 'e', 'l', 'l', 'o', 'h', 'e', 'l', 'l', 'o']
+</pre>
+</div>
+</li>
+
+<li><a id="org7557a85"></a>cycle<br />
+<div class="outline-text-5" id="text-2-10-1-3">
+<div class="org-src-container">
+<pre class="src src-python">it = itertools.cycle([1, 2])
+result = [next(it) for _ in range(10)]
+print(result)
+&gt;&gt;&gt;
+[1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgb73292e"></a>tee - iteratorを指定個数に分割して並列実行<br />
+<div class="outline-text-5" id="text-2-10-1-4">
+<div class="org-src-container">
+<pre class="src src-python">it1, it2, it3 = itertools.tee(['first', 'second'], 3)
+print(list(it1))
+print(list(it2))
+print(list(it3))
+&gt;&gt;&gt;
+['first', 'second']
+['first', 'second']
+['first', 'second']
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org217f31e"></a>zip_longest - zipと似ているが、一番長いiteratorに合わせる。<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-org04a3173" class="outline-4">
+<h4 id="org04a3173"><span class="section-number-4">2.10.2</span> Iteratorからアイテムをフィルタする</h4>
+<div class="outline-text-4" id="text-2-10-2">
+</div>
+<ol class="org-ol">
+<li><a id="org236409a"></a>islice - スライスする。ステップも指定可<br />
+<div class="outline-text-5" id="text-2-10-2-1">
+<pre class="example">
+first_five = itertools.islice(values, 5)  # 最初の5個
+mkddle_odds = itertools.islice(values, 2, 8, 2)  # 3番目からステップ2で7まで
+</pre>
+</div>
+</li>
+<li><a id="org9043fa7"></a>takewhile - 指定関数がFalseを返すまでtakeする<br />
+<div class="outline-text-5" id="text-2-10-2-2">
+<div class="org-src-container">
+<pre class="src src-python">values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+less_than_seven = lambda x: x &lt; 7
+it = itertools.takewhile(less_than_seven, values)
+print(list(it))
+&gt;&gt;&gt;
+[1, 2, 3, 4, 5, 6]
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgbdc9a6b"></a>dropwhile - takewhileの逆。指定関数がTrueを返すまでドロップする<br /></li>
+<li><a id="orgdb44d47"></a>filterfalse - filterの逆<br /></li>
+</ol>
+</div>
+
+<div id="outline-container-orgca552fb" class="outline-4">
+<h4 id="orgca552fb"><span class="section-number-4">2.10.3</span> 複数iteratorsのアイテムを結びつける</h4>
+<div class="outline-text-4" id="text-2-10-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgb42e08c"></a>accumulate - 積算する<br />
+<div class="outline-text-5" id="text-2-10-3-1">
+<p>
+二つ目の引数に関数を指定して、加工が可能。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+sum_reduce = itertools.accumulate(values)
+print('Sum: ', list(sum_reduce))
+&gt;&gt;&gt;
+Sum: [1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
+def sum_modulo_20(first, second):
+    return (first + second) % 20
+modulo_reduce = itertools.accumulate(values, sum_modulo_20)
+print('Modulo: ', list(modulo_reduce))
+&gt;&gt;&gt;
+Modulo: [1, 3, 6, 10, 15, 1, 8, 16, 5, 15]
+</pre>
+</div>
+<p>
+後者のユースケースは、行列計算かな。
+</p>
+</div>
+</li>
+
+<li><a id="org6ab6598"></a>product - 直積(cartesian product)<br />
+<div class="outline-text-5" id="text-2-10-3-2">
+<p>
+直積、デカルト積、cartesian積と呼ばれます。AとBの要素からそれぞれ一つずつ取ってきた作ったペアの集合です。学校で習った記憶があまりありません。。。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">single = itertools.product([1, 2], repeat=2)
+print('Single: ', list(single)
+&gt;&gt;&gt;
+Single: [(1, 2), (1, 2), (2, 1), (2, 2)]
+multiple = itertools.product([1, 2], ['a', 'b'])
+print('Multi: ', list(multiple))
+&gt;&gt;&gt;
+Multi: [(1, 'a'), (1, 'b'), (2, 'a'), (2, 'b')
+</pre>
+</div>
+<p>
+上の例でのrepeatは、自身で積を計算するときの個数を指定します。product(A, repeat=4)はproduct(A, A, A, A)と等価。
+</p>
+</div>
+</li>
+
+<li><a id="org0f3bb6f"></a>permutations - 順列<br />
+<div class="outline-text-5" id="text-2-10-3-3">
+<div class="org-src-container">
+<pre class="src src-python">it = itertools.permutations([1, 2, 3, 4], 2)
+print(list(it))
+&gt;&gt;&gt;
+[(1, 2), (1, 3), (1, 4), (2, 1), (2, 3), (2, 4), 
+ (3, 1), (3, 2), (3, 4), (4, 1), (4, 2), (4, 3)]
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgd1f9c76"></a>combinations - 組み合わせ<br />
+<div class="outline-text-5" id="text-2-10-3-4">
+<div class="org-src-container">
+<pre class="src src-python">it = itertools.combinations([1, 2, 3, 4], 2)
+print(list(it))
+&gt;&gt;&gt;
+[(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orge5505c4"></a>combinations_with_replacement<br />
+<div class="outline-text-5" id="text-2-10-3-5">
+<div class="org-src-container">
+<pre class="src src-python">it = itertools.combinations_with_replacement([1, 2, 3, 4], 2)
+print(list(it))
+&gt;&gt;&gt;
+[(1, 1), (1, 2), (1, 3), (1, 4), (2, 2), (2, 3), (2, 4), 
+ (3, 3), (3, 4), (4, 4)]
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-18T00:00:00-04:00" pubdate>Tue 18 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

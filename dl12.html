@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DL-12; データベースをサポート &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">DL-12; データベースをサポート</h1>
+    <p class="meta">
+<time datetime="2021-05-07T00:00:00-04:00" pubdate>Fri 07 May 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgaed3c02">1. はじめに</a></li>
+<li><a href="#org460d7d4">2. データベース対応</a>
+<ul>
+<li><a href="#org346c515">2.1. DLのデータベース対応</a></li>
+<li><a href="#org91e34ea">2.2. データベース/SQLAlchemyを使ってみて</a></li>
+</ul>
+</li>
+<li><a href="#org9eb3bdf">3. 次の構想</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaed3c02" class="outline-2">
+<h2 id="orgaed3c02"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの12回目です。
+</p>
+
+<p>
+githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未検証です。(いちおうWindows用のコードは入れてみました。Macは立ち上げ確認くらい。。)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org460d7d4" class="outline-2">
+<h2 id="org460d7d4"><span class="section-number-2">2</span> データベース対応</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org346c515" class="outline-3">
+<h3 id="org346c515"><span class="section-number-3">2.1</span> DLのデータベース対応</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+DLはこれまでセーブデータをpickleしてファイルにセーブしていたのですが、データベースを使ってみたかったのでサポートしてみました。セーブするときには全部セーブして、ロードするときも同様という使い方なので、データベースにしたメリットは今のところほぼありません。それどころか、セーブに数秒かかるようになってしまいました。
+</p>
+
+<p>
+使ったのはSQLAlchemyという有名なライブラリで、object relational mapping (ORM)を選択しました。バックエンドには設定の楽なsqlite3を使っています。
+</p>
+
+<p>
+「データベースに変えたからこれまでのセーブデータは使えなくなりました」とは言えないので、DBファイルが無い時には従来のセーブファイルからデータをロードできるようにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org91e34ea" class="outline-3">
+<h3 id="org91e34ea"><span class="section-number-3">2.2</span> データベース/SQLAlchemyを使ってみて</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+SQLは<a href="https://www.amazon.com/Learning-SQL-Generate-Manipulate-Retrieve/dp/1492057614/">Learning SQL</a>という入門書を読んだくらいで、ネットで検索しながら基本的なSELECT * FROM &lt;table&gt;のようなコマンドが使える程度でした。<a href="https://docs.sqlalchemy.org/en/14/orm/tutorial.html">SQLAlchemyのチュートリアル</a>も目を通しました。
+</p>
+
+<p>
+実際にPythonのオブジェクトをDBに書き込むためのテーブル構造を考えてみて、Python(だけではありませんが)とSQLの相性がとても悪いことがわかりました。SQLにはリストも配列も無いのです! いろいろ調べてみて、リストや配列等のオブジェクト間の関係を規定するデータ構造のために、テーブルを作るのが普通であることがわかりました。これはSQL初級者の私には衝撃的な気づきでした。
+</p>
+
+<p>
+また、sqlite3のデータタイプが貧弱であることも驚きでした。なんと、NULL, INTEGER, REAL, TEXT, BLOB の5種類しか無いのです。ネットで調べると、BooleanはIntegerを使い、EnumはTextで表現するらしいことを知り、やはりショックを受けました。しかしここはSQLAlchemy(SA)が補強してくれていました。SAのお陰で、PythonのTrue/FalseやEnumをそのまま使えるのは非常に助かりました。
+</p>
+
+<p>
+デバッグも少し大変でした。ORMを使って抽象化されたPythonオブジェクトを介してデータベースにアクセスしているのに、問題が起こると、結局はデータベースが想定通りに反映されているのかを確認するために、sqlite3のコマンドラインからSQLコマンドをたたく必要がありました。
+</p>
+
+<p>
+今回はデータベースを使ってみたかったので自己満足していますが、プログラムの比較的単純なステートを永続化するためにデータベースを使うのはやりすぎ(overkill)であると思いました。フラットファイルにpickleする方が簡単だし性能もよかったです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9eb3bdf" class="outline-2">
+<h2 id="org9eb3bdf"><span class="section-number-2">3</span> 次の構想</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+次回作ですが、特に面白いアイデアがあるわけでも無いので、使ってみたい技術を使ってDLをマルチプレイヤー化してみたいと考えています。実はDLのデータベース化はその準備の一環です。他には、クライアント-サーバー化と、サーバーのasync対応をやりたいと考えています。ライブラリとしては<a href="https://python-socketio.readthedocs.io/en/latest/">python-socketio</a>や<a href="https://flask-socketio.readthedocs.io/en/latest/">flask-socketio</a>あたりに目を付けています。
+</p>
+
+<p>
+WizardryクローンであるDLの戦闘はターン制なので、マルチプレイヤー化には向いていない気もしますが、逆にターン制であることをうまく生かした戦闘システムができないかを考え中です。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-05-07T00:00:00-04:00" pubdate>Fri 07 May 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Effective Python一人輪読会(Item 1 to 18) &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Effective Python一人輪読会(Item 1 to 18)</h1>
+    <p class="meta">
+<time datetime="2020-08-15T00:00:00-04:00" pubdate>Sat 15 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf07691d">1. はじめに</a></li>
+<li><a href="#org6f0b004">2. Chapter 1: Pythonicな考え方</a>
+<ul>
+<li><a href="#org5e3c2ca">2.1. Item 1: どのバージョンのPythonを使っているか意識せよ</a></li>
+<li><a href="#orgaf89388">2.2. Item 2: PEP 8のスタイルガイドに従え</a></li>
+<li><a href="#orgc6d0508">2.3. Item 3: bytesとstrの違いを理解せよ</a></li>
+<li><a href="#org67be87b">2.4. Item 4: C言語ライクなフォーマット文字列やstr.formatよりもF-Stringsを使え</a></li>
+<li><a href="#org7d25667">2.5. Item 5: 複雑なexpressionsでなくヘルパー関数を書け</a></li>
+<li><a href="#orge8528c7">2.6. Item 6: インデックスよりもunpackingを使え</a></li>
+<li><a href="#org57a0b62">2.7. Item 7: range()よりもenumerate()を使え</a></li>
+<li><a href="#org6cb5ad4">2.8. Item 8: iteratorsを並列で処理するためにzipを使え</a></li>
+<li><a href="#org994b4b9">2.9. Item 9: forやwhileループの後のelseは使うな</a></li>
+<li><a href="#org77d8e71">2.10. Item 10: Walrus operator (:=) を使って繰り返しを避けよ</a></li>
+</ul>
+</li>
+<li><a href="#org0f841e7">3. Chapter 2: リストとディクショナリ</a>
+<ul>
+<li><a href="#org2874d3a">3.1. Item 11: シーケンスをどうスライスするか知っておけ</a></li>
+<li><a href="#org8af67aa">3.2. Item 12: strideとsliceを同時にするな</a></li>
+<li><a href="#org56337cd">3.3. Item 13: スライスするよりcatch-allのunpackingを使え</a></li>
+<li><a href="#org1c0e6cc">3.4. Item 14: 複雑な条件のソートではkeyパラメータを使え</a></li>
+<li><a href="#orge73eada">3.5. Item 15: ディクショナリに追加する順番が守られるとは限らない</a></li>
+<li><a href="#orgaac6ffd">3.6. Item 16: 欠けているディクショナリのキーを扱うのに、inとKeyErrorよりもgetを使え</a></li>
+<li><a href="#org9dca697">3.7. Item 17: 内部状態に欠けている項目を扱うには、setdefaultよりもdefaultdictを使え</a></li>
+<li><a href="#orgbec4bf1">3.8. Item 18: __missing__()メソッドを使って、キー依存のデフォルト値を作る方法を知っておけ</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf07691d" class="outline-2">
+<h2 id="orgf07691d"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+この記事は<a href="https://effectivepython.com/">Effeitive Python第2版</a>(英語版)の読書メモ(その1)です。
+</p>
+
+<p>
+以前、<a href="https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997">Effective Java</a>の輪講に参加したことがありますが、あまりの難易度に消化不良のままフェードアウトしてしまいました。今回は同じ轍を踏まないよう、背景知識をネットで調べながらじっくりと読み進めたいと思います。
+</p>
+
+<p>
+私のPythonの知識は、入門書2冊(<a href="https://www.amazon.com/Python-Crash-Course-Eric-Matthes-ebook/dp/B07J4521M3">Python Crash Course</a>, <a href="https://www.amazon.com/Introducing-Python-Modern-Computing-Packages/dp/1449359361">Introducing Python</a>)を読んだ程度ですので、同じような初中級レベルの方の参考になる、、、かもしれません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6f0b004" class="outline-2">
+<h2 id="org6f0b004"><span class="section-number-2">2</span> Chapter 1: Pythonicな考え方</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5e3c2ca" class="outline-3">
+<h3 id="org5e3c2ca"><span class="section-number-3">2.1</span> Item 1: どのバージョンのPythonを使っているか意識せよ</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+最初は特に難しくありません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf89388" class="outline-3">
+<h3 id="orgaf89388"><span class="section-number-3">2.2</span> Item 2: PEP 8のスタイルガイドに従え</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+はい。emacsをPythonのIDE化するelpyを導入する際に、py-autopep8, blackenを入れたので大丈夫でしょう。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc6d0508" class="outline-3">
+<h3 id="orgc6d0508"><span class="section-number-3">2.3</span> Item 3: bytesとstrの違いを理解せよ</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+unicodeとUTF-8の関係がよくわからなくなっていたので、少し整理しました。
+</p>
+<ul class="org-ul">
+<li>Python3のstringsは全てunicode stringsである。unicodeを使ってASCII以外の文字が表現できる。¥u + 4桁の数字。</li>
+<li>stringをファイルにセーブしたりする時に、bytesにエンコードする。このときUTF-8等を使う</li>
+<li>エンコードされたbytesをstringに戻すときにはデコードする</li>
+<li>UTF-8は文字列をエンコード、デコードする最も標準的なスキームである</li>
+</ul>
+
+<p>
+len(bytes)するとバイト数が出る。len(str)は文字数をカウントする。
+unicodeの1文字は2バイト以上の場合がある。日本語など。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org67be87b" class="outline-3">
+<h3 id="org67be87b"><span class="section-number-3">2.4</span> Item 4: C言語ライクなフォーマット文字列やstr.formatよりもF-Stringsを使え</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+はい。F-Stringsは直感的で一番使いやすいので、こればかり使っています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7d25667" class="outline-3">
+<h3 id="org7d25667"><span class="section-number-3">2.5</span> Item 5: 複雑なexpressionsでなくヘルパー関数を書け</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Effectiveシリーズの本領発揮です。
+いきなり、意味がわらかない部分がありました。
+</p>
+<pre class="example">
+from urllib.parse import parse_qs
+my_values = parse_qs('red=5&amp;blue=0&amp;green=',
+		     keep_blank_values=True)
+print(repr(my_values))
+&gt;&gt;&gt;
+{'red': ['5'], 'blue': ['0'], 'green': ['']}
+</pre>
+
+<p>
+まず、parse_qs()メソッドがわかりませんので調べます。
+<a href="https://docs.python.org/3/library/urllib.parse.html">こちら</a>より、
+</p>
+<blockquote>
+<p>
+urllib.parse.parse_qs(qs, keep_blank_values=False, strict_parsing=False, encoding='utf-8', errors='replace', max_num_fields=None)¶
+</p>
+
+<p>
+Parse a query string given as a string argument (data of type application/x-www-form-urlencoded). Data are returned as a dictionary. The dictionary keys are the unique query variable names and the values are lists of values for each name.
+</p>
+</blockquote>
+<p>
+なるほど、parse_qs()は、URLに埋め込まれるクエリータイプの文字列をパースして、ディクショナリにして返してくれるメソッドでした。うーん、これを説明なしで書くとは、これまでの入門書とはひと味違います。
+</p>
+
+<p>
+そしてこれ:
+</p>
+<pre class="example">
+red = my_values.get('red', [''])[0] or 0
+green = my_values.get('green', [''])[0] or 0
+opacity = my_values.get('opacity', [''])[0] or 0
+</pre>
+
+
+<p>
+何ですか、これは。getメソッドの二つ目の引数['']がわかりません。そしてgetメソッドの戻り値に[0]が付いているのも謎です。ディクショナリーのgetメソッドについてネットで調べてみます。<a href="https://www.w3schools.com/python/ref_dictionary_get.asp">ここ</a>によると、
+</p>
+<pre class="example">
+Syntax
+ditionaru.get(keyname, value)
+ &lt;snip&gt;
+ value - Optional. A value to return if the specified key does not exist.
+	 Default value None
+</pre>
+<p>
+二つ目の引数は、指定したキーが存在しなかったときに返す値、だそうです。
+</p>
+
+<p>
+それでは[0]は? 手元のPythonインタープリターで見てみます。
+</p>
+<pre class="example">
+&gt;&gt;&gt; my_values.get('red', [''])
+['5']
+&gt;&gt;&gt; my_values.get('green', [''])
+['']
+&gt;&gt;&gt; my_values.get('opacity', [''])
+['']
+</pre>
+<p>
+どれも、stringを一つだけ持つリストを返していました。確かにparse_qsの説明をよく読むと、
+</p>
+<pre class="example">
+...and the values are lists of values for each name.
+</pre>
+
+<p>
+リストを返すと書いてありました。なので、[0]を付けるとリストの最初(かつ、この場合唯一)のメンバーを返すのですね。
+</p>
+<pre class="example">
+&gt;&gt;&gt; my_values.get('red', [''])[0]
+'5'
+</pre>
+
+<p>
+確かにそうなりました。
+</p>
+
+<p>
+。。。すっきりしたところで読み進めていったら、説明が書いてありました。がーん。
+</p>
+
+<p>
+複雑なexpressionの例:
+</p>
+<pre class="example">
+red = int(my_values.get('red', [''])[0] or 0)
+</pre>
+
+<p>
+このようなexpressionを書く代わりに、ヘルパー関数を作ります。
+</p>
+<pre class="example">
+def get_first_int(values, key, default=0):
+    found = values.get(key, [''])
+
+    if found[0]:
+        return int(found[0])
+    return default
+</pre>
+
+<p>
+そして、次のように書けばOK。
+</p>
+<pre class="example">
+red = get_first_int(my_values, 'red')
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orge8528c7" class="outline-3">
+<h3 id="orge8528c7"><span class="section-number-3">2.6</span> Item 6: インデックスよりもunpackingを使え</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+知らない関数が説明無しで出てきました。
+</p>
+
+<pre class="example">
+for rank, (name, calories) in enumerate(snacks, 1):
+    print(f'#{rank}: {name} has {calories} calories')
+</pre>
+
+<p>
+enumerate()って、何でしたっけ? 特に二つ目の引数。。。
+</p>
+
+<p>
+<a href="https://book.pythontips.com/en/latest/enumerate.html">ここ</a>によると、何かをiterateして、更にカウンターまでつけてくれる便利なビルトインの関数だそうです。二つ目の引数はカウンター初期値でデフォルトは0。おー、これは便利かも。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org57a0b62" class="outline-3">
+<h3 id="org57a0b62"><span class="section-number-3">2.7</span> Item 7: range()よりもenumerate()を使え</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+ここではビルトイン関数enumerate()の詳しい説明が。。。Item 6と7を逆にした方が読みやすいのでは。。。後で説明することを当たり前のように前のItemで使うのが、Effecitveシリーズの伝統なのでしょうか。
+</p>
+
+<p>
+range()はインデックスを使って自分でiterateするので複雑だし間違いやすいし読みづらい。enumerate()は自動でiterateして、更にインデックスまで付けてくれる。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6cb5ad4" class="outline-3">
+<h3 id="org6cb5ad4"><span class="section-number-3">2.8</span> Item 8: iteratorsを並列で処理するためにzipを使え</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+zip()忘れていました。複数のiterators(eg, リスト)から次の値をそれぞれ持ってきてタプルにしてくれる(lazy generatorと言うそうです)。zip()はその繰り返し回しか扱わないので、例えば無限長のリストに対して使ってもメモリを使い切る心配は無い。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org994b4b9" class="outline-3">
+<h3 id="org994b4b9"><span class="section-number-3">2.9</span> Item 9: forやwhileループの後のelseは使うな</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+はい、使いません。本の指摘通り、「breakで抜けなかった時だけelseを実行する」という意味が紛らわしいので。
+</p>
+
+<p>
+この本のKindle版にはClick here to view code imageというリンクが、code snip部分によく出てきます。Kindleデバイスの画面では見づらいからなのかと思っていましたが、本文のcode snipにはとんでもない欠陥がたまにあることがわかりました。例えばこの項目にある例です。
+</p>
+<pre class="example">
+def coprime_alternate(a, b)
+    is_coprime = True
+    for i in range(2, min(a, b) + 1):
+	if a % i == 0 and b % i == 0:
+	    is_coprime = False
+	    break
+	return is_coprime
+</pre>
+<p>
+これ、いかにもおかしいです。Click here to view code imageをクリックするとわかりますが、return is_coprimeのインデントが間違っています。正しくは、
+</p>
+<pre class="example">
+def coprime_alternate(a, b)
+    is_coprime = True
+    for i in range(2, min(a, b) + 1):
+	if a % i == 0 and b % i == 0:
+	    is_coprime = False
+	    break
+    return is_coprime
+</pre>
+<p>
+インデントでブロックの範囲を指定するPythonとKindleの相性は悪いです。おや?と思ったら、Click here to view code imageリンクを押さないといけません。みなさん、紙の本かPDF版を買いましょう。でも、Kindle版が一番安いんですよね。。。
+</p>
+
+<ul class="org-ul">
+<li>ペーパーバック $41、Kindle版 $23.49 (<a href="https://www.amazon.com/Effective-Python-Specific-Software-Development/dp/0134853989">@amazon</a>)</li>
+<li>PDF版 $31.99 (<a href="https://www.informit.com/store/effective-python-90-specific-ways-to-write-better-python-9780134854762?ranMID=24808">@informIT</a>)</li>
+</ul>
+<p>
+うーん、この値段ならPDF版を買うべきだったかも。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org77d8e71" class="outline-3">
+<h3 id="org77d8e71"><span class="section-number-3">2.10</span> Item 10: Walrus operator (:=) を使って繰り返しを避けよ</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+Python 3.8で導入されたwalrus operatorですよ。流石、2019年末に改訂された2nd editionです。
+</p>
+<pre class="example">
+.. these assignment statements are written a := b and 
+pronounced "a walrus b" (because := looks like a pair
+of eyeballs and tusks).
+</pre>
+
+<p>
+うーむ。ジョークなのか本気なのか。。
+(walrus - セイウチ。tusks - 牙(キバ))
+</p>
+
+<p>
+ここで出てくるloop-and-a-halfイディオムって何でしょう?
+</p>
+
+<p>
+<a href="https://codehs.gitbooks.io/introcs/content/Basic-JavaScript-and-Graphics/loop-and-a-half.html">ここ</a>によると、while Trueなどで無限ループを作っておいて、そのループを抜ける条件をあらかじめsentinel(見張り、歩哨)の値として決めておくパターンをこう言うらしいです。以下のような感じ。これならよく使いますよね。
+</p>
+<pre class="example">
+SENTINEL = -1
+while True:
+    ...
+    if num == SENTINEL:
+        break
+</pre>
+
+
+<p>
+これをwalrus operatorを使ってよりシンプルにします。
+</p>
+<pre class="example">
+SENTINEL = -1
+while (num := xxx) != SENTINEL:
+    ...
+</pre>
+
+
+<p>
+walrus operatorの本質は、変数にアサインするだけでなく、アサインした変数をevaluateすることで、繰り返しを減らせる、ということのようです。定義だけ見ても、軽く読み飛ばしそうですが、後半のevaluateするというところがとても大事です。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0f841e7" class="outline-2">
+<h2 id="org0f841e7"><span class="section-number-2">3</span> Chapter 2: リストとディクショナリ</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org2874d3a" class="outline-3">
+<h3 id="org2874d3a"><span class="section-number-3">3.1</span> Item 11: シーケンスをどうスライスするか知っておけ</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+これ大事ですけど、使いこなせていませんでした。為になります。
+</p>
+<ul class="org-ul">
+<li>somelist[start:end]でstartは含み、endは含まない</li>
+<li>b = a[:]とすると、bにはaのコピーがまるまる入る。aとbの実体はそれぞれ別。a == bだけどa is not b</li>
+<li>b = aとすると、bもaの実体を指す。a == bかつa is b</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8af67aa" class="outline-3">
+<h3 id="org8af67aa"><span class="section-number-3">3.2</span> Item 12: strideとsliceを同時にするな</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+somelist[start:end:stride]というやつです。同時にする必要があるなら、まずstrideだけして、その結果に対してsliceするように2段階で行う。最初にstrideしてiteratorを可能な限り短くすることがポイント。こんな感じ:
+</p>
+<pre class="example">
+x = somelist[::stride]
+y = x[start:end]
+</pre>
+
+
+<p>
+そもそもiterator, itarableって、名詞と形容詞以外の違いはあるんでしょうか。混乱してきたので整理します。
+</p>
+
+<p>
+<a href="https://www.w3schools.com/python/python_iterators.asp">ここ</a>がわかりやすく説明していました。
+</p>
+<ul class="org-ul">
+<li>iteratorは、それをiterateする(1個ずつたどる)ことができるオブジェクト</li>
+<li>具体的にPythonでは、__iter__()と__next__()(=iterator protocol)を実装している</li>
+<li>リスト、タプル、ディクショナリ、セットは全てiterableオブジェクト</li>
+<li>これらはiterableな入れ物で、iter()メソッドを使ってiteratorを取り出すことができる</li>
+</ul>
+
+<p>
+うーむ、これまで厳密に区別していませんでした。
+</p>
+
+<p>
+itertoolsのisliceって何でしょう? <a href="https://docs.python.org/3.8/library/itertools.html">ここ</a>に説明がありました。
+</p>
+<blockquote>
+<p>
+itertools.islice(iterable, stop)
+</p>
+
+<p>
+itertools.islice(iterable, start, stop[, step])
+</p>
+
+<p>
+Make an iterator that returns selected elements from the iterable. If start is non-zero, then elements from the iterable are skipped until start is reached. Afterward, elements are returned consecutively unless step is set higher than one which results in items being skipped. If stop is None, then iteration continues until the iterator is exhausted, if at all; otherwise, it stops at the specified position. Unlike regular slicing, islice() does not support negative values for start, stop, or step. 
+</p>
+</blockquote>
+<p>
+「指定されたiterableから選択された要素を返すiteratorを作る。」
+</p>
+
+<p>
+これって、iterable[start:stop:stride]と何が違うんでしょうか???
+Item 36にリンクが張ってあるので、そちらをチラ見してみます。
+</p>
+<pre class="example">
+Use islice to slice an iterator by numerical indexes without copying.
+</pre>
+
+
+<p>
+おー、なるほど。大事なのはwithout copyingのところでしたか。
+たくさんメモリを使いませんよ、ということですね。
+</p>
+
+<p>
+。。。後から考えてみると、itertools.islice()が返すのはiteratorで、next()等を使って回さないと一通りの結果がが得られないのに対し、iterable[&#x2026;]の方は一式結果の揃ったリストが得られるので、その違いは明らかでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56337cd" class="outline-3">
+<h3 id="org56337cd"><span class="section-number-3">3.3</span> Item 13: スライスするよりcatch-allのunpackingを使え</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+こんなやつです。残りをリストにして返します。
+</p>
+<pre class="example">
+largest, second, *others = [20, 19, 15, 9, 8, 5, 3, 1, 0]
+print(largest, second, others)
+&gt;&gt;&gt;
+20 19 [15, 9, 8, 5, 3, 1, 0]
+</pre>
+
+
+<p>
+catch-allの*othersは先頭や真ん中に来てもよい。
+</p>
+<pre class="example">
+largest, *others, smallest = [20, 19, 15, 9, 8, 5, 3, 1, 0]
+print(largest, others, smallest)
+&gt;&gt;&gt;
+20 [19, 15, 9, 8, 5, 3, 1] 0
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1c0e6cc" class="outline-3">
+<h3 id="org1c0e6cc"><span class="section-number-3">3.4</span> Item 14: 複雑な条件のソートではkeyパラメータを使え</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+おっと、出ました。anonymousなlambda関数。
+</p>
+<pre class="example">
+lambda x: x.name
+</pre>
+
+<p>
+のように使うのでした。この例ではxが引数。
+</p>
+
+<p>
+自作クラスのオブジェクトがメンバーであるリストをソートする時など、どのようにソートすればよいかPythonが判断できない場合には、ソートするkeyとして関数を渡してやります。
+</p>
+<pre class="example">
+tools.sort(key=lambda x: x.name)
+</pre>
+
+<p>
+とすると、名前でソート。
+</p>
+<pre class="example">
+tools.sort(key=lambda x: x.weight)
+</pre>
+
+<p>
+とすると、重さでソート。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge73eada" class="outline-3">
+<h3 id="orge73eada"><span class="section-number-3">3.5</span> Item 15: ディクショナリに追加する順番が守られるとは限らない</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+知りませんでした。Python 3.7から、ディクショナリに追加した順序を維持するようになったそうです。だからと言って、常にそうなることを前提にしてはいけない、という項目。ディクショナリの代わりにディクショナリライクな別のデータ構造が使われていた場合に、この前提が通用しないことがあります。
+</p>
+
+<p>
+3番目のアプローチの意味がわかりません。よく読んで考えてみると、type annotationsとは何か、知りませんでした。<a href="https://dev.to/dstarner/using-pythons-type-annotations-4cfe">ここ</a>に説明がありました。例えば以下の場合、
+</p>
+<pre class="example">
+def combine(a: str b: str, time: int) -&gt; str:
+    return (a + b) * times
+</pre>
+
+<p>
+引数の後に付く「: &lt;type&gt;」は、その引数のタイプを示唆しています。示唆と書いたのは、これは純粋に読みやすさのためであって、実行時に強制しないという意です。更に -&gt; &lt;type&gt;で、戻り値のタイプも示唆します。
+</p>
+
+<p>
+そして、実行時に以下のように-m mypyを指定して&#x2013;strictを付けると、この示唆をチェックしてくれるようです。
+</p>
+<pre class="example">
+$ pytyon3 -m mypy --strict example.py
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgaac6ffd" class="outline-3">
+<h3 id="orgaac6ffd"><span class="section-number-3">3.6</span> Item 16: 欠けているディクショナリのキーを扱うのに、inとKeyErrorよりもgetを使え</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+見慣れない表現がありました、
+</p>
+<pre class="example">
+votes[key] = names = []
+</pre>
+
+<p>
+これは、votes[key]とname両方に同じ[]への参照を代入する(ie, <code>votes[key] is names</code>)、ということでした。
+よく見るのは a = b = 100のような表現ですが、少し変わっただけでわからなくなりました。
+</p>
+
+<p>
+ディクショナリにキーが無かったときに初期化するやり方として、getを使うのが一番よいとのこと。次は、ディクショナリの指定キーの値を+1し、もしキーが存在しない場合はキーを追加した上で行うパターン。
+</p>
+<pre class="example">
+count = counters.get(key, 0)
+counters[key] = count + 1
+</pre>
+
+
+<p>
+inや例外を使うやり方はコードの重複がどうしても出てきてしまうので、get(key, default)を使うのが一番よいやり方です。
+</p>
+
+<p>
+別のパターンでも。値がリストになっていて、キーが存在しない時には空のリストを追加するもの。
+</p>
+<pre class="example">
+if (names := votes.get(key)) is None:
+    votes[key] = names = []
+names.append(who)
+</pre>
+
+
+<p>
+setdefaultを使ったやり方:
+</p>
+<pre class="example">
+names = votes.setdefault(key [])
+names.append(who)
+</pre>
+
+<p>
+更に行数が少ないですが、 <code>setdefault</code> という名前が初心者にはピンとこないのが難点です。また、デフォルト値として指定する空のリスト <code>[]</code> オブジェクトを呼び出しの度に用意するので性能影響が懸念されます。
+</p>
+
+<p>
+著者はsetdefaultに懐疑的で、getを使うか <code>defaultdict</code> を使うべきというスタンスです。setdefaultメソッドはデフォルト値の作成に処理量が多かったり例外の可能性がある場合には不向きです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9dca697" class="outline-3">
+<h3 id="org9dca697"><span class="section-number-3">3.7</span> Item 17: 内部状態に欠けている項目を扱うには、setdefaultよりもdefaultdictを使え</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+「内部状態に欠けている項目」って何でしょう?
+例として、行ったことのある国と、訪れた街をvalueとして街のセットを持つディクショナリとして表現するとします。
+</p>
+<pre class="example">
+{'Japan': {'Kyoto', 'Yokohama'}, 'France': {'Paris'}}
+</pre>
+
+<p>
+のような感じで。ここに'England' - 'London'を追加するとき、まだ'England'は登録されていない＝欠けているという意味で使っているようです。「内部状態」もわかりにくいです。このデータ構造の中身のことをそう言っているのでしょうが。一つ前のitemと似ていますね。
+</p>
+<ol class="org-ol">
+<li>指定キーが存在しなければ追加＆値を初期化した上で、</li>
+<li>指定キーに対する値を+1したり、リストを追加したり、etc. する</li>
+</ol>
+
+<p>
+このユースケースでは次のようなヘルパー関数を書け、と言っています。
+</p>
+<pre class="example">
+from collections import defaultdict
+
+class Visits:
+    def __init__(self):
+	self.data = defaultdict(set)
+
+    def add(self, country, city):
+	self.data[country].add(city)
+</pre>
+
+<p>
+defaultdict(default_factory)は<a href="https://docs.python.org/2/library/collections.html#collections.defaultdict">ここ</a>によると、ディクショナリライクなオブジェクトを返す関数で、もし追加しようとするキーが無かったら、default_factory関数がキーに対するデフォルトの値を提供します。上の例ではdefaultdict(set)とあるので、空のセットが設定されます。
+</p>
+
+<p>
+defaultdictの説明がありませんが、この本はかなり高度な知識を前提としているか、調べながら読め、ということなのでしょうか。
+</p>
+
+<p>
+このヘルパー関数を使うことで、やりたいことが短く書けます。
+</p>
+<pre class="example">
+visits = Visits()
+visits.add('Japan', 'Kyoto')
+visits.add('Canada', 'Calgary')
+</pre>
+
+
+<p>
+getとdefaultdictの使い分け:
+</p>
+<ul class="org-ul">
+<li>自分でディクショナリを作るならdefaultdictを使うことを考える</li>
+<li>既存のディクショナリに対して追加するなら、getを使う</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbec4bf1" class="outline-3">
+<h3 id="orgbec4bf1"><span class="section-number-3">3.8</span> Item 18: __missing__()メソッドを使って、キー依存のデフォルト値を作る方法を知っておけ</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+dictのsetdefaultメソッドもdefaultdictも使えないとき、dictのサブクラスを作って__missing__メソッドを用意すればよい。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def open_picture(profile_path):
+    try:
+	return open(profile_path, 'a+b')
+    except OSError:
+	print(f'Failed to open path {profile_path}')
+	raise
+
+class Pictures(dict):  # dictのサブクラスを作る
+    def __missing__(self, key):  # keyは写真へのpath
+	value = open_picture(key)  # ファイルハンドルを返す関数
+	self[key] = value
+	return value
+
+pictures = Pictures()
+handle = pictures[path]
+handle.seek(0)
+image_data = handle.read()
+</pre>
+</div>
+<p>
+上記の例では、pathがpicturesに登録されていなかったときに__missing__メソッドが呼ばれます。open_picture(path)は、指定パスのファイルをオープンしてハンドルを返す関数。オープンに失敗したら例外を上げます。
+</p>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-15T00:00:00-04:00" pubdate>Sat 15 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

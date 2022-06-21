@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>アメリカから日本に自作ポストカードを送る &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">アメリカから日本に自作ポストカードを送る</h1>
+    <p class="meta">
+<time datetime="2021-11-27T00:00:00-05:00" pubdate>Sat 27 November 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org67e996d">1. はじめに</a></li>
+<li><a href="#orgd6208c4">2. Avery 8386</a></li>
+<li><a href="#orgfdf3c51">3. Avery Webサービス</a></li>
+<li><a href="#org76f6f6d">4. 宛先リスト</a></li>
+<li><a href="#org8a798a3">5. 日本語フォントの扱い</a></li>
+<li><a href="#orge030082">6. Pythonスクリプト</a></li>
+<li><a href="#org49e7365">7. 使い方</a></li>
+<li><a href="#orgf7205a1">8. 印刷</a></li>
+<li><a href="#org4857b81">9. 宛名面レイアウト</a></li>
+<li><a href="#org75c211b">10. 切手を貼る</a></li>
+<li><a href="#org29b67c8">11. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org67e996d" class="outline-2">
+<h2 id="org67e996d"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+今年は転職及び引越しのご挨拶にグリーティングカードを出すことにしました。
+日本にいたときには郵便局の「はがきデザインキットWeb版」で年賀状を作成、プリンターで印刷していましたが、アメリカのポストカードにはもちろん対応していません。
+</p>
+
+<p>
+色々と調べたところ、ポストカードを自分で作って印刷する人向けに、<a href="https://www.avery.com">Avery</a> という会社が用紙を販売、更にポストカード作成用の無料Webサービスまで提供していることがわかりました。これを利用しない手はありません。用紙はポストカード100枚分で$16と若干高めですが、一般的な有償のクリスマスカード作成サービスよりはずっと安価です。
+</p>
+
+<p>
+今回は、アメリカのポストカードデータ(両面)を自作し、自宅プリンターで印刷するやり方について書きます。はがきデザインキットWeb版からエキスポートしたcsvの宛先リストを、ポストカード宛名面のPDFファイルに埋め込むために作ったPythonスクリプトも載せておきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd6208c4" class="outline-2">
+<h2 id="orgd6208c4"><span class="section-number-2">2</span> Avery 8386</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+AmazonやAveryのサイトで探してみると、ポストカードにはAvery 8386番が良さそうです。早速注文してみました。
+<img src="./images/avery8386.png" alt="avery8386.png" />
+</p>
+
+<p>
+どんな用紙かと思ったら、レターサイズの厚紙1枚からポストカード2枚が切り出せるタイプでした。ハサミ等を使わずに手で簡単に切り取れるように、切り取り線のミシン目が入っていて、更にプリンタへの表裏面や向きを間違えないようにガイドが印刷されています。切り取り線で表裏に2,3回折るだけで簡単に切り離せます。とてもよく出来ていて、感心しました。
+<img src="./images/8386sheet.png" alt="8386sheet.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfdf3c51" class="outline-2">
+<h2 id="orgfdf3c51"><span class="section-number-2">3</span> Avery Webサービス</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+PCでAvery用ポストカードデータを作成するには、8386番のテンプレートを使用します。Averyサイトの<a href="https://www.avery.com/templates/8386?gclid=Cj0KCQiAy4eNBhCaARIsAFDVtI1fMZfOw9Qzn_yygpqJkxg7CWWjV6C8DzkWu87LeNpkSuWoDBbKV1caAtIbEALw_wcB&amp;gclsrc=aw.ds">8386テンプレートページ</a> からMicrosoft Wordやその他のアプリケーション用テンプレートをダウンロードできます。
+<img src="./images/8386template.png" alt="8386template.png" />
+</p>
+
+<p>
+一方、このページ上で START DESIGNING をクリックしてアカウント登録すると、Webサイト上で8386のテンプレートを使ってポストカードが作成できるようになります。今回はこれを使います。用意されているデザインが選べ、クリスマスカードのデザインだけで350種類以上ありました。
+<img src="./images/8386design.png" alt="8386design.png" />
+</p>
+
+<p>
+デザインを選んで、表面と裏面(宛名面)をエディットします。このツールの良いところは、絵が単なるポストカード全面の一枚絵ではなく、パーツに分かれているところです。テキストの編集や追加はもちろん、背景色を変えたり、絵のパーツを動かしたりできます。絵のパーツを端に寄せて写真を貼るなど、自由度が高いのです。PowerPoint等を使ったことのある人なら、普通に使えると思います。
+</p>
+
+<p>
+<img src="./images/easytext.png" alt="easytext.png" />
+注意点として、日本語の入力に少し工夫がいります。普通にテキストボックスに日本語を入れようとしてもうまく入りません。そこで、Text &gt; Easy Text Fill の画面で入力するワークアラウンドが必要になります。
+</p>
+
+<p>
+宛名面には、自分の住所と名前を入れ、日本向けのため"JAPAN"と赤文字で"AirMail"のテキストボックスを予め配置しておきます。そして肝心な宛先のリストを入力しようとしたところ、家族から「待った」がかかりました。一企業のWebサービスに知り合いの個人情報(名前と住所)を入れるのは不安だと言うのです。郵便局の はがきデザインキット では住所録をクラウドで管理していた気がしますが、郵便局と普通の企業ではデータ漏えいや転用のリスクに差がある、、、かもしれません。
+</p>
+
+<p>
+なお、作成したデータはAveryのサイト上で保存でき、自分で印刷するためにPDFファイルとしてダウンロード可能です。今回は宛先情報を入れないデータを作成しました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76f6f6d" class="outline-2">
+<h2 id="org76f6f6d"><span class="section-number-2">4</span> 宛先リスト</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+これまで宛先住所録は はがきデザインキットWeb版 のデータを使っていました。2年前のWeb版サービス終了の際に、csvファイルとしてデータをダウンロードしてありました。
+</p>
+
+<p>
+このcsvファイルは以下のようなフォーマットになっています。
+</p>
+<pre class="example">
+氏名(姓),氏名(名),フリガナ(姓),フリガナ(名),敬称,
+郵便番号,都道府県,市区町村,番地・号,建物名,
+連名1(姓),連名1(名),連名1(敬称),連名2(姓),連名2(名),連名2(敬称)
+</pre>
+
+
+<p>
+これを利用して、宛先面のPDFファイルに宛名と住所を埋め込めないかと考えました。
+私は去年の夏に、PDFファイルにページ番号を付ける <a href="https://github.com/achiwa912/pdfpagenum">スクリプト</a> をPythonで作っていました。これを応用できないか試してみます。<a href="https://achiwa912.github.io/pdfpagenum.html">その時のブログエントリー</a>。
+</p>
+
+<p>
+スクリプトを読み直してみたところ、PDFファイルの各ページ中央下部に「3/50」のような文字列を挿入しているだけでした。この挿入位置を変え、文字列を宛先情報に変えれば行けそうな気がいます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8a798a3" class="outline-2">
+<h2 id="org8a798a3"><span class="section-number-2">5</span> 日本語フォントの扱い</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+少し試してみたところ、日本語が全て四角形シンボルになってしまいました。
+フォントとして <code>Times-Roman</code> を指定している部分を、日本語フォントを指定するようにしないとダメそうです。とりあえずフォントブックアプリを見て <code>Hiragino Maru Gothic ProN W4</code> を指定したところ、PythonのKeyエラーになりました。
+</p>
+
+<p>
+解決策をしばらく探してみたところ、以下のページを見つけました。
+</p>
+
+<p>
+<a href="https://gammasoft.jp/blog/pdf-japanese-font-by-python/">GAMMASOFTブログ - Pythonで日本語をPDFに出力する（ReportLabを利用）</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-python"># デフォルトの日本語フォントを用いる方法
+# 前述の通り、ReportLabにはHeiseiMin-W3とHeiseiKakuGo-W5が
+# デフォルトで用意されています。これらを利用するには、以下の
+# コードでフォントを登録します。
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+pdfmetrics.registerFont(UnicodeCIDFont('HeiseiMin-W3'))
+canvas.setFont('HeiseiMin-W3', 20)
+</pre>
+</div>
+
+<p>
+日本語フォントの登録が必要だったのですね。
+これで日本語が表示できるようになりました。GAMMASOFTさん、どうもありがとうございます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge030082" class="outline-2">
+<h2 id="orge030082"><span class="section-number-2">6</span> Pythonスクリプト</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+数カ月ぶりにPythonコードを書きました。あまりに久しぶりすぎて、
+</p>
+<pre class="example">
+python -V
+</pre>
+
+<p>
+をしたら2.17にリンクされていました。macOSのバージョンを上げると、結構な確率でPythonの環境が壊れます。。。しばらく試行錯誤した結果、pyenvのPATHが.zshrcから無くなっていたというオチでした。
+</p>
+<pre class="example">
+export PATH="$(pyenv root)/shims:$PATH"
+</pre>
+
+<p>
+このように、MacでPythonを使うのは若干面倒なので、VirtualBox等でLinuxを動かして、その上でPythonを使うようにするのが安全かもしれません。今回、試行錯誤の過程で、Pythonを最新の3.10.0に上げました。
+</p>
+
+
+<p>
+それでは、作成したスクリプトです。やっていることは:
+</p>
+<ol class="org-ol">
+<li>住所一覧のcsvファイルを読んで、住所宛名listのlistを作る</li>
+<li>PDFファイルを扱う準備</li>
+<li>住所宛名listのlistからiteratorを作り、2つずつループで回す(1ページにポストカードが2枚あるため)</li>
+<li>宛名面PDFファイルをベースに、出力PDFページを作成(追加)する</li>
+<li>住所宛名listが存在すれば出力PDFページの指定位置に埋め込む</li>
+</ol>
+
+<p>
+前回同様、reportlabとpdfrwのライブラリを利用しています。注意点は、 <code>canvas.drawString</code> で指定するY座標は下側がゼロなところです。
+定数値を使っていたりして見苦しいですが。。。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import sys, os, csv
+
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+from reportlab.lib.pagesizes import letter
+from pdfrw import PdfReader
+from pdfrw.toreportlab import makerl
+from pdfrw.buildxobj import pagexobj
+
+if (
+    len(sys.argv) != 3
+    or ".pdf" not in sys.argv[1].lower()
+    or ".csv" not in sys.argv[2].lower()
+):
+    print(f"Usage: python {sys.argv[0]} &lt;pdf filename&gt; &lt;csv filename&gt;")
+    sys.exit()
+
+"""
+住所録csvファイルから宛先リストを作成する。
+csfファイルフォーマット:
+氏名(姓),氏名(名),フリガナ(姓),フリガナ(名),敬称,
+郵便番号,都道府県,市区町村,番地・号,建物名,
+連名1(姓),連名1(名),連名1(敬称),連名2(姓),連名2(名),連名2(敬称)
+リスト構造:
+address_list list - [adrs1, adrs2, adrs3, etc.]
+adrs list - ['〒111-1111', '東京都中区本町1-1-1', '　　メゾン本町101',
+'', '田中　一郎　様', '　　　花子　様', '　　　太郎　ちゃん']
+"""
+address_list = []
+with open(sys.argv[2], newline="") as csvf:
+    csv_rdr = csv.reader(csvf)
+    for row in csv_rdr:
+	adrs = []
+	if row[5]:  # 郵便番号
+	    adrs.append("".join(["〒", row[5]]))
+	adrs.append("".join([row[6], row[7], row[8]]))  # 住所
+	if row[9]:  # アパート名
+	    adrs.append("".join(["　　", row[9]]))
+	adrs.append("")  # 住所と名前の間を1行空ける
+	adrs.append("".join([row[0], "　", row[1], "　", row[4]]))  # 宛先名
+	if row[11]:  # 連名1
+	    if row[10]:  # 連名1名字
+		adrs.append("".join([row[10], "　", row[11], "　", row[12]]))
+	    else:
+		adrs.append("".join(["　" * (len(row[0]) + 1), row[11], "　", row[12]]))
+	if row[14]:  # 連名2
+	    if row[13]:  # 連名2名字
+		adrs.append("".join([row[13], "　", row[14], "　", row[15]]))
+	    else:
+		adrs.append("".join(["　" * (len(row[0]) + 1), row[14], "　", row[15]]))
+	address_list.append(adrs)
+
+in_pdf = sys.argv[1]
+out_pdf = os.path.splitext(sys.argv[1])[0] + "_adrs.pdf"
+
+canvas = Canvas(out_pdf, pagesize=letter)
+pdf_rdr = PdfReader(in_pdf)
+pages = [pagexobj(p) for p in pdf_rdr.pages]
+in_page = pages[0]  # assuming it has only one page
+
+# ReportLabに用意されているフォントを登録
+pdfmetrics.registerFont(UnicodeCIDFont("HeiseiMin-W3"))
+
+it = iter(address_list)
+next(it)  # skip header
+while True:
+    # 上のカードに住所を埋め込む
+    exit_flag = False
+    try:
+	adrs = next(it)
+    except StopIteration:
+	exit_flag = True
+    if not exit_flag:
+	canvas.doForm(makerl(canvas, in_page))
+	canvas.saveState()
+	canvas.setStrokeColorRGB(0, 0, 0)
+	canvas.setFont("HeiseiMin-W3", 16)
+	for ln, sline in enumerate(adrs[::-1], start=1):
+	    canvas.drawString(180, 500 + ln * 17, sline)
+    else:
+	break
+
+    # 下のカードに住所を植え込む
+    exit_flag = False
+    try:
+	adrs = next(it)
+    except StopIteration:
+	exit_flag = True
+    if not exit_flag:
+	for ln, sline in enumerate(adrs[::-1], start=1):
+	    canvas.drawString(180, 160 + ln * 17, sline)
+    else:
+	canvas.restoreState()
+	canvas.showPage()
+	break
+
+    canvas.restoreState()
+    canvas.showPage()
+
+canvas.save()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org49e7365" class="outline-2">
+<h2 id="org49e7365"><span class="section-number-2">7</span> 使い方</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+PDFライブラリをインストールします。
+</p>
+<pre class="example">
+pip install reportlab
+pip install pdfrw
+</pre>
+
+
+<p>
+上記スクリプトをadrs.pyとしてセーブ。
+</p>
+
+<p>
+実行
+</p>
+<pre class="example">
+python adrs.py &lt;pdf filename&gt; &lt;csv fiiename&gt;
+</pre>
+
+
+<p>
+Pythonは3.6以降なら動くと思います。開発には3.10を使いました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf7205a1" class="outline-2">
+<h2 id="orgf7205a1"><span class="section-number-2">8</span> 印刷</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Averyの8386テンプレートを使ってWeb上でポストカードデータを作成したら、自分のプリンターで印刷するためにPDFファイルとしてダウンロードすることができます。
+</p>
+
+<p>
+これを日本のプリンターで印刷する際に、いくつかポイントがあるので、書いておきます。なお、私は日本から持っていった、ブラザーのDCP-J983Nを使っています。
+</p>
+<ul class="org-ul">
+<li>レターサイズを指定する(デフォルトはA4）</li>
+<li>Scaleは手動で100%を指定する(デフォルトだとauto fitで97%等になっている)</li>
+<li>手差しトレイを使って1枚、1面ずつ印刷する。通常トレイと逆で印刷面が上。</li>
+<li>手差しトレイにはきっちり奥まで差し込む。更に数ミリ自動で送られる。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4857b81" class="outline-2">
+<h2 id="org4857b81"><span class="section-number-2">9</span> 宛名面レイアウト</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+アメリカのポストカードレイアウト例です。
+<img src="./images/postback.png" alt="postback.png" />
+</p>
+
+<p>
+左上に自分の名前住所を英語で、中央付近に宛先を書き、右上に切手を貼ります。英語では名前を先に書きます。宛先は日本語で構いませんが、目立つように大きく"Japan"と"Air Mail"を書きます。
+</p>
+
+<p>
+面の右側半分を宛先住所用とし、左側半分にメッセージを書く場合もあります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org75c211b" class="outline-2">
+<h2 id="org75c211b"><span class="section-number-2">10</span> 切手を貼る</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+日本に手紙(約30g以内)やポストカードを送るには、グローバルフォーエバー切手を買います。アメリカはインフレで郵便の値段が上がっていきますが、フォーエバー切手を買えば、ずっと使えます。アメリカ国内用と海外用(グローバル)で価格が異なり、グローバルフォーエバー切手は現在1枚$1.3です。
+<img src="./images/gstamps.png" alt="gstamps.png" />
+</p>
+
+<p>
+切手は10枚組のシートになっています。1枚1枚がシールになっていて、シートから剥がして手紙やハガキに貼ります。日本の切手のように濡らす必要がなく、便利です。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org29b67c8" class="outline-2">
+<h2 id="org29b67c8"><span class="section-number-2">11</span> 終わりに</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+はがきデザインキットの住所録csvデータを、Avery 8386用のポストカード宛名面PDFファイルに埋め込むという、ものすごくニッチなスクリプトを作りました。需要は無いと思いますが、来年の自分のために記録として残しておきます。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-11-27T00:00:00-05:00" pubdate>Sat 27 November 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/blog.html">Blog</a>,    <a class="category" href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

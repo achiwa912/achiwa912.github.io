@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>org-mode + github Wikiのインデックスを自動生成する &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">org-mode + github Wikiのインデックスを自動生成する</h1>
+    <p class="meta">
+<time datetime="2022-02-01T00:00:00-05:00" pubdate>Tue 01 February 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orga4133e7">1. はじめに</a></li>
+<li><a href="#orgce33ca3">2. orgidx.py</a>
+<ul>
+<li><a href="#orgf7aee22">2.1. 使い方</a></li>
+<li><a href="#org6dfd604">2.2. ポイント</a></li>
+<li><a href="#orgd167325">2.3. config.json</a></li>
+</ul>
+</li>
+<li><a href="#orgf7332f9">3. gitlabは?</a></li>
+<li><a href="#orgcf787b9">4. 終わりに</a></li>
+<li><a href="#org18d16c9">5. Appendix</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga4133e7" class="outline-2">
+<h2 id="orga4133e7"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+前回の記事で、emacsのorg-modeとgithub(/gitlab)でプライベートなWikiを作る提案をしましたが、各ドキュメント(<code>.org</code> ファイル)をカテゴリ分けしてリンクするトップページ(README.orgファイル)の手動作成が課題でした。これまで作成したメモをいくつかプライベートWikiに追加したのですが、それに伴うリンクの手動でのメンテナンスが相当に面倒であることがわかりました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce33ca3" class="outline-2">
+<h2 id="orgce33ca3"><span class="section-number-2">2</span> orgidx.py</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+というわけで、Pythonスクリプトの <code>orgidx.py</code> を作成し、githubで <a href="https://github.com/achiwa912/orgidx">公開</a> しました。これは、各 <code>.org</code> ファイルへのリンクを、サブディレクトリ単位でカテゴリー分けして並べたトップページ(<code>README.org</code>)を自動生成するスクリプトです。カテゴリーやリンクとして表示するテキストを付けることができます。
+</p>
+</div>
+
+<div id="outline-container-orgf7aee22" class="outline-3">
+<h3 id="orgf7aee22"><span class="section-number-3">2.1</span> 使い方</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>Wiki用ディレクトリを用意する(eg, /home/jon/wiki)</li>
+<li>その下にカテゴリー(のキー)となるサブディレクトリを作成する</li>
+<li><code>.org</code> ファイルをそれぞれのカテゴリーになるサブディレクトリ下に置く
+<ul class="org-ul">
+<li>各 <code>.org</code> ファイルに <code>#+TITLE+</code> メタデータを用意してください</li>
+</ul></li>
+<li>Python 3.9以降をインストールする
+<ul class="org-ul">
+<li><code>pip</code> によるライブラリ等の追加は不要です</li>
+</ul></li>
+<li>好きな場所に <code>orgidx.py</code> を置く</li>
+<li>Wiki用の先頭ディテクトリに <code>config.json</code> (下記参照)を用意する。
+<ul class="org-ul">
+<li>これはしなくてもよいですが、 <code>categ_dict</code> に無いサブディレクトリ名は、そのままカテゴリー文字列として使用されます。</li>
+</ul></li>
+<li>スクリプトを実行する(eg, <code>python orgidx.py /home/jon/wiki</code>)</li>
+<li><code>README.org</code> がトップWikiディレクトリ下に作られる</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org6dfd604" class="outline-3">
+<h3 id="org6dfd604"><span class="section-number-3">2.2</span> ポイント</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>各リンクに使われる文字列は <code>#+TITLE+</code> メタデータを使います。各 <code>.org</code> ファイルに必ず用意してください</li>
+<li><code>config.json</code> をうまく用意すると、とても見やすくなります
+<ul class="org-ul">
+<li>なお、複数のサブディレクトリ名が同じカテゴリー文字列を使う場合、これらはまとめられて一つのカテゴリーとなります</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd167325" class="outline-3">
+<h3 id="orgd167325"><span class="section-number-3">2.3</span> config.json</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<code>config.json</code> は以下のようになっています。
+</p>
+<div class="org-src-container">
+<pre class="src src-json">{
+    "#+TITLE": "My Personal Wiki pages",
+    "distrib": "分散システム",
+    "storage": "ストレージ",
+    "virtual": "コンテナ・VM",
+    "linux": "Linux",
+    "etc": "未分類"
+}
+</pre>
+</div>
+
+<p>
+2行目の <code>"#+TITLE"</code> は、これだけが特別扱いで、 <code>README.org</code> のタイトル行文字列を定義します。
+</p>
+
+<p>
+3行目以降は、
+</p>
+<pre class="example">
+"&lt;サブディレクトリ名&gt;": "カテゴリー文字列",
+</pre>
+
+<p>
+の定義が続きます。JSONのルールとして、最後の定義行("etc": "未分類")のみ、行末にカンマ(<code>,</code>)が付いていないことに注意してください。(カンマを付けるとエラーになります)
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf7332f9" class="outline-2">
+<h2 id="orgf7332f9"><span class="section-number-2">3</span> gitlabは?</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレンダリングをしてくれることがわかりました。前回と今回の記事で紹介したパーソナルWikiページの作り方や、今回のPythonスクリプトがそのままgitlabにも適用可能です。
+</p>
+
+<p>
+個人でgithub、オフィスでgitlabといった使い分けが考えられますね。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcf787b9" class="outline-2">
+<h2 id="orgcf787b9"><span class="section-number-2">4</span> 終わりに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+プライベートなレポジトリの用意、 <code>.org</code> ファイルのレンダリング、複数デバイスからの閲覧・編集といったことは github(/gitlab) が用意してくれています。唯一、欠けているピースがインデックスの作成だったのですが、今回それを用意しました。良いプライベートWikiライフを！
+</p>
+</div>
+</div>
+
+<div id="outline-container-org18d16c9" class="outline-2">
+<h2 id="org18d16c9"><span class="section-number-2">5</span> Appendix</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+短いので、ソースを貼っておきます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import sys
+import os
+from collections import defaultdict
+import json
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+	print(f"Usage: python {sys.argv[0]} &lt;base_dir&gt;")
+	sys.exit(1)
+    if not os.path.isdir(basedir := sys.argv[1]):
+	print(f"{basedir} is not a valid directory.")
+	sys.exit(1)
+
+    basedir = basedir.rstrip("/")
+
+    # dir_name to category string
+    categ_dict = {
+	"distrib": "分散システム",
+	"storage": "ストレージ",
+	"virtual": "コンテナ・VM",
+	"linux": "Linux",
+	"etc": "未分類",
+    }
+    top_title = "#+TITLE: Personal Wiki Index"
+
+    # Read config.json
+    try:
+	with open("/".join([basedir, "config.json"])) as f:
+	    config = json.load(f)
+	    top_title = "#+TITLE: " + config.pop("#+TITLE", top_title)
+	    categ_dict = config
+    except Exception:
+	print("Skip loading config.json")
+
+
+    # Save README.org if exists
+    readme_path = "/".join([basedir, "README.org"])
+    readme_bk_path = readme_path + ".bk"
+    try:
+	os.remove(readme_bk_path)
+    except Exception:
+	pass
+    if os.path.exists(readme_path):
+	os.rename(readme_path, readme_bk_path)
+
+    # Create org_dic
+    #   category_string: list of (full_path, title) tuples
+    #   Note: multiple categories could share the same category_string
+    org_dic = defaultdict(list)
+    for (dpath, _, fnames) in os.walk(basedir):
+	for fname in fnames:
+	    if fname.endswith(".org"):
+		full_path = "/".join([dpath, fname])
+		categ = categ_str = dpath[dpath.rfind("/") + 1 :].lower()
+		try:
+		    categ_str = categ_dict[categ]
+		except Exception:
+		    pass
+		with open(full_path, "r") as f:
+		    title = "No #+TITLE: header!"
+		    for line in f:
+			title_head = "#+TITLE: "
+			if line.startswith(title_head):
+			    title = line[len(title_head) :].rstrip()
+			    break
+		link_path = "." + full_path[len(basedir) :]
+		org_dic[categ_str].append((link_path, title))
+
+    # Generate README.org based on org_dic
+    with open(readme_path, "w") as f:
+	print(top_title, file=f)
+	print("\nPersonal memos\n", file=f)
+	for categ_str, link_list in org_dic.items():
+	    print(f"** {categ_str}", file=f)
+	    print("", file=f)
+	    for link in link_list:
+		print(f"- [[{link[0]}][{link[1]}]]", file=f)
+	    print("", file=f)
+</pre>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-02-01T00:00:00-05:00" pubdate>Tue 01 February 2022</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/emacs.html">emacs</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/travel_jp.html">日本に一時帰国する際のCovid関係手続き</a>
+      </li>
+      <li class="post">
+          <a href="/car_maint.html">車をメンテナンスに出す</a>
+      </li>
+      <li class="post">
+          <a href="/idp.html">アメリカで国際免許証を取得する</a>
+      </li>
+      <li class="post">
+          <a href="/notmuch.html">emacs+notmuchでメールを読み書きする</a>
+      </li>
+      <li class="post">
+          <a href="/tramp.html">emacs+tramp-modeでシームレスにリモートワークする</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="http://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="http://github.com/achiwa912" target="_blank">GitHub</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+        </ul>
+    </section>
+
+<section>
+    <p>Follow <a href="http://twitter.com/kyos_achwan">@kyos_achwan</a></p>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
