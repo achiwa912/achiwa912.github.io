@@ -69,24 +69,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org57fe079">1. はじめに</a></li>
-<li><a href="#org1070d6d">2. インストール、設定</a>
+<li><a href="#org6a69975">1. はじめに</a></li>
+<li><a href="#org7f85306">2. インストール、設定</a>
 <ul>
-<li><a href="#org173d2ee">2.1. 構成</a></li>
-<li><a href="#orgb3e84c8">2.2. mbsync</a></li>
-<li><a href="#org0650227">2.3. notmuch</a></li>
-<li><a href="#org334b365">2.4. afew</a></li>
-<li><a href="#orgeda344b">2.5. smtp</a></li>
-<li><a href="#org055dfe3">2.6. Macからリモートのメールボックスを使う</a></li>
+<li><a href="#org5344434">2.1. 構成</a></li>
+<li><a href="#orgd9f2aec">2.2. mbsync</a></li>
+<li><a href="#org9a7aefd">2.3. notmuch</a></li>
+<li><a href="#org9c18ae3">2.4. afew</a></li>
+<li><a href="#org51fc074">2.5. smtp</a></li>
+<li><a href="#org273629d">2.6. Macからリモートのメールボックスを使う</a></li>
 </ul>
 </li>
-<li><a href="#org4cf5199">3. 終わりに</a></li>
+<li><a href="#org3f08bcc">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org57fe079" class="outline-2">
-<h2 id="org57fe079"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org6a69975" class="outline-2">
+<h2 id="org6a69975"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はメーラーとしてgmailを使っていますが、gmailのUIにどうしても馴染めません。そこで、emacsでemailを読み書きできるようにしてみました。
@@ -98,8 +98,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1070d6d" class="outline-2">
-<h2 id="org1070d6d"><span class="section-number-2">2</span> インストール、設定</h2>
+<div id="outline-container-org7f85306" class="outline-2">
+<h2 id="org7f85306"><span class="section-number-2">2</span> インストール、設定</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 notmuchはそれだけではメールの読み書きができるようになりません。その他に以下のツールを使用します。
@@ -111,8 +111,8 @@ notmuchはそれだけではメールの読み書きができるようになり�
 </ul>
 </div>
 
-<div id="outline-container-org173d2ee" class="outline-3">
-<h3 id="org173d2ee"><span class="section-number-3">2.1</span> 構成</h3>
+<div id="outline-container-org5344434" class="outline-3">
+<h3 id="org5344434"><span class="section-number-3">2.1</span> 構成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Macのemacs上でメールを読み書きすることが目的ですが、メールボックスをプレーンテキストでMac上にじか置きしたくないので、VirtualBoxのFedora 36 VMにメールを取り込み、そこにtrampを使ってリモートアクセスします。このため、まずはFedora上に一式環境を作り、その後Macのemacs設定をします。
@@ -124,8 +124,8 @@ trampを使ってリモートのメールボックスにアクセスすること
 </div>
 </div>
 
-<div id="outline-container-orgb3e84c8" class="outline-3">
-<h3 id="orgb3e84c8"><span class="section-number-3">2.2</span> mbsync</h3>
+<div id="outline-container-orgd9f2aec" class="outline-3">
+<h3 id="orgd9f2aec"><span class="section-number-3">2.2</span> mbsync</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 パッケージマネージャーを使ってisyncをインストールします。
@@ -272,8 +272,8 @@ unexpected eofのソケットエラーは相変わらず出ていますが、全
 </div>
 </div>
 
-<div id="outline-container-org0650227" class="outline-3">
-<h3 id="org0650227"><span class="section-number-3">2.3</span> notmuch</h3>
+<div id="outline-container-org9a7aefd" class="outline-3">
+<h3 id="org9a7aefd"><span class="section-number-3">2.3</span> notmuch</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 mbsyncでメールのデータを取り込んだので、notmuchでそれらのデータベースを作ってアクセス可能にします。
@@ -311,8 +311,8 @@ emacs上で <code>M-x notmuch</code> とするとメールが読めるように�
 </div>
 </div>
 
-<div id="outline-container-org334b365" class="outline-3">
-<h3 id="org334b365"><span class="section-number-3">2.4</span> afew</h3>
+<div id="outline-container-org9c18ae3" class="outline-3">
+<h3 id="org9c18ae3"><span class="section-number-3">2.4</span> afew</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 自動タグ付けツールです。とりあえずインストールだけします。
@@ -328,8 +328,8 @@ pip install afew
 </div>
 </div>
 
-<div id="outline-container-orgeda344b" class="outline-3">
-<h3 id="orgeda344b"><span class="section-number-3">2.5</span> smtp</h3>
+<div id="outline-container-org51fc074" class="outline-3">
+<h3 id="org51fc074"><span class="section-number-3">2.5</span> smtp</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 ここまででメールは読めるようになりましたが、メールを出すにはsmtpの設定が必要です。
@@ -371,8 +371,8 @@ Save auth info to file ~/.authinfo? y
 </div>
 </div>
 
-<div id="outline-container-org055dfe3" class="outline-3">
-<h3 id="org055dfe3"><span class="section-number-3">2.6</span> Macからリモートのメールボックスを使う</h3>
+<div id="outline-container-org273629d" class="outline-3">
+<h3 id="org273629d"><span class="section-number-3">2.6</span> Macからリモートのメールボックスを使う</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 やっと、本来やりたかったMac上の設定に入ります。リモート(と言ってもMacホスト上で動くVMですが)のメールボックスをtrampを使ってアクセスします。基本は: <a href="https://notmuchmail.org/remoteusage/">Using notmuch remotely</a> に従って設定します。人気のmu4eでなくnotmuchを選んだのは、最初からこれを使うつもりだったからです。mu4eはtrampと相性が悪い(動かない)という書き込みを目にしていたので。。。
@@ -442,8 +442,8 @@ exec ssh notmuch notmuch ${ARGS}
 </div>
 </div>
 
-<div id="outline-container-org4cf5199" class="outline-2">
-<h2 id="org4cf5199"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org3f08bcc" class="outline-2">
+<h2 id="org3f08bcc"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回は、Mac上のemacs+notmuch から、Linux VM上に同期したgmailのメールを読み書きする構成を試してみました。タグ付けなどまだ使いこなしていませんが、曲りなりにemacsでメールの読み書きができるようになって満足しています。
