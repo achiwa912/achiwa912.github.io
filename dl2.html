@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org823e094">1. はじめに</a></li>
-<li><a href="#org6923e3c">2. マップ自動生成</a>
+<li><a href="#org26b3966">1. はじめに</a></li>
+<li><a href="#orgb08b196">2. マップ自動生成</a>
 <ul>
-<li><a href="#org774a3dc">2.1. 部屋データ生成</a></li>
-<li><a href="#orge7aa497">2.2. 部屋のフロアへの配置</a></li>
-<li><a href="#org0b03ac3">2.3. 廊下で部屋をつなぐ</a></li>
-<li><a href="#org79e8b24">2.4. ドアの設置</a></li>
+<li><a href="#org62973f5">2.1. 部屋データ生成</a></li>
+<li><a href="#org60580d7">2.2. 部屋のフロアへの配置</a></li>
+<li><a href="#org46b11de">2.3. 廊下で部屋をつなぐ</a></li>
+<li><a href="#org3afaf38">2.4. ドアの設置</a></li>
 </ul>
 </li>
-<li><a href="#org7ed7d70">3. 続き</a></li>
+<li><a href="#org36eb192">3. 続き</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org823e094" class="outline-2">
-<h2 id="org823e094"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org26b3966" class="outline-2">
+<h2 id="org26b3966"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プロジェクトに名前が無いと不便なので、仮称DL - Daemon Lordとしました。dl.pyで作り始めます。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org6923e3c" class="outline-2">
-<h2 id="org6923e3c"><span class="section-number-2">2</span> マップ自動生成</h2>
+<div id="outline-container-orgb08b196" class="outline-2">
+<h2 id="orgb08b196"><span class="section-number-2">2</span> マップ自動生成</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 まずは1フロア分のマップを作ります。以下のような流れになります。
@@ -111,8 +111,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </ol>
 </div>
 
-<div id="outline-container-org774a3dc" class="outline-3">
-<h3 id="org774a3dc"><span class="section-number-3">2.1</span> 部屋データ生成</h3>
+<div id="outline-container-org62973f5" class="outline-3">
+<h3 id="org62973f5"><span class="section-number-3">2.1</span> 部屋データ生成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはRoomクラスを作ります。パラメーターとして左上の座標(x, y)と横縦のサイズ(x_size, y_size)を持ちます。後で計算をさぼるために部屋の中心座標も計算して持っておきます(center_x, center_y)。
@@ -206,8 +206,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orge7aa497" class="outline-3">
-<h3 id="orge7aa497"><span class="section-number-3">2.2</span> 部屋のフロアへの配置</h3>
+<div id="outline-container-org60580d7" class="outline-3">
+<h3 id="org60580d7"><span class="section-number-3">2.2</span> 部屋のフロアへの配置</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 続いて、フロアを岩で埋め尽くして初期化し、そこに部屋を配置していきます。これは一フロアを生成する関数generate_floor()の中で直接やってしまいます。今回のテーマのメイン関数です。
@@ -243,8 +243,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org0b03ac3" class="outline-3">
-<h3 id="org0b03ac3"><span class="section-number-3">2.3</span> 廊下で部屋をつなぐ</h3>
+<div id="outline-container-org46b11de" class="outline-3">
+<h3 id="org46b11de"><span class="section-number-3">2.3</span> 廊下で部屋をつなぐ</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 そして、部屋を廊下でつないでいきます。まずは部屋をy座標 &rarr; x座標の順でソートします。そして部屋をひとつずつリストからpopして、一番近い部屋を探し、互いの中心座標を歩ける床のタイルb'.'で結び、廊下とします。他の廊下や部屋と重なっても気にしません。全ての部屋を一筆書きの要領でつなぎます。
@@ -337,8 +337,8 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
 </div>
 </div>
 
-<div id="outline-container-org79e8b24" class="outline-3">
-<h3 id="org79e8b24"><span class="section-number-3">2.4</span> ドアの設置</h3>
+<div id="outline-container-org3afaf38" class="outline-3">
+<h3 id="org3afaf38"><span class="section-number-3">2.4</span> ドアの設置</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 最後に、place_doors()関数で部屋の入り口にドアを設置します。ドアにはロック無し('+')、あり('*')の2種類を用意し、10%の確率でその部屋のドアをロック付きにします。
@@ -389,8 +389,8 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
 </div>
 </div>
 
-<div id="outline-container-org7ed7d70" class="outline-2">
-<h2 id="org7ed7d70"><span class="section-number-2">3</span> 続き</h2>
+<div id="outline-container-org36eb192" class="outline-2">
+<h2 id="org36eb192"><span class="section-number-2">3</span> 続き</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回はダンジョンフロアの自動生成部分を作ってみました。思いのほか長くなってしまいました。次回はフロアをスクロール画面に表示します。

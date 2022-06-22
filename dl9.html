@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0449437">1. はじめに</a></li>
-<li><a href="#org0e36942">2. 宿と病院</a></li>
-<li><a href="#orgf02f67a">3. 戦闘</a></li>
-<li><a href="#org1cfbc93">4. セーブとロード</a></li>
-<li><a href="#orgf819e8a">5. 次は、、</a></li>
+<li><a href="#org3139536">1. はじめに</a></li>
+<li><a href="#org24fc74d">2. 宿と病院</a></li>
+<li><a href="#org2a8f92c">3. 戦闘</a></li>
+<li><a href="#orgbe4a543">4. セーブとロード</a></li>
+<li><a href="#orga17c129">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0449437" class="outline-2">
-<h2 id="org0449437"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org3139536" class="outline-2">
+<h2 id="org3139536"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの9回目です。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org0e36942" class="outline-2">
-<h2 id="org0e36942"><span class="section-number-2">2</span> 宿と病院</h2>
+<div id="outline-container-org24fc74d" class="outline-2">
+<h2 id="org24fc74d"><span class="section-number-2">2</span> 宿と病院</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 前々回に予告した宿をようやく実装しました。宿は宿泊することでレベルアップします。このレベルアップ判定と処理が思いのほか複雑で、実装に結構苦労しました。'ず'さんの <a href="https://wiliki.zukeran.org/index.cgi?Wizardry1%2FApple%2F%B2%F2%C0%CF%A5%E1%A5%E2">解析ページ</a> にすっかりお世話になりました。
@@ -131,8 +131,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orgf02f67a" class="outline-2">
-<h2 id="orgf02f67a"><span class="section-number-2">3</span> 戦闘</h2>
+<div id="outline-container-org2a8f92c" class="outline-2">
+<h2 id="org2a8f92c"><span class="section-number-2">3</span> 戦闘</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 殴り合いだけでは地味なので、魔法をいくつか実装しました。katino相当で眠らせて倍打攻撃もできます。halito/mahalito/lahalito/dalto/madalto/malikto/tiltowait相当は全て同じメソッドで実現しています。
@@ -184,8 +184,8 @@ mahalito相当を唱えてモンスターを蹴散らしたところです。Mac
 </div>
 </div>
 
-<div id="outline-container-org1cfbc93" class="outline-2">
-<h2 id="org1cfbc93"><span class="section-number-2">4</span> セーブとロード</h2>
+<div id="outline-container-orgbe4a543" class="outline-2">
+<h2 id="orgbe4a543"><span class="section-number-2">4</span> セーブとロード</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 いちおうセーブとロードも実装しました。セーブ(&amp;終了)はEdge of townと迷宮でのキャンプ中にすることができます。ロードはセーブしたところからの再開で、Edge of townでのみすることができます。Edge of townで再開の操作をしても、迷宮でセーブした場合には迷宮のセーブ位置からの再開になります。
@@ -201,8 +201,8 @@ Pythonのpickleがどこまでクラスオブジェクトを保存してくれ�
 </div>
 </div>
 
-<div id="outline-container-orgf819e8a" class="outline-2">
-<h2 id="orgf819e8a"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-orga17c129" class="outline-2">
+<h2 id="orga17c129"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 そろそろ宝箱の実装でしょうか。魔法の実装もたくさん残っています。一通りシステムが完成して、初めてシナリオと、オリジナルのモンスターやアイテムデータを考えることになりそうです。
