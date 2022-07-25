@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Effective Python一人輪読会(Item 52 to 74) &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Effective Python一人輪読会(Item 52 to 74)</h1>
+    <p class="meta">
+<time datetime="2020-08-26T00:00:00-04:00" pubdate>Wed 26 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge8e6966">1. Chapter 7: コンカレンシーと並列実行</a>
+<ul>
+<li><a href="#orge4c0efd">1.1. Item 52: 子プロセスを管理するために subprosess を使え</a></li>
+<li><a href="#orgeff3283">1.2. Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</a></li>
+<li><a href="#org16380b8">1.3. Item 54: スレッド間のデータレースを避けるために Lock を使え</a></li>
+<li><a href="#orgab61b91">1.4. Item 55: スレッド間のワークアサインの調整には Queue を使え</a></li>
+<li><a href="#org94c37f6">1.5. Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</a></li>
+<li><a href="#org194da5f">1.6. Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</a></li>
+<li><a href="#orgd10d5fc">1.7. Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</a></li>
+<li><a href="#orgb7da45c">1.8. Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</a></li>
+<li><a href="#org5ccda06">1.9. Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</a></li>
+<li><a href="#org31add34">1.10. Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</a></li>
+<li><a href="#org457ce09">1.11. Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</a></li>
+<li><a href="#org6fd160e">1.12. Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</a></li>
+<li><a href="#orgd840dd4">1.13. Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</a></li>
+</ul>
+</li>
+<li><a href="#orgc914183">2. Chapter 8: 堅牢性(robustness)と性能</a>
+<ul>
+<li><a href="#org36c2b26">2.1. Item 65: try/except/else/finallyで各ブロックを有効に使え</a></li>
+<li><a href="#org0bd2af7">2.2. Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</a></li>
+<li><a href="#orga5396e2">2.3. Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</a></li>
+<li><a href="#orgc268412">2.4. Item 68: copyregでpickleをreliableにせよ</a></li>
+<li><a href="#org10fe892">2.5. Item 69: 精度が重要なら decimal を使え</a></li>
+<li><a href="#org27159c5">2.6. Item 70: 最適化の前にプロファイルせよ</a></li>
+<li><a href="#org6d10a9f">2.7. Item 71: 生産者-消費者キューにはdequeを使え</a></li>
+<li><a href="#orgb732b86">2.8. Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</a></li>
+<li><a href="#orgdc60a32">2.9. Item 73: 優先度キューのために heapq をどう使うかを知れ</a></li>
+<li><a href="#org9fcb193">2.10. Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge8e6966" class="outline-2">
+<h2 id="orge8e6966"><span class="section-number-2">1.</span> Chapter 7: コンカレンシーと並列実行</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge4c0efd" class="outline-3">
+<h3 id="orge4c0efd"><span class="section-number-3">1.1.</span> Item 52: 子プロセスを管理するために subprosess を使え</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Pythonから子プロセスを呼び出すシンプルな方法。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import subprocess
+
+result = subprocess.run(
+    ['echo', 'Hello from the child!'],
+    capture_output=True,  # stdout/stderrをキャプチャーする
+    encoding='utf-8')
+
+result.check_returncode()
+print(result.stdout)
+&gt;&gt;&gt;
+Hello from the child!
+</pre>
+</div>
+<p>
+Python 3.5で導入された <code>subprocess.run</code> は子プロセスの実行完了を待ちます。<a href="https://docs.python.org/3/library/subprocess.html">公式サイト</a>によると、基本的にはこれを使うのが推奨だそうです。
+</p>
+<blockquote>
+<p>
+subprocess.run(args, *, stdin=None, input=None, stdout=None, stderr=None, capture_output=False, shell=False, cwd=None, timeout=None, check=False, encoding=None, errors=None, text=None, env=None, universal_newlines=None, **other_popen_kwargs)
+</p>
+</blockquote>
+<p>
+タイムアウトも指定できそうです。
+</p>
+
+<p>
+次は、 <code>subprocess.Popen</code> を使ってブロックされずに子プロセスを10個起動したあと、 <code>&lt;process&gt;.communicate</code> で実行完了した各子プロセスを終了(terminate)させる処理です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import subprocess
+import time
+
+start = time.time()
+sleep_procs = []
+for _ in range(10):
+    proc = subprocess.Popen(['sleep', '1'])
+    sleep_procs.append(proc)
+
+time.sleep(0.3)
+
+for proc in sleep_procs:
+    proc.communicate()
+
+end = time.time()
+delta = end - start
+print(f'Finished in {delta:.3} seconds')
+&gt;&gt;&gt;
+Finished in 1.02 seconds
+</pre>
+</div>
+<p>
+並列に実行するため10秒かからず、1秒強で終わっています。
+</p>
+
+<p>
+次の例は、外部コマンドの openssl にランダムな10バイトのバイト列を暗号化させる処理です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import subprocess
+import os
+def run_encrypt(data):
+    env = os.environ.copy()
+    env['password'] = 'start123'
+    proc = subprocess.Popen(
+	['openssl', 'enc', '-des3', '-pass', 'env:password'],
+	env=env,
+	stdin=subprocess.PIPE,
+	stdout=subprocess.PIPE)
+    proc.stdin.write(data)
+    proc.stdin.flush()
+    return proc
+
+procs = []
+for _ in range(3):
+    data = os.urandom(10)  # ランダムな10バイトを生成
+    proc = run_encrypt(data)
+    procs.append(proc)
+
+for proc in procs:
+    out, _ = proc.communicate()
+    print(out[-10:])  # 後ろから10バイトをスライス
+&gt;&gt;&gt;
+b'\x0f\xbc4\x94O\x93\xa5G\xbe\xe3'
+b'm\xb3\x89\r\xc9pP7\xdc\xeb'
+b"\xda\x16z N=\x850v'"
+</pre>
+</div>
+<p>
+結果は、ランダムなバイト列を暗号化したバイト列なので、意味は特にありません。
+</p>
+
+<p>
+複数の外部コマンドを呼び出し、それらをパイプでつなぐこともできます。次の例で、 <code>run_hash</code> は <code>openssl</code> を使って入力バイト列のハッシュを求める関数です。 <code>for</code> 文以下では、100バイトのランダムな文字列を生成し、それからハッシュを求めることを3つのサブプロセスで並列実行します。 <code>run_hash</code> 関数呼び出しの引数に <code>encrypt_proc.stdout</code> を指定することで、これらの処理をパイプでつなげています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def run_hash(input_stdin):
+    return subprocess.Popen(
+	['openssl', 'dgst', '-whirlpool', '-binary'],
+	stdin=input_stdin,  # stdinを指定
+	stdout=subprocess.PIPE)
+
+encrypt_procs = []
+hash_procs = []
+for _ in range(3):
+    data = os.urandom(100)  # ランダムな100バイトを生成
+
+    encrypt_proc = run_encrypt(data)
+    encrypt_procs.append(encrypt_proc)
+    hash_proc = run_hash(encrypt_proc.stdout)  # stdoutを指定
+    hash_procs.append(hash_proc)
+
+    encrypt_proc.stdout.close()  # 閉じてしまってよい???
+    encrypt_proc.stdout = None
+
+for proc in encrypt_procs:
+    proc.communicate()
+    assert proc.returncode == 0
+
+for proc in hash_procs:
+    out, _ = proc.communicate()
+    print(out[-10:])
+    assert proc.returncode == 0
+&gt;&gt;&gt;
+'\x99\xd8*\x15~\x88\xd4\x89\x1c3'
+b'\x00\x87\xd3\x93Ti\x12v\x01\xaa'
+b'\x1b\x85\xdf\x94z\x96\xd3\xb0\x91\x9a'
+</pre>
+</div>
+<p>
+結果の文字列に特に意味はありません。
+</p>
+
+<p>
+子プロセスが終わらない場合が気になるなら、タイムアウト値を指定することも出来ます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import subprocess
+proc = subprocess.Popen(['sleep', '10'])
+try:
+    proc.communicate(timeout=0.1)
+except subprocess.TimeoutExpired:
+    proc.terminate()
+    proc.wait()
+
+print('Exist status', proc.poll())
+&gt;&gt;&gt;
+Exist status -15
+</pre>
+</div>
+<p>
+タイムアウト例外が発生したら子プロセスを終わらせます。 <code>proc.poll()</code> でexit codeが得られるようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeff3283" class="outline-3">
+<h3 id="orgeff3283"><span class="section-number-3">1.2.</span> Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+普通使うPythonはCPythonですが、CPythonはglobal interpreter lock (GIL)のために複数コアでの並列実行ができません。知りませんでした。衝撃的な事実。。。I/Oによる待ちが無ければ複数スレッド使っても実行時間は短縮されません。
+</p>
+
+<p>
+更に、ネットワーク等の非同期I/Oでは、より効率の良いasyncio(後で出てきます)を使うことになるため、Pythonでのスレッドの出番はブロックする(ie, 非同期システムコールが無い)ディスクI/Oくらいしか無さそうです。。。というのは言い過ぎでした。キュー等でも使えますね。
+</p>
+
+<p>
+Pythonでのスレッドの使い方例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import select
+import socket
+import time
+from threading import Thread
+def slow_systemcall():
+    select.select([socket.socket()],[],[],0.1)
+
+start = time.time()
+threads = []
+for _ in range(5):
+    thread = Thread(target=slow_systemcall)
+    thread.start()
+    threads.append(thread)
+
+for thread in threads:
+    thread.join()
+
+end = time.time()
+delta = end - start
+print(f'Took {delta:.3f} seconds')
+&gt;&gt;&gt;
+Took 0.103 seconds
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org16380b8" class="outline-3">
+<h3 id="org16380b8"><span class="section-number-3">1.3.</span> Item 54: スレッド間のデータレースを避けるために Lock を使え</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+単一コアで動くマルチスレッドにもロックは必要という話。
+Pythonでmutexを用意する例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from threading import Lock
+class LockingCounter:
+    def __init__(self):
+	self.lock = Lock()
+	self.count = 0  # ロック対象
+    def increment(self, offset):
+	with self.lock:
+	    self.count += offset
+</pre>
+</div>
+<p>
+<code>Lock</code> クラスを使うと <code>with</code> でクリティカルリージョン(ie, ロック範囲)の指定ができるのが便利ですね。
+</p>
+
+<p>
+おさらいです。mutexとbinary semaphoreは一見とても似ていますが、用途が違います。
+</p>
+<ul class="org-ul">
+<li>mutexは資源の排他(ロック)のため</li>
+<li>binary semaphoreはイベントが起きたことを通知(シグナル)するため</li>
+</ul>
+<p>
+スピンロックと違って、両方とも待ちスレッドはスリープします。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgab61b91" class="outline-3">
+<h3 id="orgab61b91"><span class="section-number-3">1.4.</span> Item 55: スレッド間のワークアサインの調整には Queue を使え</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+<code>Queue</code> クラスはパイプラインを実装するのに便利です。 <code>Queue</code> の getメソッドは新データが来るまでブロックするため、自前でbusyウエイトを実装する必要がありません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from threading import Thread
+from queue import Queue
+
+my_queue = Queue()  # キューのクラスが用意されています
+
+def consumer():
+    print('Consumer waiting')
+    my_queue.get()  # ブロックされます
+    print('Consumer done')
+
+thread = Thread(target=consumer)
+thread.start()
+
+print('Producer putting')
+my_queue.put(object())
+print('Producer done')
+thread.join()
+&gt;&gt;&gt;
+Consumer waiting  # アイテム(object)が入ってくるまで待ちます
+Producer putting
+Producer done
+Consumer done
+</pre>
+</div>
+<p>
+最初に consumer がキューに来た後、producerが <code>put</code> するまで consumer は動き出さないことがわかります。。
+</p>
+
+<p>
+キューを作るときにキューバッファのサイズを指定することもできます。いくつのconsumerがキューに入れるかを示し、それ以上のconsumerが来ても <code>put</code> でブロックします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">from threading import Thread
+from queue import Queue
+import time
+
+my_queue = Queue(1)  # バッファサイズが1
+
+def consumer():
+    time.sleep(0.1)  # まず0.1秒スリープする
+    my_queue.get()
+    print('Consumer got 1')
+    my_queue.get()
+    print('Consumer got 2')
+    print('Consumer done')
+
+thread = Thread(target=consumer)
+thread.start()
+
+my_queue.put(object())  # producerは立て続けに二つputしようとする
+print('Producer put 1')
+my_queue.put(object())  # ここでブロックする
+print('Producer put 2')
+print('Producer done')
+thread.join()
+&gt;&gt;&gt;
+Producer put 1  # 最初にproducerがputするのは前回と同じ
+Consumer got 1  # 0.1秒待ってからgetする
+Producer put 2  # consumerがgetして、やっとputから戻る
+Producer done
+Consumer got 2
+Consumer done
+</pre>
+</div>
+<p>
+この例でのポイントは put 2のメッセージが got 1の後に来ているところです。consumerスレッドはスタートしてからまず0.1秒スリープしますが、その間にメインスレッドのproducerはputできずにブロックされていることがわかります。
+</p>
+
+<p>
+次に、 <code>Queue.task_done()</code> はそのキューに対してそのタスクが完了したことを宣言します。全てのタスクの完了を待つにはそのキューに対して <code>Queue.join()</code> を呼べばよく、それまでブロックされます。これはスレッドのjoinとは別なことに注意です。
+</p>
+
+<p>
+キューのタスクが完了するというのは、そのキューからgetしてきた仕事(アイテム)を最後の1個まで、全て処理し終わったという意味です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from threading import Thread
+from queue import Queue
+import time
+
+in_queue = Queue()
+def consumer():
+    print('Consumer waiting')
+    work = in_queue.get()
+    print('Consumer working')
+    time.sleep(1)  # この例でのタスクはスリープすること
+    print('Consumer done')
+    in_queue.task_done()  # タスク完了を宣言する
+
+thread = Thread(target=consumer)
+thread.start()
+
+print('Producer putting')
+in_queue.put(object())
+print('Producer waiting')
+in_queue.join()  # in_queueの完了(=task_doneが呼ばれる)までブロックされる
+print('Producer done')
+thread.join()
+&gt;&gt;&gt;
+Consumer waiting
+Producer putting
+Producer waiting
+Consumer working
+# ここで1秒スリープする
+Consumer done
+Producer done
+</pre>
+</div>
+<p>
+この例でのポイントはもちろん、consumer doneまでproducer doneが出ないところです。
+</p>
+
+<p>
+さて、これらの知識を使ってパイプラインを実装します。パイプラインはdownload, resize, uploadの3ステージからなるとします。写真をカメラからダウンロードして、サイズを変えてまたアップロードする場合を想定しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from threading import Thread
+from queue import Queue
+import time
+
+def download(item):
+    pass
+def resize(item):
+    pass
+def upload(item):
+    pass
+</pre>
+</div>
+
+<p>
+<code>Queue</code> を継承した <code>ClosableQueue</code> を定義します。これはメソッド <code>close</code> を持ち、キューにこれ以降の入力が無いことを示す sentinel を入れます。sentinel は歩哨・見張りの意味で、終わりの印です。<a href="./effective1.html">Item 10</a>で出てきましたね。
+</p>
+
+<p>
+<code>__iter__</code> を準備したことで、このキューを iterate することができます。 <code>get()</code> でキューから写真を取り出し、sentinel以外ならyieldして写真を返します。キューに何も入っていなかったら <code>get()</code> がブロックします。キューから取ってきたアイテムが写真でなくsentinelだったら、終わりの印なのでリターンしています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class ClosableQueue(Queue):
+    SENTINEL = object()
+    def close(self):
+	self.put(self.SENTINEL)
+    def __iter__(self):
+	while(True):
+	    item = self.get()  # 写真を一つ取り出す。無かったらブロックする
+	    try:
+		if item is self.SENTINEL:
+		    return
+		yield item  # まだfinallyは実行しない
+	    finally:
+		self.task_done()  # この写真の処理が完了
+</pre>
+</div>
+<p>
+ここのtry - finallyの使い方に注目します。exceptで例外処理を行わないtry - finallyは、tryブロックの中で何が起こったとしてもfinallyブロックで取得しているロックを解放する(後始末する)ようなユースケースで使うようです。
+</p>
+
+<p>
+この例ではロックは使っていませんが、Queue.task_doneをロック解放、Queue.joinをロック解放待ちのアナロジーとして考えると、似たユースケースと言えそうです。
+</p>
+
+<p>
+<code>StoppableWorker</code> は <code>ClosableQueue</code> に対応した新ワーカースレッドです。スレッドは写真ではなくステージ(で作業する人)に対応します。 <code>in_queue</code> から写真(<code>item</code>)を取り出し、処理をして、処理後の写真(<code>result</code>)を <code>out_queue</code> に入れます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class StoppableWorker(Thread):
+    def __init__(self, func, in_queue, out_queue):
+	super().__init__()
+	self.func = func  # やる作業
+	self.in_queue = in_queue
+	self.out_queue = out_queue
+
+    def run(self):
+	for item in self.in_queue:  # queueをiterateする
+	    result = self.func(item)
+	    self.out_queue.put(result)
+</pre>
+</div>
+
+<p>
+キューとスレッドを用意します。キューとキューの間にワーカー(スレッド)がいるイメージですね。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">download_queue = ClosableQueue()
+resize_queue = ClosableQueue()
+upload_queue = ClosableQueue()
+done_queue = ClosableQueue()
+threads = [
+    StoppableWorker(download, download_queue, resize_queue),
+    StoppableWorker(resize, resize_queue, upload_queue),
+    StoppableWorker(upload, upload_queue, done_queue),
+    ]
+</pre>
+</div>
+
+<p>
+最後にこれらをまとめます。SENTINELを投入する <code>Queue.close()</code> はここで呼んでいるのですね。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">for thread in threads:
+    thread.start()
+
+for _ in range(1000):
+    download_queue.put(object())  # object()=写真を入れる
+
+download_queue.close()  # SENTINEL投入
+download_queue.join()  # task_done()が呼ばれるまでここでブロックされる
+resize_queue.close()  # SENTINEL投入
+resize_queue.join()  # task_done()が呼ばれるまでここでブロックされる
+upload_queue.close()  # SENTINEL投入
+upload_queue.join()  # task_done()が呼ばれるまでここでブロックされる
+print(done_queue.qsize(), 'items finished')
+for thread in threads:
+    thread.join()
+&gt;&gt;&gt;
+1000 items finished
+</pre>
+</div>
+
+<p>
+あれ、まだ終わりじゃありませんでした。。。次は、ステージ毎に複数のワーカースレッドを用意してI/Oの並列度を上げることを考えます。
+</p>
+
+<p>
+まず、複数スレッドをスタート、ストップさせるヘルパー関数を用意します。 <code>start_threads</code> 関数では引数 <code>count</code> の数だけ <code>StoppableWorker</code> スレッドを作ってスタートし、そのリストを返します。 <code>stop_threads</code> 関数ではキューの <code>close</code> を呼んでsentinelを投入し、キューの <code>join</code> でタスクの完了を待ってからスレッドを完了させます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def start_threads(count, *args):
+    threads = [StoppableWorker(*args) for _ in range(count)]
+    for thread in threads:
+	thread.start()  # スレッドをスタートさせる
+    return threads
+
+def stop_threads(closable_queue, threads):
+    for _ in threads:
+	closable_queue.close()  # SENTINEL投入
+    closable_queue.join()  # 全てのtask_done()を待ち、キューをクローズする
+    for thread in threads:
+	thread.join()  # 全てのスレッドの完了を待つ
+</pre>
+</div>
+
+<p>
+最後にこれらをまとめます。ダウンロードスレッドは3多重、リサイズは4多重、アップロードは5多重を指定してスレッドを作成しています。後は1000個の写真を投入し、スレッドを1種類ずつ止めていきます。ポイントは、 <code>stop_threads</code> はsentinelを投入し、それが出てくるまでブロックするところでしょうか。このお陰で、後片付けが中途半端な状態で次の <code>stop_threads</code> に行くことはありません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">download_queue = ClosableQueue()
+resize_queue = ClosableQueue()
+upload_queue = ClosableQueue()
+done_queue = ClosableQueue()
+
+download_threads = start_threads(
+    3, download, download_queue, resize_queue)  # ダウンロードは3多重
+resize_threads = start_threads(
+    4, resize, resize_queue, upload_queue)  # リサイズは4多重
+upload_threads = start_threads(
+    5, upload, upload_queue, done_queue)  # アップロードは5多重
+
+for _ in range(1000):  # 1000個(枚)の写真を投入
+    download_queue.put(object())
+
+stop_threads(download_queue, download_threads)  # 完了待ちする
+stop_threads(resize_queue, resize_threads)
+stop_threads(upload_queue, upload_threads)
+
+print(done_queue.qsize(), 'items finished')
+&gt;&gt;&gt;
+1000 items finished
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94c37f6" class="outline-3">
+<h3 id="org94c37f6"><span class="section-number-3">1.5.</span> Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+あるワークを、コンカレントに実行できるものにばらまくことを fan-out、ばらまいたものを回収することを fan-inと言うそうです。Pythonにはこれらを実現するツールがたくさんあって、それぞれトレードオフがあります。次の節以降で説明していきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org194da5f" class="outline-3">
+<h3 id="org194da5f"><span class="section-number-3">1.6.</span> Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+ダイナミックにfan-out/fan-inを繰り返すような用途や、非常に多くにfan-outするケースにはスレッドは合いません。
+</p>
+<ul class="org-ul">
+<li>1スレッドあたり8MBのメモリを消費する</li>
+<li>スレッドの作成、開始、ロックなどでオーバーヘッドが大きい</li>
+<li>複雑になりデバッグが大変</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd10d5fc" class="outline-3">
+<h3 id="orgd10d5fc"><span class="section-number-3">1.7.</span> Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Queueを使うとスレッド数はワーカーの数に限定されるので、上限を定めないスレッドよりはマシですが、仕組みが複雑なことと、仕様変更によっては大きなリファクタリングが必要になるため、よい方法とは言えません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb7da45c" class="outline-3">
+<h3 id="orgb7da45c"><span class="section-number-3">1.8.</span> Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+スレッドプールはなかなか良さそうです。例外を呼び元に伝搬する仕組みもあります。ただ、 <code>max_workers</code> をあらかじめ決めておく必要があることがネックです
+</p>
+
+<p>
+<a href="https://docs.python.org/3/library/concurrent.futures.html">公式サイト</a>から実装例です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import concurrent.futures
+import urllib.request
+
+URLS = ['http://www.foxnews.com/',
+	'http://www.cnn.com/',
+	'http://europe.wsj.com/',
+	'http://www.bbc.co.uk/',
+	'http://some-made-up-domain.com/']
+
+# Retrieve a single page and report the URL and contents
+def load_url(url, timeout):
+    with urllib.request.urlopen(url, timeout=timeout) as conn:
+	return conn.read()
+
+# We can use a with statement to ensure threads are cleaned up promptly
+with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+    # {future: url, ...}の辞書がfuture_to_urlに入ります。
+    # futureはそのcallableの実行を表すオブジェクトです。
+    # ...この場合はワーカースレッドですね。
+    future_to_url = {executor.submit(load_url, url, 60): url for url in URLS}
+    # as_completedはfuture_to_urlのfuturesの完了(またはキャンセル)した
+    # インスタンスのiteratorを返します。それをiterateしてfuture
+    # = スレッドを得ます
+    for future in concurrent.futures.as_completed(future_to_url):
+	url = future_to_url[future]
+	try:
+	    data = future.result()
+	except Exception as exc:
+	    print('%r generated an exception: %s' % (url, exc))
+	else:
+	    print('%r page is %d bytes' % (url, len(data)))
+&gt;&gt;&gt;
+'http://www.foxnews.com/' page is 323006 bytes
+'http://www.cnn.com/' page is 1131345 bytes
+'http://europe.wsj.com/' generated an exception: HTTP Error 404: Not Found
+'http://some-made-up-domain.com/' page is 64668 bytes
+'http://www.bbc.co.uk/' page is 300118 bytes
+</pre>
+</div>
+<p>
+上の例で、 <code>ThreadPoolExecutor</code> によるスレッドプールを <code>executor</code> としています。次の行で <code>URLS</code> リストに入っているURLに対して、複数のスレッドで関数 <code>load_url</code> を実行するようにfan-outしています。そして次の行の <code>for</code> 文で完了したスレッドを刈り取っています(fan-in)。スレッド内で発生した例外は、呼び元で <code>future.result()</code> を呼んで結果を刈り取る時に伝わるようです。意外と簡単に使えるのですね。
+</p>
+
+<p>
+実際の実行結果で例外が発生したのはsome-made-up-domainではなくeurope.wsj.comの方だったのが笑えます。ブラウザーで見ると、前者はドメインが売りに出されており、後者はwsj.comにフォワードされました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5ccda06" class="outline-3">
+<h3 id="org5ccda06"><span class="section-number-3">1.9.</span> Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+<a href="https://docs.python.org/3/library/asyncio.html">Asyncronus I/O</a>です。これは1スレッド内で、スレッドとは異なる仕組みを使ってコンテキストスイッチを行います。スレッドはOSカーネルの仕組みを使って、プリエンプティブにコンテキストスイッチしますが、Async I/Oでは長い待ちが発生する時(eg, ネットワーク待ち)に自発的に処理の実行を明け渡します。Async I/OはCPUネックの処理では効果がありません。Async I/Oの仕組みはスレッドよりもずっと軽く、数千のコンテキストをコンカレントに処理することができます。
+</p>
+
+<p>
+PythonのAsynchronous I/Oについては、Real Pythonの<a href="https://realpython.com/async-io-python/">この記事</a>が最新(Python 3.7)の情報を元に、わかりやすく詳細に解説しています。PythonのAsynchronous I/Oの仕組みはまだ整備されている途中であり、ネット上には古い情報が多く混乱しがちですが、この記事は情報を整理する意味でもお勧めです。
+</p>
+
+<p>
+<a href="./effective2.html">Item 33</a>にてジェネレーターとコルーチンについて書きました。コルーチンはジェネレーターの <code>yield</code> 等の仕組みを使って、ルーチンの途中で他のコルーチンにコンテキストスイッチを行い、後で再び中断した行から処理を再開することができます。
+</p>
+
+<p>
+最新のPythonではジェネレーターは表に出ず、新たに導入した <code>async/await</code> のシンタックスを使ってコルーチンを使います。Pythonでは、 <code>async def</code> で定義された関数がコルーチンです。コルーチン内の <code>await</code> 文でコンテキストスイッチを行います。ジェネレーターのyield文がそうであったように、コルーチンではawait文のところから、以前のコンテキストのまま処理が再開されます。(実は、 <code>await</code> は <code>yield from</code> と等価だそうです)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import asyncio
+async def some_coroutine():
+    ...
+    await slow_io_disk_read()
+    ...
+    await slow_io_network_transfer()
+    ...
+</pre>
+</div>
+<p>
+上記のコルーチンの例では、 <code>await slow_io_disk_read(), await slow_io_network_transfer()</code> で待ちが発生し、別のコルーチンにコンテキストスイッチします。
+</p>
+
+<p>
+以下にコルーチンの基本的な実装パターンを示します。(Real Pythonの記事より)
+</p>
+<div class="org-src-container">
+<pre class="src src-python">async def count():
+    print("One")
+    await asyncio.sleep(1)
+    print("Two")
+
+async def main():
+    # コルーチンcount()を3つ実行する
+    await asyncio.gather(count(), count(), count())
+
+if __name__ == "__main__":
+    import time
+    s = time.perf_counter()
+    # コルーチンメイン関数実行(完了を待つ)
+    asyncio.run(main())
+    elapsed = time.perf_counter() - s
+    print(f"{__file__} executed in {elapsed:0.2f} seconds.")
+</pre>
+</div>
+<p>
+<code>asyncio.run</code> でコルーチンの <code>main</code> 関数を起動し、 <code>main</code> の <code>await asyncio.gather</code> からコルーチン <code>count</code> を3つ起動〜回収します。 <code>asyncio.run</code> はこれらが全て実行完了するまでブロックされて待ちます。
+</p>
+
+<p>
+コルーチンの <code>main</code> を用意し、そこから個別のコルーチンを複数起動するやり方です。
+</p>
+
+<p>
+<code>asyncio.run</code> 関数はPython 3.7で導入され、コルーチンを起動する標準の方法になりました。 <code>run</code> 1行でイベントループを生成、タスクを起動〜完了〜回収、イベントループのクローズまで行います。以下の古い書式と同じ事をします。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">loop = asyncio.get_event_loop()
+try:
+    loop.run_until_complete(main())
+finally:
+    loop.close()
+</pre>
+</div>
+<p>
+<code>run</code> のお陰でイベントループを意識する必要が無く、使いやすくなりました。(<code>main</code> 関数も隠蔽してくれるともっとすっきりする気がしますが)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org31add34" class="outline-3">
+<h3 id="org31add34"><span class="section-number-3">1.10.</span> Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+主な作業
+</p>
+<ul class="org-ul">
+<li>I/O待ちの発生する箇所に <code>await</code> を付ける。</li>
+<li>待ちの発生する箇所を含む関数やfor, with等のブロックに <code>async</code> を付ける</li>
+<li>関数名、クラス名を修正する</li>
+<li>asyncioのビルトインモジュールを使う</li>
+<li>スレッドの仕組みは全て置き換える</li>
+</ul>
+<p>
+というところでしょうか。まだasyncioに未対応のモジュールもあることに注意。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org457ce09" class="outline-3">
+<h3 id="org457ce09"><span class="section-number-3">1.11.</span> Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+asyncioへの移行はblocking I/Oには効果がありません。例えばディスクからリードするシステムコール <code>read</code> は完了までスリープせずにブロックされるため、別タスクにコンテキストスイッチをする機会がありません。blocking I/Oにはスレッドが有効です。
+</p>
+
+<p>
+用途によってasyncioとスレッドを使い分ける(混在させる)ことが必要です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6fd160e" class="outline-3">
+<h3 id="org6fd160e"><span class="section-number-3">1.12.</span> Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+以下の例のように、コルーチン用のイベントループ内でblocking I/Oをするとよくありません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">async def run_tasks(handles, interval, output_path):
+    with open(output_path, 'wb') as output:
+	async def write_async(data):
+	    output.write(data)  # ブロックされるI/O
+	tasks = []
+	for handle in handles:
+	    coro = tail_async(handle, interval, write_async)
+	    task = asyncio.create_task(coro)
+	    tasks.append(task)
+	await asyncio.gather(*tasks)
+</pre>
+</div>
+
+<p>
+解決策として、ファイル操作を別スレッドとして独立させます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">async def run_fully_async(handles, interval, output_path):
+    async with WriteThread(output_path) as output:
+	tasks = []
+	for handle in handles:
+	    coro = tail_async(handle, interval, output.write)
+	    task = asyncio.create_task(coro)
+	    tasks.append(task)
+	await asyncio.gather(*tasks)
+</pre>
+</div>
+<p>
+そしてそのために、スレッドのクラスを <code>async with</code> 文で扱えるように <code>aenter, aexit</code> を用意します(<a href="https://www.python.org/dev/peps/pep-0492/">PEP 492</a>)。このスレッドの使い方は便利そうです。
+</p>
+
+<p>
+ところで、ここではファイル操作系をスレッドとして独立させていますが、<a href="https://github.com/Tinche/aiofiles">aiofiles</a>を使えば、ファイル操作をasync化できそうです。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">async with aiofiles.open('filename', mode='r') as f:
+    contents = await f.read()
+print(contents)
+'My file contents'
+</pre>
+</div>
+<p>
+aiofilesのドキュメントを見ると、ファイル操作を別のスレッドプールにdelegateするとあります。
+</p>
+<blockquote>
+<p>
+aiofiles helps with this by introducing asynchronous versions of files that support delegating operations to a separate thread pool.
+</p>
+</blockquote>
+<p>
+こういうライブラリを使うのと、自分でスレッドを作るのと、どちらがいいのでしょうね。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd840dd4" class="outline-3">
+<h3 id="orgd840dd4"><span class="section-number-3">1.13.</span> Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+Pythonのglobal interpreter lock (GIL)のせいで、マルチコアを使った真の並行動作は簡単には実現できません。Cエクステンションは高速化には適していますが、大きなコストがかかります。通常、遅くなる原因は多くの場所にあり、一部だけエクステンションとして抜き出して高速化する訳にはいかないようです。
+</p>
+
+<p>
+<code>concurrent.futures</code> ビルトインモジュール経由でアクセスできる <code>multiprocessing</code> ビルトインモジュールが使えるかもしれません。利用する側は <code>ThreadPoolExecutor</code> の代わりに <code>ProcessPoolExecutor</code> で置き換えるだけでよいです。
+</p>
+
+<p>
+ただしこれは、自プロセスと子プロセスの間のデータのやりとりでpickleを使ったバイナリエンコード・デコードが必要で、オーバーヘッドが馬鹿になりません。よって <code>ProcessPoolExecutor</code> で効果があるのは、プロセス間のデータ転送量及び頻度が少ない場合に限られます。
+</p>
+
+<p>
+<code>multiprocessing</code> は共有メモリやプロセス間のロック、キュー、プロキシーといったより高度な手段を提供してはいますがが、これらは非常に複雑だそうです。
+</p>
+
+<p>
+こんなところでPythonの限界が見えてきてしまいました。。。(インタプリター言語に何を求めているのか、という話もありますが)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc914183" class="outline-2">
+<h2 id="orgc914183"><span class="section-number-2">2.</span> Chapter 8: 堅牢性(robustness)と性能</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org36c2b26" class="outline-3">
+<h3 id="org36c2b26"><span class="section-number-3">2.1.</span> Item 65: try/except/else/finallyで各ブロックを有効に使え</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<code>try/except/else/finally</code> ブロックを整理します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def some_func():
+    # 例えばファイルをオープンする処理
+    # ここでの例外はすぐに呼び元に上がる
+    try:
+	# 例外が上がる可能性のあるオペレーション
+    except ZeroDivisionError as e:
+	# 想定した例外が上がった場合
+    else:
+	# tryで例外が上がらなかった場合
+	# ここでの例外は呼び元に伝搬する
+    finally:
+	# (tryに来ていたら)関数がリターンする前に必ず実行される
+	# 例えばファイルのクローズ処理
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0bd2af7" class="outline-3">
+<h3 id="org0bd2af7"><span class="section-number-3">2.2.</span> Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<code>@contextmanager</code> デコレーターで修飾した関数はコンテキストマネージャーとなり、 <code>with</code> ステートメントで使えるようになります。正式に <code>__enter__</code>, <code>__exit__</code> を準備するよりも簡単です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from contextlib import contextmanager
+import logging
+
+@contextmanager
+def debug_logging(level):
+    logger = logging.getLogger()
+    old_level = logger.getEffectiveLevel()
+    logger.setLevel(level)  # 一時的に指定ログレベルを設定
+    try:
+	yield
+    finally:
+	logger.setLevel(old_level)  # ログレベルを戻す
+</pre>
+</div>
+<p>
+上記関数では(一時的に) <code>level</code> にデバッグレベルを変更します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def my_function():
+    logging.debug('Some debug data')  # DEBUG
+    logging.error('Error log here')  # ERROR 
+    logging.debug('More debug data')  # DEBUG
+
+with debug_logging(logging.DEBUG):  # DEBUGレベルのブロック
+    print('* Inside:')
+    my_function()
+
+print('* After:')
+my_function()
+&gt;&gt;&gt;
+​* Inside:
+DEBUG:root:Some debug data  # DEBUGレベルが表示されている
+ERROR:root:Error log here
+DEBUG:root:More debug data  # DEBUGレベルが表示されている
+​* After:
+ERROR:root:Error log here
+</pre>
+</div>
+<p>
+上記 <code>with</code> ブロックはデバッグレベルをDEBUGにします。出力結果から、実際にwithブロックでのみDEBUGレベルのメッセージ出力されていることがわかります。
+</p>
+
+<p>
+下の例で示すように、 <code>with</code> ステートメントに渡されるコンテキストマネージャーは <code>yield</code> でオブジェクトを返すことができ、 <code>as</code> でローカル変数に入ります。これによって、 <code>with</code> ブロック内のコードがそのコンテキストと直接interactできます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from contextlib import contextmanager
+import logging
+
+@contextmanager
+def log_level(level, name):
+    logger = logging.getLogger(name)
+    old_level = logger.getEffectiveLevel()
+    logger.setLevel(level)
+    try:
+	yield logger  # コンテキストloggerを返す
+    finally:
+	logger.setLevel(old_level)
+
+logging.basicConfig()
+with log_level(logging.DEBUG, 'my-log') as logger:
+    logger.debug(f'This is a message for {logger.name}!')
+    logging.debug('This will not print')
+&gt;&gt;&gt;
+DEBUG:my-log:This is a message for my-log!
+</pre>
+</div>
+<p>
+<code>with</code> ブロック内で <code>logger.debug</code> のメッセージは表示されましたが、 <code>logging.debug</code> は表示されていません。なお、本には載っていませんが、 <code>logging.basicConfig()</code> を呼ばないと <code>logger.debug</code> の方も表示されませんでした。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5396e2" class="outline-3">
+<h3 id="orga5396e2"><span class="section-number-3">2.3.</span> Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+timeはUTCとローカルしか扱えないため、datatimeを使うべきです。pytzというコミュニティーが作っているライブラリを使うと世界中の時間が使えます。datetimeでは一度UTCに変換してから時間操作を行います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from datetime import datetime, timezone
+import pytz
+time_format = '%Y-%m-%d %H:%M:%S'
+arrival_bos = '2020-08-29 10:01:00'
+bos_dt_native = datetime.strptime(arrival_bos, time_format)
+edt = pytz.timezone('US/Eastern')
+bos_dt = edt.localize(bos_dt_native)  # datetime形式のボストン時間
+utc_dt = pytz.utc.normalize(bos_dt.astimezone(pytz.utc))  # UTCに変換
+print(utc_dt)
+&gt;&gt;&gt;
+2020-08-29 14:01:00+00:00
+</pre>
+</div>
+
+<p>
+UTCを日本時間に変換します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">jst = pytz.timezone('Asia/Tokyo')
+tokyo_dt = jst.normalize(utc_dt.astimezone(jst))  # JSTに変換
+print(tokyo_dt)
+&gt;&gt;&gt;
+2020-08-29 23:01:00+09:00
+</pre>
+</div>
+<p>
+このインタフェースだと、いったんUTCに変換しなくてもいいような???
+単なるタイムゾーン間のコンバートならば、それでもいいかもしれません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc268412" class="outline-3">
+<h3 id="orgc268412"><span class="section-number-3">2.4.</span> Item 68: copyregでpickleをreliableにせよ</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Pythonでデータをシリアライズする場合、
+</p>
+<ul class="org-ul">
+<li>Python以外とデータ共有する場合はjson, xmlを使う</li>
+<li>Pythonとデータ共有する場合はpickleを使う</li>
+</ul>
+<p>
+ことになると思います。
+</p>
+
+<p>
+pickleにcopyregを組み合わせると、以下のような場合に対応できるようになります。
+</p>
+<ul class="org-ul">
+<li>pickleしたクラスのメンバーアトリビュートが追加された</li>
+<li>pickleしたクラスのメンバーアトリビュートが削除された</li>
+<li>pickleしたクラス名が変更になった</li>
+</ul>
+
+<p>
+copyregは、pickle及びunpickleする時に呼ばれる関数を指定することで、そこでクラスのアトリビュート追加・削除の面倒を見ます。また、copyregを使うとクラス名がシリアライズされたデータに含まれないようになるため、クラス名の変更に対応できます。
+</p>
+
+<p>
+以下の例ではGameStateクラスをpickleすることを考えます。copyregを使うためのヘルパー関数を、pickle用とunpickle用の二つ用意します。pickle用の <code>pickle_game_state</code> はunpickle用の <code>unpickle_game_state</code> を引数の <code>kwargs</code> とセットで返します。このためcopyregにはpickle用の関数(とpickleするクラス名)だけを登録すればよいです。 <code>copyreg.pickle</code> で pickle 用の関数を登録しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import pickle
+import copyreg
+class GameState:
+    def __init__(self, level=0, lives=4, points=0):
+	self.level = level
+	self.lives = lives
+	self.points = points
+
+def pickle_game_state(game_state):  # pickle.dumpsすると呼ばれる
+    print("pickling")
+    kwargs = game_state.__dict__
+    return unpickle_game_state, (kwargs,)  # unpickle用関数を返す
+
+def unpickle_game_state(kwargs):  # pickle.loadsすると呼ばれる
+    print("unpickling")
+    return GameState(**kwargs)
+
+copyreg.pickle(GameState, pickle_game_state)  # pickle用関数を登録する
+</pre>
+</div>
+
+<p>
+pickleしてみましょう。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">state = GameState()
+state.points += 1000
+print("call pickling")
+serialized = pickle.dumps(state)
+print("call unpickling")
+state_after = pickle.loads(serialized)
+print(state_after.__dict__)
+&gt;&gt;&gt;
+call pickling
+pickling  # pickle_game_stateで表示している
+b'\x80\x04\x95L\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x13unpickle_game_state\x94\x93\x94}\x94(\x8c\x05level\x94K\x00\x8c\x05lives\x94K\x04\x8c\x06points\x94M\xe8\x03u\x85\x94R\x94.'
+call unpickling
+unpickling  # unpickle_game_stateで表示している
+{'level': 0, 'lives': 4, 'points': 1000}
+</pre>
+</div>
+<p>
+実際に、pickleする際に <code>pickle_game_state</code> が、unpickleする際に <code>unpickle_game_state</code> が呼ばれていることがわかります。
+</p>
+
+<p>
+クラスへのアトリビュートの追加に対応できるのは、 <code>unpickle_game_state</code> で GameState のインスタンスを作る際に、(追加後のクラスの)コンストラクターを呼ぶためです。この中で追加したアトリビュートのデフォルト値が設定されます。
+</p>
+
+<p>
+pickleするクラスのアトリビュートを削除するとbackward compatibilityが保てなくなります。この場合はバージョンを指定し、古いバージョンなら明示的に不要となったアトリビュートを削除します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def pickle_game_state(game_state):
+    kwargs = game_state.__dict__
+    kwargs['version'] = 2
+    return unpickle_game_state, (kwargs,)
+
+def unpickle_game_state(kwargs):
+    version = kwargs.pop('version', 1)
+    if version == 1:  # 読んできたバージョンが1なら古いアトリビュートがある
+	del kwargs['deleted_attribute']
+    return GameState(**kwargs)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org10fe892" class="outline-3">
+<h3 id="org10fe892"><span class="section-number-3">2.5.</span> Item 69: 精度が重要なら decimal を使え</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+Pythonのfloatの扱いで、1.44999999&#x2026;のようになる場合があります。
+これをきちっと1.45と見せたい場合、decimalを使うとよい、という話です。
+</p>
+
+<p>
+まずは、Decimalに小数点の付いた値を渡す際には文字列を使うと正確です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; from decimal import Decimal
+&gt;&gt;&gt; print(Decimal('1.45'))  # 文字列渡し
+1.45
+&gt;&gt;&gt; print(Decimal(1.45))  # float渡し
+1.4499999999999999555910790149937383830547332763671875
+</pre>
+</div>
+
+<p>
+お金の計算などで四捨五入してゼロにされると困るような場合にも対応可能です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from decimal import Decimal, ROUND_UP
+rate = Decimal('0.05')
+seconds = Decimal('5')
+small_cost = rate * seconds / Decimal(60)
+print("実の値 - ", small_cost)
+print("四捨五入 - ", round(small_cost, 2))
+rounded = small_cost.quantize(Decimal('0.01'), rounding=ROUND_UP)
+print("切り上げ - ", rounded)
+&gt;&gt;&gt;
+実の値 -  0.004166666666666666666666666667
+四捨五入 -  0.00
+切り上げ -  0.01
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org27159c5" class="outline-3">
+<h3 id="org27159c5"><span class="section-number-3">2.6.</span> Item 70: 最適化の前にプロファイルせよ</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+プロファイルにはCで書かれたcProfileを使うとよい、とのことです。
+<code>test</code> 関数をプロファイルして、統計を出す例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from cProfile import Profile
+profiler = Profile()
+profiler.runcall(test)
+
+from pstats import Stats
+stats = Stats(profiler)
+stats.strip_dirs()
+stats.sort_stats('cumulative')
+stats.print_stats()
+&gt;&gt;&gt;
+	 30003 function calls in 0.026 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+	1    0.000    0.000    0.026    0.026 t.py:17(&lt;lambda&gt;)
+	1    0.002    0.002    0.026    0.026 t.py:1(insertion_sort)
+    10000    0.003    0.000    0.024    0.000 t.py:9(insert_value)
+    10000    0.016    0.000    0.016    0.000 {method 'insert' of 'list' objects}
+    10000    0.005    0.000    0.005    0.000 {built-in method _bisect.bisect_left}
+	1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6d10a9f" class="outline-3">
+<h3 id="org6d10a9f"><span class="section-number-3">2.7.</span> Item 71: 生産者-消費者キューにはdequeを使え</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+普通のリスト <code>[]</code> はキューに使えますが、キューが長くなると特に <code>pop(0)</code> が2乗のオーダーで遅くなるそうです。collectionsのdequeはリニアに遅くなるだけなので、キュー操作が性能ネックとなっているようなら、こちらを使った方が良いです。
+</p>
+
+<p>
+マイクロベンチマーク <code>timeit</code> の使い方。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import collections
+import timeit
+def print_result(count, tests):
+    avg_iteration = sum(tests) / len(tests)
+    print(f'Count {count:&gt;5,} takes {avg_iteration:.4f}s')
+def deque_append_benchmark(count)
+    def prepare():
+	return collections.deque()
+    def run(queue):
+	for i in range(count):
+	    queue.append(i)
+    tests = timeit.repeat(
+	setup='queue = prepare()',
+	stmt='run(queue)',
+	globals=locals(),
+	repeat=1000
+	number=1)
+    return print_result(count, tests)
+</pre>
+</div>
+<p>
+注意点として、timeitはループするのでキャッシュされて速くなってしまうようなことには使えません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb732b86" class="outline-3">
+<h3 id="orgb732b86"><span class="section-number-3">2.8.</span> Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+ソートされているリストなどの中で、指定の値がどこに来るかを調べるのに、 <code>bisect_left</code> は速いのでいいですよ、ということでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdc60a32" class="outline-3">
+<h3 id="orgdc60a32"><span class="section-number-3">2.9.</span> Item 73: 優先度キューのために heapq をどう使うかを知れ</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+FIFOでない、何かのアトリビュートの順番で処理する必要のあるキューを優先度キュー、プライオリティーキューと言います。優先度キューの実装に heapq が使えます。
+</p>
+
+<p>
+headqのアイテムは比較可能でnatural sort orderを持たなくてはいけません。これにはfunctoolsビルトインモジュールの <code>total_ordering</code> クラスデコレーターを使い、 <code>__lt__</code> (less than)スペシャルメソッドを実装する必要があります。
+</p>
+
+<p>
+以降は図書館の貸し出し本を管理する例です。キュー内の操作はコストがかかるため、なるべくキューには手を付けないようにします。本の返却は通常、キューから抜く操作が必要になりますが、ここではキューの中の返却された本には返却マークを付けるのみで、キューそのものは変更しないようにしています。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import functools
+@functools.total_ordering
+class Book:
+    def __init__(self, title, due_date):
+	self.title = title
+	self.due_date = due_date
+	self.returnd = False  # 返却フラグ
+    def __lt__(self, other):
+	return self.due_date &lt; other.due_date  # 返却日で比較する
+</pre>
+</div>
+
+<p>
+due_dateによるキューのソートは以下のようにできます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from heapq import heapify
+queue = [
+    Book('Pride and Prejudice', '2019-06-10'),
+    Book('The Time Machine', '2019-05-30'),
+    ...
+    ]
+queue.sort()
+または
+heapify(queue)
+</pre>
+</div>
+
+<p>
+次は、期限切れの本を表示します。返却済みの本が出てきたら、ひっそりとキューから抜きます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from heapq import heappop
+class NoOverdueBooks(Exception):
+    pass
+def next_overdue_book(queue, now):
+    while queue:
+	book = queue[0]  # Most overdue first
+	if book.returned:  # 返却済みなら、、
+	    heappop(queue)
+	    continue
+	if book.due_date &lt; now:  # 期限切れなら
+	    heappop(queue)
+	    return book
+	break
+
+    raise NoOverdueBooks
+</pre>
+</div>
+
+<p>
+本の返却処理です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def return_book(queue, book):
+    book.returned = True
+</pre>
+</div>
+
+<p>
+このやり方の欠点は、返却された本をキューから抜かないため、キューが大きくなりうることです。これはメモリを圧迫します。ワーストケースを想定して必要メモリ量等のシステム設計をする必要があります。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org9fcb193" class="outline-3">
+<h3 id="org9fcb193"><span class="section-number-3">2.10.</span> Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+出ました。ゼロコピーです。Pythonのバッファープロトコルとゼロコピーについては、<a href="https://julien.danjou.info/high-performance-in-python-with-zero-copy-and-the-buffer-protocol/">ここ</a>にわかりやすい説明がありました。
+</p>
+
+<p>
+bytesのデータを直接スライスするとメモリコピーが発生します。ビルトインの <code>memoryview</code> タイプを使うとゼロコピーで行けます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">data = b'shave and a haircut, two bits'
+view = memoryview(data)
+chunk = view[12:19]
+print(type(chunk))
+print('Size: ', chunk.nbytes)
+print('Data in view', chunk.tobytes())
+print('Underlying data:', chunk.obj)
+&gt;&gt;&gt;
+&lt;class 'memoryview'&gt;
+Size:  7
+Data in view b'haircut'
+Underlying data: b'shave and a haircut, two bits'
+</pre>
+</div>
+<p>
+memoryview をスライスした <code>chunk</code> のタイプはmemoryviewであることがわかります。
+</p>
+
+<p>
+bytesはリードオンリーのため、スライスした部分を上書きしたいなら <code>bytearray</code> を使います。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">my_array = bytearray(b'row, row, row your boat')
+my_view = memoryview(my_array)
+write_view = my_view[3:13]
+write_view[:] = b'1234567890'
+print(my_array)
+&gt;&gt;&gt;
+bytearray(b'row1234567890 your boat')
+</pre>
+</div>
+
+<p>
+socket.recv_intoはゼロコピーに対応します。ビデオストリーミングデータを受け取る場合の例。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">socket = ... # クライアントへのソケットコネクション
+video_cache = ... # 入ってくるビデオストリーム用のキャッシュ
+byte_offset = ... # バッファ上にデータが入ってくる位置
+size = 1024 * 1024 # 入ってくるデータのチャンクサイズ
+
+video_array = bytearray(video_cache)
+write_view = memoryview(video_array)
+chunk = write_view[byte_offset:byte_offset + size]
+socket.recv_into(chunk)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-26T00:00:00-04:00" pubdate>Wed 26 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

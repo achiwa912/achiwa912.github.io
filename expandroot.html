@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Linux VMのルートファイルシステムを拡張する &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Linux VMのルートファイルシステムを拡張する</h1>
+    <p class="meta">
+<time datetime="2022-05-03T00:00:00-04:00" pubdate>Tue 03 May 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgaae039a">1. はじめに</a></li>
+<li><a href="#orgb4c176f">2. 手順</a>
+<ul>
+<li><a href="#org6e02347">2.1. 概要</a></li>
+<li><a href="#org1635b93">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org5badc4c">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org5dda94c">2.4. ルートファイルシステムを拡張する</a></li>
+</ul>
+</li>
+<li><a href="#org37e12f3">3. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaae039a" class="outline-2">
+<h2 id="orgaae039a"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
+VMのいいところは、ストレージなどのリソースが不足したら比較的簡単に追加できるところです。
+しかしVMにストレージ容量を追加しただけではOSが認識してくれません。今回は、ルートファイルシステムの中身を壊さずにストレージ容量を追加する手順を説明します。
+</p>
+
+<p>
+説明はESXi上のCent OS 7での手順ですが、VirtualBox等のハイパーバイザーや別のLinux OSでも似たような手順で行けると思います。使用するコマンドが変わってきますが。。また、lvmを使っている場合には、もう少しリスクの低そうなやり方で拡張ができるようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb4c176f" class="outline-2">
+<h2 id="orgb4c176f"><span class="section-number-2">2.</span> 手順</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6e02347" class="outline-3">
+<h3 id="org6e02347"><span class="section-number-3">2.1.</span> 概要</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+以下のステップを行います。
+</p>
+<ol class="org-ol">
+<li>ESXi上でVMのHard disk &lt;番号&gt;を容量拡張する</li>
+<li>VMのLinux上で <code>growpart</code> をインストールする</li>
+<li>Linuxでルートパーティションを拡張する</li>
+<li>Linuxでルートファイルシステムを拡張する</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org1635b93" class="outline-3">
+<h3 id="org1635b93"><span class="section-number-3">2.2.</span> ESXiでストレージ容量追加する</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>ESXi GUIにログインする
+<ul class="org-ul">
+<li>ブラウザーで <code>https://&lt;host_name&gt;/ui</code> を開き、ユーザー名とパスワードを入れます。</li>
+</ul></li>
+<li>VMを選択する
+<ul class="org-ul">
+<li>左端に縦に並んでいるアイコンの下から3つ目くらいをクリックし、VM一覧を表示します</li>
+<li>VM名をクリックします</li>
+</ul></li>
+<li>ストレージ容量を増やす
+<ul class="org-ul">
+<li>右上のActionsアイコン &gt; Edit settingsを選択します</li>
+<li>ルートファイルシステムのあるHard disk &lt;番号&gt;の容量を増やし、Saveをクリックします
+<ul class="org-ul">
+<li>容量から大体想像がつくと思いますが、同じ容量のデバイスがいくつかある場合には、、、/dev/sdaならHard disk 1、/dev/sdbならHard disk 2というように推測するのでしょうか。</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>
+これで、ESXi上ではストレージ容量が増えました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5badc4c" class="outline-3">
+<h3 id="org5badc4c"><span class="section-number-3">2.3.</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>Linux VMにsshで入り、リブートします。
+<ul class="org-ul">
+<li>この時点ではまだパーティションサイズは増えていません</li>
+</ul></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"># ssh &lt;Linux_VM&gt;
+# df -H /  # ルートファイルシステムの入っているデバイスを確認する
+	   # 私の環境では /dev/sdc1 がルートパーティションでした
+# lsblk  # パーティションサイズが増えていないことを確認する
+# reboot
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>growpart</code> をインストールして実行する
+<ul class="org-ul">
+<li>手元のFedora 35の <code>parted</code> コマンドには <code>resizepart</code> オプションがありますが、Cent OS 7のものには無かったので、 <code>growpart</code> を入れます。</li>
+<li>リブート後に <code>lsblk</code> するとデバイス容量が増えていることがわかります</li>
+</ul></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-bash"># lsblk
+&lt;snip&gt;
+sdc                           8:32   0   160G  0 disk  # 増えています!
+└─sdc1                        8:33   0    80G  0 part /  # まだ増えていません
+# yum install cloud-utils-growpart -y
+# growpart /dev/sdc 1  
+# lsblk
+sdc                           8:32   0   160G  0 disk 
+└─sdc1                        8:33   0   160G  0 part /  # 増えました!
+# reboot  # 念の為
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5dda94c" class="outline-3">
+<h3 id="org5dda94c"><span class="section-number-3">2.4.</span> ルートファイルシステムを拡張する</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>最初にファイルシステム容量を確認する
+<ul class="org-ul">
+<li><p>
+まだ増えていません。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"># df -H .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdc1        86G   73G   14G  84% /
+</pre>
+</div></li>
+</ul></li>
+<li>ルートファイルシステムを拡張する
+<ul class="org-ul">
+<li><p>
+ファイルシステムタイプは <code>xfs</code> なので <code>xfs_growfs</code> を使います。 <code>ext4</code> なら <code>resize2fs</code> でしょうか。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"># xfs_growfs /
+meta-data=/dev/sdc1              isize=512    agcount=4, agsize=5242816 blks
+	 =                       sectsz=512   attr=2, projid32bit=1
+	 =                       crc=1        finobt=0 spinodes=0
+data     =                       bsize=4096   blocks=20971264, imaxpct=25
+	 =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
+log      =internal               bsize=4096   blocks=10239, version=2
+	 =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+data blocks changed from 20971264 to 41942779
+# df -H .
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sdc1       172G   72G  100G  42% /    # 増えました!
+# reboot  # 念の為
+</pre>
+</div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org37e12f3" class="outline-2">
+<h2 id="org37e12f3"><span class="section-number-2">3.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-05-03T00:00:00-04:00" pubdate>Tue 03 May 2022</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

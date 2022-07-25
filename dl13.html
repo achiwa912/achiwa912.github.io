@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DL-13; サーバー&クライアント &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">DL-13; サーバー&クライアント</h1>
+    <p class="meta">
+<time datetime="2021-05-16T00:00:00-04:00" pubdate>Sun 16 May 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1d03fbc">1. はじめに</a></li>
+<li><a href="#orgca6cd61">2. クライアント&amp;サーバー</a></li>
+<li><a href="#orgefc8f52">3. Pythonのお勉強</a>
+<ul>
+<li><a href="#org0ed70c5">3.1. List comprehension</a></li>
+<li><a href="#org587f869">3.2. SQLAlchemy</a></li>
+<li><a href="#org1198362">3.3. asyncプログラミング</a></li>
+<li><a href="#org1a9c8ac">3.4. Python-socketio</a></li>
+</ul>
+</li>
+<li><a href="#org2ef9d4e">4. 次は、、、</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1d03fbc" class="outline-2">
+<h2 id="org1d03fbc"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの13回目です。
+</p>
+
+<p>
+githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未検証です。(いちおうWindows用のコードは入れてみました。Macは立ち上げ確認くらい。。)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgca6cd61" class="outline-2">
+<h2 id="orgca6cd61"><span class="section-number-2">2.</span> クライアント&amp;サーバー</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+前回、次回作の予告らしきものをしましたが、次回作ではなく今作の延長線上でクライアント&amp;サーバー化にトライしています。サーバーは別レポジトリに分けています。
+</p>
+
+<p>
+予告通りサーバーはasync対応しました。asyncプログラミングは初めてです。ライブラリは長考の結果、<a href="https://python-socketio.readthedocs.io/en/latest/">python-socketio</a>を使うことにしました。これはシンプルなパッケージですが、DLの用途では必要十分であると感じました。
+</p>
+
+<p>
+とりあえず現在できることは、
+</p>
+<ul class="org-ul">
+<li>複数クライアントのサーバー接続(localhostのみ確認)</li>
+<li>ダンジョンマップ上でメッセージ送付、リアルタイム受信</li>
+<li>サーバーでのフロアマップ生成&amp;同じルーム参加者(チーム)とのマップ共有</li>
+<li>マップ上で他の参加者の移動状況をリアルタイムに見られる</li>
+<li>サーバー接続ダンジョン内でのセーブ&amp;ロード</li>
+</ul>
+<p>
+といったところで、ごくprimitiveなことしかできません。それでも、同じチームとしてログインしている他のユーザーの動きがマップ上に見られたり、メッセージをリアルタイムに送受信できるだけで結構楽しいです。
+</p>
+
+<p>
+今後エンハンス予定(取らぬ狸の皮算用ですが。。。)なのは、
+</p>
+<ul class="org-ul">
+<li>他参加者のモンスターとのバトルへのjoin</li>
+<li>サーバー独自モンスターの追加</li>
+<li>他参加者との共同キャンプ</li>
+<li>共同キャンプでのアイテム受け渡し/売買</li>
+<li>共同キャンプでの相手パーティメンバーの回復魔法、アイテム使用</li>
+<li>インターネット対応
+<ul class="org-ul">
+<li>username &amp; passwordを使った認証</li>
+<li>ユーザー登録(flask使うべきだったのかな。。)</li>
+<li>https対応(できるのかなぁ)</li>
+</ul></li>
+<li>サーバーのDB対応(サーバーリブートで情報が失われないようにする)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgefc8f52" class="outline-2">
+<h2 id="orgefc8f52"><span class="section-number-2">3.</span> Pythonのお勉強</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org0ed70c5" class="outline-3">
+<h3 id="org0ed70c5"><span class="section-number-3">3.1.</span> List comprehension</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+DLのプログラミングで一番楽しいのは、list/dictionary comprehensionやgenerator 
+expressionを考えて工夫している時です。Python初級者を卒業した気になるし、パズル
+みたいで本当に楽しいです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org587f869" class="outline-3">
+<h3 id="org587f869"><span class="section-number-3">3.2.</span> SQLAlchemy</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+前回の更新から使い始めたSQLAlchemyですが、今回またもや衝撃的な学びがありました。
+なんと、既存テーブルへのカラムの追加はSQLAlchemyでサポートされていないのでした。
+えー。そんなのあり? DBの基本機能だと思うのですが。。。これができないとなると、
+ORMのお気楽さがものすごく中途半端に感じます。テーブル設計だけは事前にかっちりやって
+おかないといけないなら、そもそも軟弱なORMなど使わないのでは。。。(個人の感想です)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1198362" class="outline-3">
+<h3 id="org1198362"><span class="section-number-3">3.3.</span> asyncプログラミング</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+最近流行のasyncですが、いろいろ調べたところ、これにはasyncio派とgreenlet派がある
+ことがわかりました。前者は明示的にasync def, awaitといったキーワードを使って
+意識的にasyncとそうでない部分を使い分ける必要があり、後者は既存の書き方で作った
+プログラムを(半ば無理矢理)async化してくれるというもののようでした。
+</p>
+
+<p>
+ぱっと見では後者の方が良さそうですが、async化を隠蔽して実施する後者はデバッグが
+より大変そうです。うまく動かない時には、実際にはどう動いているのかを見なければ
+ならないので、結局、隠蔽されている部分がどうなっているのかを正しく理解していなくては
+ならず、それならば明示的にコード上でasyncなのかそうでないのかを判別出来る方が
+単純です。そんなわけで、最初はすごく良さそうに見えたgreenletは見送ることにしました。
+</p>
+
+<p>
+SQLAlchemyのORMと同様に、複雑な部分を隠蔽してくれるのはありがたいのですが、いざ
+デバッグしなくてはならなくなると、一見面倒な細かい部分まで隠蔽せずにオープンにして
+くれた方が実は楽だったりするのですね。
+</p>
+
+<p>
+まあ、このあたりは好みの問題という気がします。私は元々がアセンブラプログラマー
+(アマチュア)だったので、細かいところまで何でも理解しておきたい傾向があるようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1a9c8ac" class="outline-3">
+<h3 id="org1a9c8ac"><span class="section-number-3">3.4.</span> Python-socketio</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+このパッケージはすごいです。独立したチュートリアルが必要ないくらいシンプルかつ、
+必要十分な機能が備わっていて、とても使いやすいです。クライアントサーバーの
+システムがここまで簡単に実現できるとは思いませんでした。比較的低レベルな関数の
+集合ですが、そこも気に入っています。
+</p>
+
+<p>
+作者の<a href="https://github.com/miguelgrinberg">Miguel Grinberg</a>という人はただ者ではないです。弟子入りしたいくらい。
+どうやらgreenlet推しのようですが、そこだけは賛同できません。。。笑
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org2ef9d4e" class="outline-2">
+<h2 id="org2ef9d4e"><span class="section-number-2">4.</span> 次は、、、</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+今回いろいろ変えすぎて、プログラムがすっかり不安定になってしまっているので、
+しばらくはエンハンスしつつ安定化に努めたいと思います。
+</p>
+
+<p>
+実は、まだ致命的なバグが残っていてアップロードできずにいます。。。今週末中に
+取れるかなぁ。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-05-16T00:00:00-04:00" pubdate>Sun 16 May 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

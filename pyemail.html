@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pythonでemail送受信テストしてみる &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Pythonでemail送受信テストしてみる</h1>
+    <p class="meta">
+<time datetime="2021-02-05T00:00:00-05:00" pubdate>Fri 05 February 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org93a01a2">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#orgac443b7">2. テストメールを送る</a></li>
+<li><a href="#orga307400">3. テストしてみる</a></li>
+<li><a href="#org8e917b3">4. 宛先が表示されない?</a></li>
+<li><a href="#org016df2b">5. 参考リンク</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org93a01a2" class="outline-2">
+<h2 id="org93a01a2"><span class="section-number-2">1.</span> テストSMTPサーバーを立てる</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
+</p>
+
+<p>
+まずはpipでモジュールをインストールします。
+</p>
+<pre class="example">
+pip install aiosmtpd
+</pre>
+
+<p>
+そして実行します。
+</p>
+<pre class="example">
+python -m aiosmtpd -n
+</pre>
+
+<p>
+なんと、これだけ。<a href="https://aiosmtpd.readthedocs.io/en/latest/cli.html">aiosmtpd公式ドキュメント</a>によるとlocalhostのポート8025をリッスンするようです。変えるには <code>-l &lt;[HOST][:PORT]&gt;</code> オプションを与えます。
+</p>
+
+<p>
+pipするのが面倒な方は、標準ライブラリにsmtpdがありますが、<a href="https://docs.python.org/3/library/smtpd.html">公式ドキュメント</a>によるとdeprecatedなのでaiosmtpdを使うように書いてありました。以下で使えます。
+</p>
+<pre class="example">
+python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgac443b7" class="outline-2">
+<h2 id="orgac443b7"><span class="section-number-2">2.</span> テストメールを送る</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import smtplib
+from email import utils
+from email.mime.text import MIMEText
+
+msg = MIMEText('This is the body')  # メール本文
+msg['To'] = utils.formataddr((
+    'Recipient', 'test_recv@example.com'))
+msg['From'] = utils.formataddr((
+    'Author', 'test_send@example.com'))
+msg['Subject'] = 'Test email subject'
+
+server = smtplib.SMTP('localhost', 8025)
+# server.set_debuglevel(True)  # デバッグ用詳細メッセージ出力
+try:
+    server.sendmail('test_send@example.com',
+		    ['test_recv@example.com'],
+		    msg.as_string())
+finally:
+    server.quit()
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga307400" class="outline-2">
+<h2 id="orga307400"><span class="section-number-2">3.</span> テストしてみる</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
+</p>
+<pre class="example">
+python emtest.py
+</pre>
+
+
+<p>
+あ、来ました。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">$ python -m aiosmtpd -n
+^[---------- MESSAGE FOLLOWS ----------
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+To: Recipient &lt;test_recv@example.com&gt;
+From: Author &lt;test_send@example.com&gt;
+Subject: Simple test message
+X-Peer: ('::1', 52132, 0, 0)
+
+This is the body.
+------------ END MESSAGE ------------
+</pre>
+</div>
+
+<p>
+Pythonを使うとemailのテストがとても簡単にできますね。
+</p>
+
+<p>
+上記スクリプトのデバッグ用詳細メッセージ出力の行のコメントを外すと、SMTPサーバーとの詳細なやりとりが見られます。(一部情報を伏せています)
+</p>
+
+<pre class="example">
+$ python emtest.py 
+send: 'ehlo localhost.localdomain\r\n'
+reply: b'250-localhost.localdomain\r\n'
+reply: b'250-8BITMIME\r\n'
+reply: b'250 HELP\r\n'
+reply: retcode (250); Msg: b'localhost.localdomain\n8BITMIME\nHELP'
+send: 'mail FROM:&lt;test_send@example.com&gt;\r\n'
+reply: b'250 OK\r\n'
+reply: retcode (250); Msg: b'OK'
+send: 'rcpt TO:&lt;test_recv@example.com&gt;\r\n'
+reply: b'250 OK\r\n'
+reply: retcode (250); Msg: b'OK'
+send: 'data\r\n'
+reply: b'354 End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;\r\n'
+reply: retcode (354); Msg: b'End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;'
+data: (354, b'End data with &lt;CR&gt;&lt;LF&gt;.&lt;CR&gt;&lt;LF&gt;')
+send: b'Content-Type: text/plain; charset="us-ascii"\r\nMIME-Version: 1.0\r\nContent-Transfer-Encoding: 7bit\r\nTo: Recipient &lt;test_recv@example.com&gt;\r\nFrom: Author &lt;test_send@example.com&gt;\r\nSubject: Simple test message\r\n\r\nThis is the body.\r\n.\r\n'
+reply: b'250 OK\r\n'
+reply: retcode (250); Msg: b'OK'
+data: (250, b'OK')
+send: 'quit\r\n'
+reply: b'221 Bye\r\n'
+reply: retcode (221); Msg: b'Bye'
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8e917b3" class="outline-2">
+<h2 id="org8e917b3"><span class="section-number-2">4.</span> 宛先が表示されない?</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
+</p>
+
+<p>
+そこで、aiosmtpdのドキュメントを参考(ほぼ丸写しとも言う)に、SMTPサーバー側も簡単なスクリプトを作成してRCPT TO情報を出力するようにしました。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import asyncio
+
+class MyHandler:
+    async def handle_DATA(self, server, session, envelope):
+	print(f'Msg from {envelope.mail_from}')
+	# envelopeのRCPT TO情報を表示する
+	print(f'Msg for {envelope.rcpt_tos}')
+	print(f'Msg data:\n')
+	for ln in envelope.content.decode('utf8', errors='replace').splitlines():
+	    print(f'&gt; {ln}'.strip())
+	print()
+	print('End of msg')
+	return '250 Message accepted for delivery'
+
+from aiosmtpd.controller import Controller
+ctrlr = Controller(MyHandler(), hostname='&lt;IPアドレス&gt;')
+ctrlr.start()
+</pre>
+</div>
+
+<p>
+さて、どうでしょうか。To/Cc/Bccを含めない送信元からメールを出してみます。
+</p>
+
+<pre class="example">
+Msg from &lt;送り主emailアドレス&gt;
+Msg for ['&lt;宛先emailアドレス&gt;']  # RCPT TOsアドレスのリスト
+Msg data:
+
+&gt; Date: Fri, 5 Feb 2021 18:12:38 -0500 (EST)
+&gt; From: &lt;送り主emailアドレス&gt;
+&gt; Message-ID: &lt;XXXXX2588.7.XXXXXXXX.JavaMail.root@XXXXX&gt;
+&gt; Subject: &lt;タイトル文字列&gt;
+&gt; MIME-Version: 1.0
+&gt; Content-Type: text/plain; charset=us-ascii
+&gt; Content-Transfer-Encoding: 7bit
+&gt;
+&gt; This is email contents.
+&gt;
+
+End of msg
+</pre>
+
+<p>
+無事、宛先アドレスがわかるようになりました。(引用では伏せてあります)
+</p>
+
+<p>
+なお、送信側を以下のように変えて、RCPT TOにToとは異なるアドレス(複数可能)を指定することができます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">try:
+    server.sendmail('send@example.com',  # mail fromアドレス
+		    ['recv1@example.com', 'recv2@example.com'],  # RCPT TOsアドレスのリスト
+		    msg.as_string())
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org016df2b" class="outline-2">
+<h2 id="org016df2b"><span class="section-number-2">5.</span> 参考リンク</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
+<li><a href="https://docs.python.org/3/library/smtpd.html">smtpd — SMTP Server</a> Python公式</li>
+<li><a href="https://pymotw.com/2/smtpd/">PyMOTW smtpd – Sample SMTP Servers</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-02-05T00:00:00-05:00" pubdate>Fri 05 February 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

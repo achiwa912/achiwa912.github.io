@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>org-mode + github(/gitlab)で個人用Wikiを作る &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">org-mode + github(/gitlab)で個人用Wikiを作る</h1>
+    <p class="meta">
+<time datetime="2022-01-31T00:00:00-05:00" pubdate>Mon 31 January 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb5687d2">1. はじめに</a></li>
+<li><a href="#orgd34972c">2. org-mode + github(/gitlab)でパーソナルWiki</a>
+<ul>
+<li><a href="#orga926b16">2.1. org-modeのレンダリング</a></li>
+<li><a href="#org476d4f7">2.2. githubのプライベートレポジトリ</a></li>
+<li><a href="#orge1c95e3">2.3. 複数デバイスでの共有</a></li>
+<li><a href="#org1fd7f97">2.4. コンパイル等不要</a></li>
+</ul>
+</li>
+<li><a href="#org9f44e5e">3. Tips</a>
+<ul>
+<li><a href="#orgcacaa6e">3.1. READMEからリンクを貼る</a></li>
+</ul>
+</li>
+<li><a href="#orge570375">4. 終わりに</a></li>
+<li><a href="#orge05396e">5. おまけ</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb5687d2" class="outline-2">
+<h2 id="orgb5687d2"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+私はemacsのorg-modeでメモを書いていますが、複数台のPCで編集したり、モバイルデバイスから閲覧するよい方法が無いか探していました。ブログに使っているgithub pagesにアクセス制限をかけられればよいのですが、そのためには有償のプランを契約しないとだめそうです。また、Pelican等の静的サイトジェネレーターでHTMLにレンダリングする必要があり、手間がかかります。
+</p>
+
+<p>
+一方で、Dropbox等のクラウドストレージに作成したorgファイルを置くだけでは、テキストファイルとしての閲覧しかできないため、見やすいようにレンダリングして欲しいところです。
+</p>
+
+<p>
+求める要件を並べると、こんな感じです:
+</p>
+<ol class="org-ol">
+<li>複数デバイスで編集、閲覧したい</li>
+<li>個人用のWikiなので、アクセス制限をかけたい</li>
+<li>orgファイルそのままでなく、見やすくレンダリングして表示しして欲しい</li>
+<li>コンパイルやエキスポートの手間はなるべくかけたくない</li>
+<li>できれば無料が良い</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orgd34972c" class="outline-2">
+<h2 id="orgd34972c"><span class="section-number-2">2.</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+いろいろと検索したところ、org-modeとgithub(/gitlabも)の相性が良さそうであることがわかりました。
+</p>
+</div>
+
+<div id="outline-container-orga926b16" class="outline-3">
+<h3 id="orga926b16"><span class="section-number-3">2.1.</span> org-modeのレンダリング</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+これまで私はレポジトリのREADMEをわざわざ慣れないマークダウン記法で書いていましたが、なんと、githubは <code>README.org</code> ファイルを作成すればレンダリングして表示してくれるという <a href="http://yasuyk.github.io/blog/2013/04/27/github-readme-org-mode/">うれしい情報</a> を見つけました。(yasuykさんありがとうございます!)
+</p>
+
+<p>
+そして、READMEだけでなく、レポジトリに置いた他の <code>*.org</code> ファイルもレンダリングして表示してくれるようです。
+</p>
+
+<p>
+orgファイルのレンダリング例:
+<img src="./images/orgrender.png" alt="orgrender.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org476d4f7" class="outline-3">
+<h3 id="org476d4f7"><span class="section-number-3">2.2.</span> githubのプライベートレポジトリ</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+更に、githubは2019年からプライベートレポジトリの作成を <a href="https://github.blog/2019-01-07-new-year-new-github/">無制限に無償化していた</a> ようです。私はgithubに複数レポジトリを持って、ブログもgithub pagesで公開していましたが、このことは知りませんでした。これはありがたい変更です。
+</p>
+
+<p>
+レポジトリ作成の際に、publicでなくprivateを選択します。gitlabでも同様ですね。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge1c95e3" class="outline-3">
+<h3 id="orge1c95e3"><span class="section-number-3">2.3.</span> 複数デバイスでの共有</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+普通のgithubレポジトリなので、もちろん複数デバイスでの閲覧、変更が可能です。githubに同じアカウントでサインインするだけです。
+</p>
+
+<p>
+特に複数PCで編集するには、2台目以降のPCにおいてgit cloneするだけなのでとても使い勝手が良いです。githubではgitでのパスワード認証が廃止されているので、パーソナルアクセストークンを生成して、これをパスワードの代わりに使用する必要があります。
+</p>
+
+<p>
+gitlabでも同様ですが、個人モバイルデバイスからオフィスのgitlabにアクセスすることはあまり無いかもしれません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1fd7f97" class="outline-3">
+<h3 id="org1fd7f97"><span class="section-number-3">2.4.</span> コンパイル等不要</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+私のgithub pagesのブログは静的サイトジェネレーターのPelicanを使っていますが、だいぶ記事がたまってきたせいか、コンパイルに1分以上かかるようになっています。
+</p>
+
+<p>
+githubがorgファイルのレンダリングをしてくれるので、レポジトリにorgファイルのままgit pushするだけで済みます。毎回プッシュのたびに1分時間が節約できるのは、大きなメリットです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9f44e5e" class="outline-2">
+<h2 id="org9f44e5e"><span class="section-number-2">3.</span> Tips</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgcacaa6e" class="outline-3">
+<h3 id="orgcacaa6e"><span class="section-number-3">3.1.</span> READMEからリンクを貼る</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+githubではご存知のように、レポジトリのトップページにREADMEファイルをレンダリングして表示します。パーソナルWikiのトップページとして、README.orgに各orgファイル(=メモ)へのリンクを貼っておくことで、使い勝手が良くなると思います。
+</p>
+
+<p>
+パーソナルWikiトップページ:
+<img src="./images/readmeorg.png" alt="readmeorg.png" />
+</p>
+
+<p>
+現在、手動でREADME.orgを作成して各記事へのリンクを貼っています。自動で作成してくれるともっとよいのですが、既に先人が作っているような気もするので、うまい方法がないか探してみたいと思います。
+</p>
+
+<p>
+追記: &rarr; 探しても見つからなかったので、 <a href="https://achiwa912.github.io/orgidx.html">Pythonスクリプト</a> を自作しました。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orge570375" class="outline-2">
+<h2 id="orge570375"><span class="section-number-2">4.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+org-mode と github(/gitlab) のプライベートレポジトリを利用して、複数デバイスから編集、閲覧できる個人用のWikiページを持てることがわかりました。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge05396e" class="outline-2">
+<h2 id="orge05396e"><span class="section-number-2">5.</span> おまけ</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+いつの頃からか、org-modeで改行すると、勝手にインデントされるようになりました。ものすごく使い勝手が悪いので、抑止する方法を探したところ、案の定、<a href="https://blue.hatenadiary.jp/entry/2014/11/20/211335">先人が解決</a> してくれていました。(あお日記さん、どうもありがとうございます。)
+</p>
+
+<p>
+org-modeでのみ有効となるようにしました。
+</p>
+<div class="org-src-container">
+<pre class="src src-lisp">;; Suppress auto-indent for org-mode
+(add-hook 'org-mode-hook '(lambda () (electric-indent-local-mode -1)))
+</pre>
+</div>
+
+<p>
+その他、最近見つけた技:
+</p>
+<ul class="org-ul">
+<li><code>C-c C-o</code> リンクを開く</li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-01-31T00:00:00-05:00" pubdate>Mon 31 January 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>,    <a class="category" href="/tag/emacs.html">emacs</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

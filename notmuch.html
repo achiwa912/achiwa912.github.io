@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>emacs+notmuchでメールを読み書きする &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">emacs+notmuchでメールを読み書きする</h1>
+    <p class="meta">
+<time datetime="2022-06-02T00:00:00-04:00" pubdate>Thu 02 June 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7f00b3b">1. はじめに</a></li>
+<li><a href="#orgc424882">2. インストール、設定</a>
+<ul>
+<li><a href="#org11898b7">2.1. 構成</a></li>
+<li><a href="#org87c6e5b">2.2. mbsync</a></li>
+<li><a href="#org05e6cec">2.3. notmuch</a></li>
+<li><a href="#orge054228">2.4. afew</a></li>
+<li><a href="#orgdb1285d">2.5. smtp</a></li>
+<li><a href="#org5666e6c">2.6. Macからリモートのメールボックスを使う</a></li>
+</ul>
+</li>
+<li><a href="#org598f86c">3. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7f00b3b" class="outline-2">
+<h2 id="org7f00b3b"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+私はメーラーとしてgmailを使っていますが、gmailのUIにどうしても馴染めません。そこで、emacsでemailを読み書きできるようにしてみました。
+</p>
+
+<p>
+メーラーは一番人気のmu4e、、、ではなく、次点の <a href="https://notmuchmail.org/">notmuch</a> を選びました。notmuchがtramp-modeに対応していて、リモートのメールボックスにアクセスできることが決め手でした。notmuchの日本語情報は意外と少ないようなので、参考になれば幸いです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc424882" class="outline-2">
+<h2 id="orgc424882"><span class="section-number-2">2.</span> インストール、設定</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+notmuchはそれだけではメールの読み書きができるようになりません。その他に以下のツールを使用します。
+</p>
+<ul class="org-ul">
+<li><a href="https://isync.sourceforge.io/">isync/mbsync</a> - isyncがパッケージ名でmbsyncはコマンド名です。クラウドにあるgmailのデータをimap経由でローカルディレクトリに同期します</li>
+<li><a href="https://github.com/afewmail/afew">afew</a> - メール取り込み時に、ルールに従って自動でタグを付けるヘルパーツールです。今回はインストールだけしました。おいおい拡充していくつもりです</li>
+<li>smtp - メール送信はemacs標準のsmtpライブラリを使います。</li>
+</ul>
+</div>
+
+<div id="outline-container-org11898b7" class="outline-3">
+<h3 id="org11898b7"><span class="section-number-3">2.1.</span> 構成</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Macのemacs上でメールを読み書きすることが目的ですが、メールボックスをプレーンテキストでMac上にじか置きしたくないので、VirtualBoxのFedora 36 VMにメールを取り込み、そこにtrampを使ってリモートアクセスします。このため、まずはFedora上に一式環境を作り、その後Macのemacs設定をします。
+</p>
+
+<p>
+trampを使ってリモートのメールボックスにアクセスすることは、複数のメールクライアント(eg, emacs+notmuch)から共通のメールボックスにアクセスしたい、というユースケースがありそうですね。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org87c6e5b" class="outline-3">
+<h3 id="org87c6e5b"><span class="section-number-3">2.2.</span> mbsync</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+パッケージマネージャーを使ってisyncをインストールします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install isync
+</pre>
+</div>
+<p>
+今回は使いませんが、macの場合は以下です。
+</p>
+<pre class="example">
+brew install isync
+</pre>
+
+
+<p>
+次に、googleのimapサーバーが信頼できることを証明するgmail certificateが必要になるので、取得してファイルにセーブします。このファイルは、後でmbsyncのconfigファイルで指定します。
+<a href="https://apple.stackexchange.com/questions/256898/ssl-error-with-mbsync">https://apple.stackexchange.com/questions/256898/ssl-error-with-mbsync</a>
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openssl s_client -connect imap.gmail.com:993 -showcerts 2&gt;&amp;1 &lt; /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | head -n 27 &gt; gmail.crt
+sudo mv gmail.crt /etc/ssl/certs/
+</pre>
+</div>
+<p>
+上記は、 <code>imap.gmail.com:993</code> がアドバタイズしているcertから、サーバーcertのみを切り出しています。追記: Macから実行したときは <code>head -n 31</code> でした。どうして???
+</p>
+
+<p>
+そして、googleのappパスワード(16文字)を <a href="https://support.google.com/mail/answer/185833?hl=en-GB">このリンク</a> を参考に生成、値を控えておきます。googleのimapサーバーにアクセスするためには、普段使っているgoogleパスワードは使えないので。
+</p>
+
+<p>
+最後に、mbsyncのconfigファイル <code>~/.mbsyncrc</code> を作成します。これなしではmbsyncは動きません。configファイルを理解するためには、 <code>man mbsync</code> に一通り目を通しておくことをおすすめします。
+</p>
+<pre class="example">
+# 参考: https://troglobit.com/post/2021-01-13-my-email-setup/
+# Name Account
+IMAPAccount gmail
+Host imap.gmail.com
+User &lt;your_gmail&gt;@gmail.com
+Pass "&lt;16文字のappパスワード&gt;"
+SSLType IMAPS
+SSLVersion TLSv1.2
+AuthMechs PLAIN
+CertificateFile /etc/ssl/certs/gmail.crt
+#PipelineDepth 1  # デバッグ時にコメントアウトします
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+SubFolders Verbatim
+# The trailing "/" is important
+Path ~/mail/gmail/
+Inbox ~/mail/gmail/Inbox
+
+Channel sync-gmail-default
+Far :gmail-remote:
+Near :gmail-local:
+# Select some mailboxes to sync
+Patterns "INBOX"
+
+Channel sync-gmail-sent
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:sent
+Create Near
+SyncState *
+MaxMessages 1000
+ExpireUnread yes
+
+Channel sync-gmail-trash
+Far :gmail-remote:"[Gmail]/Trash"
+Near :gmail-local:trash
+Create Near
+SyncState *
+
+# Get all the channels together into a group.
+Group gmail
+Channel sync-gmail-default
+Channel sync-gmail-sent
+Channel sync-gmail-trash
+</pre>
+
+<p>
+早速、実行してみます。
+</p>
+<pre class="example">
+mbsync -a
+</pre>
+
+
+<p>
+しばらく動いた後で、下記のエラーで止まってしまいました。
+</p>
+<pre class="example">
+IMAP error: unexpected BYE response: Invalid character in literal
+Socket error: secure read from imap.gmail.com (172.253.62.109:993): error:0A000126:SSL routines::unexpected eof while reading
+</pre>
+
+<p>
+最初のエラーは、正しくフォーマットされていないメールがある、というもの。
+</p>
+<pre class="example">
+PipelineDepth 1
+</pre>
+
+<p>
+の行をコメントアウトして多重度を1にし、デバッグしやすくします。
+</p>
+
+<p>
+デバッグモードで再度mbsync実行します。
+</p>
+<pre class="example">
+mbsync -a -V -DCmMNs &amp;&gt; mbsync_log.txt
+</pre>
+
+<p>
+エラーの元となったメールがヘッダー共に表示されたので、メッセージIDでgmailを検索します。
+</p>
+<pre class="example">
+rfc822msgid:&lt;メッセージID&gt;
+</pre>
+
+
+<p>
+2015年(!)の某テニススクールからのメールでした。ここのスクールは、私宛リマインダーメールのfrom行を私のメールアドレスに設定したり、よくgmailから怪しいメール認定されているところです(迷惑)。確かに、ここならあり得る。。。
+</p>
+
+<p>
+当該メールを完全に削除して、 <code>mbsync -a</code> を再度実行してもエラーは消えません。おかしいな。。。
+さんざんネットを検索、トラブルシュートしたところ、既に取り込み済みの同メールがひっかかっていることに気が付きました。一通りローカルのメールフォルダを空にして <code>mbsync -a</code> で全取り込み。やっと最初のエラーがでなくなりました。
+</p>
+
+<p>
+unexpected eofのソケットエラーは相変わらず出ていますが、全て取り込み終わり、ログアウトしてから出ているようなので、無視しても良さそうです。とりあえず放置します。これで、gmailのメールをFedora VMに持ってくることができるようになりました。
+</p>
+
+<p>
+なお、ここでは比較的さらっと問題解決したように書きましたが、実際には2週間ほどはまり、ギブアップ直前まで行きました。やみくもにエラーメッセージを検索するだけでは限界がありますね。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org05e6cec" class="outline-3">
+<h3 id="org05e6cec"><span class="section-number-3">2.3.</span> notmuch</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+mbsyncでメールのデータを取り込んだので、notmuchでそれらのデータベースを作ってアクセス可能にします。
+</p>
+
+<p>
+Fedora上でインストールと初期化します。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install notmuch
+notmuch setup  # 名前やメールアドレスの情報を聞かれます
+notmuch new
+</pre>
+</div>
+
+<p>
+emacsの設定をします。 <code>~/.emacs.d/init.el</code> に以下を追記します。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; ====== email ============================================
+
+(use-package notmuch
+  :commands notmuch-hello
+  :bind (("C-c m" . notmuch-hello)))
+</pre>
+</div>
+
+<p>
+<del>いつものように、</del> use-packageがうまくnotmuchパッケージをダウンロードしてくれず、 <code>M-x list-packages</code> から手動で <code>notmuch</code> をインストールしました。
+</p>
+
+<p>
+emacs上で <code>M-x notmuch</code> とするとメールが読めるようになりました。ものすごく原始的な感じです。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge054228" class="outline-3">
+<h3 id="orge054228"><span class="section-number-3">2.4.</span> afew</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+自動タグ付けツールです。とりあえずインストールだけします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install python-notmuch
+cd ~/py
+python -m venv --system-site-packages .venv
+source .venv/bin/activate
+pip install afew
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb1285d" class="outline-3">
+<h3 id="orgdb1285d"><span class="section-number-3">2.5.</span> smtp</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+ここまででメールは読めるようになりましたが、メールを出すにはsmtpの設定が必要です。
+<code>~/.emacs.d/init.el</code> に追記します。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setq user-full-name "&lt;your fullname&gt;")
+(setq user-mail-address "&lt;yourgmail&gt;@gmail.com")
+(setq message-directory "~/mail"
+      notmuch-fcc-dirs nil
+      read-mail-command (quote notmuch)
+      message-citation-line-format "On %a, %b %d, %Y at %R, %f wrote:"
+      message-citation-line-function 'message-insert-formatted-citation-line
+      )
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "&lt;yourgmail&gt;@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t
+      )
+</pre>
+</div>
+
+<p>
+いよいよメールを送るテストをします。emacs から <code>M-x notmuch</code> &gt; <code>m</code> (send email)としてメールを書き、 <code>C-c C-c</code> で送ります。すると、imap.gmail.comの認証のために以下を聞かれるので入力します。
+</p>
+<pre class="example">
+username: &lt;full gmail address&gt;
+password: &lt;app password&gt;
+Save auth info to file ~/.authinfo? y
+</pre>
+
+<p>
+無事にFedora VM上のemacsでメールが送付できました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5666e6c" class="outline-3">
+<h3 id="org5666e6c"><span class="section-number-3">2.6.</span> Macからリモートのメールボックスを使う</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+やっと、本来やりたかったMac上の設定に入ります。リモート(と言ってもMacホスト上で動くVMですが)のメールボックスをtrampを使ってアクセスします。基本は: <a href="https://notmuchmail.org/remoteusage/">Using notmuch remotely</a> に従って設定します。人気のmu4eでなくnotmuchを選んだのは、最初からこれを使うつもりだったからです。mu4eはtrampと相性が悪い(動かない)という書き込みを目にしていたので。。。
+</p>
+
+<p>
+Mac(client)にnotmuchインストールします。
+</p>
+<pre class="example">
+brew install notmuch
+</pre>
+
+
+<p>
+Mac上でssh設定します。 <code>~/.ssh/config</code> に以下を追記:
+</p>
+<pre class="example">
+Host notmuch
+    HostName 127.0.0.1
+    Port 2223
+    User &lt;remote_username&gt;
+    ControlMaster auto
+    ControlPath ~/.ssh/master-%h@%p:%r
+    ControlPersist 15m
+</pre>
+<p>
+注意: Fedora VMは、localhost (127.0.0.1)のポート 2223にマップしてあります。
+</p>
+
+<p>
+<code>~/bin</code> ディレクトリが無ければ作って、そこに <code>remote-notmuch.sh</code> として以下をセーブし、実行可能に(<code>chmod +x</code>)します。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">#!/bin/bash
+printf -v ARGS "%q " "$@"
+exec ssh notmuch notmuch ${ARGS}
+</pre>
+</div>
+
+<p>
+<code>~/.emacs.d/init.el</code> 追記:
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package notmuch
+  :commands notmuch-hello
+  :bind (("C-c m" . notmuch-hello)))
+(setq notmuch-command "~/bin/remote-notmuch.sh")
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "&lt;yourgmail&gt;@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t
+      )
+</pre>
+</div>
+<p>
+4行目でnotmuch-commandに上で作成したbashスクリプトを指定している以外はそのままFedora emacsのinit.elからコピペしています。
+</p>
+
+<p>
+それでは、試してみます。Macのemacsから <code>M-x notmuch</code> で、何の問題もなくFedora上に取り込んであるメールが見られました。さすが trampさん、すごいです! メールを閲覧している時に <code>r</code> で返信できます。返事を書いて <code>C-c C-c</code> で送信すると、これもうまくいってしまいました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org598f86c" class="outline-2">
+<h2 id="org598f86c"><span class="section-number-2">3.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+今回は、Mac上のemacs+notmuch から、Linux VM上に同期したgmailのメールを読み書きする構成を試してみました。タグ付けなどまだ使いこなしていませんが、曲りなりにemacsでメールの読み書きができるようになって満足しています。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-06-02T00:00:00-04:00" pubdate>Thu 02 June 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

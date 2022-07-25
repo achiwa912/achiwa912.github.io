@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>キー入力と任意位置へのテキスト表示 &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">キー入力と任意位置へのテキスト表示</h1>
+    <p class="meta">
+<time datetime="2021-02-24T00:00:00-05:00" pubdate>Wed 24 February 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga7be95d">1. ノンブロッキングキー入力</a></li>
+<li><a href="#orgdeff691">2. 任意位置への文字表示</a></li>
+<li><a href="#org927b9f3">3. 次回</a></li>
+</ul>
+</div>
+</div>
+<p>
+Rogue + Wizライクプロジェクトの2回目はキー入力と画面表示です。
+</p>
+
+
+<div id="outline-container-orga7be95d" class="outline-2">
+<h2 id="orga7be95d"><span class="section-number-2">1.</span> ノンブロッキングキー入力</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+まずはリアルタイムキースキャンから。これがいきなり曲者で、簡単には実現できないようです。
+</p>
+
+<p>
+Windowsではmsvcrtというライブラリを使うみたいです。msvcrt.getch()は使い勝手がよさそう。しかし私の手元にはMacしかないので、別のやり方を探してみます。検索すること数十分、いちおう標準ライブラリの(?)termiosを使うやり方がいいのかな。Stackoverflowの<a href="https://stackoverflow.com/questions/13207678/whats-the-simplest-way-of-detecting-keyboard-input-in-a-script-from-the-termina">このQ&amp;A</a> に例が出ています。引用します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">import termios, fcntl, sys, os
+fd = sys.stdin.fileno()
+
+oldterm = termios.tcgetattr(fd)
+newattr = termios.tcgetattr(fd)
+newattr[3] = newattr[3] &amp; ~termios.ICANON &amp; ~termios.ECHO
+termios.tcsetattr(fd, termios.TCSANOW, newattr)
+
+oldflags = fcntl.fcntl(fd, fcntl.F_GETFL)
+fcntl.fcntl(fd, fcntl.F_SETFL, oldflags | os.O_NONBLOCK)
+
+try:
+    while 1:
+	try:
+	    c = sys.stdin.read(1)
+	    if c:
+		print("Got character", repr(c))
+	except IOError: pass
+finally:
+    termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
+    fcntl.fcntl(fd, fcntl.F_SETFL, oldflags)
+</pre>
+</div>
+
+<p>
+Windowsよりもずいぶん準備や後処理が面倒だし、tryブロックがネストしていて微妙な感じですが、試したところ十分使えそうです。これをお借りしましょう。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdeff691" class="outline-2">
+<h2 id="orgdeff691"><span class="section-number-2">2.</span> 任意位置への文字表示</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+次は画面上の指定位置への文字表示です。昔懐かしのBASIC言語でいうところのLOCATEに相当することがしたいです。検索でだいぶ手間取りましたが、思いのほか簡単に実現できることがわかりました。ANSIエスケープシーケンスで指定するのですね。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">print(f"\033[{y};{x}H@", end='')
+</pre>
+</div>
+
+<p>
+これでx, yの位置にアットマーク('@')を表示します。バックスラッシュ('\')から'H'までが位置指定のエスケープシーケンスです。ここでは1文字しか表示していませんが、2文字以上の文字列を表示させることももちろんできます。
+</p>
+
+<p>
+簡単な性能テストをしてみます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import random
+import time
+while True:
+    c = random.choice([b'1',b'2',b'3',b'4',b'5',b'6',b'7',b'8',b'9'])
+    start = time.time()
+    for y in range(25):
+	print(f"\033[{y};0H", end='')
+	line = bytearray(c*60)
+	print(line.decode())
+    delta = time.time() - start
+    print(f"{delta:.3f}")
+</pre>
+</div>
+<p>
+これはランダムな数字を60x25文字の表示エリアに一様に表示することを繰り返します。実際のゲームと同様にbytearrayで持つ1行ごとのデータを、文字列にデコードしながら1回のプリント文で表示しています。
+</p>
+
+<p>
+実行したところ、十分に高速でした。描画しているところはほとんど見えず、実行時間は1画面あたり100分の一秒未満でした。行けそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org927b9f3" class="outline-2">
+<h2 id="org927b9f3"><span class="section-number-2">3.</span> 次回</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+次はローグライクなランダムマップの自動生成に挑戦します。ありがたいことにRoguelike Tutorialなページが <a href="http://rogueliketutorials.com/tutorials/tcod/v2/part-3/">ありました</a> ので、参考にさせていただきます。なるほど、部屋と部屋を結ぶ方法は意外と単純だったのですね。線を引くのにジェネレーターを使うのはよいアイデアと思いました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-02-24T00:00:00-05:00" pubdate>Wed 24 February 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

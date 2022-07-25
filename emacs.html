@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>emacsの設定 &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">emacsの設定</h1>
+    <p class="meta">
+<time datetime="2022-06-22T00:00:00-04:00" pubdate>Wed 22 June 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgba05063">1. はじめに</a></li>
+<li><a href="#org0efd7f6">2. そもそもemacsって・・・</a></li>
+<li><a href="#org15b2412">3. 使っている機能とconfig</a>
+<ul>
+<li><a href="#orgf9b5967">3.1. use-package</a></li>
+<li><a href="#org76f867d">3.2. materialテーマ と doomモードライン</a></li>
+<li><a href="#org2b16755">3.3. 雑多な設定</a></li>
+<li><a href="#org830dddf">3.4. dired</a></li>
+<li><a href="#orgd3cecbc">3.5. ソースファイルを見やすくする設定</a></li>
+<li><a href="#orga3565dd">3.6. which-key</a></li>
+<li><a href="#org8482f9d">3.7. Completion系パッケージ</a>
+<ul>
+<li><a href="#orgeb72d16">3.7.1. orderless</a></li>
+<li><a href="#orgb301819">3.7.2. vertico - VERTical Interactive COmpletion</a></li>
+<li><a href="#orgc739a01">3.7.3. marginalia</a></li>
+<li><a href="#orgf19cce0">3.7.4. consult</a></li>
+<li><a href="#orgb8e8fd6">3.7.5. company-mode</a></li>
+</ul>
+</li>
+<li><a href="#org4b1d42d">3.8. Python</a></li>
+<li><a href="#orgd1d8297">3.9. 17インチMacBook Pro用設定</a></li>
+<li><a href="#orge1f6396">3.10. email設定</a></li>
+<li><a href="#org8493deb">3.11. shell-mode</a></li>
+<li><a href="#org9347489">3.12. org-mode</a>
+<ul>
+<li><a href="#orgcbae74f">3.12.1. テキストファイルである</a></li>
+<li><a href="#org141e052">3.12.2. 表の編集</a></li>
+<li><a href="#orgad23c7b">3.12.3. ToDo管理</a></li>
+<li><a href="#orgef0b755">3.12.4. 各種ファイルフォーマットへのエキスポート</a></li>
+<li><a href="#orgf9dd27e">3.12.5. クラウド連携</a></li>
+<li><a href="#org8cd3b8b">3.12.6. ブログ</a></li>
+<li><a href="#org613555d">3.12.7. org-mode用設定</a></li>
+</ul>
+</li>
+<li><a href="#org7de85dd">3.13. magit</a></li>
+<li><a href="#org02a3084">3.14. tramp-mode</a></li>
+<li><a href="#org27e5778">3.15. GUIモード</a></li>
+</ul>
+</li>
+<li><a href="#org9fc4581">4. init.el</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgba05063" class="outline-2">
+<h2 id="orgba05063"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+業務効率を上げるために、emacsの使いこなしに注力しています。元々org-modeによるドキュメント書きやPythonスクリプト開発にしか使っていなかったのですが、この1年くらいで、以下の機能、パッケージを使うようになり、40年前からあるツールとは思えないくらい使い勝手が向上しました。
+</p>
+<ul class="org-ul">
+<li>use-package</li>
+<li>magit</li>
+<li>vertico + orderless + marginalia + consult</li>
+<li>GUIモード</li>
+<li>tramp-mode</li>
+<li>dired</li>
+<li>org-modeでのToDos管理</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0efd7f6" class="outline-2">
+<h2 id="org0efd7f6"><span class="section-number-2">2.</span> そもそもemacsって・・・</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+先日発表された、stackoverflow の2022年版 IDEランキング(<a href="https://survey.stackoverflow.co/2022/#most-popular-technologies-new-collab-tools">こちら</a>)で、emacsはCLion, Riderに次ぐ20位でした。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">rank</th>
+<th scope="col" class="org-left">IDE</th>
+<th scope="col" class="org-left">コメント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Visual Studio Code</td>
+<td class="org-left">納得です</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Visual Studio</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">IntelliJ</td>
+<td class="org-left">これも納得</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">Notepad++</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">Vim</td>
+<td class="org-left">おー、さすが</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&lt;snip&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">Nano</td>
+<td class="org-left">なぜNanoがIDE..</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&lt;snip&gt;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">20</td>
+<td class="org-left">Emacs</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+職場でも、VS Code, IntelliJ, vimを使っている人が大半で、唯一のemacs使いは転職してgoogleに行ってしまいました。私も自分でコーディングしない言語のソースコードを見るときにはVS Codeを使っていて、自分で管理していないLinuxマシン上ではvi/vimを使います。
+</p>
+
+<p>
+ランキングを見ると、emacsのライバルである筈のvimに大きく差をつけられているのが寂しい所です。世間的にはemacsはオワコンカテゴリーに入ってしまったのですね。
+</p>
+
+<p>
+確かにemacsは初心者を突き放したようなところがあって、ツールとして使いこなすまでのアップフロントな学習コストが高めなため、インストールするだけで何となく使えてしまうVS Codeに人気で負けてしまうのは納得できます。
+</p>
+
+<p>
+しかしある一線を越えると、非常に生産性の高い唯一無二の世界が待っていますので、少しでも興味があって、勉強や試行錯誤してもよいという方は是非ともemacsを使っていただきたいと思います。
+</p>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://qiita.com/mkt3/items/44aa25619a9591078231">Emacsのすゝめ</a></li>
+<li><a href="https://emacs-jp.github.io/tips/emacs-in-2020">2020年代のEmacs入門</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org15b2412" class="outline-2">
+<h2 id="org15b2412"><span class="section-number-2">3.</span> 使っている機能とconfig</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgf9b5967" class="outline-3">
+<h3 id="orgf9b5967"><span class="section-number-3">3.1.</span> <a href="https://github.com/jwiegley/use-package">use-package</a></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+emacsの追加機能(パッケージ)は <code>~/.emacs.d/init.el</code> で設定しますが、これを見やすく、書きやすくするありがたいパッケージです。パッケージの自動インストールもしてくれます(私の環境では動かないことも多いですが)。
+</p>
+
+<p>
+パッケージのgithub READMEには、use-packageを使った設定の説明が増えてきていて、多くのemacsユーザーに浸透しています。日本ではより高機能な leaf が有名ですね。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; for use-package
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org76f867d" class="outline-3">
+<h3 id="org76f867d"><span class="section-number-3">3.2.</span> <a href="https://github.com/cpaulik/emacs-material-theme">materialテーマ</a> と <a href="https://github.com/seagle0128/doom-modeline">doomモードライン</a></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+テーマは好き嫌いがあると思いますが、私はmaterialテーマを好んで使っています。
+</p>
+
+<p>
+doomモードラインは、画面の下から2行目にある情報表示行のモードラインをcoolにしてくれるパッケージです。ミニマリストデザインで格好よく、視認性がとても良いです。下記イメージはmaterialテーマを適用しています。緑枠で囲った部分がモードラインです。
+</p>
+
+
+<div id="orgd343d39" class="figure">
+<p><img src="./images/theme_modeline.jpg" alt="theme_modeline.jpg" />
+</p>
+</div>
+
+<p>
+~/.emacs.d/init.el には以下を設定しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; Material theme
+(load-theme 'material t)
+
+;; doom modeline
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2b16755" class="outline-3">
+<h3 id="org2b16755"><span class="section-number-3">3.3.</span> 雑多な設定</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>スタートアップメッセージは不要です。</li>
+<li>バックアップファイルも不要です。</li>
+<li>カーソル位置はモードラインにシンプルに表示します。</li>
+<li>スクロールは1ライン単位が見やすいと思います。</li>
+<li>耳障りな音は元から絶ちます。</li>
+<li>いちいち"yes" "no"を入れるのが面倒なので、'y' 'n'にします。</li>
+<li>メニューバーやツールバーは不要です。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; No startup message
+(setq inhibit-startup-message t)
+
+;; no backup files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;; Delete auto-save files
+(setq delete-auto-save-files nil)
+
+;; columm and line number
+(column-number-mode t)
+
+;; 1-line scroll
+(setq scroll-conservatively 1)
+
+;; silence bell
+(setq ring-bell-function 'ignore)
+
+;; yes or no to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; hide menu/tool bar
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org830dddf" class="outline-3">
+<h3 id="org830dddf"><span class="section-number-3">3.4.</span> dired</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<code>ls -la</code> (かな?)の画面を見ながら、ディレクトリやファイル操作ができるモードです。PC98の頃に流行ったファイラー(FD, FILMTNには昔お世話になりました)に似ています。キー操作を覚えるのが面倒ですが、使いこなせばかなり便利です。私はキーバインドをすぐに忘れるので、チートシートを用意しています:
+</p>
+<ul class="org-ul">
+<li><code>C-x d</code>: run dired</li>
+<li><code>s</code>: アルファベット順、時系列ソートトグル</li>
+<li><code>&lt;</code> <code>&gt;</code>: 手前、次のディレクトリへ</li>
+<li><code>^</code>: 親ディレクトリを開く</li>
+<li><code>v</code>: 現在のファイルを閲覧(view mode)</li>
+<li><code>+</code>: サブディレクトリ作成</li>
+<li><code>=</code>: diff</li>
+<li><code>m</code>: マーク</li>
+<li><code>u</code> / <code>U</code>: マーク解除/全解除</li>
+<li><code>C</code>: コピー</li>
+<li><code>R</code>: リネーム</li>
+<li><code>M</code>: chmod</li>
+<li><code>Z</code>: gzip/gunzip</li>
+<li><code>M-x find-name-dired</code>: パターンマッチするファイルをdired</li>
+<li><code>M-x find-grep-dired</code>: パターンを含むファイルをdired</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; dired
+(require 'dired-x)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd3cecbc" class="outline-3">
+<h3 id="orgd3cecbc"><span class="section-number-3">3.5.</span> ソースファイルを見やすくする設定</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li><a href="https://github.com/Fanael/rainbow-delimiters">rainbow-delimiters</a> - 対応するカッコを色分けして表示してくれます。視認性が上がります。</li>
+<li>カーソル位置にあるカッコの対となるカッコを強調表示します。これも便利です。</li>
+<li><a href="https://github.com/DarthFennec/highlight-indent-guides">highlight-indent-guides</a> - インデントを視覚的に見やすく表示してくれます。Pythonのようにインデントでブロックが決まる言語ではとても有用です。</li>
+</ul>
+
+<p>
+下記はinit.elの、カッコのネストが深い部分です。カーソルをカッコの位置に動かし、対応カッコ共にハイライトさせてみました。画面左にある濃いグレーの縦棒はインデントを表しています。
+<img src="./images/emacs-paren.jpg" alt="emacs-paren.jpg" />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; rainbow-delimiters
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+;; Blink corresponding paren
+(show-paren-mode 1)
+
+;; visualize indent
+(use-package highlight-indent-guides
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'column))
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orga3565dd" class="outline-3">
+<h3 id="orga3565dd"><span class="section-number-3">3.6.</span> <a href="https://github.com/justbur/emacs-which-key">which-key</a></h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+emacsでは、 <code>C-x C-c</code> や <code>C-x r l</code> のように複数ストロークのキーバインドが珍しくありませんが、キーを打つ度にヒントを出してくれるのが which-key です。チートシートの出番が減ります。
+</p>
+
+<p>
+下記イメージは、 <code>C-x r</code> まで押したところ。(使うのは <code>l</code> か <code>m</code>)
+<img src="./images/emacs-which.jpg" alt="emacs-which.jpg" />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; key binding hint
+(use-package which-key
+  :defer 0
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.3))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8482f9d" class="outline-3">
+<h3 id="org8482f9d"><span class="section-number-3">3.7.</span> Completion系パッケージ</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+私が最近存在を知り、作業効率が劇的に向上したのがこれらの補完系パッケージです。
+</p>
+</div>
+
+<div id="outline-container-orgeb72d16" class="outline-4">
+<h4 id="orgeb72d16"><span class="section-number-4">3.7.1.</span> <a href="https://github.com/oantolin/orderless">orderless</a></h4>
+<div class="outline-text-4" id="text-3-7-1">
+<p>
+キーワードの順序を気にせず、人間の感覚に沿った補完をしてくれる補助パッケージです。使い勝手に大きく影響するので、ぜひ入れましょう。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; better candidate filtering
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb301819" class="outline-4">
+<h4 id="orgb301819"><span class="section-number-4">3.7.2.</span> <a href="https://github.com/minad/vertico">vertico - VERTical Interactive COmpletion</a></h4>
+<div class="outline-text-4" id="text-3-7-2">
+<p>
+補完候補を縦に表示します。次のmarginaliaとセットで使うことで、ものすごく使いやすくなります。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; vertico - vertial completion
+(use-package vertico
+  :init (vertico-mode 1)
+  :config (setq vertico-count 14))
+(use-package savehist
+  :init (savehist-mode 1))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc739a01" class="outline-4">
+<h4 id="orgc739a01"><span class="section-number-4">3.7.3.</span> <a href="https://github.com/minad/marginalia">marginalia</a></h4>
+<div class="outline-text-4" id="text-3-7-3">
+<p>
+verticoを使って補完候補を縦に表示したとき、空いているスペースに有用な情報を表示してくれます。気が利いています。見た目もいい感じになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; marginalia - rich annotations
+(use-package marginalia
+  :init (marginalia-mode))
+(use-package all-the-icons  ;; M-x all-the-icons-install-fonts required
+  :if (display-graphic-p))
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init (all-the-icons-completion-mode))
+</pre>
+</div>
+<p>
+コメントにあるように、 <code>all-the-icons</code> をインストールしておくと、見た目がとてもcoolになります。
+インストールは <code>M-x all-the-icons-install-fonts</code> で行います。このアイコンはdoomモードラインでも使用されるので、是非インストールしてください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf19cce0" class="outline-4">
+<h4 id="orgf19cce0"><span class="section-number-4">3.7.4.</span> <a href="https://github.com/minad/consult">consult</a></h4>
+<div class="outline-text-4" id="text-3-7-4">
+<p>
+説明を読んでも今ひとつピンとこないのですが、カーソルのある選択候補をプレビューしてくれるパッケージです。作業効率が向上するので是非。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; consult - preview everything
+(use-package consult
+  :bind (("C-x b" . consult-buffer)
+	 ("M-g g" . consult-goto-line) ;; line number
+	 ("M-g o" . consult-outline)
+	 ("M-s f" . consult-find)
+	 ("M-s l" . consult-line)  ;; key word
+	 ("M-s g" . consult-grep)))
+</pre>
+</div>
+
+<p>
+下記イメージは、 <code>C-x b</code> でバッファ切り替えの画面を出したところです。verticoにより切り替え候補のバッファが縦に表示されていて、それらにmarginaliaによる付加情報が付いています。init.elが仮選択されていて、そのプレビュー画面が画面上部に表示されています。
+</p>
+
+
+<div id="org044ddb5" class="figure">
+<p><img src="./images/emacs-vertico.jpg" alt="emacs-vertico.jpg" />
+</p>
+</div>
+
+<p>
+矢印キーや <code>C-n</code> <code>C-p</code> で仮選択候補を動かすと、次の候補がプレビューされます。かなり便利です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb8e8fd6" class="outline-4">
+<h4 id="orgb8e8fd6"><span class="section-number-4">3.7.5.</span> <a href="https://company-mode.github.io/">company-mode</a></h4>
+<div class="outline-text-4" id="text-3-7-5">
+<p>
+IDE等でよくある、インラインで候補を出してくれるパッケージです。
+</p>
+
+
+<div id="org402cb3f" class="figure">
+<p><img src="./images/emacs-company.jpg" alt="emacs-company.jpg" />
+</p>
+</div>
+
+<p>
+とりあえずグローバルで有効にしていますが、そこまで賢くもないので、今後適用先を絞るかもしれません。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; company - completions using small popups
+(use-package company
+  :init
+  (global-company-mode)
+  (setq company-idle-delay 0.4)
+  (setq company-minimum-prefix-length 1)
+  (setq company-transformers '(company-sort-by-occurrence))
+  (add-hook 'shell-mode-hook (lambda () (company-mode -1)) 'append)
+  (add-hook 'eshell-mode-hook (lambda () (company-mode -1)) 'append)
+  :bind
+  (:map company-active-map
+	      ("C-n". company-select-next)
+	      ("C-p". company-select-previous)
+	      ("M-&lt;". company-select-first)
+	      ("M-&gt;". company-select-last)))
+</pre>
+</div>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://blog.tomoya.dev/posts/a-new-wave-has-arrived-at-emacs/">Emacsの次世代ミニバッファ補完UI</a></li>
+<li><a href="https://qiita.com/tadsan/items/f1738cb463b1ec536f84">2021年の補完UI事情とEmacs28に標準添付されるfido-vertical-modeについて</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org4b1d42d" class="outline-3">
+<h3 id="org4b1d42d"><span class="section-number-3">3.8.</span> Python</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+<a href="https://achiwa912.github.io/eglot.html">以前のエントリー</a> でも書きましたが、elpyからtramp-modeに対応するlsp+eglotに乗り換えました。
+</p>
+<ul class="org-ul">
+<li><a href="https://www.flycheck.org/en/latest/">flycheck</a> - オンザフライでシンタックスチェックしてくれます。flymakeよりこちらを。</li>
+<li><a href="https://github.com/pythonic-emacs/blacken">blacken</a> - Pythonファイルをセーブする際に構文チェックして、強制的に規定ルールに合わせてくれます。行儀の良いコードを書く自信のない人はぜひ。</li>
+<li><a href="https://github.com/jorgenschaefer/pyvenv">pyvenv</a> - Pythonの仮想環境をemacsでも。</li>
+<li><a href="https://github.com/joaotavora/eglot">eglot</a> - emacsをIDE(統合開発環境)化してくれるパッケージ(フロントエンド)です。</li>
+<li><a href="https://github.com/python-lsp/python-lsp-server">Python用lspサーバー</a> - eglotはフロントエンドで、こちらがサーバーです。pipでインストールし、サーバーとして動かしておきます。</li>
+</ul>
+<pre class="example">
+pip install 'python-lsp-server[all]'
+</pre>
+
+<ul class="org-ul">
+<li>tramp-remote-path設定 - tramp機能で、別マシン上で動くPython LSPサーバーにつなげに行く時に必要だった設定をしています。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-elisp">;; Flycheck
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook 'global-flycheck-mode))
+(use-package flycheck-inline
+  :init
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+
+;; black
+(use-package blacken
+  :config
+  (add-hook 'python-mode-hook 'blacken-mode))
+
+;; suppress warnings
+(setq python-indent-guess-indent-offset-verbose nil)
+
+;; pyvenv
+(use-package pyvenv
+  :config
+  (pyvenv-mode 1))
+
+;; eglot - lsp client
+(use-package eglot)
+(add-to-list 'eglot-server-programs
+	       '(python-mode "pylsp"))
+(use-package python-mode
+  :ensure nil
+  :hook
+  (python-mode . eglot-ensure))
+
+;; need this for eglot to find pylsp in a remote server
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+</pre>
+</div>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://mako-note.com/ja/python-emacs-lsp/">EmacsでのlspをベースとしたPython開発環境</a></li>
+<li><a href="https://solist.work/blog/posts/language-server-protocol/">EglotでLanguage Server Protocolを使う</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd1d8297" class="outline-3">
+<h3 id="orgd1d8297"><span class="section-number-3">3.9.</span> 17インチMacBook Pro用設定</h3>
+<div class="outline-text-3" id="text-3-9">
+<ul class="org-ul">
+<li>老眼の入った目には、デフォルトフォントは小さすぎるので、大きめフォントを指定します</li>
+<li>emacsがmacOSのシェルからパス設定を取得できるようにしています</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-elisp">(if (display-graphic-p)
+    (set-face-attribute 'default nil :height 160))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge1f6396" class="outline-3">
+<h3 id="orge1f6396"><span class="section-number-3">3.10.</span> email設定</h3>
+<div class="outline-text-3" id="text-3-10">
+<ul class="org-ul">
+<li><a href="https://notmuchmail.org/">notmuch</a> - emailパッケージです。trampモードと連動し、リモート置いてあるメールにアクセスできます。emacs用メーラーとしてはmu4eが人気ですが、mu4eはtrampとの相性が良くないようです。</li>
+<li>smtp設定 - メールを出すための設定です。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package notmuch
+  :commands notmuch-hello
+  :bind (("C-c m" . notmuch-hello)))
+(setq notmuch-command "~/bin/remote-notmuch.sh")
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "&lt;emailアドレス&gt;@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t
+      )
+</pre>
+</div>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://achiwa912.github.io/notmuch.html">emacs+notmuchでメールを読み書きする</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8493deb" class="outline-3">
+<h3 id="org8493deb"><span class="section-number-3">3.11.</span> shell-mode</h3>
+<div class="outline-text-3" id="text-3-11">
+<p>
+emacs内で動くシェルはいくつかありますが、 <code>M-x shell</code> で起動する標準の <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Interactive-Shell.html">shell</a> モードを使っています。他に <a href="https://www.gnu.org/software/emacs/manual/html_mono/eshell.html">eshell</a> や <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Terminal-emulator.html">term</a> モードがありますね。
+</p>
+
+<p>
+<code>C-p</code> <code>C-n</code> で前後の候補を表示するのでなく、カーソルが動いてしまうことに戸惑いますが、 <code>M-p</code> <code>M-n</code> <code>M-r</code> が用意されていることに気がつけば大丈夫です。コントロールキーでなくメタキーを使うだけなので、覚えるのも容易です。このあたりのキーバインドは <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Shell-Ring.html">こちら</a> 。
+</p>
+
+<p>
+trampモードとの相性も良く、これのおかげでリモートマシンにsshで入る頻度がとても減りました。
+</p>
+
+<p>
+複数のシェルを開くには、多少の <a href="https://stackoverflow.com/questions/6532998/how-to-run-multiple-shells-on-emacs">工夫</a> が必要なようです。なるほど、 <code>C-u M-x shell</code> で行けるのですね。
+</p>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://blog.inouetakuya.info/entry/20110627/1309175529">Emacs のシェルモード比較 - shell、ansi-term、multi-term</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9347489" class="outline-3">
+<h3 id="org9347489"><span class="section-number-3">3.12.</span> <a href="https://orgmode.org/">org-mode</a></h3>
+<div class="outline-text-3" id="text-3-12">
+<p>
+emacsのキラー機能である、高機能なアウトラインエディターです。私が今でもemacsを使い続ける最大の理由がこれです。これまで、各種wiki, MS WordやExcel, Evernote, Confluence等さまざまな文章書きツールを使ってきましたが、バージョン間やツール間の互換性、数々の不具合、UIや操作性の違い、使えるデバイス数の変更(Evernote&#x2026;)に悩まされてきました。org-modeにはこれらの問題がありません。
+</p>
+</div>
+
+<div id="outline-container-orgcbae74f" class="outline-4">
+<h4 id="orgcbae74f"><span class="section-number-4">3.12.1.</span> テキストファイルである</h4>
+<div class="outline-text-4" id="text-3-12-1">
+<p>
+org-modeの最大の特長は、orgファイルが単なるテキストファイルで、それを40年間変わらないemacsのUIを使って編集できることです。ファイルフォーマットの互換性問題が本質的にありません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org141e052" class="outline-4">
+<h4 id="org141e052"><span class="section-number-4">3.12.2.</span> 表の編集</h4>
+<div class="outline-text-4" id="text-3-12-2">
+<p>
+文章を書いていると、情報を見やすく提示するために、表を挿入したくなることがありますよね。
+そんな時に役に立つ機能です。
+</p>
+
+<p>
+罫線として <code>|</code> <code>-</code> <code>+</code> あたりを使って、テキストファイル内に表を作ることができます。
+タブキーを押すことで、罫線を補完したり、セルの幅をうまく調整してくれます。
+ほとんど神がかった操作性を是非とも体験してみてください。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">item</th>
+<th scope="col" class="org-left">details</th>
+<th scope="col" class="org-right">number</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">apple</td>
+<td class="org-left">red and sweet and sour 林檎</td>
+<td class="org-right">10</td>
+</tr>
+
+<tr>
+<td class="org-left">orange</td>
+<td class="org-left">orange and juicy 橙</td>
+<td class="org-right">25</td>
+</tr>
+
+<tr>
+<td class="org-left">バナナ</td>
+<td class="org-left">黄色くて安くて甘い</td>
+<td class="org-right">15</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+残念な点もあります:
+</p>
+<ul class="org-ul">
+<li>部分セルの結合、分割ができない(行や列全体の追加、削除はできる)</li>
+<li>セル内部でのテキストの折返しができない</li>
+<li>表計算ソフトのように計算させることが若干面倒</li>
+</ul>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://tamura70.hatenadiary.org/entry/20100205/org">Emacs org-modeを使ってみる: (3) 表の編集</a></li>
+<li><a href="https://qiita.com/zonkyy/items/36a590b49a9237907335">Emacs の org-mode は表計算もできてしまう</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgad23c7b" class="outline-4">
+<h4 id="orgad23c7b"><span class="section-number-4">3.12.3.</span> ToDo管理</h4>
+<div class="outline-text-4" id="text-3-12-3">
+<p>
+こんな感じに見出し行にステータスを付加することで、ToDoリストが作れます。ToDoステータス(注: カスタマイズしています)はショートカットキーで付加、変更ができます。文字を手打ちしてもいいですが。
+日付は(<code>C-c .</code> で)別途追記しました。
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org4731ba5"></a>&lt;TODO&gt; あれやらなきゃ <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-06-22 Wed&gt;</span></span><br /></li>
+<li><a id="org050be04"></a>&lt;CANCEL&gt; どうしようかな<br /></li>
+<li><a id="orgb280bdc"></a>&lt;WAIT&gt; これは待ち中 <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-06-30 Thu&gt;</span></span><br /></li>
+<li><a id="org9380f3f"></a>&lt;DONE&gt; 終わったよ <span class="timestamp-wrapper"><span class="timestamp">&lt;2022-06-01 Wed&gt;</span></span><br />
+<div class="outline-text-5" id="text-3-12-3-4">
+<p>
+ブログ用にエキスポートしてしまうと微妙ですね。
+(org-modernを適用した) emacs上ではこのように見えます:
+<img src="./images/emacs-org-todo.jpg" alt="emacs-org-todo.jpg" />
+<code>C-c C-t</code> まで押したところ。更に <code>t</code> (TODO) <code>w</code> (WAIT) <code>d</code> (DONE) <code>c</code> (CANCEL)を押すとステータスが入ります。init.elでの設定:
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">;; Add to TODO status
+(setq org-todo-keywords
+      '((sequence "&lt;TODO&gt;(t)" "&lt;WAIT&gt;(w)" "|" "&lt;DONE&gt;(d)" "&lt;CANCEL&gt;(c)")))
+</pre>
+</div>
+
+<p>
+個人的には、むしろ箇条書きでこれができて欲しかったです。どうしてできるようにしなかったんだろう?
+</p>
+
+<p>
+リンク: 
+</p>
+<ul class="org-ul">
+<li><a href="https://monkey-techblog.com/%E6%9C%80%E5%BC%B7%E3%81%AEtodo%E3%83%AA%E3%82%B9%E3%83%88%EF%BC%81%EF%BC%9Forg-mode%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/">最強のTODOリスト！？org-modeを使ってみる</a></li>
+<li><a href="https://qiita.com/zonkyy/items/821ea2b1e20f575c222f">Emacs の org-mode でスケジュール管理をしよう！</a></li>
+<li><a href="https://www.mhatta.org/wp/2018/08/27/org-mode-101-5/">モーレツ! Org mode 教室 その5: TODOを管理する</a></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgef0b755" class="outline-4">
+<h4 id="orgef0b755"><span class="section-number-4">3.12.4.</span> 各種ファイルフォーマットへのエキスポート</h4>
+<div class="outline-text-4" id="text-3-12-4">
+<p>
+html, markdownなどのフォーマットにエキスポートできます。いい感じの見た目になりますが、github/gitlabがorgファイルのレンダリングに対応していることで、個人的にはこれを使うことが激減しました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf9dd27e" class="outline-4">
+<h4 id="orgf9dd27e"><span class="section-number-4">3.12.5.</span> クラウド連携</h4>
+<div class="outline-text-4" id="text-3-12-5">
+<p>
+magitを使ってorgファイルをgithub, gitlabにpushすると、github/gitlabがorgファイルをいい感じにレンダリングして表示してくれるので、これらを使ったwikiが簡単に実現できてしまいます。もちろん、他のPCやスマホから、レンダリングされたorgファイルを閲覧(git設定すれば編集も)することができます。
+</p>
+
+<p>
+プライベートレポジトリなら個人用wiki、パブリックなら公開wikiとして使えます。
+</p>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://achiwa912.github.io/ortgithub.html">org-mode + github(/gitlab)で個人用Wikiを作る</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8cd3b8b" class="outline-4">
+<h4 id="org8cd3b8b"><span class="section-number-4">3.12.6.</span> ブログ</h4>
+<div class="outline-text-4" id="text-3-12-6">
+<p>
+<a href="https://achiwa912.github.io/startblog.html">初回</a> に書きましたが、このブログはorg-modeを使って書いています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org613555d" class="outline-4">
+<h4 id="org613555d"><span class="section-number-4">3.12.7.</span> org-mode用設定</h4>
+<div class="outline-text-4" id="text-3-12-7">
+<ul class="org-ul">
+<li><a href="https://github.com/minad/org-modern">org-modern</a> - orgファイル編集画面をきれいに見やすく表示してくれます。単なるテキストファイルであるorgファイルをここまで見やすくしてくれるとは! これがあれば、もういちいちhtml等にエキスポートしなくてもよい!?</li>
+<li>org-hide-emphasis-markers - 不要なマーカーを隠して見た目をスッキリさせてくれます。地味にうれしい機能です。</li>
+<li>truncate-lines nil - (これ何だっけ?)</li>
+<li>org-modeでのオートインデントはオフにしています。</li>
+<li><code>&lt;s TAB</code> <code>&lt;q TAB</code> などでソースコードやクオートのブロックが入るショートカットです。超絶便利。これを知るまでは <code>#+BEGIN_SRC</code> 〜 <code>#+END_SRC</code> を手打ちしていました(汗)</li>
+<li>To Do機能を使う場合のステータスを追加しています。</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-elisp">;; Modern-looking org-mode (requires installing org-modern)
+(use-package org-modern
+  :hook (org-mode . org-modern-mode))
+
+;; hide emphasis markup
+(setq org-hide-emphasis-markers t)
+
+;; disable org-mode truncate-lines
+(add-hook 'org-mode-hook
+	  (lambda () (setq truncate-lines nil)))
+
+;; Suppress auto-indent for org-mode
+;;(add-hook 'org-mode-hook '(lambda () (electric-indent-local-mode -1)))
+(add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+
+;; enable shortcuts such as &lt;s + TAB
+(require 'org-tempo)
+
+;; Add to TODO status
+(setq org-todo-keywords
+      '((sequence "&lt;TODO&gt;(t)" "&lt;WAIT&gt;(w)" "|" "&lt;DONE&gt;(d)" "&lt;CANCEL&gt;(c)")))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7de85dd" class="outline-3">
+<h3 id="org7de85dd"><span class="section-number-3">3.13.</span> <a href="https://magit.vc/">magit</a></h3>
+<div class="outline-text-3" id="text-3-13">
+<p>
+プログラマー系の人にとって、org-modeと並ぶemacsのキラーアプリです。emacs用のgitインタフェースなのですが、コマンドライン上でgitコマンド操作する場合に対して、作業効率が圧倒的に上がります。
+</p>
+
+<p>
+プログラマーでなくても、orgモードで文書を書く人はその恩恵にあづかることができると思います。テキストファイルなのに、ヒストリーを持つバージョン管理ができるようになり、しかもgithub/gitlab等のクラウド連携が実現できます。
+</p>
+
+<p>
+問題は、プログラマー系以外の人にとって git の敷居が高いということでしょうか。ITエンジニアなら是非とも身につけたいスキルですが。
+</p>
+
+<p>
+リンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://qiita.com/maueki/items/70dbf62d8bd2ee348274">[Emacs] magitチュートリアル</a></li>
+<li><a href="https://kumaroot.readthedocs.io/ja/stable/emacs-magit.html">Magitの使い方</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org02a3084" class="outline-3">
+<h3 id="org02a3084"><span class="section-number-3">3.14.</span> tramp-mode</h3>
+<div class="outline-text-3" id="text-3-14">
+<p>
+リモートマシン上のファイル等を、まるでローカルにあるかのように扱える、emacsのキラー機能の一つです。代案としては、リモートマシンにsshして <code>emacs -nw</code> する、emacsの <a href="https://achiwa912.github.io/remote_desktop.html">ウインドウをリモートから飛ばす</a> 等がありますが、ローカルとリモートで扱えるファイルが完全に区別されてしまうのが難です。
+</p>
+
+<p>
+trampは標準で入っているので、特に設定はいりません。例えばファイルをオープンする時(<code>C-x C-f</code>)に、 ` <code>/ssh:username@hostname#port:/path/to/file</code> を指定するだけです。すごい! ユーザー名やポート番号は省略できます。hostnameはIPアドレスでも行けます。
+</p>
+
+<p>
+また、ローカルからリモートにファイルをコピーする時は、dired上でtrampの書式でリモートのコピー先を指定することで、ローカル同士であるかのようにファイルコピーが可能です。
+</p>
+
+<p>
+もちろんタイムラグはありますし、trampと相性の悪いパッケージも多いです。それでも、一通りの機能はtrampで使えますし、何より、自分のローカルマシンで動いているemacsからリモートのファイルが扱えることは素晴らしいです。diredやmagitもtrampと連携して、まるで魔法のように動きます。
+</p>
+
+<p>
+tramp-mode紹介ページへのリンク:
+</p>
+<ul class="org-ul">
+<li><a href="https://yo.eki.do/notes/tramp-mode/">Emacs: まだターミナルで消耗してるの？</a></li>
+<li><a href="https://hangstuck.com/emacs-tramp/">Emacs Tramp でリモート上のファイルを直接編集する方法</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org27e5778" class="outline-3">
+<h3 id="org27e5778"><span class="section-number-3">3.15.</span> GUIモード</h3>
+<div class="outline-text-3" id="text-3-15">
+<p>
+私は最近までターミナル上でemacsを使って(ie, <code>emacs -nw</code>)いました。sshでリモートマシンに入っても同じように使える(リモートでもemacsの設定をすれば)ので、十分重宝していました。しかし、emacsをより使いこなそうと色々なパッケージを試すうちに、あることに気が付きました。
+</p>
+
+<p>
+ターミナルモードでは <code>C-.</code> 等いくつかの重要なキーバインドが使えないのです。私はなるべく標準のキーバインドで使いたいので、別のキーに割り当てることに躊躇しました。
+</p>
+
+<p>
+思い切ってGUIモードに挑戦したところ、これまでターミナルモードで感じていた不自由さが解消されたことがわかりました。例えば、
+</p>
+<ul class="org-ul">
+<li>フォントサイズが(ターミナルのように全体でなく)部分毎に変わったり、部分を目立たせたりして、orgファイル等の視認性が上がる</li>
+<li>アイコンのビットイメージが表示される</li>
+<li>画像が表示できる(遅いので使いませんが)</li>
+<li>そしてもちろん、全てのキーバインドが使える</li>
+</ul>
+
+<p>
+というわけで、すっかりGUIモードに移行しました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9fc4581" class="outline-2">
+<h2 id="org9fc4581"><span class="section-number-2">4.</span> init.el</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+現在使用しているinit.elです。余計な箇所もありますが、そのまま貼り付けておきます。(一部伏せました)
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(require 'package)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+	("melpa" . "http://melpa.org/packages/")
+	("org" . "http://orgmode.org/elpa/")))
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; for use-package
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(notmuch org-modern doom-modeline doom-modelie highlight-indent-guides flycheck-inline flyckeck-inline eglot magit dired-rsync exec-path-from-shell consult all-the-icons-completion all-the-icons marginalia vertico orderless which-key rainbow-delimiters org-superstar ox-gfm flycheck org-download material-theme better-defaults)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; Material theme
+(load-theme 'material t)
+
+;; doom modeline
+(use-package doom-modeline
+  :init (doom-modeline-mode 1))
+
+;; No startup message
+(setq inhibit-startup-message t)
+
+;; no backup files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+;; Delete auto-save files
+(setq delete-auto-save-files nil)
+
+;; columm and line number
+(column-number-mode t)
+
+;; 1-line scroll
+(setq scroll-conservatively 1)
+
+;; silence bell
+(setq ring-bell-function 'ignore)
+
+;; dired
+(require 'dired-x)
+
+;; yes or no to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; hide menu/tool bar
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+
+;; rainbow-delimiters
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+;; Blink corresponding paren
+(show-paren-mode 1)
+
+;; visualize indent
+(use-package highlight-indent-guides
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'column))
+
+;; key binding hint
+(use-package which-key
+  :defer 0
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.3))
+
+;; add to load-path
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
+;; ====== completion ========================================
+
+;; better candidate filtering
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
+;; vertico - vertial completion
+(use-package vertico
+  :init (vertico-mode 1)
+  :config (setq vertico-count 14))
+(use-package savehist
+  :init (savehist-mode 1))
+
+;; marginalia - rich annotations
+(use-package marginalia
+  :init (marginalia-mode))
+(use-package all-the-icons  ;; M-x all-the-icons-install-fonts required
+  :if (display-graphic-p))
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init (all-the-icons-completion-mode))
+
+;; consult - preview everything
+(use-package consult
+  :bind (("C-x b" . consult-buffer)
+	 ("M-g g" . consult-goto-line) ;; line number
+	 ("M-g o" . consult-outline)
+	 ("M-s f" . consult-find)
+	 ("M-s l" . consult-line)  ;; key word
+	 ("M-s g" . consult-grep)))
+
+;; company - completions using small popups
+(use-package company
+  :init
+  (global-company-mode)
+  (setq company-idle-delay 0.4)
+  (setq company-minimum-prefix-length 1)
+  (setq company-transformers '(company-sort-by-occurrence))
+  (add-hook 'shell-mode-hook (lambda () (company-mode -1)) 'append)
+  (add-hook 'eshell-mode-hook (lambda () (company-mode -1)) 'append)
+  :bind
+  (:map company-active-map
+	      ("C-n". company-select-next)
+	      ("C-p". company-select-previous)
+	      ("M-&lt;". company-select-first)
+	      ("M-&gt;". company-select-last)))
+;;  (:map company-mode-map
+;;        ("&lt;tab&gt;". tab-indent-or-complete)
+;;        ("TAB". tab-indent-or-complete)))
+;;(add-hook 'shell-mode-hook (lambda () (company-mode -1)) 'append)
+;;(add-hook 'eshell-mode-hook (lambda () (company-mode -1)) 'append)
+
+;; disable company completion of *all* remote filenames, whether   
+;; connected or not
+;;(defun company-files--connected-p (file)
+;;  (not (file-remote-p file)))
+
+;; ====== org-mode settings =================================
+
+;; Nice bullets
+;;(use-package org-superstar
+;;  :after org
+;;  :hook (org-mode . org-superstar-mode))
+
+;; Modern-looking org-mode (requires installing org-modern)
+(use-package org-modern
+  :hook (org-mode . org-modern-mode))
+
+;; hide emphasis markup
+(setq org-hide-emphasis-markers t)
+
+;; disable org-mode truncate-lines
+(add-hook 'org-mode-hook
+	  (lambda () (setq truncate-lines nil)))
+
+;; Suppress auto-indent for org-mode
+;;(add-hook 'org-mode-hook '(lambda () (electric-indent-local-mode -1)))
+(add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+
+;; org-mode export github-flavored markdown
+;;(eval-after-load "org"
+;;  '(require 'ox-gfm nil t))
+
+;; enable shortcuts such as &lt;s + TAB
+(require 'org-tempo)
+
+;; Add to TODO status
+(setq org-todo-keywords
+      '((sequence "&lt;TODO&gt;(t)" "&lt;WAIT&gt;(w)" "|" "&lt;DONE&gt;(d)" "&lt;CANCEL&gt;(c)")))
+
+;; org-mode export to qiita-flavored markdown
+;;(require 'ox-qmd)
+
+;; org-download
+;;(require 'org-download)
+;;(setq-default org-download-image-dir "~/Documents/AW/orgimages")
+;;(add-hook 'dired-mode-hook 'org-download-enable)
+;;
+;;(setq org-startup-with-inline-images t)
+
+;; ====== python ============================================
+
+;; Flycheck
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook 'global-flycheck-mode))
+(use-package flycheck-inline
+  :init
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+
+;; black
+(use-package blacken
+  :config
+  (add-hook 'python-mode-hook 'blacken-mode))
+
+;; suppress warnings
+(setq python-indent-guess-indent-offset-verbose nil)
+
+;; pyvenv
+(use-package pyvenv
+  :config
+  (pyvenv-mode 1))
+
+;; eglot - lsp client
+(use-package eglot)
+(add-to-list 'eglot-server-programs
+	       '(python-mode "pylsp"))
+(use-package python-mode
+  :ensure nil
+  :hook
+  (python-mode . eglot-ensure))
+
+;; elpy
+;;(elpy-enable)
+;;(setq elpy-rpc-virtualenv-path 'current)
+;; black
+;;(add-hook 'elpy-mode-hook (lambda ()
+;;			    (add-hook 'before-save-hook
+;;				      'elpy-black-fix-code nil t)))
+;; Flycheck
+;;(when (require 'flycheck nil t)
+;;  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;  (add-hook 'elpy-mode-hook 'flycheck-mode))
+;; autopep8
+;;(require 'py-autopep8)
+;;(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+;; ====== for tramp mode ===================================
+
+;; use rsync for copying
+(use-package dired-rsync
+  :config
+  (bind-key "C-c C-r" 'dired-rsync dired-mode-map))
+
+;; need this for eglot to find pylsp in a remote server
+(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+
+;; ====== font settings =====================================
+
+(if (display-graphic-p)
+    (set-face-attribute 'default nil :height 160))
+
+;; ====== for mac ===========================================
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
+;; This works for copying, but not pasting for some reason
+;;(setq select-enable-clipboard t)
+
+;; Whatever... it's easy enough to implement that part ourselves
+;;(setq interprogram-paste-function
+;;      (lambda ()
+;;        (shell-command-to-string "pbpaste")))
+
+;; ====== email ============================================
+
+(use-package notmuch
+  :commands notmuch-hello
+  :bind (("C-c m" . notmuch-hello)))
+(setq notmuch-command "~/bin/remote-notmuch.sh")
+
+;;(setq user-full-name "&lt;Your Name&gt;")
+;;(setq user-mail-address "&lt;メールアドレス&gt;@gmail.com")
+;;(setq message-directory "~/mail"
+;;      notmuch-fcc-dirs nil
+;;      read-mail-command (quote notmuch)
+;;      message-citation-line-format "On %a, %b %d, %Y at %R, %f wrote:"
+;;      message-citation-line-function 'message-insert-formatted-citation-line
+;;      )
+
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+      smtpmail-auth-credentials '(("smtp.gmail.com" 587 "&lt;メールアドレス&gt;@gmail.com" nil))
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-smtp-service 587
+      starttls-use-gnutls t
+      )
+</pre>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-06-22T00:00:00-04:00" pubdate>Wed 22 June 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

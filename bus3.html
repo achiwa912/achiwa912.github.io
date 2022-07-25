@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>S3バックアップツールbus3.pyを作りました &mdash; Dreaming in Brookline, MA 02445</title>
+  <meta name="author" content="きょうす kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Brookline, MA 02445</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">S3バックアップツールbus3.pyを作りました</h1>
+    <p class="meta">
+<time datetime="2021-08-17T00:00:00-04:00" pubdate>Tue 17 August 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc78a427">1. はじめに</a></li>
+<li><a href="#org6173c0a">2. bus3概要</a></li>
+<li><a href="#org082832a">3. bus3特徴</a>
+<ul>
+<li><a href="#org1d61988">3.1. 機能</a></li>
+<li><a href="#orgb022b56">3.2. 技術面で</a></li>
+</ul>
+</li>
+<li><a href="#org722065f">4. 使用法</a></li>
+<li><a href="#orgdf58fca">5. 今回学んだこと</a>
+<ul>
+<li><a href="#org972a42b">5.1. asyncio</a></li>
+<li><a href="#orgd4bf132">5.2. データベース</a></li>
+<li><a href="#org5a7fb40">5.3. 性能ボトルネック解析</a></li>
+<li><a href="#org4ff1e29">5.4. python</a></li>
+<li><a href="#org799df40">5.5. 開発環境</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgc78a427" class="outline-2">
+<h2 id="orgc78a427"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレージへのバックアップツールbus3.pyを作りました。<a href="https://github.com/achiwa912/bus3">https://github.com/achiwa912/bus3</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6173c0a" class="outline-2">
+<h2 id="org6173c0a"><span class="section-number-2">2.</span> bus3概要</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+bus3は指定ディレクトリ以下のファイルやディレクトリをバックアップします。ファイルのコンテンツはS3ストレージに、メタデータはデータベースに保管します。
+</p>
+
+<p>
+S3ストレージはAmazonのAWSでなく、ローカルネットワークに接続されたS3インタフェースを持つストレージを使って開発、テストしています。このため、AWSを使うためには多少のtweakが必要になるかもしれません。
+</p>
+
+<p>
+データベース(DB)は、当初sqlite3を使っていたのですが、DBのライトがボトルネックとなって多重度が上がらず、全く性能が出なかったので、Postgresに移行しました。Postgresはbus3の外側にあって、別途導入やバックアップを行う必要があります。
+</p>
+
+<p>
+DBのバックアップを別途行う必要があるため、bus3はあまり実用的では無いかもしれません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org082832a" class="outline-2">
+<h2 id="org082832a"><span class="section-number-2">3.</span> bus3特徴</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org1d61988" class="outline-3">
+<h3 id="org1d61988"><span class="section-number-3">3.1.</span> 機能</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>指定ファイルやディレクトリのバックアップ、リストアを行います</li>
+<li>シンボリックリンクやハードリンクをサポートしています</li>
+<li>extended attributesもバックアップ、リストアします</li>
+<li>バックアップヒストリーとファイルバージョンを管理していて、指定バージョンへのリストアが可能です</li>
+<li>ファイルコンテンツに対して、デフォルトで64MBのチャンク単位でのdedupe(シングルインスタンス化)を行います。同じ中身のチャンク(やそれ以下のサイズのファイル)があったら、そのチャンクはS3ストレージ上に一つだけ実体を持ちます。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb022b56" class="outline-3">
+<h3 id="orgb022b56"><span class="section-number-3">3.2.</span> 技術面で</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li><code>asyncio</code> をフルに活用してバックアップ・リストアの多重度を上げています
+<ul class="org-ul">
+<li>バックアップするファイルやディレクトリ毎にasyncタスクを生成しています</li>
+<li>更に、S3へのオブジェクトの書き込み毎にasyncタスクを生成しています</li>
+</ul></li>
+<li><code>aiofiles</code>, <code>asyncpg</code>, <code>aioboto3</code> ライブラリを利用しています</li>
+<li>メモリバッファの使用量上限を制限しており、1GB以上の巨大ファイルを複数バックアップしてもメモリ使用量は2〜3GB程度です(postgres除く)</li>
+<li><code>asyncio</code> は基本的に単一コアで動作するため、CPU利用率は120%程度(postgres除く)です。100%を超えるのは、 <code>aiofiles</code> がワーカースレッドを使ったり、OSのシステムコールを呼んだりするためと思われます</li>
+<li>sqlite3のグローバルライトロックを避けるためにpostgresを使っています</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org722065f" class="outline-2">
+<h2 id="org722065f"><span class="section-number-2">4.</span> 使用法</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+githubのREADMEを参照ください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdf58fca" class="outline-2">
+<h2 id="orgdf58fca"><span class="section-number-2">5.</span> 今回学んだこと</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org972a42b" class="outline-3">
+<h3 id="org972a42b"><span class="section-number-3">5.1.</span> asyncio</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>単純に <code>await</code> を使っても多重度が上がる訳ではないことがわかりました。 多重度を上げるには、 <code>asyncio.create_task()</code> を使ってasyncタスク化しなくてはいけません</li>
+<li><code>asyncio</code> はタスクスイッチを意識して行わなければいけませんが、その分、そこまで資源排他を意識せずに済むため、スレッドよりも使いやすいかもしれません</li>
+<li>同様に、スレッドよりもデバッグしやすいと思います。タスクスイッチのタイミングを意識できるのは、思いの外有益です</li>
+<li><code>asyncio</code> はまだ新しい技術なため、足回りが揃っていないと感じました</li>
+<li>asyncタスクで発生した例外の扱いが難しいです。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd4bf132" class="outline-3">
+<h3 id="orgd4bf132"><span class="section-number-3">5.2.</span> データベース</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>sqlite3はとても気軽に使えますが、グローバルライトロックがあるため、多重度を上げる技術である <code>asyncio</code> とは相性が悪いと感じました</li>
+<li>これまではSQLAlchemyを使っていましたが、今回直接SQLを書いてみて、SQLAlchemyを使わないほうが手間がかからないと思いました。ORMがDBのデータ構造を隠蔽してくれるのは楽ですが、そのぶん、デバッグで苦労します</li>
+<li>sqlite3からpostgresに移行してみて、DB間の挙動や仕様の差に苦労しました。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5a7fb40" class="outline-3">
+<h3 id="org5a7fb40"><span class="section-number-3">5.3.</span> 性能ボトルネック解析</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>CPUやメモリの利用率は <code>top</code> コマンドを使って見ました</li>
+<li>標準のcProfileと、可視化ツールである<a href="https://jiffyclub.github.io/snakeviz/">snakeviz</a>の組み合わせは素晴らしいと思いました。使い方:</li>
+</ul>
+<pre class="example">
+pip install snakeviz
+python -m cProfile -o prof.bin &lt;yourscript.py&gt; &lt;args&gt;
+snakeviz prof.bin
+</pre>
+
+<ul class="org-ul">
+<li>これらを使っても、性能ボトルネックの特定は難しいです。</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org4ff1e29" class="outline-3">
+<h3 id="org4ff1e29"><span class="section-number-3">5.4.</span> python</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li><code>argparse</code> が思ったように動いてくれず、とても使いづらかったです。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org799df40" class="outline-3">
+<h3 id="org799df40"><span class="section-number-3">5.5.</span> 開発環境</h3>
+<div class="outline-text-3" id="text-5-5">
+<ul class="org-ul">
+<li>私はemacs + elpyで開発していますが、どうもセーブ時の自動整形が変だと思ったら、必要なバックエンド機能が動いていなかった、ということがありました。 <code>M-x elpy-config</code> で確認するまでわかりませんでした</li>
+<li>せっかくelpyを使っているのに、定義箇所や使用箇所へのジャンプ機能を使っていませんでした。 <code>M-.</code> で定義元へジャンプ、 <code>M-,</code> で元の場所にジャンプなのですが、普通の検索で乗り切っていました</li>
+<li>同様に、 <code>M-&lt;矢印キー&gt;</code> でリージョンのインデントを一括で変えられることを最近になって知りました。手動でタブキーを連打して整形していました。これで何度バグを作り込んだか。。</li>
+<li>emacs lispの勉強の必要性を感じました。導入したemacsパッケージで問題が起きた場合、現状では、google検索で解決しないとあきらめるしかありません。</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-08-17T00:00:00-04:00" pubdate>Tue 17 August 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+      </li>
+      <li class="post">
+          <a href="/licensejp.html">日本の運転免許証を更新しました</a>
+      </li>
+      <li class="post">
+          <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
+      </li>
+      <li class="post">
+          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
+      </li>
+      <li class="post">
+          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2022  きょうす kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
