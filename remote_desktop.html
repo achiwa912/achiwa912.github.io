@@ -68,16 +68,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org98d3cda">1. はじめに</a></li>
-<li><a href="#orgaa652fa">2. X Fowarding</a></li>
-<li><a href="#org8b87d53">3. X2Go (単一アプリウインドウ)</a></li>
-<li><a href="#org3b85717">4. X2Go(デスクトップ全体)</a></li>
+<li><a href="#orgfec8b22">1. はじめに</a></li>
+<li><a href="#org9f00952">2. X Fowarding</a></li>
+<li><a href="#orgd924183">3. X2Go (単一アプリウインドウ)</a></li>
+<li><a href="#org6168aba">4. X2Go(デスクトップ全体)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org98d3cda" class="outline-2">
-<h2 id="org98d3cda"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgfec8b22" class="outline-2">
+<h2 id="orgfec8b22"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Covidもだいぶ収まってオフィスへの出入りが自由になりましたが、相変わらずリモートワークをしています。自宅にある会社支給のMacBookからオフィスのLinux (Fedora) PCにはVPN経由でsshするくらいで大抵は事足りるのですが、たまにfirefox等のGUIアプリが使いたくなります。
@@ -89,8 +89,8 @@ Covidもだいぶ収まってオフィスへの出入りが自由になりまし
 </div>
 </div>
 
-<div id="outline-container-orgaa652fa" class="outline-2">
-<h2 id="orgaa652fa"><span class="section-number-2">2.</span> X Fowarding</h2>
+<div id="outline-container-org9f00952" class="outline-2">
+<h2 id="org9f00952"><span class="section-number-2">2.</span> X Fowarding</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 LinuxマシンのGUIはベースに <a href="https://en.wikipedia.org/wiki/X_Window_System">X Window System (Wikipedia)</a> が使われています。Fedora標準の <a href="https://www.gnome.org/">GNOME</a> もその下ではX Windowが動いています。X Windowのプロトコルを使ってウインドウをリモートマシンに飛ばすのに<a href="https://kb.iu.edu/d/bdnt">X Forwarding</a> という技術が使えます。
@@ -136,8 +136,8 @@ X Forwardingでsshに <code>-C</code> オプションを付けるだけだと圧
 </div>
 </div>
 
-<div id="outline-container-org8b87d53" class="outline-2">
-<h2 id="org8b87d53"><span class="section-number-2">3.</span> X2Go (単一アプリウインドウ)</h2>
+<div id="outline-container-orgd924183" class="outline-2">
+<h2 id="orgd924183"><span class="section-number-2">3.</span> X2Go (単一アプリウインドウ)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 更に高速な方法が無いかと検索したところ、<a href="https://wiki.x2go.org/doku.php">X2Go</a> という技術を見つけました。これは、X Window のデータを圧縮し、更にキャッシュする、元々NoMachineが開発したのNXプロトコルのバリエーションを使っている <a href="https://wiki.x2go.org/doku.php/doc:faq:start">そうです</a> 。これを試してみます。
@@ -176,8 +176,8 @@ X Forwardingと比べて画面が若干粗く見えますが、これで圧縮�
 </div>
 </div>
 
-<div id="outline-container-org3b85717" class="outline-2">
-<h2 id="org3b85717"><span class="section-number-2">4.</span> X2Go(デスクトップ全体)</h2>
+<div id="outline-container-org6168aba" class="outline-2">
+<h2 id="org6168aba"><span class="section-number-2">4.</span> X2Go(デスクトップ全体)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 X2Goはそもそもリモートデスクトップアプリで、単一ウインドウの表示はごく一部の機能です。せっかくなのでデスクトップ全体を飛ばすことも試してみます。
