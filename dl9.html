@@ -68,17 +68,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdb7902e">1. はじめに</a></li>
-<li><a href="#orgdb62ecd">2. 宿と病院</a></li>
-<li><a href="#orga4402f7">3. 戦闘</a></li>
-<li><a href="#org69390ce">4. セーブとロード</a></li>
-<li><a href="#org8a7b96e">5. 次は、、</a></li>
+<li><a href="#orgde2501c">1. はじめに</a></li>
+<li><a href="#org509d2e3">2. 宿と病院</a></li>
+<li><a href="#org908b8f8">3. 戦闘</a></li>
+<li><a href="#orgb3071e9">4. セーブとロード</a></li>
+<li><a href="#org3196023">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgdb7902e" class="outline-2">
-<h2 id="orgdb7902e"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgde2501c" class="outline-2">
+<h2 id="orgde2501c"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの9回目です。
@@ -90,8 +90,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orgdb62ecd" class="outline-2">
-<h2 id="orgdb62ecd"><span class="section-number-2">2.</span> 宿と病院</h2>
+<div id="outline-container-org509d2e3" class="outline-2">
+<h2 id="org509d2e3"><span class="section-number-2">2.</span> 宿と病院</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 前々回に予告した宿をようやく実装しました。宿は宿泊することでレベルアップします。このレベルアップ判定と処理が思いのほか複雑で、実装に結構苦労しました。'ず'さんの <a href="https://wiliki.zukeran.org/index.cgi?Wizardry1%2FApple%2F%B2%F2%C0%CF%A5%E1%A5%E2">解析ページ</a> にすっかりお世話になりました。
@@ -130,8 +130,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orga4402f7" class="outline-2">
-<h2 id="orga4402f7"><span class="section-number-2">3.</span> 戦闘</h2>
+<div id="outline-container-org908b8f8" class="outline-2">
+<h2 id="org908b8f8"><span class="section-number-2">3.</span> 戦闘</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 殴り合いだけでは地味なので、魔法をいくつか実装しました。katino相当で眠らせて倍打攻撃もできます。halito/mahalito/lahalito/dalto/madalto/malikto/tiltowait相当は全て同じメソッドで実現しています。
@@ -183,8 +183,8 @@ mahalito相当を唱えてモンスターを蹴散らしたところです。Mac
 </div>
 </div>
 
-<div id="outline-container-org69390ce" class="outline-2">
-<h2 id="org69390ce"><span class="section-number-2">4.</span> セーブとロード</h2>
+<div id="outline-container-orgb3071e9" class="outline-2">
+<h2 id="orgb3071e9"><span class="section-number-2">4.</span> セーブとロード</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 いちおうセーブとロードも実装しました。セーブ(&amp;終了)はEdge of townと迷宮でのキャンプ中にすることができます。ロードはセーブしたところからの再開で、Edge of townでのみすることができます。Edge of townで再開の操作をしても、迷宮でセーブした場合には迷宮のセーブ位置からの再開になります。
@@ -200,8 +200,8 @@ Pythonのpickleがどこまでクラスオブジェクトを保存してくれ�
 </div>
 </div>
 
-<div id="outline-container-org8a7b96e" class="outline-2">
-<h2 id="org8a7b96e"><span class="section-number-2">5.</span> 次は、、</h2>
+<div id="outline-container-org3196023" class="outline-2">
+<h2 id="org3196023"><span class="section-number-2">5.</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 そろそろ宝箱の実装でしょうか。魔法の実装もたくさん残っています。一通りシステムが完成して、初めてシナリオと、オリジナルのモンスターやアイテムデータを考えることになりそうです。
@@ -231,7 +231,7 @@ Pythonのpickleがどこまでクラスオブジェクトを保存してくれ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/fixedmac.html">Macが起動しなくなりました</a>
+          <a href="/fixedmac.html">MacBookが突然死しました</a>
       </li>
       <li class="post">
           <a href="/licensejp.html">日本の運転免許証を更新しました</a>
@@ -277,8 +277,6 @@ Pythonのpickleがどこまでクラスオブジェクトを保存してくれ�
         <ul>
             <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
             <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
-            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
-            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
         </ul>
     </section>
 
