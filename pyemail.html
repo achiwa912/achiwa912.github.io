@@ -68,17 +68,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge31edac">1. テストSMTPサーバーを立てる</a></li>
-<li><a href="#orgfc417ef">2. テストメールを送る</a></li>
-<li><a href="#orgd94260f">3. テストしてみる</a></li>
-<li><a href="#org21c344d">4. 宛先が表示されない?</a></li>
-<li><a href="#orgb49d0c5">5. 参考リンク</a></li>
+<li><a href="#org318952e">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#orgbb47037">2. テストメールを送る</a></li>
+<li><a href="#org8ed795f">3. テストしてみる</a></li>
+<li><a href="#org935190c">4. 宛先が表示されない?</a></li>
+<li><a href="#orge9c1317">5. 参考リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge31edac" class="outline-2">
-<h2 id="orge31edac"><span class="section-number-2">1.</span> テストSMTPサーバーを立てる</h2>
+<div id="outline-container-org318952e" class="outline-2">
+<h2 id="org318952e"><span class="section-number-2">1.</span> テストSMTPサーバーを立てる</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
@@ -111,8 +111,8 @@ python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
 </div>
 </div>
 
-<div id="outline-container-orgfc417ef" class="outline-2">
-<h2 id="orgfc417ef"><span class="section-number-2">2.</span> テストメールを送る</h2>
+<div id="outline-container-orgbb47037" class="outline-2">
+<h2 id="orgbb47037"><span class="section-number-2">2.</span> テストメールを送る</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
@@ -142,8 +142,8 @@ finally:
 </div>
 </div>
 
-<div id="outline-container-orgd94260f" class="outline-2">
-<h2 id="orgd94260f"><span class="section-number-2">3.</span> テストしてみる</h2>
+<div id="outline-container-org8ed795f" class="outline-2">
+<h2 id="org8ed795f"><span class="section-number-2">3.</span> テストしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
@@ -208,8 +208,8 @@ reply: retcode (221); Msg: b'Bye'
 </div>
 </div>
 
-<div id="outline-container-org21c344d" class="outline-2">
-<h2 id="org21c344d"><span class="section-number-2">4.</span> 宛先が表示されない?</h2>
+<div id="outline-container-org935190c" class="outline-2">
+<h2 id="org935190c"><span class="section-number-2">4.</span> 宛先が表示されない?</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
@@ -280,8 +280,8 @@ End of msg
 </div>
 
 
-<div id="outline-container-orgb49d0c5" class="outline-2">
-<h2 id="orgb49d0c5"><span class="section-number-2">5.</span> 参考リンク</h2>
+<div id="outline-container-orge9c1317" class="outline-2">
+<h2 id="orge9c1317"><span class="section-number-2">5.</span> 参考リンク</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
