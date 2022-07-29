@@ -38,6 +38,7 @@
 
 
 <ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
       <li >
         <a href="/category/blog.html">Blog</a>
       </li>
@@ -68,9 +69,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6ca0ab1">1. ノンブロッキングキー入力</a></li>
-<li><a href="#orgab2066a">2. 任意位置への文字表示</a></li>
-<li><a href="#orgbef5fea">3. 次回</a></li>
+<li><a href="#orgefb8dbc">1. ノンブロッキングキー入力</a></li>
+<li><a href="#org50c10a6">2. 任意位置への文字表示</a></li>
+<li><a href="#org850e9bc">3. 次回</a></li>
 </ul>
 </div>
 </div>
@@ -79,8 +80,8 @@ Rogue + Wizライクプロジェクトの2回目はキー入力と画面表示�
 </p>
 
 
-<div id="outline-container-org6ca0ab1" class="outline-2">
-<h2 id="org6ca0ab1"><span class="section-number-2">1.</span> ノンブロッキングキー入力</h2>
+<div id="outline-container-orgefb8dbc" class="outline-2">
+<h2 id="orgefb8dbc"><span class="section-number-2">1.</span> ノンブロッキングキー入力</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 まずはリアルタイムキースキャンから。これがいきなり曲者で、簡単には実現できないようです。
@@ -121,8 +122,8 @@ Windowsよりもずいぶん準備や後処理が面倒だし、tryブロック�
 </div>
 </div>
 
-<div id="outline-container-orgab2066a" class="outline-2">
-<h2 id="orgab2066a"><span class="section-number-2">2.</span> 任意位置への文字表示</h2>
+<div id="outline-container-org50c10a6" class="outline-2">
+<h2 id="org50c10a6"><span class="section-number-2">2.</span> 任意位置への文字表示</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 次は画面上の指定位置への文字表示です。昔懐かしのBASIC言語でいうところのLOCATEに相当することがしたいです。検索でだいぶ手間取りましたが、思いのほか簡単に実現できることがわかりました。ANSIエスケープシーケンスで指定するのですね。
@@ -164,8 +165,8 @@ while True:
 </div>
 </div>
 
-<div id="outline-container-orgbef5fea" class="outline-2">
-<h2 id="orgbef5fea"><span class="section-number-2">3.</span> 次回</h2>
+<div id="outline-container-org850e9bc" class="outline-2">
+<h2 id="org850e9bc"><span class="section-number-2">3.</span> 次回</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 次はローグライクなランダムマップの自動生成に挑戦します。ありがたいことにRoguelike Tutorialなページが <a href="http://rogueliketutorials.com/tutorials/tcod/v2/part-3/">ありました</a> ので、参考にさせていただきます。なるほど、部屋と部屋を結ぶ方法は意外と単純だったのですね。線を引くのにジェネレーターを使うのはよいアイデアと思いました。
