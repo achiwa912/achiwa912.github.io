@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org994b4c8">1. はじめに</a></li>
-<li><a href="#org6e87863">2. VMにsshで入るための設定</a>
+<li><a href="#orgedba4fc">1. はじめに</a></li>
+<li><a href="#org05ff690">2. VMにsshで入るための設定</a>
 <ul>
-<li><a href="#org59aa3e3">2.1. ssh serverの設定</a></li>
-<li><a href="#orgaf0fa96">2.2. VMネットワークの設定</a></li>
-<li><a href="#org01b3621">2.3. sshキーのインポート</a></li>
+<li><a href="#org5103dcf">2.1. ssh serverの設定</a></li>
+<li><a href="#orgdd98a9d">2.2. VMネットワークの設定</a></li>
+<li><a href="#org478393d">2.3. sshキーのインポート</a></li>
 </ul>
 </li>
-<li><a href="#orgc91b3a2">3. Resources</a></li>
+<li><a href="#orgbd841e1">3. Resources</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org994b4c8" class="outline-2">
-<h2 id="org994b4c8"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgedba4fc" class="outline-2">
+<h2 id="orgedba4fc"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はMacにVirtualBoxを入れ、Fedora VM上でドキュメント(orgファイル)の編集やpythonのスクリプト開発を行っていますが、 <a href="https://mkyong.com/mac/virtualbox-running-slow-and-lag-on-macos-macbook-pro/">このワークアラウンド</a> (2. VirtualBox in Low Resolution) のために解像度が粗く、見た目がやや残念なことになっています。そこで、Mac上のターミナルからFedora VMにssh接続することを考えました。
@@ -92,12 +92,12 @@
 </div>
 
 
-<div id="outline-container-org6e87863" class="outline-2">
-<h2 id="org6e87863"><span class="section-number-2">2.</span> VMにsshで入るための設定</h2>
+<div id="outline-container-org05ff690" class="outline-2">
+<h2 id="org05ff690"><span class="section-number-2">2.</span> VMにsshで入るための設定</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org59aa3e3" class="outline-3">
-<h3 id="org59aa3e3"><span class="section-number-3">2.1.</span> ssh serverの設定</h3>
+<div id="outline-container-org5103dcf" class="outline-3">
+<h3 id="org5103dcf"><span class="section-number-3">2.1.</span> ssh serverの設定</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはVirtualBoxのFedora 35 VM上でsshサーバーの設定をします。
@@ -113,8 +113,8 @@ ssh &lt;username&gt;@localhost  # 自分自身にsshで入れることを確認�
 </div>
 </div>
 
-<div id="outline-container-orgaf0fa96" class="outline-3">
-<h3 id="orgaf0fa96"><span class="section-number-3">2.2.</span> VMネットワークの設定</h3>
+<div id="outline-container-orgdd98a9d" class="outline-3">
+<h3 id="orgdd98a9d"><span class="section-number-3">2.2.</span> VMネットワークの設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 次に、VirtualBoxのVMに、ホストであるMacからつながるようにネットワーク設定をします。
@@ -155,8 +155,8 @@ Last login: Mon May  9 11:32:14 2022
 </div>
 </div>
 
-<div id="outline-container-org01b3621" class="outline-3">
-<h3 id="org01b3621"><span class="section-number-3">2.3.</span> sshキーのインポート</h3>
+<div id="outline-container-org478393d" class="outline-3">
+<h3 id="org478393d"><span class="section-number-3">2.3.</span> sshキーのインポート</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 パスワードレスでssh接続したいので、Mac上のsshパブリックキーをVMにコピーします。まずは.sshディレクトリを作成してそこにsshキーを生成します。すでに作成済みであればスキップしてください。
@@ -223,8 +223,8 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
 </div>
 </div>
 
-<div id="outline-container-orgc91b3a2" class="outline-2">
-<h2 id="orgc91b3a2"><span class="section-number-2">3.</span> Resources</h2>
+<div id="outline-container-orgbd841e1" class="outline-2">
+<h2 id="orgbd841e1"><span class="section-number-2">3.</span> Resources</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://rocky-chen.medium.com/setup-ssh-connection-to-your-ubuntu-vm-of-virtualbox-macos-eed4691fe08">Setup SSH connection to your Ubuntu VM of VirtualBox (MacOS)</a></li>
@@ -293,8 +293,9 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
     <section>
         <h1>Social</h1>
         <ul>
-            <li><a href="#" target="_blank">You can add links in your config file</a></li>
-            <li><a href="#" target="_blank">Another social link</a></li>
+            <li><a href="https://github.com/achiwa912" target="_blank">GitHub</a></li>
+            <li><a href="https://twitter.com/kyos_achwan" target="_blank">Twitter</a></li>
+            <li><a href="https://www.linkedin.com/in/kyosuke-achiwa-89853089/" target="_blank">LinkedIn</a></li>
         </ul>
     </section>
     <section>
