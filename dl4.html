@@ -62,25 +62,25 @@
 <header>
       <h1 class="entry-title">DL-4; メッセージ表示ウインドウ</h1>
     <p class="meta">
-<time datetime="2021-02-27T00:00:00-05:00" pubdate>Sat 27 February 2021</time>    </p>
+<time datetime="2021-02-27T00:00:00-05:00" modified>Sat 27 February 2021</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org85246a7">1. はじめに</a></li>
-<li><a href="#org81b9098">2. メッセージウインドウクラス</a></li>
-<li><a href="#org71fabfe">3. メッセージ表示メソッド</a></li>
-<li><a href="#orgfbc32ae">4. ユーザーインプットメソッド</a></li>
-<li><a href="#org75aedcc">5. 1文字入力メソッド</a></li>
-<li><a href="#org5665e4d">6. 次は、、</a></li>
+<li><a href="#org7affcd7">1. はじめに</a></li>
+<li><a href="#org675e339">2. メッセージウインドウクラス</a></li>
+<li><a href="#org3471285">3. メッセージ表示メソッド</a></li>
+<li><a href="#org59fbf95">4. ユーザーインプットメソッド</a></li>
+<li><a href="#orgb7a4ecb">5. 1文字入力メソッド</a></li>
+<li><a href="#orgac02d39">6. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org85246a7" class="outline-2">
-<h2 id="org85246a7"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org7affcd7" class="outline-2">
+<h2 id="org7affcd7"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4回目です。今回はメッセージウインドウとその上での文字列入力を実装します。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4
 </div>
 </div>
 
-<div id="outline-container-org81b9098" class="outline-2">
-<h2 id="org81b9098"><span class="section-number-2">2.</span> メッセージウインドウクラス</h2>
+<div id="outline-container-org675e339" class="outline-2">
+<h2 id="org675e339"><span class="section-number-2">2.</span> メッセージウインドウクラス</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 仮想スクロール画面クラス(Vscr)の一部にするか悩んだのですが、肥大化するのも嫌なので、メッセージウインドウクラス(Meswin)として独立させました。
@@ -140,8 +140,8 @@ mes_linesに表示するメッセージ(文字列)のリストを入れます。
 </div>
 </div>
 
-<div id="outline-container-org71fabfe" class="outline-2">
-<h2 id="org71fabfe"><span class="section-number-2">3.</span> メッセージ表示メソッド</h2>
+<div id="outline-container-org3471285" class="outline-2">
+<h2 id="org3471285"><span class="section-number-2">3.</span> メッセージ表示メソッド</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 print()メソッドでメッセージを表示します。昔のファミコンRPGのように、メッセージの先頭には" * "を付けます。この記号はstart引数で変更できます。
@@ -212,8 +212,8 @@ sublineは更にウインドウの右端&amp;単語の境界で折り返すよ�
 </div>
 </div>
 
-<div id="outline-container-orgfbc32ae" class="outline-2">
-<h2 id="orgfbc32ae"><span class="section-number-2">4.</span> ユーザーインプットメソッド</h2>
+<div id="outline-container-org59fbf95" class="outline-2">
+<h2 id="org59fbf95"><span class="section-number-2">4.</span> ユーザーインプットメソッド</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 メッセージウインドウ内でユーザーインプットできるようにしました。"* "の代わりに"&gt; "で入力を促します。
@@ -263,8 +263,8 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 </div>
 </div>
 
-<div id="outline-container-org75aedcc" class="outline-2">
-<h2 id="org75aedcc"><span class="section-number-2">5.</span> 1文字入力メソッド</h2>
+<div id="outline-container-orgb7a4ecb" class="outline-2">
+<h2 id="orgb7a4ecb"><span class="section-number-2">5.</span> 1文字入力メソッド</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 次は1文字入力メソッドです。Yes/Noに答える際に'y'または'n'の入力待ちをするようなケースで使用します。
@@ -310,8 +310,8 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 </div>
 </div>
 
-<div id="outline-container-org5665e4d" class="outline-2">
-<h2 id="org5665e4d"><span class="section-number-2">6.</span> 次は、、</h2>
+<div id="outline-container-orgac02d39" class="outline-2">
+<h2 id="orgac02d39"><span class="section-number-2">6.</span> 次は、、</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 メッセージも出力できるようになったので、次はいよいよWizardry画面らしい、パーティーリストの画面表示にチャレンジします。
@@ -326,7 +326,7 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
         きょうす
     </span>
   </span>
-<time datetime="2021-02-27T00:00:00-05:00" pubdate>Sat 27 February 2021</time>  <span class="categories">
+<time datetime="2021-02-27T00:00:00-05:00" modified>Sat 27 February 2021</time>  <span class="categories">
     <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
