@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org49aee60">1. はじめに</a></li>
-<li><a href="#org05e96aa">2. X Fowarding</a></li>
-<li><a href="#orgd1ffa2c">3. X2Go (単一アプリウインドウ)</a></li>
-<li><a href="#orga2ce685">4. X2Go(デスクトップ全体)</a></li>
+<li><a href="#org00677cd">1. はじめに</a></li>
+<li><a href="#orgd03f60f">2. X Fowarding</a></li>
+<li><a href="#orgeadf89f">3. X2Go (単一アプリウインドウ)</a></li>
+<li><a href="#org5013acf">4. X2Go(デスクトップ全体)</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org49aee60" class="outline-2">
-<h2 id="org49aee60"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org00677cd" class="outline-2">
+<h2 id="org00677cd"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Covidもだいぶ収まってオフィスへの出入りが自由になりましたが、相変わらずリモートワークをしています。自宅にある会社支給のMacBookからオフィスのLinux (Fedora) PCにはVPN経由でsshするくらいで大抵は事足りるのですが、たまにfirefox等のGUIアプリが使いたくなります。
@@ -90,8 +90,8 @@ Covidもだいぶ収まってオフィスへの出入りが自由になりまし
 </div>
 </div>
 
-<div id="outline-container-org05e96aa" class="outline-2">
-<h2 id="org05e96aa"><span class="section-number-2">2.</span> X Fowarding</h2>
+<div id="outline-container-orgd03f60f" class="outline-2">
+<h2 id="orgd03f60f"><span class="section-number-2">2.</span> X Fowarding</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 LinuxマシンのGUIはベースに <a href="https://en.wikipedia.org/wiki/X_Window_System">X Window System (Wikipedia)</a> が使われています。Fedora標準の <a href="https://www.gnome.org/">GNOME</a> もその下ではX Windowが動いています。X Windowのプロトコルを使ってウインドウをリモートマシンに飛ばすのに<a href="https://kb.iu.edu/d/bdnt">X Forwarding</a> という技術が使えます。
@@ -137,8 +137,8 @@ X Forwardingでsshに <code>-C</code> オプションを付けるだけだと圧
 </div>
 </div>
 
-<div id="outline-container-orgd1ffa2c" class="outline-2">
-<h2 id="orgd1ffa2c"><span class="section-number-2">3.</span> X2Go (単一アプリウインドウ)</h2>
+<div id="outline-container-orgeadf89f" class="outline-2">
+<h2 id="orgeadf89f"><span class="section-number-2">3.</span> X2Go (単一アプリウインドウ)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 更に高速な方法が無いかと検索したところ、<a href="https://wiki.x2go.org/doku.php">X2Go</a> という技術を見つけました。これは、X Window のデータを圧縮し、更にキャッシュする、元々NoMachineが開発したのNXプロトコルのバリエーションを使っている <a href="https://wiki.x2go.org/doku.php/doc:faq:start">そうです</a> 。これを試してみます。
@@ -177,8 +177,8 @@ X Forwardingと比べて画面が若干粗く見えますが、これで圧縮�
 </div>
 </div>
 
-<div id="outline-container-orga2ce685" class="outline-2">
-<h2 id="orga2ce685"><span class="section-number-2">4.</span> X2Go(デスクトップ全体)</h2>
+<div id="outline-container-org5013acf" class="outline-2">
+<h2 id="org5013acf"><span class="section-number-2">4.</span> X2Go(デスクトップ全体)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 X2Goはそもそもリモートデスクトップアプリで、単一ウインドウの表示はごく一部の機能です。せっかくなのでデスクトップ全体を飛ばすことも試してみます。
@@ -227,6 +227,9 @@ sudo yum install @xfce-desktop-environment
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/upgradepc.html">PCをSSD化しました</a>
+      </li>
+      <li class="post">
           <a href="/fixedmac.html">MacBookが突然死しました</a>
       </li>
       <li class="post">
@@ -237,9 +240,6 @@ sudo yum install @xfce-desktop-environment
       </li>
       <li class="post">
           <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
-      </li>
-      <li class="post">
-          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
       </li>
     </ul>
   </section>
@@ -258,7 +258,7 @@ sudo yum install @xfce-desktop-environment
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

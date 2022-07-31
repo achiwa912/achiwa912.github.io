@@ -69,18 +69,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8656adf">1. はじめに</a></li>
-<li><a href="#orgaa3e95f">2. メッセージウインドウクラス</a></li>
-<li><a href="#orgceb935b">3. メッセージ表示メソッド</a></li>
-<li><a href="#org71cb093">4. ユーザーインプットメソッド</a></li>
-<li><a href="#org8e3a132">5. 1文字入力メソッド</a></li>
-<li><a href="#org3d01fcc">6. 次は、、</a></li>
+<li><a href="#orgc2c4d22">1. はじめに</a></li>
+<li><a href="#org31771a4">2. メッセージウインドウクラス</a></li>
+<li><a href="#org2e354e9">3. メッセージ表示メソッド</a></li>
+<li><a href="#orgd14ee26">4. ユーザーインプットメソッド</a></li>
+<li><a href="#org075cb03">5. 1文字入力メソッド</a></li>
+<li><a href="#orgf22d166">6. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8656adf" class="outline-2">
-<h2 id="org8656adf"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgc2c4d22" class="outline-2">
+<h2 id="orgc2c4d22"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4回目です。今回はメッセージウインドウとその上での文字列入力を実装します。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4
 </div>
 </div>
 
-<div id="outline-container-orgaa3e95f" class="outline-2">
-<h2 id="orgaa3e95f"><span class="section-number-2">2.</span> メッセージウインドウクラス</h2>
+<div id="outline-container-org31771a4" class="outline-2">
+<h2 id="org31771a4"><span class="section-number-2">2.</span> メッセージウインドウクラス</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 仮想スクロール画面クラス(Vscr)の一部にするか悩んだのですが、肥大化するのも嫌なので、メッセージウインドウクラス(Meswin)として独立させました。
@@ -140,8 +140,8 @@ mes_linesに表示するメッセージ(文字列)のリストを入れます。
 </div>
 </div>
 
-<div id="outline-container-orgceb935b" class="outline-2">
-<h2 id="orgceb935b"><span class="section-number-2">3.</span> メッセージ表示メソッド</h2>
+<div id="outline-container-org2e354e9" class="outline-2">
+<h2 id="org2e354e9"><span class="section-number-2">3.</span> メッセージ表示メソッド</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 print()メソッドでメッセージを表示します。昔のファミコンRPGのように、メッセージの先頭には" * "を付けます。この記号はstart引数で変更できます。
@@ -212,8 +212,8 @@ sublineは更にウインドウの右端&amp;単語の境界で折り返すよ�
 </div>
 </div>
 
-<div id="outline-container-org71cb093" class="outline-2">
-<h2 id="org71cb093"><span class="section-number-2">4.</span> ユーザーインプットメソッド</h2>
+<div id="outline-container-orgd14ee26" class="outline-2">
+<h2 id="orgd14ee26"><span class="section-number-2">4.</span> ユーザーインプットメソッド</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 メッセージウインドウ内でユーザーインプットできるようにしました。"* "の代わりに"&gt; "で入力を促します。
@@ -263,8 +263,8 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 </div>
 </div>
 
-<div id="outline-container-org8e3a132" class="outline-2">
-<h2 id="org8e3a132"><span class="section-number-2">5.</span> 1文字入力メソッド</h2>
+<div id="outline-container-org075cb03" class="outline-2">
+<h2 id="org075cb03"><span class="section-number-2">5.</span> 1文字入力メソッド</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 次は1文字入力メソッドです。Yes/Noに答える際に'y'または'n'の入力待ちをするようなケースで使用します。
@@ -310,8 +310,8 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 </div>
 </div>
 
-<div id="outline-container-org3d01fcc" class="outline-2">
-<h2 id="org3d01fcc"><span class="section-number-2">6.</span> 次は、、</h2>
+<div id="outline-container-orgf22d166" class="outline-2">
+<h2 id="orgf22d166"><span class="section-number-2">6.</span> 次は、、</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 メッセージも出力できるようになったので、次はいよいよWizardry画面らしい、パーティーリストの画面表示にチャレンジします。
@@ -341,6 +341,9 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/upgradepc.html">PCをSSD化しました</a>
+      </li>
+      <li class="post">
           <a href="/fixedmac.html">MacBookが突然死しました</a>
       </li>
       <li class="post">
@@ -351,9 +354,6 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
       </li>
       <li class="post">
           <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
-      </li>
-      <li class="post">
-          <a href="/boseflex.html">BoseのSoundLink Flexを買いました</a>
       </li>
     </ul>
   </section>
@@ -372,7 +372,7 @@ inputメソッドです。メッセージとプロンプトを表示して、そ
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
