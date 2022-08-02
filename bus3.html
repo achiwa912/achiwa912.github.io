@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8df8c27">1. はじめに</a></li>
-<li><a href="#org9d4f13a">2. bus3概要</a></li>
-<li><a href="#orgc5d135e">3. bus3特徴</a>
+<li><a href="#orga828b2a">1. はじめに</a></li>
+<li><a href="#org88ebffc">2. bus3概要</a></li>
+<li><a href="#org9dfbbb1">3. bus3特徴</a>
 <ul>
-<li><a href="#org7f1baa4">3.1. 機能</a></li>
-<li><a href="#org710ab7f">3.2. 技術面で</a></li>
+<li><a href="#org72ee374">3.1. 機能</a></li>
+<li><a href="#orge22902f">3.2. 技術面で</a></li>
 </ul>
 </li>
-<li><a href="#org3bd1fee">4. 使用法</a></li>
-<li><a href="#orga0bfb0e">5. 今回学んだこと</a>
+<li><a href="#org4746935">4. 使用法</a></li>
+<li><a href="#orgcc0832e">5. 今回学んだこと</a>
 <ul>
-<li><a href="#org6dc7629">5.1. asyncio</a></li>
-<li><a href="#orgb2a68bc">5.2. データベース</a></li>
-<li><a href="#org67dd6b0">5.3. 性能ボトルネック解析</a></li>
-<li><a href="#org5381796">5.4. python</a></li>
-<li><a href="#org6ccb281">5.5. 開発環境</a></li>
+<li><a href="#org8478471">5.1. asyncio</a></li>
+<li><a href="#org170678d">5.2. データベース</a></li>
+<li><a href="#orge625e63">5.3. 性能ボトルネック解析</a></li>
+<li><a href="#org76974f7">5.4. python</a></li>
+<li><a href="#org5508f00">5.5. 開発環境</a></li>
 </ul>
 </li>
 </ul>
@@ -92,8 +92,8 @@
 </div>
 
 
-<div id="outline-container-org8df8c27" class="outline-2">
-<h2 id="org8df8c27"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orga828b2a" class="outline-2">
+<h2 id="orga828b2a"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレージへのバックアップツールbus3.pyを作りました。<a href="https://github.com/achiwa912/bus3">https://github.com/achiwa912/bus3</a>
@@ -101,8 +101,8 @@ Amazon S3とデータベースの勉強を兼ねて、Linux向けのS3ストレ�
 </div>
 </div>
 
-<div id="outline-container-org9d4f13a" class="outline-2">
-<h2 id="org9d4f13a"><span class="section-number-2">2.</span> bus3概要</h2>
+<div id="outline-container-org88ebffc" class="outline-2">
+<h2 id="org88ebffc"><span class="section-number-2">2.</span> bus3概要</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 bus3は指定ディレクトリ以下のファイルやディレクトリをバックアップします。ファイルのコンテンツはS3ストレージに、メタデータはデータベースに保管します。
@@ -122,12 +122,12 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-orgc5d135e" class="outline-2">
-<h2 id="orgc5d135e"><span class="section-number-2">3.</span> bus3特徴</h2>
+<div id="outline-container-org9dfbbb1" class="outline-2">
+<h2 id="org9dfbbb1"><span class="section-number-2">3.</span> bus3特徴</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org7f1baa4" class="outline-3">
-<h3 id="org7f1baa4"><span class="section-number-3">3.1.</span> 機能</h3>
+<div id="outline-container-org72ee374" class="outline-3">
+<h3 id="org72ee374"><span class="section-number-3">3.1.</span> 機能</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>指定ファイルやディレクトリのバックアップ、リストアを行います</li>
@@ -139,8 +139,8 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-org710ab7f" class="outline-3">
-<h3 id="org710ab7f"><span class="section-number-3">3.2.</span> 技術面で</h3>
+<div id="outline-container-orge22902f" class="outline-3">
+<h3 id="orge22902f"><span class="section-number-3">3.2.</span> 技術面で</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li><code>asyncio</code> をフルに活用してバックアップ・リストアの多重度を上げています
@@ -157,8 +157,8 @@ DBのバックアップを別途行う必要があるため、bus3はあまり�
 </div>
 </div>
 
-<div id="outline-container-org3bd1fee" class="outline-2">
-<h2 id="org3bd1fee"><span class="section-number-2">4.</span> 使用法</h2>
+<div id="outline-container-org4746935" class="outline-2">
+<h2 id="org4746935"><span class="section-number-2">4.</span> 使用法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 githubのREADMEを参照ください。
@@ -166,12 +166,12 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-orga0bfb0e" class="outline-2">
-<h2 id="orga0bfb0e"><span class="section-number-2">5.</span> 今回学んだこと</h2>
+<div id="outline-container-orgcc0832e" class="outline-2">
+<h2 id="orgcc0832e"><span class="section-number-2">5.</span> 今回学んだこと</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org6dc7629" class="outline-3">
-<h3 id="org6dc7629"><span class="section-number-3">5.1.</span> asyncio</h3>
+<div id="outline-container-org8478471" class="outline-3">
+<h3 id="org8478471"><span class="section-number-3">5.1.</span> asyncio</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>単純に <code>await</code> を使っても多重度が上がる訳ではないことがわかりました。 多重度を上げるには、 <code>asyncio.create_task()</code> を使ってasyncタスク化しなくてはいけません</li>
@@ -183,8 +183,8 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-orgb2a68bc" class="outline-3">
-<h3 id="orgb2a68bc"><span class="section-number-3">5.2.</span> データベース</h3>
+<div id="outline-container-org170678d" class="outline-3">
+<h3 id="org170678d"><span class="section-number-3">5.2.</span> データベース</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>sqlite3はとても気軽に使えますが、グローバルライトロックがあるため、多重度を上げる技術である <code>asyncio</code> とは相性が悪いと感じました</li>
@@ -194,8 +194,8 @@ githubのREADMEを参照ください。
 </div>
 </div>
 
-<div id="outline-container-org67dd6b0" class="outline-3">
-<h3 id="org67dd6b0"><span class="section-number-3">5.3.</span> 性能ボトルネック解析</h3>
+<div id="outline-container-orge625e63" class="outline-3">
+<h3 id="orge625e63"><span class="section-number-3">5.3.</span> 性能ボトルネック解析</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>CPUやメモリの利用率は <code>top</code> コマンドを使って見ました</li>
@@ -214,8 +214,8 @@ snakeviz prof.bin
 </div>
 
 
-<div id="outline-container-org5381796" class="outline-3">
-<h3 id="org5381796"><span class="section-number-3">5.4.</span> python</h3>
+<div id="outline-container-org76974f7" class="outline-3">
+<h3 id="org76974f7"><span class="section-number-3">5.4.</span> python</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li><code>argparse</code> が思ったように動いてくれず、とても使いづらかったです。</li>
@@ -223,8 +223,8 @@ snakeviz prof.bin
 </div>
 </div>
 
-<div id="outline-container-org6ccb281" class="outline-3">
-<h3 id="org6ccb281"><span class="section-number-3">5.5.</span> 開発環境</h3>
+<div id="outline-container-org5508f00" class="outline-3">
+<h3 id="org5508f00"><span class="section-number-3">5.5.</span> 開発環境</h3>
 <div class="outline-text-3" id="text-5-5">
 <ul class="org-ul">
 <li>私はemacs + elpyで開発していますが、どうもセーブ時の自動整形が変だと思ったら、必要なバックエンド機能が動いていなかった、ということがありました。 <code>M-x elpy-config</code> で確認するまでわかりませんでした</li>
