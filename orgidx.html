@@ -69,23 +69,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2b96034">1. はじめに</a></li>
-<li><a href="#org204e007">2. orgidx.py</a>
+<li><a href="#org06abf13">1. はじめに</a></li>
+<li><a href="#org878ff00">2. orgidx.py</a>
 <ul>
-<li><a href="#org2278b5c">2.1. 使い方</a></li>
-<li><a href="#orgf41d0b9">2.2. ポイント</a></li>
-<li><a href="#org6aa2fa5">2.3. config.json</a></li>
+<li><a href="#orgfd32fbc">2.1. 使い方</a></li>
+<li><a href="#org11da52f">2.2. ポイント</a></li>
+<li><a href="#orga3bf70b">2.3. config.json</a></li>
 </ul>
 </li>
-<li><a href="#org6dc008d">3. gitlabは?</a></li>
-<li><a href="#org441dce8">4. 終わりに</a></li>
-<li><a href="#org960cb70">5. Appendix</a></li>
+<li><a href="#orgd7ef3ad">3. gitlabは?</a></li>
+<li><a href="#org6ad9ab3">4. 終わりに</a></li>
+<li><a href="#orgc181d8e">5. Appendix</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2b96034" class="outline-2">
-<h2 id="org2b96034"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org06abf13" class="outline-2">
+<h2 id="org06abf13"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 前回の記事で、emacsのorg-modeとgithub(/gitlab)でプライベートなWikiを作る提案をしましたが、各ドキュメント(<code>.org</code> ファイル)をカテゴリ分けしてリンクするトップページ(README.orgファイル)の手動作成が課題でした。これまで作成したメモをいくつかプライベートWikiに追加したのですが、それに伴うリンクの手動でのメンテナンスが相当に面倒であることがわかりました。
@@ -93,16 +93,16 @@
 </div>
 </div>
 
-<div id="outline-container-org204e007" class="outline-2">
-<h2 id="org204e007"><span class="section-number-2">2.</span> orgidx.py</h2>
+<div id="outline-container-org878ff00" class="outline-2">
+<h2 id="org878ff00"><span class="section-number-2">2.</span> orgidx.py</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 というわけで、Pythonスクリプトの <code>orgidx.py</code> を作成し、githubで <a href="https://github.com/achiwa912/orgidx">公開</a> しました。これは、各 <code>.org</code> ファイルへのリンクを、サブディレクトリ単位でカテゴリー分けして並べたトップページ(<code>README.org</code>)を自動生成するスクリプトです。カテゴリーやリンクとして表示するテキストを付けることができます。
 </p>
 </div>
 
-<div id="outline-container-org2278b5c" class="outline-3">
-<h3 id="org2278b5c"><span class="section-number-3">2.1.</span> 使い方</h3>
+<div id="outline-container-orgfd32fbc" class="outline-3">
+<h3 id="orgfd32fbc"><span class="section-number-3">2.1.</span> 使い方</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Wiki用ディレクトリを用意する(eg, /home/jon/wiki)</li>
@@ -126,8 +126,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf41d0b9" class="outline-3">
-<h3 id="orgf41d0b9"><span class="section-number-3">2.2.</span> ポイント</h3>
+<div id="outline-container-org11da52f" class="outline-3">
+<h3 id="org11da52f"><span class="section-number-3">2.2.</span> ポイント</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>各リンクに使われる文字列は <code>#+TITLE+</code> メタデータを使います。各 <code>.org</code> ファイルに必ず用意してください</li>
@@ -139,8 +139,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6aa2fa5" class="outline-3">
-<h3 id="org6aa2fa5"><span class="section-number-3">2.3.</span> config.json</h3>
+<div id="outline-container-orga3bf70b" class="outline-3">
+<h3 id="orga3bf70b"><span class="section-number-3">2.3.</span> config.json</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <code>config.json</code> は以下のようになっています。
@@ -176,8 +176,8 @@
 </div>
 
 
-<div id="outline-container-org6dc008d" class="outline-2">
-<h2 id="org6dc008d"><span class="section-number-2">3.</span> gitlabは?</h2>
+<div id="outline-container-orgd7ef3ad" class="outline-2">
+<h2 id="orgd7ef3ad"><span class="section-number-2">3.</span> gitlabは?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレンダリングをしてくれることがわかりました。前回と今回の記事で紹介したパーソナルWikiページの作り方や、今回のPythonスクリプトがそのままgitlabにも適用可能です。
@@ -189,8 +189,8 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
 </div>
 </div>
 
-<div id="outline-container-org441dce8" class="outline-2">
-<h2 id="org441dce8"><span class="section-number-2">4.</span> 終わりに</h2>
+<div id="outline-container-org6ad9ab3" class="outline-2">
+<h2 id="org6ad9ab3"><span class="section-number-2">4.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 プライベートなレポジトリの用意、 <code>.org</code> ファイルのレンダリング、複数デバイスからの閲覧・編集といったことは github(/gitlab) が用意してくれています。唯一、欠けているピースがインデックスの作成だったのですが、今回それを用意しました。良いプライベートWikiライフを！
@@ -198,8 +198,8 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
 </div>
 </div>
 
-<div id="outline-container-org960cb70" class="outline-2">
-<h2 id="org960cb70"><span class="section-number-2">5.</span> Appendix</h2>
+<div id="outline-container-orgc181d8e" class="outline-2">
+<h2 id="orgc181d8e"><span class="section-number-2">5.</span> Appendix</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 短いので、ソースを貼っておきます。
@@ -310,6 +310,9 @@ if __name__ == "__main__":
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/summerreading22.html">Summer Reading 2022</a>
+      </li>
+      <li class="post">
           <a href="/upgradepc.html">PCを2台SSD化しました</a>
       </li>
       <li class="post">
@@ -320,9 +323,6 @@ if __name__ == "__main__":
       </li>
       <li class="post">
           <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
-      </li>
-      <li class="post">
-          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
       </li>
     </ul>
   </section>
@@ -341,7 +341,7 @@ if __name__ == "__main__":
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

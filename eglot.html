@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org093a2b4">1. はじめに</a></li>
-<li><a href="#org459b037">2. LSP</a></li>
-<li><a href="#org18b15b8">3. eglot</a></li>
-<li><a href="#org1a859fe">4. 設定</a>
+<li><a href="#orgbf72667">1. はじめに</a></li>
+<li><a href="#orge71c174">2. LSP</a></li>
+<li><a href="#org257d843">3. eglot</a></li>
+<li><a href="#org3cec60c">4. 設定</a>
 <ul>
-<li><a href="#org0f4fe69">4.1. lsp server</a></li>
-<li><a href="#org5e575dc">4.2. eglot</a>
+<li><a href="#orgb242ffc">4.1. lsp server</a></li>
+<li><a href="#org2dadeb3">4.2. eglot</a>
 <ul>
-<li><a href="#orgad5ac2c">4.2.1. tramp-modeでの注意点</a></li>
+<li><a href="#org3ba2584">4.2.1. tramp-modeでの注意点</a></li>
 </ul>
 </li>
-<li><a href="#org70aa3c4">4.3. その他のパッケージ</a></li>
+<li><a href="#orgb086322">4.3. その他のパッケージ</a></li>
 </ul>
 </li>
-<li><a href="#org26bb797">5. おまけ</a></li>
+<li><a href="#org1da881a">5. おまけ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org093a2b4" class="outline-2">
-<h2 id="org093a2b4"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgbf72667" class="outline-2">
+<h2 id="orgbf72667"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 一昨年2020年にPythonに(何度めかの)入門をして以来、エディタというかIDE相当の開発環境としてemacs + elpyを使ってきましたが、リモートサーバー上のファイル等を扱う tramp モードに elpy が対応していないことを知り、対応しているらしい eglot を試してみることにしました。
@@ -97,8 +97,8 @@
 </div>
 </div>
 
-<div id="outline-container-org459b037" class="outline-2">
-<h2 id="org459b037"><span class="section-number-2">2.</span> LSP</h2>
+<div id="outline-container-orge71c174" class="outline-2">
+<h2 id="orge71c174"><span class="section-number-2">2.</span> LSP</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol (LSP)</a> はマイクロソフトが決めて公開しているプロトコルです。PythonやJavaといった言語ごとのLSPサーバーと、それらの機能を利用するemacs(上で動くeglot)のようなクライアントに分かれていて、それぞれ独立して開発が可能です。
@@ -111,8 +111,8 @@
 </div>
 
 
-<div id="outline-container-org18b15b8" class="outline-2">
-<h2 id="org18b15b8"><span class="section-number-2">3.</span> eglot</h2>
+<div id="outline-container-org257d843" class="outline-2">
+<h2 id="org257d843"><span class="section-number-2">3.</span> eglot</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 emacs用のlspクライアントとしては、 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a> と <a href="https://github.com/joaotavora/eglot">eglot</a> がよく使われているようです。lsp-modeの方が本格的で人気も高いように見えますが、 eglot は設定が簡単で公式ページに「tramp でも動く」と明記してあるので、まずは極力リスクを避けてeglotに入門してみたいと思います。emacsでは動くはずのものが動かないことは日常茶飯事なので(単に私に技術が無いだけとも言う)。
@@ -120,12 +120,12 @@ emacs用のlspクライアントとしては、 <a href="https://github.com/emac
 </div>
 </div>
 
-<div id="outline-container-org1a859fe" class="outline-2">
-<h2 id="org1a859fe"><span class="section-number-2">4.</span> 設定</h2>
+<div id="outline-container-org3cec60c" class="outline-2">
+<h2 id="org3cec60c"><span class="section-number-2">4.</span> 設定</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0f4fe69" class="outline-3">
-<h3 id="org0f4fe69"><span class="section-number-3">4.1.</span> lsp server</h3>
+<div id="outline-container-orgb242ffc" class="outline-3">
+<h3 id="orgb242ffc"><span class="section-number-3">4.1.</span> lsp server</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Python用のlspサーバーとしては python-language-server と python-lsp-server というよく似た名前のものがありますが、前者はすでにメンテナンスされていないようなので、後者を入れます。
@@ -140,8 +140,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org5e575dc" class="outline-3">
-<h3 id="org5e575dc"><span class="section-number-3">4.2.</span> eglot</h3>
+<div id="outline-container-org2dadeb3" class="outline-3">
+<h3 id="org2dadeb3"><span class="section-number-3">4.2.</span> eglot</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 <code>~/.emacs.d/init.el</code> に以下を書きました。もしまだ <a href="https://github.com/jwiegley/use-package">use-package</a> を使っていないようなら、ぜひとも使ってみてください。パッケージのインストールを自動化してくれ、とても便利です。私の環境ではなぜか自動インストールが失敗し、 <code>M-x list-packages</code> から手動インストールすることがよくありますが。。
@@ -161,8 +161,8 @@ pip install 'python-lsp-server[all]'
 </p>
 </div>
 
-<div id="outline-container-orgad5ac2c" class="outline-4">
-<h4 id="orgad5ac2c"><span class="section-number-4">4.2.1.</span> tramp-modeでの注意点</h4>
+<div id="outline-container-org3ba2584" class="outline-4">
+<h4 id="org3ba2584"><span class="section-number-4">4.2.1.</span> tramp-modeでの注意点</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 私の場合、ローカルではうまくいくのですが tramp でリモートの <code>.py</code> ファイルを開こうとすると <code>pylsp</code> が見つからないというエラーに悩まされました。試行錯誤の結果、以下の行をinit.elに入れて解決しました。
@@ -175,8 +175,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org70aa3c4" class="outline-3">
-<h3 id="org70aa3c4"><span class="section-number-3">4.3.</span> その他のパッケージ</h3>
+<div id="outline-container-orgb086322" class="outline-3">
+<h3 id="orgb086322"><span class="section-number-3">4.3.</span> その他のパッケージ</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 他に、以下のパッケージを追加しました。
@@ -224,8 +224,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org26bb797" class="outline-2">
-<h2 id="org26bb797"><span class="section-number-2">5.</span> おまけ</h2>
+<div id="outline-container-org1da881a" class="outline-2">
+<h2 id="org1da881a"><span class="section-number-2">5.</span> おまけ</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 elpyがtrampに <a href="https://github.com/jorgenschaefer/elpy/issues/276">対応していない</a> らしいことは、実際にやってみてわかりました。
@@ -255,6 +255,9 @@ elpyがtrampに <a href="https://github.com/jorgenschaefer/elpy/issues/276">対�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/summerreading22.html">Summer Reading 2022</a>
+      </li>
+      <li class="post">
           <a href="/upgradepc.html">PCを2台SSD化しました</a>
       </li>
       <li class="post">
@@ -265,9 +268,6 @@ elpyがtrampに <a href="https://github.com/jorgenschaefer/elpy/issues/276">対�
       </li>
       <li class="post">
           <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
-      </li>
-      <li class="post">
-          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
       </li>
     </ul>
   </section>
@@ -286,7 +286,7 @@ elpyがtrampに <a href="https://github.com/jorgenschaefer/elpy/issues/276">対�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

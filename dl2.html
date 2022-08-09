@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb5de093">1. はじめに</a></li>
-<li><a href="#orgd3fb00d">2. マップ自動生成</a>
+<li><a href="#orgcf6ada3">1. はじめに</a></li>
+<li><a href="#org064aac0">2. マップ自動生成</a>
 <ul>
-<li><a href="#org45a7fa8">2.1. 部屋データ生成</a></li>
-<li><a href="#org3ef427c">2.2. 部屋のフロアへの配置</a></li>
-<li><a href="#orgc403741">2.3. 廊下で部屋をつなぐ</a></li>
-<li><a href="#orgec325d7">2.4. ドアの設置</a></li>
+<li><a href="#org7c1d03f">2.1. 部屋データ生成</a></li>
+<li><a href="#orgf822a16">2.2. 部屋のフロアへの配置</a></li>
+<li><a href="#org3a7e0cd">2.3. 廊下で部屋をつなぐ</a></li>
+<li><a href="#org26f3455">2.4. ドアの設置</a></li>
 </ul>
 </li>
-<li><a href="#org878e3a0">3. 続き</a></li>
+<li><a href="#org99e2a7d">3. 続き</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb5de093" class="outline-2">
-<h2 id="orgb5de093"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgcf6ada3" class="outline-2">
+<h2 id="orgcf6ada3"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プロジェクトに名前が無いと不便なので、仮称DL - Daemon Lordとしました。dl.pyで作り始めます。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgd3fb00d" class="outline-2">
-<h2 id="orgd3fb00d"><span class="section-number-2">2.</span> マップ自動生成</h2>
+<div id="outline-container-org064aac0" class="outline-2">
+<h2 id="org064aac0"><span class="section-number-2">2.</span> マップ自動生成</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 まずは1フロア分のマップを作ります。以下のような流れになります。
@@ -111,8 +111,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </ol>
 </div>
 
-<div id="outline-container-org45a7fa8" class="outline-3">
-<h3 id="org45a7fa8"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
+<div id="outline-container-org7c1d03f" class="outline-3">
+<h3 id="org7c1d03f"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはRoomクラスを作ります。パラメーターとして左上の座標(x, y)と横縦のサイズ(x_size, y_size)を持ちます。後で計算をさぼるために部屋の中心座標も計算して持っておきます(center_x, center_y)。
@@ -206,8 +206,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org3ef427c" class="outline-3">
-<h3 id="org3ef427c"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
+<div id="outline-container-orgf822a16" class="outline-3">
+<h3 id="orgf822a16"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 続いて、フロアを岩で埋め尽くして初期化し、そこに部屋を配置していきます。これは一フロアを生成する関数generate_floor()の中で直接やってしまいます。今回のテーマのメイン関数です。
@@ -243,8 +243,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgc403741" class="outline-3">
-<h3 id="orgc403741"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
+<div id="outline-container-org3a7e0cd" class="outline-3">
+<h3 id="org3a7e0cd"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 そして、部屋を廊下でつないでいきます。まずは部屋をy座標 &rarr; x座標の順でソートします。そして部屋をひとつずつリストからpopして、一番近い部屋を探し、互いの中心座標を歩ける床のタイルb'.'で結び、廊下とします。他の廊下や部屋と重なっても気にしません。全ての部屋を一筆書きの要領でつなぎます。
@@ -337,8 +337,8 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
 </div>
 </div>
 
-<div id="outline-container-orgec325d7" class="outline-3">
-<h3 id="orgec325d7"><span class="section-number-3">2.4.</span> ドアの設置</h3>
+<div id="outline-container-org26f3455" class="outline-3">
+<h3 id="org26f3455"><span class="section-number-3">2.4.</span> ドアの設置</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 最後に、place_doors()関数で部屋の入り口にドアを設置します。ドアにはロック無し('+')、あり('*')の2種類を用意し、10%の確率でその部屋のドアをロック付きにします。
@@ -389,8 +389,8 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
 </div>
 </div>
 
-<div id="outline-container-org878e3a0" class="outline-2">
-<h2 id="org878e3a0"><span class="section-number-2">3.</span> 続き</h2>
+<div id="outline-container-org99e2a7d" class="outline-2">
+<h2 id="org99e2a7d"><span class="section-number-2">3.</span> 続き</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回はダンジョンフロアの自動生成部分を作ってみました。思いのほか長くなってしまいました。次回はフロアをスクロール画面に表示します。
@@ -420,6 +420,9 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/summerreading22.html">Summer Reading 2022</a>
+      </li>
+      <li class="post">
           <a href="/upgradepc.html">PCを2台SSD化しました</a>
       </li>
       <li class="post">
@@ -430,9 +433,6 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
       </li>
       <li class="post">
           <a href="/betterjp.html">日本がいいところ、アメリカのいいところ</a>
-      </li>
-      <li class="post">
-          <a href="/englishtough.html">アメリカに住んでも英語ができない</a>
       </li>
     </ul>
   </section>
@@ -451,7 +451,7 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
