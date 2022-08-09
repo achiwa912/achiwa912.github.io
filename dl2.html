@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcf6ada3">1. はじめに</a></li>
-<li><a href="#org064aac0">2. マップ自動生成</a>
+<li><a href="#orgeff3d51">1. はじめに</a></li>
+<li><a href="#org35d3e8e">2. マップ自動生成</a>
 <ul>
-<li><a href="#org7c1d03f">2.1. 部屋データ生成</a></li>
-<li><a href="#orgf822a16">2.2. 部屋のフロアへの配置</a></li>
-<li><a href="#org3a7e0cd">2.3. 廊下で部屋をつなぐ</a></li>
-<li><a href="#org26f3455">2.4. ドアの設置</a></li>
+<li><a href="#org3b56fb8">2.1. 部屋データ生成</a></li>
+<li><a href="#org57f89aa">2.2. 部屋のフロアへの配置</a></li>
+<li><a href="#orgbf50c55">2.3. 廊下で部屋をつなぐ</a></li>
+<li><a href="#orgcc6e9ee">2.4. ドアの設置</a></li>
 </ul>
 </li>
-<li><a href="#org99e2a7d">3. 続き</a></li>
+<li><a href="#org8632898">3. 続き</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgcf6ada3" class="outline-2">
-<h2 id="orgcf6ada3"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgeff3d51" class="outline-2">
+<h2 id="orgeff3d51"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プロジェクトに名前が無いと不便なので、仮称DL - Daemon Lordとしました。dl.pyで作り始めます。
@@ -96,8 +96,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org064aac0" class="outline-2">
-<h2 id="org064aac0"><span class="section-number-2">2.</span> マップ自動生成</h2>
+<div id="outline-container-org35d3e8e" class="outline-2">
+<h2 id="org35d3e8e"><span class="section-number-2">2.</span> マップ自動生成</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 まずは1フロア分のマップを作ります。以下のような流れになります。
@@ -111,8 +111,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </ol>
 </div>
 
-<div id="outline-container-org7c1d03f" class="outline-3">
-<h3 id="org7c1d03f"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
+<div id="outline-container-org3b56fb8" class="outline-3">
+<h3 id="org3b56fb8"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはRoomクラスを作ります。パラメーターとして左上の座標(x, y)と横縦のサイズ(x_size, y_size)を持ちます。後で計算をさぼるために部屋の中心座標も計算して持っておきます(center_x, center_y)。
@@ -206,8 +206,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgf822a16" class="outline-3">
-<h3 id="orgf822a16"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
+<div id="outline-container-org57f89aa" class="outline-3">
+<h3 id="org57f89aa"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 続いて、フロアを岩で埋め尽くして初期化し、そこに部屋を配置していきます。これは一フロアを生成する関数generate_floor()の中で直接やってしまいます。今回のテーマのメイン関数です。
@@ -243,8 +243,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org3a7e0cd" class="outline-3">
-<h3 id="org3a7e0cd"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
+<div id="outline-container-orgbf50c55" class="outline-3">
+<h3 id="orgbf50c55"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 そして、部屋を廊下でつないでいきます。まずは部屋をy座標 &rarr; x座標の順でソートします。そして部屋をひとつずつリストからpopして、一番近い部屋を探し、互いの中心座標を歩ける床のタイルb'.'で結び、廊下とします。他の廊下や部屋と重なっても気にしません。全ての部屋を一筆書きの要領でつなぎます。
@@ -337,8 +337,8 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
 </div>
 </div>
 
-<div id="outline-container-org26f3455" class="outline-3">
-<h3 id="org26f3455"><span class="section-number-3">2.4.</span> ドアの設置</h3>
+<div id="outline-container-orgcc6e9ee" class="outline-3">
+<h3 id="orgcc6e9ee"><span class="section-number-3">2.4.</span> ドアの設置</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 最後に、place_doors()関数で部屋の入り口にドアを設置します。ドアにはロック無し('+')、あり('*')の2種類を用意し、10%の確率でその部屋のドアをロック付きにします。
@@ -389,8 +389,8 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
 </div>
 </div>
 
-<div id="outline-container-org99e2a7d" class="outline-2">
-<h2 id="org99e2a7d"><span class="section-number-2">3.</span> 続き</h2>
+<div id="outline-container-org8632898" class="outline-2">
+<h2 id="org8632898"><span class="section-number-2">3.</span> 続き</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回はダンジョンフロアの自動生成部分を作ってみました。思いのほか長くなってしまいました。次回はフロアをスクロール画面に表示します。
