@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb63fe40">1. はじめに</a></li>
-<li><a href="#org7c74c6c">2. どうバックアップするか</a>
+<li><a href="#org3594851">1. はじめに</a></li>
+<li><a href="#orge10244b">2. どうバックアップするか</a>
 <ul>
-<li><a href="#org1e19498">2.1. tarで固めてクラウドにセーブする</a></li>
-<li><a href="#org37a6136">2.2. github pagesにソースファイルを追加する</a></li>
-<li><a href="#org5cbe63c">2.3. githubに専用プライベートリポジトリを作る</a></li>
+<li><a href="#org05cef6d">2.1. tarで固めてクラウドにセーブする</a></li>
+<li><a href="#org2aac55d">2.2. github pagesにソースファイルを追加する</a></li>
+<li><a href="#org74d18f1">2.3. githubに専用プライベートリポジトリを作る</a></li>
 </ul>
 </li>
-<li><a href="#orgbf825a3">3. 別PCにクローンする</a></li>
-<li><a href="#org6b55fc8">4. 終わりに</a></li>
+<li><a href="#orgb56514f">3. 別PCにクローンする</a></li>
+<li><a href="#org4208c28">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb63fe40" class="outline-2">
-<h2 id="orgb63fe40"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org3594851" class="outline-2">
+<h2 id="org3594851"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 このブログはgithub pagesに置いていますが、githubにアップロードされているのはpelican site generatorによって生成されたhtmlファイル等で、org-modeで書いたソースファイルはバックアップされていないことに気が付きました。
@@ -92,16 +92,16 @@
 </div>
 </div>
 
-<div id="outline-container-org7c74c6c" class="outline-2">
-<h2 id="org7c74c6c"><span class="section-number-2">2.</span> どうバックアップするか</h2>
+<div id="outline-container-orge10244b" class="outline-2">
+<h2 id="orge10244b"><span class="section-number-2">2.</span> どうバックアップするか</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いくつか案を考えました。
 </p>
 </div>
 
-<div id="outline-container-org1e19498" class="outline-3">
-<h3 id="org1e19498"><span class="section-number-3">2.1.</span> tarで固めてクラウドにセーブする</h3>
+<div id="outline-container-org05cef6d" class="outline-3">
+<h3 id="org05cef6d"><span class="section-number-3">2.1.</span> tarで固めてクラウドにセーブする</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 最初に思いついた案です。単なるバックアップならこれでもいいかもしれませんが、どうにも微妙です。せっかくブログ自体はgitを使って管理しているのに、ソースファイルだけ前近代的な扱いをしなくてはいけません。
@@ -109,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-org37a6136" class="outline-3">
-<h3 id="org37a6136"><span class="section-number-3">2.2.</span> github pagesにソースファイルを追加する</h3>
+<div id="outline-container-org2aac55d" class="outline-3">
+<h3 id="org2aac55d"><span class="section-number-3">2.2.</span> github pagesにソースファイルを追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 pelican(+org-mode連携)のソースファイルはcontentディレクトリに置いてあるので、
@@ -140,8 +140,8 @@ git push origin gh-pages:master
 </div>
 </div>
 
-<div id="outline-container-org5cbe63c" class="outline-3">
-<h3 id="org5cbe63c"><span class="section-number-3">2.3.</span> githubに専用プライベートリポジトリを作る</h3>
+<div id="outline-container-org74d18f1" class="outline-3">
+<h3 id="org74d18f1"><span class="section-number-3">2.3.</span> githubに専用プライベートリポジトリを作る</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 次はcontentディレクトリで <code>git init</code> して独立したローカルリポジトリを作り、それをgithubのプライベートな空レポジトリにpushする案です。
@@ -169,8 +169,8 @@ git push -u origin main
 </div>
 </div>
 
-<div id="outline-container-orgbf825a3" class="outline-2">
-<h2 id="orgbf825a3"><span class="section-number-2">3.</span> 別PCにクローンする</h2>
+<div id="outline-container-orgb56514f" class="outline-2">
+<h2 id="orgb56514f"><span class="section-number-2">3.</span> 別PCにクローンする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 せっかくgit管理しているので、別PCでもブログファイルの編集をできるようにしたいところです。そこで、別PC(別のMacのfedora35@virtualbox)上にgit cloneします。
@@ -197,8 +197,8 @@ cat .ssh/id_rsa.pub
 </div>
 </div>
 
-<div id="outline-container-org6b55fc8" class="outline-2">
-<h2 id="org6b55fc8"><span class="section-number-2">4.</span> 終わりに</h2>
+<div id="outline-container-org4208c28" class="outline-2">
+<h2 id="org4208c28"><span class="section-number-2">4.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ソースファイル用のプライベートレポジトリにはpelicanのコンパイル環境は持ってきていないので、ブログをコンパイルしてgithub pagesにアップロードするのは元のPCでないとできませんが、ブログのクラウド(github)へのバックアップと別PCでのブログ編集ができるようになったので、今日のところは満足です。
