@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ボキャビル用WebアプリVocabull (server)を公開しました &mdash; Daydreaming in Brookline, MA</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Brookline, MA</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li class="active">
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">ボキャビル用WebアプリVocabull (server)を公開しました</h1>
+    <p class="meta">
+<time datetime="2023-03-31T00:00:00-04:00" pubdate>Fri 31 March 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org4a4392a">1. はじめに</a></li>
+<li><a href="#org0d04f0c">2. Vocabull (server)</a>
+<ul>
+<li><a href="#orgd931b23">2.1. Overview</a></li>
+<li><a href="#org9973737">2.2. Vocabullの特長</a>
+<ul>
+<li><a href="#org016769b">2.2.1. 直近の知らない単語が繰り返し出てくる</a></li>
+<li><a href="#org1371201">2.2.2. モダンなUI</a></li>
+<li><a href="#orgd25121e">2.2.3. パソコンでもモバイルでも</a></li>
+<li><a href="#org979f830">2.2.4. 即時セーブ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org59a1284">3. 使い方</a>
+<ul>
+<li><a href="#org10b0e67">3.1. クイックスタート</a>
+<ul>
+<li><a href="#org20a0a94">3.1.1. ユーザー登録＆ログイン</a></li>
+<li><a href="#orgb94844b">3.1.2. ブックを作成し、単語を登録する</a></li>
+<li><a href="#org4f52b0d">3.1.3. あるいは、単語をファイルからインポートできる</a></li>
+<li><a href="#org4e470c4">3.1.4. 単語カードモード</a></li>
+<li><a href="#org84b8fe4">3.1.5. スペルテスト＆練習モード</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orge186712">4. サーバーセットアップ</a></li>
+<li><a href="#org0f51f86">5. Pythonanywhereについて</a></li>
+<li><a href="#org4c506fd">6. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4a4392a" class="outline-2">
+<h2 id="org4a4392a"><span class="section-number-2">1</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+先日の <a href="https://achiwa912.github.io/flask.html">エントリー</a> で書いたようにPythonのWebフレームワークであるFlaskに入門したので、Flaskを使ってボキャビル用のWebアプリ <a href="https://github.com/achiwa912/vbs">Vocabull (server)</a> を作って公開しました。括弧付きで <code>(server)</code> とあるのは、以前にもボキャビル用のスクリプト <a href="https://github.com/achiwa912/vocabull">旧Vocabull</a> を作っていてそのWebアプリ版のつもりで開発を始めたためです。だいぶ規模が大きくなり、ほとんど別物になりましたが。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0d04f0c" class="outline-2">
+<h2 id="org0d04f0c"><span class="section-number-2">2</span> Vocabull (server)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd931b23" class="outline-3">
+<h3 id="orgd931b23"><span class="section-number-3">2.1</span> Overview</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+フリーで使える pythonanywhere にデプロイしてみました。クラウドです。なんかすごい 笑。アクセスは <a href="https://achiwa912.pythonanywhere.com/">こちら</a> から。
+<img src="./images/vbs.jpg" alt="vbs.jpg" />
+</p>
+
+<p>
+Vocabull (server; 以下、単にVocabullと記載)は単語カード+アルファの機能を持つボキャビル用Webアプリです。以下の3つのモードがあります。
+</p>
+<ol class="org-ol">
+<li>単語カード(単語 &rarr; 意味) &rarr; <code>word to def</code> モード</li>
+<li>単語カード(意味 &rarr; 単語) &rarr; <code>def to word</code> モード</li>
+<li>スペル練習 &rarr; <code>type word</code> モード</li>
+</ol>
+
+<p>
+VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバイスからもアクセスできます。私のGoogle Pixel 4上のFirefoxからはこんな感じです:
+<img src="./images/vbs_mobile.png" alt="vbs_mobile.png" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9973737" class="outline-3">
+<h3 id="org9973737"><span class="section-number-3">2.2</span> Vocabullの特長</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org016769b" class="outline-4">
+<h4 id="org016769b"><span class="section-number-4">2.2.1</span> 直近の知らない単語が繰り返し出てくる</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+単語カードモードでは、直近の知らない単語10個を(覚えるまで)順にリピートします。知っている単語は次々と進み、知らない単語だけ繰り返し練習できるので、単なる単語カードアプリよりも記憶効率が良いと思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1371201" class="outline-4">
+<h4 id="org1371201"><span class="section-number-4">2.2.2</span> モダンなUI</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Vocabullは <a href="https://getbootstrap.com/docs/5.2/getting-started/introduction/">Bootstrap 5</a> +テーマ <a href="https://bootswatch.com/united/">United</a> を使っていて、モダンなルックアンドフィールのユーザーインタフェースになっています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd25121e" class="outline-4">
+<h4 id="orgd25121e"><span class="section-number-4">2.2.3</span> パソコンでもモバイルでも</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+スペル練習モードでは単語を繰り返しタイプするのでパソコンが向いていますが、単語カードモードはモバイルデバイスでソファーやベッドの上からでもボキャビルできます。我が家では、10年前のMacBook上でサーバーを動かしています。家庭内Wifiで使った感じでは、レスポンスは良好と思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org979f830" class="outline-4">
+<h4 id="org979f830"><span class="section-number-4">2.2.4</span> 即時セーブ</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+どのデバイスからアクセスしたかによらず、学習状況はリアルタイムにデータベースに保存されます。複数デバイスから同時にアクセス可能です。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org59a1284" class="outline-2">
+<h2 id="org59a1284"><span class="section-number-2">3</span> 使い方</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+クイックスタートはVocabullサーバーが動いていることを前提とした、Webアプリの操作説明です。お試し版を <a href="https://achiwa912.pythonanywhere.com">pythonanywhere.comで公開</a> しました。インストール方法は後述します。
+</p>
+</div>
+
+<div id="outline-container-org10b0e67" class="outline-3">
+<h3 id="org10b0e67"><span class="section-number-3">3.1</span> クイックスタート</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org20a0a94" class="outline-4">
+<h4 id="org20a0a94"><span class="section-number-4">3.1.1</span> ユーザー登録＆ログイン</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ul class="org-ul">
+<li>ブラウザーから <code>localhost:5000</code> またはVocabullサーバーの動いているURLにアクセスします。お試し版は <a href="https://achiwa912.pythonanywhere.com">こちらから</a> どうぞ。</li>
+</ul>
+
+<div id="org5680963" class="figure">
+<p><img src="./images/vbs_navbar.jpg" alt="vbs_navbar.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>画面上部にあるナビゲーションバー右隅にあるメニューアイコン &gt; <code>Login</code> &gt; <code>Click here to register</code> とクリックする</li>
+</ul>
+
+<div id="org3d03c30" class="figure">
+<p><img src="./images/vbs_login.jpg" alt="vbs_login.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>ユーザー名とパスワードを入力してアカウントを作成する
+<ul class="org-ul">
+<li>パスワードはハッシュ値を保存するだけなので(仮にハッキングされても)安全です</li>
+</ul></li>
+<li>ユーザー名とパスワードを入力してログインする</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb94844b" class="outline-4">
+<h4 id="orgb94844b"><span class="section-number-4">3.1.2</span> ブックを作成し、単語を登録する</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>My Books &gt; <code>Add</code> ボタンをクリック</li>
+<li>ブック名をタイプして <code>Submit</code> をクリック</li>
+</ul>
+
+<div id="org0572e08" class="figure">
+<p><img src="./images/vbs_top.jpg" alt="vbs_top.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>新たに出来たブックカード &gt; <code>Add word</code> をクリック</li>
+<li>単語(word)と意味(definition)を入力して <code>Submit</code> をクリック
+<ul class="org-ul">
+<li>何回か繰り返して複数単語を登録してください</li>
+</ul></li>
+</ul>
+
+<div id="org5cc115f" class="figure">
+<p><img src="./images/vbs_book.jpg" alt="vbs_book.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4f52b0d" class="outline-4">
+<h4 id="org4f52b0d"><span class="section-number-4">3.1.3</span> あるいは、単語をファイルからインポートできる</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<ul class="org-ul">
+<li>単語定義ファイルを用意する
+<ul class="org-ul">
+<li>1行に1単語の定義を書く</li>
+<li>行は「単語」「意味」(オプションで「例文」)をタブ記号で連結したもの</li>
+<li>例えば:</li>
+</ul></li>
+</ul>
+<pre class="example">
+strident	shrill, harsh, rough	[in more ******** tones]
+lassitude	weariness, fatigue
+deleterious	bad, harmful	[a *********** effect on health]
+</pre>
+<ul class="org-ul">
+<li>ブックページに移動する</li>
+<li><code>Load from file</code> &gt; <code>Browse...</code> とクリックし、ファイルを選択する &gt; <code>Submit</code>
+<ul class="org-ul">
+<li>最大64KBの".txt"ファイルのみアップロードできます</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4e470c4" class="outline-4">
+<h4 id="org4e470c4"><span class="section-number-4">3.1.4</span> 単語カードモード</h4>
+<div class="outline-text-4" id="text-3-1-4">
+
+<div id="org06bb693" class="figure">
+<p><img src="./images/vbs_mode.jpg" alt="vbs_mode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li><code>Practice</code> メニュー &gt; <code>word to def</code> (単語 &rarr; 意味)または <code>def to word</code> (意味 &rarr; 単語)を選択</li>
+<li>練習画面が表示されるので、単語カードをクリックして答えを見る</li>
+</ul>
+
+<div id="orgf45131c" class="figure">
+<p><img src="./images/vbs.jpg" alt="vbs.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>単語を知らなかったら <code>Once more</code> をクリック
+<ul class="org-ul">
+<li>しばらくしたらまた出てきます</li>
+</ul></li>
+<li>単語を覚えたら <code>Memorized for now</code> をクリック
+<ul class="org-ul">
+<li>このラウンドではもう出てきません(全ての単語を一巡するまで)</li>
+</ul></li>
+<li>単語を知っていたら <code>Knew it!</code> をクリック
+<ul class="org-ul">
+<li>5ラウンド出てきません。。</li>
+</ul></li>
+<li><code>Back to book</code> を押すとブック画面に戻る</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org84b8fe4" class="outline-4">
+<h4 id="org84b8fe4"><span class="section-number-4">3.1.5</span> スペルテスト＆練習モード</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<ul class="org-ul">
+<li><code>Practice</code> メニュー &gt; <code>type word</code> をクリック</li>
+</ul>
+
+<div id="org1903b6c" class="figure">
+<p><img src="./images/vbs_typemode.jpg" alt="vbs_typemode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>「意味」が表示されるので単語をタイプ &gt; <code>return</code> キーを押す</li>
+<li>合っていても間違っていても4回タイプさせられる
+<ul class="org-ul">
+<li>間違っていたらしばらく後でまた出てきます</li>
+<li>Tip: マウスよりもキーボードで <code>return</code> (<code>tab</code> でもOK)を使ったほうが操作性が良いです</li>
+</ul></li>
+</ul>
+
+<div id="orgbce5de5" class="figure">
+<p><img src="./images/vbs_type_correct.jpg" alt="vbs_type_correct.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>次の単語へ</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge186712" class="outline-2">
+<h2 id="orge186712"><span class="section-number-2">4</span> サーバーセットアップ</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Python 3.10以降をセットアップする</li>
+<li>githubのレポジトリをクローンしてくる</li>
+</ul>
+<pre class="example">
+git clone git@github.com:achiwa912/vbs.git
+</pre>
+
+<ul class="org-ul">
+<li>(推奨)仮想環境を作る</li>
+</ul>
+<pre class="example">
+cd vbs
+python -m venv ve
+source ./ve/bin/activate
+</pre>
+<ul class="org-ul">
+<li>前提ライブラリをインストールする</li>
+</ul>
+<pre class="example">
+pip install -r requirements.txt
+</pre>
+
+<ul class="org-ul">
+<li>環境変数を設定する</li>
+</ul>
+<pre class="example">
+export FLASK_APP=vbs.py
+</pre>
+
+<ul class="org-ul">
+<li>データベース作成などの初期設定をする</li>
+</ul>
+<pre class="example">
+flask initial-setup
+</pre>
+
+<ul class="org-ul">
+<li>webサーバーをインストールして動かす</li>
+</ul>
+<pre class="example">
+pip install gunicorn
+gunicorn --bind 0.0.0.0:5000 vbs:app
+</pre>
+<ul class="org-ul">
+<li>WebブラウザーからサーバーURLのポート5000にアクセスする。例えば、</li>
+</ul>
+<pre class="example">
+http://192.168.0.103:5000
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org0f51f86" class="outline-2">
+<h2 id="org0f51f86"><span class="section-number-2">5</span> Pythonanywhereについて</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+残念なことに <a href="https://www.heroku.com/">Heroku</a> が有料化してしまったので、ちまたで評判の良さそうな <a href="https://www.pythonanywhere.com/">Pythonanywhere</a> を使ってみました。開発者としてクラウド(Paas)を使うのは初めてですが、(ドキュメントもろくに読まず)適当に試行錯誤していたらデプロイできてしまいました。やったこと。
+</p>
+<ul class="org-ul">
+<li><a href="https://www.pythonanywhere.com/pricing/">https://www.pythonanywhere.com/pricing/</a> から <code>Create a Beginner account</code> をクリックし、アカウント登録する</li>
+<li><code>Console</code> をクリックするとbashが使えるので、githubのレポジトリをクローンしてくる</li>
+</ul>
+<pre class="example">
+git clone git@github.com:achiwa912/vbs.git
+</pre>
+
+<ul class="org-ul">
+<li>virtual environmentを作成する</li>
+</ul>
+<pre class="example">
+cd vbs
+mkvirtualenv ve
+</pre>
+
+<ul class="org-ul">
+<li>前提ライブラリを入れる</li>
+</ul>
+<pre class="example">
+pip install -r requirements.txt
+</pre>
+
+<ul class="org-ul">
+<li>メニューから <code>Web</code> をクリックし、Flaskアプリを作成する</li>
+<li><code>Web</code> &gt; Virtualenvセクション に <code>/home/achiwa912/.virtualenvs/ve</code> を指定する</li>
+<li>Codeセクション &gt; <code>/var/www/achiwa912_pythonanywhere_com_wsgi.py</code> をクリックし、2行(l10, 16)修正する</li>
+</ul>
+<pre class="example">
+project_home = 'home/achiwa912/vbs'
+from vbs import app as application
+</pre>
+
+<ul class="org-ul">
+<li>Reloadセクションの <code>Reload achiwa912.pythonanywhere.com</code> をクリックする</li>
+<li>SecurityセクションのForce HTTPSをenableにする</li>
+</ul>
+
+<p>
+トラブったらLog filesセクションの <code>achiwa912.pythonanywhere.com.error.log</code> をクリックすると、どこが悪かったのかがわかります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4c506fd" class="outline-2">
+<h2 id="org4c506fd"><span class="section-number-2">6</span> 終わりに</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+私はボキャビル用に <a href="https://quizlet.com">Quizlet</a> を使っていたのですが、あまり外出先で使わなくなったので無料版に切り替えたところ、制限がきつくなって使い勝手に不満を感じていました。そこで、Flaskの勉強を兼ねて無料で使えるアプリを自作してみました。
+</p>
+
+<p>
+(ほぼ)初めてのWebアプリにしては、なかなか良く出来たと自己満足しています。使っていただけるとうれしいです。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2023-03-31T00:00:00-04:00" pubdate>Fri 31 March 2023</time>  <span class="categories">
+    <a class='category' href='/category/english.html'>English</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/ying-yu.html">英語</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>
+      </li>
+      <li class="post">
+          <a href="/udon.html">うどんを作る</a>
+      </li>
+      <li class="post">
+          <a href="/sugarloaf.html">2年振りにスキー旅行に行きました</a>
+      </li>
+      <li class="post">
+          <a href="/flask.html">Flask Web Developmentを読みました</a>
+      </li>
+      <li class="post">
+          <a href="/m1mac.html">MacBookが新しくなりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2023  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
