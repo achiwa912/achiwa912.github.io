@@ -68,17 +68,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga2c7f02">1. テストSMTPサーバーを立てる</a></li>
-<li><a href="#org96550af">2. テストメールを送る</a></li>
-<li><a href="#org4488265">3. テストしてみる</a></li>
-<li><a href="#org2a2ad5d">4. 宛先が表示されない?</a></li>
-<li><a href="#org9f59a1e">5. 参考リンク</a></li>
+<li><a href="#org22e2f62">1. テストSMTPサーバーを立てる</a></li>
+<li><a href="#orgfea594e">2. テストメールを送る</a></li>
+<li><a href="#org6969f71">3. テストしてみる</a></li>
+<li><a href="#org8d28a91">4. 宛先が表示されない?</a></li>
+<li><a href="#orgc51a01b">5. 参考リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga2c7f02" class="outline-2">
-<h2 id="orga2c7f02"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
+<div id="outline-container-org22e2f62" class="outline-2">
+<h2 id="org22e2f62"><span class="section-number-2">1</span> テストSMTPサーバーを立てる</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 emailのテストをするには、何はともあれSMTPサーバーが必要ですが、Pythonではとても簡単にテスト用のSMTPサーバーを立てることができます。
@@ -111,39 +111,39 @@ python -m smtpd -n -c DebuggingServer &lt;IP address&gt;:&lt;port&gt;
 </div>
 </div>
 
-<div id="outline-container-org96550af" class="outline-2">
-<h2 id="org96550af"><span class="section-number-2">2</span> テストメールを送る</h2>
+<div id="outline-container-orgfea594e" class="outline-2">
+<h2 id="orgfea594e"><span class="section-number-2">2</span> テストメールを送る</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 SMTPサーバーを立てるほどではありませんが、テストメールの送信も簡単にできます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import smtplib
-from email import utils
-from email.mime.text import MIMEText
+<pre class="src src-python"><span style="font-weight: bold;">import</span> smtplib
+<span style="font-weight: bold;">from</span> email <span style="font-weight: bold;">import</span> utils
+<span style="font-weight: bold;">from</span> email.mime.text <span style="font-weight: bold;">import</span> MIMEText
 
-msg = MIMEText('This is the body')  # メール本文
-msg['To'] = utils.formataddr((
-    'Recipient', 'test_recv@example.com'))
-msg['From'] = utils.formataddr((
-    'Author', 'test_send@example.com'))
-msg['Subject'] = 'Test email subject'
+<span style="font-weight: bold; font-style: italic;">msg</span> = MIMEText(<span style="font-style: italic;">'This is the body'</span>)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12513;&#12540;&#12523;&#26412;&#25991;</span>
+<span style="font-weight: bold; font-style: italic;">msg</span>[<span style="font-style: italic;">'To'</span>] = utils.formataddr((
+    <span style="font-style: italic;">'Recipient'</span>, <span style="font-style: italic;">'test_recv@example.com'</span>))
+<span style="font-weight: bold; font-style: italic;">msg</span>[<span style="font-style: italic;">'From'</span>] = utils.formataddr((
+    <span style="font-style: italic;">'Author'</span>, <span style="font-style: italic;">'test_send@example.com'</span>))
+<span style="font-weight: bold; font-style: italic;">msg</span>[<span style="font-style: italic;">'Subject'</span>] = <span style="font-style: italic;">'Test email subject'</span>
 
-server = smtplib.SMTP('localhost', 8025)
-# server.set_debuglevel(True)  # デバッグ用詳細メッセージ出力
-try:
-    server.sendmail('test_send@example.com',
-		    ['test_recv@example.com'],
-		    msg.as_string())
-finally:
-    server.quit()
+<span style="font-weight: bold; font-style: italic;">server</span> = smtplib.SMTP(<span style="font-style: italic;">'localhost'</span>, 8025)
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">server.set_debuglevel(True)  # &#12487;&#12496;&#12483;&#12464;&#29992;&#35443;&#32048;&#12513;&#12483;&#12475;&#12540;&#12472;&#20986;&#21147;</span>
+<span style="font-weight: bold;">try</span>:
+    server.sendmail(<span style="font-style: italic;">'test_send@example.com'</span>,
+                    [<span style="font-style: italic;">'test_recv@example.com'</span>],
+                    msg.as_string())
+<span style="font-weight: bold;">finally</span>:
+    server.<span style="font-weight: bold; text-decoration: underline;">quit</span>()
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org4488265" class="outline-2">
-<h2 id="org4488265"><span class="section-number-2">3</span> テストしてみる</h2>
+<div id="outline-container-org6969f71" class="outline-2">
+<h2 id="org6969f71"><span class="section-number-2">3</span> テストしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ターミナル上でテスト用のSMTPサーバーを走らせている状態で、上記のテストメール送信スクリプトを別ターミナルから実行してみます。
@@ -159,15 +159,15 @@ python emtest.py
 <div class="org-src-container">
 <pre class="src src-python">$ python -m aiosmtpd -n
 ^[---------- MESSAGE FOLLOWS ----------
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=<span style="font-style: italic;">"us-ascii"</span>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-To: Recipient &lt;test_recv@example.com&gt;
-From: Author &lt;test_send@example.com&gt;
+To: Recipient <a href="mailto:test_recv%40example.com">&lt;test_recv@example.com&gt;</a>
+From: Author <a href="mailto:test_send%40example.com">&lt;test_send@example.com&gt;</a>
 Subject: Simple test message
-X-Peer: ('::1', 52132, 0, 0)
+X-Peer: (<span style="font-style: italic;">'::1'</span>, 52132, 0, 0)
 
-This is the body.
+This <span style="font-weight: bold;">is</span> the body.
 ------------ END MESSAGE ------------
 </pre>
 </div>
@@ -208,8 +208,8 @@ reply: retcode (221); Msg: b'Bye'
 </div>
 </div>
 
-<div id="outline-container-org2a2ad5d" class="outline-2">
-<h2 id="org2a2ad5d"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
+<div id="outline-container-org8d28a91" class="outline-2">
+<h2 id="org8d28a91"><span class="section-number-2">4</span> 宛先が表示されない?</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 あることに気がつきました。上で紹介した簡易smtpサーバーで表示される情報に、宛先(To/Cc/Bcc)が表示されないことがあるのです。<a href="https://www.quora.com/How-is-it-possible-that-an-email-with-the-to-field-empty-arrived-in-my-Yahoo-inbox">調べてみた</a>ところ、宛先の情報はSMTP envelopeに含まれるRCPT TOが使われることがわかりました。実際の宛先が知りたい場合には、上記smtpサーバーで出力される情報では不足です。
@@ -219,22 +219,22 @@ reply: retcode (221); Msg: b'Bye'
 そこで、aiosmtpdのドキュメントを参考(ほぼ丸写しとも言う)に、SMTPサーバー側も簡単なスクリプトを作成してRCPT TO情報を出力するようにしました。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import asyncio
+<pre class="src src-python"><span style="font-weight: bold;">import</span> asyncio
 
-class MyHandler:
-    async def handle_DATA(self, server, session, envelope):
-	print(f'Msg from {envelope.mail_from}')
-	# envelopeのRCPT TO情報を表示する
-	print(f'Msg for {envelope.rcpt_tos}')
-	print(f'Msg data:\n')
-	for ln in envelope.content.decode('utf8', errors='replace').splitlines():
-	    print(f'&gt; {ln}'.strip())
-	print()
-	print('End of msg')
-	return '250 Message accepted for delivery'
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">MyHandler</span>:
+    <span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">handle_DATA</span>(<span style="font-weight: bold;">self</span>, server, session, envelope):
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Msg from {envelope.mail_from}'</span>)
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">envelope&#12398;RCPT TO&#24773;&#22577;&#12434;&#34920;&#31034;&#12377;&#12427;</span>
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Msg for {envelope.rcpt_tos}'</span>)
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Msg data:\n'</span>)
+        <span style="font-weight: bold;">for</span> ln <span style="font-weight: bold;">in</span> envelope.content.decode(<span style="font-style: italic;">'utf8'</span>, errors=<span style="font-style: italic;">'replace'</span>).splitlines():
+            <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'&gt; {ln}'</span>.strip())
+        <span style="font-weight: bold;">print</span>()
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'End of msg'</span>)
+        <span style="font-weight: bold;">return</span> <span style="font-style: italic;">'250 Message accepted for delivery'</span>
 
-from aiosmtpd.controller import Controller
-ctrlr = Controller(MyHandler(), hostname='&lt;IPアドレス&gt;')
+<span style="font-weight: bold;">from</span> aiosmtpd.controller <span style="font-weight: bold;">import</span> Controller
+<span style="font-weight: bold; font-style: italic;">ctrlr</span> = Controller(MyHandler(), hostname=<span style="font-style: italic;">'&lt;IP&#12450;&#12489;&#12524;&#12473;&gt;'</span>)
 ctrlr.start()
 </pre>
 </div>
@@ -270,18 +270,18 @@ End of msg
 なお、送信側を以下のように変えて、RCPT TOにToとは異なるアドレス(複数可能)を指定することができます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">try:
-    server.sendmail('send@example.com',  # mail fromアドレス
-		    ['recv1@example.com', 'recv2@example.com'],  # RCPT TOsアドレスのリスト
-		    msg.as_string())
+<pre class="src src-python"><span style="font-weight: bold;">try</span>:
+    server.sendmail(<span style="font-style: italic;">'send@example.com'</span>,  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">mail from&#12450;&#12489;&#12524;&#12473;</span>
+                    [<span style="font-style: italic;">'recv1@example.com'</span>, <span style="font-style: italic;">'recv2@example.com'</span>],  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">RCPT TOs&#12450;&#12489;&#12524;&#12473;&#12398;&#12522;&#12473;&#12488;</span>
+                    msg.as_string())
 </pre>
 </div>
 </div>
 </div>
 
 
-<div id="outline-container-org9f59a1e" class="outline-2">
-<h2 id="org9f59a1e"><span class="section-number-2">5</span> 参考リンク</h2>
+<div id="outline-container-orgc51a01b" class="outline-2">
+<h2 id="orgc51a01b"><span class="section-number-2">5</span> 参考リンク</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><a href="https://aiosmtpd.readthedocs.io/en/latest/index.html">aiosmtpd - An asyncio based SMTP server</a> aiosmtpd公式</li>
@@ -313,7 +313,7 @@ End of msg
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/utm_a9.html">AlmaLinux 9環境をm1 MacBook上に再構築しました</a>
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
           <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>

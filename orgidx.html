@@ -68,23 +68,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgace5e8a">1. はじめに</a></li>
-<li><a href="#org45bcabd">2. orgidx.py</a>
+<li><a href="#org35afbe1">1. はじめに</a></li>
+<li><a href="#orgb38eca0">2. orgidx.py</a>
 <ul>
-<li><a href="#org348ef75">2.1. 使い方</a></li>
-<li><a href="#orge83ee65">2.2. ポイント</a></li>
-<li><a href="#org3b8ce6f">2.3. config.json</a></li>
+<li><a href="#org995886c">2.1. 使い方</a></li>
+<li><a href="#org7b74db5">2.2. ポイント</a></li>
+<li><a href="#orge9df46f">2.3. config.json</a></li>
 </ul>
 </li>
-<li><a href="#org9db2e07">3. gitlabは?</a></li>
-<li><a href="#org0042b75">4. 終わりに</a></li>
-<li><a href="#org342d1dd">5. Appendix</a></li>
+<li><a href="#org2ea94f7">3. gitlabは?</a></li>
+<li><a href="#org026f30a">4. 終わりに</a></li>
+<li><a href="#org0a6d87c">5. Appendix</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgace5e8a" class="outline-2">
-<h2 id="orgace5e8a"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org35afbe1" class="outline-2">
+<h2 id="org35afbe1"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 前回の記事で、emacsのorg-modeとgithub(/gitlab)でプライベートなWikiを作る提案をしましたが、各ドキュメント(<code>.org</code> ファイル)をカテゴリ分けしてリンクするトップページ(README.orgファイル)の手動作成が課題でした。これまで作成したメモをいくつかプライベートWikiに追加したのですが、それに伴うリンクの手動でのメンテナンスが相当に面倒であることがわかりました。
@@ -92,16 +92,16 @@
 </div>
 </div>
 
-<div id="outline-container-org45bcabd" class="outline-2">
-<h2 id="org45bcabd"><span class="section-number-2">2</span> orgidx.py</h2>
+<div id="outline-container-orgb38eca0" class="outline-2">
+<h2 id="orgb38eca0"><span class="section-number-2">2</span> orgidx.py</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 というわけで、Pythonスクリプトの <code>orgidx.py</code> を作成し、githubで <a href="https://github.com/achiwa912/orgidx">公開</a> しました。これは、各 <code>.org</code> ファイルへのリンクを、サブディレクトリ単位でカテゴリー分けして並べたトップページ(<code>README.org</code>)を自動生成するスクリプトです。カテゴリーやリンクとして表示するテキストを付けることができます。
 </p>
 </div>
 
-<div id="outline-container-org348ef75" class="outline-3">
-<h3 id="org348ef75"><span class="section-number-3">2.1</span> 使い方</h3>
+<div id="outline-container-org995886c" class="outline-3">
+<h3 id="org995886c"><span class="section-number-3">2.1</span> 使い方</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Wiki用ディレクトリを用意する(eg, /home/jon/wiki)</li>
@@ -125,8 +125,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge83ee65" class="outline-3">
-<h3 id="orge83ee65"><span class="section-number-3">2.2</span> ポイント</h3>
+<div id="outline-container-org7b74db5" class="outline-3">
+<h3 id="org7b74db5"><span class="section-number-3">2.2</span> ポイント</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>各リンクに使われる文字列は <code>#+TITLE+</code> メタデータを使います。各 <code>.org</code> ファイルに必ず用意してください</li>
@@ -138,8 +138,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3b8ce6f" class="outline-3">
-<h3 id="org3b8ce6f"><span class="section-number-3">2.3</span> config.json</h3>
+<div id="outline-container-orge9df46f" class="outline-3">
+<h3 id="orge9df46f"><span class="section-number-3">2.3</span> config.json</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 <code>config.json</code> は以下のようになっています。
@@ -175,8 +175,8 @@
 </div>
 
 
-<div id="outline-container-org9db2e07" class="outline-2">
-<h2 id="org9db2e07"><span class="section-number-2">3</span> gitlabは?</h2>
+<div id="outline-container-org2ea94f7" class="outline-2">
+<h2 id="org2ea94f7"><span class="section-number-2">3</span> gitlabは?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレンダリングをしてくれることがわかりました。前回と今回の記事で紹介したパーソナルWikiページの作り方や、今回のPythonスクリプトがそのままgitlabにも適用可能です。
@@ -188,8 +188,8 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
 </div>
 </div>
 
-<div id="outline-container-org0042b75" class="outline-2">
-<h2 id="org0042b75"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-org026f30a" class="outline-2">
+<h2 id="org026f30a"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 プライベートなレポジトリの用意、 <code>.org</code> ファイルのレンダリング、複数デバイスからの閲覧・編集といったことは github(/gitlab) が用意してくれています。唯一、欠けているピースがインデックスの作成だったのですが、今回それを用意しました。良いプライベートWikiライフを！
@@ -197,91 +197,91 @@ gitlabで試したところ、gitlabでも <code>.org</code> ファイルのレ�
 </div>
 </div>
 
-<div id="outline-container-org342d1dd" class="outline-2">
-<h2 id="org342d1dd"><span class="section-number-2">5</span> Appendix</h2>
+<div id="outline-container-org0a6d87c" class="outline-2">
+<h2 id="org0a6d87c"><span class="section-number-2">5</span> Appendix</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 短いので、ソースを貼っておきます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import sys
-import os
-from collections import defaultdict
-import json
+<pre class="src src-python"><span style="font-weight: bold;">import</span> sys
+<span style="font-weight: bold;">import</span> os
+<span style="font-weight: bold;">from</span> collections <span style="font-weight: bold;">import</span> defaultdict
+<span style="font-weight: bold;">import</span> json
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-	print(f"Usage: python {sys.argv[0]} &lt;base_dir&gt;")
-	sys.exit(1)
-    if not os.path.isdir(basedir := sys.argv[1]):
-	print(f"{basedir} is not a valid directory.")
-	sys.exit(1)
+<span style="font-weight: bold;">if</span> <span style="font-weight: bold;">__name__</span> == <span style="font-style: italic;">"__main__"</span>:
+    <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">len</span>(sys.argv) != 2:
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"Usage: python {sys.argv[0]} &lt;base_dir&gt;"</span>)
+        sys.<span style="font-weight: bold; text-decoration: underline;">exit</span>(1)
+    <span style="font-weight: bold;">if</span> <span style="font-weight: bold;">not</span> os.path.isdir(basedir := sys.argv[1]):
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"{basedir} is not a valid directory."</span>)
+        sys.<span style="font-weight: bold; text-decoration: underline;">exit</span>(1)
 
-    basedir = basedir.rstrip("/")
+    <span style="font-weight: bold; font-style: italic;">basedir</span> = basedir.rstrip(<span style="font-style: italic;">"/"</span>)
 
-    # dir_name to category string
-    categ_dict = {
-	"distrib": "分散システム",
-	"storage": "ストレージ",
-	"virtual": "コンテナ・VM",
-	"linux": "Linux",
-	"etc": "未分類",
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">dir_name to category string</span>
+    <span style="font-weight: bold; font-style: italic;">categ_dict</span> = {
+        <span style="font-style: italic;">"distrib"</span>: <span style="font-style: italic;">"&#20998;&#25955;&#12471;&#12473;&#12486;&#12512;"</span>,
+        <span style="font-style: italic;">"storage"</span>: <span style="font-style: italic;">"&#12473;&#12488;&#12524;&#12540;&#12472;"</span>,
+        <span style="font-style: italic;">"virtual"</span>: <span style="font-style: italic;">"&#12467;&#12531;&#12486;&#12490;&#12539;VM"</span>,
+        <span style="font-style: italic;">"linux"</span>: <span style="font-style: italic;">"Linux"</span>,
+        <span style="font-style: italic;">"etc"</span>: <span style="font-style: italic;">"&#26410;&#20998;&#39006;"</span>,
     }
-    top_title = "#+TITLE: Personal Wiki Index"
+    <span style="font-weight: bold; font-style: italic;">top_title</span> = <span style="font-style: italic;">"#+TITLE: Personal Wiki Index"</span>
 
-    # Read config.json
-    try:
-	with open("/".join([basedir, "config.json"])) as f:
-	    config = json.load(f)
-	    top_title = "#+TITLE: " + config.pop("#+TITLE", top_title)
-	    categ_dict = config
-    except Exception:
-	print("Skip loading config.json")
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Read config.json</span>
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(<span style="font-style: italic;">"/"</span>.join([basedir, <span style="font-style: italic;">"config.json"</span>])) <span style="font-weight: bold;">as</span> f:
+            <span style="font-weight: bold; font-style: italic;">config</span> = json.load(f)
+            <span style="font-weight: bold; font-style: italic;">top_title</span> = <span style="font-style: italic;">"#+TITLE: "</span> + config.pop(<span style="font-style: italic;">"#+TITLE"</span>, top_title)
+            <span style="font-weight: bold; font-style: italic;">categ_dict</span> = config
+    <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span>:
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"Skip loading config.json"</span>)
 
 
-    # Save README.org if exists
-    readme_path = "/".join([basedir, "README.org"])
-    readme_bk_path = readme_path + ".bk"
-    try:
-	os.remove(readme_bk_path)
-    except Exception:
-	pass
-    if os.path.exists(readme_path):
-	os.rename(readme_path, readme_bk_path)
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Save README.org if exists</span>
+    <span style="font-weight: bold; font-style: italic;">readme_path</span> = <span style="font-style: italic;">"/"</span>.join([basedir, <span style="font-style: italic;">"README.org"</span>])
+    <span style="font-weight: bold; font-style: italic;">readme_bk_path</span> = readme_path + <span style="font-style: italic;">".bk"</span>
+    <span style="font-weight: bold;">try</span>:
+        os.remove(readme_bk_path)
+    <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span>:
+        <span style="font-weight: bold;">pass</span>
+    <span style="font-weight: bold;">if</span> os.path.exists(readme_path):
+        os.rename(readme_path, readme_bk_path)
 
-    # Create org_dic
-    #   category_string: list of (full_path, title) tuples
-    #   Note: multiple categories could share the same category_string
-    org_dic = defaultdict(list)
-    for (dpath, _, fnames) in os.walk(basedir):
-	for fname in fnames:
-	    if fname.endswith(".org"):
-		full_path = "/".join([dpath, fname])
-		categ = categ_str = dpath[dpath.rfind("/") + 1 :].lower()
-		try:
-		    categ_str = categ_dict[categ]
-		except Exception:
-		    pass
-		with open(full_path, "r") as f:
-		    title = "No #+TITLE: header!"
-		    for line in f:
-			title_head = "#+TITLE: "
-			if line.startswith(title_head):
-			    title = line[len(title_head) :].rstrip()
-			    break
-		link_path = "." + full_path[len(basedir) :]
-		org_dic[categ_str].append((link_path, title))
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Create org_dic</span>
+    <span style="font-weight: bold; font-style: italic;">#   </span><span style="font-weight: bold; font-style: italic;">category_string: list of (full_path, title) tuples</span>
+    <span style="font-weight: bold; font-style: italic;">#   </span><span style="font-weight: bold; font-style: italic;">Note: multiple categories could share the same category_string</span>
+    <span style="font-weight: bold; font-style: italic;">org_dic</span> = defaultdict(<span style="font-weight: bold;">list</span>)
+    <span style="font-weight: bold;">for</span> (dpath, _, fnames) <span style="font-weight: bold;">in</span> os.walk(basedir):
+        <span style="font-weight: bold;">for</span> fname <span style="font-weight: bold;">in</span> fnames:
+            <span style="font-weight: bold;">if</span> fname.endswith(<span style="font-style: italic;">".org"</span>):
+                <span style="font-weight: bold; font-style: italic;">full_path</span> = <span style="font-style: italic;">"/"</span>.join([dpath, fname])
+                <span style="font-weight: bold; font-style: italic;">categ</span> = <span style="font-weight: bold; font-style: italic;">categ_str</span> = dpath[dpath.rfind(<span style="font-style: italic;">"/"</span>) + 1 :].lower()
+                <span style="font-weight: bold;">try</span>:
+                    <span style="font-weight: bold; font-style: italic;">categ_str</span> = categ_dict[categ]
+                <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span>:
+                    <span style="font-weight: bold;">pass</span>
+                <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(full_path, <span style="font-style: italic;">"r"</span>) <span style="font-weight: bold;">as</span> f:
+                    <span style="font-weight: bold; font-style: italic;">title</span> = <span style="font-style: italic;">"No #+TITLE: header!"</span>
+                    <span style="font-weight: bold;">for</span> line <span style="font-weight: bold;">in</span> f:
+                        <span style="font-weight: bold; font-style: italic;">title_head</span> = <span style="font-style: italic;">"#+TITLE: "</span>
+                        <span style="font-weight: bold;">if</span> line.startswith(title_head):
+                            <span style="font-weight: bold; font-style: italic;">title</span> = line[<span style="font-weight: bold;">len</span>(title_head) :].rstrip()
+                            <span style="font-weight: bold;">break</span>
+                <span style="font-weight: bold; font-style: italic;">link_path</span> = <span style="font-style: italic;">"."</span> + full_path[<span style="font-weight: bold;">len</span>(basedir) :]
+                org_dic[categ_str].append((link_path, title))
 
-    # Generate README.org based on org_dic
-    with open(readme_path, "w") as f:
-	print(top_title, file=f)
-	print("\nPersonal memos\n", file=f)
-	for categ_str, link_list in org_dic.items():
-	    print(f"** {categ_str}", file=f)
-	    print("", file=f)
-	    for link in link_list:
-		print(f"- [[{link[0]}][{link[1]}]]", file=f)
-	    print("", file=f)
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Generate README.org based on org_dic</span>
+    <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(readme_path, <span style="font-style: italic;">"w"</span>) <span style="font-weight: bold;">as</span> f:
+        <span style="font-weight: bold;">print</span>(top_title, <span style="font-weight: bold;">file</span>=f)
+        <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"\nPersonal memos\n"</span>, <span style="font-weight: bold;">file</span>=f)
+        <span style="font-weight: bold;">for</span> categ_str, link_list <span style="font-weight: bold;">in</span> org_dic.items():
+            <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"** {categ_str}"</span>, <span style="font-weight: bold;">file</span>=f)
+            <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">""</span>, <span style="font-weight: bold;">file</span>=f)
+            <span style="font-weight: bold;">for</span> link <span style="font-weight: bold;">in</span> link_list:
+                <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"- [[{link[0]}][{link[1]}]]"</span>, <span style="font-weight: bold;">file</span>=f)
+            <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">""</span>, <span style="font-weight: bold;">file</span>=f)
 </pre>
 </div>
 </div>
@@ -309,7 +309,7 @@ if __name__ == "__main__":
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/utm_a9.html">AlmaLinux 9環境をm1 MacBook上に再構築しました</a>
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
           <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>

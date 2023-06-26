@@ -68,9 +68,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org8ca7dd9">1. ノンブロッキングキー入力</a></li>
-<li><a href="#org55b306a">2. 任意位置への文字表示</a></li>
-<li><a href="#orgd020900">3. 次回</a></li>
+<li><a href="#orgf2a1d56">1. ノンブロッキングキー入力</a></li>
+<li><a href="#orgc7f2e7f">2. 任意位置への文字表示</a></li>
+<li><a href="#org435e061">3. 次回</a></li>
 </ul>
 </div>
 </div>
@@ -79,8 +79,8 @@ Rogue + Wizライクプロジェクトの2回目はキー入力と画面表示�
 </p>
 
 
-<div id="outline-container-org8ca7dd9" class="outline-2">
-<h2 id="org8ca7dd9"><span class="section-number-2">1</span> ノンブロッキングキー入力</h2>
+<div id="outline-container-orgf2a1d56" class="outline-2">
+<h2 id="orgf2a1d56"><span class="section-number-2">1</span> ノンブロッキングキー入力</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 まずはリアルタイムキースキャンから。これがいきなり曲者で、簡単には実現できないようです。
@@ -91,25 +91,25 @@ Windowsではmsvcrtというライブラリを使うみたいです。msvcrt.get
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">import termios, fcntl, sys, os
-fd = sys.stdin.fileno()
+<pre class="src src-python"><span style="font-weight: bold;">import</span> termios, fcntl, sys, os
+<span style="font-weight: bold; font-style: italic;">fd</span> = sys.stdin.fileno()
 
-oldterm = termios.tcgetattr(fd)
-newattr = termios.tcgetattr(fd)
-newattr[3] = newattr[3] &amp; ~termios.ICANON &amp; ~termios.ECHO
+<span style="font-weight: bold; font-style: italic;">oldterm</span> = termios.tcgetattr(fd)
+<span style="font-weight: bold; font-style: italic;">newattr</span> = termios.tcgetattr(fd)
+<span style="font-weight: bold; font-style: italic;">newattr</span>[3] = newattr[3] &amp; ~termios.ICANON &amp; ~termios.ECHO
 termios.tcsetattr(fd, termios.TCSANOW, newattr)
 
-oldflags = fcntl.fcntl(fd, fcntl.F_GETFL)
+<span style="font-weight: bold; font-style: italic;">oldflags</span> = fcntl.fcntl(fd, fcntl.F_GETFL)
 fcntl.fcntl(fd, fcntl.F_SETFL, oldflags | os.O_NONBLOCK)
 
-try:
-    while 1:
-	try:
-	    c = sys.stdin.read(1)
-	    if c:
-		print("Got character", repr(c))
-	except IOError: pass
-finally:
+<span style="font-weight: bold;">try</span>:
+    <span style="font-weight: bold;">while</span> 1:
+        <span style="font-weight: bold;">try</span>:
+            <span style="font-weight: bold; font-style: italic;">c</span> = sys.stdin.read(1)
+            <span style="font-weight: bold;">if</span> c:
+                <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"Got character"</span>, <span style="font-weight: bold;">repr</span>(c))
+        <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">IOError</span>: <span style="font-weight: bold;">pass</span>
+<span style="font-weight: bold;">finally</span>:
     termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
     fcntl.fcntl(fd, fcntl.F_SETFL, oldflags)
 </pre>
@@ -121,15 +121,15 @@ Windowsよりもずいぶん準備や後処理が面倒だし、tryブロック�
 </div>
 </div>
 
-<div id="outline-container-org55b306a" class="outline-2">
-<h2 id="org55b306a"><span class="section-number-2">2</span> 任意位置への文字表示</h2>
+<div id="outline-container-orgc7f2e7f" class="outline-2">
+<h2 id="orgc7f2e7f"><span class="section-number-2">2</span> 任意位置への文字表示</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 次は画面上の指定位置への文字表示です。昔懐かしのBASIC言語でいうところのLOCATEに相当することがしたいです。検索でだいぶ手間取りましたが、思いのほか簡単に実現できることがわかりました。ANSIエスケープシーケンスで指定するのですね。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">print(f"\033[{y};{x}H@", end='')
+<pre class="src src-python"><span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"\033[{y};{x}H@"</span>, end=<span style="font-style: italic;">''</span>)
 </pre>
 </div>
 
@@ -141,17 +141,17 @@ Windowsよりもずいぶん準備や後処理が面倒だし、tryブロック�
 簡単な性能テストをしてみます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import random
-import time
-while True:
-    c = random.choice([b'1',b'2',b'3',b'4',b'5',b'6',b'7',b'8',b'9'])
-    start = time.time()
-    for y in range(25):
-	print(f"\033[{y};0H", end='')
-	line = bytearray(c*60)
-	print(line.decode())
-    delta = time.time() - start
-    print(f"{delta:.3f}")
+<pre class="src src-python"><span style="font-weight: bold;">import</span> random
+<span style="font-weight: bold;">import</span> time
+<span style="font-weight: bold;">while</span> <span style="font-weight: bold; text-decoration: underline;">True</span>:
+    <span style="font-weight: bold; font-style: italic;">c</span> = random.choice([b<span style="font-style: italic;">'1'</span>,b<span style="font-style: italic;">'2'</span>,b<span style="font-style: italic;">'3'</span>,b<span style="font-style: italic;">'4'</span>,b<span style="font-style: italic;">'5'</span>,b<span style="font-style: italic;">'6'</span>,b<span style="font-style: italic;">'7'</span>,b<span style="font-style: italic;">'8'</span>,b<span style="font-style: italic;">'9'</span>])
+    <span style="font-weight: bold; font-style: italic;">start</span> = time.time()
+    <span style="font-weight: bold;">for</span> y <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(25):
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"\033[{y};0H"</span>, end=<span style="font-style: italic;">''</span>)
+        <span style="font-weight: bold; font-style: italic;">line</span> = <span style="font-weight: bold;">bytearray</span>(c*60)
+        <span style="font-weight: bold;">print</span>(line.decode())
+    <span style="font-weight: bold; font-style: italic;">delta</span> = time.time() - start
+    <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"{delta:.3f}"</span>)
 </pre>
 </div>
 <p>
@@ -164,8 +164,8 @@ while True:
 </div>
 </div>
 
-<div id="outline-container-orgd020900" class="outline-2">
-<h2 id="orgd020900"><span class="section-number-2">3</span> 次回</h2>
+<div id="outline-container-org435e061" class="outline-2">
+<h2 id="org435e061"><span class="section-number-2">3</span> 次回</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 次はローグライクなランダムマップの自動生成に挑戦します。ありがたいことにRoguelike Tutorialなページが <a href="http://rogueliketutorials.com/tutorials/tcod/v2/part-3/">ありました</a> ので、参考にさせていただきます。なるほど、部屋と部屋を結ぶ方法は意外と単純だったのですね。線を引くのにジェネレーターを使うのはよいアイデアと思いました。
@@ -195,7 +195,7 @@ while True:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/utm_a9.html">AlmaLinux 9環境をm1 MacBook上に再構築しました</a>
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
           <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>

@@ -68,23 +68,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1740995">1. はじめに</a></li>
-<li><a href="#org7dc8602">2. スクロール画面表示</a>
+<li><a href="#org47a1d55">1. はじめに</a></li>
+<li><a href="#orgdbe8858">2. スクロール画面表示</a>
 <ul>
-<li><a href="#org4b020fa">2.1. メインメソッド</a></li>
-<li><a href="#org748db6c">2.2. マップから仮想画面の作成</a></li>
-<li><a href="#orgbd45cc1">2.3. 仮想画面を実際に表示</a></li>
+<li><a href="#orgc6a1c20">2.1. メインメソッド</a></li>
+<li><a href="#org9b46b90">2.2. マップから仮想画面の作成</a></li>
+<li><a href="#orgdc44715">2.3. 仮想画面を実際に表示</a></li>
 </ul>
 </li>
-<li><a href="#orgd89a314">3. プレイヤーパーティーの移動</a></li>
-<li><a href="#orgbd9eeeb">4. 動かしてみる</a></li>
-<li><a href="#orga3ef021">5. 次は、、</a></li>
+<li><a href="#orgc495cae">3. プレイヤーパーティーの移動</a></li>
+<li><a href="#org35b1418">4. 動かしてみる</a></li>
+<li><a href="#org7c2632f">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1740995" class="outline-2">
-<h2 id="org1740995"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org47a1d55" class="outline-2">
+<h2 id="org47a1d55"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3回目です。今回はマップのスクロール画面表示を行います。
@@ -92,8 +92,8 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3
 </div>
 </div>
 
-<div id="outline-container-org7dc8602" class="outline-2">
-<h2 id="org7dc8602"><span class="section-number-2">2</span> スクロール画面表示</h2>
+<div id="outline-container-orgdbe8858" class="outline-2">
+<h2 id="orgdbe8858"><span class="section-number-2">2</span> スクロール画面表示</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 スクロール画面の表示のために、いったん仮想画面を作ることにします。仮想画面は新旧2面持ち、前回描いた行と全く同じ内容の行は画面書き換えをしないようにすることで、画面全体の書き換え量を節約します。また、マップに重ねてメッセージウインドウ等を表示する場合に、実際の画面書き換えを何度も行わないようにして、画面書換量を減らすと同時に、画面のちらつきを防止します。
@@ -103,14 +103,14 @@ Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの3
 まずはスクロール画面制御用のクラスを定義します。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">class Vscr:
-    def __init__(self, width, height):
-	self.width = width
-	self.height = height
-	self.vscr0 = bytearray(b'M'*width*height)
-	self.vscr1 = bytearray(b'N'*width*height)
-	self.prev_vscr_view = memoryview(self.vscr0)
-	self.cur_vscr_view = memoryview(self.vscr1)
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Vscr</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, width, height):
+        <span style="font-weight: bold;">self</span>.width = width
+        <span style="font-weight: bold;">self</span>.height = height
+        <span style="font-weight: bold;">self</span>.vscr0 = <span style="font-weight: bold;">bytearray</span>(b<span style="font-style: italic;">'M'</span>*width*height)
+        <span style="font-weight: bold;">self</span>.vscr1 = <span style="font-weight: bold;">bytearray</span>(b<span style="font-style: italic;">'N'</span>*width*height)
+        <span style="font-weight: bold;">self</span>.prev_vscr_view = <span style="font-weight: bold;">memoryview</span>(<span style="font-weight: bold;">self</span>.vscr0)
+        <span style="font-weight: bold;">self</span>.cur_vscr_view = <span style="font-weight: bold;">memoryview</span>(<span style="font-weight: bold;">self</span>.vscr1)
 </pre>
 </div>
 <p>
@@ -118,35 +118,35 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </p>
 </div>
 
-<div id="outline-container-org4b020fa" class="outline-3">
-<h3 id="org4b020fa"><span class="section-number-3">2.1</span> メインメソッド</h3>
+<div id="outline-container-orgc6a1c20" class="outline-3">
+<h3 id="orgc6a1c20"><span class="section-number-3">2.1</span> メインメソッド</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 スクロール画面表示のメインメソッドはdisp_scrwin()です。ここでは主に、マップから仮想画面を作成し、仮想画面を実際に表示して、仮想画面のビューを切り替えています。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">def disp_scrwin(self, party, floor):
-    """
-    Display scroll window main
-    """
-    start = time.time()
-    self.draw_map(party, floor)
-    self.display()
-    self.cur_vscr_view, self.prev_vscr_view \
-	= self.prev_vscr_view, self.cur_vscr_view
-    delta = time.time() - start
-    try:
-	print(f"\033[{self.height-1};0H", end='')
-	print(f"\n{party.x:03d}/{party.y:03d}, {delta:.5f}", flush=True)
-    except:
-	pass
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">disp_scrwin</span>(<span style="font-weight: bold;">self</span>, party, floor):
+    <span style="font-style: italic;">"""</span>
+<span style="font-style: italic;">    Display scroll window main</span>
+<span style="font-style: italic;">    """</span>
+    <span style="font-weight: bold; font-style: italic;">start</span> = time.time()
+    <span style="font-weight: bold;">self</span>.draw_map(party, floor)
+    <span style="font-weight: bold;">self</span>.display()
+    <span style="font-weight: bold;">self</span>.cur_vscr_view, <span style="font-weight: bold;">self</span>.prev_vscr_view \
+        = <span style="font-weight: bold;">self</span>.prev_vscr_view, <span style="font-weight: bold;">self</span>.cur_vscr_view
+    <span style="font-weight: bold; font-style: italic;">delta</span> = time.time() - start
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"\033[{self.height-1};0H"</span>, end=<span style="font-style: italic;">''</span>)
+        <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"\n{party.x:03d}/{party.y:03d}, {delta:.5f}"</span>, flush=<span style="font-weight: bold; text-decoration: underline;">True</span>)
+    <span style="font-weight: bold;">except</span>:
+        <span style="font-weight: bold;">pass</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org748db6c" class="outline-3">
-<h3 id="org748db6c"><span class="section-number-3">2.2</span> マップから仮想画面の作成</h3>
+<div id="outline-container-org9b46b90" class="outline-3">
+<h3 id="org9b46b90"><span class="section-number-3">2.2</span> マップから仮想画面の作成</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 マップデータを仮想画面にコピーするのはdraw_map()メソッドで行います。フロア全体のマップデータから、画面表示する部分だけを切り取っています。表示エリアがフロアからはみ出た部分は、いまのところ岩('#')と区別して'^'記号を表示しています。
@@ -157,56 +157,56 @@ width, heightは表示画面のサイズ=仮想画面のサイズです。vscr0/
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">def draw_map(self, party, floor):
-    """
-    Copy map data to a virtual scroll window
-    """
-    floor_view = memoryview(floor.floor_data)
-    cv = self.cur_vscr_view
-    w = self.width
-    for cy in range(self.height):
-	cv[cy*w:(cy+1)*w] = b'^'*w  # fill with rocks
-	my = party.y - self.height//2 + cy  # convert cy to floor_y
-	if 0 &lt;= my &lt; floor.y_size:
-	    l_left = min(0, party.x-w//2) * -1
-	    l_right = min(w, floor.x_size - party.x + w//2)
-	    map_left = my*floor.x_size + party.x - w//2 + l_left
-	    map_right = map_left + l_right - l_left
-	    cv[cy*w+l_left:cy*w+l_right] = floor_view[map_left:map_right]
-	if cy == self.height//2:
-	    cv[cy*w+w//2:cy*w+w//2+1] = b'@'
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">draw_map</span>(<span style="font-weight: bold;">self</span>, party, floor):
+    <span style="font-style: italic;">"""</span>
+<span style="font-style: italic;">    Copy map data to a virtual scroll window</span>
+<span style="font-style: italic;">    """</span>
+    <span style="font-weight: bold; font-style: italic;">floor_view</span> = <span style="font-weight: bold;">memoryview</span>(floor.floor_data)
+    <span style="font-weight: bold; font-style: italic;">cv</span> = <span style="font-weight: bold;">self</span>.cur_vscr_view
+    <span style="font-weight: bold; font-style: italic;">w</span> = <span style="font-weight: bold;">self</span>.width
+    <span style="font-weight: bold;">for</span> cy <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(<span style="font-weight: bold;">self</span>.height):
+        <span style="font-weight: bold; font-style: italic;">cv</span>[cy*w:(cy+1)*w] = b<span style="font-style: italic;">'^'</span>*w  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">fill with rocks</span>
+        <span style="font-weight: bold; font-style: italic;">my</span> = party.y - <span style="font-weight: bold;">self</span>.height//2 + cy  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">convert cy to floor_y</span>
+        <span style="font-weight: bold;">if</span> 0 &lt;= my &lt; floor.y_size:
+            <span style="font-weight: bold; font-style: italic;">l_left</span> = <span style="font-weight: bold;">min</span>(0, party.x-w//2) * -1
+            <span style="font-weight: bold; font-style: italic;">l_right</span> = <span style="font-weight: bold;">min</span>(w, floor.x_size - party.x + w//2)
+            <span style="font-weight: bold; font-style: italic;">map_left</span> = my*floor.x_size + party.x - w//2 + l_left
+            <span style="font-weight: bold; font-style: italic;">map_right</span> = map_left + l_right - l_left
+            <span style="font-weight: bold; font-style: italic;">cv</span>[cy*w+l_left:cy*w+l_right] = floor_view[map_left:map_right]
+        <span style="font-weight: bold;">if</span> cy == <span style="font-weight: bold;">self</span>.height//2:
+            <span style="font-weight: bold; font-style: italic;">cv</span>[cy*w+w//2:cy*w+w//2+1] = b<span style="font-style: italic;">'@'</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbd45cc1" class="outline-3">
-<h3 id="orgbd45cc1"><span class="section-number-3">2.3</span> 仮想画面を実際に表示</h3>
+<div id="outline-container-orgdc44715" class="outline-3">
+<h3 id="orgdc44715"><span class="section-number-3">2.3</span> 仮想画面を実際に表示</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 display()メソッドは、仮想画面を実際にprint()文を使ってターミナルに表示します。ロジックはstraight forwardで読みやすくなっていると思います。if文は前回描いた仮想画面と今回描く仮想画面の行同士を比較している部分です。1行まるまる同じであれば、描画をスキップします。
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">def display(self):
-    """
-    Actually print scroll window on the terminal
-    """
-    cv = self.cur_vscr_view
-    w = self.width
-    for y in range(self.height):
-	slc = slice(y*w, (y+1)*w)
-	if cv[slc] != self.prev_vscr_view[slc]:
-	    print(f"\033[{y};0H", end='')
-	    print(cv[slc].tobytes().decode(), end='')
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">display</span>(<span style="font-weight: bold;">self</span>):
+    <span style="font-style: italic;">"""</span>
+<span style="font-style: italic;">    Actually print scroll window on the terminal</span>
+<span style="font-style: italic;">    """</span>
+    <span style="font-weight: bold; font-style: italic;">cv</span> = <span style="font-weight: bold;">self</span>.cur_vscr_view
+    <span style="font-weight: bold; font-style: italic;">w</span> = <span style="font-weight: bold;">self</span>.width
+    <span style="font-weight: bold;">for</span> y <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(<span style="font-weight: bold;">self</span>.height):
+        <span style="font-weight: bold; font-style: italic;">slc</span> = <span style="font-weight: bold;">slice</span>(y*w, (y+1)*w)
+        <span style="font-weight: bold;">if</span> cv[slc] != <span style="font-weight: bold;">self</span>.prev_vscr_view[slc]:
+            <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"\033[{y};0H"</span>, end=<span style="font-style: italic;">''</span>)
+            <span style="font-weight: bold;">print</span>(cv[slc].tobytes().decode(), end=<span style="font-style: italic;">''</span>)
 </pre>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd89a314" class="outline-2">
-<h2 id="orgd89a314"><span class="section-number-2">3</span> プレイヤーパーティーの移動</h2>
+<div id="outline-container-orgc495cae" class="outline-2">
+<h2 id="orgc495cae"><span class="section-number-2">3</span> プレイヤーパーティーの移動</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 プレイヤーパーティーは常に画面中心に表示するとしているため、パーティーの座標を変えると画面がスクロールします。
@@ -221,61 +221,61 @@ non-blockingなキー入力は初回で紹介したコードスニペットを�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">def main():
-    floor = generate_floor(1)
-    party = Party(0, 0, 1)
-    w, h = terminal_size()
-    vscr = Vscr(w, h-1)
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">main</span>():
+    <span style="font-weight: bold; font-style: italic;">floor</span> = generate_floor(1)
+    <span style="font-weight: bold; font-style: italic;">party</span> = Party(0, 0, 1)
+    <span style="font-weight: bold; font-style: italic;">w</span>, <span style="font-weight: bold; font-style: italic;">h</span> = terminal_size()
+    <span style="font-weight: bold; font-style: italic;">vscr</span> = Vscr(w, h-1)
     vscr.disp_scrwin(party, floor)
 
-    fd = sys.stdin.fileno()
+    <span style="font-weight: bold; font-style: italic;">fd</span> = sys.stdin.fileno()
 
-    oattr = termios.tcgetattr(fd)
-    nattr = oattr
-    nattr[3] = nattr[3] &amp; ~termios.ICANON &amp; ~termios.ECHO
+    <span style="font-weight: bold; font-style: italic;">oattr</span> = termios.tcgetattr(fd)
+    <span style="font-weight: bold; font-style: italic;">nattr</span> = oattr
+    <span style="font-weight: bold; font-style: italic;">nattr</span>[3] = nattr[3] &amp; ~termios.ICANON &amp; ~termios.ECHO
     termios.tcsetattr(fd, termios.TCSANOW, nattr)
 
-    oflags = fcntl.fcntl(fd, fcntl.F_GETFL)
+    <span style="font-weight: bold; font-style: italic;">oflags</span> = fcntl.fcntl(fd, fcntl.F_GETFL)
     fcntl.fcntl(fd, fcntl.F_SETFL, oflags | os.O_NONBLOCK)
 
-    try:
-	while True:
-	    try:
-		c = sys.stdin.read(1)
-		if c:
-		    if c == 'h' and party.x &gt; 0:
-			party.x -= 1
-		    elif c == 'k' and party.y &gt; 0:
-			party.y -= 1
-		    elif c == 'j' and party.y &lt; floor.y_size-1:
-			party.y += 1
-		    elif c == 'l' and party.x &lt; floor.x_size-1:
-			party.x += 1
-		    elif c == '.':
-			pass
-		    else:
-			pass
-		else:
-		    draw = False
-		if draw:
-		    vscr.disp_scrwin(party, floor)
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold;">while</span> <span style="font-weight: bold; text-decoration: underline;">True</span>:
+            <span style="font-weight: bold;">try</span>:
+                <span style="font-weight: bold; font-style: italic;">c</span> = sys.stdin.read(1)
+                <span style="font-weight: bold;">if</span> c:
+                    <span style="font-weight: bold;">if</span> c == <span style="font-style: italic;">'h'</span> <span style="font-weight: bold;">and</span> party.x &gt; 0:
+                        <span style="font-weight: bold; font-style: italic;">party.x</span> -= 1
+                    <span style="font-weight: bold;">elif</span> c == <span style="font-style: italic;">'k'</span> <span style="font-weight: bold;">and</span> party.y &gt; 0:
+                        <span style="font-weight: bold; font-style: italic;">party.y</span> -= 1
+                    <span style="font-weight: bold;">elif</span> c == <span style="font-style: italic;">'j'</span> <span style="font-weight: bold;">and</span> party.y &lt; floor.y_size-1:
+                        <span style="font-weight: bold; font-style: italic;">party.y</span> += 1
+                    <span style="font-weight: bold;">elif</span> c == <span style="font-style: italic;">'l'</span> <span style="font-weight: bold;">and</span> party.x &lt; floor.x_size-1:
+                        <span style="font-weight: bold; font-style: italic;">party.x</span> += 1
+                    <span style="font-weight: bold;">elif</span> c == <span style="font-style: italic;">'.'</span>:
+                        <span style="font-weight: bold;">pass</span>
+                    <span style="font-weight: bold;">else</span>:
+                        <span style="font-weight: bold;">pass</span>
+                <span style="font-weight: bold;">else</span>:
+                    <span style="font-weight: bold; font-style: italic;">draw</span> = <span style="font-weight: bold; text-decoration: underline;">False</span>
+                <span style="font-weight: bold;">if</span> draw:
+                    vscr.disp_scrwin(party, floor)
 
-	    except IOError:
-		pass
-    finally:
-	termios.tcsetattr(fd, termios.TCSAFLUSH, oattr)
-	fcntl.fcntl(fd, fcntl.F_SETFL, oflags)
+            <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">IOError</span>:
+                <span style="font-weight: bold;">pass</span>
+    <span style="font-weight: bold;">finally</span>:
+        termios.tcsetattr(fd, termios.TCSAFLUSH, oattr)
+        fcntl.fcntl(fd, fcntl.F_SETFL, oflags)
 
 
-if __name__ == "__main__":
+<span style="font-weight: bold;">if</span> <span style="font-weight: bold;">__name__</span> == <span style="font-style: italic;">"__main__"</span>:
     main()
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgbd9eeeb" class="outline-2">
-<h2 id="orgbd9eeeb"><span class="section-number-2">4</span> 動かしてみる</h2>
+<div id="outline-container-org35b1418" class="outline-2">
+<h2 id="org35b1418"><span class="section-number-2">4</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 動かしてみます。
@@ -309,8 +309,8 @@ if __name__ == "__main__":
 </div>
 </div>
 
-<div id="outline-container-orga3ef021" class="outline-2">
-<h2 id="orga3ef021"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org7c2632f" class="outline-2">
+<h2 id="org7c2632f"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 次は画面上にメッセージを表示できるようにします。
@@ -341,7 +341,7 @@ if __name__ == "__main__":
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/utm_a9.html">AlmaLinux 9環境をm1 MacBook上に再構築しました</a>
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
           <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>

@@ -68,63 +68,63 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org10f434c">1. Chapter 7: コンカレンシーと並列実行</a>
+<li><a href="#org867efac">1. Chapter 7: コンカレンシーと並列実行</a>
 <ul>
-<li><a href="#org0a684d8">1.1. Item 52: 子プロセスを管理するために subprosess を使え</a></li>
-<li><a href="#org6231f05">1.2. Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</a></li>
-<li><a href="#orgd445964">1.3. Item 54: スレッド間のデータレースを避けるために Lock を使え</a></li>
-<li><a href="#org6d43abd">1.4. Item 55: スレッド間のワークアサインの調整には Queue を使え</a></li>
-<li><a href="#org19d0ad0">1.5. Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</a></li>
-<li><a href="#org906fd3b">1.6. Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</a></li>
-<li><a href="#orgac462d9">1.7. Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</a></li>
-<li><a href="#org518e00f">1.8. Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</a></li>
-<li><a href="#org53895be">1.9. Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</a></li>
-<li><a href="#org8889b2e">1.10. Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</a></li>
-<li><a href="#orgd74602b">1.11. Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</a></li>
-<li><a href="#orgcd5fba0">1.12. Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</a></li>
-<li><a href="#org031d31a">1.13. Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</a></li>
+<li><a href="#orgfa8757c">1.1. Item 52: 子プロセスを管理するために subprosess を使え</a></li>
+<li><a href="#org4d1b348">1.2. Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</a></li>
+<li><a href="#orgedafeda">1.3. Item 54: スレッド間のデータレースを避けるために Lock を使え</a></li>
+<li><a href="#org3dd011f">1.4. Item 55: スレッド間のワークアサインの調整には Queue を使え</a></li>
+<li><a href="#org3889b0a">1.5. Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</a></li>
+<li><a href="#org87dbd4d">1.6. Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</a></li>
+<li><a href="#org470b922">1.7. Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</a></li>
+<li><a href="#org9595806">1.8. Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</a></li>
+<li><a href="#orgfde89b8">1.9. Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</a></li>
+<li><a href="#org93b2ae8">1.10. Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</a></li>
+<li><a href="#orgd1b78c4">1.11. Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</a></li>
+<li><a href="#orgc2c0b74">1.12. Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</a></li>
+<li><a href="#org49e7c0f">1.13. Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</a></li>
 </ul>
 </li>
-<li><a href="#org5aa6241">2. Chapter 8: 堅牢性(robustness)と性能</a>
+<li><a href="#orgc6e035b">2. Chapter 8: 堅牢性(robustness)と性能</a>
 <ul>
-<li><a href="#orgce2934d">2.1. Item 65: try/except/else/finallyで各ブロックを有効に使え</a></li>
-<li><a href="#org5fd7543">2.2. Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</a></li>
-<li><a href="#orgbaea0c6">2.3. Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</a></li>
-<li><a href="#org67d90ed">2.4. Item 68: copyregでpickleをreliableにせよ</a></li>
-<li><a href="#org987d4a1">2.5. Item 69: 精度が重要なら decimal を使え</a></li>
-<li><a href="#org8370409">2.6. Item 70: 最適化の前にプロファイルせよ</a></li>
-<li><a href="#org3764ad0">2.7. Item 71: 生産者-消費者キューにはdequeを使え</a></li>
-<li><a href="#org27d891a">2.8. Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</a></li>
-<li><a href="#orgd53178d">2.9. Item 73: 優先度キューのために heapq をどう使うかを知れ</a></li>
-<li><a href="#orga295063">2.10. Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</a></li>
+<li><a href="#orgcb7a8e5">2.1. Item 65: try/except/else/finallyで各ブロックを有効に使え</a></li>
+<li><a href="#org3d13ca7">2.2. Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</a></li>
+<li><a href="#org5b9e189">2.3. Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</a></li>
+<li><a href="#org4366ed3">2.4. Item 68: copyregでpickleをreliableにせよ</a></li>
+<li><a href="#org3f99e21">2.5. Item 69: 精度が重要なら decimal を使え</a></li>
+<li><a href="#org9b66907">2.6. Item 70: 最適化の前にプロファイルせよ</a></li>
+<li><a href="#orgfaf91da">2.7. Item 71: 生産者-消費者キューにはdequeを使え</a></li>
+<li><a href="#org3e45a84">2.8. Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</a></li>
+<li><a href="#orgab060d8">2.9. Item 73: 優先度キューのために heapq をどう使うかを知れ</a></li>
+<li><a href="#org6558853">2.10. Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org10f434c" class="outline-2">
-<h2 id="org10f434c"><span class="section-number-2">1</span> Chapter 7: コンカレンシーと並列実行</h2>
+<div id="outline-container-org867efac" class="outline-2">
+<h2 id="org867efac"><span class="section-number-2">1</span> Chapter 7: コンカレンシーと並列実行</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org0a684d8" class="outline-3">
-<h3 id="org0a684d8"><span class="section-number-3">1.1</span> Item 52: 子プロセスを管理するために subprosess を使え</h3>
+<div id="outline-container-orgfa8757c" class="outline-3">
+<h3 id="orgfa8757c"><span class="section-number-3">1.1</span> Item 52: 子プロセスを管理するために subprosess を使え</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Pythonから子プロセスを呼び出すシンプルな方法。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import subprocess
+<pre class="src src-python"><span style="font-weight: bold;">import</span> subprocess
 
-result = subprocess.run(
-    ['echo', 'Hello from the child!'],
-    capture_output=True,  # stdout/stderrをキャプチャーする
-    encoding='utf-8')
+<span style="font-weight: bold; font-style: italic;">result</span> = subprocess.run(
+    [<span style="font-style: italic;">'echo'</span>, <span style="font-style: italic;">'Hello from the child!'</span>],
+    capture_output=<span style="font-weight: bold; text-decoration: underline;">True</span>,  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">stdout/stderr&#12434;&#12461;&#12515;&#12503;&#12481;&#12515;&#12540;&#12377;&#12427;</span>
+    encoding=<span style="font-style: italic;">'utf-8'</span>)
 
 result.check_returncode()
-print(result.stdout)
+<span style="font-weight: bold;">print</span>(result.stdout)
 &gt;&gt;&gt;
-Hello from the child!
+Hello <span style="font-weight: bold;">from</span> the child!
 </pre>
 </div>
 <p>
@@ -143,25 +143,25 @@ subprocess.run(args, *, stdin=None, input=None, stdout=None, stderr=None, captur
 次は、 <code>subprocess.Popen</code> を使ってブロックされずに子プロセスを10個起動したあと、 <code>&lt;process&gt;.communicate</code> で実行完了した各子プロセスを終了(terminate)させる処理です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import subprocess
-import time
+<pre class="src src-python"><span style="font-weight: bold;">import</span> subprocess
+<span style="font-weight: bold;">import</span> time
 
-start = time.time()
-sleep_procs = []
-for _ in range(10):
-    proc = subprocess.Popen(['sleep', '1'])
+<span style="font-weight: bold; font-style: italic;">start</span> = time.time()
+<span style="font-weight: bold; font-style: italic;">sleep_procs</span> = []
+<span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(10):
+    <span style="font-weight: bold; font-style: italic;">proc</span> = subprocess.Popen([<span style="font-style: italic;">'sleep'</span>, <span style="font-style: italic;">'1'</span>])
     sleep_procs.append(proc)
 
 time.sleep(0.3)
 
-for proc in sleep_procs:
+<span style="font-weight: bold;">for</span> proc <span style="font-weight: bold;">in</span> sleep_procs:
     proc.communicate()
 
-end = time.time()
-delta = end - start
-print(f'Finished in {delta:.3} seconds')
+<span style="font-weight: bold; font-style: italic;">end</span> = time.time()
+<span style="font-weight: bold; font-style: italic;">delta</span> = end - start
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Finished in {delta:.3} seconds'</span>)
 &gt;&gt;&gt;
-Finished in 1.02 seconds
+Finished <span style="font-weight: bold;">in</span> 1.02 seconds
 </pre>
 </div>
 <p>
@@ -172,33 +172,33 @@ Finished in 1.02 seconds
 次の例は、外部コマンドの openssl にランダムな10バイトのバイト列を暗号化させる処理です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import subprocess
-import os
-def run_encrypt(data):
-    env = os.environ.copy()
-    env['password'] = 'start123'
-    proc = subprocess.Popen(
-	['openssl', 'enc', '-des3', '-pass', 'env:password'],
-	env=env,
-	stdin=subprocess.PIPE,
-	stdout=subprocess.PIPE)
+<pre class="src src-python"><span style="font-weight: bold;">import</span> subprocess
+<span style="font-weight: bold;">import</span> os
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">run_encrypt</span>(data):
+    <span style="font-weight: bold; font-style: italic;">env</span> = os.environ.copy()
+    <span style="font-weight: bold; font-style: italic;">env</span>[<span style="font-style: italic;">'password'</span>] = <span style="font-style: italic;">'start123'</span>
+    <span style="font-weight: bold; font-style: italic;">proc</span> = subprocess.Popen(
+        [<span style="font-style: italic;">'openssl'</span>, <span style="font-style: italic;">'enc'</span>, <span style="font-style: italic;">'-des3'</span>, <span style="font-style: italic;">'-pass'</span>, <span style="font-style: italic;">'env:password'</span>],
+        env=env,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE)
     proc.stdin.write(data)
     proc.stdin.flush()
-    return proc
+    <span style="font-weight: bold;">return</span> proc
 
-procs = []
-for _ in range(3):
-    data = os.urandom(10)  # ランダムな10バイトを生成
-    proc = run_encrypt(data)
+<span style="font-weight: bold; font-style: italic;">procs</span> = []
+<span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(3):
+    <span style="font-weight: bold; font-style: italic;">data</span> = os.urandom(10)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12521;&#12531;&#12480;&#12512;&#12394;10&#12496;&#12452;&#12488;&#12434;&#29983;&#25104;</span>
+    <span style="font-weight: bold; font-style: italic;">proc</span> = run_encrypt(data)
     procs.append(proc)
 
-for proc in procs:
-    out, _ = proc.communicate()
-    print(out[-10:])  # 後ろから10バイトをスライス
+<span style="font-weight: bold;">for</span> proc <span style="font-weight: bold;">in</span> procs:
+    <span style="font-weight: bold; font-style: italic;">out</span>, <span style="font-weight: bold; font-style: italic;">_</span> = proc.communicate()
+    <span style="font-weight: bold;">print</span>(out[-10:])  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#24460;&#12429;&#12363;&#12425;10&#12496;&#12452;&#12488;&#12434;&#12473;&#12521;&#12452;&#12473;</span>
 &gt;&gt;&gt;
-b'\x0f\xbc4\x94O\x93\xa5G\xbe\xe3'
-b'm\xb3\x89\r\xc9pP7\xdc\xeb'
-b"\xda\x16z N=\x850v'"
+b<span style="font-style: italic;">'\x0f\xbc4\x94O\x93\xa5G\xbe\xe3'</span>
+b<span style="font-style: italic;">'m\xb3\x89\r\xc9pP7\xdc\xeb'</span>
+b<span style="font-style: italic;">"\xda\x16z N=\x850v'"</span>
 </pre>
 </div>
 <p>
@@ -209,37 +209,37 @@ b"\xda\x16z N=\x850v'"
 複数の外部コマンドを呼び出し、それらをパイプでつなぐこともできます。次の例で、 <code>run_hash</code> は <code>openssl</code> を使って入力バイト列のハッシュを求める関数です。 <code>for</code> 文以下では、100バイトのランダムな文字列を生成し、それからハッシュを求めることを3つのサブプロセスで並列実行します。 <code>run_hash</code> 関数呼び出しの引数に <code>encrypt_proc.stdout</code> を指定することで、これらの処理をパイプでつなげています。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">def run_hash(input_stdin):
-    return subprocess.Popen(
-	['openssl', 'dgst', '-whirlpool', '-binary'],
-	stdin=input_stdin,  # stdinを指定
-	stdout=subprocess.PIPE)
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">run_hash</span>(input_stdin):
+    <span style="font-weight: bold;">return</span> subprocess.Popen(
+        [<span style="font-style: italic;">'openssl'</span>, <span style="font-style: italic;">'dgst'</span>, <span style="font-style: italic;">'-whirlpool'</span>, <span style="font-style: italic;">'-binary'</span>],
+        stdin=input_stdin,  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">stdin&#12434;&#25351;&#23450;</span>
+        stdout=subprocess.PIPE)
 
-encrypt_procs = []
-hash_procs = []
-for _ in range(3):
-    data = os.urandom(100)  # ランダムな100バイトを生成
+<span style="font-weight: bold; font-style: italic;">encrypt_procs</span> = []
+<span style="font-weight: bold; font-style: italic;">hash_procs</span> = []
+<span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(3):
+    <span style="font-weight: bold; font-style: italic;">data</span> = os.urandom(100)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12521;&#12531;&#12480;&#12512;&#12394;100&#12496;&#12452;&#12488;&#12434;&#29983;&#25104;</span>
 
-    encrypt_proc = run_encrypt(data)
+    <span style="font-weight: bold; font-style: italic;">encrypt_proc</span> = run_encrypt(data)
     encrypt_procs.append(encrypt_proc)
-    hash_proc = run_hash(encrypt_proc.stdout)  # stdoutを指定
+    <span style="font-weight: bold; font-style: italic;">hash_proc</span> = run_hash(encrypt_proc.stdout)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">stdout&#12434;&#25351;&#23450;</span>
     hash_procs.append(hash_proc)
 
-    encrypt_proc.stdout.close()  # 閉じてしまってよい???
-    encrypt_proc.stdout = None
+    encrypt_proc.stdout.close()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#38281;&#12376;&#12390;&#12375;&#12414;&#12387;&#12390;&#12424;&#12356;???</span>
+    <span style="font-weight: bold; font-style: italic;">encrypt_proc.stdout</span> = <span style="font-weight: bold; text-decoration: underline;">None</span>
 
-for proc in encrypt_procs:
+<span style="font-weight: bold;">for</span> proc <span style="font-weight: bold;">in</span> encrypt_procs:
     proc.communicate()
-    assert proc.returncode == 0
+    <span style="font-weight: bold;">assert</span> proc.returncode == 0
 
-for proc in hash_procs:
-    out, _ = proc.communicate()
-    print(out[-10:])
-    assert proc.returncode == 0
+<span style="font-weight: bold;">for</span> proc <span style="font-weight: bold;">in</span> hash_procs:
+    <span style="font-weight: bold; font-style: italic;">out</span>, <span style="font-weight: bold; font-style: italic;">_</span> = proc.communicate()
+    <span style="font-weight: bold;">print</span>(out[-10:])
+    <span style="font-weight: bold;">assert</span> proc.returncode == 0
 &gt;&gt;&gt;
-'\x99\xd8*\x15~\x88\xd4\x89\x1c3'
-b'\x00\x87\xd3\x93Ti\x12v\x01\xaa'
-b'\x1b\x85\xdf\x94z\x96\xd3\xb0\x91\x9a'
+<span style="font-style: italic;">'\x99\xd8*\x15~\x88\xd4\x89\x1c3'</span>
+b<span style="font-style: italic;">'\x00\x87\xd3\x93Ti\x12v\x01\xaa'</span>
+b<span style="font-style: italic;">'\x1b\x85\xdf\x94z\x96\xd3\xb0\x91\x9a'</span>
 </pre>
 </div>
 <p>
@@ -250,15 +250,15 @@ b'\x1b\x85\xdf\x94z\x96\xd3\xb0\x91\x9a'
 子プロセスが終わらない場合が気になるなら、タイムアウト値を指定することも出来ます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import subprocess
-proc = subprocess.Popen(['sleep', '10'])
-try:
+<pre class="src src-python"><span style="font-weight: bold;">import</span> subprocess
+<span style="font-weight: bold; font-style: italic;">proc</span> = subprocess.Popen([<span style="font-style: italic;">'sleep'</span>, <span style="font-style: italic;">'10'</span>])
+<span style="font-weight: bold;">try</span>:
     proc.communicate(timeout=0.1)
-except subprocess.TimeoutExpired:
+<span style="font-weight: bold;">except</span> subprocess.TimeoutExpired:
     proc.terminate()
     proc.wait()
 
-print('Exist status', proc.poll())
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Exist status'</span>, proc.poll())
 &gt;&gt;&gt;
 Exist status -15
 </pre>
@@ -269,8 +269,8 @@ Exist status -15
 </div>
 </div>
 
-<div id="outline-container-org6231f05" class="outline-3">
-<h3 id="org6231f05"><span class="section-number-3">1.2</span> Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</h3>
+<div id="outline-container-org4d1b348" class="outline-3">
+<h3 id="org4d1b348"><span class="section-number-3">1.2</span> Item 53: ブロックするI/Oにはスレッドを使い、parallelismを避けよ</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 普通使うPythonはCPythonですが、CPythonはglobal interpreter lock (GIL)のために複数コアでの並列実行ができません。知りませんでした。衝撃的な事実。。。I/Oによる待ちが無ければ複数スレッド使っても実行時間は短縮されません。
@@ -284,26 +284,26 @@ Exist status -15
 Pythonでのスレッドの使い方例:
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import select
-import socket
-import time
-from threading import Thread
-def slow_systemcall():
+<pre class="src src-python"><span style="font-weight: bold;">import</span> select
+<span style="font-weight: bold;">import</span> socket
+<span style="font-weight: bold;">import</span> time
+<span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Thread
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">slow_systemcall</span>():
     select.select([socket.socket()],[],[],0.1)
 
-start = time.time()
-threads = []
-for _ in range(5):
-    thread = Thread(target=slow_systemcall)
+<span style="font-weight: bold; font-style: italic;">start</span> = time.time()
+<span style="font-weight: bold; font-style: italic;">threads</span> = []
+<span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(5):
+    <span style="font-weight: bold; font-style: italic;">thread</span> = Thread(target=slow_systemcall)
     thread.start()
     threads.append(thread)
 
-for thread in threads:
+<span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads:
     thread.join()
 
-end = time.time()
-delta = end - start
-print(f'Took {delta:.3f} seconds')
+<span style="font-weight: bold; font-style: italic;">end</span> = time.time()
+<span style="font-weight: bold; font-style: italic;">delta</span> = end - start
+<span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Took {delta:.3f} seconds'</span>)
 &gt;&gt;&gt;
 Took 0.103 seconds
 </pre>
@@ -311,22 +311,22 @@ Took 0.103 seconds
 </div>
 </div>
 
-<div id="outline-container-orgd445964" class="outline-3">
-<h3 id="orgd445964"><span class="section-number-3">1.3</span> Item 54: スレッド間のデータレースを避けるために Lock を使え</h3>
+<div id="outline-container-orgedafeda" class="outline-3">
+<h3 id="orgedafeda"><span class="section-number-3">1.3</span> Item 54: スレッド間のデータレースを避けるために Lock を使え</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 単一コアで動くマルチスレッドにもロックは必要という話。
 Pythonでmutexを用意する例:
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from threading import Lock
-class LockingCounter:
-    def __init__(self):
-	self.lock = Lock()
-	self.count = 0  # ロック対象
-    def increment(self, offset):
-	with self.lock:
-	    self.count += offset
+<pre class="src src-python"><span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Lock
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">LockingCounter</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>.lock = Lock()
+        <span style="font-weight: bold;">self</span>.count = 0  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12525;&#12483;&#12463;&#23550;&#35937;</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">increment</span>(<span style="font-weight: bold;">self</span>, offset):
+        <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">self</span>.lock:
+            <span style="font-weight: bold;">self</span>.count += offset
 </pre>
 </div>
 <p>
@@ -346,32 +346,32 @@ class LockingCounter:
 </div>
 </div>
 
-<div id="outline-container-org6d43abd" class="outline-3">
-<h3 id="org6d43abd"><span class="section-number-3">1.4</span> Item 55: スレッド間のワークアサインの調整には Queue を使え</h3>
+<div id="outline-container-org3dd011f" class="outline-3">
+<h3 id="org3dd011f"><span class="section-number-3">1.4</span> Item 55: スレッド間のワークアサインの調整には Queue を使え</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 <code>Queue</code> クラスはパイプラインを実装するのに便利です。 <code>Queue</code> の getメソッドは新データが来るまでブロックするため、自前でbusyウエイトを実装する必要がありません。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from threading import Thread
-from queue import Queue
+<pre class="src src-python"><span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Thread
+<span style="font-weight: bold;">from</span> queue <span style="font-weight: bold;">import</span> Queue
 
-my_queue = Queue()  # キューのクラスが用意されています
+<span style="font-weight: bold; font-style: italic;">my_queue</span> = Queue()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12461;&#12517;&#12540;&#12398;&#12463;&#12521;&#12473;&#12364;&#29992;&#24847;&#12373;&#12428;&#12390;&#12356;&#12414;&#12377;</span>
 
-def consumer():
-    print('Consumer waiting')
-    my_queue.get()  # ブロックされます
-    print('Consumer done')
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">consumer</span>():
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer waiting'</span>)
+    my_queue.get()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12502;&#12525;&#12483;&#12463;&#12373;&#12428;&#12414;&#12377;</span>
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer done'</span>)
 
-thread = Thread(target=consumer)
+<span style="font-weight: bold; font-style: italic;">thread</span> = Thread(target=consumer)
 thread.start()
 
-print('Producer putting')
-my_queue.put(object())
-print('Producer done')
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer putting'</span>)
+my_queue.put(<span style="font-weight: bold;">object</span>())
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer done'</span>)
 thread.join()
 &gt;&gt;&gt;
-Consumer waiting  # アイテム(object)が入ってくるまで待ちます
+Consumer waiting  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12450;&#12452;&#12486;&#12512;(object)&#12364;&#20837;&#12387;&#12390;&#12367;&#12427;&#12414;&#12391;&#24453;&#12385;&#12414;&#12377;</span>
 Producer putting
 Producer done
 Consumer done
@@ -386,33 +386,33 @@ Consumer done
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">from threading import Thread
-from queue import Queue
-import time
+<pre class="src src-python"><span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Thread
+<span style="font-weight: bold;">from</span> queue <span style="font-weight: bold;">import</span> Queue
+<span style="font-weight: bold;">import</span> time
 
-my_queue = Queue(1)  # バッファサイズが1
+<span style="font-weight: bold; font-style: italic;">my_queue</span> = Queue(1)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12496;&#12483;&#12501;&#12449;&#12469;&#12452;&#12474;&#12364;1</span>
 
-def consumer():
-    time.sleep(0.1)  # まず0.1秒スリープする
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">consumer</span>():
+    time.sleep(0.1)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12414;&#12378;0.1&#31186;&#12473;&#12522;&#12540;&#12503;&#12377;&#12427;</span>
     my_queue.get()
-    print('Consumer got 1')
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer got 1'</span>)
     my_queue.get()
-    print('Consumer got 2')
-    print('Consumer done')
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer got 2'</span>)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer done'</span>)
 
-thread = Thread(target=consumer)
+<span style="font-weight: bold; font-style: italic;">thread</span> = Thread(target=consumer)
 thread.start()
 
-my_queue.put(object())  # producerは立て続けに二つputしようとする
-print('Producer put 1')
-my_queue.put(object())  # ここでブロックする
-print('Producer put 2')
-print('Producer done')
+my_queue.put(<span style="font-weight: bold;">object</span>())  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">producer&#12399;&#31435;&#12390;&#32154;&#12369;&#12395;&#20108;&#12388;put&#12375;&#12424;&#12358;&#12392;&#12377;&#12427;</span>
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer put 1'</span>)
+my_queue.put(<span style="font-weight: bold;">object</span>())  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12371;&#12391;&#12502;&#12525;&#12483;&#12463;&#12377;&#12427;</span>
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer put 2'</span>)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer done'</span>)
 thread.join()
 &gt;&gt;&gt;
-Producer put 1  # 最初にproducerがputするのは前回と同じ
-Consumer got 1  # 0.1秒待ってからgetする
-Producer put 2  # consumerがgetして、やっとputから戻る
+Producer put 1  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#26368;&#21021;&#12395;producer&#12364;put&#12377;&#12427;&#12398;&#12399;&#21069;&#22238;&#12392;&#21516;&#12376;</span>
+Consumer got 1  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">0.1&#31186;&#24453;&#12387;&#12390;&#12363;&#12425;get&#12377;&#12427;</span>
+Producer put 2  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">consumer&#12364;get&#12375;&#12390;&#12289;&#12420;&#12387;&#12392;put&#12363;&#12425;&#25147;&#12427;</span>
 Producer done
 Consumer got 2
 Consumer done
@@ -430,34 +430,34 @@ Consumer done
 キューのタスクが完了するというのは、そのキューからgetしてきた仕事(アイテム)を最後の1個まで、全て処理し終わったという意味です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from threading import Thread
-from queue import Queue
-import time
+<pre class="src src-python"><span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Thread
+<span style="font-weight: bold;">from</span> queue <span style="font-weight: bold;">import</span> Queue
+<span style="font-weight: bold;">import</span> time
 
-in_queue = Queue()
-def consumer():
-    print('Consumer waiting')
-    work = in_queue.get()
-    print('Consumer working')
-    time.sleep(1)  # この例でのタスクはスリープすること
-    print('Consumer done')
-    in_queue.task_done()  # タスク完了を宣言する
+<span style="font-weight: bold; font-style: italic;">in_queue</span> = Queue()
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">consumer</span>():
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer waiting'</span>)
+    <span style="font-weight: bold; font-style: italic;">work</span> = in_queue.get()
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer working'</span>)
+    time.sleep(1)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12398;&#20363;&#12391;&#12398;&#12479;&#12473;&#12463;&#12399;&#12473;&#12522;&#12540;&#12503;&#12377;&#12427;&#12371;&#12392;</span>
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Consumer done'</span>)
+    in_queue.task_done()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12479;&#12473;&#12463;&#23436;&#20102;&#12434;&#23459;&#35328;&#12377;&#12427;</span>
 
-thread = Thread(target=consumer)
+<span style="font-weight: bold; font-style: italic;">thread</span> = Thread(target=consumer)
 thread.start()
 
-print('Producer putting')
-in_queue.put(object())
-print('Producer waiting')
-in_queue.join()  # in_queueの完了(=task_doneが呼ばれる)までブロックされる
-print('Producer done')
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer putting'</span>)
+in_queue.put(<span style="font-weight: bold;">object</span>())
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer waiting'</span>)
+in_queue.join()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">in_queue&#12398;&#23436;&#20102;(=task_done&#12364;&#21628;&#12400;&#12428;&#12427;)&#12414;&#12391;&#12502;&#12525;&#12483;&#12463;&#12373;&#12428;&#12427;</span>
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Producer done'</span>)
 thread.join()
 &gt;&gt;&gt;
 Consumer waiting
 Producer putting
 Producer waiting
 Consumer working
-# ここで1秒スリープする
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12371;&#12391;1&#31186;&#12473;&#12522;&#12540;&#12503;&#12377;&#12427;</span>
 Consumer done
 Producer done
 </pre>
@@ -470,16 +470,16 @@ Producer done
 さて、これらの知識を使ってパイプラインを実装します。パイプラインはdownload, resize, uploadの3ステージからなるとします。写真をカメラからダウンロードして、サイズを変えてまたアップロードする場合を想定しています。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from threading import Thread
-from queue import Queue
-import time
+<pre class="src src-python"><span style="font-weight: bold;">from</span> threading <span style="font-weight: bold;">import</span> Thread
+<span style="font-weight: bold;">from</span> queue <span style="font-weight: bold;">import</span> Queue
+<span style="font-weight: bold;">import</span> time
 
-def download(item):
-    pass
-def resize(item):
-    pass
-def upload(item):
-    pass
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">download</span>(item):
+    <span style="font-weight: bold;">pass</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">resize</span>(item):
+    <span style="font-weight: bold;">pass</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">upload</span>(item):
+    <span style="font-weight: bold;">pass</span>
 </pre>
 </div>
 
@@ -491,19 +491,19 @@ def upload(item):
 <code>__iter__</code> を準備したことで、このキューを iterate することができます。 <code>get()</code> でキューから写真を取り出し、sentinel以外ならyieldして写真を返します。キューに何も入っていなかったら <code>get()</code> がブロックします。キューから取ってきたアイテムが写真でなくsentinelだったら、終わりの印なのでリターンしています。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">class ClosableQueue(Queue):
-    SENTINEL = object()
-    def close(self):
-	self.put(self.SENTINEL)
-    def __iter__(self):
-	while(True):
-	    item = self.get()  # 写真を一つ取り出す。無かったらブロックする
-	    try:
-		if item is self.SENTINEL:
-		    return
-		yield item  # まだfinallyは実行しない
-	    finally:
-		self.task_done()  # この写真の処理が完了
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">ClosableQueue</span>(Queue):
+    <span style="font-weight: bold; font-style: italic;">SENTINEL</span> = <span style="font-weight: bold;">object</span>()
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">close</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">self</span>.put(<span style="font-weight: bold;">self</span>.SENTINEL)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__iter__</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">while</span>(<span style="font-weight: bold; text-decoration: underline;">True</span>):
+            <span style="font-weight: bold; font-style: italic;">item</span> = <span style="font-weight: bold;">self</span>.get()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20889;&#30495;&#12434;&#19968;&#12388;&#21462;&#12426;&#20986;&#12377;&#12290;&#28961;&#12363;&#12387;&#12383;&#12425;&#12502;&#12525;&#12483;&#12463;&#12377;&#12427;</span>
+            <span style="font-weight: bold;">try</span>:
+                <span style="font-weight: bold;">if</span> item <span style="font-weight: bold;">is</span> <span style="font-weight: bold;">self</span>.SENTINEL:
+                    <span style="font-weight: bold;">return</span>
+                <span style="font-weight: bold;">yield</span> item  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12414;&#12384;finally&#12399;&#23455;&#34892;&#12375;&#12394;&#12356;</span>
+            <span style="font-weight: bold;">finally</span>:
+                <span style="font-weight: bold;">self</span>.task_done()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12398;&#20889;&#30495;&#12398;&#20966;&#29702;&#12364;&#23436;&#20102;</span>
 </pre>
 </div>
 <p>
@@ -518,17 +518,17 @@ def upload(item):
 <code>StoppableWorker</code> は <code>ClosableQueue</code> に対応した新ワーカースレッドです。スレッドは写真ではなくステージ(で作業する人)に対応します。 <code>in_queue</code> から写真(<code>item</code>)を取り出し、処理をして、処理後の写真(<code>result</code>)を <code>out_queue</code> に入れます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">class StoppableWorker(Thread):
-    def __init__(self, func, in_queue, out_queue):
-	super().__init__()
-	self.func = func  # やる作業
-	self.in_queue = in_queue
-	self.out_queue = out_queue
+<pre class="src src-python"><span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">StoppableWorker</span>(Thread):
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, func, in_queue, out_queue):
+        <span style="font-weight: bold;">super</span>().__init__()
+        <span style="font-weight: bold;">self</span>.func = func  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12420;&#12427;&#20316;&#26989;</span>
+        <span style="font-weight: bold;">self</span>.in_queue = in_queue
+        <span style="font-weight: bold;">self</span>.out_queue = out_queue
 
-    def run(self):
-	for item in self.in_queue:  # queueをiterateする
-	    result = self.func(item)
-	    self.out_queue.put(result)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">run</span>(<span style="font-weight: bold;">self</span>):
+        <span style="font-weight: bold;">for</span> item <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">self</span>.in_queue:  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">queue&#12434;iterate&#12377;&#12427;</span>
+            <span style="font-weight: bold; font-style: italic;">result</span> = <span style="font-weight: bold;">self</span>.func(item)
+            <span style="font-weight: bold;">self</span>.out_queue.put(result)
 </pre>
 </div>
 
@@ -536,11 +536,11 @@ def upload(item):
 キューとスレッドを用意します。キューとキューの間にワーカー(スレッド)がいるイメージですね。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">download_queue = ClosableQueue()
-resize_queue = ClosableQueue()
-upload_queue = ClosableQueue()
-done_queue = ClosableQueue()
-threads = [
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">download_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">resize_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">upload_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">done_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">threads</span> = [
     StoppableWorker(download, download_queue, resize_queue),
     StoppableWorker(resize, resize_queue, upload_queue),
     StoppableWorker(upload, upload_queue, done_queue),
@@ -552,20 +552,20 @@ threads = [
 最後にこれらをまとめます。SENTINELを投入する <code>Queue.close()</code> はここで呼んでいるのですね。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">for thread in threads:
+<pre class="src src-python"><span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads:
     thread.start()
 
-for _ in range(1000):
-    download_queue.put(object())  # object()=写真を入れる
+<span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(1000):
+    download_queue.put(<span style="font-weight: bold;">object</span>())  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">object()=&#20889;&#30495;&#12434;&#20837;&#12428;&#12427;</span>
 
-download_queue.close()  # SENTINEL投入
-download_queue.join()  # task_done()が呼ばれるまでここでブロックされる
-resize_queue.close()  # SENTINEL投入
-resize_queue.join()  # task_done()が呼ばれるまでここでブロックされる
-upload_queue.close()  # SENTINEL投入
-upload_queue.join()  # task_done()が呼ばれるまでここでブロックされる
-print(done_queue.qsize(), 'items finished')
-for thread in threads:
+download_queue.close()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">SENTINEL&#25237;&#20837;</span>
+download_queue.join()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">task_done()&#12364;&#21628;&#12400;&#12428;&#12427;&#12414;&#12391;&#12371;&#12371;&#12391;&#12502;&#12525;&#12483;&#12463;&#12373;&#12428;&#12427;</span>
+resize_queue.close()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">SENTINEL&#25237;&#20837;</span>
+resize_queue.join()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">task_done()&#12364;&#21628;&#12400;&#12428;&#12427;&#12414;&#12391;&#12371;&#12371;&#12391;&#12502;&#12525;&#12483;&#12463;&#12373;&#12428;&#12427;</span>
+upload_queue.close()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">SENTINEL&#25237;&#20837;</span>
+upload_queue.join()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">task_done()&#12364;&#21628;&#12400;&#12428;&#12427;&#12414;&#12391;&#12371;&#12371;&#12391;&#12502;&#12525;&#12483;&#12463;&#12373;&#12428;&#12427;</span>
+<span style="font-weight: bold;">print</span>(done_queue.qsize(), <span style="font-style: italic;">'items finished'</span>)
+<span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads:
     thread.join()
 &gt;&gt;&gt;
 1000 items finished
@@ -580,18 +580,18 @@ for thread in threads:
 まず、複数スレッドをスタート、ストップさせるヘルパー関数を用意します。 <code>start_threads</code> 関数では引数 <code>count</code> の数だけ <code>StoppableWorker</code> スレッドを作ってスタートし、そのリストを返します。 <code>stop_threads</code> 関数ではキューの <code>close</code> を呼んでsentinelを投入し、キューの <code>join</code> でタスクの完了を待ってからスレッドを完了させます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">def start_threads(count, *args):
-    threads = [StoppableWorker(*args) for _ in range(count)]
-    for thread in threads:
-	thread.start()  # スレッドをスタートさせる
-    return threads
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">start_threads</span>(count, *args):
+    <span style="font-weight: bold; font-style: italic;">threads</span> = [StoppableWorker(*args) <span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(count)]
+    <span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads:
+        thread.start()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12473;&#12524;&#12483;&#12489;&#12434;&#12473;&#12479;&#12540;&#12488;&#12373;&#12379;&#12427;</span>
+    <span style="font-weight: bold;">return</span> threads
 
-def stop_threads(closable_queue, threads):
-    for _ in threads:
-	closable_queue.close()  # SENTINEL投入
-    closable_queue.join()  # 全てのtask_done()を待ち、キューをクローズする
-    for thread in threads:
-	thread.join()  # 全てのスレッドの完了を待つ
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">stop_threads</span>(closable_queue, threads):
+    <span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> threads:
+        closable_queue.close()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">SENTINEL&#25237;&#20837;</span>
+    closable_queue.join()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20840;&#12390;&#12398;task_done()&#12434;&#24453;&#12385;&#12289;&#12461;&#12517;&#12540;&#12434;&#12463;&#12525;&#12540;&#12474;&#12377;&#12427;</span>
+    <span style="font-weight: bold;">for</span> thread <span style="font-weight: bold;">in</span> threads:
+        thread.join()  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20840;&#12390;&#12398;&#12473;&#12524;&#12483;&#12489;&#12398;&#23436;&#20102;&#12434;&#24453;&#12388;</span>
 </pre>
 </div>
 
@@ -599,26 +599,26 @@ def stop_threads(closable_queue, threads):
 最後にこれらをまとめます。ダウンロードスレッドは3多重、リサイズは4多重、アップロードは5多重を指定してスレッドを作成しています。後は1000個の写真を投入し、スレッドを1種類ずつ止めていきます。ポイントは、 <code>stop_threads</code> はsentinelを投入し、それが出てくるまでブロックするところでしょうか。このお陰で、後片付けが中途半端な状態で次の <code>stop_threads</code> に行くことはありません。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">download_queue = ClosableQueue()
-resize_queue = ClosableQueue()
-upload_queue = ClosableQueue()
-done_queue = ClosableQueue()
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">download_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">resize_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">upload_queue</span> = ClosableQueue()
+<span style="font-weight: bold; font-style: italic;">done_queue</span> = ClosableQueue()
 
-download_threads = start_threads(
-    3, download, download_queue, resize_queue)  # ダウンロードは3多重
-resize_threads = start_threads(
-    4, resize, resize_queue, upload_queue)  # リサイズは4多重
-upload_threads = start_threads(
-    5, upload, upload_queue, done_queue)  # アップロードは5多重
+<span style="font-weight: bold; font-style: italic;">download_threads</span> = start_threads(
+    3, download, download_queue, resize_queue)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12480;&#12454;&#12531;&#12525;&#12540;&#12489;&#12399;3&#22810;&#37325;</span>
+<span style="font-weight: bold; font-style: italic;">resize_threads</span> = start_threads(
+    4, resize, resize_queue, upload_queue)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12522;&#12469;&#12452;&#12474;&#12399;4&#22810;&#37325;</span>
+<span style="font-weight: bold; font-style: italic;">upload_threads</span> = start_threads(
+    5, upload, upload_queue, done_queue)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12450;&#12483;&#12503;&#12525;&#12540;&#12489;&#12399;5&#22810;&#37325;</span>
 
-for _ in range(1000):  # 1000個(枚)の写真を投入
-    download_queue.put(object())
+<span style="font-weight: bold;">for</span> _ <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(1000):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">1000&#20491;(&#26522;)&#12398;&#20889;&#30495;&#12434;&#25237;&#20837;</span>
+    download_queue.put(<span style="font-weight: bold;">object</span>())
 
-stop_threads(download_queue, download_threads)  # 完了待ちする
+stop_threads(download_queue, download_threads)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#23436;&#20102;&#24453;&#12385;&#12377;&#12427;</span>
 stop_threads(resize_queue, resize_threads)
 stop_threads(upload_queue, upload_threads)
 
-print(done_queue.qsize(), 'items finished')
+<span style="font-weight: bold;">print</span>(done_queue.qsize(), <span style="font-style: italic;">'items finished'</span>)
 &gt;&gt;&gt;
 1000 items finished
 </pre>
@@ -626,8 +626,8 @@ print(done_queue.qsize(), 'items finished')
 </div>
 </div>
 
-<div id="outline-container-org19d0ad0" class="outline-3">
-<h3 id="org19d0ad0"><span class="section-number-3">1.5</span> Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</h3>
+<div id="outline-container-org3889b0a" class="outline-3">
+<h3 id="org3889b0a"><span class="section-number-3">1.5</span> Item 56: いつコンカレンシーが必要になるかをどう理解するか知れ</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 あるワークを、コンカレントに実行できるものにばらまくことを fan-out、ばらまいたものを回収することを fan-inと言うそうです。Pythonにはこれらを実現するツールがたくさんあって、それぞれトレードオフがあります。次の節以降で説明していきます。
@@ -635,8 +635,8 @@ print(done_queue.qsize(), 'items finished')
 </div>
 </div>
 
-<div id="outline-container-org906fd3b" class="outline-3">
-<h3 id="org906fd3b"><span class="section-number-3">1.6</span> Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</h3>
+<div id="outline-container-org87dbd4d" class="outline-3">
+<h3 id="org87dbd4d"><span class="section-number-3">1.6</span> Item 57: オンデマンドのfan-outで新たなスレッドインスタンスを作るのは避けろ</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 ダイナミックにfan-out/fan-inを繰り返すような用途や、非常に多くにfan-outするケースにはスレッドは合いません。
@@ -649,8 +649,8 @@ print(done_queue.qsize(), 'items finished')
 </div>
 </div>
 
-<div id="outline-container-orgac462d9" class="outline-3">
-<h3 id="orgac462d9"><span class="section-number-3">1.7</span> Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</h3>
+<div id="outline-container-org470b922" class="outline-3">
+<h3 id="org470b922"><span class="section-number-3">1.7</span> Item 58: コンカレンシーのためにQueueを使うにはリファクタリングが必要なことを理解せよ</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 Queueを使うとスレッド数はワーカーの数に限定されるので、上限を定めないスレッドよりはマシですが、仕組みが複雑なことと、仕様変更によっては大きなリファクタリングが必要になるため、よい方法とは言えません。
@@ -658,8 +658,8 @@ Queueを使うとスレッド数はワーカーの数に限定されるので、
 </div>
 </div>
 
-<div id="outline-container-org518e00f" class="outline-3">
-<h3 id="org518e00f"><span class="section-number-3">1.8</span> Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</h3>
+<div id="outline-container-org9595806" class="outline-3">
+<h3 id="org9595806"><span class="section-number-3">1.8</span> Item 59: コンカレンシーでスレッドが必要なら ThreadPoolExecutorを検討せよ</h3>
 <div class="outline-text-3" id="text-1-8">
 <p>
 スレッドプールはなかなか良さそうです。例外を呼び元に伝搬する仕組みもあります。ただ、 <code>max_workers</code> をあらかじめ決めておく必要があることがネックです
@@ -669,43 +669,43 @@ Queueを使うとスレッド数はワーカーの数に限定されるので、
 <a href="https://docs.python.org/3/library/concurrent.futures.html">公式サイト</a>から実装例です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import concurrent.futures
-import urllib.request
+<pre class="src src-python"><span style="font-weight: bold;">import</span> concurrent.futures
+<span style="font-weight: bold;">import</span> urllib.request
 
-URLS = ['http://www.foxnews.com/',
-	'http://www.cnn.com/',
-	'http://europe.wsj.com/',
-	'http://www.bbc.co.uk/',
-	'http://some-made-up-domain.com/']
+<span style="font-weight: bold; font-style: italic;">URLS</span> = [<span style="font-style: italic;">'http://www.foxnews.com/'</span>,
+        <span style="font-style: italic;">'http://www.cnn.com/'</span>,
+        <span style="font-style: italic;">'http://europe.wsj.com/'</span>,
+        <span style="font-style: italic;">'http://www.bbc.co.uk/'</span>,
+        <span style="font-style: italic;">'http://some-made-up-domain.com/'</span>]
 
-# Retrieve a single page and report the URL and contents
-def load_url(url, timeout):
-    with urllib.request.urlopen(url, timeout=timeout) as conn:
-	return conn.read()
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Retrieve a single page and report the URL and contents</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">load_url</span>(url, timeout):
+    <span style="font-weight: bold;">with</span> urllib.request.urlopen(url, timeout=timeout) <span style="font-weight: bold;">as</span> conn:
+        <span style="font-weight: bold;">return</span> conn.read()
 
-# We can use a with statement to ensure threads are cleaned up promptly
-with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-    # {future: url, ...}の辞書がfuture_to_urlに入ります。
-    # futureはそのcallableの実行を表すオブジェクトです。
-    # ...この場合はワーカースレッドですね。
-    future_to_url = {executor.submit(load_url, url, 60): url for url in URLS}
-    # as_completedはfuture_to_urlのfuturesの完了(またはキャンセル)した
-    # インスタンスのiteratorを返します。それをiterateしてfuture
-    # = スレッドを得ます
-    for future in concurrent.futures.as_completed(future_to_url):
-	url = future_to_url[future]
-	try:
-	    data = future.result()
-	except Exception as exc:
-	    print('%r generated an exception: %s' % (url, exc))
-	else:
-	    print('%r page is %d bytes' % (url, len(data)))
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">We can use a with statement to ensure threads are cleaned up promptly</span>
+<span style="font-weight: bold;">with</span> concurrent.futures.ThreadPoolExecutor(max_workers=5) <span style="font-weight: bold;">as</span> executor:
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">{future: url, ...}&#12398;&#36766;&#26360;&#12364;future_to_url&#12395;&#20837;&#12426;&#12414;&#12377;&#12290;</span>
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">future&#12399;&#12381;&#12398;callable&#12398;&#23455;&#34892;&#12434;&#34920;&#12377;&#12458;&#12502;&#12472;&#12455;&#12463;&#12488;&#12391;&#12377;&#12290;</span>
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">...&#12371;&#12398;&#22580;&#21512;&#12399;&#12527;&#12540;&#12459;&#12540;&#12473;&#12524;&#12483;&#12489;&#12391;&#12377;&#12397;&#12290;</span>
+    <span style="font-weight: bold; font-style: italic;">future_to_url</span> = {executor.submit(load_url, url, 60): url <span style="font-weight: bold;">for</span> url <span style="font-weight: bold;">in</span> URLS}
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">as_completed&#12399;future_to_url&#12398;futures&#12398;&#23436;&#20102;(&#12414;&#12383;&#12399;&#12461;&#12515;&#12531;&#12475;&#12523;)&#12375;&#12383;</span>
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#12398;iterator&#12434;&#36820;&#12375;&#12414;&#12377;&#12290;&#12381;&#12428;&#12434;iterate&#12375;&#12390;future</span>
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">= &#12473;&#12524;&#12483;&#12489;&#12434;&#24471;&#12414;&#12377;</span>
+    <span style="font-weight: bold;">for</span> future <span style="font-weight: bold;">in</span> concurrent.futures.as_completed(future_to_url):
+        <span style="font-weight: bold; font-style: italic;">url</span> = future_to_url[future]
+        <span style="font-weight: bold;">try</span>:
+            <span style="font-weight: bold; font-style: italic;">data</span> = future.result()
+        <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">Exception</span> <span style="font-weight: bold;">as</span> exc:
+            <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'%r generated an exception: %s'</span> % (url, exc))
+        <span style="font-weight: bold;">else</span>:
+            <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'%r page is %d bytes'</span> % (url, <span style="font-weight: bold;">len</span>(data)))
 &gt;&gt;&gt;
-'http://www.foxnews.com/' page is 323006 bytes
-'http://www.cnn.com/' page is 1131345 bytes
-'http://europe.wsj.com/' generated an exception: HTTP Error 404: Not Found
-'http://some-made-up-domain.com/' page is 64668 bytes
-'http://www.bbc.co.uk/' page is 300118 bytes
+<span style="font-style: italic;">'http://www.foxnews.com/'</span> page <span style="font-weight: bold;">is</span> 323006 <span style="font-weight: bold;">bytes</span>
+<span style="font-style: italic;">'http://www.cnn.com/'</span> page <span style="font-weight: bold;">is</span> 1131345 <span style="font-weight: bold;">bytes</span>
+<span style="font-style: italic;">'http://europe.wsj.com/'</span> generated an exception: HTTP Error 404: Not Found
+<span style="font-style: italic;">'http://some-made-up-domain.com/'</span> page <span style="font-weight: bold;">is</span> 64668 <span style="font-weight: bold;">bytes</span>
+<span style="font-style: italic;">'http://www.bbc.co.uk/'</span> page <span style="font-weight: bold;">is</span> 300118 <span style="font-weight: bold;">bytes</span>
 </pre>
 </div>
 <p>
@@ -718,8 +718,8 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
 </div>
 </div>
 
-<div id="outline-container-org53895be" class="outline-3">
-<h3 id="org53895be"><span class="section-number-3">1.9</span> Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</h3>
+<div id="outline-container-orgfde89b8" class="outline-3">
+<h3 id="orgfde89b8"><span class="section-number-3">1.9</span> Item 60: コルーチン(Coroutines)を使って高コンカレントI/Oを実現せよ</h3>
 <div class="outline-text-3" id="text-1-9">
 <p>
 <a href="https://docs.python.org/3/library/asyncio.html">Asyncronus I/O</a>です。これは1スレッド内で、スレッドとは異なる仕組みを使ってコンテキストスイッチを行います。スレッドはOSカーネルの仕組みを使って、プリエンプティブにコンテキストスイッチしますが、Async I/Oでは長い待ちが発生する時(eg, ネットワーク待ち)に自発的に処理の実行を明け渡します。Async I/OはCPUネックの処理では効果がありません。Async I/Oの仕組みはスレッドよりもずっと軽く、数千のコンテキストをコンカレントに処理することができます。
@@ -737,12 +737,12 @@ PythonのAsynchronous I/Oについては、Real Pythonの<a href="https://realpy
 最新のPythonではジェネレーターは表に出ず、新たに導入した <code>async/await</code> のシンタックスを使ってコルーチンを使います。Pythonでは、 <code>async def</code> で定義された関数がコルーチンです。コルーチン内の <code>await</code> 文でコンテキストスイッチを行います。ジェネレーターのyield文がそうであったように、コルーチンではawait文のところから、以前のコンテキストのまま処理が再開されます。(実は、 <code>await</code> は <code>yield from</code> と等価だそうです)
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import asyncio
-async def some_coroutine():
+<pre class="src src-python"><span style="font-weight: bold;">import</span> asyncio
+<span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">some_coroutine</span>():
     ...
-    await slow_io_disk_read()
+    <span style="font-weight: bold;">await</span> slow_io_disk_read()
     ...
-    await slow_io_network_transfer()
+    <span style="font-weight: bold;">await</span> slow_io_network_transfer()
     ...
 </pre>
 </div>
@@ -754,22 +754,22 @@ async def some_coroutine():
 以下にコルーチンの基本的な実装パターンを示します。(Real Pythonの記事より)
 </p>
 <div class="org-src-container">
-<pre class="src src-python">async def count():
-    print("One")
-    await asyncio.sleep(1)
-    print("Two")
+<pre class="src src-python"><span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">count</span>():
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"One"</span>)
+    <span style="font-weight: bold;">await</span> asyncio.sleep(1)
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"Two"</span>)
 
-async def main():
-    # コルーチンcount()を3つ実行する
-    await asyncio.gather(count(), count(), count())
+<span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">main</span>():
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12467;&#12523;&#12540;&#12481;&#12531;count()&#12434;3&#12388;&#23455;&#34892;&#12377;&#12427;</span>
+    <span style="font-weight: bold;">await</span> asyncio.gather(count(), count(), count())
 
-if __name__ == "__main__":
-    import time
-    s = time.perf_counter()
-    # コルーチンメイン関数実行(完了を待つ)
+<span style="font-weight: bold;">if</span> <span style="font-weight: bold;">__name__</span> == <span style="font-style: italic;">"__main__"</span>:
+    <span style="font-weight: bold;">import</span> time
+    <span style="font-weight: bold; font-style: italic;">s</span> = time.perf_counter()
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12467;&#12523;&#12540;&#12481;&#12531;&#12513;&#12452;&#12531;&#38306;&#25968;&#23455;&#34892;(&#23436;&#20102;&#12434;&#24453;&#12388;)</span>
     asyncio.run(main())
-    elapsed = time.perf_counter() - s
-    print(f"{__file__} executed in {elapsed:0.2f} seconds.")
+    <span style="font-weight: bold; font-style: italic;">elapsed</span> = time.perf_counter() - s
+    <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">"{__file__} executed in {elapsed:0.2f} seconds."</span>)
 </pre>
 </div>
 <p>
@@ -784,10 +784,10 @@ if __name__ == "__main__":
 <code>asyncio.run</code> 関数はPython 3.7で導入され、コルーチンを起動する標準の方法になりました。 <code>run</code> 1行でイベントループを生成、タスクを起動〜完了〜回収、イベントループのクローズまで行います。以下の古い書式と同じ事をします。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">loop = asyncio.get_event_loop()
-try:
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">loop</span> = asyncio.get_event_loop()
+<span style="font-weight: bold;">try</span>:
     loop.run_until_complete(main())
-finally:
+<span style="font-weight: bold;">finally</span>:
     loop.close()
 </pre>
 </div>
@@ -797,8 +797,8 @@ finally:
 </div>
 </div>
 
-<div id="outline-container-org8889b2e" class="outline-3">
-<h3 id="org8889b2e"><span class="section-number-3">1.10</span> Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</h3>
+<div id="outline-container-org93b2ae8" class="outline-3">
+<h3 id="org93b2ae8"><span class="section-number-3">1.10</span> Item 61: スレッド化されたI/Oをasyncioにポートする方法を知れ</h3>
 <div class="outline-text-3" id="text-1-10">
 <p>
 主な作業
@@ -816,8 +816,8 @@ finally:
 </div>
 </div>
 
-<div id="outline-container-orgd74602b" class="outline-3">
-<h3 id="orgd74602b"><span class="section-number-3">1.11</span> Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</h3>
+<div id="outline-container-orgd1b78c4" class="outline-3">
+<h3 id="orgd1b78c4"><span class="section-number-3">1.11</span> Item 62: asyncioへの移行を楽にするため、スレッドとコルーチンを混在させよ</h3>
 <div class="outline-text-3" id="text-1-11">
 <p>
 asyncioへの移行はblocking I/Oには効果がありません。例えばディスクからリードするシステムコール <code>read</code> は完了までスリープせずにブロックされるため、別タスクにコンテキストスイッチをする機会がありません。blocking I/Oにはスレッドが有効です。
@@ -829,23 +829,23 @@ asyncioへの移行はblocking I/Oには効果がありません。例えばデ�
 </div>
 </div>
 
-<div id="outline-container-orgcd5fba0" class="outline-3">
-<h3 id="orgcd5fba0"><span class="section-number-3">1.12</span> Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</h3>
+<div id="outline-container-orgc2c0b74" class="outline-3">
+<h3 id="orgc2c0b74"><span class="section-number-3">1.12</span> Item 63: レスポンスを最大化するためにはasyncioのイベントループをブロックするな</h3>
 <div class="outline-text-3" id="text-1-12">
 <p>
 以下の例のように、コルーチン用のイベントループ内でblocking I/Oをするとよくありません。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">async def run_tasks(handles, interval, output_path):
-    with open(output_path, 'wb') as output:
-	async def write_async(data):
-	    output.write(data)  # ブロックされるI/O
-	tasks = []
-	for handle in handles:
-	    coro = tail_async(handle, interval, write_async)
-	    task = asyncio.create_task(coro)
-	    tasks.append(task)
-	await asyncio.gather(*tasks)
+<pre class="src src-python"><span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">run_tasks</span>(handles, interval, output_path):
+    <span style="font-weight: bold;">with</span> <span style="font-weight: bold;">open</span>(output_path, <span style="font-style: italic;">'wb'</span>) <span style="font-weight: bold;">as</span> output:
+        <span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">write_async</span>(data):
+            output.write(data)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12502;&#12525;&#12483;&#12463;&#12373;&#12428;&#12427;I/O</span>
+        <span style="font-weight: bold; font-style: italic;">tasks</span> = []
+        <span style="font-weight: bold;">for</span> handle <span style="font-weight: bold;">in</span> handles:
+            <span style="font-weight: bold; font-style: italic;">coro</span> = tail_async(handle, interval, write_async)
+            <span style="font-weight: bold; font-style: italic;">task</span> = asyncio.create_task(coro)
+            tasks.append(task)
+        <span style="font-weight: bold;">await</span> asyncio.gather(*tasks)
 </pre>
 </div>
 
@@ -853,14 +853,14 @@ asyncioへの移行はblocking I/Oには効果がありません。例えばデ�
 解決策として、ファイル操作を別スレッドとして独立させます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">async def run_fully_async(handles, interval, output_path):
-    async with WriteThread(output_path) as output:
-	tasks = []
-	for handle in handles:
-	    coro = tail_async(handle, interval, output.write)
-	    task = asyncio.create_task(coro)
-	    tasks.append(task)
-	await asyncio.gather(*tasks)
+<pre class="src src-python"><span style="font-weight: bold;">async def</span> <span style="font-weight: bold;">run_fully_async</span>(handles, interval, output_path):
+    <span style="font-weight: bold;">async with</span> WriteThread(output_path) <span style="font-weight: bold;">as</span> output:
+        <span style="font-weight: bold; font-style: italic;">tasks</span> = []
+        <span style="font-weight: bold;">for</span> handle <span style="font-weight: bold;">in</span> handles:
+            <span style="font-weight: bold; font-style: italic;">coro</span> = tail_async(handle, interval, output.write)
+            <span style="font-weight: bold; font-style: italic;">task</span> = asyncio.create_task(coro)
+            tasks.append(task)
+        <span style="font-weight: bold;">await</span> asyncio.gather(*tasks)
 </pre>
 </div>
 <p>
@@ -871,10 +871,10 @@ asyncioへの移行はblocking I/Oには効果がありません。例えばデ�
 ところで、ここではファイル操作系をスレッドとして独立させていますが、<a href="https://github.com/Tinche/aiofiles">aiofiles</a>を使えば、ファイル操作をasync化できそうです。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">async with aiofiles.open('filename', mode='r') as f:
-    contents = await f.read()
-print(contents)
-'My file contents'
+<pre class="src src-python"><span style="font-weight: bold;">async with</span> aiofiles.<span style="font-weight: bold;">open</span>(<span style="font-style: italic;">'filename'</span>, mode=<span style="font-style: italic;">'r'</span>) <span style="font-weight: bold;">as</span> f:
+    <span style="font-weight: bold; font-style: italic;">contents</span> = <span style="font-weight: bold;">await</span> f.read()
+<span style="font-weight: bold;">print</span>(contents)
+<span style="font-style: italic;">'My file contents'</span>
 </pre>
 </div>
 <p>
@@ -891,8 +891,8 @@ aiofiles helps with this by introducing asynchronous versions of files that supp
 </div>
 </div>
 
-<div id="outline-container-org031d31a" class="outline-3">
-<h3 id="org031d31a"><span class="section-number-3">1.13</span> Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</h3>
+<div id="outline-container-org49e7c0f" class="outline-3">
+<h3 id="org49e7c0f"><span class="section-number-3">1.13</span> Item 64: 真の並行動作にはconcurrent.futuresを検討せよ</h3>
 <div class="outline-text-3" id="text-1-13">
 <p>
 Pythonのglobal interpreter lock (GIL)のせいで、マルチコアを使った真の並行動作は簡単には実現できません。Cエクステンションは高速化には適していますが、大きなコストがかかります。通常、遅くなる原因は多くの場所にあり、一部だけエクステンションとして抜き出して高速化する訳にはいかないようです。
@@ -917,54 +917,54 @@ Pythonのglobal interpreter lock (GIL)のせいで、マルチコアを使った
 </div>
 </div>
 
-<div id="outline-container-org5aa6241" class="outline-2">
-<h2 id="org5aa6241"><span class="section-number-2">2</span> Chapter 8: 堅牢性(robustness)と性能</h2>
+<div id="outline-container-orgc6e035b" class="outline-2">
+<h2 id="orgc6e035b"><span class="section-number-2">2</span> Chapter 8: 堅牢性(robustness)と性能</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgce2934d" class="outline-3">
-<h3 id="orgce2934d"><span class="section-number-3">2.1</span> Item 65: try/except/else/finallyで各ブロックを有効に使え</h3>
+<div id="outline-container-orgcb7a8e5" class="outline-3">
+<h3 id="orgcb7a8e5"><span class="section-number-3">2.1</span> Item 65: try/except/else/finallyで各ブロックを有効に使え</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>try/except/else/finally</code> ブロックを整理します。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">def some_func():
-    # 例えばファイルをオープンする処理
-    # ここでの例外はすぐに呼び元に上がる
-    try:
-	# 例外が上がる可能性のあるオペレーション
-    except ZeroDivisionError as e:
-	# 想定した例外が上がった場合
-    else:
-	# tryで例外が上がらなかった場合
-	# ここでの例外は呼び元に伝搬する
-    finally:
-	# (tryに来ていたら)関数がリターンする前に必ず実行される
-	# 例えばファイルのクローズ処理
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">some_func</span>():
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20363;&#12360;&#12400;&#12501;&#12449;&#12452;&#12523;&#12434;&#12458;&#12540;&#12503;&#12531;&#12377;&#12427;&#20966;&#29702;</span>
+    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12371;&#12391;&#12398;&#20363;&#22806;&#12399;&#12377;&#12368;&#12395;&#21628;&#12403;&#20803;&#12395;&#19978;&#12364;&#12427;</span>
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20363;&#22806;&#12364;&#19978;&#12364;&#12427;&#21487;&#33021;&#24615;&#12398;&#12354;&#12427;&#12458;&#12506;&#12524;&#12540;&#12471;&#12519;&#12531;</span>
+    <span style="font-weight: bold;">except</span> <span style="font-weight: bold; text-decoration: underline;">ZeroDivisionError</span> <span style="font-weight: bold;">as</span> e:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#24819;&#23450;&#12375;&#12383;&#20363;&#22806;&#12364;&#19978;&#12364;&#12387;&#12383;&#22580;&#21512;</span>
+    <span style="font-weight: bold;">else</span>:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">try&#12391;&#20363;&#22806;&#12364;&#19978;&#12364;&#12425;&#12394;&#12363;&#12387;&#12383;&#22580;&#21512;</span>
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12371;&#12371;&#12391;&#12398;&#20363;&#22806;&#12399;&#21628;&#12403;&#20803;&#12395;&#20253;&#25644;&#12377;&#12427;</span>
+    <span style="font-weight: bold;">finally</span>:
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">(try&#12395;&#26469;&#12390;&#12356;&#12383;&#12425;)&#38306;&#25968;&#12364;&#12522;&#12479;&#12540;&#12531;&#12377;&#12427;&#21069;&#12395;&#24517;&#12378;&#23455;&#34892;&#12373;&#12428;&#12427;</span>
+        <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20363;&#12360;&#12400;&#12501;&#12449;&#12452;&#12523;&#12398;&#12463;&#12525;&#12540;&#12474;&#20966;&#29702;</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5fd7543" class="outline-3">
-<h3 id="org5fd7543"><span class="section-number-3">2.2</span> Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</h3>
+<div id="outline-container-org3d13ca7" class="outline-3">
+<h3 id="org3d13ca7"><span class="section-number-3">2.2</span> Item 66: try/finally挙動を再利用するためにcontextlibとwithステートメントを考えよ</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 <code>@contextmanager</code> デコレーターで修飾した関数はコンテキストマネージャーとなり、 <code>with</code> ステートメントで使えるようになります。正式に <code>__enter__</code>, <code>__exit__</code> を準備するよりも簡単です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from contextlib import contextmanager
-import logging
+<pre class="src src-python"><span style="font-weight: bold;">from</span> contextlib <span style="font-weight: bold;">import</span> contextmanager
+<span style="font-weight: bold;">import</span> logging
 
-@contextmanager
-def debug_logging(level):
-    logger = logging.getLogger()
-    old_level = logger.getEffectiveLevel()
-    logger.setLevel(level)  # 一時的に指定ログレベルを設定
-    try:
-	yield
-    finally:
-	logger.setLevel(old_level)  # ログレベルを戻す
+<span style="font-weight: bold; text-decoration: underline;">@contextmanager</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">debug_logging</span>(level):
+    <span style="font-weight: bold; font-style: italic;">logger</span> = logging.getLogger()
+    <span style="font-weight: bold; font-style: italic;">old_level</span> = logger.getEffectiveLevel()
+    logger.setLevel(level)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#19968;&#26178;&#30340;&#12395;&#25351;&#23450;&#12525;&#12464;&#12524;&#12505;&#12523;&#12434;&#35373;&#23450;</span>
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold;">yield</span>
+    <span style="font-weight: bold;">finally</span>:
+        logger.setLevel(old_level)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12525;&#12464;&#12524;&#12505;&#12523;&#12434;&#25147;&#12377;</span>
 </pre>
 </div>
 <p>
@@ -972,23 +972,23 @@ def debug_logging(level):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">def my_function():
-    logging.debug('Some debug data')  # DEBUG
-    logging.error('Error log here')  # ERROR 
-    logging.debug('More debug data')  # DEBUG
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">my_function</span>():
+    logging.debug(<span style="font-style: italic;">'Some debug data'</span>)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">DEBUG</span>
+    logging.error(<span style="font-style: italic;">'Error log here'</span>)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">ERROR </span>
+    logging.debug(<span style="font-style: italic;">'More debug data'</span>)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">DEBUG</span>
 
-with debug_logging(logging.DEBUG):  # DEBUGレベルのブロック
-    print('* Inside:')
+<span style="font-weight: bold;">with</span> debug_logging(logging.DEBUG):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">DEBUG&#12524;&#12505;&#12523;&#12398;&#12502;&#12525;&#12483;&#12463;</span>
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'* Inside:'</span>)
     my_function()
 
-print('* After:')
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'* After:'</span>)
 my_function()
 &gt;&gt;&gt;
-​* Inside:
-DEBUG:root:Some debug data  # DEBUGレベルが表示されている
+&#8203;* Inside:
+DEBUG:root:Some debug data  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">DEBUG&#12524;&#12505;&#12523;&#12364;&#34920;&#31034;&#12373;&#12428;&#12390;&#12356;&#12427;</span>
 ERROR:root:Error log here
-DEBUG:root:More debug data  # DEBUGレベルが表示されている
-​* After:
+DEBUG:root:More debug data  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">DEBUG&#12524;&#12505;&#12523;&#12364;&#34920;&#31034;&#12373;&#12428;&#12390;&#12356;&#12427;</span>
+&#8203;* After:
 ERROR:root:Error log here
 </pre>
 </div>
@@ -1000,25 +1000,25 @@ ERROR:root:Error log here
 下の例で示すように、 <code>with</code> ステートメントに渡されるコンテキストマネージャーは <code>yield</code> でオブジェクトを返すことができ、 <code>as</code> でローカル変数に入ります。これによって、 <code>with</code> ブロック内のコードがそのコンテキストと直接interactできます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from contextlib import contextmanager
-import logging
+<pre class="src src-python"><span style="font-weight: bold;">from</span> contextlib <span style="font-weight: bold;">import</span> contextmanager
+<span style="font-weight: bold;">import</span> logging
 
-@contextmanager
-def log_level(level, name):
-    logger = logging.getLogger(name)
-    old_level = logger.getEffectiveLevel()
+<span style="font-weight: bold; text-decoration: underline;">@contextmanager</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">log_level</span>(level, name):
+    <span style="font-weight: bold; font-style: italic;">logger</span> = logging.getLogger(name)
+    <span style="font-weight: bold; font-style: italic;">old_level</span> = logger.getEffectiveLevel()
     logger.setLevel(level)
-    try:
-	yield logger  # コンテキストloggerを返す
-    finally:
-	logger.setLevel(old_level)
+    <span style="font-weight: bold;">try</span>:
+        <span style="font-weight: bold;">yield</span> logger  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12467;&#12531;&#12486;&#12461;&#12473;&#12488;logger&#12434;&#36820;&#12377;</span>
+    <span style="font-weight: bold;">finally</span>:
+        logger.setLevel(old_level)
 
 logging.basicConfig()
-with log_level(logging.DEBUG, 'my-log') as logger:
-    logger.debug(f'This is a message for {logger.name}!')
-    logging.debug('This will not print')
+<span style="font-weight: bold;">with</span> log_level(logging.DEBUG, <span style="font-style: italic;">'my-log'</span>) <span style="font-weight: bold;">as</span> logger:
+    logger.debug(f<span style="font-style: italic;">'This is a message for {logger.name}!'</span>)
+    logging.debug(<span style="font-style: italic;">'This will not print'</span>)
 &gt;&gt;&gt;
-DEBUG:my-log:This is a message for my-log!
+DEBUG:my-log:This <span style="font-weight: bold;">is</span> a message <span style="font-weight: bold;">for</span> my-log!
 </pre>
 </div>
 <p>
@@ -1027,22 +1027,22 @@ DEBUG:my-log:This is a message for my-log!
 </div>
 </div>
 
-<div id="outline-container-orgbaea0c6" class="outline-3">
-<h3 id="orgbaea0c6"><span class="section-number-3">2.3</span> Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</h3>
+<div id="outline-container-org5b9e189" class="outline-3">
+<h3 id="org5b9e189"><span class="section-number-3">2.3</span> Item 67: ローカル時間にはtimeの代わりにdatetimeを使え</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 timeはUTCとローカルしか扱えないため、datatimeを使うべきです。pytzというコミュニティーが作っているライブラリを使うと世界中の時間が使えます。datetimeでは一度UTCに変換してから時間操作を行います。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from datetime import datetime, timezone
-import pytz
-time_format = '%Y-%m-%d %H:%M:%S'
-arrival_bos = '2020-08-29 10:01:00'
-bos_dt_native = datetime.strptime(arrival_bos, time_format)
-edt = pytz.timezone('US/Eastern')
-bos_dt = edt.localize(bos_dt_native)  # datetime形式のボストン時間
-utc_dt = pytz.utc.normalize(bos_dt.astimezone(pytz.utc))  # UTCに変換
-print(utc_dt)
+<pre class="src src-python"><span style="font-weight: bold;">from</span> datetime <span style="font-weight: bold;">import</span> datetime, timezone
+<span style="font-weight: bold;">import</span> pytz
+<span style="font-weight: bold; font-style: italic;">time_format</span> = <span style="font-style: italic;">'%Y-%m-%d %H:%M:%S'</span>
+<span style="font-weight: bold; font-style: italic;">arrival_bos</span> = <span style="font-style: italic;">'2020-08-29 10:01:00'</span>
+<span style="font-weight: bold; font-style: italic;">bos_dt_native</span> = datetime.strptime(arrival_bos, time_format)
+<span style="font-weight: bold; font-style: italic;">edt</span> = pytz.timezone(<span style="font-style: italic;">'US/Eastern'</span>)
+<span style="font-weight: bold; font-style: italic;">bos_dt</span> = edt.localize(bos_dt_native)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">datetime&#24418;&#24335;&#12398;&#12508;&#12473;&#12488;&#12531;&#26178;&#38291;</span>
+<span style="font-weight: bold; font-style: italic;">utc_dt</span> = pytz.utc.normalize(bos_dt.astimezone(pytz.utc))  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">UTC&#12395;&#22793;&#25563;</span>
+<span style="font-weight: bold;">print</span>(utc_dt)
 &gt;&gt;&gt;
 2020-08-29 14:01:00+00:00
 </pre>
@@ -1052,9 +1052,9 @@ print(utc_dt)
 UTCを日本時間に変換します。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">jst = pytz.timezone('Asia/Tokyo')
-tokyo_dt = jst.normalize(utc_dt.astimezone(jst))  # JSTに変換
-print(tokyo_dt)
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">jst</span> = pytz.timezone(<span style="font-style: italic;">'Asia/Tokyo'</span>)
+<span style="font-weight: bold; font-style: italic;">tokyo_dt</span> = jst.normalize(utc_dt.astimezone(jst))  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">JST&#12395;&#22793;&#25563;</span>
+<span style="font-weight: bold;">print</span>(tokyo_dt)
 &gt;&gt;&gt;
 2020-08-29 23:01:00+09:00
 </pre>
@@ -1066,8 +1066,8 @@ print(tokyo_dt)
 </div>
 </div>
 
-<div id="outline-container-org67d90ed" class="outline-3">
-<h3 id="org67d90ed"><span class="section-number-3">2.4</span> Item 68: copyregでpickleをreliableにせよ</h3>
+<div id="outline-container-org4366ed3" class="outline-3">
+<h3 id="org4366ed3"><span class="section-number-3">2.4</span> Item 68: copyregでpickleをreliableにせよ</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 Pythonでデータをシリアライズする場合、
@@ -1097,24 +1097,24 @@ copyregは、pickle及びunpickleする時に呼ばれる関数を指定する�
 以下の例ではGameStateクラスをpickleすることを考えます。copyregを使うためのヘルパー関数を、pickle用とunpickle用の二つ用意します。pickle用の <code>pickle_game_state</code> はunpickle用の <code>unpickle_game_state</code> を引数の <code>kwargs</code> とセットで返します。このためcopyregにはpickle用の関数(とpickleするクラス名)だけを登録すればよいです。 <code>copyreg.pickle</code> で pickle 用の関数を登録しています。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import pickle
-import copyreg
-class GameState:
-    def __init__(self, level=0, lives=4, points=0):
-	self.level = level
-	self.lives = lives
-	self.points = points
+<pre class="src src-python"><span style="font-weight: bold;">import</span> pickle
+<span style="font-weight: bold;">import</span> copyreg
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">GameState</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, level=0, lives=4, points=0):
+        <span style="font-weight: bold;">self</span>.level = level
+        <span style="font-weight: bold;">self</span>.lives = lives
+        <span style="font-weight: bold;">self</span>.points = points
 
-def pickle_game_state(game_state):  # pickle.dumpsすると呼ばれる
-    print("pickling")
-    kwargs = game_state.__dict__
-    return unpickle_game_state, (kwargs,)  # unpickle用関数を返す
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">pickle_game_state</span>(game_state):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">pickle.dumps&#12377;&#12427;&#12392;&#21628;&#12400;&#12428;&#12427;</span>
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"pickling"</span>)
+    <span style="font-weight: bold; font-style: italic;">kwargs</span> = game_state.<span style="font-weight: bold;">__dict__</span>
+    <span style="font-weight: bold;">return</span> unpickle_game_state, (kwargs,)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">unpickle&#29992;&#38306;&#25968;&#12434;&#36820;&#12377;</span>
 
-def unpickle_game_state(kwargs):  # pickle.loadsすると呼ばれる
-    print("unpickling")
-    return GameState(**kwargs)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">unpickle_game_state</span>(kwargs):  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">pickle.loads&#12377;&#12427;&#12392;&#21628;&#12400;&#12428;&#12427;</span>
+    <span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"unpickling"</span>)
+    <span style="font-weight: bold;">return</span> GameState(**kwargs)
 
-copyreg.pickle(GameState, pickle_game_state)  # pickle用関数を登録する
+copyreg.pickle(GameState, pickle_game_state)  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">pickle&#29992;&#38306;&#25968;&#12434;&#30331;&#37682;&#12377;&#12427;</span>
 </pre>
 </div>
 
@@ -1122,20 +1122,20 @@ copyreg.pickle(GameState, pickle_game_state)  # pickle用関数を登録する
 pickleしてみましょう。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">state = GameState()
-state.points += 1000
-print("call pickling")
-serialized = pickle.dumps(state)
-print("call unpickling")
-state_after = pickle.loads(serialized)
-print(state_after.__dict__)
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">state</span> = GameState()
+<span style="font-weight: bold; font-style: italic;">state.points</span> += 1000
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"call pickling"</span>)
+<span style="font-weight: bold; font-style: italic;">serialized</span> = pickle.dumps(state)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"call unpickling"</span>)
+<span style="font-weight: bold; font-style: italic;">state_after</span> = pickle.loads(serialized)
+<span style="font-weight: bold;">print</span>(state_after.<span style="font-weight: bold;">__dict__</span>)
 &gt;&gt;&gt;
 call pickling
-pickling  # pickle_game_stateで表示している
-b'\x80\x04\x95L\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x13unpickle_game_state\x94\x93\x94}\x94(\x8c\x05level\x94K\x00\x8c\x05lives\x94K\x04\x8c\x06points\x94M\xe8\x03u\x85\x94R\x94.'
+pickling  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">pickle_game_state&#12391;&#34920;&#31034;&#12375;&#12390;&#12356;&#12427;</span>
+b<span style="font-style: italic;">'\x80\x04\x95L\x00\x00\x00\x00\x00\x00\x00\x8c\x08__main__\x94\x8c\x13unpickle_game_state\x94\x93\x94}\x94(\x8c\x05level\x94K\x00\x8c\x05lives\x94K\x04\x8c\x06points\x94M\xe8\x03u\x85\x94R\x94.'</span>
 call unpickling
-unpickling  # unpickle_game_stateで表示している
-{'level': 0, 'lives': 4, 'points': 1000}
+unpickling  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">unpickle_game_state&#12391;&#34920;&#31034;&#12375;&#12390;&#12356;&#12427;</span>
+{<span style="font-style: italic;">'level'</span>: 0, <span style="font-style: italic;">'lives'</span>: 4, <span style="font-style: italic;">'points'</span>: 1000}
 </pre>
 </div>
 <p>
@@ -1150,23 +1150,23 @@ unpickling  # unpickle_game_stateで表示している
 pickleするクラスのアトリビュートを削除するとbackward compatibilityが保てなくなります。この場合はバージョンを指定し、古いバージョンなら明示的に不要となったアトリビュートを削除します。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">def pickle_game_state(game_state):
-    kwargs = game_state.__dict__
-    kwargs['version'] = 2
-    return unpickle_game_state, (kwargs,)
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">pickle_game_state</span>(game_state):
+    <span style="font-weight: bold; font-style: italic;">kwargs</span> = game_state.<span style="font-weight: bold;">__dict__</span>
+    <span style="font-weight: bold; font-style: italic;">kwargs</span>[<span style="font-style: italic;">'version'</span>] = 2
+    <span style="font-weight: bold;">return</span> unpickle_game_state, (kwargs,)
 
-def unpickle_game_state(kwargs):
-    version = kwargs.pop('version', 1)
-    if version == 1:  # 読んできたバージョンが1なら古いアトリビュートがある
-	del kwargs['deleted_attribute']
-    return GameState(**kwargs)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">unpickle_game_state</span>(kwargs):
+    <span style="font-weight: bold; font-style: italic;">version</span> = kwargs.pop(<span style="font-style: italic;">'version'</span>, 1)
+    <span style="font-weight: bold;">if</span> version == 1:  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#35501;&#12435;&#12391;&#12365;&#12383;&#12496;&#12540;&#12472;&#12519;&#12531;&#12364;1&#12394;&#12425;&#21476;&#12356;&#12450;&#12488;&#12522;&#12499;&#12517;&#12540;&#12488;&#12364;&#12354;&#12427;</span>
+        <span style="font-weight: bold;">del</span> kwargs[<span style="font-style: italic;">'deleted_attribute'</span>]
+    <span style="font-weight: bold;">return</span> GameState(**kwargs)
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org987d4a1" class="outline-3">
-<h3 id="org987d4a1"><span class="section-number-3">2.5</span> Item 69: 精度が重要なら decimal を使え</h3>
+<div id="outline-container-org3f99e21" class="outline-3">
+<h3 id="org3f99e21"><span class="section-number-3">2.5</span> Item 69: 精度が重要なら decimal を使え</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Pythonのfloatの扱いで、1.44999999&#x2026;のようになる場合があります。
@@ -1177,10 +1177,10 @@ Pythonのfloatの扱いで、1.44999999&#x2026;のようになる場合があり
 まずは、Decimalに小数点の付いた値を渡す際には文字列を使うと正確です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">&gt;&gt;&gt; from decimal import Decimal
-&gt;&gt;&gt; print(Decimal('1.45'))  # 文字列渡し
+<pre class="src src-python">&gt;&gt;&gt; <span style="font-weight: bold;">from</span> decimal <span style="font-weight: bold;">import</span> Decimal
+&gt;&gt;&gt; <span style="font-weight: bold;">print</span>(Decimal(<span style="font-style: italic;">'1.45'</span>))  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#25991;&#23383;&#21015;&#28193;&#12375;</span>
 1.45
-&gt;&gt;&gt; print(Decimal(1.45))  # float渡し
+&gt;&gt;&gt; <span style="font-weight: bold;">print</span>(Decimal(1.45))  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">float&#28193;&#12375;</span>
 1.4499999999999999555910790149937383830547332763671875
 </pre>
 </div>
@@ -1189,59 +1189,59 @@ Pythonのfloatの扱いで、1.44999999&#x2026;のようになる場合があり
 お金の計算などで四捨五入してゼロにされると困るような場合にも対応可能です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from decimal import Decimal, ROUND_UP
-rate = Decimal('0.05')
-seconds = Decimal('5')
-small_cost = rate * seconds / Decimal(60)
-print("実の値 - ", small_cost)
-print("四捨五入 - ", round(small_cost, 2))
-rounded = small_cost.quantize(Decimal('0.01'), rounding=ROUND_UP)
-print("切り上げ - ", rounded)
+<pre class="src src-python"><span style="font-weight: bold;">from</span> decimal <span style="font-weight: bold;">import</span> Decimal, ROUND_UP
+<span style="font-weight: bold; font-style: italic;">rate</span> = Decimal(<span style="font-style: italic;">'0.05'</span>)
+<span style="font-weight: bold; font-style: italic;">seconds</span> = Decimal(<span style="font-style: italic;">'5'</span>)
+<span style="font-weight: bold; font-style: italic;">small_cost</span> = rate * seconds / Decimal(60)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"&#23455;&#12398;&#20516; - "</span>, small_cost)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"&#22235;&#25448;&#20116;&#20837; - "</span>, <span style="font-weight: bold;">round</span>(small_cost, 2))
+<span style="font-weight: bold; font-style: italic;">rounded</span> = small_cost.quantize(Decimal(<span style="font-style: italic;">'0.01'</span>), rounding=ROUND_UP)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"&#20999;&#12426;&#19978;&#12370; - "</span>, rounded)
 &gt;&gt;&gt;
-実の値 -  0.004166666666666666666666666667
-四捨五入 -  0.00
-切り上げ -  0.01
+&#23455;&#12398;&#20516; -  0.004166666666666666666666666667
+&#22235;&#25448;&#20116;&#20837; -  0.00
+&#20999;&#12426;&#19978;&#12370; -  0.01
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8370409" class="outline-3">
-<h3 id="org8370409"><span class="section-number-3">2.6</span> Item 70: 最適化の前にプロファイルせよ</h3>
+<div id="outline-container-org9b66907" class="outline-3">
+<h3 id="org9b66907"><span class="section-number-3">2.6</span> Item 70: 最適化の前にプロファイルせよ</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 プロファイルにはCで書かれたcProfileを使うとよい、とのことです。
 <code>test</code> 関数をプロファイルして、統計を出す例:
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from cProfile import Profile
-profiler = Profile()
+<pre class="src src-python"><span style="font-weight: bold;">from</span> cProfile <span style="font-weight: bold;">import</span> Profile
+<span style="font-weight: bold; font-style: italic;">profiler</span> = Profile()
 profiler.runcall(test)
 
-from pstats import Stats
-stats = Stats(profiler)
+<span style="font-weight: bold;">from</span> pstats <span style="font-weight: bold;">import</span> Stats
+<span style="font-weight: bold; font-style: italic;">stats</span> = Stats(profiler)
 stats.strip_dirs()
-stats.sort_stats('cumulative')
+stats.sort_stats(<span style="font-style: italic;">'cumulative'</span>)
 stats.print_stats()
 &gt;&gt;&gt;
-	 30003 function calls in 0.026 seconds
+         30003 function calls <span style="font-weight: bold;">in</span> 0.026 seconds
 
    Ordered by: cumulative time
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-	1    0.000    0.000    0.026    0.026 t.py:17(&lt;lambda&gt;)
-	1    0.002    0.002    0.026    0.026 t.py:1(insertion_sort)
+        1    0.000    0.000    0.026    0.026 t.py:17(&lt;<span style="font-weight: bold;">lambda</span>&gt;)
+        1    0.002    0.002    0.026    0.026 t.py:1(insertion_sort)
     10000    0.003    0.000    0.024    0.000 t.py:9(insert_value)
-    10000    0.016    0.000    0.016    0.000 {method 'insert' of 'list' objects}
-    10000    0.005    0.000    0.005    0.000 {built-in method _bisect.bisect_left}
-	1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+    10000    0.016    0.000    0.016    0.000 {method <span style="font-style: italic;">'insert'</span> of <span style="font-style: italic;">'list'</span> objects}
+    10000    0.005    0.000    0.005    0.000 {built-<span style="font-weight: bold;">in</span> method _bisect.bisect_left}
+        1    0.000    0.000    0.000    0.000 {method <span style="font-style: italic;">'disable'</span> of <span style="font-style: italic;">'_lsprof.Profiler'</span> objects}
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3764ad0" class="outline-3">
-<h3 id="org3764ad0"><span class="section-number-3">2.7</span> Item 71: 生産者-消費者キューにはdequeを使え</h3>
+<div id="outline-container-orgfaf91da" class="outline-3">
+<h3 id="orgfaf91da"><span class="section-number-3">2.7</span> Item 71: 生産者-消費者キューにはdequeを使え</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 普通のリスト <code>[]</code> はキューに使えますが、キューが長くなると特に <code>pop(0)</code> が2乗のオーダーで遅くなるそうです。collectionsのdequeはリニアに遅くなるだけなので、キュー操作が性能ネックとなっているようなら、こちらを使った方が良いです。
@@ -1251,24 +1251,24 @@ stats.print_stats()
 マイクロベンチマーク <code>timeit</code> の使い方。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import collections
-import timeit
-def print_result(count, tests):
-    avg_iteration = sum(tests) / len(tests)
-    print(f'Count {count:&gt;5,} takes {avg_iteration:.4f}s')
-def deque_append_benchmark(count)
-    def prepare():
-	return collections.deque()
-    def run(queue):
-	for i in range(count):
-	    queue.append(i)
-    tests = timeit.repeat(
-	setup='queue = prepare()',
-	stmt='run(queue)',
-	globals=locals(),
-	repeat=1000
-	number=1)
-    return print_result(count, tests)
+<pre class="src src-python"><span style="font-weight: bold;">import</span> collections
+<span style="font-weight: bold;">import</span> timeit
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">print_result</span>(count, tests):
+    <span style="font-weight: bold; font-style: italic;">avg_iteration</span> = <span style="font-weight: bold;">sum</span>(tests) / <span style="font-weight: bold;">len</span>(tests)
+    <span style="font-weight: bold;">print</span>(f<span style="font-style: italic;">'Count {count:&gt;5,} takes {avg_iteration:.4f}s'</span>)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">deque_append_benchmark</span>(count)
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">prepare</span>():
+        <span style="font-weight: bold;">return</span> collections.deque()
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">run</span>(queue):
+        <span style="font-weight: bold;">for</span> i <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">range</span>(count):
+            queue.append(i)
+    <span style="font-weight: bold; font-style: italic;">tests</span> = timeit.repeat(
+        setup=<span style="font-style: italic;">'queue = prepare()'</span>,
+        stmt=<span style="font-style: italic;">'run(queue)'</span>,
+        <span style="font-weight: bold;">globals</span>=<span style="font-weight: bold;">locals</span>(),
+        repeat=1000
+        number=1)
+    <span style="font-weight: bold;">return</span> print_result(count, tests)
 </pre>
 </div>
 <p>
@@ -1277,8 +1277,8 @@ def deque_append_benchmark(count)
 </div>
 </div>
 
-<div id="outline-container-org27d891a" class="outline-3">
-<h3 id="org27d891a"><span class="section-number-3">2.8</span> Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</h3>
+<div id="outline-container-org3e45a84" class="outline-3">
+<h3 id="org3e45a84"><span class="section-number-3">2.8</span> Item 72: ソートされたシーケンス内をサーチするにはbisectを使え</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 ソートされているリストなどの中で、指定の値がどこに来るかを調べるのに、 <code>bisect_left</code> は速いのでいいですよ、ということでした。
@@ -1286,8 +1286,8 @@ def deque_append_benchmark(count)
 </div>
 </div>
 
-<div id="outline-container-orgd53178d" class="outline-3">
-<h3 id="orgd53178d"><span class="section-number-3">2.9</span> Item 73: 優先度キューのために heapq をどう使うかを知れ</h3>
+<div id="outline-container-orgab060d8" class="outline-3">
+<h3 id="orgab060d8"><span class="section-number-3">2.9</span> Item 73: 優先度キューのために heapq をどう使うかを知れ</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 FIFOでない、何かのアトリビュートの順番で処理する必要のあるキューを優先度キュー、プライオリティーキューと言います。優先度キューの実装に heapq が使えます。
@@ -1301,15 +1301,15 @@ headqのアイテムは比較可能でnatural sort orderを持たなくてはい
 以降は図書館の貸し出し本を管理する例です。キュー内の操作はコストがかかるため、なるべくキューには手を付けないようにします。本の返却は通常、キューから抜く操作が必要になりますが、ここではキューの中の返却された本には返却マークを付けるのみで、キューそのものは変更しないようにしています。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">import functools
-@functools.total_ordering
-class Book:
-    def __init__(self, title, due_date):
-	self.title = title
-	self.due_date = due_date
-	self.returnd = False  # 返却フラグ
-    def __lt__(self, other):
-	return self.due_date &lt; other.due_date  # 返却日で比較する
+<pre class="src src-python"><span style="font-weight: bold;">import</span> functools
+<span style="font-weight: bold; text-decoration: underline;">@functools.total_ordering</span>
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">Book</span>:
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__init__</span>(<span style="font-weight: bold;">self</span>, title, due_date):
+        <span style="font-weight: bold;">self</span>.title = title
+        <span style="font-weight: bold;">self</span>.due_date = due_date
+        <span style="font-weight: bold;">self</span>.returnd = <span style="font-weight: bold; text-decoration: underline;">False</span>  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36820;&#21364;&#12501;&#12521;&#12464;</span>
+    <span style="font-weight: bold;">def</span> <span style="font-weight: bold;">__lt__</span>(<span style="font-weight: bold;">self</span>, other):
+        <span style="font-weight: bold;">return</span> <span style="font-weight: bold;">self</span>.due_date &lt; other.due_date  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36820;&#21364;&#26085;&#12391;&#27604;&#36611;&#12377;&#12427;</span>
 </pre>
 </div>
 
@@ -1317,14 +1317,14 @@ class Book:
 due_dateによるキューのソートは以下のようにできます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from heapq import heapify
-queue = [
-    Book('Pride and Prejudice', '2019-06-10'),
-    Book('The Time Machine', '2019-05-30'),
+<pre class="src src-python"><span style="font-weight: bold;">from</span> heapq <span style="font-weight: bold;">import</span> heapify
+<span style="font-weight: bold; font-style: italic;">queue</span> = [
+    Book(<span style="font-style: italic;">'Pride and Prejudice'</span>, <span style="font-style: italic;">'2019-06-10'</span>),
+    Book(<span style="font-style: italic;">'The Time Machine'</span>, <span style="font-style: italic;">'2019-05-30'</span>),
     ...
     ]
 queue.sort()
-または
+&#12414;&#12383;&#12399;
 heapify(queue)
 </pre>
 </div>
@@ -1333,21 +1333,21 @@ heapify(queue)
 次は、期限切れの本を表示します。返却済みの本が出てきたら、ひっそりとキューから抜きます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">from heapq import heappop
-class NoOverdueBooks(Exception):
-    pass
-def next_overdue_book(queue, now):
-    while queue:
-	book = queue[0]  # Most overdue first
-	if book.returned:  # 返却済みなら、、
-	    heappop(queue)
-	    continue
-	if book.due_date &lt; now:  # 期限切れなら
-	    heappop(queue)
-	    return book
-	break
+<pre class="src src-python"><span style="font-weight: bold;">from</span> heapq <span style="font-weight: bold;">import</span> heappop
+<span style="font-weight: bold;">class</span> <span style="font-weight: bold; text-decoration: underline;">NoOverdueBooks</span>(<span style="font-weight: bold; text-decoration: underline;">Exception</span>):
+    <span style="font-weight: bold;">pass</span>
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">next_overdue_book</span>(queue, now):
+    <span style="font-weight: bold;">while</span> queue:
+        <span style="font-weight: bold; font-style: italic;">book</span> = queue[0]  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">Most overdue first</span>
+        <span style="font-weight: bold;">if</span> book.returned:  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#36820;&#21364;&#28168;&#12415;&#12394;&#12425;&#12289;&#12289;</span>
+            heappop(queue)
+            <span style="font-weight: bold;">continue</span>
+        <span style="font-weight: bold;">if</span> book.due_date &lt; now:  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#26399;&#38480;&#20999;&#12428;&#12394;&#12425;</span>
+            heappop(queue)
+            <span style="font-weight: bold;">return</span> book
+        <span style="font-weight: bold;">break</span>
 
-    raise NoOverdueBooks
+    <span style="font-weight: bold;">raise</span> NoOverdueBooks
 </pre>
 </div>
 
@@ -1355,8 +1355,8 @@ def next_overdue_book(queue, now):
 本の返却処理です。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">def return_book(queue, book):
-    book.returned = True
+<pre class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">return_book</span>(queue, book):
+    <span style="font-weight: bold; font-style: italic;">book.returned</span> = <span style="font-weight: bold; text-decoration: underline;">True</span>
 </pre>
 </div>
 
@@ -1367,8 +1367,8 @@ def next_overdue_book(queue, now):
 </div>
 
 
-<div id="outline-container-orga295063" class="outline-3">
-<h3 id="orga295063"><span class="section-number-3">2.10</span> Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</h3>
+<div id="outline-container-org6558853" class="outline-3">
+<h3 id="org6558853"><span class="section-number-3">2.10</span> Item 74: bytesとゼロコピーでinteractするにはmemoryviewとbytearrayを使え</h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
 出ました。ゼロコピーです。Pythonのバッファープロトコルとゼロコピーについては、<a href="https://julien.danjou.info/high-performance-in-python-with-zero-copy-and-the-buffer-protocol/">ここ</a>にわかりやすい説明がありました。
@@ -1378,18 +1378,18 @@ def next_overdue_book(queue, now):
 bytesのデータを直接スライスするとメモリコピーが発生します。ビルトインの <code>memoryview</code> タイプを使うとゼロコピーで行けます。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">data = b'shave and a haircut, two bits'
-view = memoryview(data)
-chunk = view[12:19]
-print(type(chunk))
-print('Size: ', chunk.nbytes)
-print('Data in view', chunk.tobytes())
-print('Underlying data:', chunk.obj)
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">data</span> = b<span style="font-style: italic;">'shave and a haircut, two bits'</span>
+<span style="font-weight: bold; font-style: italic;">view</span> = <span style="font-weight: bold;">memoryview</span>(data)
+<span style="font-weight: bold; font-style: italic;">chunk</span> = view[12:19]
+<span style="font-weight: bold;">print</span>(<span style="font-weight: bold;">type</span>(chunk))
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Size: '</span>, chunk.nbytes)
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Data in view'</span>, chunk.tobytes())
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">'Underlying data:'</span>, chunk.obj)
 &gt;&gt;&gt;
-&lt;class 'memoryview'&gt;
+&lt;<span style="font-weight: bold;">class</span> <span style="font-style: italic;">'memoryview'</span>&gt;
 Size:  7
-Data in view b'haircut'
-Underlying data: b'shave and a haircut, two bits'
+Data <span style="font-weight: bold;">in</span> view b<span style="font-style: italic;">'haircut'</span>
+Underlying data: b<span style="font-style: italic;">'shave and a haircut, two bits'</span>
 </pre>
 </div>
 <p>
@@ -1400,13 +1400,13 @@ memoryview をスライスした <code>chunk</code> のタイプはmemoryviewで
 bytesはリードオンリーのため、スライスした部分を上書きしたいなら <code>bytearray</code> を使います。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">my_array = bytearray(b'row, row, row your boat')
-my_view = memoryview(my_array)
-write_view = my_view[3:13]
-write_view[:] = b'1234567890'
-print(my_array)
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">my_array</span> = <span style="font-weight: bold;">bytearray</span>(b<span style="font-style: italic;">'row, row, row your boat'</span>)
+<span style="font-weight: bold; font-style: italic;">my_view</span> = <span style="font-weight: bold;">memoryview</span>(my_array)
+<span style="font-weight: bold; font-style: italic;">write_view</span> = my_view[3:13]
+<span style="font-weight: bold; font-style: italic;">write_view</span>[:] = b<span style="font-style: italic;">'1234567890'</span>
+<span style="font-weight: bold;">print</span>(my_array)
 &gt;&gt;&gt;
-bytearray(b'row1234567890 your boat')
+<span style="font-weight: bold;">bytearray</span>(b<span style="font-style: italic;">'row1234567890 your boat'</span>)
 </pre>
 </div>
 
@@ -1414,14 +1414,14 @@ bytearray(b'row1234567890 your boat')
 socket.recv_intoはゼロコピーに対応します。ビデオストリーミングデータを受け取る場合の例。
 </p>
 <div class="org-src-container">
-<pre class="src src-python">socket = ... # クライアントへのソケットコネクション
-video_cache = ... # 入ってくるビデオストリーム用のキャッシュ
-byte_offset = ... # バッファ上にデータが入ってくる位置
-size = 1024 * 1024 # 入ってくるデータのチャンクサイズ
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">socket</span> = ... <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12463;&#12521;&#12452;&#12450;&#12531;&#12488;&#12408;&#12398;&#12477;&#12465;&#12483;&#12488;&#12467;&#12493;&#12463;&#12471;&#12519;&#12531;</span>
+<span style="font-weight: bold; font-style: italic;">video_cache</span> = ... <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20837;&#12387;&#12390;&#12367;&#12427;&#12499;&#12487;&#12458;&#12473;&#12488;&#12522;&#12540;&#12512;&#29992;&#12398;&#12461;&#12515;&#12483;&#12471;&#12517;</span>
+<span style="font-weight: bold; font-style: italic;">byte_offset</span> = ... <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12496;&#12483;&#12501;&#12449;&#19978;&#12395;&#12487;&#12540;&#12479;&#12364;&#20837;&#12387;&#12390;&#12367;&#12427;&#20301;&#32622;</span>
+<span style="font-weight: bold; font-style: italic;">size</span> = 1024 * 1024 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#20837;&#12387;&#12390;&#12367;&#12427;&#12487;&#12540;&#12479;&#12398;&#12481;&#12515;&#12531;&#12463;&#12469;&#12452;&#12474;</span>
 
-video_array = bytearray(video_cache)
-write_view = memoryview(video_array)
-chunk = write_view[byte_offset:byte_offset + size]
+<span style="font-weight: bold; font-style: italic;">video_array</span> = <span style="font-weight: bold;">bytearray</span>(video_cache)
+<span style="font-weight: bold; font-style: italic;">write_view</span> = <span style="font-weight: bold;">memoryview</span>(video_array)
+<span style="font-weight: bold; font-style: italic;">chunk</span> = write_view[byte_offset:byte_offset + size]
 socket.recv_into(chunk)
 </pre>
 </div>
@@ -1451,7 +1451,7 @@ socket.recv_into(chunk)
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/utm_a9.html">AlmaLinux 9環境をm1 MacBook上に再構築しました</a>
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
           <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>

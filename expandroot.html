@@ -68,22 +68,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7a19a3a">1. はじめに</a></li>
-<li><a href="#org93f0e82">2. 手順</a>
+<li><a href="#orgb717ecf">1. はじめに</a></li>
+<li><a href="#org2548cef">2. 手順</a>
 <ul>
-<li><a href="#org33a0f21">2.1. 概要</a></li>
-<li><a href="#orgdfdd07a">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org0843d23">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org31eeddb">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#org312f85e">2.1. 概要</a></li>
+<li><a href="#org8d9286b">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org2ca0562">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org7ca1e6f">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#org290c5d5">3. 終わりに</a></li>
+<li><a href="#org9eaf432">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7a19a3a" class="outline-2">
-<h2 id="org7a19a3a"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgb717ecf" class="outline-2">
+<h2 id="orgb717ecf"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -97,12 +97,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org93f0e82" class="outline-2">
-<h2 id="org93f0e82"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org2548cef" class="outline-2">
+<h2 id="org2548cef"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org33a0f21" class="outline-3">
-<h3 id="org33a0f21"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-org312f85e" class="outline-3">
+<h3 id="org312f85e"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -116,8 +116,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgdfdd07a" class="outline-3">
-<h3 id="orgdfdd07a"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-org8d9286b" class="outline-3">
+<h3 id="org8d9286b"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -145,8 +145,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org0843d23" class="outline-3">
-<h3 id="org0843d23"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org2ca0562" class="outline-3">
+<h3 id="org2ca0562"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -155,11 +155,11 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash"># ssh &lt;Linux_VM&gt;
-# df -H /  # ルートファイルシステムの入っているデバイスを確認する
-	   # 私の環境では /dev/sdc1 がルートパーティションでした
-# lsblk  # パーティションサイズが増えていないことを確認する
-# reboot
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">ssh &lt;Linux_VM&gt;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">df -H /  # &#12523;&#12540;&#12488;&#12501;&#12449;&#12452;&#12523;&#12471;&#12473;&#12486;&#12512;&#12398;&#20837;&#12387;&#12390;&#12356;&#12427;&#12487;&#12496;&#12452;&#12473;&#12434;&#30906;&#35469;&#12377;&#12427;</span>
+           <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#31169;&#12398;&#29872;&#22659;&#12391;&#12399; /dev/sdc1 &#12364;&#12523;&#12540;&#12488;&#12497;&#12540;&#12486;&#12451;&#12471;&#12519;&#12531;&#12391;&#12375;&#12383;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">lsblk  # &#12497;&#12540;&#12486;&#12451;&#12471;&#12519;&#12531;&#12469;&#12452;&#12474;&#12364;&#22679;&#12360;&#12390;&#12356;&#12394;&#12356;&#12371;&#12392;&#12434;&#30906;&#35469;&#12377;&#12427;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">reboot</span>
 </pre>
 </div>
 <ul class="org-ul">
@@ -170,23 +170,23 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-bash"># lsblk
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">lsblk</span>
 &lt;snip&gt;
-sdc                           8:32   0   160G  0 disk  # 増えています!
-└─sdc1                        8:33   0    80G  0 part /  # まだ増えていません
-# yum install cloud-utils-growpart -y
-# growpart /dev/sdc 1  
-# lsblk
+sdc                           8:32   0   160G  0 disk  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#22679;&#12360;&#12390;&#12356;&#12414;&#12377;!</span>
+&#9492;&#9472;sdc1                        8:33   0    80G  0 part /  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#12414;&#12384;&#22679;&#12360;&#12390;&#12356;&#12414;&#12379;&#12435;</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">yum install cloud-utils-growpart -y</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">growpart /dev/sdc 1  </span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">lsblk</span>
 sdc                           8:32   0   160G  0 disk 
-└─sdc1                        8:33   0   160G  0 part /  # 増えました!
-# reboot  # 念の為
+&#9492;&#9472;sdc1                        8:33   0   160G  0 part /  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#22679;&#12360;&#12414;&#12375;&#12383;!</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">reboot  # &#24565;&#12398;&#28858;</span>
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org31eeddb" class="outline-3">
-<h3 id="org31eeddb"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-org7ca1e6f" class="outline-3">
+<h3 id="org7ca1e6f"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -195,7 +195,7 @@ sdc                           8:32   0   160G  0 disk
 まだ増えていません。
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"># df -H .
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">df -H .</span>
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sdc1        86G   73G   14G  84% /
 </pre>
@@ -207,21 +207,21 @@ Filesystem      Size  Used Avail Use% Mounted on
 ファイルシステムタイプは <code>xfs</code> なので <code>xfs_growfs</code> を使います。 <code>ext4</code> なら <code>resize2fs</code> でしょうか。
 </p>
 <div class="org-src-container">
-<pre class="src src-bash"># xfs_growfs /
-meta-data=/dev/sdc1              isize=512    agcount=4, agsize=5242816 blks
-	 =                       sectsz=512   attr=2, projid32bit=1
-	 =                       crc=1        finobt=0 spinodes=0
-data     =                       bsize=4096   blocks=20971264, imaxpct=25
-	 =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal               bsize=4096   blocks=10239, version=2
-	 =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
+<pre class="src src-bash"><span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">xfs_growfs /</span>
+meta-data=/dev/sdc1              <span style="font-weight: bold; font-style: italic;">isize</span>=512    <span style="font-weight: bold; font-style: italic;">agcount</span>=4, <span style="font-weight: bold; font-style: italic;">agsize</span>=5242816 blks
+         =                       <span style="font-weight: bold; font-style: italic;">sectsz</span>=512   <span style="font-weight: bold; font-style: italic;">attr</span>=2, <span style="font-weight: bold; font-style: italic;">projid32bit</span>=1
+         =                       <span style="font-weight: bold; font-style: italic;">crc</span>=1        <span style="font-weight: bold; font-style: italic;">finobt</span>=0 <span style="font-weight: bold; font-style: italic;">spinodes</span>=0
+data     =                       <span style="font-weight: bold; font-style: italic;">bsize</span>=4096   <span style="font-weight: bold; font-style: italic;">blocks</span>=20971264, <span style="font-weight: bold; font-style: italic;">imaxpct</span>=25
+         =                       <span style="font-weight: bold; font-style: italic;">sunit</span>=0      <span style="font-weight: bold; font-style: italic;">swidth</span>=0 blks
+naming   =version 2              <span style="font-weight: bold; font-style: italic;">bsize</span>=4096   ascii-ci=0 <span style="font-weight: bold; font-style: italic;">ftype</span>=1
+log      =internal               <span style="font-weight: bold; font-style: italic;">bsize</span>=4096   <span style="font-weight: bold; font-style: italic;">blocks</span>=10239, <span style="font-weight: bold; font-style: italic;">version</span>=2
+         =                       <span style="font-weight: bold; font-style: italic;">sectsz</span>=512   <span style="font-weight: bold; font-style: italic;">sunit</span>=0 blks, lazy-count=1
+realtime =none                   <span style="font-weight: bold; font-style: italic;">extsz</span>=4096   <span style="font-weight: bold; font-style: italic;">blocks</span>=0, <span style="font-weight: bold; font-style: italic;">rtextents</span>=0
 data blocks changed from 20971264 to 41942779
-# df -H .
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">df -H .</span>
 Filesystem      Size  Used Avail Use% Mounted on
-/dev/sdc1       172G   72G  100G  42% /    # 増えました!
-# reboot  # 念の為
+/dev/sdc1       172G   72G  100G  42% /    <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">&#22679;&#12360;&#12414;&#12375;&#12383;!</span>
+<span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">reboot  # &#24565;&#12398;&#28858;</span>
 </pre>
 </div></li>
 </ul></li>
@@ -230,8 +230,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-org290c5d5" class="outline-2">
-<h2 id="org290c5d5"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org9eaf432" class="outline-2">
+<h2 id="org9eaf432"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -261,7 +261,7 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/utm_a9.html">AlmaLinux 9環境をm1 MacBook上に再構築しました</a>
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
           <a href="/vbs.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>
