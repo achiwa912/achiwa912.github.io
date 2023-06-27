@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AlmaLinux 9環境をM1 MacBook上に再構築しました &mdash; Daydreaming in Brookline, MA</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Brookline, MA</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">AlmaLinux 9環境をM1 MacBook上に再構築しました</h1>
+    <p class="meta">
+<time datetime="2023-06-23T00:00:00-04:00" pubdate>Fri 23 June 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><h1>はじめに</h1>
+<p>使っていたMacBookが壊れてM1モデルになったのですが、使い慣れたVirtualBoxのARM対応がいまいちなので、UTM上にAlmaLinuxを入れて使っていました。ところがあるとき、AlmaLinuxで ~dnf update~ をしたらGNOMEが起動しなくなり、sshでしかアクセスできなくなってしまいました。これというのも、UTMがスナップショット未対応なのが悪いのです!</p>
+<p>この問題を解決するためにいろいろと調べたら、UTMのバージョンを3.2.4に下げるとよいという情報を見つけたので、3.2.4にダウングレードしたところ、何をどう間違ったのか、なんと、既存のVMがデータごと全て消えてしまいました。。。ガーン。</p>
+<p>そこで、泣く泣くAlmaLinux環境の再構築をする羽目になりました。</p>
+<h1>UTMの使い勝手</h1>
+<p>VirtualBoxと比べて、UTM(M1 Mac版)はまだまだ実用的では無いと思います。例えば、</p>
+<ul>
+<li>ホストであるMacから、localhostの指定ポートでVMにアクセスできない</li>
+<ul>
+<li>IPアドレスで ssh する(Bridgedモード)ことはできますが、自宅と自宅以外の場所でVMのIPアドレスが変わってしまうので、使い勝手が悪いです</li>
+<li>Emulated VLANモードだと、 ~ssh -v~ で指定ポートに繋がった後で sshd にアクセスできていないように見えます</li>
+</ul>
+<li>スナップショットが取れない</li>
+<ul>
+<li>今回のように dnf update で動かなくなっても、以前の状態に戻すことができません。。</li>
+<li>cloneをスナップショット代わりに使うと良さそう(?)ですが、ついうっかりスナップショット用のクローンを使ってしまったりします。。</li>
+</ul>
+<li>MacBookのスリープにうまく対応していない</li>
+<ul>
+<li>スリープから復帰した後で、VMの時間がずれたままです。 ~systemctl restart chronyd~ するのが面倒</li>
+</ul>
+</ul>
+<p>VirtualBoxのARM版は安定したのでしょうか。そちらを待ったほうが良かったかも。。。と思ったのですが、まだdeveloper preview版でした。</p>
+<h1>復旧</h1>
+<p>今後のために復旧のステップを一通りメモしておきます。</p>
+<h2>AlmaLinuxインストール</h2>
+<h3>AlmaLinux最新版のダウンロード</h3>
+<ul>
+<li>Visit https://mirrors.almalinux.org/isos.html > aarch64 > <9.2></li>
+<li>> <code>AlmaLinux-9-latest-aarch64-dvd.iso</code> > (wait for download)</li>
+</ul>
+<h3>VM作成</h3>
+<ul>
+<li>UTM > ~+~ > Virtualize > Linux > Boot ISO Image > Browse</li>
+<li>> <code>AlmaLinux-9-latest-aarch64-dvd.iso</code> > Continue</li>
+<li>> (reduced memory to 2GB) > Continue > (leave drive size: 64GB)</li>
+<li>> Continue > Shared Directory > Browse > specify > Continue > Save</li>
+<li>right-click vm > Edit > Network > Bridged (Advanced) > Save</li>
+</ul>
+<h3>AlmaLinuxインストール</h3>
+<ul>
+<li>Run VM > Install AlmaLinux 9.2 > English (United States) > Continue</li>
+<li>> Time & Date > choose timezone > set Root password > create a user</li>
+<li>> check Make this user administrator > Installation Destination</li>
+<li>> Network & Host Name > <a9> > Begin Installation > (wait)</li>
+<li>> eject ISO > Reboot System</li>
+<li>Login > No Thanks > run terminal > poweroff</li>
+</ul>
+<h3>dnf update</h3>
+<ul>
+<li>~sudo dnf update -y~</li>
+</ul>
+<p>ここで一旦リブートして、きちんと上がってくることを確認します。</p>
+<h2>環境再構築</h2>
+<h3>gitのインストールと初期設定</h3>
+<p>復旧元となるgithubにアクセスするためにgitを入れます。</p>
+<ul>
+<li>~sudo dnf install git~</li>
+<li>初期設定</li>
+</ul>
+<p>#+begin_src git config --global user.email "<user@email.com>" git config --global user.name "<your name>" #+end_src</p>
+<h3>Pythonのインストールと設定</h3>
+<p>複数バージョンのPythonが使えるように、pyenvをインストールし、それを使って最新バージョンのPythonをインストールします。</p>
+<ul>
+<li>pyenvのインストール</li>
+</ul>
+<p>#+begin_src sudo dnf install make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel git clone https:<i>/github.com/pyenv/pyenv.git ~</i>.pyenv #+end_src</p>
+<ul>
+<li>.bash_profileの変更</li>
+</ul>
+<p>#+begin_src echo 'export PYENV_ROOT="$HOME<i>.pyenv"' >> ~</i>.bash_profile echo 'export PATH="$PYENV_ROOT<i>shims:$PYENV_ROOT/bin:$PATH"' >> ~</i>.bash_profile echo 'eval "$(pyenv init -)"' >> ~/.bash_profile source .bash_profile #+end_src</p>
+<ul>
+<li>Python最新版のインストール</li>
+</ul>
+<p>pyenvを使って、最新版のPythonをインストールします。 #+begin_src bash pyenv install --list pyenv install 3.11.4 pyenv global 3.11.4 pyenv rehash #+end_src</p>
+<h3>lsp serverのインストール</h3>
+<p>ホストであるMacBook上のemacsから、VM上のpythonファイルを編集できるようにします。 : pip install 'python-lsp-server[all]'</p>
+<h3>emacsのインストール</h3>
+<p>ゲストVMにもemacsを入れます。ブログの作成に使っているpelicanでorgファイルを変換するのに使われます。 : sudo dnf install emacs</p>
+<h3>ssh keyのインポート</h3>
+<p>MacBookからAlmaLinuxに、パスワード認証無しでsshで入れるように、ssh keyをVMにインポートします。</p>
+<ul>
+<li>まずは、VM上で sshd が動いていることを確認します。</li>
+</ul>
+<p>: systemctl status sshd</p>
+<ul>
+<li>次にホストであるMacBookからVMにsshできることを確認します。今回はパスワード認証です。</li>
+</ul>
+<p>: ssh <user>@<VM IP></p>
+<ul>
+<li>> ~exit~</li>
+<li>sshキーをインポートします。</li>
+</ul>
+<p>: ssh-copy-id -i <id_rsa> <user>@<VM IP></p>
+<ul>
+<li>無事に、パスワード認証無しで ssh できることを確認します。</li>
+</ul>
+<p>: ssh <user>@<VM IP></p>
+<h3>github に sshできるようにする</h3>
+<ul>
+<li>ssh-agentにキーを登録します。</li>
+</ul>
+<p>#+begin_src bash cd ~/.ssh eval "$(ssh-agent -s)" ssh-add <id_rsa> ssh-add -l ssh -vT git@github.com #+end_src</p>
+<h3>githubから復旧</h3>
+<p>必要なデータをgithubからクローンしてくる(ステップ略)。</p>
+<h2>ブログ環境の復旧</h2>
+<h3>サイトジェネレーター Pelican 設定</h3>
+<p>#+begin_src mkdir py; cd py mkdir blg; cd blg python -m venv ve source ve/bin/activate pip install pelican pip install ghp-import #+end_src</p>
+<ul>
+<li>~pelican-quickstart~ 実行</li>
+</ul>
+<p>#+begin_src > Where do you want to create your new web site? [.] > What will be the title of this web site? Daydreaming in Brookline, MA > Who will be the author of this web site? Kyos > What will be the default language of this web site? [en] ja > Do you want to specify a URL prefix? e.g., https://example.com   (Y/n) > What is your URL prefix? (see above example; no trailing slash) https://achiwa912.github.io > Do you want to enable article pagination? (Y/n) > How many articles per page do you want? [10] 20 > What is your time zone? [Europe/Rome] America/New_York > Do you want to generate a tasks.py/Makefile to automate generation and publishing? (Y/n) > Do you want to upload your website using FTP? (y/N) > Do you want to upload your website using SSH? (y/N) y > What is the hostname of your SSH server? [localhost] github.com > What is the port of your SSH server? [22] > What is your username on that server? [root] git > Where do you want to put your web site on that server? [/var/www] > Do you want to upload your website using Dropbox? (y/N) > Do you want to upload your website using S3? (y/N) > Do you want to upload your website using Rackspace Cloud Files? (y/N) > Do you want to upload your website using GitHub Pages? (y/N) y > Is this your personal page (username.github.io)? (y/N) y #+end_src</p>
+<ul>
+<li>ブログで使用しているテーマをダウンロード</li>
+</ul>
+<p>pelican-octopress-themeを使っています。いろいろと試した中で一番良かったです。 #+begin_src cd mkdir git; cd git git clone https://github.com/duilio/pelican-octopress-theme.git git clone --recursive https://github.com/getpelican/pelican-plugins #+end_src</p>
+<ul>
+<li>pelicanconf.py を編集し、テーマのプラグインを指定します。</li>
+</ul>
+<p>#+begin_src THEME = "/home/kachiwa/git/pelican-octopress-theme" PLUGIN_PATHS = ["/home/kachiwa/git/pelican-plugins"] PLUGINS = ["org_reader"] ORG_READER_EMACS_LOCATION = "/usr/bin/emacs" MENUITEMS = [     ("About Me", "/pages/about.html"), ] #+end_src</p>
+<p># - org_readerで大量にwarningが出ないようにhtmlizeパッケージをインストール # \to なんだかエラーがますます増えたような。。。</p>
+<ul>
+<li>githubに置いてあるブログのコンテンツをクローンして、pelicanのcontentディレクトリをシンボリックリンクで置き換えます。なお、このレポジトリはプライベート設定のため、本人しかアクセスできません。</li>
+</ul>
+<p>#+begin_src cd ~/git git clone git@github.com:achiwa912/blog.git cd ~/py/blg rmdir content ln -s ~/git/blog content #+end_src</p>
+<ul>
+<li>ブログをアップロードするための git設定</li>
+</ul>
+<p>#+begin_src git init git remote add origin git@github.com:achiwa912/achiwa912.github.io.git #+end_src</p>
+<ul>
+<li>アップロードします。</li>
+</ul>
+<p>#+begin_src ghp-import output git push -f origin gh-pages:master #+end_src</p>
+<p>なんとか、ブログ環境の復旧ができました。</p>
+<h1>終わりに</h1>
+<p>一日がかりでAlmaLinuxの環境を復旧しました。それにしても、UTMの安定性、使い勝手はまだまだ実用的ではないように思います。VirtualBoxのarm版が正式に出たら、そちらも試してみたいと思いますが、こちらはこちらで性能面に不安があります。</p>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2023-06-23T00:00:00-04:00" pubdate>Fri 23 June 2023</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/almalinux-9huan-jing-wom1-macbookshang-nizai-gou-zhu-shimashita.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
+      </li>
+      <li class="post">
+          <a href="/bokiyabiruyong-webapurivocabull-serverwogong-kai-shimashita.html">ボキャビル用WebアプリVocabull (server)を公開しました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+  </section>
+
+
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2023  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
