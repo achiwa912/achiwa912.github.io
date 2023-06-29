@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge6c1a0d">1. はじめに</a></li>
-<li><a href="#org1cab5da">2. アルファ版リリース</a></li>
-<li><a href="#org4d4465d">3. issuesをgithubで管理</a></li>
-<li><a href="#org26e1a19">4. 開発での経験</a>
+<li><a href="#orge977e1d">1. はじめに</a></li>
+<li><a href="#orgb314e7d">2. アルファ版リリース</a></li>
+<li><a href="#org9a73736">3. issuesをgithubで管理</a></li>
+<li><a href="#org425eb66">4. 開発での経験</a>
 <ul>
-<li><a href="#org76a492b">4.1. 学んだこと</a></li>
-<li><a href="#org0b37eed">4.2. まだまだなこと</a></li>
+<li><a href="#orgfc2920e">4.1. 学んだこと</a></li>
+<li><a href="#org902febb">4.2. まだまだなこと</a></li>
 </ul>
 </li>
-<li><a href="#orgb1ce575">5. 次は、、</a></li>
+<li><a href="#orgae87326">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge6c1a0d" class="outline-2">
-<h2 id="orge6c1a0d"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orge977e1d" class="outline-2">
+<h2 id="orge977e1d"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの11回目です。
@@ -96,8 +96,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org1cab5da" class="outline-2">
-<h2 id="org1cab5da"><span class="section-number-2">2</span> アルファ版リリース</h2>
+<div id="outline-container-orgb314e7d" class="outline-2">
+<h2 id="orgb314e7d"><span class="section-number-2">2</span> アルファ版リリース</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 一通り実装が終わり、ゲームを通しでプレイして致命的なバグが出ないようになってきたので、アルファ版をリリースしました。zen tetrisを作った時と同じようにpygameに登録して(pygame使っていませんが、それでもいいらしいので)、twitterでつぶやいただけなので、誰か見てくれるのか分かりません。
@@ -109,8 +109,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org4d4465d" class="outline-2">
-<h2 id="org4d4465d"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
+<div id="outline-container-org9a73736" class="outline-2">
+<h2 id="org9a73736"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 バグなどの問題点管理をgithub上でするようにしました。自分でissue登録して自分でfix、closeしていくだけなので少し寂しい感じです。前近代的にexcelでバグ管理するよりは、職場で使っているjiraに近くていい感じです。
@@ -118,12 +118,12 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org26e1a19" class="outline-2">
-<h2 id="org26e1a19"><span class="section-number-2">4</span> 開発での経験</h2>
+<div id="outline-container-org425eb66" class="outline-2">
+<h2 id="org425eb66"><span class="section-number-2">4</span> 開発での経験</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org76a492b" class="outline-3">
-<h3 id="org76a492b"><span class="section-number-3">4.1</span> 学んだこと</h3>
+<div id="outline-container-orgfc2920e" class="outline-3">
+<h3 id="orgfc2920e"><span class="section-number-3">4.1</span> 学んだこと</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデータ構造にだいぶ慣れました。setは重複排除できるだけの使いにくい(順番が変わるので)listといった印象で、ほとんど使いませんでした。list comprehensionやgenerator expressionの便利さに感動しました。walrus expression(<code>:=</code>)は結構微妙でした。うまく使っても1,2行減るくらいで、可読性が上がるわけでもないので。
@@ -131,8 +131,8 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 </div>
 </div>
 
-<div id="outline-container-org0b37eed" class="outline-3">
-<h3 id="org0b37eed"><span class="section-number-3">4.2</span> まだまだなこと</h3>
+<div id="outline-container-org902febb" class="outline-3">
+<h3 id="org902febb"><span class="section-number-3">4.2</span> まだまだなこと</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 クラスの設計が下手だと思います。後から様々なフラグアトリビュートを追加して複雑になる傾向がありました。今回はリアルタイムキースキャン以外はほぼ標準ライブラリのみのため、サードパーティーライブラリの使用スキルも身についていません。
@@ -146,8 +146,8 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
 </div>
 
 
-<div id="outline-container-orgb1ce575" class="outline-2">
-<h2 id="orgb1ce575"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-orgae87326" class="outline-2">
+<h2 id="orgae87326"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 バグが見つかったら直して、というようにペースを落として開発継続していくつもりです。
