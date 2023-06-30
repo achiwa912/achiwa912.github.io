@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5e8fda8">1. はじめに</a></li>
-<li><a href="#org5d0cd0b">2. mainとmasterブランチ</a></li>
-<li><a href="#orgd73e08a">3. リモートのmainブランチにpushする</a></li>
-<li><a href="#orgd0597dd">4. まとめ</a></li>
+<li><a href="#org33920cd">1. はじめに</a></li>
+<li><a href="#org8c34dbd">2. mainとmasterブランチ</a></li>
+<li><a href="#org2b462ae">3. リモートのmainブランチにpushする</a></li>
+<li><a href="#org8f646b9">4. まとめ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5e8fda8" class="outline-2">
-<h2 id="org5e8fda8"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org33920cd" class="outline-2">
+<h2 id="org33920cd"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社のgitlabにプロジェクトを作って、ローカルブランチをgit pushしたら、masterブランチへのマージリクエストになってしまいました。gitlabに作ったプロジェクトにはデフォルトで作られたmainブランチが既にあり、なんとかしなくてはいけません。
@@ -90,8 +90,8 @@
 </div>
 </div>
 
-<div id="outline-container-org5d0cd0b" class="outline-2">
-<h2 id="org5d0cd0b"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
+<div id="outline-container-org8c34dbd" class="outline-2">
+<h2 id="org8c34dbd"><span class="section-number-2">2</span> mainとmasterブランチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 githubが、master - slaveという単語がoffensiveなため、デフォルトのブランチをmainにしたことは知っていましたが、gitlabの <a href="https://about.gitlab.com/blog/2021/03/10/new-git-default-branch-name/">このページ</a> によると、gitlabも去年の5月にデフォルトブランチをmasterからmainに変更したようです。
@@ -103,8 +103,8 @@ githubが、master - slaveという単語がoffensiveなため、デフォルト
 </div>
 </div>
 
-<div id="outline-container-orgd73e08a" class="outline-2">
-<h2 id="orgd73e08a"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
+<div id="outline-container-org2b462ae" class="outline-2">
+<h2 id="org2b462ae"><span class="section-number-2">3</span> リモートのmainブランチにpushする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 ということは、masterではなくmainにpushすれば良さそうです。しかし、
@@ -205,8 +205,8 @@ To gitlab.&lt;snip&gt;.git
 </div>
 </div>
 
-<div id="outline-container-orgd0597dd" class="outline-2">
-<h2 id="orgd0597dd"><span class="section-number-2">4</span> まとめ</h2>
+<div id="outline-container-org8f646b9" class="outline-2">
+<h2 id="org8f646b9"><span class="section-number-2">4</span> まとめ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 今回の問題は、gitlabがデフォルトブランチをmainにしたのに、ローカルのgitはmasterのままだったことが出発点でした。対策として、以下のステップが必要でした。
@@ -241,6 +241,9 @@ To gitlab.&lt;snip&gt;.git
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/masteremacs.html">Mastering Emacsを読みました</a>
+      </li>
+      <li class="post">
           <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
@@ -251,9 +254,6 @@ To gitlab.&lt;snip&gt;.git
       </li>
       <li class="post">
           <a href="/sugarloaf.html">2年振りにスキー旅行に行きました</a>
-      </li>
-      <li class="post">
-          <a href="/flask.html">Flask Web Developmentを読みました</a>
       </li>
     </ul>
   </section>
@@ -272,7 +272,7 @@ To gitlab.&lt;snip&gt;.git
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

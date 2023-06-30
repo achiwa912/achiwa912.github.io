@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb2083bd">1. はじめに</a></li>
-<li><a href="#org021d5a8">2. venv環境を使う</a></li>
-<li><a href="#org891382b">3. crontabに登録する</a></li>
-<li><a href="#org6bd132a">4. 終わりに</a></li>
+<li><a href="#orgc09cf3f">1. はじめに</a></li>
+<li><a href="#org84fe350">2. venv環境を使う</a></li>
+<li><a href="#org0e26eae">3. crontabに登録する</a></li>
+<li><a href="#orgcb5f1a6">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb2083bd" class="outline-2">
-<h2 id="orgb2083bd"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgc09cf3f" class="outline-2">
+<h2 id="orgc09cf3f"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはジョブスケジューラーのcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使うには少し工夫が必要です。
@@ -86,8 +86,8 @@ PythonのスクリプトをLinuxマシン上で定期実行することを考え
 </div>
 </div>
 
-<div id="outline-container-org021d5a8" class="outline-2">
-<h2 id="org021d5a8"><span class="section-number-2">2</span> venv環境を使う</h2>
+<div id="outline-container-org84fe350" class="outline-2">
+<h2 id="org84fe350"><span class="section-number-2">2</span> venv環境を使う</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 venv環境をactivateしてPythonスクリプトを実行するためには、cronから
@@ -122,8 +122,8 @@ chmod a+x run_script.sh
 </div>
 </div>
 
-<div id="outline-container-org891382b" class="outline-2">
-<h2 id="org891382b"><span class="section-number-2">3</span> crontabに登録する</h2>
+<div id="outline-container-org0e26eae" class="outline-2">
+<h2 id="org0e26eae"><span class="section-number-2">3</span> crontabに登録する</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 crontabに登録してcron実行するために、
@@ -196,8 +196,8 @@ sudo tail -f /var/log/cron
 </div>
 </div>
 
-<div id="outline-container-org6bd132a" class="outline-2">
-<h2 id="org6bd132a"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgcb5f1a6" class="outline-2">
+<h2 id="orgcb5f1a6"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセージをポストするようにしました。更に、サーバーにインストール済みのバージョンよりも新しいバージョンが無いか、Jenkinsをチェックして比較しています。
@@ -231,6 +231,9 @@ sudo tail -f /var/log/cron
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/masteremacs.html">Mastering Emacsを読みました</a>
+      </li>
+      <li class="post">
           <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
       </li>
       <li class="post">
@@ -241,9 +244,6 @@ sudo tail -f /var/log/cron
       </li>
       <li class="post">
           <a href="/sugarloaf.html">2年振りにスキー旅行に行きました</a>
-      </li>
-      <li class="post">
-          <a href="/flask.html">Flask Web Developmentを読みました</a>
       </li>
     </ul>
   </section>
@@ -262,7 +262,7 @@ sudo tail -f /var/log/cron
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
