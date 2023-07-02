@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>DL-11; DLのアルファ版を公開しました &mdash; Daydreaming in Brookline, MA</title>
+  <title>org-captureって便利なんでは!? &mdash; Daydreaming in Brookline, MA</title>
   <meta name="author" content="Kyos">
 
 
@@ -48,10 +48,10 @@
       <li >
         <a href="/category/linux.html">Linux</a>
       </li>
-      <li class="active">
+      <li >
         <a href="/category/python.html">Python</a>
       </li>
-      <li >
+      <li class="active">
         <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
@@ -60,97 +60,82 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">DL-11; DLのアルファ版を公開しました</h1>
+      <h1 class="entry-title">org-captureって便利なんでは!?</h1>
     <p class="meta">
-<time datetime="2021-04-18T00:00:00-04:00" pubdate>Sun 18 April 2021</time>    </p>
+<time datetime="2023-07-01T00:00:00-04:00" pubdate>Sat 01 July 2023</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgfc49452">1. はじめに</a></li>
-<li><a href="#orge06f1a8">2. アルファ版リリース</a></li>
-<li><a href="#org8d620f2">3. issuesをgithubで管理</a></li>
-<li><a href="#orgf484315">4. 開発での経験</a>
-<ul>
-<li><a href="#org8247e4d">4.1. 学んだこと</a></li>
-<li><a href="#orga70b858">4.2. まだまだなこと</a></li>
-</ul>
-</li>
-<li><a href="#org60987d4">5. 次は、、</a></li>
+<li><a href="#orgc4c2f62">1. はじめに</a></li>
+<li><a href="#org1b6b9c8">2. org-journal</a></li>
+<li><a href="#org89bb590">3. 王様の耳はロバの耳</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfc49452" class="outline-2">
-<h2 id="orgfc49452"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgc4c2f62" class="outline-2">
+<h2 id="orgc4c2f62"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Rogue+Wizライクなゲーム(DL - Daemon Lord)を作るプロジェクトの11回目です。
+禍津神Elon MuskのおかげでTwitterが迷走しています。3rd partyのアプリが使えなくなって以来、私はTwitterにほとんどアクセスしなくなりましたが、時には誰も聞いていないとはわかっていても呟いてみたい気分になることがあります。
 </p>
 
 <p>
-githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未検証です。(いちおうWindows用のコードは入れてみました)
+ふと、そんな時にemacsのorg-journalが使えるのでは、と思い立ち、使ってみることにしました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge06f1a8" class="outline-2">
-<h2 id="orge06f1a8"><span class="section-number-2">2</span> アルファ版リリース</h2>
+<div id="outline-container-org1b6b9c8" class="outline-2">
+<h2 id="org1b6b9c8"><span class="section-number-2">2</span> org-journal</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-一通り実装が終わり、ゲームを通しでプレイして致命的なバグが出ないようになってきたので、アルファ版をリリースしました。zen tetrisを作った時と同じようにpygameに登録して(pygame使っていませんが、それでもいいらしいので)、twitterでつぶやいただけなので、誰か見てくれるのか分かりません。
+<a href="https://github.com/bastibe/org-journal">org-journal</a> は名前の通り、ジャーナルを書くためのemacsのメジャーモードです。私はglobalに <code>C-c C-j</code> でorg-journalが起動するようにしてみました。init.elには以下を追記しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package org-journal
+  <span style="font-weight: bold;">:ensure</span> t
+  <span style="font-weight: bold;">:defer</span> t
+  <span style="font-weight: bold;">:custom</span>
+  (org-journal-dir <span style="font-style: italic;">"~/py/memo/journal"</span>)
+  (org-journal-date-format <span style="font-style: italic;">"%A, %d %B %Y"</span>)
+  (org-journal-file-type 'monthly))
+
+(global-set-key (kbd <span style="font-style: italic;">"C-c C-j"</span>) 'org-journal-new-entry)
+</pre>
+</div>
+<p>
+<code>M-x package-list-packages</code> などから手動でインストールしないといけないかも。
 </p>
 
 <p>
-そもそも30〜40年前のゲームのリメイクなので、需要がほぼゼロだとは思います。まあ、Pythonの勉強という意味では役に立ったのでいいでしょう。不足していた実践経験を少し補うことはできたと思います。
+何か思い立った時に <code>C-c C-j</code> を押すとジャーナルファイルが開いて、 org-mode ファイルを編集する感覚で言いたいことを追記していくことができます。これ、滅茶苦茶便利です。操作が面倒だと書き込もうという意欲が萎んでしまいますが、ほぼノーストレスです。
 </p>
+
+<p>
+基本的なキーバインド:
+</p>
+<ul class="org-ul">
+<li><code>C-c C-f</code> / <code>C-c C-b</code>: 次/前のjournalファイルに移動</li>
+<li><code>C-c C-j</code>: エントリー追加(org-journal-new-entry)</li>
+<li><code>C-u C-c C-j</code>: エントリー追加せずにjournalファイルを開く</li>
+<li><code>C-c C-s</code>: journalを検索</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-org8d620f2" class="outline-2">
-<h2 id="org8d620f2"><span class="section-number-2">3</span> issuesをgithubで管理</h2>
+<div id="outline-container-org89bb590" class="outline-2">
+<h2 id="org89bb590"><span class="section-number-2">3</span> 王様の耳はロバの耳</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-バグなどの問題点管理をgithub上でするようにしました。自分でissue登録して自分でfix、closeしていくだけなので少し寂しい感じです。前近代的にexcelでバグ管理するよりは、職場で使っているjiraに近くていい感じです。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgf484315" class="outline-2">
-<h2 id="orgf484315"><span class="section-number-2">4</span> 開発での経験</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org8247e4d" class="outline-3">
-<h3 id="org8247e4d"><span class="section-number-3">4.1</span> 学んだこと</h3>
-<div class="outline-text-3" id="text-4-1">
-<p>
-Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデータ構造にだいぶ慣れました。setは重複排除できるだけの使いにくい(順番が変わるので)listといった印象で、ほとんど使いませんでした。list comprehensionやgenerator expressionの便利さに感動しました。walrus expression(<code>:=</code>)は結構微妙でした。うまく使っても1,2行減るくらいで、可読性が上がるわけでもないので。
-</p>
-</div>
-</div>
-
-<div id="outline-container-orga70b858" class="outline-3">
-<h3 id="orga70b858"><span class="section-number-3">4.2</span> まだまだなこと</h3>
-<div class="outline-text-3" id="text-4-2">
-<p>
-クラスの設計が下手だと思います。後から様々なフラグアトリビュートを追加して複雑になる傾向がありました。今回はリアルタイムキースキャン以外はほぼ標準ライブラリのみのため、サードパーティーライブラリの使用スキルも身についていません。
+だれも読んでいないとはわかっていても、Twitterは世界に向けて公開しています。org-journalで代わりが務まるのでしょうか。そもそもは全く異なる目的のものですし。
 </p>
 
 <p>
-きちんとしたプロジェクトでは致命的と思いますが、今回はユニットテストを全くしませんでした。作ったきり、一度も通っていないコードパスが結構残っていそうです。
-</p>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org60987d4" class="outline-2">
-<h2 id="org60987d4"><span class="section-number-2">5</span> 次は、、</h2>
-<div class="outline-text-2" id="text-5">
-<p>
-バグが見つかったら直して、というようにペースを落として開発継続していくつもりです。
+まあ、Twitterの代わりにはならないとしても、org-journalはそれ自体とてもよくできていると思います。私はこれまで日記の類が全く続きませんでしたが、これは続くでしょうか。。。
 </p>
 </div>
 </div>
@@ -162,11 +147,11 @@ Pythonで用意されているlist, tuple, dict, namedtuple, enumなどのデー
         きょうす
     </span>
   </span>
-<time datetime="2021-04-18T00:00:00-04:00" pubdate>Sun 18 April 2021</time>  <span class="categories">
-    <a class='category' href='/category/python.html'>Python</a>
+<time datetime="2023-07-01T00:00:00-04:00" pubdate>Sat 01 July 2023</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>

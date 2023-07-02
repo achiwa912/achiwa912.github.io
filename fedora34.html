@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9e3e0a7">1. はじめに</a></li>
-<li><a href="#orged78ed6">2. Fedora36インストール</a>
+<li><a href="#org0f59ae3">1. はじめに</a></li>
+<li><a href="#org7575588">2. Fedora36インストール</a>
 <ul>
-<li><a href="#org23ae1f3">2.1. VM作成</a></li>
-<li><a href="#orga25ed67">2.2. fedoraインストーラー</a></li>
-<li><a href="#org3042c8c">2.3. fedora起動</a></li>
-<li><a href="#org7f0acac">2.4. Guest Additions</a></li>
+<li><a href="#org0fff8c4">2.1. VM作成</a></li>
+<li><a href="#org4e23769">2.2. fedoraインストーラー</a></li>
+<li><a href="#orgdd32e44">2.3. fedora起動</a></li>
+<li><a href="#orga84a56b">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#orga783508">3. gitの設定</a></li>
-<li><a href="#orga020e46">4. emacsの設定</a></li>
-<li><a href="#org570750c">5. pythonの設定</a>
+<li><a href="#org1f81fa1">3. gitの設定</a></li>
+<li><a href="#orgf3b3e56">4. emacsの設定</a></li>
+<li><a href="#orgdaf4717">5. pythonの設定</a>
 <ul>
-<li><a href="#orgaca3aab">5.1. pyenvを入れる</a></li>
+<li><a href="#orge6682f2">5.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9e3e0a7" class="outline-2">
-<h2 id="org9e3e0a7"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org0f59ae3" class="outline-2">
+<h2 id="org0f59ae3"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora36を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora36インストール及び設定の備忘録です。
@@ -103,12 +103,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-orged78ed6" class="outline-2">
-<h2 id="orged78ed6"><span class="section-number-2">2</span> Fedora36インストール</h2>
+<div id="outline-container-org7575588" class="outline-2">
+<h2 id="org7575588"><span class="section-number-2">2</span> Fedora36インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org23ae1f3" class="outline-3">
-<h3 id="org23ae1f3"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org0fff8c4" class="outline-3">
+<h3 id="org0fff8c4"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 36 download</code> で検索して、isoファイルをダウンロードします。
@@ -136,8 +136,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-orga25ed67" class="outline-3">
-<h3 id="orga25ed67"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-org4e23769" class="outline-3">
+<h3 id="org4e23769"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora36のインストーラー起動画面が出ます。
@@ -158,8 +158,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org3042c8c" class="outline-3">
-<h3 id="org3042c8c"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-orgdd32e44" class="outline-3">
+<h3 id="orgdd32e44"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。(fedora34ではしばらく不安になる画面で放置されますが、数十秒で使えるようになりました。fedora36ではなぜかログイン画面が出ずに強制電断 &rarr; 電源オンしたところ、何事もなかったようにログイン画面が出ました。何だったんだろう。。。)
@@ -183,8 +183,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-org7f0acac" class="outline-3">
-<h3 id="org7f0acac"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-orga84a56b" class="outline-3">
+<h3 id="orga84a56b"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -242,8 +242,8 @@ Fedora36としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-orga783508" class="outline-2">
-<h2 id="orga783508"><span class="section-number-2">3</span> gitの設定</h2>
+<div id="outline-container-org1f81fa1" class="outline-2">
+<h2 id="org1f81fa1"><span class="section-number-2">3</span> gitの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitの最低限の設定をしておきます。これを忘れて、コミットでエラーになりました(magitではemacsごと落ちました)。
@@ -256,8 +256,8 @@ git config --global user.name <span style="font-style: italic;">"&lt;your name&g
 </div>
 </div>
 
-<div id="outline-container-orga020e46" class="outline-2">
-<h2 id="orga020e46"><span class="section-number-2">4</span> emacsの設定</h2>
+<div id="outline-container-orgf3b3e56" class="outline-2">
+<h2 id="orgf3b3e56"><span class="section-number-2">4</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 注) 5/12/2022追記。emacsの設定は最近いろいろ変えているので、アップデートせずにそのまま残しておきます。
@@ -547,8 +547,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-org570750c" class="outline-2">
-<h2 id="org570750c"><span class="section-number-2">5</span> pythonの設定</h2>
+<div id="outline-container-orgdaf4717" class="outline-2">
+<h2 id="orgdaf4717"><span class="section-number-2">5</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Fedora36を入れたら、いきなりpython 3.10.4が/usr/bin/pythonとしてインストールされていました。
@@ -563,8 +563,8 @@ Python 3.10.4
 </div>
 </div>
 
-<div id="outline-container-orgaca3aab" class="outline-3">
-<h3 id="orgaca3aab"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
+<div id="outline-container-orge6682f2" class="outline-3">
+<h3 id="orge6682f2"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.10.4なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -669,6 +669,9 @@ pip install 'python-lsp-server[all]'
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/capture.html">org-captureって便利なんでは!?</a>
+      </li>
+      <li class="post">
           <a href="/masteremacs.html">Mastering Emacsを読みました</a>
       </li>
       <li class="post">
@@ -679,9 +682,6 @@ pip install 'python-lsp-server[all]'
       </li>
       <li class="post">
           <a href="/udon.html">うどんを作る</a>
-      </li>
-      <li class="post">
-          <a href="/sugarloaf.html">2年振りにスキー旅行に行きました</a>
       </li>
     </ul>
   </section>

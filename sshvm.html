@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org35df660">1. はじめに</a></li>
-<li><a href="#org4049113">2. VMにsshで入るための設定</a>
+<li><a href="#orgdf79801">1. はじめに</a></li>
+<li><a href="#orgcdc5c62">2. VMにsshで入るための設定</a>
 <ul>
-<li><a href="#org36604dd">2.1. ssh serverの設定</a></li>
-<li><a href="#org30c477f">2.2. VMネットワークの設定</a></li>
-<li><a href="#org2ac7060">2.3. sshキーのインポート</a></li>
+<li><a href="#orgf9731f4">2.1. ssh serverの設定</a></li>
+<li><a href="#org121eb7e">2.2. VMネットワークの設定</a></li>
+<li><a href="#org13e7c1a">2.3. sshキーのインポート</a></li>
 </ul>
 </li>
-<li><a href="#org1e42515">3. Resources</a></li>
+<li><a href="#org83d3844">3. Resources</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org35df660" class="outline-2">
-<h2 id="org35df660"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgdf79801" class="outline-2">
+<h2 id="orgdf79801"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はMacにVirtualBoxを入れ、Fedora VM上でドキュメント(orgファイル)の編集やpythonのスクリプト開発を行っていますが、 <a href="https://mkyong.com/mac/virtualbox-running-slow-and-lag-on-macos-macbook-pro/">このワークアラウンド</a> (2. VirtualBox in Low Resolution) のために解像度が粗く、見た目がやや残念なことになっています。そこで、Mac上のターミナルからFedora VMにssh接続することを考えました。
@@ -92,12 +92,12 @@
 </div>
 
 
-<div id="outline-container-org4049113" class="outline-2">
-<h2 id="org4049113"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
+<div id="outline-container-orgcdc5c62" class="outline-2">
+<h2 id="orgcdc5c62"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org36604dd" class="outline-3">
-<h3 id="org36604dd"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
+<div id="outline-container-orgf9731f4" class="outline-3">
+<h3 id="orgf9731f4"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはVirtualBoxのFedora 35 VM上でsshサーバーの設定をします。
@@ -113,8 +113,8 @@ ssh &lt;username&gt;@localhost  <span style="font-weight: bold; font-style: ital
 </div>
 </div>
 
-<div id="outline-container-org30c477f" class="outline-3">
-<h3 id="org30c477f"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
+<div id="outline-container-org121eb7e" class="outline-3">
+<h3 id="org121eb7e"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 次に、VirtualBoxのVMに、ホストであるMacからつながるようにネットワーク設定をします。
@@ -155,8 +155,8 @@ Last login: Mon May  9 11:32:14 2022
 </div>
 </div>
 
-<div id="outline-container-org2ac7060" class="outline-3">
-<h3 id="org2ac7060"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
+<div id="outline-container-org13e7c1a" class="outline-3">
+<h3 id="org13e7c1a"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 パスワードレスでssh接続したいので、Mac上のsshパブリックキーをVMにコピーします。まずは.sshディレクトリを作成してそこにsshキーを生成します。すでに作成済みであればスキップしてください。
@@ -223,8 +223,8 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
 </div>
 </div>
 
-<div id="outline-container-org1e42515" class="outline-2">
-<h2 id="org1e42515"><span class="section-number-2">3</span> Resources</h2>
+<div id="outline-container-org83d3844" class="outline-2">
+<h2 id="org83d3844"><span class="section-number-2">3</span> Resources</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://rocky-chen.medium.com/setup-ssh-connection-to-your-ubuntu-vm-of-virtualbox-macos-eed4691fe08">Setup SSH connection to your Ubuntu VM of VirtualBox (MacOS)</a></li>
@@ -256,6 +256,9 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/capture.html">org-captureって便利なんでは!?</a>
+      </li>
+      <li class="post">
           <a href="/masteremacs.html">Mastering Emacsを読みました</a>
       </li>
       <li class="post">
@@ -266,9 +269,6 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
       </li>
       <li class="post">
           <a href="/udon.html">うどんを作る</a>
-      </li>
-      <li class="post">
-          <a href="/sugarloaf.html">2年振りにスキー旅行に行きました</a>
       </li>
     </ul>
   </section>
