@@ -69,29 +69,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9e1e14e">1. はじめに</a></li>
-<li><a href="#orgc72f4f2">2. org-journal</a></li>
-<li><a href="#org64928dd">3. 王様の耳はロバの耳</a></li>
-<li><a href="#org21a035f">4. リンク</a></li>
+<li><a href="#org13d7177">1. はじめに</a></li>
+<li><a href="#org96df1b5">2. org-journal</a></li>
+<li><a href="#org46e77a5">3. 王様の耳はロバの耳</a></li>
+<li><a href="#orgc50edfe">4. リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9e1e14e" class="outline-2">
-<h2 id="org9e1e14e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org13d7177" class="outline-2">
+<h2 id="org13d7177"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 禍津神Elon MuskのおかげでTwitterが迷走しています。3rd partyのアプリが使えなくなって以来、私はTwitterにほとんどアクセスしなくなりましたが、時には誰も聞いていないとはわかっていても呟いてみたい気分になることがあります。
 </p>
 
 <p>
-ふと、そんな時にemacsのorg-journalが使えるのでは、と思い立ち、使ってみることにしました。
+ふと、そんな時にemacsのorg-journalが代わりになるのでは、と思い立ち、使ってみることにしました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgc72f4f2" class="outline-2">
-<h2 id="orgc72f4f2"><span class="section-number-2">2</span> org-journal</h2>
+<div id="outline-container-org96df1b5" class="outline-2">
+<h2 id="org96df1b5"><span class="section-number-2">2</span> org-journal</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://github.com/bastibe/org-journal">org-journal</a> は名前の通り、ジャーナルを書くためのemacsのメジャーモードです。私はglobalに <code>C-c C-j</code> でorg-journalが起動するようにしてみました。init.elには以下を追記しています。
@@ -103,17 +103,28 @@
   <span style="font-weight: bold;">:custom</span>
   (org-journal-dir <span style="font-style: italic;">"~/py/memo/journal"</span>)
   (org-journal-date-format <span style="font-style: italic;">"%A, %d %B %Y"</span>)
+  (org-journal-file-format <span style="font-style: italic;">"%Y%m%d.org"</span>)
   (org-journal-file-type 'monthly))
 
 (global-set-key (kbd <span style="font-style: italic;">"C-c C-j"</span>) 'org-journal-new-entry)
 </pre>
 </div>
+<ul class="org-ul">
+<li>ジャーナルファイルはgithubのプライベートレポジトリに同期するようにしました。</li>
+<li>githubがorgファイルと認識するように、ファイル名に <code>.org</code> を付けるようにしました。</li>
+<li>月ごとにファイルを作成するように指定しています。</li>
+</ul>
+
 <p>
 <code>M-x package-list-packages</code> などから手動でインストールしないといけないかも。
 </p>
 
 <p>
-何か思い立った時に <code>C-c C-j</code> を押すとジャーナルファイルが開いて、 org-mode ファイルを編集する感覚で言いたいことを追記していくことができます。これ、滅茶苦茶便利です。操作が面倒だと書き込もうという意欲が萎んでしまいますが、ほぼノーストレスです。
+何か思い立った時に <code>C-c C-j</code> を押すとジャーナルファイルが開いて、 言いたいことを追記していくことができます。これ、滅茶苦茶便利です。操作が面倒だと書き込もうという意欲が萎んでしまいますが、ほぼノーストレスです。
+</p>
+
+<p>
+しかも、githubに同期しているので、(commit &gt; push すれば)スマホ等のデバイスからもアクセスできます。いや〜、便利です。
 </p>
 
 <p>
@@ -128,21 +139,21 @@
 </div>
 </div>
 
-<div id="outline-container-org64928dd" class="outline-2">
-<h2 id="org64928dd"><span class="section-number-2">3</span> 王様の耳はロバの耳</h2>
+<div id="outline-container-org46e77a5" class="outline-2">
+<h2 id="org46e77a5"><span class="section-number-2">3</span> 王様の耳はロバの耳</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 だれも読んでいないとはわかっていても、Twitterは世界に向けて公開しています。org-journalで代わりが務まるのでしょうか。そもそもは全く異なる目的のものですし。
 </p>
 
 <p>
-まあ、Twitterの代わりにはならないとしても、org-journalはそれ自体とてもよくできていると思います。私はこれまで日記の類が全く続きませんでしたが、これは続くでしょうか。。。
+まあ、仮にTwitterの代わりにはならないとしても、org-journalはそれ自体とてもよくできていると思います。私はこれまで日記の類が全く続きませんでしたが、これは続くでしょうか。。。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org21a035f" class="outline-2">
-<h2 id="org21a035f"><span class="section-number-2">4</span> リンク</h2>
+<div id="outline-container-orgc50edfe" class="outline-2">
+<h2 id="orgc50edfe"><span class="section-number-2">4</span> リンク</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://github.com/bastibe/org-journal">https://github.com/bastibe/org-journal</a></li>
