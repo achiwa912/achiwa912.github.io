@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9e7628f">1. はじめに</a></li>
-<li><a href="#org5816ff8">2. org-journal</a></li>
-<li><a href="#orge99dcc8">3. 王様の耳はロバの耳</a></li>
-<li><a href="#orgeab9f02">4. リンク</a></li>
+<li><a href="#orgf1151f2">1. はじめに</a></li>
+<li><a href="#org75a60e9">2. org-journal</a></li>
+<li><a href="#orgb16fe42">3. 王様の耳はロバの耳</a></li>
+<li><a href="#orgf40682c">4. リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9e7628f" class="outline-2">
-<h2 id="org9e7628f"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgf1151f2" class="outline-2">
+<h2 id="orgf1151f2"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 禍津神Elon MuskのおかげでTwitterが迷走しています。3rd partyのアプリが使えなくなって以来、私はTwitterにほとんどアクセスしなくなりましたが、時には誰も聞いていないとはわかっていても呟いてみたい気分になることがあります。
@@ -90,11 +90,11 @@
 </div>
 </div>
 
-<div id="outline-container-org5816ff8" class="outline-2">
-<h2 id="org5816ff8"><span class="section-number-2">2</span> org-journal</h2>
+<div id="outline-container-org75a60e9" class="outline-2">
+<h2 id="org75a60e9"><span class="section-number-2">2</span> org-journal</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-<a href="https://github.com/bastibe/org-journal">org-journal</a> は名前の通り、ジャーナルを書くためのemacsのメジャーモードです。私はglobalに <code>C-c C-j</code> でorg-journalが起動するようにしてみました。init.elには以下を追記しています。
+<a href="https://github.com/bastibe/org-journal">org-journal</a> は名前の通り、ジャーナルを書くためのemacsのメジャーモードです。私はglobalに <code>C-c j</code> でorg-journalが起動するようにしてみました。init.elには以下を追記しています。
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(use-package org-journal
@@ -106,7 +106,7 @@
   (org-journal-file-format <span style="font-style: italic;">"%Y%m%d.org"</span>)
   (org-journal-file-type 'monthly))
 
-(global-set-key (kbd <span style="font-style: italic;">"C-c C-j"</span>) 'org-journal-new-entry)
+(global-set-key (kbd <span style="font-style: italic;">"C-c j"</span>) 'org-journal-new-entry)
 </pre>
 </div>
 <ul class="org-ul">
@@ -120,7 +120,7 @@
 </p>
 
 <p>
-何か思い立った時に <code>C-c C-j</code> を押すとジャーナルファイルが開いて、 言いたいことを追記していくことができます。これ、滅茶苦茶便利です。操作が面倒だと書き込もうという意欲が萎んでしまいますが、ほぼノーストレスです。
+何か思い立った時に <code>C-c j</code> を押すと画面が2分割されてジャーナルファイルが開き、 言いたいことを追記していくことができます。書いたらすぐに <code>C-x 0</code> で下のorg-journal画面を閉じるだけ。これ、滅茶苦茶便利です。操作が面倒だと書き込もうという意欲が萎んでしまいますが、ほぼノーストレスです。
 </p>
 
 <p>
@@ -140,8 +140,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge99dcc8" class="outline-2">
-<h2 id="orge99dcc8"><span class="section-number-2">3</span> 王様の耳はロバの耳</h2>
+<div id="outline-container-orgb16fe42" class="outline-2">
+<h2 id="orgb16fe42"><span class="section-number-2">3</span> 王様の耳はロバの耳</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 だれも読んでいないとはわかっていても、Twitterは世界に向けて公開しています。org-journalで代わりが務まるのでしょうか。そもそもは全く異なる目的のものですし。
@@ -153,8 +153,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgeab9f02" class="outline-2">
-<h2 id="orgeab9f02"><span class="section-number-2">4</span> リンク</h2>
+<div id="outline-container-orgf40682c" class="outline-2">
+<h2 id="orgf40682c"><span class="section-number-2">4</span> リンク</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><a href="https://github.com/bastibe/org-journal">https://github.com/bastibe/org-journal</a></li>
