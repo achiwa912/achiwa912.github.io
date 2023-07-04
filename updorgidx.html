@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Mastering Emacsを読みました &mdash; Daydreaming in Brookline, MA</title>
+  <title>orgidxに説明行をつけられるようにしました &mdash; Daydreaming in Brookline, MA</title>
   <meta name="author" content="Kyos">
 
 
@@ -48,10 +48,10 @@
       <li >
         <a href="/category/linux.html">Linux</a>
       </li>
-      <li >
+      <li class="active">
         <a href="/category/python.html">Python</a>
       </li>
-      <li class="active">
+      <li >
         <a href="/category/tech.html">Tech</a>
       </li>
 </ul></nav>
@@ -60,76 +60,75 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Mastering Emacsを読みました</h1>
+      <h1 class="entry-title">orgidxに説明行をつけられるようにしました</h1>
     <p class="meta">
-<time datetime="2023-06-30T00:00:00-04:00" pubdate>Fri 30 June 2023</time>    </p>
+<time datetime="2023-07-04T00:00:00-04:00" pubdate>Tue 04 July 2023</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7aa192e">1. はじめに</a></li>
-<li><a href="#org9fb33d4">2. Mastering Emacs</a>
-<ul>
-<li><a href="#org26496e4">2.1. 電子版のみ</a></li>
-<li><a href="#org62a5ad1">2.2. 本の紹介</a></li>
-</ul>
-</li>
-<li><a href="#orgbe4cc00">3. 感想</a></li>
+<li><a href="#orgf201cc5">1. はじめに</a></li>
+<li><a href="#org20c7911">2. orgidx</a></li>
+<li><a href="#org414992c">3. もっと便利な方法は？</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7aa192e" class="outline-2">
-<h2 id="org7aa192e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgf201cc5" class="outline-2">
+<h2 id="orgf201cc5"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-評判が良いのでMickey Petersen著の <a href="https://www.masteringemacs.org/">Mastering Emacs</a> を読みました。emacs 歴30年(うち不使用期間20年以上 笑)の私にも役立つでしょうか。
+Happy independence day! 今日はお休みなので、以前作ったツールのマイナーエンハンスをしました。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9fb33d4" class="outline-2">
-<h2 id="org9fb33d4"><span class="section-number-2">2</span> Mastering Emacs</h2>
+<div id="outline-container-org20c7911" class="outline-2">
+<h2 id="org20c7911"><span class="section-number-2">2</span> orgidx</h2>
 <div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-org26496e4" class="outline-3">
-<h3 id="org26496e4"><span class="section-number-3">2.1</span> 電子版のみ</h3>
-<div class="outline-text-3" id="text-2-1">
 <p>
-まずは紙の本を探したのですが、電子版しかありませんでした。電子版に$49.99は高いような。なんと、日本語版が最近追加されています。$49.99に込みなのは日本人的にありがたいと思いますが、私は英語版で読んでしまいました。
-</p>
-</div>
-</div>
-
-<div id="outline-container-org62a5ad1" class="outline-3">
-<h3 id="org62a5ad1"><span class="section-number-3">2.2</span> 本の紹介</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-Mastering Emacsは、emacs lisp (elisp)の深い知識無しでどこまで効率的に emacs が使えるかをマニアックに追求した本です。若干退屈な最初の数章を抜けると、次から次へと使える技と、その背景にある考え方が紹介されます。ただのcheat sheetではありません。著者は emacs をこう使うべき、という実践的な哲学を持っています。
+私は自分の作ったPythonツール類をgithubに置いて公開しています。 <a href="https://github.com/achiwa912/">こちら</a>。
 </p>
 
 <p>
-私としては、特に以下の点が役に立ちました。レベル低いです。。。
+自作ツールの中には、自分でわりとよく使っているものがあります。例えば、
 </p>
 <ul class="org-ul">
-<li>ヘルプ(<code>C-h</code>)の使い方。 &rarr; ほとんど使っていませんでした。googleよりも速く確実。これが使えるようになるとgoogle検索やcheat sheetの使用頻度が減りそう。</li>
-<li>キャラクター単位の移動を常用するな。キーリピートの速度が限界になる。 <code>C-数字</code> との組み合わせ(eg, <code>C-8 C-f</code>)、単語単位の動き、カッコ内外への移動、検索など、ずっと効率的な移動がある。 &rarr; 衝撃的でした。キーストロークを最少にする移動は vi/vim の専売特許だと思っていました。このあたりをマニアックに解説した4章だけのために本書を買う価値があると思います。</li>
+<li>ボキャビル用Webアプリのこれ: <a href="https://github.com/achiwa912/vbs">https://github.com/achiwa912/vbs</a></li>
+<li>書き込み用カレンダー: <a href="https://github.com/achiwa912/simcal">https://github.com/achiwa912/simcal</a>; そして、</li>
+<li>プライベートWikiのインデックス作成: <a href="https://github.com/achiwa912/orgidx">https://github.com/achiwa912/orgidx</a></li>
 </ul>
+<p>
+などです。
+</p>
 
 <p>
-さらっと読んだだけでは消化不良になるので、私は自分の emacs cheet sheet に追記しながら読みました。無意識に使えるようにマッスルメモリーに叩き込むべく練習中。目指せ、至高のemacs使い!
+最後のorgidxは、github等のレポジトリにたくさんのorgファイルを置く際に、各orgファイルへのリンクをまとめたインデックスファイルを作成するツールです。以前の <a href="https://achiwa912.github.io/orgidx.html">ブログエントリー</a> で紹介しています。
+</p>
+
+<p>
+今回、orgファイルのタイトルに加えて、説明も追記できるようにしました。こんな感じのインデックスページが作成されます。
+</p>
+
+
+<div id="org936fd59" class="figure">
+<p><img src="https://github.com/achiwa912/orgidx/blob/main/wikiidx.jpg" alt="wikiidx.jpg" />
+</p>
+</div>
+
+<p>
+タイトルはorgファイル内の <code>#+TITLE:</code> メタデータ、説明は <code>#+SUBTITLE:</code> メタデータを使います。
 </p>
 </div>
 </div>
-</div>
 
-<div id="outline-container-orgbe4cc00" class="outline-2">
-<h2 id="orgbe4cc00"><span class="section-number-2">3</span> 感想</h2>
+<div id="outline-container-org414992c" class="outline-2">
+<h2 id="org414992c"><span class="section-number-2">3</span> もっと便利な方法は？</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-elispに踏み込まないということで過度の期待はしていませんでしたが、$49.99という高価な値段設定に負けない良書でした。elispを学ぶ前にもまだまだできることがあります。IDEランキングなどで、ちまたではすっかりオワコンな雰囲気を醸しているemacsですが、至高のツールであることが再確認できました。高価ですが(くどい)買ってよかったです。
+orgidxを、自分ではそれなりに満足して普段から使っていますが、もっと便利な方法は無いだろうかと思っています。他の人達はどうしているのでしょうか。org-roamを使っているのかな。
 </p>
 </div>
 </div>
@@ -141,11 +140,11 @@ elispに踏み込まないということで過度の期待はしていません
         きょうす
     </span>
   </span>
-<time datetime="2023-06-30T00:00:00-04:00" pubdate>Fri 30 June 2023</time>  <span class="categories">
-    <a class='category' href='/category/tech.html'>Tech</a>
+<time datetime="2023-07-04T00:00:00-04:00" pubdate>Tue 04 July 2023</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
-    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/emacs.html">emacs</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
