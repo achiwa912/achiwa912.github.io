@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Deployed a flashcard web app: Vocabull &mdash; Daydreaming in Brookline, MA</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Brookline, MA</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Deployed a flashcard web app: Vocabull</h1>
+    <p class="meta">
+<time datetime="2023-07-08T00:00:00-04:00" pubdate>Sat 08 July 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgd31b085">1. Introduction</a></li>
+<li><a href="#orgb4eaeb4">2. Vocabull (server)</a>
+<ul>
+<li><a href="#org593886e">2.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#orgea09f51">3. Usage</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org3367597">3.0.1. Register and login</a></li>
+<li><a href="#org13882af">3.0.2. Choose a sample book</a></li>
+<li><a href="#org6a138cd">3.0.3. Practice flashcards</a></li>
+<li><a href="#orgfc06f71">3.0.4. Practice spells by typing words (many times..)</a></li>
+<li><a href="#orgd979bef">3.0.5. Create a book and add words</a></li>
+<li><a href="#org234dfde">3.0.6. Optionally, you can load words from a file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4e2b1ef">4. Resources</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd31b085" class="outline-2">
+<h2 id="orgd31b085"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Hello, I am Kyosuke (Call me just 'K' or 'Kay' if you will).  I recently created a web application for vocabulary building, and deployed it on pythonanywhere.com.  Of course, you can use it for free.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb4eaeb4" class="outline-2">
+<h2 id="orgb4eaeb4"><span class="section-number-2">2</span> Vocabull (server)</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org593886e" class="outline-3">
+<h3 id="org593886e"><span class="section-number-3">2.1</span> Overview</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<div id="org3845d2e" class="figure">
+<p><img src="./images/vbs.jpg" alt="vbs.jpg" />
+</p>
+</div>
+
+<p>
+Vocabull is a web application that has flashcard and other features.  It has three modes:
+</p>
+<ol class="org-ol">
+<li>flashcard - <code>word to def</code> mode</li>
+<li>flashcard - <code>def to word</code> mode</li>
+<li>practicing spells - <code>type word</code> mode</li>
+</ol>
+
+<p>
+You can access Vocabull from you PC or mobile devices.  From my Google Pixel 4, it looks like:
+<img src="./images/vbs_mobile.png" alt="vbs_mobile.png" />
+</p>
+
+<p>
+I believe it is better than simple flashcards because:
+</p>
+<ul class="org-ul">
+<li>You’ll see hard-to-memorize words more frequently
+<ul class="org-ul">
+<li>It repeats small number of words until you memorize (for now)</li>
+</ul></li>
+<li>You can practice anywhere at anytime with your mobile phone, tablet or PC</li>
+<li>You can practice spelling (type-word mode)</li>
+<li>Presents words in random order</li>
+<li>It reads aloud words for you</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgea09f51" class="outline-2">
+<h2 id="orgea09f51"><span class="section-number-2">3</span> Usage</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org3367597" class="outline-4">
+<h4 id="org3367597"><span class="section-number-4">3.0.1</span> Register and login</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<ul class="org-ul">
+<li>Visit <a href="https://achiwa912.pythonanywhere.com">https://achiwa912.pythonanywhere.com</a></li>
+</ul>
+
+<div id="org1267533" class="figure">
+<p><img src="./images/vbs_navbar.jpg" alt="vbs_navbar.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the menu icon at the top right corner &gt; <code>Login</code> &gt; <code>Click here to register</code></li>
+</ul>
+
+<div id="org61df154" class="figure">
+<p><img src="./images/vbs_login.jpg" alt="vbs_login.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Enter username and password to create an account</li>
+<li>Login with the username and password</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org13882af" class="outline-4">
+<h4 id="org13882af"><span class="section-number-4">3.0.2</span> Choose a sample book</h4>
+<div class="outline-text-4" id="text-3-0-2">
+<ul class="org-ul">
+<li>At first, a sample book (ie, sample_&lt;your_user_name&gt;) is registerd and it has 5 wordsin it</li>
+</ul>
+
+<div id="org7b07802" class="figure">
+<p><img src="./images/vbs_samplebook.jpg" alt="vbs_samplebook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Then, the sample book page opens</li>
+</ul>
+
+<div id="org54b9123" class="figure">
+<p><img src="./images/vbs_samplewords.jpg" alt="vbs_samplewords.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6a138cd" class="outline-4">
+<h4 id="org6a138cd"><span class="section-number-4">3.0.3</span> Practice flashcards</h4>
+<div class="outline-text-4" id="text-3-0-3">
+
+<div id="orgf8c8c14" class="figure">
+<p><img src="./images/vbs_mode.jpg" alt="vbs_mode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click <code>Practice</code> menu &gt; <code>word to def</code> or <code>def to word</code></li>
+<li>You will be navigated to the practice page.</li>
+</ul>
+
+<div id="orgf0fc294" class="figure">
+<p><img src="./images/vbs_w2d.jpg" alt="vbs_w2d.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the word card to flip and show the answer
+<ul class="org-ul">
+<li>Orange card shows the word, and blue card shows the definition</li>
+<li>You can flip cards as many as you like</li>
+</ul></li>
+<li>Click <code>Pronounce word</code> to check the pronounciation
+-A small pop-up will open for a few sec and it will automatically close
+  If you don’t know, click Once more so that the word will reappear in the near future
+  If you managed to memorize it, click Memorized for now to increase the score by 1
+      You won’t see the word for this round as Vocabull presents to you 10-lowest-score words
+  If you know the word, click Knew it! to increase the score by 5!
+      So, you won’t see the word for 5 rounds
+  Click Back to book to go back to the selected book</li>
+<li>If you don’t know, click <code>Once more</code> so that the word will reappear in the near future</li>
+<li>If you managed to memorize it, click <code>Memorized for now</code> to increase the score by 1
+<ul class="org-ul">
+<li>You won’t see the word for this round as Vocabull presents to you 10-lowest-score words</li>
+</ul></li>
+<li>If you know the word, click <code>Knew it!</code> to increase the score by 5!
+<ul class="org-ul">
+<li>So, you won’t see the word for 5 rounds</li>
+</ul></li>
+<li>Click <code>Back to book</code> to go back to the selected book</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgfc06f71" class="outline-4">
+<h4 id="orgfc06f71"><span class="section-number-4">3.0.4</span> Practice spells by typing words (many times..)</h4>
+<div class="outline-text-4" id="text-3-0-4">
+<ul class="org-ul">
+<li>Click <code>Practice</code> menu &gt; choose <code>type word</code></li>
+<li>Vocabull shows the definition of a word and asks you to type the word</li>
+</ul>
+
+<div id="org5dbcb56" class="figure">
+<p><img src="./images/vbs_typemode.jpg" alt="vbs_typemode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Type your answer and click <code>Submit</code> (or push return key)</li>
+<li>It shows corret/incorrect and asks you to type the word 4 times, anyway
+<ul class="org-ul">
+<li>Tip: use tab or return key to move from an input box to another</li>
+<li>If incorrect, you’ll see the word again after a while</li>
+</ul></li>
+</ul>
+
+<div id="orgf7d64ac" class="figure">
+<p><img src="./images/vbs_repeat.jpg" alt="vbs_repeat.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click <code>Pronunce word</code> to check the pronunciation</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd979bef" class="outline-4">
+<h4 id="orgd979bef"><span class="section-number-4">3.0.5</span> Create a book and add words</h4>
+<div class="outline-text-4" id="text-3-0-5">
+<p>
+Also, you can create your own book and register words.
+</p>
+<ul class="org-ul">
+<li>Click My Books &gt; <code>Add</code> button</li>
+<li>Type a book name and click <code>Submit</code></li>
+</ul>
+
+<div id="orga1d1784" class="figure">
+<p><img src="./images/vbs_top.jpg" alt="vbs_top.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the newly created book card &gt; click <code>Add</code> word</li>
+<li>Type word and definition, and then click <code>Submit</code> → Now, <code>Practice</code> is activated
+<ul class="org-ul">
+<li>Add a few words</li>
+</ul></li>
+</ul>
+
+<div id="org2452db4" class="figure">
+<p><img src="./images/vbs_book.jpg" alt="vbs_book.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org234dfde" class="outline-4">
+<h4 id="org234dfde"><span class="section-number-4">3.0.6</span> Optionally, you can load words from a file</h4>
+<div class="outline-text-4" id="text-3-0-6">
+<ul class="org-ul">
+<li>Prepare a word definition file
+<ul class="org-ul">
+<li>one word definition per line</li>
+<li>a line consists of <code>word</code>, <code>definition</code> and an optional <code>sample sentense</code> separated by a tab (<code>\t</code>)</li>
+<li>a line format (<code>\t</code> is a tab):</li>
+</ul></li>
+</ul>
+<pre class="example">
+&lt;word&gt;\t&lt;definition&gt;[\t&lt;sample&gt;]
+</pre>
+
+<ul class="org-ul">
+<li>Example:</li>
+</ul>
+<pre class="example">
+strident	shrill, harsh, rough	[in more ******** tones]
+lassitude	weariness, fatigue
+deleterious	bad, harmful	[a *********** effect on health]
+</pre>
+<ul class="org-ul">
+<li>Navigate to a book page</li>
+<li>Click <code>Load from file</code> &gt; click <code>Browse...</code> &gt; choose a file &gt; click <code>Submit</code></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4e2b1ef" class="outline-2">
+<h2 id="org4e2b1ef"><span class="section-number-2">4</span> Resources</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Project Link: <a href="https://github.com/achiwa912/vbs">https://github.com/achiwa912/vbs</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Kyos
+    </span>
+  </span>
+<time datetime="2023-07-08T00:00:00-04:00" pubdate>Sat 08 July 2023</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/english.html">English</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/vbs_eng.html">Deployed a flashcard web app: Vocabull</a>
+      </li>
+      <li class="post">
+          <a href="/updorgidx.html">orgidxに説明行をつけられるようにしました</a>
+      </li>
+      <li class="post">
+          <a href="/capture.html">org-captureって便利なんでは!?</a>
+      </li>
+      <li class="post">
+          <a href="/masteremacs.html">Mastering Emacsを読みました</a>
+      </li>
+      <li class="post">
+          <a href="/utm_a9.html">AlmaLinux 9環境をM1 MacBook上に再構築しました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2023  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
