@@ -69,26 +69,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc738c0c">1. はじめに</a></li>
-<li><a href="#orgeb68d2c">2. カレンダー置き場</a>
+<li><a href="#org73187aa">1. はじめに</a></li>
+<li><a href="#orgbe42022">2. カレンダー置き場</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org390fb3c">2.0.1. 2023年</a></li>
+<li><a href="#orgb47abcc">2.0.1. 2023年</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org196f80f">3. 6週に渡る月をどうしたものか</a></li>
-<li><a href="#org2f81c67">4. simcal.pyの特長</a></li>
-<li><a href="#org6254045">5. カレンダーの生成のしかた</a></li>
-<li><a href="#orgce52d11">6. 参考にしたサイト、使用ライブラリ</a>
+<li><a href="#org6490881">3. 6週に渡る月をどうしたものか</a></li>
+<li><a href="#orgbc35e33">4. simcal.pyの特長</a></li>
+<li><a href="#org6e80d84">5. カレンダーの生成のしかた</a></li>
+<li><a href="#org627d9f6">6. 参考にしたサイト、使用ライブラリ</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgdc7dd0b">6.0.1. 印刷用シンプルなカレンダー (ご自由にお持ちください)</a></li>
-<li><a href="#org849da25">6.0.2. reportlab 3.6.12</a></li>
-<li><a href="#orgcc277da">6.0.3. holidays 0.18</a></li>
+<li><a href="#org1719417">6.0.1. 印刷用シンプルなカレンダー (ご自由にお持ちください)</a></li>
+<li><a href="#org2029de6">6.0.2. reportlab 3.6.12</a></li>
+<li><a href="#org08a638c">6.0.3. holidays 0.18</a></li>
 </ul>
 </li>
 </ul>
@@ -97,8 +97,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc738c0c" class="outline-2">
-<h2 id="orgc738c0c"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org73187aa" class="outline-2">
+<h2 id="org73187aa"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 ここ数年、うちでは <a href="https://yasuoka.net/~yasuoka/calendar.html">印刷用シンプルなカレンダー (ご自由にお持ちください)</a> を愛用しています。月曜始まりも選べるなどほぼ理想的な書き込み用カレンダーなのですが、一点だけ気になる点がありました。2023年1月のように1ヶ月が6週に渡ってしまうと、最後の1,2日が前の週にマージされてしまい、その2,4日は書き込みスペースが半分になってしまうのです。そこで、正月休みを利用して類似のカレンダーを自動生成するpythonスクリプトを作ってみました。githubにて <a href="https://github.com/achiwa912/simcal">公開</a> しています。
@@ -112,16 +112,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgeb68d2c" class="outline-2">
-<h2 id="orgeb68d2c"><span class="section-number-2">2</span> カレンダー置き場</h2>
+<div id="outline-container-orgbe42022" class="outline-2">
+<h2 id="orgbe42022"><span class="section-number-2">2</span> カレンダー置き場</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ここに置いてあるのは常に第1週を表示する版です。ご自由にお持ちください。リンクに飛んで、Downloadボタンをクリックしてください。
 </p>
 </div>
 
-<div id="outline-container-org390fb3c" class="outline-4">
-<h4 id="org390fb3c"><span class="section-number-4">2.0.1</span> 2023年</h4>
+<div id="outline-container-orgb47abcc" class="outline-4">
+<h4 id="orgb47abcc"><span class="section-number-4">2.0.1</span> 2023年</h4>
 <div class="outline-text-4" id="text-2-0-1">
 <ul class="org-ul">
 <li><a href="https://github.com/achiwa912/simcal/blob/main/samples/cal2023s_JP.pdf">日本日曜始まり</a>、<a href="https://github.com/achiwa912/simcal/blob/main/samples/cal2023m_JP.pdf">日本月曜始まり</a></li>
@@ -131,8 +131,8 @@
 </div>
 </div>
 
-<div id="outline-container-org196f80f" class="outline-2">
-<h2 id="org196f80f"><span class="section-number-2">3</span> 6週に渡る月をどうしたものか</h2>
+<div id="outline-container-org6490881" class="outline-2">
+<h2 id="org6490881"><span class="section-number-2">3</span> 6週に渡る月をどうしたものか</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 すべて表示すると6段になってしまい、書き込みスペースが全体的に小さくなるのでそれも嫌です。そこで思い切って、6週に渡る月は第1週を表示しないことを選択できるようにしました。表示しないとは言っても、前の月に削られた日のスペースがあるので、実用上は問題ない、、、かもしれません。
@@ -141,8 +141,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2f81c67" class="outline-2">
-<h2 id="org2f81c67"><span class="section-number-2">4</span> simcal.pyの特長</h2>
+<div id="outline-container-orgbc35e33" class="outline-2">
+<h2 id="orgbc35e33"><span class="section-number-2">4</span> simcal.pyの特長</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>印刷して書き込めるタイプのカレンダー(PDFファイル)を生成します
@@ -157,8 +157,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6254045" class="outline-2">
-<h2 id="org6254045"><span class="section-number-2">5</span> カレンダーの生成のしかた</h2>
+<div id="outline-container-org6e80d84" class="outline-2">
+<h2 id="org6e80d84"><span class="section-number-2">5</span> カレンダーの生成のしかた</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Python 3.8以上を使えるようにします</li>
@@ -192,12 +192,12 @@ python simcal.py
 </div>
 </div>
 
-<div id="outline-container-orgce52d11" class="outline-2">
-<h2 id="orgce52d11"><span class="section-number-2">6</span> 参考にしたサイト、使用ライブラリ</h2>
+<div id="outline-container-org627d9f6" class="outline-2">
+<h2 id="org627d9f6"><span class="section-number-2">6</span> 参考にしたサイト、使用ライブラリ</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgdc7dd0b" class="outline-4">
-<h4 id="orgdc7dd0b"><span class="section-number-4">6.0.1</span> <a href="https://yasuoka.net/~yasuoka/calendar.html">印刷用シンプルなカレンダー (ご自由にお持ちください)</a></h4>
+<div id="outline-container-org1719417" class="outline-4">
+<h4 id="org1719417"><span class="section-number-4">6.0.1</span> <a href="https://yasuoka.net/~yasuoka/calendar.html">印刷用シンプルなカレンダー (ご自由にお持ちください)</a></h4>
 <div class="outline-text-4" id="text-6-0-1">
 <p>
 我が家でも愛用しているカレンダーを毎年配布下さっています。どうもありがとうございます。私のスクリプト開発が間に合わず、今年(2023)もお世話になっています。今回作ったカレンダーのデザインは、こちらのカレンダーをほぼそのまま使わせていただいています。
@@ -205,8 +205,8 @@ python simcal.py
 </div>
 </div>
 
-<div id="outline-container-org849da25" class="outline-4">
-<h4 id="org849da25"><span class="section-number-4">6.0.2</span> <a href="https://pypi.org/project/reportlab/">reportlab 3.6.12</a></h4>
+<div id="outline-container-org2029de6" class="outline-4">
+<h4 id="org2029de6"><span class="section-number-4">6.0.2</span> <a href="https://pypi.org/project/reportlab/">reportlab 3.6.12</a></h4>
 <div class="outline-text-4" id="text-6-0-2">
 <p>
 PDFを生成するPythonライブラリです。
@@ -214,8 +214,8 @@ PDFを生成するPythonライブラリです。
 </div>
 </div>
 
-<div id="outline-container-orgcc277da" class="outline-4">
-<h4 id="orgcc277da"><span class="section-number-4">6.0.3</span> <a href="https://pypi.org/project/holidays/">holidays 0.18</a></h4>
+<div id="outline-container-org08a638c" class="outline-4">
+<h4 id="org08a638c"><span class="section-number-4">6.0.3</span> <a href="https://pypi.org/project/holidays/">holidays 0.18</a></h4>
 <div class="outline-text-4" id="text-6-0-3">
 <p>
 休日を取得するPythonライブラリです。世界の休日が取得できます。
