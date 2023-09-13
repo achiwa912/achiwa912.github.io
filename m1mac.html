@@ -69,10 +69,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgacbe8d8">1. MacBookが新しくなりなした</a></li>
-<li><a href="#orgc614464">2. M1 MacBook Pro 16インチ</a>
+<li><a href="#org1ff620f">1. MacBookが新しくなりなした</a></li>
+<li><a href="#org3267fdb">2. M1 MacBook Pro 16インチ</a>
 <ul>
-<li><a href="#org1dc1eac">2.1. UTMの問題(3/17/2023追記)</a></li>
+<li><a href="#orgc757b2f">2.1. UTMの問題(3/17/2023追記)</a></li>
 </ul>
 </li>
 </ul>
@@ -80,8 +80,8 @@
 </div>
 
 
-<div id="outline-container-orgacbe8d8" class="outline-2">
-<h2 id="orgacbe8d8"><span class="section-number-2">1</span> MacBookが新しくなりなした</h2>
+<div id="outline-container-org1ff620f" class="outline-2">
+<h2 id="org1ff620f"><span class="section-number-2">1</span> MacBookが新しくなりなした</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社支給のMacBook Pro 15インチの調子がまた悪くなりました。夏に立ち上がらなくなってAppleストアに持ち込み、マザーボードを交換したばかりですが、今度はバッテリーです。ここしばらくバッテリー容量低下のWarningが出ていたので気になっていたのですが、バッテリーで使っていると15分も使っていないのにバッテリー残量が無いためにシャットダウンする、と言ってVMをサスペンドするようになりました。
@@ -93,8 +93,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc614464" class="outline-2">
-<h2 id="orgc614464"><span class="section-number-2">2</span> M1 MacBook Pro 16インチ</h2>
+<div id="outline-container-org3267fdb" class="outline-2">
+<h2 id="org3267fdb"><span class="section-number-2">2</span> M1 MacBook Pro 16インチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 早速3日くらいでアパートにとどきました。これまで使っていた15インチ版と比べて、大きく重くなりました。普段から持ち運ぶには重すぎるように思います。これまでのバタフライキーボードはいまいちでしたが、今回のキーボードはとてもタイプしやすいです。
@@ -105,8 +105,8 @@
 </p>
 </div>
 
-<div id="outline-container-org1dc1eac" class="outline-3">
-<h3 id="org1dc1eac"><span class="section-number-3">2.1</span> UTMの問題(3/17/2023追記)</h3>
+<div id="outline-container-orgc757b2f" class="outline-3">
+<h3 id="orgc757b2f"><span class="section-number-3">2.1</span> UTMの問題(3/17/2023追記)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 しばらく使ってみて、UTMの問題が色々見えてきました。ホストであるMacBookがスリープからレジュームした際に時間がずれたままなため、 <code>sudo systemctl restart chronyd</code> がたびたび必要になることと、やはりレジューム後にネットワークが機能しないことがあり、その際、trampでVM内のファイルを編集しているとemacsが固まってしまうことです。こうなると <code>sudo systemd restart NetworkManager</code> しても復活せず、仕方なくVMをリブートしています。
@@ -153,6 +153,9 @@
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/pixel7.html">Pixel 7 Proを買いました</a>
+      </li>
+      <li class="post">
           <a href="/summerreading23.html">Summer Reading 2023</a>
       </li>
       <li class="post">
@@ -163,9 +166,6 @@
       </li>
       <li class="post">
           <a href="/vbs_eng.html">Introducing Vocabull - a web app for building your vocabulary skills</a>
-      </li>
-      <li class="post">
-          <a href="/updorgidx.html">orgidxに説明行をつけられるようにしました</a>
       </li>
     </ul>
   </section>
@@ -184,7 +184,7 @@
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

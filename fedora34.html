@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9c8b338">1. はじめに</a></li>
-<li><a href="#org6927788">2. Fedora36インストール</a>
+<li><a href="#orge686535">1. はじめに</a></li>
+<li><a href="#org45139ca">2. Fedora36インストール</a>
 <ul>
-<li><a href="#orgbe61ba8">2.1. VM作成</a></li>
-<li><a href="#org18d4609">2.2. fedoraインストーラー</a></li>
-<li><a href="#org22baffa">2.3. fedora起動</a></li>
-<li><a href="#orgc83b917">2.4. Guest Additions</a></li>
+<li><a href="#org3add41c">2.1. VM作成</a></li>
+<li><a href="#org170c887">2.2. fedoraインストーラー</a></li>
+<li><a href="#org6c3f30b">2.3. fedora起動</a></li>
+<li><a href="#org6cab067">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org5fae1df">3. gitの設定</a></li>
-<li><a href="#orga6a88cc">4. emacsの設定</a></li>
-<li><a href="#orge57045f">5. pythonの設定</a>
+<li><a href="#org8578d8e">3. gitの設定</a></li>
+<li><a href="#org319457e">4. emacsの設定</a></li>
+<li><a href="#org712481b">5. pythonの設定</a>
 <ul>
-<li><a href="#org8eef435">5.1. pyenvを入れる</a></li>
+<li><a href="#orga113786">5.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9c8b338" class="outline-2">
-<h2 id="org9c8b338"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orge686535" class="outline-2">
+<h2 id="orge686535"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora36を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora36インストール及び設定の備忘録です。
@@ -103,12 +103,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-org6927788" class="outline-2">
-<h2 id="org6927788"><span class="section-number-2">2</span> Fedora36インストール</h2>
+<div id="outline-container-org45139ca" class="outline-2">
+<h2 id="org45139ca"><span class="section-number-2">2</span> Fedora36インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbe61ba8" class="outline-3">
-<h3 id="orgbe61ba8"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org3add41c" class="outline-3">
+<h3 id="org3add41c"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 36 download</code> で検索して、isoファイルをダウンロードします。
@@ -136,8 +136,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org18d4609" class="outline-3">
-<h3 id="org18d4609"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-org170c887" class="outline-3">
+<h3 id="org170c887"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora36のインストーラー起動画面が出ます。
@@ -158,8 +158,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org22baffa" class="outline-3">
-<h3 id="org22baffa"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-org6c3f30b" class="outline-3">
+<h3 id="org6c3f30b"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。(fedora34ではしばらく不安になる画面で放置されますが、数十秒で使えるようになりました。fedora36ではなぜかログイン画面が出ずに強制電断 &rarr; 電源オンしたところ、何事もなかったようにログイン画面が出ました。何だったんだろう。。。)
@@ -183,8 +183,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-orgc83b917" class="outline-3">
-<h3 id="orgc83b917"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-org6cab067" class="outline-3">
+<h3 id="org6cab067"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -242,8 +242,8 @@ Fedora36としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-org5fae1df" class="outline-2">
-<h2 id="org5fae1df"><span class="section-number-2">3</span> gitの設定</h2>
+<div id="outline-container-org8578d8e" class="outline-2">
+<h2 id="org8578d8e"><span class="section-number-2">3</span> gitの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitの最低限の設定をしておきます。これを忘れて、コミットでエラーになりました(magitではemacsごと落ちました)。
@@ -256,8 +256,8 @@ git config --global user.name <span style="font-style: italic;">"&lt;your name&g
 </div>
 </div>
 
-<div id="outline-container-orga6a88cc" class="outline-2">
-<h2 id="orga6a88cc"><span class="section-number-2">4</span> emacsの設定</h2>
+<div id="outline-container-org319457e" class="outline-2">
+<h2 id="org319457e"><span class="section-number-2">4</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 注) 5/12/2022追記。emacsの設定は最近いろいろ変えているので、アップデートせずにそのまま残しておきます。
@@ -547,8 +547,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-orge57045f" class="outline-2">
-<h2 id="orge57045f"><span class="section-number-2">5</span> pythonの設定</h2>
+<div id="outline-container-org712481b" class="outline-2">
+<h2 id="org712481b"><span class="section-number-2">5</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Fedora36を入れたら、いきなりpython 3.10.4が/usr/bin/pythonとしてインストールされていました。
@@ -563,8 +563,8 @@ Python 3.10.4
 </div>
 </div>
 
-<div id="outline-container-org8eef435" class="outline-3">
-<h3 id="org8eef435"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
+<div id="outline-container-orga113786" class="outline-3">
+<h3 id="orga113786"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.10.4なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -669,6 +669,9 @@ pip install 'python-lsp-server[all]'
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/pixel7.html">Pixel 7 Proを買いました</a>
+      </li>
+      <li class="post">
           <a href="/summerreading23.html">Summer Reading 2023</a>
       </li>
       <li class="post">
@@ -679,9 +682,6 @@ pip install 'python-lsp-server[all]'
       </li>
       <li class="post">
           <a href="/vbs_eng.html">Introducing Vocabull - a web app for building your vocabulary skills</a>
-      </li>
-      <li class="post">
-          <a href="/updorgidx.html">orgidxに説明行をつけられるようにしました</a>
       </li>
     </ul>
   </section>
@@ -700,7 +700,7 @@ pip install 'python-lsp-server[all]'
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
