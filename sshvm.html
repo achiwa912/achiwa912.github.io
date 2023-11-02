@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga45e24e">1. はじめに</a></li>
-<li><a href="#orgb2104c2">2. VMにsshで入るための設定</a>
+<li><a href="#orge9a15d9">1. はじめに</a></li>
+<li><a href="#org63e9763">2. VMにsshで入るための設定</a>
 <ul>
-<li><a href="#org3af8936">2.1. ssh serverの設定</a></li>
-<li><a href="#orgfbb7543">2.2. VMネットワークの設定</a></li>
-<li><a href="#org4d73233">2.3. sshキーのインポート</a></li>
+<li><a href="#org44895fb">2.1. ssh serverの設定</a></li>
+<li><a href="#org4c69547">2.2. VMネットワークの設定</a></li>
+<li><a href="#org79f79b4">2.3. sshキーのインポート</a></li>
 </ul>
 </li>
-<li><a href="#org75598d1">3. Resources</a></li>
+<li><a href="#org2fcd6b3">3. Resources</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga45e24e" class="outline-2">
-<h2 id="orga45e24e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orge9a15d9" class="outline-2">
+<h2 id="orge9a15d9"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はMacにVirtualBoxを入れ、Fedora VM上でドキュメント(orgファイル)の編集やpythonのスクリプト開発を行っていますが、 <a href="https://mkyong.com/mac/virtualbox-running-slow-and-lag-on-macos-macbook-pro/">このワークアラウンド</a> (2. VirtualBox in Low Resolution) のために解像度が粗く、見た目がやや残念なことになっています。そこで、Mac上のターミナルからFedora VMにssh接続することを考えました。
@@ -92,12 +92,12 @@
 </div>
 
 
-<div id="outline-container-orgb2104c2" class="outline-2">
-<h2 id="orgb2104c2"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
+<div id="outline-container-org63e9763" class="outline-2">
+<h2 id="org63e9763"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org3af8936" class="outline-3">
-<h3 id="org3af8936"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
+<div id="outline-container-org44895fb" class="outline-3">
+<h3 id="org44895fb"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはVirtualBoxのFedora 35 VM上でsshサーバーの設定をします。
@@ -113,8 +113,8 @@ ssh &lt;username&gt;@localhost  <span style="font-weight: bold; font-style: ital
 </div>
 </div>
 
-<div id="outline-container-orgfbb7543" class="outline-3">
-<h3 id="orgfbb7543"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
+<div id="outline-container-org4c69547" class="outline-3">
+<h3 id="org4c69547"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 次に、VirtualBoxのVMに、ホストであるMacからつながるようにネットワーク設定をします。
@@ -155,8 +155,8 @@ Last login: Mon May  9 11:32:14 2022
 </div>
 </div>
 
-<div id="outline-container-org4d73233" class="outline-3">
-<h3 id="org4d73233"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
+<div id="outline-container-org79f79b4" class="outline-3">
+<h3 id="org79f79b4"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 パスワードレスでssh接続したいので、Mac上のsshパブリックキーをVMにコピーします。まずは.sshディレクトリを作成してそこにsshキーを生成します。すでに作成済みであればスキップしてください。
@@ -223,8 +223,8 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
 </div>
 </div>
 
-<div id="outline-container-org75598d1" class="outline-2">
-<h2 id="org75598d1"><span class="section-number-2">3</span> Resources</h2>
+<div id="outline-container-org2fcd6b3" class="outline-2">
+<h2 id="org2fcd6b3"><span class="section-number-2">3</span> Resources</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://rocky-chen.medium.com/setup-ssh-connection-to-your-ubuntu-vm-of-virtualbox-macos-eed4691fe08">Setup SSH connection to your Ubuntu VM of VirtualBox (MacOS)</a></li>
