@@ -62,43 +62,44 @@
 <header>
       <h1 class="entry-title">Introducing Vocabull - a web app for building your vocabulary skills</h1>
     <p class="meta">
-<time datetime="2023-07-08T00:00:00-04:00" pubdate>Sat 08 July 2023</time>    </p>
+<time datetime="2023-11-02T00:00:00-04:00" pubdate>Thu 02 November 2023</time>    </p>
 </header>
 
   <div class="entry-content"><div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga1bdbe3">1. Introduction</a></li>
-<li><a href="#orge610c00">2. Vocabull (server)</a>
+<li><a href="#orgdee9e09">1. Introduction</a></li>
+<li><a href="#org752f00a">2. Vocabull (server)</a>
 <ul>
-<li><a href="#org962585d">2.1. Overview</a></li>
+<li><a href="#orgcd324d8">2.1. Overview</a></li>
+<li><a href="#org3de3556">2.2. The "Shifting Learning Window" feature</a></li>
 </ul>
 </li>
-<li><a href="#org51dcb3d">3. Usage</a>
+<li><a href="#orgab8ac75">3. Usage</a>
 <ul>
-<li><a href="#org736ba91">3.1. Register and login</a></li>
-<li><a href="#org11bb0f2">3.2. Choose a sample book</a></li>
-<li><a href="#org70eb75d">3.3. Practice flashcards</a></li>
-<li><a href="#org5dbacc5">3.4. Practice spells by typing words (many times..)</a></li>
-<li><a href="#org698da6a">3.5. Create a book and add words</a></li>
-<li><a href="#orgca538f6">3.6. Optionally, you can load words from a file</a></li>
-<li><a href="#orgc285634">3.7. Read it aloud feature</a></li>
-<li><a href="#org70637c0">3.8. Backup and restore</a>
+<li><a href="#orgd9f544f">3.1. Register and login</a></li>
+<li><a href="#orgf4f132b">3.2. Choose a sample book</a></li>
+<li><a href="#org8f9cbad">3.3. Practice flashcards</a></li>
+<li><a href="#org3722f58">3.4. Practice spells by typing words (many times..)</a></li>
+<li><a href="#orgeed5db6">3.5. Create a book and add words</a></li>
+<li><a href="#orgcb2136e">3.6. Or, borrow a wordbook from the library</a></li>
+<li><a href="#orgc2691d0">3.7. Alternatively, you can load words from a file</a></li>
+<li><a href="#org81096f5">3.8. Backup and restore</a>
 <ul>
-<li><a href="#org766f1c7">3.8.1. How to backup</a></li>
-<li><a href="#org3751f45">3.8.2. How to restore</a></li>
+<li><a href="#orge2b1d67">3.8.1. How to backup</a></li>
+<li><a href="#org8013871">3.8.2. How to restore</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgfaae6ea">4. Resources</a></li>
+<li><a href="#org57a101f">4. Resources</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga1bdbe3" class="outline-2">
-<h2 id="orga1bdbe3"><span class="section-number-2">1</span> Introduction</h2>
+<div id="outline-container-orgdee9e09" class="outline-2">
+<h2 id="orgdee9e09"><span class="section-number-2">1</span> Introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Hello, I am Kyosuke (Call me just 'K' or 'Kay' if you will).  I recently created a web application for vocabulary building, and deployed it on pythonanywhere.com.  Of course, you can use it for free.
@@ -106,15 +107,15 @@ Hello, I am Kyosuke (Call me just 'K' or 'Kay' if you will).  I recently created
 </div>
 </div>
 
-<div id="outline-container-orge610c00" class="outline-2">
-<h2 id="orge610c00"><span class="section-number-2">2</span> Vocabull (server)</h2>
+<div id="outline-container-org752f00a" class="outline-2">
+<h2 id="org752f00a"><span class="section-number-2">2</span> Vocabull (server)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org962585d" class="outline-3">
-<h3 id="org962585d"><span class="section-number-3">2.1</span> Overview</h3>
+<div id="outline-container-orgcd324d8" class="outline-3">
+<h3 id="orgcd324d8"><span class="section-number-3">2.1</span> Overview</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="orgaff6b33" class="figure">
+<div id="org7e6cc79" class="figure">
 <p><img src="./images/vbs.jpg" alt="vbs.jpg" />
 </p>
 </div>
@@ -129,8 +130,8 @@ Vocabull is a web application for building your vocabulary skills.  It has three
 </ol>
 
 <p>
-You can access Vocabull from you PC or mobile devices.  From my Google Pixel 4, it looks like:
-<img src="./images/vbs_mobile.png" alt="vbs_mobile.png" />
+You can access Vocabull from you PC or mobile devices.  On my Google Pixel 7 Pro, it looks like:
+<img src="./images/vbs_mobile.jpg" alt="vbs_mobile.jpg" />
 </p>
 
 <p>
@@ -139,29 +140,58 @@ I believe it is better than simple flashcards because:
 <ul class="org-ul">
 <li>You’ll see hard-to-memorize words more frequently
 <ul class="org-ul">
-<li>It repeats small number of words until you memorize (for now)</li>
+<li>The "<i>Shifting Learning Window</i>" feature (see below)</li>
 </ul></li>
 <li>You can practice anywhere at anytime with your mobile phone, tablet or PC</li>
 <li>You can practice spelling (type-word mode)</li>
 <li>Presents words in random order</li>
-<li>It reads aloud words for you with <code>pronounce word</code> button</li>
+<li>It reads aloud words for you with <code>(pronounce) word</code> /example button</li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-org3de3556" class="outline-3">
+<h3 id="org3de3556"><span class="section-number-3">2.2</span> The "Shifting Learning Window" feature</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Repetition is the key for memorizing new words (thus, flash cards), but I don’t think exising flash cards or flash-card apps provide you with enough repetitions for efficient memorization.
+</p>
+
+<p>
+For example, say, a set of flash cards or a word book has 200 words. If you go over the 200 words one-by-one, you’d be most likely to forget almost everything when you encountr the same word for the 2nd, 3rd or 4th time.
+</p>
+
+<p>
+vocaBull addresses this issue by introducing a combination of high-frequency repetitions of small number of words, and low-frequency repetitions of medium number of words - the <i>Shifting Learning Window</i> feature.
+</p>
+
+<p>
+The high-frequenry repetitions are realized with the “learning window”. Learning window can have 10 words, and initially has the 1st 10 words in a word book. (More precicely, words are randomly picked)
+</p>
+
+<p>
+As you repeat 10 words in the learning window, you memorize a word or two. Then, the learning window replaces the memorized word with a new word. This way, the learning window has 10 words that you are actively working on. It shifts through a word book and eventually reaches the end of the book. Then, the next cycle starts. This process contines until you memorize everything in the book.
+</p>
+
+<p>
+As you can see, a word book represents the unit of low-frequency repepitions.
+</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org51dcb3d" class="outline-2">
-<h2 id="org51dcb3d"><span class="section-number-2">3</span> Usage</h2>
+<div id="outline-container-orgab8ac75" class="outline-2">
+<h2 id="orgab8ac75"><span class="section-number-2">3</span> Usage</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org736ba91" class="outline-3">
-<h3 id="org736ba91"><span class="section-number-3">3.1</span> Register and login</h3>
+<div id="outline-container-orgd9f544f" class="outline-3">
+<h3 id="orgd9f544f"><span class="section-number-3">3.1</span> Register and login</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Visit <a href="https://achiwa912.pythonanywhere.com">https://achiwa912.pythonanywhere.com</a></li>
 </ul>
 
-<div id="org8f54bca" class="figure">
+<div id="orgf3dfd09" class="figure">
 <p><img src="./images/vbs_navbar.jpg" alt="vbs_navbar.jpg" />
 </p>
 </div>
@@ -169,7 +199,7 @@ I believe it is better than simple flashcards because:
 <li>Click the menu icon at the top right corner &gt; <code>Login</code> &gt; <code>Click here to register</code></li>
 </ul>
 
-<div id="org68987de" class="figure">
+<div id="org607d53f" class="figure">
 <p><img src="./images/vbs_login.jpg" alt="vbs_login.jpg" />
 </p>
 </div>
@@ -180,14 +210,14 @@ I believe it is better than simple flashcards because:
 </div>
 </div>
 
-<div id="outline-container-org11bb0f2" class="outline-3">
-<h3 id="org11bb0f2"><span class="section-number-3">3.2</span> Choose a sample book</h3>
+<div id="outline-container-orgf4f132b" class="outline-3">
+<h3 id="orgf4f132b"><span class="section-number-3">3.2</span> Choose a sample book</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>At first, a sample book (ie, sample_&lt;your_user_name&gt;) is registerd and it has 5 words in it</li>
 </ul>
 
-<div id="org62bd601" class="figure">
+<div id="orgc7739e4" class="figure">
 <p><img src="./images/vbs_samplebook.jpg" alt="vbs_samplebook.jpg" />
 </p>
 </div>
@@ -195,21 +225,21 @@ I believe it is better than simple flashcards because:
 <li>Then, the sample book page opens</li>
 </ul>
 
-<div id="orgf716d61" class="figure">
+<div id="org305d150" class="figure">
 <p><img src="./images/vbs_samplewords.jpg" alt="vbs_samplewords.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org70eb75d" class="outline-3">
-<h3 id="org70eb75d"><span class="section-number-3">3.3</span> Practice flashcards</h3>
+<div id="outline-container-org8f9cbad" class="outline-3">
+<h3 id="org8f9cbad"><span class="section-number-3">3.3</span> Practice flashcards</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>Click <code>Practice</code> menu &gt; <code>word to def</code> or <code>def to word</code></li>
 </ul>
 
-<div id="org2fa5ead" class="figure">
+<div id="org25c0571" class="figure">
 <p><img src="./images/vbs_mode.jpg" alt="vbs_mode.jpg" />
 </p>
 </div>
@@ -217,27 +247,26 @@ I believe it is better than simple flashcards because:
 <li>You will be navigated to the practice page.</li>
 </ul>
 
-<div id="org339471b" class="figure">
+<div id="org8e2d078" class="figure">
 <p><img src="./images/vbs_w2d.jpg" alt="vbs_w2d.jpg" />
 </p>
 </div>
 <ul class="org-ul">
 <li>Click the word card to flip and show the answer
 <ul class="org-ul">
-<li>Orange card shows the word, and blue card shows the definition</li>
+<li>Sky blue side shows the word, and turquoise side shows the definition and example</li>
 <li>You can flip cards as many as you like</li>
 </ul></li>
-<li>Click <code>Pronounce word</code> to check the pronounciation
+<li>Click <code>(pronounce) word</code> and <code>example</code> to check the pronounciation
 <ul class="org-ul">
-<li>A small pop-up will open for a few sec and it will automatically close</li>
-<li>Google might block the feature if Vocabull uses it too much.  In that case, please use w/o the feature.</li>
+<li>It's a browser capability and might not sound very natural</li>
 </ul></li>
-<li>If you don’t know, click <code>Once more</code> so that the word will reappear in the near future</li>
-<li>If you managed to memorize it, click <code>Memorized for now</code> to increase the score by 1
+<li>If you don’t know, click <code>(thumbs down) once more</code> so that the word will reappear in the near future</li>
+<li>If you managed to memorize it, click <code>(humbs up) okay!</code> to increase the score by 1
 <ul class="org-ul">
 <li>You won’t see the word for this round as Vocabull presents to you 10-lowest-score words</li>
 </ul></li>
-<li>If you know the word, click <code>Knew it!</code> to increase the score by 5!
+<li>If you know the word, click <code>knew it!</code> to increase the score by 5!
 <ul class="org-ul">
 <li>So, you won’t see the word for 5 rounds</li>
 </ul></li>
@@ -247,15 +276,15 @@ I believe it is better than simple flashcards because:
 </div>
 
 
-<div id="outline-container-org5dbacc5" class="outline-3">
-<h3 id="org5dbacc5"><span class="section-number-3">3.4</span> Practice spells by typing words (many times..)</h3>
+<div id="outline-container-org3722f58" class="outline-3">
+<h3 id="org3722f58"><span class="section-number-3">3.4</span> Practice spells by typing words (many times..)</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Click <code>Practice</code> menu &gt; choose <code>type word</code></li>
 <li>Vocabull shows the definition of a word and asks you to type the word</li>
 </ul>
 
-<div id="org1a35472" class="figure">
+<div id="org406ad8b" class="figure">
 <p><img src="./images/vbs_typemode.jpg" alt="vbs_typemode.jpg" />
 </p>
 </div>
@@ -268,49 +297,96 @@ I believe it is better than simple flashcards because:
 </ul></li>
 </ul>
 
-<div id="orgd5dcbf9" class="figure">
+<div id="org44bba62" class="figure">
 <p><img src="./images/vbs_repeat.jpg" alt="vbs_repeat.jpg" />
 </p>
 </div>
 <ul class="org-ul">
-<li>Click <code>Pronounce word</code> to check the pronounciation</li>
+<li>Click <code>(pronounce) word</code> and <code>example</code> to check the pronounciation</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org698da6a" class="outline-3">
-<h3 id="org698da6a"><span class="section-number-3">3.5</span> Create a book and add words</h3>
+<div id="outline-container-orgeed5db6" class="outline-3">
+<h3 id="orgeed5db6"><span class="section-number-3">3.5</span> Create a book and add words</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Also, you can create your own book and register words.
 </p>
 <ul class="org-ul">
-<li>Click My Books &gt; <code>Add</code> button</li>
-<li>Type a book name and click <code>Submit</code></li>
+<li>Click Word books &gt; <code>(book) Add</code> button</li>
 </ul>
 
-<div id="orgd580706" class="figure">
-<p><img src="./images/vbs_top.jpg" alt="vbs_top.jpg" />
+<div id="orgc99d73d" class="figure">
+<p><img src="./images/vbs_addbook.jpg" alt="vbs_addbook.jpg" />
 </p>
 </div>
 <ul class="org-ul">
-<li>Click the newly created book card &gt; click <code>Add</code> word</li>
-<li>Type word and definition, and then click <code>Submit</code> → Now, <code>Practice</code> is activated
+<li>Type a book name, select level, type language-code (en-US for US English) and click <code>Submit</code></li>
+</ul>
+
+<div id="orgc3f87da" class="figure">
+<p><img src="./images/vbs_newbook.jpg" alt="vbs_newbook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the newly created book card &gt; click <code>Add word</code></li>
+<li>Type word, definition and example, and then click <code>Submit</code> → Now, <code>Practice</code> is activated
 <ul class="org-ul">
 <li>Add a few words</li>
 </ul></li>
 </ul>
 
-<div id="org28eebba" class="figure">
-<p><img src="./images/vbs_book.jpg" alt="vbs_book.jpg" />
+<div id="org863eb7f" class="figure">
+<p><img src="./images/vbs_newword.jpg" alt="vbs_newword.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgca538f6" class="outline-3">
-<h3 id="orgca538f6"><span class="section-number-3">3.6</span> Optionally, you can load words from a file</h3>
+<div id="outline-container-orgcb2136e" class="outline-3">
+<h3 id="orgcb2136e"><span class="section-number-3">3.6</span> Or, borrow a wordbook from the library</h3>
 <div class="outline-text-3" id="text-3-6">
+<p>
+You can borrow wordbooks that other users created and practice them as if these are your own books.
+</p>
+
+<ul class="org-ul">
+<li>Click menu icon on the top-right corner &gt; choose <code>library</code> &gt; you are navigated to the library page</li>
+</ul>
+
+
+<div id="orgb3d0240" class="figure">
+<p><img src="./images/library.jpg" alt="library.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>You'll see books that other pepole published</li>
+<li>Click a book for browsing</li>
+</ul>
+
+
+<div id="orgd824dc5" class="figure">
+<p><img src="./images/browse.jpg" alt="browse.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>If you click <code>(Cart) Checkout</code>, the book will appear on your home page but in a different color from your own books.</li>
+</ul>
+
+
+<div id="org35c7610" class="figure">
+<p><img src="./images/borrowed.jpg" alt="borrowed.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc2691d0" class="outline-3">
+<h3 id="orgc2691d0"><span class="section-number-3">3.7</span> Alternatively, you can load words from a file</h3>
+<div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>Prepare a word definition file
 <ul class="org-ul">
@@ -327,9 +403,9 @@ Also, you can create your own book and register words.
 <li>Example:</li>
 </ul>
 <pre class="example">
-strident	shrill, harsh, rough	[in more ******** tones]
+strident	shrill, harsh, rough	in more strident tones
 lassitude	weariness, fatigue
-deleterious	bad, harmful	[a *********** effect on health]
+deleterious	bad, harmful	a deleterious effect on health
 </pre>
 <ul class="org-ul">
 <li>Navigate to a book page</li>
@@ -338,27 +414,9 @@ deleterious	bad, harmful	[a *********** effect on health]
 </div>
 </div>
 
-<div id="outline-container-orgc285634" class="outline-3">
-<h3 id="orgc285634"><span class="section-number-3">3.7</span> Read it aloud feature</h3>
-<div class="outline-text-3" id="text-3-7">
-<p>
-I recently added <code>Read it aloud</code> feature.  Vocabull reads aloud words and/or sentences.  I think it is a convenient feature if you are a non-native English learner.
-<img src="./images/vbs_readaloud.jpg" alt="vbs_readaloud.jpg" />
-</p>
 
-<ul class="org-ul">
-<li>On the top page, you'll see <code>Read it aloud!</code> area under <code>My Books</code> book list.</li>
-<li>In the textbox, type (or copy&amp;paste) English word(s) or sentence(s)</li>
-<li>Click <code>Submit</code> button</li>
-<li>You are navigated to a black page with audio control, and it reads aloud what you entered</li>
-<li>You need to use browser's back button to go back to the page (hopefully, I'd like to fix this soon&#x2026;)</li>
-</ul>
-</div>
-</div>
-
-
-<div id="outline-container-org70637c0" class="outline-3">
-<h3 id="org70637c0"><span class="section-number-3">3.8</span> Backup and restore</h3>
+<div id="outline-container-org81096f5" class="outline-3">
+<h3 id="org81096f5"><span class="section-number-3">3.8</span> Backup and restore</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 As Vocabull is still being developed, there's some risk that your data is all deleted and lost.  For example, a bug could corrupt the database.  To address such a scenario, I have implemented <code>Export all</code> and <code>Import and restore</code> features, which enable you to backup/restore your books and practice progress to a local file.
@@ -377,8 +435,8 @@ For example, if you <code>Export all</code> and then <code>Import and restore</c
 </p>
 </div>
 
-<div id="outline-container-org766f1c7" class="outline-4">
-<h4 id="org766f1c7"><span class="section-number-4">3.8.1</span> How to backup</h4>
+<div id="outline-container-orge2b1d67" class="outline-4">
+<h4 id="orge2b1d67"><span class="section-number-4">3.8.1</span> How to backup</h4>
 <div class="outline-text-4" id="text-3-8-1">
 <ul class="org-ul">
 <li>On the top page, scroll down until you see Backup and restore section.</li>
@@ -387,8 +445,8 @@ For example, if you <code>Export all</code> and then <code>Import and restore</c
 </div>
 </div>
 
-<div id="outline-container-org3751f45" class="outline-4">
-<h4 id="org3751f45"><span class="section-number-4">3.8.2</span> How to restore</h4>
+<div id="outline-container-org8013871" class="outline-4">
+<h4 id="org8013871"><span class="section-number-4">3.8.2</span> How to restore</h4>
 <div class="outline-text-4" id="text-3-8-2">
 <ul class="org-ul">
 <li>On the top page, scroll down until you see Backup and restore section.</li>
@@ -404,10 +462,11 @@ Now that Vocabull has backup/restore feature, I recommend you to backup your dat
 </div>
 </div>
 
-<div id="outline-container-orgfaae6ea" class="outline-2">
-<h2 id="orgfaae6ea"><span class="section-number-2">4</span> Resources</h2>
+<div id="outline-container-org57a101f" class="outline-2">
+<h2 id="org57a101f"><span class="section-number-2">4</span> Resources</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
+<li>Deployed at: <a href="https://achiwa912.pythonanywhere.com/">https://achiwa912.pythonanywhere.com/</a></li>
 <li>Project Link: <a href="https://github.com/achiwa912/vbs">https://github.com/achiwa912/vbs</a></li>
 </ul>
 </div>
@@ -420,7 +479,7 @@ Now that Vocabull has backup/restore feature, I recommend you to backup your dat
         Kyos
     </span>
   </span>
-<time datetime="2023-07-08T00:00:00-04:00" pubdate>Sat 08 July 2023</time>  <span class="categories">
+<time datetime="2023-11-02T00:00:00-04:00" pubdate>Thu 02 November 2023</time>  <span class="categories">
     <a class='category' href='/category/python.html'>Python</a>
   </span>
   <span class="categories">
@@ -435,6 +494,9 @@ Now that Vocabull has backup/restore feature, I recommend you to backup your dat
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/vbs_eng.html">Introducing Vocabull - a web app for building your vocabulary skills</a>
+      </li>
+      <li class="post">
           <a href="/sms.html">海外で日本の電話番号を安く維持するには</a>
       </li>
       <li class="post">
@@ -445,9 +507,6 @@ Now that Vocabull has backup/restore feature, I recommend you to backup your dat
       </li>
       <li class="post">
           <a href="/summerreading23.html">Summer Reading 2023</a>
-      </li>
-      <li class="post">
-          <a href="/vsan.html">VMwareのvSAN検証環境を作ってみました</a>
       </li>
     </ul>
   </section>
@@ -466,7 +525,7 @@ Now that Vocabull has backup/restore feature, I recommend you to backup your dat
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
