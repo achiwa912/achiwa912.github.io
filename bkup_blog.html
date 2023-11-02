@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3e6e82a">1. はじめに</a></li>
-<li><a href="#org9928975">2. どうバックアップするか</a>
+<li><a href="#orgc4dbafe">1. はじめに</a></li>
+<li><a href="#orgce4ad39">2. どうバックアップするか</a>
 <ul>
-<li><a href="#org7659420">2.1. tarで固めてクラウドにセーブする</a></li>
-<li><a href="#org525789a">2.2. github pagesにソースファイルを追加する</a></li>
-<li><a href="#org9777de4">2.3. githubに専用プライベートリポジトリを作る</a></li>
+<li><a href="#orgd5f815f">2.1. tarで固めてクラウドにセーブする</a></li>
+<li><a href="#org77e4b82">2.2. github pagesにソースファイルを追加する</a></li>
+<li><a href="#orgad26654">2.3. githubに専用プライベートリポジトリを作る</a></li>
 </ul>
 </li>
-<li><a href="#org5e84ac4">3. 別PCにクローンする</a></li>
-<li><a href="#org672a6d5">4. 終わりに</a></li>
+<li><a href="#orgfae9f2e">3. 別PCにクローンする</a></li>
+<li><a href="#org2380afa">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3e6e82a" class="outline-2">
-<h2 id="org3e6e82a"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgc4dbafe" class="outline-2">
+<h2 id="orgc4dbafe"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 このブログはgithub pagesに置いていますが、githubにアップロードされているのはpelican site generatorによって生成されたhtmlファイル等で、org-modeで書いたソースファイルはバックアップされていないことに気が付きました。
@@ -92,16 +92,16 @@
 </div>
 </div>
 
-<div id="outline-container-org9928975" class="outline-2">
-<h2 id="org9928975"><span class="section-number-2">2</span> どうバックアップするか</h2>
+<div id="outline-container-orgce4ad39" class="outline-2">
+<h2 id="orgce4ad39"><span class="section-number-2">2</span> どうバックアップするか</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いくつか案を考えました。
 </p>
 </div>
 
-<div id="outline-container-org7659420" class="outline-3">
-<h3 id="org7659420"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
+<div id="outline-container-orgd5f815f" class="outline-3">
+<h3 id="orgd5f815f"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 最初に思いついた案です。単なるバックアップならこれでもいいかもしれませんが、どうにも微妙です。せっかくブログ自体はgitを使って管理しているのに、ソースファイルだけ前近代的な扱いをしなくてはいけません。
@@ -109,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-org525789a" class="outline-3">
-<h3 id="org525789a"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
+<div id="outline-container-org77e4b82" class="outline-3">
+<h3 id="org77e4b82"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 pelican(+org-mode連携)のソースファイルはcontentディレクトリに置いてあるので、
@@ -140,8 +140,8 @@ git push origin gh-pages:master
 </div>
 </div>
 
-<div id="outline-container-org9777de4" class="outline-3">
-<h3 id="org9777de4"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
+<div id="outline-container-orgad26654" class="outline-3">
+<h3 id="orgad26654"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 次はcontentディレクトリで <code>git init</code> して独立したローカルリポジトリを作り、それをgithubのプライベートな空レポジトリにpushする案です。
@@ -169,8 +169,8 @@ git push -u origin main
 </div>
 </div>
 
-<div id="outline-container-org5e84ac4" class="outline-2">
-<h2 id="org5e84ac4"><span class="section-number-2">3</span> 別PCにクローンする</h2>
+<div id="outline-container-orgfae9f2e" class="outline-2">
+<h2 id="orgfae9f2e"><span class="section-number-2">3</span> 別PCにクローンする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 せっかくgit管理しているので、別PCでもブログファイルの編集をできるようにしたいところです。そこで、別PC(別のMacのfedora35@virtualbox)上にgit cloneします。
@@ -197,8 +197,8 @@ cat .ssh/id_rsa.pub
 </div>
 </div>
 
-<div id="outline-container-org672a6d5" class="outline-2">
-<h2 id="org672a6d5"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-org2380afa" class="outline-2">
+<h2 id="org2380afa"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ソースファイル用のプライベートレポジトリにはpelicanのコンパイル環境は持ってきていないので、ブログをコンパイルしてgithub pagesにアップロードするのは元のPCでないとできませんが、ブログのクラウド(github)へのバックアップと別PCでのブログ編集ができるようになったので、今日のところは満足です。
