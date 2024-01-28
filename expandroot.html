@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9cc5a05">1. はじめに</a></li>
-<li><a href="#orgb566d60">2. 手順</a>
+<li><a href="#orgcd96aac">1. はじめに</a></li>
+<li><a href="#org7b9752a">2. 手順</a>
 <ul>
-<li><a href="#org7216809">2.1. 概要</a></li>
-<li><a href="#orge59c148">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#orgd2274c5">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#orgafa074a">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#org7e61b67">2.1. 概要</a></li>
+<li><a href="#orgee4b0a3">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org858a40c">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#orgb2b5089">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#org1fdc6be">3. 終わりに</a></li>
+<li><a href="#org98c76b6">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9cc5a05" class="outline-2">
-<h2 id="org9cc5a05"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgcd96aac" class="outline-2">
+<h2 id="orgcd96aac"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -98,12 +98,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgb566d60" class="outline-2">
-<h2 id="orgb566d60"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org7b9752a" class="outline-2">
+<h2 id="org7b9752a"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org7216809" class="outline-3">
-<h3 id="org7216809"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-org7e61b67" class="outline-3">
+<h3 id="org7e61b67"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -117,8 +117,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orge59c148" class="outline-3">
-<h3 id="orge59c148"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-orgee4b0a3" class="outline-3">
+<h3 id="orgee4b0a3"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -146,8 +146,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgd2274c5" class="outline-3">
-<h3 id="orgd2274c5"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org858a40c" class="outline-3">
+<h3 id="org858a40c"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -186,8 +186,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-orgafa074a" class="outline-3">
-<h3 id="orgafa074a"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-orgb2b5089" class="outline-3">
+<h3 id="orgb2b5089"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -231,8 +231,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-org1fdc6be" class="outline-2">
-<h2 id="org1fdc6be"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org98c76b6" class="outline-2">
+<h2 id="org98c76b6"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -262,6 +262,9 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/vbs_intro.html">ボキャビル用WebアプリvocaBull</a>
+      </li>
+      <li class="post">
           <a href="/vbs_eng.html">Introducing vocaBull - a web app for building your vocabulary skills</a>
       </li>
       <li class="post">
@@ -272,9 +275,6 @@ Filesystem      Size  Used Avail Use% Mounted on
       </li>
       <li class="post">
           <a href="/pixel7.html">Pixel 7 Proを買いました</a>
-      </li>
-      <li class="post">
-          <a href="/summerreading23.html">Summer Reading 2023</a>
       </li>
     </ul>
   </section>
@@ -308,7 +308,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
-    Copyright &copy;  2020&ndash;2023  Kyos &mdash;
+    Copyright &copy;  2020&ndash;2024  Kyos &mdash;
   <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
 </p></footer>
   <script src="/theme/js/modernizr-2.0.js"></script>
