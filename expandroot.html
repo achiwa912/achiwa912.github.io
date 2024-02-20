@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga246be6">1. はじめに</a></li>
-<li><a href="#org5dab96d">2. 手順</a>
+<li><a href="#org32e126c">1. はじめに</a></li>
+<li><a href="#org26dc298">2. 手順</a>
 <ul>
-<li><a href="#orgf9258c0">2.1. 概要</a></li>
-<li><a href="#org8fa8a0f">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#orgb43cc73">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#orgfcfbbda">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#orga590e48">2.1. 概要</a></li>
+<li><a href="#orgc989a72">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#orgae0e007">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org9c34106">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#orgf64f84b">3. 終わりに</a></li>
+<li><a href="#org4fdb086">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga246be6" class="outline-2">
-<h2 id="orga246be6"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org32e126c" class="outline-2">
+<h2 id="org32e126c"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -98,12 +98,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org5dab96d" class="outline-2">
-<h2 id="org5dab96d"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org26dc298" class="outline-2">
+<h2 id="org26dc298"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf9258c0" class="outline-3">
-<h3 id="orgf9258c0"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-orga590e48" class="outline-3">
+<h3 id="orga590e48"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -117,8 +117,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org8fa8a0f" class="outline-3">
-<h3 id="org8fa8a0f"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-orgc989a72" class="outline-3">
+<h3 id="orgc989a72"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -146,8 +146,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgb43cc73" class="outline-3">
-<h3 id="orgb43cc73"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-orgae0e007" class="outline-3">
+<h3 id="orgae0e007"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -186,8 +186,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-orgfcfbbda" class="outline-3">
-<h3 id="orgfcfbbda"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-org9c34106" class="outline-3">
+<h3 id="org9c34106"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -231,8 +231,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-orgf64f84b" class="outline-2">
-<h2 id="orgf64f84b"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org4fdb086" class="outline-2">
+<h2 id="org4fdb086"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -262,6 +262,9 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/taxret23.html">アメリカで確定申告(日本+アメリカ; 2023)</a>
+      </li>
+      <li class="post">
           <a href="/merrill.html">メリルリンチで定期預金する</a>
       </li>
       <li class="post">
@@ -272,9 +275,6 @@ Filesystem      Size  Used Avail Use% Mounted on
       </li>
       <li class="post">
           <a href="/sms.html">海外で日本の電話番号を安く維持するには</a>
-      </li>
-      <li class="post">
-          <a href="/bankapp.html">海外から日本の銀行アプリを入れる</a>
       </li>
     </ul>
   </section>
