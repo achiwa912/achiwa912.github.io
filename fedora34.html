@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org457ea70">1. はじめに</a></li>
-<li><a href="#org1b2b34d">2. Fedora36インストール</a>
+<li><a href="#orgafb4105">1. はじめに</a></li>
+<li><a href="#org54c8d8a">2. Fedora36インストール</a>
 <ul>
-<li><a href="#org553ae32">2.1. VM作成</a></li>
-<li><a href="#org7e3c1d0">2.2. fedoraインストーラー</a></li>
-<li><a href="#org7d1b867">2.3. fedora起動</a></li>
-<li><a href="#orgefda265">2.4. Guest Additions</a></li>
+<li><a href="#org99aabdb">2.1. VM作成</a></li>
+<li><a href="#orgca5d66a">2.2. fedoraインストーラー</a></li>
+<li><a href="#org64f7a2d">2.3. fedora起動</a></li>
+<li><a href="#org39de359">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org1f32073">3. gitの設定</a></li>
-<li><a href="#org6aad908">4. emacsの設定</a></li>
-<li><a href="#org9b581ed">5. pythonの設定</a>
+<li><a href="#orgdafe3b5">3. gitの設定</a></li>
+<li><a href="#orga37d2ac">4. emacsの設定</a></li>
+<li><a href="#org95badd3">5. pythonの設定</a>
 <ul>
-<li><a href="#orgd045968">5.1. pyenvを入れる</a></li>
+<li><a href="#orgeb03d81">5.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org457ea70" class="outline-2">
-<h2 id="org457ea70"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgafb4105" class="outline-2">
+<h2 id="orgafb4105"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora36を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora36インストール及び設定の備忘録です。
@@ -103,12 +103,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-org1b2b34d" class="outline-2">
-<h2 id="org1b2b34d"><span class="section-number-2">2</span> Fedora36インストール</h2>
+<div id="outline-container-org54c8d8a" class="outline-2">
+<h2 id="org54c8d8a"><span class="section-number-2">2</span> Fedora36インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org553ae32" class="outline-3">
-<h3 id="org553ae32"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org99aabdb" class="outline-3">
+<h3 id="org99aabdb"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 36 download</code> で検索して、isoファイルをダウンロードします。
@@ -136,8 +136,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org7e3c1d0" class="outline-3">
-<h3 id="org7e3c1d0"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-orgca5d66a" class="outline-3">
+<h3 id="orgca5d66a"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora36のインストーラー起動画面が出ます。
@@ -158,8 +158,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org7d1b867" class="outline-3">
-<h3 id="org7d1b867"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-org64f7a2d" class="outline-3">
+<h3 id="org64f7a2d"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。(fedora34ではしばらく不安になる画面で放置されますが、数十秒で使えるようになりました。fedora36ではなぜかログイン画面が出ずに強制電断 &rarr; 電源オンしたところ、何事もなかったようにログイン画面が出ました。何だったんだろう。。。)
@@ -183,8 +183,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-orgefda265" class="outline-3">
-<h3 id="orgefda265"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-org39de359" class="outline-3">
+<h3 id="org39de359"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -242,8 +242,8 @@ Fedora36としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-org1f32073" class="outline-2">
-<h2 id="org1f32073"><span class="section-number-2">3</span> gitの設定</h2>
+<div id="outline-container-orgdafe3b5" class="outline-2">
+<h2 id="orgdafe3b5"><span class="section-number-2">3</span> gitの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitの最低限の設定をしておきます。これを忘れて、コミットでエラーになりました(magitではemacsごと落ちました)。
@@ -256,8 +256,8 @@ git config --global user.name <span style="font-style: italic;">"&lt;your name&g
 </div>
 </div>
 
-<div id="outline-container-org6aad908" class="outline-2">
-<h2 id="org6aad908"><span class="section-number-2">4</span> emacsの設定</h2>
+<div id="outline-container-orga37d2ac" class="outline-2">
+<h2 id="orga37d2ac"><span class="section-number-2">4</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 注) 5/12/2022追記。emacsの設定は最近いろいろ変えているので、アップデートせずにそのまま残しておきます。
@@ -547,8 +547,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-org9b581ed" class="outline-2">
-<h2 id="org9b581ed"><span class="section-number-2">5</span> pythonの設定</h2>
+<div id="outline-container-org95badd3" class="outline-2">
+<h2 id="org95badd3"><span class="section-number-2">5</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Fedora36を入れたら、いきなりpython 3.10.4が/usr/bin/pythonとしてインストールされていました。
@@ -563,8 +563,8 @@ Python 3.10.4
 </div>
 </div>
 
-<div id="outline-container-orgd045968" class="outline-3">
-<h3 id="orgd045968"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
+<div id="outline-container-orgeb03d81" class="outline-3">
+<h3 id="orgeb03d81"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.10.4なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -669,7 +669,7 @@ pip install 'python-lsp-server[all]'
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/private.html">アメリカで私立高校を選ぶ</a>
+          <a href="/private.html">アメリカであえて私立高校を選ぶ</a>
       </li>
       <li class="post">
           <a href="/rclone.html">rcloneでデータを暗号化してpCloudにバックアップする</a>
