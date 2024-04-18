@@ -69,21 +69,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org42527ac">1. はじめに</a></li>
-<li><a href="#orgffe4d75">2. VMにsshで入るための設定</a>
+<li><a href="#org1430b57">1. はじめに</a></li>
+<li><a href="#org607a25f">2. VMにsshで入るための設定</a>
 <ul>
-<li><a href="#org786c772">2.1. ssh serverの設定</a></li>
-<li><a href="#org1f8f60b">2.2. VMネットワークの設定</a></li>
-<li><a href="#org4aed8ce">2.3. sshキーのインポート</a></li>
+<li><a href="#org9349faa">2.1. ssh serverの設定</a></li>
+<li><a href="#org2c44d2e">2.2. VMネットワークの設定</a></li>
+<li><a href="#org897a2a8">2.3. sshキーのインポート</a></li>
 </ul>
 </li>
-<li><a href="#org6830002">3. Resources</a></li>
+<li><a href="#org3d66061">3. Resources</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org42527ac" class="outline-2">
-<h2 id="org42527ac"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org1430b57" class="outline-2">
+<h2 id="org1430b57"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はMacにVirtualBoxを入れ、Fedora VM上でドキュメント(orgファイル)の編集やpythonのスクリプト開発を行っていますが、 <a href="https://mkyong.com/mac/virtualbox-running-slow-and-lag-on-macos-macbook-pro/">このワークアラウンド</a> (2. VirtualBox in Low Resolution) のために解像度が粗く、見た目がやや残念なことになっています。そこで、Mac上のターミナルからFedora VMにssh接続することを考えました。
@@ -92,12 +92,12 @@
 </div>
 
 
-<div id="outline-container-orgffe4d75" class="outline-2">
-<h2 id="orgffe4d75"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
+<div id="outline-container-org607a25f" class="outline-2">
+<h2 id="org607a25f"><span class="section-number-2">2</span> VMにsshで入るための設定</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org786c772" class="outline-3">
-<h3 id="org786c772"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
+<div id="outline-container-org9349faa" class="outline-3">
+<h3 id="org9349faa"><span class="section-number-3">2.1</span> ssh serverの設定</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはVirtualBoxのFedora 35 VM上でsshサーバーの設定をします。
@@ -113,8 +113,8 @@ ssh &lt;username&gt;@localhost  <span style="font-weight: bold; font-style: ital
 </div>
 </div>
 
-<div id="outline-container-org1f8f60b" class="outline-3">
-<h3 id="org1f8f60b"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
+<div id="outline-container-org2c44d2e" class="outline-3">
+<h3 id="org2c44d2e"><span class="section-number-3">2.2</span> VMネットワークの設定</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 次に、VirtualBoxのVMに、ホストであるMacからつながるようにネットワーク設定をします。
@@ -155,8 +155,8 @@ Last login: Mon May  9 11:32:14 2022
 </div>
 </div>
 
-<div id="outline-container-org4aed8ce" class="outline-3">
-<h3 id="org4aed8ce"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
+<div id="outline-container-org897a2a8" class="outline-3">
+<h3 id="org897a2a8"><span class="section-number-3">2.3</span> sshキーのインポート</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 パスワードレスでssh接続したいので、Mac上のsshパブリックキーをVMにコピーします。まずは.sshディレクトリを作成してそこにsshキーを生成します。すでに作成済みであればスキップしてください。
@@ -223,8 +223,8 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
 </div>
 </div>
 
-<div id="outline-container-org6830002" class="outline-2">
-<h2 id="org6830002"><span class="section-number-2">3</span> Resources</h2>
+<div id="outline-container-org3d66061" class="outline-2">
+<h2 id="org3d66061"><span class="section-number-2">3</span> Resources</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://rocky-chen.medium.com/setup-ssh-connection-to-your-ubuntu-vm-of-virtualbox-macos-eed4691fe08">Setup SSH connection to your Ubuntu VM of VirtualBox (MacOS)</a></li>
@@ -256,7 +256,7 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/cert.html">Webサイトに安全にアクセスするには</a>
+          <a href="/cert.html">Webサイトに安全にアクセスするための仕掛け</a>
       </li>
       <li class="post">
           <a href="/private.html">アメリカであえて私立高校を選ぶ</a>
@@ -287,7 +287,7 @@ Last login: Mon May  9 12:56:51 2022 from 10.0.2.2
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
