@@ -69,28 +69,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org313627a">1. はじめに</a></li>
-<li><a href="#org17c02d6">2. Fedora36インストール</a>
+<li><a href="#orgd3fb8fb">1. はじめに</a></li>
+<li><a href="#orgb1e3264">2. Fedora36インストール</a>
 <ul>
-<li><a href="#orgd28ab7d">2.1. VM作成</a></li>
-<li><a href="#org3dcd211">2.2. fedoraインストーラー</a></li>
-<li><a href="#org0d2089b">2.3. fedora起動</a></li>
-<li><a href="#org0f04a6e">2.4. Guest Additions</a></li>
+<li><a href="#org905ad69">2.1. VM作成</a></li>
+<li><a href="#orgdd38799">2.2. fedoraインストーラー</a></li>
+<li><a href="#orgfdaec1f">2.3. fedora起動</a></li>
+<li><a href="#org714248b">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#orgca7667e">3. gitの設定</a></li>
-<li><a href="#orge1a2e75">4. emacsの設定</a></li>
-<li><a href="#org3fac649">5. pythonの設定</a>
+<li><a href="#orgec931b6">3. gitの設定</a></li>
+<li><a href="#org4c3b4ae">4. emacsの設定</a></li>
+<li><a href="#org4f11c7b">5. pythonの設定</a>
 <ul>
-<li><a href="#org82f10ec">5.1. pyenvを入れる</a></li>
+<li><a href="#orge09e075">5.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org313627a" class="outline-2">
-<h2 id="org313627a"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgd3fb8fb" class="outline-2">
+<h2 id="orgd3fb8fb"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora36を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora36インストール及び設定の備忘録です。
@@ -103,12 +103,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-org17c02d6" class="outline-2">
-<h2 id="org17c02d6"><span class="section-number-2">2</span> Fedora36インストール</h2>
+<div id="outline-container-orgb1e3264" class="outline-2">
+<h2 id="orgb1e3264"><span class="section-number-2">2</span> Fedora36インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd28ab7d" class="outline-3">
-<h3 id="orgd28ab7d"><span class="section-number-3">2.1</span> VM作成</h3>
+<div id="outline-container-org905ad69" class="outline-3">
+<h3 id="org905ad69"><span class="section-number-3">2.1</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 36 download</code> で検索して、isoファイルをダウンロードします。
@@ -136,8 +136,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org3dcd211" class="outline-3">
-<h3 id="org3dcd211"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
+<div id="outline-container-orgdd38799" class="outline-3">
+<h3 id="orgdd38799"><span class="section-number-3">2.2</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora36のインストーラー起動画面が出ます。
@@ -158,8 +158,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org0d2089b" class="outline-3">
-<h3 id="org0d2089b"><span class="section-number-3">2.3</span> fedora起動</h3>
+<div id="outline-container-orgfdaec1f" class="outline-3">
+<h3 id="orgfdaec1f"><span class="section-number-3">2.3</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。(fedora34ではしばらく不安になる画面で放置されますが、数十秒で使えるようになりました。fedora36ではなぜかログイン画面が出ずに強制電断 &rarr; 電源オンしたところ、何事もなかったようにログイン画面が出ました。何だったんだろう。。。)
@@ -183,8 +183,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-org0f04a6e" class="outline-3">
-<h3 id="org0f04a6e"><span class="section-number-3">2.4</span> Guest Additions</h3>
+<div id="outline-container-org714248b" class="outline-3">
+<h3 id="org714248b"><span class="section-number-3">2.4</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -242,8 +242,8 @@ Fedora36としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-orgca7667e" class="outline-2">
-<h2 id="orgca7667e"><span class="section-number-2">3</span> gitの設定</h2>
+<div id="outline-container-orgec931b6" class="outline-2">
+<h2 id="orgec931b6"><span class="section-number-2">3</span> gitの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitの最低限の設定をしておきます。これを忘れて、コミットでエラーになりました(magitではemacsごと落ちました)。
@@ -256,8 +256,8 @@ git config --global user.name <span style="font-style: italic;">"&lt;your name&g
 </div>
 </div>
 
-<div id="outline-container-orge1a2e75" class="outline-2">
-<h2 id="orge1a2e75"><span class="section-number-2">4</span> emacsの設定</h2>
+<div id="outline-container-org4c3b4ae" class="outline-2">
+<h2 id="org4c3b4ae"><span class="section-number-2">4</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 注) 5/12/2022追記。emacsの設定は最近いろいろ変えているので、アップデートせずにそのまま残しておきます。
@@ -547,8 +547,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-org3fac649" class="outline-2">
-<h2 id="org3fac649"><span class="section-number-2">5</span> pythonの設定</h2>
+<div id="outline-container-org4f11c7b" class="outline-2">
+<h2 id="org4f11c7b"><span class="section-number-2">5</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Fedora36を入れたら、いきなりpython 3.10.4が/usr/bin/pythonとしてインストールされていました。
@@ -563,8 +563,8 @@ Python 3.10.4
 </div>
 </div>
 
-<div id="outline-container-org82f10ec" class="outline-3">
-<h3 id="org82f10ec"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
+<div id="outline-container-orge09e075" class="outline-3">
+<h3 id="orge09e075"><span class="section-number-3">5.1</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.10.4なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -669,7 +669,7 @@ pip install 'python-lsp-server[all]'
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/cert.html">Certificateとか</a>
+          <a href="/cert.html">Webサイトに安全にアクセスするには</a>
       </li>
       <li class="post">
           <a href="/private.html">アメリカであえて私立高校を選ぶ</a>
