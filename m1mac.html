@@ -69,10 +69,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org6620ca9">1. MacBookが新しくなりなした</a></li>
-<li><a href="#org8ad7feb">2. M1 MacBook Pro 16インチ</a>
+<li><a href="#orgc3e11ec">1. MacBookが新しくなりなした</a></li>
+<li><a href="#org3a226b9">2. M1 MacBook Pro 16インチ</a>
 <ul>
-<li><a href="#orga8c1c20">2.1. UTMの問題(3/17/2023追記)</a></li>
+<li><a href="#org0e20803">2.1. UTMの問題(3/17/2023追記)</a></li>
 </ul>
 </li>
 </ul>
@@ -80,8 +80,8 @@
 </div>
 
 
-<div id="outline-container-org6620ca9" class="outline-2">
-<h2 id="org6620ca9"><span class="section-number-2">1</span> MacBookが新しくなりなした</h2>
+<div id="outline-container-orgc3e11ec" class="outline-2">
+<h2 id="orgc3e11ec"><span class="section-number-2">1</span> MacBookが新しくなりなした</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社支給のMacBook Pro 15インチの調子がまた悪くなりました。夏に立ち上がらなくなってAppleストアに持ち込み、マザーボードを交換したばかりですが、今度はバッテリーです。ここしばらくバッテリー容量低下のWarningが出ていたので気になっていたのですが、バッテリーで使っていると15分も使っていないのにバッテリー残量が無いためにシャットダウンする、と言ってVMをサスペンドするようになりました。
@@ -93,8 +93,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8ad7feb" class="outline-2">
-<h2 id="org8ad7feb"><span class="section-number-2">2</span> M1 MacBook Pro 16インチ</h2>
+<div id="outline-container-org3a226b9" class="outline-2">
+<h2 id="org3a226b9"><span class="section-number-2">2</span> M1 MacBook Pro 16インチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 早速3日くらいでアパートにとどきました。これまで使っていた15インチ版と比べて、大きく重くなりました。普段から持ち運ぶには重すぎるように思います。これまでのバタフライキーボードはいまいちでしたが、今回のキーボードはとてもタイプしやすいです。
@@ -105,8 +105,8 @@
 </p>
 </div>
 
-<div id="outline-container-orga8c1c20" class="outline-3">
-<h3 id="orga8c1c20"><span class="section-number-3">2.1</span> UTMの問題(3/17/2023追記)</h3>
+<div id="outline-container-org0e20803" class="outline-3">
+<h3 id="org0e20803"><span class="section-number-3">2.1</span> UTMの問題(3/17/2023追記)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 しばらく使ってみて、UTMの問題が色々見えてきました。ホストであるMacBookがスリープからレジュームした際に時間がずれたままなため、 <code>sudo systemctl restart chronyd</code> がたびたび必要になることと、やはりレジューム後にネットワークが機能しないことがあり、その際、trampでVM内のファイルを編集しているとemacsが固まってしまうことです。こうなると <code>sudo systemd restart NetworkManager</code> しても復活せず、仕方なくVMをリブートしています。
@@ -153,6 +153,9 @@
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/speaking.html">アメリカ口語教本とAIを使ってスピーキングを強化する</a>
+      </li>
+      <li class="post">
           <a href="/summerreading24.html">Summer Reading 2024</a>
       </li>
       <li class="post">
@@ -163,9 +166,6 @@
       </li>
       <li class="post">
           <a href="/rclone.html">rcloneでデータを暗号化してpCloudにバックアップする</a>
-      </li>
-      <li class="post">
-          <a href="/taxret23.html">アメリカで確定申告(日本+アメリカ; 2023)</a>
       </li>
     </ul>
   </section>
@@ -184,7 +184,7 @@
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
