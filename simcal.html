@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb5e6a50">1. はじめに</a></li>
-<li><a href="#orge8af79b">2. カレンダー置き場</a>
+<li><a href="#org86a7262">1. はじめに</a></li>
+<li><a href="#org8307e61">2. カレンダー置き場</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgccc33fe">2.0.1. 2023年</a></li>
-<li><a href="#org42fbacd">2.0.2. 2024年</a></li>
+<li><a href="#org588a905">2.0.1. 2023年</a></li>
+<li><a href="#orgdd5699b">2.0.2. 2024年</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgbb56525">3. 6週に渡る月をどうしたものか</a></li>
-<li><a href="#org2a63786">4. simcal.pyの特長</a></li>
-<li><a href="#org82c031e">5. カレンダーの生成のしかた</a></li>
-<li><a href="#orge372306">6. 参考にしたサイト、使用ライブラリ</a>
+<li><a href="#orgc3a1f9b">3. 6週に渡る月をどうしたものか</a></li>
+<li><a href="#org2dae65d">4. simcal.pyの特長</a></li>
+<li><a href="#orga0a967e">5. カレンダーの生成のしかた</a></li>
+<li><a href="#orgd378a66">6. 参考にしたサイト、使用ライブラリ</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgb6960c9">6.0.1. 印刷用シンプルなカレンダー (ご自由にお持ちください)</a></li>
-<li><a href="#org014b444">6.0.2. reportlab 3.6.12</a></li>
-<li><a href="#org482c695">6.0.3. holidays 0.18</a></li>
+<li><a href="#org7b75205">6.0.1. 印刷用シンプルなカレンダー (ご自由にお持ちください)</a></li>
+<li><a href="#org2892734">6.0.2. reportlab 3.6.12</a></li>
+<li><a href="#org3bb1944">6.0.3. holidays 0.18</a></li>
 </ul>
 </li>
 </ul>
@@ -98,8 +98,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb5e6a50" class="outline-2">
-<h2 id="orgb5e6a50"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org86a7262" class="outline-2">
+<h2 id="org86a7262"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 ここ数年、うちでは <a href="https://yasuoka.net/~yasuoka/calendar.html">印刷用シンプルなカレンダー (ご自由にお持ちください)</a> を愛用しています。月曜始まりも選べるなどほぼ理想的な書き込み用カレンダーなのですが、一点だけ気になる点がありました。2023年1月のように1ヶ月が6週に渡ってしまうと、最後の1,2日が前の週にマージされてしまい、その2,4日は書き込みスペースが半分になってしまうのです。そこで、正月休みを利用して類似のカレンダーを自動生成するpythonスクリプトを作ってみました。githubにて <a href="https://github.com/achiwa912/simcal">公開</a> しています。
@@ -113,16 +113,16 @@
 </div>
 </div>
 
-<div id="outline-container-orge8af79b" class="outline-2">
-<h2 id="orge8af79b"><span class="section-number-2">2</span> カレンダー置き場</h2>
+<div id="outline-container-org8307e61" class="outline-2">
+<h2 id="org8307e61"><span class="section-number-2">2</span> カレンダー置き場</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ここに置いてあるのは常に第1週を表示する版です。ご自由にお持ちください。リンクに飛んで、Downloadボタンをクリックしてください。用紙は日本はA4、米国がLetterに設定しました。
 </p>
 </div>
 
-<div id="outline-container-orgccc33fe" class="outline-4">
-<h4 id="orgccc33fe"><span class="section-number-4">2.0.1</span> 2023年</h4>
+<div id="outline-container-org588a905" class="outline-4">
+<h4 id="org588a905"><span class="section-number-4">2.0.1</span> 2023年</h4>
 <div class="outline-text-4" id="text-2-0-1">
 <ul class="org-ul">
 <li><a href="https://github.com/achiwa912/simcal/blob/main/samples/cal2023s_JP.pdf">日本日曜始まり</a>、<a href="https://github.com/achiwa912/simcal/blob/main/samples/cal2023m_JP.pdf">日本月曜始まり</a></li>
@@ -131,8 +131,8 @@
 </div>
 </div>
 
-<div id="outline-container-org42fbacd" class="outline-4">
-<h4 id="org42fbacd"><span class="section-number-4">2.0.2</span> 2024年</h4>
+<div id="outline-container-orgdd5699b" class="outline-4">
+<h4 id="orgdd5699b"><span class="section-number-4">2.0.2</span> 2024年</h4>
 <div class="outline-text-4" id="text-2-0-2">
 <ul class="org-ul">
 <li><a href="https://github.com/achiwa912/simcal/blob/main/samples/cal2024s_JP.pdf">日本日曜始まり</a>、<a href="https://github.com/achiwa912/simcal/blob/main/samples/cal2024m_JP.pdf">日本月曜始まり</a></li>
@@ -142,8 +142,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgbb56525" class="outline-2">
-<h2 id="orgbb56525"><span class="section-number-2">3</span> 6週に渡る月をどうしたものか</h2>
+<div id="outline-container-orgc3a1f9b" class="outline-2">
+<h2 id="orgc3a1f9b"><span class="section-number-2">3</span> 6週に渡る月をどうしたものか</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 すべて表示すると6段になってしまい、書き込みスペースが全体的に小さくなるのでそれも嫌です。そこで思い切って、6週に渡る月は第1週を表示しないことを選択できるようにしました。表示しないとは言っても、前の月に削られた日のスペースがあるので、実用上は問題ない、、、かもしれません。
@@ -152,8 +152,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2a63786" class="outline-2">
-<h2 id="org2a63786"><span class="section-number-2">4</span> simcal.pyの特長</h2>
+<div id="outline-container-org2dae65d" class="outline-2">
+<h2 id="org2dae65d"><span class="section-number-2">4</span> simcal.pyの特長</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>印刷して書き込めるタイプのカレンダー(PDFファイル)を生成します
@@ -168,8 +168,8 @@
 </div>
 </div>
 
-<div id="outline-container-org82c031e" class="outline-2">
-<h2 id="org82c031e"><span class="section-number-2">5</span> カレンダーの生成のしかた</h2>
+<div id="outline-container-orga0a967e" class="outline-2">
+<h2 id="orga0a967e"><span class="section-number-2">5</span> カレンダーの生成のしかた</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>Python 3.8以上を使えるようにします</li>
@@ -204,12 +204,12 @@ python simcal.py
 </div>
 </div>
 
-<div id="outline-container-orge372306" class="outline-2">
-<h2 id="orge372306"><span class="section-number-2">6</span> 参考にしたサイト、使用ライブラリ</h2>
+<div id="outline-container-orgd378a66" class="outline-2">
+<h2 id="orgd378a66"><span class="section-number-2">6</span> 参考にしたサイト、使用ライブラリ</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgb6960c9" class="outline-4">
-<h4 id="orgb6960c9"><span class="section-number-4">6.0.1</span> <a href="https://yasuoka.net/~yasuoka/calendar.html">印刷用シンプルなカレンダー (ご自由にお持ちください)</a></h4>
+<div id="outline-container-org7b75205" class="outline-4">
+<h4 id="org7b75205"><span class="section-number-4">6.0.1</span> <a href="https://yasuoka.net/~yasuoka/calendar.html">印刷用シンプルなカレンダー (ご自由にお持ちください)</a></h4>
 <div class="outline-text-4" id="text-6-0-1">
 <p>
 我が家でも愛用しているカレンダーを毎年配布下さっています。どうもありがとうございます。私のスクリプト開発が間に合わず、今年(2023)もお世話になっています。今回作ったカレンダーのデザインは、こちらのカレンダーをほぼそのまま使わせていただいています。
@@ -217,8 +217,8 @@ python simcal.py
 </div>
 </div>
 
-<div id="outline-container-org014b444" class="outline-4">
-<h4 id="org014b444"><span class="section-number-4">6.0.2</span> <a href="https://pypi.org/project/reportlab/">reportlab 3.6.12</a></h4>
+<div id="outline-container-org2892734" class="outline-4">
+<h4 id="org2892734"><span class="section-number-4">6.0.2</span> <a href="https://pypi.org/project/reportlab/">reportlab 3.6.12</a></h4>
 <div class="outline-text-4" id="text-6-0-2">
 <p>
 PDFを生成するPythonライブラリです。
@@ -226,8 +226,8 @@ PDFを生成するPythonライブラリです。
 </div>
 </div>
 
-<div id="outline-container-org482c695" class="outline-4">
-<h4 id="org482c695"><span class="section-number-4">6.0.3</span> <a href="https://pypi.org/project/holidays/">holidays 0.18</a></h4>
+<div id="outline-container-org3bb1944" class="outline-4">
+<h4 id="org3bb1944"><span class="section-number-4">6.0.3</span> <a href="https://pypi.org/project/holidays/">holidays 0.18</a></h4>
 <div class="outline-text-4" id="text-6-0-3">
 <p>
 休日を取得するPythonライブラリです。世界の休日が取得できます。
@@ -258,6 +258,9 @@ PDFを生成するPythonライブラリです。
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/summerreading24.html">Summer Reading 2024</a>
+      </li>
+      <li class="post">
           <a href="/cert.html">Webサイトに安全にアクセスするための仕掛け</a>
       </li>
       <li class="post">
@@ -268,9 +271,6 @@ PDFを生成するPythonライブラリです。
       </li>
       <li class="post">
           <a href="/taxret23.html">アメリカで確定申告(日本+アメリカ; 2023)</a>
-      </li>
-      <li class="post">
-          <a href="/merrill.html">メリルリンチで定期預金する</a>
       </li>
     </ul>
   </section>
@@ -289,7 +289,7 @@ PDFを生成するPythonライブラリです。
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
