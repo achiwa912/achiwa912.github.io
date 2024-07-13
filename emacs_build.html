@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7624e29">1. はじめに</a></li>
-<li><a href="#orgbb8c46a">2. 先人の情報を探す</a></li>
-<li><a href="#orgdbe27b8">3. ビルドしてみる</a></li>
-<li><a href="#org38b4bb7">4. 挙動が少し変</a></li>
-<li><a href="#org45330da">5. 最後に</a></li>
+<li><a href="#org893ed2b">1. はじめに</a></li>
+<li><a href="#orgb5bb87d">2. 先人の情報を探す</a></li>
+<li><a href="#org6e96b16">3. ビルドしてみる</a></li>
+<li><a href="#orgd74cd3b">4. 動かしてみる</a></li>
+<li><a href="#org9a41295">5. 最後に</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7624e29" class="outline-2">
-<h2 id="org7624e29"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org893ed2b" class="outline-2">
+<h2 id="org893ed2b"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
@@ -87,17 +87,17 @@
 </div>
 </div>
 
-<div id="outline-container-orgbb8c46a" class="outline-2">
-<h2 id="orgbb8c46a"><span class="section-number-2">2</span> 先人の情報を探す</h2>
+<div id="outline-container-orgb5bb87d" class="outline-2">
+<h2 id="orgb5bb87d"><span class="section-number-2">2</span> 先人の情報を探す</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のページでした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
+ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgdbe27b8" class="outline-2">
-<h2 id="orgdbe27b8"><span class="section-number-2">3</span> ビルドしてみる</h2>
+<div id="outline-container-org6e96b16" class="outline-2">
+<h2 id="org6e96b16"><span class="section-number-2">3</span> ビルドしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはemacsのソースコードを入手します。
@@ -116,10 +116,10 @@ git clone git://git.sv.gnu.org/emacs.git
 <pre class="example">
 cd emacs
 ./autogen.sh
-./configure --with-pgtk
+./configure --with-native-compilation --with-native-json --with-pgtk
 </pre>
 <p>
-で出たエラーをググりながらつぶしていきます。ちなみに <code>--with-pgtk</code> は Rocky Linux 等のデフォルト Wayland (X11でなく) を使うオプションらしいです。
+で出たエラーをググりながらつぶしていきます。上記の参考ブログによると、./configureで出るエラーを見て必要なものを入れていくのが普通のやり方なようです。素人には少し敷居が高いですね。。。ちなみに <code>--with-pgtk</code> は Rocky Linux等RedHat系のデフォルトWayland (X11でなく)をGUIモードで使うオプションらしいです。今回はこれとネイティブコンパイルのオプションがメインの目的です。
 </p>
 
 <p>
@@ -130,13 +130,14 @@ sudo dnf install make automake gcc gcc-c++ kernel-devel
 sudo dnf install texinfo
 sudo dnf install gtk3-devel
 sudo dnf install gnutls-devel
+sudo dnf lnstall libgccjit libgccjit-devel
 </pre>
 <p>
 で、最終的に
 </p>
 <pre class="example">
-./configure --with-pgtk --with-gnutls=ifavailable
-make -j8
+./configure --with-native-compilation --with-native-json --with-pgtk
+make bootstrap
 </pre>
 <p>
 で曲りなりにビルドできたみたいです。
@@ -151,37 +152,32 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org38b4bb7" class="outline-2">
-<h2 id="org38b4bb7"><span class="section-number-2">4</span> 挙動が少し変</h2>
+<div id="outline-container-orgd74cd3b" class="outline-2">
+<h2 id="orgd74cd3b"><span class="section-number-2">4</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-起動してみると、いきなりパッケージレポジトリへのTLS接続ができないとエラーを出します。なんだか、未解決問題らしいです。これだと困るので、httpsを使わないレポジトリを指定します。怪しいです。ウイルスなどもらってきませんように。。。(祈)
-</p>
-<div class="org-src-container">
-<pre class="src src-elisp">	("melpa" . "http://www.mirrorservice.org/sites/stable.melpa.org/packages/")
-;;	("org" . "http://orgmode.org/elpa/")))
-</pre>
-</div>
-
-<p>
-上で付けた <code>--with-gnutls=ifavailable</code> のオプションが怪しい気がします。
+起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
 </p>
 
 <p>
-ここを抜けると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
+いろいろwarningが出ているようでですが、見なかったことにします。以前出ていたTLSで接続できない問題も、知らない間に解決していたようです。gnutls-develがうまく認識できていなかったのかな。
 </p>
 
 <p>
-曲りなりにemacsがGUI/ターミナル版ともに使えているように見えます。。。ちなみに入ったのは emacs 31.0.50 でした。Macのemacsが29.3なので、更に新しいです。少しうれしい。
+曲りなりにemacsがGUI/ターミナル版ともに使えているように見えます。。。ちなみに入ったのは emacs 31.0.50 でした。新しいと喜んで使っていたMacのemacsが29.3なので、更に新しいです。少しうれしい。
+</p>
+
+<p>
+ネイティブコンパイル威力はあまり感じませんでした。言われると、少しキビキビ動くようになったかな、というくらい。メモリを2GBしか割り当てていない貧弱なVMだからかな。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org45330da" class="outline-2">
-<h2 id="org45330da"><span class="section-number-2">5</span> 最後に</h2>
+<div id="outline-container-org9a41295" class="outline-2">
+<h2 id="org9a41295"><span class="section-number-2">5</span> 最後に</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-次はネイティブコンパイルにチャレンジしてみたいと思います。うまくいったら記事をアップデートします。
+意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
 </p>
 </div>
 </div>
