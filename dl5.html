@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org46a66d3">1. はじめに</a></li>
-<li><a href="#orge3449c9">2. 問題発生</a></li>
-<li><a href="#orgfc92e6d">3. キャラクター作成</a></li>
-<li><a href="#org0f085fa">4. キャラクターのパーティー追加</a></li>
-<li><a href="#org4636bc2">5. 次は、、</a></li>
+<li><a href="#orgcc16b27">1. はじめに</a></li>
+<li><a href="#org9d3470b">2. 問題発生</a></li>
+<li><a href="#org9dab827">3. キャラクター作成</a></li>
+<li><a href="#org352e410">4. キャラクターのパーティー追加</a></li>
+<li><a href="#orgb0c822e">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org46a66d3" class="outline-2">
-<h2 id="org46a66d3"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgcc16b27" class="outline-2">
+<h2 id="orgcc16b27"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの5回目です。久々ですが、パーティー表示ウインドウ、キャラクター作成、キャラクターのパーティー追加を作り込んでいました。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orge3449c9" class="outline-2">
-<h2 id="orge3449c9"><span class="section-number-2">2</span> 問題発生</h2>
+<div id="outline-container-org9d3470b" class="outline-2">
+<h2 id="org9d3470b"><span class="section-number-2">2</span> 問題発生</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 パーティーウインドウを実装したのですが、メッセージウインドウと同時に表示するとマップ画面が妙に狭くて見づらくなる問題が発生しました。試行錯誤の結果、パーティーウインドウの右側にメッセージウインドウを固定し、その上側を全てマップスクロールウインドウとすることで画面を広く使えるようにしました。
@@ -132,8 +132,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-orgfc92e6d" class="outline-2">
-<h2 id="orgfc92e6d"><span class="section-number-2">3</span> キャラクター作成</h2>
+<div id="outline-container-org9dab827" class="outline-2">
+<h2 id="org9dab827"><span class="section-number-2">3</span> キャラクター作成</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Wizardry的なキャラクター作成を実装しました。名前、種族(race)、アラインメントを選択したあと、年齢は指定できるようにしました。そしてボーナスポイントの振り分けです。カーソル <code>&gt;</code> をj, kで上下に動かし、h, lで値を増減させます。ボーナスポイントの再計算もできるようにしました。
@@ -157,8 +157,8 @@ daemon lord - dl - [training_grounds] floor: 1 (0/0)
 </div>
 </div>
 
-<div id="outline-container-org0f085fa" class="outline-2">
-<h2 id="org0f085fa"><span class="section-number-2">4</span> キャラクターのパーティー追加</h2>
+<div id="outline-container-org352e410" class="outline-2">
+<h2 id="org352e410"><span class="section-number-2">4</span> キャラクターのパーティー追加</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 キャラクターのパーティー追加ですが、キャラクターは20人まで登録可能なため、キャラクターを選択するメッセージウインドウの行数を超えてしまう場合があります。そこで、別ウインドウを開いてそこでスクロールしながら選択できるようにしました。下図で、 <code>|</code> で挟まれて部分がキャラクター選択のための別ウインドウです。
@@ -198,8 +198,8 @@ daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)
 </div>
 </div>
 
-<div id="outline-container-org4636bc2" class="outline-2">
-<h2 id="org4636bc2"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-orgb0c822e" class="outline-2">
+<h2 id="orgb0c822e"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このままモンスターと遭遇すると全滅必至ですから、次は買い物してアイテムを装備出来るようにしましょうかね。ではまた。
