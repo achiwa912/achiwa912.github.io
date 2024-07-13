@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org893ed2b">1. はじめに</a></li>
-<li><a href="#orgb5bb87d">2. 先人の情報を探す</a></li>
-<li><a href="#org6e96b16">3. ビルドしてみる</a></li>
-<li><a href="#orgd74cd3b">4. 動かしてみる</a></li>
-<li><a href="#org9a41295">5. 最後に</a></li>
+<li><a href="#org79e7b14">1. はじめに</a></li>
+<li><a href="#org8b6898d">2. 先人の情報を探す</a></li>
+<li><a href="#orgff6bb52">3. ビルドしてみる</a></li>
+<li><a href="#orgb988c66">4. 動かしてみる</a></li>
+<li><a href="#org65aa9a5">5. 最後に</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org893ed2b" class="outline-2">
-<h2 id="org893ed2b"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org79e7b14" class="outline-2">
+<h2 id="org79e7b14"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
@@ -87,8 +87,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb5bb87d" class="outline-2">
-<h2 id="orgb5bb87d"><span class="section-number-2">2</span> 先人の情報を探す</h2>
+<div id="outline-container-org8b6898d" class="outline-2">
+<h2 id="org8b6898d"><span class="section-number-2">2</span> 先人の情報を探す</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
@@ -96,8 +96,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6e96b16" class="outline-2">
-<h2 id="org6e96b16"><span class="section-number-2">3</span> ビルドしてみる</h2>
+<div id="outline-container-orgff6bb52" class="outline-2">
+<h2 id="orgff6bb52"><span class="section-number-2">3</span> ビルドしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはemacsのソースコードを入手します。
@@ -123,7 +123,7 @@ cd emacs
 </p>
 
 <p>
-やったことは、以下です。
+入れたのは以下です。ここが試行錯誤するところです。
 </p>
 <pre class="example">
 sudo dnf install make automake gcc gcc-c++ kernel-devel
@@ -152,8 +152,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-orgd74cd3b" class="outline-2">
-<h2 id="orgd74cd3b"><span class="section-number-2">4</span> 動かしてみる</h2>
+<div id="outline-container-orgb988c66" class="outline-2">
+<h2 id="orgb988c66"><span class="section-number-2">4</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
@@ -164,17 +164,25 @@ sudo make install
 </p>
 
 <p>
+せっかくなので以下をinit.elに追記します。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(pixel-scroll-precision-mode)
+</pre>
+</div>
+
+<p>
 曲りなりにemacsがGUI/ターミナル版ともに使えているように見えます。。。ちなみに入ったのは emacs 31.0.50 でした。新しいと喜んで使っていたMacのemacsが29.3なので、更に新しいです。少しうれしい。
 </p>
 
 <p>
-ネイティブコンパイル威力はあまり感じませんでした。言われると、少しキビキビ動くようになったかな、というくらい。メモリを2GBしか割り当てていない貧弱なVMだからかな。
+ネイティブコンパイルの威力はあまり感じませんでした。言われると、少しキビキビ動くようになったかな、というくらい。メモリを2GBしか割り当てていない貧弱なVMだからかな。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org9a41295" class="outline-2">
-<h2 id="org9a41295"><span class="section-number-2">5</span> 最後に</h2>
+<div id="outline-container-org65aa9a5" class="outline-2">
+<h2 id="org65aa9a5"><span class="section-number-2">5</span> 最後に</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
