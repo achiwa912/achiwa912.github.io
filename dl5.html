@@ -69,17 +69,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org3c70d25">1. はじめに</a></li>
-<li><a href="#org762197f">2. 問題発生</a></li>
-<li><a href="#org055c1ba">3. キャラクター作成</a></li>
-<li><a href="#org0f9c487">4. キャラクターのパーティー追加</a></li>
-<li><a href="#org54257fa">5. 次は、、</a></li>
+<li><a href="#org4e9fb13">1. はじめに</a></li>
+<li><a href="#orge43787d">2. 問題発生</a></li>
+<li><a href="#org451e5ce">3. キャラクター作成</a></li>
+<li><a href="#orgece44ff">4. キャラクターのパーティー追加</a></li>
+<li><a href="#org74ce5c3">5. 次は、、</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3c70d25" class="outline-2">
-<h2 id="org3c70d25"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org4e9fb13" class="outline-2">
+<h2 id="org4e9fb13"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの5回目です。久々ですが、パーティー表示ウインドウ、キャラクター作成、キャラクターのパーティー追加を作り込んでいました。
@@ -91,8 +91,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org762197f" class="outline-2">
-<h2 id="org762197f"><span class="section-number-2">2</span> 問題発生</h2>
+<div id="outline-container-orge43787d" class="outline-2">
+<h2 id="orge43787d"><span class="section-number-2">2</span> 問題発生</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 パーティーウインドウを実装したのですが、メッセージウインドウと同時に表示するとマップ画面が妙に狭くて見づらくなる問題が発生しました。試行錯誤の結果、パーティーウインドウの右側にメッセージウインドウを固定し、その上側を全てマップスクロールウインドウとすることで画面を広く使えるようにしました。
@@ -132,8 +132,8 @@ githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</
 </div>
 </div>
 
-<div id="outline-container-org055c1ba" class="outline-2">
-<h2 id="org055c1ba"><span class="section-number-2">3</span> キャラクター作成</h2>
+<div id="outline-container-org451e5ce" class="outline-2">
+<h2 id="org451e5ce"><span class="section-number-2">3</span> キャラクター作成</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Wizardry的なキャラクター作成を実装しました。名前、種族(race)、アラインメントを選択したあと、年齢は指定できるようにしました。そしてボーナスポイントの振り分けです。カーソル <code>&gt;</code> をj, kで上下に動かし、h, lで値を増減させます。ボーナスポイントの再計算もできるようにしました。
@@ -157,8 +157,8 @@ daemon lord - dl - [training_grounds] floor: 1 (0/0)
 </div>
 </div>
 
-<div id="outline-container-org0f9c487" class="outline-2">
-<h2 id="org0f9c487"><span class="section-number-2">4</span> キャラクターのパーティー追加</h2>
+<div id="outline-container-orgece44ff" class="outline-2">
+<h2 id="orgece44ff"><span class="section-number-2">4</span> キャラクターのパーティー追加</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 キャラクターのパーティー追加ですが、キャラクターは20人まで登録可能なため、キャラクターを選択するメッセージウインドウの行数を超えてしまう場合があります。そこで、別ウインドウを開いてそこでスクロールしながら選択できるようにしました。下図で、 <code>|</code> で挟まれて部分がキャラクター選択のための別ウインドウです。
@@ -198,8 +198,8 @@ daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)
 </div>
 </div>
 
-<div id="outline-container-org54257fa" class="outline-2">
-<h2 id="org54257fa"><span class="section-number-2">5</span> 次は、、</h2>
+<div id="outline-container-org74ce5c3" class="outline-2">
+<h2 id="org74ce5c3"><span class="section-number-2">5</span> 次は、、</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このままモンスターと遭遇すると全滅必至ですから、次は買い物してアイテムを装備出来るようにしましょうかね。ではまた。
@@ -229,6 +229,9 @@ daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/vocabulary.html">オススメのボキャビル方法</a>
+      </li>
+      <li class="post">
           <a href="/emacs_build.html">Rokcy LinuxとM1 MacBook上でemacsをソースからビルドしてみる</a>
       </li>
       <li class="post">
@@ -239,9 +242,6 @@ daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)
       </li>
       <li class="post">
           <a href="/cert.html">Webサイトに安全にアクセスするための仕掛け</a>
-      </li>
-      <li class="post">
-          <a href="/private.html">アメリカであえて私立高校を選ぶ</a>
       </li>
     </ul>
   </section>
@@ -260,7 +260,7 @@ daemon lord - dl - [hawthorne_tavern] floor: 1 (0/0)
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
