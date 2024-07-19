@@ -69,16 +69,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgf78cc65">1. はじめに</a></li>
-<li><a href="#org8ad48e3">2. venv環境を使う</a></li>
-<li><a href="#orgff4fdcb">3. crontabに登録する</a></li>
-<li><a href="#org58c0285">4. 終わりに</a></li>
+<li><a href="#org7d99669">1. はじめに</a></li>
+<li><a href="#orga313b9e">2. venv環境を使う</a></li>
+<li><a href="#org5d42214">3. crontabに登録する</a></li>
+<li><a href="#orgba6815a">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgf78cc65" class="outline-2">
-<h2 id="orgf78cc65"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org7d99669" class="outline-2">
+<h2 id="org7d99669"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 PythonのスクリプトをLinuxマシン上で定期実行することを考えます。Linuxにはジョブスケジューラーのcronがありますが、必要ライブラリをpipでインストール済みのvenv環境を使うには少し工夫が必要です。
@@ -86,8 +86,8 @@ PythonのスクリプトをLinuxマシン上で定期実行することを考え
 </div>
 </div>
 
-<div id="outline-container-org8ad48e3" class="outline-2">
-<h2 id="org8ad48e3"><span class="section-number-2">2</span> venv環境を使う</h2>
+<div id="outline-container-orga313b9e" class="outline-2">
+<h2 id="orga313b9e"><span class="section-number-2">2</span> venv環境を使う</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 venv環境をactivateしてPythonスクリプトを実行するためには、cronから
@@ -122,8 +122,8 @@ chmod a+x run_script.sh
 </div>
 </div>
 
-<div id="outline-container-orgff4fdcb" class="outline-2">
-<h2 id="orgff4fdcb"><span class="section-number-2">3</span> crontabに登録する</h2>
+<div id="outline-container-org5d42214" class="outline-2">
+<h2 id="org5d42214"><span class="section-number-2">3</span> crontabに登録する</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 crontabに登録してcron実行するために、
@@ -196,8 +196,8 @@ sudo tail -f /var/log/cron
 </div>
 </div>
 
-<div id="outline-container-org58c0285" class="outline-2">
-<h2 id="org58c0285"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgba6815a" class="outline-2">
+<h2 id="orgba6815a"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上記のテクニックを使って、オフィスのラボにあるサーバーがダウンしていないかを自動で定期的に確認し、ダウンしていたらSlackにメッセージをポストするようにしました。更に、サーバーにインストール済みのバージョンよりも新しいバージョンが無いか、Jenkinsをチェックして比較しています。
