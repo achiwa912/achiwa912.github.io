@@ -69,27 +69,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0aaa01f">1. はじめに</a></li>
-<li><a href="#org4d28528">2. LSP</a></li>
-<li><a href="#org4cb68ae">3. eglot</a></li>
-<li><a href="#orga317fb9">4. 設定</a>
+<li><a href="#orgbe25556">1. はじめに</a></li>
+<li><a href="#org4c4dca5">2. LSP</a></li>
+<li><a href="#org8f8725d">3. eglot</a></li>
+<li><a href="#org20fb4c5">4. 設定</a>
 <ul>
-<li><a href="#orgd7227b4">4.1. lsp server</a></li>
-<li><a href="#org9add9d6">4.2. eglot</a>
+<li><a href="#org183f9d0">4.1. lsp server</a></li>
+<li><a href="#org2786a30">4.2. eglot</a>
 <ul>
-<li><a href="#org68c7b5f">4.2.1. tramp-modeでの注意点</a></li>
+<li><a href="#orgc234219">4.2.1. tramp-modeでの注意点</a></li>
 </ul>
 </li>
-<li><a href="#org55bbf42">4.3. その他のパッケージ</a></li>
+<li><a href="#org35ef237">4.3. その他のパッケージ</a></li>
 </ul>
 </li>
-<li><a href="#orgd4e059d">5. おまけ</a></li>
+<li><a href="#orgfd7a9b0">5. おまけ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0aaa01f" class="outline-2">
-<h2 id="org0aaa01f"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgbe25556" class="outline-2">
+<h2 id="orgbe25556"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 一昨年2020年にPythonに(何度めかの)入門をして以来、エディタというかIDE相当の開発環境としてemacs + elpyを使ってきましたが、リモートサーバー上のファイル等を扱う tramp モードに elpy が対応していないことを知り、対応しているらしい eglot を試してみることにしました。
@@ -97,8 +97,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4d28528" class="outline-2">
-<h2 id="org4d28528"><span class="section-number-2">2</span> LSP</h2>
+<div id="outline-container-org4c4dca5" class="outline-2">
+<h2 id="org4c4dca5"><span class="section-number-2">2</span> LSP</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol (LSP)</a> はマイクロソフトが決めて公開しているプロトコルです。PythonやJavaといった言語ごとのLSPサーバーと、それらの機能を利用するemacs(上で動くeglot)のようなクライアントに分かれていて、それぞれ独立して開発が可能です。
@@ -111,8 +111,8 @@
 </div>
 
 
-<div id="outline-container-org4cb68ae" class="outline-2">
-<h2 id="org4cb68ae"><span class="section-number-2">3</span> eglot</h2>
+<div id="outline-container-org8f8725d" class="outline-2">
+<h2 id="org8f8725d"><span class="section-number-2">3</span> eglot</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 emacs用のlspクライアントとしては、 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a> と <a href="https://github.com/joaotavora/eglot">eglot</a> がよく使われているようです。lsp-modeの方が本格的で人気も高いように見えますが、 eglot は設定が簡単で公式ページに「tramp でも動く」と明記してあるので、まずは極力リスクを避けてeglotに入門してみたいと思います。emacsでは動くはずのものが動かないことは日常茶飯事なので(単に私に技術が無いだけとも言う)。
@@ -120,12 +120,12 @@ emacs用のlspクライアントとしては、 <a href="https://github.com/emac
 </div>
 </div>
 
-<div id="outline-container-orga317fb9" class="outline-2">
-<h2 id="orga317fb9"><span class="section-number-2">4</span> 設定</h2>
+<div id="outline-container-org20fb4c5" class="outline-2">
+<h2 id="org20fb4c5"><span class="section-number-2">4</span> 設定</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgd7227b4" class="outline-3">
-<h3 id="orgd7227b4"><span class="section-number-3">4.1</span> lsp server</h3>
+<div id="outline-container-org183f9d0" class="outline-3">
+<h3 id="org183f9d0"><span class="section-number-3">4.1</span> lsp server</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Python用のlspサーバーとしては python-language-server と python-lsp-server というよく似た名前のものがありますが、前者はすでにメンテナンスされていないようなので、後者を入れます。
@@ -140,8 +140,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org9add9d6" class="outline-3">
-<h3 id="org9add9d6"><span class="section-number-3">4.2</span> eglot</h3>
+<div id="outline-container-org2786a30" class="outline-3">
+<h3 id="org2786a30"><span class="section-number-3">4.2</span> eglot</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 <code>~/.emacs.d/init.el</code> に以下を書きました。もしまだ <a href="https://github.com/jwiegley/use-package">use-package</a> を使っていないようなら、ぜひとも使ってみてください。パッケージのインストールを自動化してくれ、とても便利です。私の環境ではなぜか自動インストールが失敗し、 <code>M-x list-packages</code> から手動インストールすることがよくありますが。。
@@ -161,8 +161,8 @@ pip install 'python-lsp-server[all]'
 </p>
 </div>
 
-<div id="outline-container-org68c7b5f" class="outline-4">
-<h4 id="org68c7b5f"><span class="section-number-4">4.2.1</span> tramp-modeでの注意点</h4>
+<div id="outline-container-orgc234219" class="outline-4">
+<h4 id="orgc234219"><span class="section-number-4">4.2.1</span> tramp-modeでの注意点</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 私の場合、ローカルではうまくいくのですが tramp でリモートの <code>.py</code> ファイルを開こうとすると <code>pylsp</code> が見つからないというエラーに悩まされました。試行錯誤の結果、以下の行をinit.elに入れて解決しました。
@@ -175,8 +175,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org55bbf42" class="outline-3">
-<h3 id="org55bbf42"><span class="section-number-3">4.3</span> その他のパッケージ</h3>
+<div id="outline-container-org35ef237" class="outline-3">
+<h3 id="org35ef237"><span class="section-number-3">4.3</span> その他のパッケージ</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 他に、以下のパッケージを追加しました。
@@ -224,8 +224,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-orgd4e059d" class="outline-2">
-<h2 id="orgd4e059d"><span class="section-number-2">5</span> おまけ</h2>
+<div id="outline-container-orgfd7a9b0" class="outline-2">
+<h2 id="orgfd7a9b0"><span class="section-number-2">5</span> おまけ</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 elpyがtrampに <a href="https://github.com/jorgenschaefer/elpy/issues/276">対応していない</a> らしいことは、実際にやってみてわかりました。
