@@ -69,10 +69,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge9c4346">1. MacBookが新しくなりなした</a></li>
-<li><a href="#org3443761">2. M1 MacBook Pro 16インチ</a>
+<li><a href="#orgb53fbe1">1. MacBookが新しくなりなした</a></li>
+<li><a href="#orgdb34a70">2. M1 MacBook Pro 16インチ</a>
 <ul>
-<li><a href="#orgf30545e">2.1. UTMの問題(3/17/2023追記)</a></li>
+<li><a href="#orgd1a708c">2.1. UTMの問題(3/17/2023追記)</a></li>
 </ul>
 </li>
 </ul>
@@ -80,8 +80,8 @@
 </div>
 
 
-<div id="outline-container-orge9c4346" class="outline-2">
-<h2 id="orge9c4346"><span class="section-number-2">1</span> MacBookが新しくなりなした</h2>
+<div id="outline-container-orgb53fbe1" class="outline-2">
+<h2 id="orgb53fbe1"><span class="section-number-2">1</span> MacBookが新しくなりなした</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 会社支給のMacBook Pro 15インチの調子がまた悪くなりました。夏に立ち上がらなくなってAppleストアに持ち込み、マザーボードを交換したばかりですが、今度はバッテリーです。ここしばらくバッテリー容量低下のWarningが出ていたので気になっていたのですが、バッテリーで使っていると15分も使っていないのにバッテリー残量が無いためにシャットダウンする、と言ってVMをサスペンドするようになりました。
@@ -93,8 +93,8 @@
 </div>
 </div>
 
-<div id="outline-container-org3443761" class="outline-2">
-<h2 id="org3443761"><span class="section-number-2">2</span> M1 MacBook Pro 16インチ</h2>
+<div id="outline-container-orgdb34a70" class="outline-2">
+<h2 id="orgdb34a70"><span class="section-number-2">2</span> M1 MacBook Pro 16インチ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 早速3日くらいでアパートにとどきました。これまで使っていた15インチ版と比べて、大きく重くなりました。普段から持ち運ぶには重すぎるように思います。これまでのバタフライキーボードはいまいちでしたが、今回のキーボードはとてもタイプしやすいです。
@@ -105,8 +105,8 @@
 </p>
 </div>
 
-<div id="outline-container-orgf30545e" class="outline-3">
-<h3 id="orgf30545e"><span class="section-number-3">2.1</span> UTMの問題(3/17/2023追記)</h3>
+<div id="outline-container-orgd1a708c" class="outline-3">
+<h3 id="orgd1a708c"><span class="section-number-3">2.1</span> UTMの問題(3/17/2023追記)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 しばらく使ってみて、UTMの問題が色々見えてきました。ホストであるMacBookがスリープからレジュームした際に時間がずれたままなため、 <code>sudo systemctl restart chronyd</code> がたびたび必要になることと、やはりレジューム後にネットワークが機能しないことがあり、その際、trampでVM内のファイルを編集しているとemacsが固まってしまうことです。こうなると <code>sudo systemd restart NetworkManager</code> しても復活せず、仕方なくVMをリブートしています。
@@ -153,6 +153,9 @@
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/improve_eng2.html">上級者向け英語学習法(実践編)</a>
+      </li>
+      <li class="post">
           <a href="/improve_eng1.html">上級者向け英語学習法(考察編)</a>
       </li>
       <li class="post">
@@ -163,9 +166,6 @@
       </li>
       <li class="post">
           <a href="/speaking.html">アメリカ口語教本とAIを使ってスピーキングを強化する</a>
-      </li>
-      <li class="post">
-          <a href="/summerreading24.html">Summer Reading 2024</a>
       </li>
     </ul>
   </section>

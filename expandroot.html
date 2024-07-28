@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org85b79be">1. はじめに</a></li>
-<li><a href="#org6589e80">2. 手順</a>
+<li><a href="#orgd9b1655">1. はじめに</a></li>
+<li><a href="#org5dc5dfc">2. 手順</a>
 <ul>
-<li><a href="#orga98b53a">2.1. 概要</a></li>
-<li><a href="#orgaaab10e">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org48e1bf7">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org17ce101">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#org772cf96">2.1. 概要</a></li>
+<li><a href="#org7f55653">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#orge1e1867">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org36c3feb">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#org57db0d0">3. 終わりに</a></li>
+<li><a href="#orgbe45c7f">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org85b79be" class="outline-2">
-<h2 id="org85b79be"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgd9b1655" class="outline-2">
+<h2 id="orgd9b1655"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -98,12 +98,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org6589e80" class="outline-2">
-<h2 id="org6589e80"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org5dc5dfc" class="outline-2">
+<h2 id="org5dc5dfc"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga98b53a" class="outline-3">
-<h3 id="orga98b53a"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-org772cf96" class="outline-3">
+<h3 id="org772cf96"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -117,8 +117,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgaaab10e" class="outline-3">
-<h3 id="orgaaab10e"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-org7f55653" class="outline-3">
+<h3 id="org7f55653"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -146,8 +146,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org48e1bf7" class="outline-3">
-<h3 id="org48e1bf7"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-orge1e1867" class="outline-3">
+<h3 id="orge1e1867"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -186,8 +186,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-org17ce101" class="outline-3">
-<h3 id="org17ce101"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-org36c3feb" class="outline-3">
+<h3 id="org36c3feb"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -231,8 +231,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-org57db0d0" class="outline-2">
-<h2 id="org57db0d0"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-orgbe45c7f" class="outline-2">
+<h2 id="orgbe45c7f"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -262,6 +262,9 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/improve_eng2.html">上級者向け英語学習法(実践編)</a>
+      </li>
+      <li class="post">
           <a href="/improve_eng1.html">上級者向け英語学習法(考察編)</a>
       </li>
       <li class="post">
@@ -272,9 +275,6 @@ Filesystem      Size  Used Avail Use% Mounted on
       </li>
       <li class="post">
           <a href="/speaking.html">アメリカ口語教本とAIを使ってスピーキングを強化する</a>
-      </li>
-      <li class="post">
-          <a href="/summerreading24.html">Summer Reading 2024</a>
       </li>
     </ul>
   </section>
