@@ -69,45 +69,45 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org79ea3cd">1. はじめに</a></li>
-<li><a href="#org7dd2450">2. UTMの使い勝手</a></li>
-<li><a href="#orga272758">3. 環境再構築</a>
+<li><a href="#org35d1ea0">1. はじめに</a></li>
+<li><a href="#org21f71c2">2. UTMの使い勝手</a></li>
+<li><a href="#org3eedd4a">3. 環境再構築</a>
 <ul>
-<li><a href="#orgfea6979">3.1. AlmaLinuxインストール</a>
+<li><a href="#orgf57ae2a">3.1. AlmaLinuxインストール</a>
 <ul>
-<li><a href="#org944fa8b">3.1.1. AlmaLinux最新版のダウンロード</a></li>
-<li><a href="#orgb0675a5">3.1.2. VM作成</a></li>
-<li><a href="#org37df656">3.1.3. AlmaLinuxインストール</a></li>
-<li><a href="#org0d1cbf1">3.1.4. dnf update</a></li>
+<li><a href="#orgbfd9c2d">3.1.1. AlmaLinux最新版のダウンロード</a></li>
+<li><a href="#orgd1d9a85">3.1.2. VM作成</a></li>
+<li><a href="#orgb28051a">3.1.3. AlmaLinuxインストール</a></li>
+<li><a href="#org8aed0e1">3.1.4. dnf update</a></li>
 </ul>
 </li>
-<li><a href="#org452711a">3.2. 環境再構築</a>
+<li><a href="#org2e54b63">3.2. 環境再構築</a>
 <ul>
-<li><a href="#org91dc494">3.2.1. gitのインストールと初期設定</a></li>
-<li><a href="#org5f08b47">3.2.2. Pythonのインストールと設定</a></li>
-<li><a href="#org29e0c98">3.2.3. lsp serverのインストール</a></li>
-<li><a href="#org72192d3">3.2.4. emacsのインストール</a></li>
-<li><a href="#org51bbc2d">3.2.5. ssh keyのインポート</a></li>
-<li><a href="#orgd6e407e">3.2.6. github に sshできるようにする</a></li>
-<li><a href="#org925c9fb">3.2.7. githubから復旧</a></li>
-<li><a href="#orgbdf9ae4">3.2.8. メール環境復旧</a></li>
+<li><a href="#org1832e87">3.2.1. gitのインストールと初期設定</a></li>
+<li><a href="#org066d34e">3.2.2. Pythonのインストールと設定</a></li>
+<li><a href="#orgb945bbb">3.2.3. lsp serverのインストール</a></li>
+<li><a href="#org827436a">3.2.4. emacsのインストール</a></li>
+<li><a href="#org91f9f5a">3.2.5. ssh keyのインポート</a></li>
+<li><a href="#org50ce481">3.2.6. github に sshできるようにする</a></li>
+<li><a href="#org2c8cbeb">3.2.7. githubから復旧</a></li>
+<li><a href="#org6f1bcfe">3.2.8. メール環境復旧</a></li>
 </ul>
 </li>
-<li><a href="#org27843e7">3.3. ブログ環境の復旧</a>
+<li><a href="#orga4f8c9c">3.3. ブログ環境の復旧</a>
 <ul>
-<li><a href="#orge664974">3.3.1. サイトジェネレーター Pelican 設定</a></li>
+<li><a href="#org76618fe">3.3.1. サイトジェネレーター Pelican 設定</a></li>
 </ul>
 </li>
-<li><a href="#org31bc31e">3.4. おまけ: RetroArchセットアップ</a></li>
+<li><a href="#org2218e73">3.4. おまけ: RetroArchセットアップ</a></li>
 </ul>
 </li>
-<li><a href="#org0f8413a">4. 終わりに</a></li>
+<li><a href="#orge526598">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org79ea3cd" class="outline-2">
-<h2 id="org79ea3cd"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org35d1ea0" class="outline-2">
+<h2 id="org35d1ea0"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 M1 MacBook用のVirtualBoxはまだ正式版ではないようなので、UTMを使っているのですが、スナップショットに未対応でVMをまるごとクローンするしかありません。ディスクを大量消費するので、ついクローンを取るのを怠っていると、 <code>dnf update</code> したときにブートしなくなる、、、ことを繰り返しています。
@@ -123,8 +123,8 @@ M1 MacBook用のVirtualBoxはまだ正式版ではないようなので、UTMを
 </div>
 </div>
 
-<div id="outline-container-org7dd2450" class="outline-2">
-<h2 id="org7dd2450"><span class="section-number-2">2</span> UTMの使い勝手</h2>
+<div id="outline-container-org21f71c2" class="outline-2">
+<h2 id="org21f71c2"><span class="section-number-2">2</span> UTMの使い勝手</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 UTM(M1 Mac版)はだいぶ実用的になってきましたが、まだVirtualBoxに及ばない点があります:
@@ -144,20 +144,20 @@ UTM(M1 Mac版)はだいぶ実用的になってきましたが、まだVirtualBo
 </div>
 </div>
 
-<div id="outline-container-orga272758" class="outline-2">
-<h2 id="orga272758"><span class="section-number-2">3</span> 環境再構築</h2>
+<div id="outline-container-org3eedd4a" class="outline-2">
+<h2 id="org3eedd4a"><span class="section-number-2">3</span> 環境再構築</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 自分用に復旧のステップを一通りメモしておきます。
 </p>
 </div>
 
-<div id="outline-container-orgfea6979" class="outline-3">
-<h3 id="orgfea6979"><span class="section-number-3">3.1</span> AlmaLinuxインストール</h3>
+<div id="outline-container-orgf57ae2a" class="outline-3">
+<h3 id="orgf57ae2a"><span class="section-number-3">3.1</span> AlmaLinuxインストール</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org944fa8b" class="outline-4">
-<h4 id="org944fa8b"><span class="section-number-4">3.1.1</span> AlmaLinux最新版のダウンロード</h4>
+<div id="outline-container-orgbfd9c2d" class="outline-4">
+<h4 id="orgbfd9c2d"><span class="section-number-4">3.1.1</span> AlmaLinux最新版のダウンロード</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>Visit <a href="https://mirrors.almalinux.org/isos.html">https://mirrors.almalinux.org/isos.html</a> &gt; aarch64 &gt; 最新バージョン</li>
@@ -170,8 +170,8 @@ Rocky Linux 9.5は <a href="https://rockylinux.org/download">https://rockylinux.
 </div>
 </div>
 
-<div id="outline-container-orgb0675a5" class="outline-4">
-<h4 id="orgb0675a5"><span class="section-number-4">3.1.2</span> VM作成</h4>
+<div id="outline-container-orgd1d9a85" class="outline-4">
+<h4 id="orgd1d9a85"><span class="section-number-4">3.1.2</span> VM作成</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>UTM &gt; <code>+</code> &gt; Virtualize &gt; Linux &gt; Boot ISO Image &gt; Browse
@@ -186,8 +186,8 @@ Rocky Linux 9.5は <a href="https://rockylinux.org/download">https://rockylinux.
 </div>
 </div>
 
-<div id="outline-container-org37df656" class="outline-4">
-<h4 id="org37df656"><span class="section-number-4">3.1.3</span> AlmaLinuxインストール</h4>
+<div id="outline-container-orgb28051a" class="outline-4">
+<h4 id="orgb28051a"><span class="section-number-4">3.1.3</span> AlmaLinuxインストール</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <ul class="org-ul">
 <li>Run VM &gt; Install AlmaLinux 9.2 &gt; English (United States) &gt; Continue</li>
@@ -204,8 +204,8 @@ Rocky Linux 9.5でもそのまま行けます。
 </div>
 </div>
 
-<div id="outline-container-org0d1cbf1" class="outline-4">
-<h4 id="org0d1cbf1"><span class="section-number-4">3.1.4</span> dnf update</h4>
+<div id="outline-container-org8aed0e1" class="outline-4">
+<h4 id="org8aed0e1"><span class="section-number-4">3.1.4</span> dnf update</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <p>
 ネットワークに繋がっていることを確認します。繋がっていなかったら一旦power offしてVMのネットワーク設定をBridgedにすれば大丈夫なはず。ここで一旦power offしてVMのクローンを取ります。
@@ -253,16 +253,16 @@ sudo systemctl restart chronyd
 </div>
 </div>
 
-<div id="outline-container-org452711a" class="outline-3">
-<h3 id="org452711a"><span class="section-number-3">3.2</span> 環境再構築</h3>
+<div id="outline-container-org2e54b63" class="outline-3">
+<h3 id="org2e54b63"><span class="section-number-3">3.2</span> 環境再構築</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 ここからは環境によってやることが全然違ってきますが、ご参考。
 </p>
 </div>
 
-<div id="outline-container-org91dc494" class="outline-4">
-<h4 id="org91dc494"><span class="section-number-4">3.2.1</span> gitのインストールと初期設定</h4>
+<div id="outline-container-org1832e87" class="outline-4">
+<h4 id="org1832e87"><span class="section-number-4">3.2.1</span> gitのインストールと初期設定</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 復旧元となるgithubにアクセスするためにgitを入れます。
@@ -278,8 +278,8 @@ git config --global user.name "&lt;your name&gt;"
 </div>
 </div>
 
-<div id="outline-container-org5f08b47" class="outline-4">
-<h4 id="org5f08b47"><span class="section-number-4">3.2.2</span> Pythonのインストールと設定</h4>
+<div id="outline-container-org066d34e" class="outline-4">
+<h4 id="org066d34e"><span class="section-number-4">3.2.2</span> Pythonのインストールと設定</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 VMにpythonのプロジェクトをいくつか置く必要があります。
@@ -317,8 +317,8 @@ pyenv rehash
 </div>
 </div>
 
-<div id="outline-container-org29e0c98" class="outline-4">
-<h4 id="org29e0c98"><span class="section-number-4">3.2.3</span> lsp serverのインストール</h4>
+<div id="outline-container-orgb945bbb" class="outline-4">
+<h4 id="orgb945bbb"><span class="section-number-4">3.2.3</span> lsp serverのインストール</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 ホストであるMacBook上のemacsから、VM上のpythonファイルを編集できるようにします。
@@ -329,8 +329,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org72192d3" class="outline-4">
-<h4 id="org72192d3"><span class="section-number-4">3.2.4</span> emacsのインストール</h4>
+<div id="outline-container-org827436a" class="outline-4">
+<h4 id="org827436a"><span class="section-number-4">3.2.4</span> emacsのインストール</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <p>
 ゲストVMにもemacsを入れます。ブログの作成に使っているサイトジェネレーターのpelicanでorgファイルを変換するのに使われます。
@@ -341,8 +341,8 @@ sudo dnf install emacs
 </div>
 </div>
 
-<div id="outline-container-org51bbc2d" class="outline-4">
-<h4 id="org51bbc2d"><span class="section-number-4">3.2.5</span> ssh keyのインポート</h4>
+<div id="outline-container-org91f9f5a" class="outline-4">
+<h4 id="org91f9f5a"><span class="section-number-4">3.2.5</span> ssh keyのインポート</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <p>
 MacBookからAlmaLinuxに、パスワード認証無しでsshで入れるように、ssh keyをVMにインポートします。これをやっておくと、trampモードを使って、ホストのMacからVM上のファイルをemacsでシームレスに編集できるようになります。
@@ -377,8 +377,8 @@ ssh &lt;user&gt;@&lt;VM IP&gt;
 </div>
 </div>
 
-<div id="outline-container-orgd6e407e" class="outline-4">
-<h4 id="orgd6e407e"><span class="section-number-4">3.2.6</span> github に sshできるようにする</h4>
+<div id="outline-container-org50ce481" class="outline-4">
+<h4 id="org50ce481"><span class="section-number-4">3.2.6</span> github に sshできるようにする</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <ul class="org-ul">
 <li>ssh-agentにキーを登録します。&lt;id_rsa&gt;はプライベートキーを指定します。</li>
@@ -400,8 +400,8 @@ IdentityFile ~/.ssh/&lt;id_rsaファイル&gt;
 </div>
 </div>
 
-<div id="outline-container-org925c9fb" class="outline-4">
-<h4 id="org925c9fb"><span class="section-number-4">3.2.7</span> githubから復旧</h4>
+<div id="outline-container-org2c8cbeb" class="outline-4">
+<h4 id="org2c8cbeb"><span class="section-number-4">3.2.7</span> githubから復旧</h4>
 <div class="outline-text-4" id="text-3-2-7">
 <p>
 必要なプロジェクトをgithubからgit cloneしてきます(ステップ略)。
@@ -409,8 +409,8 @@ IdentityFile ~/.ssh/&lt;id_rsaファイル&gt;
 </div>
 </div>
 
-<div id="outline-container-orgbdf9ae4" class="outline-4">
-<h4 id="orgbdf9ae4"><span class="section-number-4">3.2.8</span> メール環境復旧</h4>
+<div id="outline-container-org6f1bcfe" class="outline-4">
+<h4 id="org6f1bcfe"><span class="section-number-4">3.2.8</span> メール環境復旧</h4>
 <div class="outline-text-4" id="text-3-2-8">
 <p>
 いちおうnotmuchでのメール環境を <a href="https://achiwa912.github.io/notmuch.html">こちら</a> を見ながら復旧します。メールのデータをVMに起き、ホストであるmac上のemacsからメールの読み書きをする設定です。同期するのが面倒で最近はあまり使っていませんでしたが。
@@ -423,8 +423,8 @@ IdentityFile ~/.ssh/&lt;id_rsaファイル&gt;
 </div>
 </div>
 
-<div id="outline-container-org27843e7" class="outline-3">
-<h3 id="org27843e7"><span class="section-number-3">3.3</span> ブログ環境の復旧</h3>
+<div id="outline-container-orga4f8c9c" class="outline-3">
+<h3 id="orga4f8c9c"><span class="section-number-3">3.3</span> ブログ環境の復旧</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 私はgithub pagesにある当ブログを作るのに静的サイトジェネレーターのPelicanを使っています。emacsのorg-modeでブログエントリーを書き、pelican(+org_readerプラグイン)でhtmlに変換して、ghp-importでgithub pagesにアップロードできるようにします。
@@ -435,8 +435,8 @@ IdentityFile ~/.ssh/&lt;id_rsaファイル&gt;
 </p>
 </div>
 
-<div id="outline-container-orge664974" class="outline-4">
-<h4 id="orge664974"><span class="section-number-4">3.3.1</span> サイトジェネレーター Pelican 設定</h4>
+<div id="outline-container-org76618fe" class="outline-4">
+<h4 id="org76618fe"><span class="section-number-4">3.3.1</span> サイトジェネレーター Pelican 設定</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <pre class="example">
 mkdir py; cd py
@@ -545,8 +545,8 @@ git push -f origin gh-pages:master
 </div>
 </div>
 
-<div id="outline-container-org31bc31e" class="outline-3">
-<h3 id="org31bc31e"><span class="section-number-3">3.4</span> おまけ: RetroArchセットアップ</h3>
+<div id="outline-container-org2218e73" class="outline-3">
+<h3 id="org2218e73"><span class="section-number-3">3.4</span> おまけ: RetroArchセットアップ</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li><a href="https://www.retroarch.com/index.php?page=linux-instructions">公式</a>より、RockyLinuxにはflatpakで入れます。</li>
@@ -571,8 +571,8 @@ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flath
 </div>
 </div>
 
-<div id="outline-container-org0f8413a" class="outline-2">
-<h2 id="org0f8413a"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orge526598" class="outline-2">
+<h2 id="orge526598"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 2〜3日がかりでAlmaLinuxの環境を復旧しました。それにしても、UTMの機能や使い勝手はまだまだ実用的ではないように思います。VirtualBoxのarm版が正式に出たら、そちらも試してみたいと思いますが、こちらはこちらで性能面に不安があります。
