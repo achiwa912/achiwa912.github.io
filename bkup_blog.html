@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgb13c4ab">1. はじめに</a></li>
-<li><a href="#orgb79b848">2. どうバックアップするか</a>
+<li><a href="#orga0e8b4b">1. はじめに</a></li>
+<li><a href="#org8ee54bf">2. どうバックアップするか</a>
 <ul>
-<li><a href="#orgc7815ce">2.1. tarで固めてクラウドにセーブする</a></li>
-<li><a href="#org85f6954">2.2. github pagesにソースファイルを追加する</a></li>
-<li><a href="#org9900954">2.3. githubに専用プライベートリポジトリを作る</a></li>
+<li><a href="#org45e61d6">2.1. tarで固めてクラウドにセーブする</a></li>
+<li><a href="#org370f7cd">2.2. github pagesにソースファイルを追加する</a></li>
+<li><a href="#orgaf70d97">2.3. githubに専用プライベートリポジトリを作る</a></li>
 </ul>
 </li>
-<li><a href="#org727a227">3. 別PCにクローンする</a></li>
-<li><a href="#org3f3949d">4. 終わりに</a></li>
+<li><a href="#orgc411908">3. 別PCにクローンする</a></li>
+<li><a href="#orgf0e72cc">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb13c4ab" class="outline-2">
-<h2 id="orgb13c4ab"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orga0e8b4b" class="outline-2">
+<h2 id="orga0e8b4b"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 このブログはgithub pagesに置いていますが、githubにアップロードされているのはpelican site generatorによって生成されたhtmlファイル等で、org-modeで書いたソースファイルはバックアップされていないことに気が付きました。
@@ -92,16 +92,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgb79b848" class="outline-2">
-<h2 id="orgb79b848"><span class="section-number-2">2</span> どうバックアップするか</h2>
+<div id="outline-container-org8ee54bf" class="outline-2">
+<h2 id="org8ee54bf"><span class="section-number-2">2</span> どうバックアップするか</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いくつか案を考えました。
 </p>
 </div>
 
-<div id="outline-container-orgc7815ce" class="outline-3">
-<h3 id="orgc7815ce"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
+<div id="outline-container-org45e61d6" class="outline-3">
+<h3 id="org45e61d6"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 最初に思いついた案です。単なるバックアップならこれでもいいかもしれませんが、どうにも微妙です。せっかくブログ自体はgitを使って管理しているのに、ソースファイルだけ前近代的な扱いをしなくてはいけません。
@@ -109,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-org85f6954" class="outline-3">
-<h3 id="org85f6954"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
+<div id="outline-container-org370f7cd" class="outline-3">
+<h3 id="org370f7cd"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 pelican(+org-mode連携)のソースファイルはcontentディレクトリに置いてあるので、
@@ -140,8 +140,8 @@ git push origin gh-pages:master
 </div>
 </div>
 
-<div id="outline-container-org9900954" class="outline-3">
-<h3 id="org9900954"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
+<div id="outline-container-orgaf70d97" class="outline-3">
+<h3 id="orgaf70d97"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 次はcontentディレクトリで <code>git init</code> して独立したローカルリポジトリを作り、それをgithubのプライベートな空レポジトリにpushする案です。
@@ -169,8 +169,8 @@ git push -u origin main
 </div>
 </div>
 
-<div id="outline-container-org727a227" class="outline-2">
-<h2 id="org727a227"><span class="section-number-2">3</span> 別PCにクローンする</h2>
+<div id="outline-container-orgc411908" class="outline-2">
+<h2 id="orgc411908"><span class="section-number-2">3</span> 別PCにクローンする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 せっかくgit管理しているので、別PCでもブログファイルの編集をできるようにしたいところです。そこで、別PC(別のMacのfedora35@virtualbox)上にgit cloneします。
@@ -197,8 +197,8 @@ cat .ssh/id_rsa.pub
 </div>
 </div>
 
-<div id="outline-container-org3f3949d" class="outline-2">
-<h2 id="org3f3949d"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgf0e72cc" class="outline-2">
+<h2 id="orgf0e72cc"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ソースファイル用のプライベートレポジトリにはpelicanのコンパイル環境は持ってきていないので、ブログをコンパイルしてgithub pagesにアップロードするのは元のPCでないとできませんが、ブログのクラウド(github)へのバックアップと別PCでのブログ編集ができるようになったので、今日のところは満足です。
@@ -228,6 +228,9 @@ cat .ssh/id_rsa.pub
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/kakutei24.html">アメリカから日本の確定申告を準備する(令和6年分)</a>
+      </li>
+      <li class="post">
           <a href="/utm_ub.html">M1 MacBook上にUbuntu+RetroArchを入れる</a>
       </li>
       <li class="post">
@@ -238,9 +241,6 @@ cat .ssh/id_rsa.pub
       </li>
       <li class="post">
           <a href="/improve_eng1.html">上級者向け英語学習法(考察編)</a>
-      </li>
-      <li class="post">
-          <a href="/vocabulary.html">オススメのボキャビル方法</a>
       </li>
     </ul>
   </section>
@@ -259,7 +259,7 @@ cat .ssh/id_rsa.pub
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
