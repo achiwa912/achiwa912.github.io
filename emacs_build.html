@@ -69,18 +69,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc384d9b">1. はじめに</a></li>
-<li><a href="#org6811674">2. 先人の情報を探す</a></li>
-<li><a href="#org582527d">3. ビルドしてみる</a></li>
-<li><a href="#org21619d9">4. 動かしてみる</a></li>
-<li><a href="#org8b3b264">5. M1 MacBook Proでもビルドしてみる</a></li>
-<li><a href="#orgb15d973">6. 最後に</a></li>
+<li><a href="#orgbc5a4fb">1. はじめに</a></li>
+<li><a href="#org565324c">2. 先人の情報を探す</a></li>
+<li><a href="#org0984c57">3. ビルドしてみる</a></li>
+<li><a href="#orgac02d6d">4. 動かしてみる</a></li>
+<li><a href="#org77762d2">5. M1 MacBook Proでもビルドしてみる</a></li>
+<li><a href="#orgd046d7e">6. 最後に</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc384d9b" class="outline-2">
-<h2 id="orgc384d9b"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgbc5a4fb" class="outline-2">
+<h2 id="orgbc5a4fb"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
@@ -88,8 +88,8 @@
 </div>
 </div>
 
-<div id="outline-container-org6811674" class="outline-2">
-<h2 id="org6811674"><span class="section-number-2">2</span> 先人の情報を探す</h2>
+<div id="outline-container-org565324c" class="outline-2">
+<h2 id="org565324c"><span class="section-number-2">2</span> 先人の情報を探す</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
@@ -97,8 +97,8 @@
 </div>
 </div>
 
-<div id="outline-container-org582527d" class="outline-2">
-<h2 id="org582527d"><span class="section-number-2">3</span> ビルドしてみる</h2>
+<div id="outline-container-org0984c57" class="outline-2">
+<h2 id="org0984c57"><span class="section-number-2">3</span> ビルドしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはemacsのソースコードを入手します。
@@ -153,8 +153,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org21619d9" class="outline-2">
-<h2 id="org21619d9"><span class="section-number-2">4</span> 動かしてみる</h2>
+<div id="outline-container-orgac02d6d" class="outline-2">
+<h2 id="orgac02d6d"><span class="section-number-2">4</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
@@ -178,8 +178,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org8b3b264" class="outline-2">
-<h2 id="org8b3b264"><span class="section-number-2">5</span> M1 MacBook Proでもビルドしてみる</h2>
+<div id="outline-container-org77762d2" class="outline-2">
+<h2 id="org77762d2"><span class="section-number-2">5</span> M1 MacBook Proでもビルドしてみる</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 調子に乗って、M1 MacBook Proでもネイティブコンパイル版の最新emacsが入るか試してみました。
@@ -223,8 +223,8 @@ libgccjit.so: error: error invoking gcc driver
 </div>
 </div>
 
-<div id="outline-container-orgb15d973" class="outline-2">
-<h2 id="orgb15d973"><span class="section-number-2">6</span> 最後に</h2>
+<div id="outline-container-orgd046d7e" class="outline-2">
+<h2 id="orgd046d7e"><span class="section-number-2">6</span> 最後に</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
@@ -258,6 +258,9 @@ libgccjit.so: error: error invoking gcc driver
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/emacs-eat.html">emacs-eatに乗り換える</a>
+      </li>
+      <li class="post">
           <a href="/emacs.html">emacsの設定</a>
       </li>
       <li class="post">
@@ -268,9 +271,6 @@ libgccjit.so: error: error invoking gcc driver
       </li>
       <li class="post">
           <a href="/utm_ub.html">M1 MacBook上にUbuntu+RetroArchを入れる</a>
-      </li>
-      <li class="post">
-          <a href="/tello.html">アメリカ格安SIMをSpeedtalkからTelloに変えました</a>
       </li>
     </ul>
   </section>

@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org1344b72">1. はじめに</a></li>
-<li><a href="#org7a2ae7e">2. どうバックアップするか</a>
+<li><a href="#org235445e">1. はじめに</a></li>
+<li><a href="#org844aab8">2. どうバックアップするか</a>
 <ul>
-<li><a href="#org317ae7b">2.1. tarで固めてクラウドにセーブする</a></li>
-<li><a href="#org67f5221">2.2. github pagesにソースファイルを追加する</a></li>
-<li><a href="#org2ac8d26">2.3. githubに専用プライベートリポジトリを作る</a></li>
+<li><a href="#orgcb92c38">2.1. tarで固めてクラウドにセーブする</a></li>
+<li><a href="#org3dd6ee0">2.2. github pagesにソースファイルを追加する</a></li>
+<li><a href="#org3ff0055">2.3. githubに専用プライベートリポジトリを作る</a></li>
 </ul>
 </li>
-<li><a href="#org38d0386">3. 別PCにクローンする</a></li>
-<li><a href="#org1146c00">4. 終わりに</a></li>
+<li><a href="#orgd9369df">3. 別PCにクローンする</a></li>
+<li><a href="#orgb1a801d">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org1344b72" class="outline-2">
-<h2 id="org1344b72"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org235445e" class="outline-2">
+<h2 id="org235445e"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 このブログはgithub pagesに置いていますが、githubにアップロードされているのはpelican site generatorによって生成されたhtmlファイル等で、org-modeで書いたソースファイルはバックアップされていないことに気が付きました。
@@ -92,16 +92,16 @@
 </div>
 </div>
 
-<div id="outline-container-org7a2ae7e" class="outline-2">
-<h2 id="org7a2ae7e"><span class="section-number-2">2</span> どうバックアップするか</h2>
+<div id="outline-container-org844aab8" class="outline-2">
+<h2 id="org844aab8"><span class="section-number-2">2</span> どうバックアップするか</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いくつか案を考えました。
 </p>
 </div>
 
-<div id="outline-container-org317ae7b" class="outline-3">
-<h3 id="org317ae7b"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
+<div id="outline-container-orgcb92c38" class="outline-3">
+<h3 id="orgcb92c38"><span class="section-number-3">2.1</span> tarで固めてクラウドにセーブする</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 最初に思いついた案です。単なるバックアップならこれでもいいかもしれませんが、どうにも微妙です。せっかくブログ自体はgitを使って管理しているのに、ソースファイルだけ前近代的な扱いをしなくてはいけません。
@@ -109,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-org67f5221" class="outline-3">
-<h3 id="org67f5221"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
+<div id="outline-container-org3dd6ee0" class="outline-3">
+<h3 id="org3dd6ee0"><span class="section-number-3">2.2</span> github pagesにソースファイルを追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 pelican(+org-mode連携)のソースファイルはcontentディレクトリに置いてあるので、
@@ -140,8 +140,8 @@ git push origin gh-pages:master
 </div>
 </div>
 
-<div id="outline-container-org2ac8d26" class="outline-3">
-<h3 id="org2ac8d26"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
+<div id="outline-container-org3ff0055" class="outline-3">
+<h3 id="org3ff0055"><span class="section-number-3">2.3</span> githubに専用プライベートリポジトリを作る</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 次はcontentディレクトリで <code>git init</code> して独立したローカルリポジトリを作り、それをgithubのプライベートな空レポジトリにpushする案です。
@@ -169,8 +169,8 @@ git push -u origin main
 </div>
 </div>
 
-<div id="outline-container-org38d0386" class="outline-2">
-<h2 id="org38d0386"><span class="section-number-2">3</span> 別PCにクローンする</h2>
+<div id="outline-container-orgd9369df" class="outline-2">
+<h2 id="orgd9369df"><span class="section-number-2">3</span> 別PCにクローンする</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 せっかくgit管理しているので、別PCでもブログファイルの編集をできるようにしたいところです。そこで、別PC(別のMacのfedora35@virtualbox)上にgit cloneします。
@@ -197,8 +197,8 @@ cat .ssh/id_rsa.pub
 </div>
 </div>
 
-<div id="outline-container-org1146c00" class="outline-2">
-<h2 id="org1146c00"><span class="section-number-2">4</span> 終わりに</h2>
+<div id="outline-container-orgb1a801d" class="outline-2">
+<h2 id="orgb1a801d"><span class="section-number-2">4</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ソースファイル用のプライベートレポジトリにはpelicanのコンパイル環境は持ってきていないので、ブログをコンパイルしてgithub pagesにアップロードするのは元のPCでないとできませんが、ブログのクラウド(github)へのバックアップと別PCでのブログ編集ができるようになったので、今日のところは満足です。
@@ -228,6 +228,9 @@ cat .ssh/id_rsa.pub
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/emacs-eat.html">emacs-eatに乗り換える</a>
+      </li>
+      <li class="post">
           <a href="/emacs.html">emacsの設定</a>
       </li>
       <li class="post">
@@ -238,9 +241,6 @@ cat .ssh/id_rsa.pub
       </li>
       <li class="post">
           <a href="/utm_ub.html">M1 MacBook上にUbuntu+RetroArchを入れる</a>
-      </li>
-      <li class="post">
-          <a href="/tello.html">アメリカ格安SIMをSpeedtalkからTelloに変えました</a>
       </li>
     </ul>
   </section>

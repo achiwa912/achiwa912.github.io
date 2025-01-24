@@ -69,22 +69,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5e2ba65">1. はじめに</a></li>
-<li><a href="#orgb18ef82">2. 手順</a>
+<li><a href="#org0c103a2">1. はじめに</a></li>
+<li><a href="#orgf6af3b7">2. 手順</a>
 <ul>
-<li><a href="#orgd084ae9">2.1. 概要</a></li>
-<li><a href="#orgc582eef">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org207cab0">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org625103b">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#orgdcd8d05">2.1. 概要</a></li>
+<li><a href="#orgdd6c27b">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#orgc8ed7a1">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org230f71f">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#orgf05b624">3. 終わりに</a></li>
+<li><a href="#orgad35475">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5e2ba65" class="outline-2">
-<h2 id="org5e2ba65"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org0c103a2" class="outline-2">
+<h2 id="org0c103a2"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -98,12 +98,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgb18ef82" class="outline-2">
-<h2 id="orgb18ef82"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-orgf6af3b7" class="outline-2">
+<h2 id="orgf6af3b7"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd084ae9" class="outline-3">
-<h3 id="orgd084ae9"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-orgdcd8d05" class="outline-3">
+<h3 id="orgdcd8d05"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -117,8 +117,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgc582eef" class="outline-3">
-<h3 id="orgc582eef"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-orgdd6c27b" class="outline-3">
+<h3 id="orgdd6c27b"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -146,8 +146,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org207cab0" class="outline-3">
-<h3 id="org207cab0"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-orgc8ed7a1" class="outline-3">
+<h3 id="orgc8ed7a1"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -186,8 +186,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-org625103b" class="outline-3">
-<h3 id="org625103b"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-org230f71f" class="outline-3">
+<h3 id="org230f71f"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -231,8 +231,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-orgf05b624" class="outline-2">
-<h2 id="orgf05b624"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-orgad35475" class="outline-2">
+<h2 id="orgad35475"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -262,6 +262,9 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/emacs-eat.html">emacs-eatに乗り換える</a>
+      </li>
+      <li class="post">
           <a href="/emacs.html">emacsの設定</a>
       </li>
       <li class="post">
@@ -272,9 +275,6 @@ Filesystem      Size  Used Avail Use% Mounted on
       </li>
       <li class="post">
           <a href="/utm_ub.html">M1 MacBook上にUbuntu+RetroArchを入れる</a>
-      </li>
-      <li class="post">
-          <a href="/tello.html">アメリカ格安SIMをSpeedtalkからTelloに変えました</a>
       </li>
     </ul>
   </section>
