@@ -43,6 +43,9 @@
         <a href="/category/blog.html">Blog</a>
       </li>
       <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
         <a href="/category/english.html">English</a>
       </li>
       <li class="active">
@@ -69,22 +72,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orga74955e">1. はじめに</a></li>
-<li><a href="#org2e11ea7">2. 手順</a>
+<li><a href="#org9378488">1. はじめに</a></li>
+<li><a href="#orgd325631">2. 手順</a>
 <ul>
-<li><a href="#org37bde62">2.1. 概要</a></li>
-<li><a href="#orgb844936">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org85c2363">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org3a75286">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#org3be80aa">2.1. 概要</a></li>
+<li><a href="#orge3dd109">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org548d9c5">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org6fa2e2f">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#org18d3036">3. 終わりに</a></li>
+<li><a href="#org54e0fe1">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga74955e" class="outline-2">
-<h2 id="orga74955e"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org9378488" class="outline-2">
+<h2 id="org9378488"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -98,12 +101,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org2e11ea7" class="outline-2">
-<h2 id="org2e11ea7"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-orgd325631" class="outline-2">
+<h2 id="orgd325631"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org37bde62" class="outline-3">
-<h3 id="org37bde62"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-org3be80aa" class="outline-3">
+<h3 id="org3be80aa"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -117,8 +120,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgb844936" class="outline-3">
-<h3 id="orgb844936"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-orge3dd109" class="outline-3">
+<h3 id="orge3dd109"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -146,8 +149,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org85c2363" class="outline-3">
-<h3 id="org85c2363"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org548d9c5" class="outline-3">
+<h3 id="org548d9c5"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -186,8 +189,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-org3a75286" class="outline-3">
-<h3 id="org3a75286"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-org6fa2e2f" class="outline-3">
+<h3 id="org6fa2e2f"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -231,8 +234,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-org18d3036" class="outline-2">
-<h2 id="org18d3036"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org54e0fe1" class="outline-2">
+<h2 id="org54e0fe1"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -283,6 +286,7 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Categories</h1>
     <ul id="recent_posts">
         <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
         <li><a href="/category/english.html">English</a></li>
         <li><a href="/category/linux.html">Linux</a></li>
         <li><a href="/category/python.html">Python</a></li>
