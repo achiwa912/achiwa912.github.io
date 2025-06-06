@@ -72,22 +72,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org772a504">1. はじめに</a></li>
-<li><a href="#org4313f89">2. 手順</a>
+<li><a href="#org1602edc">1. はじめに</a></li>
+<li><a href="#org65a2f9d">2. 手順</a>
 <ul>
-<li><a href="#orgdabbc65">2.1. 概要</a></li>
-<li><a href="#orgf9b8ccd">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org62e1076">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#orgb6d9114">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#org6cdaa7b">2.1. 概要</a></li>
+<li><a href="#org95eae3d">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org25974f9">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#orgf9b5928">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#orgaf3cd1d">3. 終わりに</a></li>
+<li><a href="#orgf6c0243">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org772a504" class="outline-2">
-<h2 id="org772a504"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org1602edc" class="outline-2">
+<h2 id="org1602edc"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -101,12 +101,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org4313f89" class="outline-2">
-<h2 id="org4313f89"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-org65a2f9d" class="outline-2">
+<h2 id="org65a2f9d"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgdabbc65" class="outline-3">
-<h3 id="orgdabbc65"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-org6cdaa7b" class="outline-3">
+<h3 id="org6cdaa7b"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -120,8 +120,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgf9b8ccd" class="outline-3">
-<h3 id="orgf9b8ccd"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-org95eae3d" class="outline-3">
+<h3 id="org95eae3d"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -149,8 +149,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org62e1076" class="outline-3">
-<h3 id="org62e1076"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org25974f9" class="outline-3">
+<h3 id="org25974f9"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -189,8 +189,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-orgb6d9114" class="outline-3">
-<h3 id="orgb6d9114"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-orgf9b5928" class="outline-3">
+<h3 id="orgf9b5928"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -234,8 +234,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-orgaf3cd1d" class="outline-2">
-<h2 id="orgaf3cd1d"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-orgf6c0243" class="outline-2">
+<h2 id="orgf6c0243"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -265,7 +265,7 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/burgerlunch.html">Cheap burers for lunch</a>
+          <a href="/burgerlunch.html">Cheap burgers for lunch</a>
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
