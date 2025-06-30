@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>N150のMini PCでホームラボ始めました &mdash; Dreaming in Greater Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Dreaming in Greater Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">N150のMini PCでホームラボ始めました</h1>
+    <p class="meta">
+<time datetime="2025-06-30T00:00:00-04:00" pubdate>Mon 30 June 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgf14ba78">1. Acemagic Mini PC V1</a></li>
+<li><a href="#orge5b233e">2. Proxmoxを試してみる</a>
+<ul>
+<li><a href="#orgeb7fc80">2.1. インストール</a></li>
+</ul>
+</li>
+<li><a href="#org1d50996">3. Linuxを入れる</a>
+<ul>
+<li><a href="#org46b8b61">3.1. VMを作る</a></li>
+<li><a href="#org1d6a95f">3.2. Ubuntuインストール</a></li>
+</ul>
+</li>
+<li><a href="#orgef101e4">4. Dockerを入れる</a></li>
+<li><a href="#org28fa605">5. アプリを入れる</a>
+<ul>
+<li><a href="#org379f3bb">5.1. Immich</a></li>
+<li><a href="#org2915418">5.2. Pi-hole</a></li>
+<li><a href="#org954afb1">5.3. RomM</a></li>
+</ul>
+</li>
+<li><a href="#org25ba59f">6. 次回予告</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf14ba78" class="outline-2">
+<h2 id="orgf14ba78"><span class="section-number-2">1</span> Acemagic Mini PC V1</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+2025年のsummer projectとして、N150 Mini PCでホームラボサーバーをたてました。
+</p>
+
+<p>
+<a href="https://www.amazon.com/GMKtec-mini-pc-desktop-computer-n150/dp/B0CXPNHHNW">GMKtec Mini PC N150</a> (メモリ16GB, ストレージ1TB) $194を狙っていたのですが、よく見たらプライムメンバー向けの特別価格でした。。。
+</p>
+
+<p>
+仕方なく同等品を探したところ、Acemagicとかいう会社の<a href="https://www.amazon.com/ACEMAGIC-Computers-Computer-V1-Ethernet/dp/B0DYYMQFM9">Mini PC V1</a> (16GB, 1TB)が200ドル以下(今なら$189;更にプロモコードあり)であるのを見つけたので、これを買いました。512GBモデルだと更に安いのですが、家族のスマホ写真全てをバックアップするつもりなので、1TBのモデルにしました。GMKtecと違ってストレージが高速なNVMeではなくS-ATAなところが残念ですが、プラス50ドルは予算オーバーです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge5b233e" class="outline-2">
+<h2 id="orge5b233e"><span class="section-number-2">2</span> Proxmoxを試してみる</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+ホームラボなので色々と試したりして環境をうっかり壊してしまうリスクが常にあります。そこで、Linuxを直接インストールするのではなくハイパーバイザー上で動かすことにしました。壊してしまってもスナップショットから元の状態に戻すことができます。
+</p>
+
+<p>
+VMwareがBroadcomに買収されてESXiを有償化したり、無料に戻したり迷走しています。今後のリスクを考えてESXiは避け、評判の良いProxmoxを試すことにしました。オープンソース万歳。Mini PCに最初から入っているWindows 11は即消しです。
+</p>
+</div>
+
+<div id="outline-container-orgeb7fc80" class="outline-3">
+<h3 id="orgeb7fc80"><span class="section-number-3">2.1</span> インストール</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Proxmoxのインストールはえらく簡単でした。手順は、
+</p>
+<ul class="org-ul">
+<li><a href="https://www.proxmox.com/en/downloads/proxmox-virtual-environment/iso">ここ</a>からインストーラーISOをダウンロードする</li>
+<li>MacBook上でUSBメモリに書き込む</li>
+</ul>
+<pre class="example">
+diskutil list
+# USBメモリを挿す
+diskutil list # 新たに増えた分(/dev/diskNとする)がUSBメモリ
+diskutil unmountDisk /dev/diskN
+sudo dd if=/pato-to.iso of=/dev/rdiskN bs=1m # rdiskの'r'を忘れないように
+diskutil eject /dev/diskN
+# USBメモリを抜く
+</pre>
+<ul class="org-ul">
+<li>Mini PCにUSBマウスとキーボードを付け、HDMIケーブルでテレビにつなげる。Etherケーブルもつなげておく</li>
+<li>USBメモリをMini PCに挿して電源ボタンを押す</li>
+<li>ESC/Backspaceキー押しっぱなしにするとBIOSに入るので、USBメモリからブートできるように設定し、起動する</li>
+<li>画面の指示に従う。IPアドレスは固定で与える。</li>
+</ul>
+
+<p>
+これでProxmoxが起動してきます。最初にrootユーザーを登録したら<a href="http://">http://</a>&lt;IPアドレス&gt;:8006 で管理できるようになるので、マウス、キーボード、テレビは不要になります。あまりに簡単なので拍子抜けです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d50996" class="outline-2">
+<h2 id="org1d50996"><span class="section-number-2">3</span> Linuxを入れる</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+次にLinuxを入れます。職場ではRocky Linuxを使っているのですが、将来性が微妙そうなのでUbuntuを選びました。RedHatはすごい会社と思いますが、IBMに買収されてからやはり迷走しています。資本主義の行き過ぎを実感している今日このごろです。
+</p>
+
+<p>
+まず、UbuntuインストーラーISOへのURLを用意します。24.04.2 LTSは <a href="https://releases.ubuntu.com/24.04.2/ubuntu-24.04.2-desktop-amd64.iso">ここ</a> です。
+</p>
+</div>
+
+<div id="outline-container-org46b8b61" class="outline-3">
+<h3 id="org46b8b61"><span class="section-number-3">3.1</span> VMを作る</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Proxmoxの管理画面にログインする &gt; localディスク &gt; ISO Images &gt; Download from URL &gt; ISOへのURLを指定する &gt; Download</li>
+<li>Create VM &gt; Nameを入れる &gt; Next &gt; ISO image: ダウンロードしたインストーラーを指定 &gt; Next &gt; Next &gt; Disk size: 820GB &gt; Next &gt; Cores: 4 &gt; Memory: 14GB &gt; Next &gt; Next &gt; Finish</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1d6a95f" class="outline-3">
+<h3 id="org1d6a95f"><span class="section-number-3">3.2</span> Ubuntuインストール</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+普通にインストールするだけ。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgef101e4" class="outline-2">
+<h2 id="orgef101e4"><span class="section-number-2">4</span> Dockerを入れる</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+アプリケーションを楽にデプロイ、運用するためにDockerを入れます。docker-composeによるデプロイはあまりに簡単です。<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04">ここ</a> を参考にインストールします。
+</p>
+
+<pre class="example">
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+apt-cache policy docker-ce # to check
+sudo apt install docker-ce
+sudo systemctl status docker
+sudo usermod -aG docker ${USER}
+(reboot)
+docker run hello-world
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org28fa605" class="outline-2">
+<h2 id="org28fa605"><span class="section-number-2">5</span> アプリを入れる</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+docker-composeが本領を発揮します。以下のアプリを入れることにしました。
+</p>
+<ul class="org-ul">
+<li>Immich - スマホ写真をホストする。Google Photos置き換え</li>
+<li>Pi-hole - ネットワークレベルの広告ブロッカー</li>
+<li>RomM - レトロゲームのROMマネージャー</li>
+</ul>
+</div>
+
+<div id="outline-container-org379f3bb" class="outline-3">
+<h3 id="org379f3bb"><span class="section-number-3">5.1</span> Immich</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<a href="https://immich.app/">immich</a> はすごいです。Google Photosと比べてほとんど違和感がありません。写真や動画の圧縮に対応していないことと、スマホからの最初のアップロードが重いことが難点なくらいで、使い勝手はGoogle Photosそのまま。写真の顔認認識も(勝手に)してくれます。
+</p>
+
+<p>
+写真はPC上のブラウザーやスマホの専用アプリから見られます。インターネットを経由しないので、動作はGoogle Photos等よりも軽快です。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://immich.app/docs/overview/quick-start/">https://immich.app/docs/overview/quick-start/</a></li>
+</ul>
+<pre class="example">
+wget -O docker-compose.yml https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
+wget -O .env https://github.com/immich-app/immich/releases/latest/download/example.env
+# .env をエディットしてタイムゾーン(TZ)や写真アップロード場所を指定する。
+docker compose up -d
+</pre>
+<p>
+インストールはこれだけ。拍子抜けな簡単さです。docker-composeすごいよ!
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2915418" class="outline-3">
+<h3 id="org2915418"><span class="section-number-3">5.2</span> Pi-hole</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+広告ブロッカーって便利ですよね。一度使ってしまうと、これなしではいられなくなります。鬱陶しいWeb広告を見なくて済むことって、こんなにも精神衛生上良いことだとは。。。
+</p>
+
+<p>
+<a href="https://pi-hole.net/">Pi-hole</a> はネットワーク(DNS)レベルで広告をブロックします。WifiルーターDHCPのDNSサーバーをこれに設定しておくと、PCやスマホでは広告が表示されなくなります。スマホでも有効なところが素晴らしい。
+</p>
+
+<p>
+簡単にデプロイできたimmichと比べて、pi-holeには少々苦戦しました。Ubuntuではsystemd-resolvedが有効になっているため、これをなんとかしてやる必要がありました。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/pi-hole/docker-pi-hole?tab=readme-ov-file#installing-on-ubuntu-or-fedora">https://github.com/pi-hole/docker-pi-hole?tab=readme-ov-file#installing-on-ubuntu-or-fedora</a> を参考にsystemd-resolvedが悪さ(?)しないようにする。</li>
+</ul>
+<pre class="example">
+sudo sed -r -i.orig 's/#?DNSStubListener=yes/DNSStubListener=no/g' /etc/systemd/resolved.conf
+sudo sh -c 'rm /etc/resolv.conf &amp;&amp; ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf'
+systemctl restart systemd-resolved
+</pre>
+
+<ul class="org-ul">
+<li>docker-compose.yamlを作る。</li>
+</ul>
+<pre class="example">
+version: "3"
+
+ # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "8081:80/tcp"  # ポート8081を指定しています。
+    environment:
+      TZ: 'America/New_York'  # タイムゾーン
+      WEBPASSWORD: '&lt;some password&gt;'  # パスワード。。。のはず
+      PIHOLE_DNS_: '1.1.1.1;8.8.8.8'
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+    restart: unless-stopped
+</pre>
+<ul class="org-ul">
+<li>タイムゾーンTZ, WEBPASSWORD, vollumesあたりを変えました。そして、</li>
+</ul>
+<pre class="example">
+docker compose up -d
+</pre>
+<p>
+するだけ。
+</p>
+
+<p>
+ここで問題が。<a href="http://">http://</a>&lt;IP&gt;:8081/admin でログインしようとすると、何故かパスワードが違うと言ってきます。仕方がないので無理やりパスワードリセットします。
+</p>
+<pre class="example">
+docker ps  # Pi-holeのコンテナIDをメモする
+docker exec -it &lt;pi-holeのコンテナID&gt; bash # pi-holeコンテナのシェルが開きます
+pihole setpassword
+</pre>
+
+<p>
+あとは、ルーターのDHCPが指定するDNSまたはデバイスのDNSにMini PCのIPアドレスを設定するだけ。広告の無い世界をお楽しみください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org954afb1" class="outline-3">
+<h3 id="org954afb1"><span class="section-number-3">5.3</span> RomM</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+<a href="https://romm.app/">RomM</a>はレトロゲームのROMマネージャーです。PCやスマホのブラウザー(Chrome推奨)からゲームがプレイできます。ゲームは端末上のJavaScriptで動くため、サーバーへの負荷は最小限です。スーファミのゲームなら、うちにある2013年のMacBook Proでもサクサク動きます。これはすごい。もちろん、ROMはご自分で用意ください。
+</p>
+
+<p>
+なお、ブラウザーとしてFirefoxを使うと、何故か音が割れまくりです。
+</p>
+
+<p>
+RomMは<a href="https://docs.romm.app/latest/Getting-Started/Quick-Start-Guide/">クイックスタートガイド</a>に従って悩むことなくデプロイできました。
+</p>
+
+<p>
+RomMはIGDBというネット上のゲームデータベースからAPIを使ってゲーム写真などを持ってくることができます。これをやらないと見た目が寂しいですが、APIキーを入手するのが一苦労です。<a href="https://www.xda-developers.com/manage-your-rom-collection-with-a-self-hosted-romm-server/">ここ</a> にやり方が詳しく書いてあります。
+</p>
+
+<p>
+ROMがたくさんあるとRomMのUIから全部アップロードすると大変なので、scpを使って一気に転送したいところですが、ディレクトリ配置に厳密に従わないと認識してくれないので、最初の1個だけUIからアップロードし、それで作成されたディレクトリにscpで転送してやるとよいと思います。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org25ba59f" class="outline-2">
+<h2 id="org25ba59f"><span class="section-number-2">6</span> 次回予告</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+今回はホームラボサーバーをたてました。写真などの重要なデータはここに集約予定なので、これが動かなくなったりデータが失われると困ります。次回はホームラボサーバーのバックアップについて考えます。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-06-30T00:00:00-04:00" pubdate>Mon 30 June 2025</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/homelab.html">N150のMini PCでホームラボ始めました</a>
+      </li>
+      <li class="post">
+          <a href="/burgerlunch.html">Cheap burgers for lunch</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/elispintro.html">An Introduction to Programming in Emacs Lispを読みました</a>
+      </li>
+      <li class="post">
+          <a href="/taxret24.html">FreeTaxUSAを使ってTax Returnする(2024)</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
