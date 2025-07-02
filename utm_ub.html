@@ -72,36 +72,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0cb5335">1. はじめに</a></li>
-<li><a href="#orgd888f09">2. 環境構築</a>
+<li><a href="#org0da9454">1. はじめに</a></li>
+<li><a href="#orgf2d538f">2. 環境構築</a>
 <ul>
-<li><a href="#org8b57225">2.1. Ubuntuインストール</a>
+<li><a href="#org5f73849">2.1. Ubuntuインストール</a>
 <ul>
-<li><a href="#orge14b461">2.1.1. Ubuntu最新LTM版のダウンロード</a></li>
-<li><a href="#org8f5787f">2.1.2. VM作成</a></li>
-<li><a href="#orgdf1991b">2.1.3. Ubuntuインストール</a></li>
-<li><a href="#org1806703">2.1.4. デスクトップ版インストール</a></li>
-<li><a href="#orgc58a4e9">2.1.5. ネットワーク変更</a></li>
-<li><a href="#org6174703">2.1.6. ssh keyのインポート</a></li>
-<li><a href="#org0125adb">2.1.7. OSを最新にする</a></li>
+<li><a href="#org012b888">2.1.1. Ubuntu最新LTM版のダウンロード</a></li>
+<li><a href="#orgccd6968">2.1.2. VM作成</a></li>
+<li><a href="#org566aa06">2.1.3. Ubuntuインストール</a></li>
+<li><a href="#orgb94af5e">2.1.4. デスクトップ版インストール</a></li>
+<li><a href="#org761edc8">2.1.5. ネットワーク変更</a></li>
+<li><a href="#org3690302">2.1.6. ssh keyのインポート</a></li>
+<li><a href="#orgd9467ac">2.1.7. OSを最新にする</a></li>
 </ul>
 </li>
-<li><a href="#org3ec1f0e">2.2. RetroArchインストール</a>
+<li><a href="#org962c37a">2.2. RetroArchインストール</a>
 <ul>
-<li><a href="#orgac0751d">2.2.1. Coreインストール</a></li>
-<li><a href="#org205245a">2.2.2. 動作確認</a></li>
+<li><a href="#org62af496">2.2.1. Coreインストール</a></li>
+<li><a href="#org7854cdc">2.2.2. 動作確認</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgcfa9fb9">3. Ubuntuの感想</a></li>
-<li><a href="#org4d69def">4. おわりに</a></li>
+<li><a href="#orge5c9d54">3. Ubuntuの感想</a></li>
+<li><a href="#org7e01b63">4. おわりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0cb5335" class="outline-2">
-<h2 id="org0cb5335"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-org0da9454" class="outline-2">
+<h2 id="org0da9454"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 年末の休みを使ってMacBook Pro15インチ上にUbuntuを入れ、更にRetroArchをセットアップし
@@ -110,16 +110,16 @@
 </div>
 </div>
 
-<div id="outline-container-orgd888f09" class="outline-2">
-<h2 id="orgd888f09"><span class="section-number-2">2</span> 環境構築</h2>
+<div id="outline-container-orgf2d538f" class="outline-2">
+<h2 id="orgf2d538f"><span class="section-number-2">2</span> 環境構築</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8b57225" class="outline-3">
-<h3 id="org8b57225"><span class="section-number-3">2.1</span> Ubuntuインストール</h3>
+<div id="outline-container-org5f73849" class="outline-3">
+<h3 id="org5f73849"><span class="section-number-3">2.1</span> Ubuntuインストール</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-orge14b461" class="outline-4">
-<h4 id="orge14b461"><span class="section-number-4">2.1.1</span> Ubuntu最新LTM版のダウンロード</h4>
+<div id="outline-container-org012b888" class="outline-4">
+<h4 id="org012b888"><span class="section-number-4">2.1.1</span> Ubuntu最新LTM版のダウンロード</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>ubuntu ARM downloadなどで検索してARM版のisoイメージを探します。現在の最新安定版は<a href="https://ubuntu.com/download/server/arm">20.04.01 LTS</a>のようです。ARMはなぜかデスクトップ版が無いのでサーバー版を選びます。ubuntu-24.04.1-live-server-arm64.iso</li>
@@ -127,8 +127,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8f5787f" class="outline-4">
-<h4 id="org8f5787f"><span class="section-number-4">2.1.2</span> VM作成</h4>
+<div id="outline-container-orgccd6968" class="outline-4">
+<h4 id="orgccd6968"><span class="section-number-4">2.1.2</span> VM作成</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>UTM &gt; <code>+</code> &gt; Virtualize &gt; Linux &gt; Boot ISO Image &gt; Browse&#x2026; 
@@ -140,8 +140,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgdf1991b" class="outline-4">
-<h4 id="orgdf1991b"><span class="section-number-4">2.1.3</span> Ubuntuインストール</h4>
+<div id="outline-container-org566aa06" class="outline-4">
+<h4 id="org566aa06"><span class="section-number-4">2.1.3</span> Ubuntuインストール</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>Run VM &gt; Try or Install Ubuntu Server &gt; (wait) &gt; English</li>
@@ -156,8 +156,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1806703" class="outline-4">
-<h4 id="org1806703"><span class="section-number-4">2.1.4</span> デスクトップ版インストール</h4>
+<div id="outline-container-orgb94af5e" class="outline-4">
+<h4 id="orgb94af5e"><span class="section-number-4">2.1.4</span> デスクトップ版インストール</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 サーバー版なのでGUIではなくCUIのログインコンソールで立ち上がってきます。<a href="https://jun1okamura.medium.com/install-ubuntu-on-mac-m1-powered-by-utm-499aba3ba7e9">ここ</a>を参考にGUIを入れたりします。先人がいてよかった。ありがとうございます。
@@ -198,8 +198,8 @@ ExecStart=/lib/systemd/systemd-networkd-wait-online --timeout=5
 </div>
 </div>
 
-<div id="outline-container-orgc58a4e9" class="outline-4">
-<h4 id="orgc58a4e9"><span class="section-number-4">2.1.5</span> ネットワーク変更</h4>
+<div id="outline-container-org761edc8" class="outline-4">
+<h4 id="org761edc8"><span class="section-number-4">2.1.5</span> ネットワーク変更</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <p>
 なぜか、最初から変更しておくと、途中で黒画面のままブートしなかったり、ログインできなかったりする(気がする)ので、VMクローンを取った後にやります。
@@ -214,8 +214,8 @@ ExecStart=/lib/systemd/systemd-networkd-wait-online --timeout=5
 </div>
 </div>
 
-<div id="outline-container-org6174703" class="outline-4">
-<h4 id="org6174703"><span class="section-number-4">2.1.6</span> ssh keyのインポート</h4>
+<div id="outline-container-org3690302" class="outline-4">
+<h4 id="org3690302"><span class="section-number-4">2.1.6</span> ssh keyのインポート</h4>
 <div class="outline-text-4" id="text-2-1-6">
 <p>
 MacBookからUbuntuに、パスワード認証無しでsshで入れるように、ssh keyをVMにインポートします。これをやっておくと、trampモードを使って、ホストのMacからVM上のファイルをemacsでシームレスに編集できるようになります。
@@ -251,8 +251,8 @@ ssh &lt;user&gt;@&lt;VM IP&gt;
 </div>
 </div>
 
-<div id="outline-container-org0125adb" class="outline-4">
-<h4 id="org0125adb"><span class="section-number-4">2.1.7</span> OSを最新にする</h4>
+<div id="outline-container-orgd9467ac" class="outline-4">
+<h4 id="orgd9467ac"><span class="section-number-4">2.1.7</span> OSを最新にする</h4>
 <div class="outline-text-4" id="text-2-1-7">
 <pre class="example">
 sudo apt update
@@ -266,8 +266,8 @@ poweroff
 </div>
 </div>
 
-<div id="outline-container-org3ec1f0e" class="outline-3">
-<h3 id="org3ec1f0e"><span class="section-number-3">2.2</span> RetroArchインストール</h3>
+<div id="outline-container-org962c37a" class="outline-3">
+<h3 id="org962c37a"><span class="section-number-3">2.2</span> RetroArchインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 RetroArch公式サイトの<a href="https://www.retroarch.com/index.php?page=linux-instructions">Linuxインストール</a> のページにUbuntuでのインストール手順が書いてあるので、そのままコピペして実行します。
@@ -281,8 +281,8 @@ sudo add-apt-repository ppa:libretro/stable &amp;&amp; sudo apt-get update &amp;
 </p>
 </div>
 
-<div id="outline-container-orgac0751d" class="outline-4">
-<h4 id="orgac0751d"><span class="section-number-4">2.2.1</span> Coreインストール</h4>
+<div id="outline-container-org62af496" class="outline-4">
+<h4 id="org62af496"><span class="section-number-4">2.2.1</span> Coreインストール</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 ここで、RetroArch上からCoreをダウンロードしようとすると何も起きません。それもそのはず、ARM64向けのcoresは用意されていないからなのでした。そこで、aarch64 core retroarchで検索すると、ビルド済みのcoreが(たくさん)置いてある <a href="https://github.com/christianhaitian/retroarch-cores">ありがたいページ</a> がヒットするので、こちらのaarch64ディレクトリからcoreをダウンロードします。
@@ -297,8 +297,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-org205245a" class="outline-4">
-<h4 id="org205245a"><span class="section-number-4">2.2.2</span> 動作確認</h4>
+<div id="outline-container-org7854cdc" class="outline-4">
+<h4 id="org7854cdc"><span class="section-number-4">2.2.2</span> 動作確認</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 あとは、合法的/自己責任で入手したROMをロードして実行するだけ。うまく動きましたか? ちゃんと音は出たでしょうか。
@@ -308,8 +308,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-orgcfa9fb9" class="outline-2">
-<h2 id="orgcfa9fb9"><span class="section-number-2">3</span> Ubuntuの感想</h2>
+<div id="outline-container-orge5c9d54" class="outline-2">
+<h2 id="orge5c9d54"><span class="section-number-2">3</span> Ubuntuの感想</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 全般的に気が利いていて使い勝手が良いように思います。以下、RockyLinux9.4との比較になりますが。。
@@ -324,8 +324,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-org4d69def" class="outline-2">
-<h2 id="org4d69def"><span class="section-number-2">4</span> おわりに</h2>
+<div id="outline-container-org7e01b63" class="outline-2">
+<h2 id="org7e01b63"><span class="section-number-2">4</span> おわりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 以前、一度Ubuntuを試したときはGUIの色使いのクセが嫌で使用を断念しましたが、なかなか使い勝手がよいことがわかりました。特に画面のクリスピーさは使っていて気持ちが良いです。
