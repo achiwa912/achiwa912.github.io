@@ -72,22 +72,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org0cbe17d">1. はじめに</a></li>
-<li><a href="#orgc97907c">2. 手順</a>
+<li><a href="#orgb82a0db">1. はじめに</a></li>
+<li><a href="#orgb4e1c1b">2. 手順</a>
 <ul>
-<li><a href="#orgad9dc2d">2.1. 概要</a></li>
-<li><a href="#orgbab4709">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org77f044a">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org77af278">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#orgdcfcd35">2.1. 概要</a></li>
+<li><a href="#org61ef60e">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org493d73a">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#orgcb42006">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#orga0befdd">3. 終わりに</a></li>
+<li><a href="#org09708b3">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0cbe17d" class="outline-2">
-<h2 id="org0cbe17d"><span class="section-number-2">1</span> はじめに</h2>
+<div id="outline-container-orgb82a0db" class="outline-2">
+<h2 id="orgb82a0db"><span class="section-number-2">1</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -101,12 +101,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgc97907c" class="outline-2">
-<h2 id="orgc97907c"><span class="section-number-2">2</span> 手順</h2>
+<div id="outline-container-orgb4e1c1b" class="outline-2">
+<h2 id="orgb4e1c1b"><span class="section-number-2">2</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgad9dc2d" class="outline-3">
-<h3 id="orgad9dc2d"><span class="section-number-3">2.1</span> 概要</h3>
+<div id="outline-container-orgdcfcd35" class="outline-3">
+<h3 id="orgdcfcd35"><span class="section-number-3">2.1</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -120,8 +120,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgbab4709" class="outline-3">
-<h3 id="orgbab4709"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-org61ef60e" class="outline-3">
+<h3 id="org61ef60e"><span class="section-number-3">2.2</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -149,8 +149,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org77f044a" class="outline-3">
-<h3 id="org77f044a"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org493d73a" class="outline-3">
+<h3 id="org493d73a"><span class="section-number-3">2.3</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -189,8 +189,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-org77af278" class="outline-3">
-<h3 id="org77af278"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-orgcb42006" class="outline-3">
+<h3 id="orgcb42006"><span class="section-number-3">2.4</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -234,8 +234,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-orga0befdd" class="outline-2">
-<h2 id="orga0befdd"><span class="section-number-2">3</span> 終わりに</h2>
+<div id="outline-container-org09708b3" class="outline-2">
+<h2 id="org09708b3"><span class="section-number-2">3</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
