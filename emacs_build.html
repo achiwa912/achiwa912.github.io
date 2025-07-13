@@ -72,18 +72,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org037440b">1. はじめに</a></li>
-<li><a href="#orge1c39a5">2. 先人の情報を探す</a></li>
-<li><a href="#orgeff4f15">3. ビルドしてみる</a></li>
-<li><a href="#orgdff6958">4. 動かしてみる</a></li>
-<li><a href="#org81dadfa">5. M1 MacBook Proでもビルドしてみる</a></li>
-<li><a href="#org91fce93">6. 最後に</a></li>
+<li><a href="#orgab1edc0">1. はじめに</a></li>
+<li><a href="#org4d55f8f">2. 先人の情報を探す</a></li>
+<li><a href="#org43c950b">3. ビルドしてみる</a></li>
+<li><a href="#orgb69da2b">4. 動かしてみる</a></li>
+<li><a href="#org7d510fe">5. M1 MacBook Proでもビルドしてみる</a></li>
+<li><a href="#org9ce9da8">6. 最後に</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org037440b" class="outline-2">
-<h2 id="org037440b"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgab1edc0" class="outline-2">
+<h2 id="orgab1edc0"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
@@ -91,8 +91,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge1c39a5" class="outline-2">
-<h2 id="orge1c39a5"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
+<div id="outline-container-org4d55f8f" class="outline-2">
+<h2 id="org4d55f8f"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
@@ -100,8 +100,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgeff4f15" class="outline-2">
-<h2 id="orgeff4f15"><span class="section-number-2">3.</span> ビルドしてみる</h2>
+<div id="outline-container-org43c950b" class="outline-2">
+<h2 id="org43c950b"><span class="section-number-2">3.</span> ビルドしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはemacsのソースコードを入手します。
@@ -156,8 +156,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-orgdff6958" class="outline-2">
-<h2 id="orgdff6958"><span class="section-number-2">4.</span> 動かしてみる</h2>
+<div id="outline-container-orgb69da2b" class="outline-2">
+<h2 id="orgb69da2b"><span class="section-number-2">4.</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
@@ -181,8 +181,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org81dadfa" class="outline-2">
-<h2 id="org81dadfa"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
+<div id="outline-container-org7d510fe" class="outline-2">
+<h2 id="org7d510fe"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 調子に乗って、M1 MacBook Proでもネイティブコンパイル版の最新emacsが入るか試してみました。
@@ -226,8 +226,8 @@ libgccjit.so: error: error invoking gcc driver
 </div>
 </div>
 
-<div id="outline-container-org91fce93" class="outline-2">
-<h2 id="org91fce93"><span class="section-number-2">6.</span> 最後に</h2>
+<div id="outline-container-org9ce9da8" class="outline-2">
+<h2 id="org9ce9da8"><span class="section-number-2">6.</span> 最後に</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
