@@ -72,41 +72,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfa540f0">1. はじめに</a></li>
-<li><a href="#orga205018">2. 環境構築</a>
+<li><a href="#orgca005eb">1. はじめに</a></li>
+<li><a href="#org2abf017">2. 環境構築</a>
 <ul>
-<li><a href="#orgc81522c">2.1. Ubuntuインストール</a>
+<li><a href="#orgffed6a1">2.1. Ubuntuインストール</a>
 <ul>
-<li><a href="#org54fa7ec">2.1.1. Ubuntu最新LTM版のダウンロード</a></li>
-<li><a href="#orgc9570b4">2.1.2. VM作成</a></li>
-<li><a href="#orga195062">2.1.3. Ubuntuインストール</a></li>
-<li><a href="#org1a3373f">2.1.4. デスクトップ版インストール</a></li>
-<li><a href="#org6376cba">2.1.5. ネットワーク変更</a></li>
-<li><a href="#org9ebc38d">2.1.6. ssh keyのインポート</a></li>
-<li><a href="#org06522a8">2.1.7. OSを最新にする</a></li>
-<li><a href="#org59d49c2">2.1.8. ssh key作成</a></li>
-<li><a href="#org875507e">2.1.9. 日本語入力環境を作る</a></li>
-<li><a href="#orgba3d8ba">2.1.10. キーボードショートカット</a></li>
-<li><a href="#orgc2e774d">2.1.11. DNSの変更</a></li>
+<li><a href="#org0954750">2.1.1. Ubuntu最新LTM版のダウンロード</a></li>
+<li><a href="#orgfa5e5f1">2.1.2. VM作成</a></li>
+<li><a href="#org0270226">2.1.3. Ubuntuインストール</a></li>
+<li><a href="#orgd450e67">2.1.4. デスクトップ版インストール</a></li>
+<li><a href="#org2f4fc88">2.1.5. ネットワーク変更</a></li>
+<li><a href="#org6476167">2.1.6. ssh keyのインポート</a></li>
+<li><a href="#org2903596">2.1.7. OSを最新にする</a></li>
+<li><a href="#org1da0c98">2.1.8. ssh key作成</a></li>
+<li><a href="#org85f579a">2.1.9. 日本語入力環境を作る</a></li>
+<li><a href="#org773db27">2.1.10. キーボードショートカット</a></li>
+<li><a href="#org549e7da">2.1.11. DNSの変更</a></li>
 </ul>
 </li>
-<li><a href="#org63888a3">2.2. RetroArchインストール</a>
+<li><a href="#org436324b">2.2. RetroArchインストール</a>
 <ul>
-<li><a href="#orgddc59af">2.2.1. Coreインストール</a></li>
-<li><a href="#orgbab7009">2.2.2. 動作確認</a></li>
-<li><a href="#org1480deb">2.2.3. 結論</a></li>
+<li><a href="#org0d4d095">2.2.1. Coreインストール</a></li>
+<li><a href="#org63c59a3">2.2.2. 動作確認</a></li>
+<li><a href="#org601160f">2.2.3. 結論</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org07050ef">3. Ubuntuの感想</a></li>
-<li><a href="#org095135e">4. おわりに</a></li>
+<li><a href="#org8cb8025">3. Ubuntuの感想</a></li>
+<li><a href="#org9244ef1">4. おわりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgfa540f0" class="outline-2">
-<h2 id="orgfa540f0"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgca005eb" class="outline-2">
+<h2 id="orgca005eb"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 年末の休みを使ってMacBook Pro16インチ上にUbuntuを入れ、お試しでRetroArchをセットアップし
@@ -115,16 +115,16 @@
 </div>
 </div>
 
-<div id="outline-container-orga205018" class="outline-2">
-<h2 id="orga205018"><span class="section-number-2">2.</span> 環境構築</h2>
+<div id="outline-container-org2abf017" class="outline-2">
+<h2 id="org2abf017"><span class="section-number-2">2.</span> 環境構築</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgc81522c" class="outline-3">
-<h3 id="orgc81522c"><span class="section-number-3">2.1.</span> Ubuntuインストール</h3>
+<div id="outline-container-orgffed6a1" class="outline-3">
+<h3 id="orgffed6a1"><span class="section-number-3">2.1.</span> Ubuntuインストール</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org54fa7ec" class="outline-4">
-<h4 id="org54fa7ec"><span class="section-number-4">2.1.1.</span> Ubuntu最新LTM版のダウンロード</h4>
+<div id="outline-container-org0954750" class="outline-4">
+<h4 id="org0954750"><span class="section-number-4">2.1.1.</span> Ubuntu最新LTM版のダウンロード</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>ubuntu ARM downloadなどで検索してARM版のisoイメージを探します。現在の最新安定版は<a href="https://ubuntu.com/download/server/arm">20.04.01 LTS</a>のようです(<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-10 Thu&gt;</span></span>現在20.04.02 LTS)。ARMはなぜかデスクトップ版が無いのでサーバー版を選びます。ubuntu-24.04.1-live-server-arm64.iso</li>
@@ -132,8 +132,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc9570b4" class="outline-4">
-<h4 id="orgc9570b4"><span class="section-number-4">2.1.2.</span> VM作成</h4>
+<div id="outline-container-orgfa5e5f1" class="outline-4">
+<h4 id="orgfa5e5f1"><span class="section-number-4">2.1.2.</span> VM作成</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>UTM &gt; <code>+</code> &gt; Virtualize &gt; Linux &gt; Boot ISO Image &gt; Browse&#x2026; 
@@ -145,8 +145,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga195062" class="outline-4">
-<h4 id="orga195062"><span class="section-number-4">2.1.3.</span> Ubuntuインストール</h4>
+<div id="outline-container-org0270226" class="outline-4">
+<h4 id="org0270226"><span class="section-number-4">2.1.3.</span> Ubuntuインストール</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>Run VM &gt; Try or Install Ubuntu Server &gt; (wait) &gt; English</li>
@@ -161,8 +161,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1a3373f" class="outline-4">
-<h4 id="org1a3373f"><span class="section-number-4">2.1.4.</span> デスクトップ版インストール</h4>
+<div id="outline-container-orgd450e67" class="outline-4">
+<h4 id="orgd450e67"><span class="section-number-4">2.1.4.</span> デスクトップ版インストール</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 サーバー版なのでGUIではなくCUIのログインコンソールで立ち上がってきます。<a href="https://jun1okamura.medium.com/install-ubuntu-on-mac-m1-powered-by-utm-499aba3ba7e9">ここ</a>を参考にGUIを入れたりします。先人がいてよかった。ありがとうございます。
@@ -203,8 +203,8 @@ ExecStart=/lib/systemd/systemd-networkd-wait-online --timeout=5
 </div>
 </div>
 
-<div id="outline-container-org6376cba" class="outline-4">
-<h4 id="org6376cba"><span class="section-number-4">2.1.5.</span> ネットワーク変更</h4>
+<div id="outline-container-org2f4fc88" class="outline-4">
+<h4 id="org2f4fc88"><span class="section-number-4">2.1.5.</span> ネットワーク変更</h4>
 <div class="outline-text-4" id="text-2-1-5">
 <p>
 なぜか、最初から変更しておくと、途中で黒画面のままブートしなかったり、ログインできなかったりする(気がする)ので、VMクローンを取った後にやります。
@@ -219,8 +219,8 @@ ExecStart=/lib/systemd/systemd-networkd-wait-online --timeout=5
 </div>
 </div>
 
-<div id="outline-container-org9ebc38d" class="outline-4">
-<h4 id="org9ebc38d"><span class="section-number-4">2.1.6.</span> ssh keyのインポート</h4>
+<div id="outline-container-org6476167" class="outline-4">
+<h4 id="org6476167"><span class="section-number-4">2.1.6.</span> ssh keyのインポート</h4>
 <div class="outline-text-4" id="text-2-1-6">
 <p>
 MacBookからUbuntuに、パスワード認証無しでsshで入れるように、ssh keyをVMにインポートします。これをやっておくと、trampモードを使って、ホストのMacからVM上のファイルをemacsでシームレスに編集できるようになります。
@@ -256,8 +256,8 @@ ssh &lt;user&gt;@&lt;VM IP&gt;
 </div>
 </div>
 
-<div id="outline-container-org06522a8" class="outline-4">
-<h4 id="org06522a8"><span class="section-number-4">2.1.7.</span> OSを最新にする</h4>
+<div id="outline-container-org2903596" class="outline-4">
+<h4 id="org2903596"><span class="section-number-4">2.1.7.</span> OSを最新にする</h4>
 <div class="outline-text-4" id="text-2-1-7">
 <pre class="example">
 sudo apt update
@@ -270,8 +270,8 @@ poweroff
 </div>
 </div>
 
-<div id="outline-container-org59d49c2" class="outline-4">
-<h4 id="org59d49c2"><span class="section-number-4">2.1.8.</span> ssh key作成</h4>
+<div id="outline-container-org1da0c98" class="outline-4">
+<h4 id="org1da0c98"><span class="section-number-4">2.1.8.</span> ssh key作成</h4>
 <div class="outline-text-4" id="text-2-1-8">
 <pre class="example">
 cd ~/.ssh
@@ -287,12 +287,12 @@ ssh-keygen -t ed25519 -C "&lt;email address&gt;"
 </div>
 </div>
 
-<div id="outline-container-org875507e" class="outline-4">
-<h4 id="org875507e"><span class="section-number-4">2.1.9.</span> 日本語入力環境を作る</h4>
+<div id="outline-container-org85f579a" class="outline-4">
+<h4 id="org85f579a"><span class="section-number-4">2.1.9.</span> 日本語入力環境を作る</h4>
 <div class="outline-text-4" id="text-2-1-9">
 </div>
 <ol class="org-ol">
-<li><a id="org355ab61"></a>GNOME<br />
+<li><a id="org25bc040"></a>GNOME<br />
 <div class="outline-text-5" id="text-2-1-9-1">
 <pre class="example">
 sudo apt install fcitx5-mozc
@@ -306,7 +306,7 @@ sudo apt install gnome-shell-extensions gnome-tweaks
 </div>
 </li>
 
-<li><a id="org8aa6832"></a>emacs<br />
+<li><a id="orgc445851"></a>emacs<br />
 <div class="outline-text-5" id="text-2-1-9-2">
 <p>
 GNOMEで設定した日本語入力はemacsでも使えますが、オーバーレイがじゃっかん見づらいので、emacs-mozcを入れます。
@@ -328,8 +328,8 @@ C-\で入力モードトグルです。
 </ol>
 </div>
 
-<div id="outline-container-orgba3d8ba" class="outline-4">
-<h4 id="orgba3d8ba"><span class="section-number-4">2.1.10.</span> キーボードショートカット</h4>
+<div id="outline-container-org773db27" class="outline-4">
+<h4 id="org773db27"><span class="section-number-4">2.1.10.</span> キーボードショートカット</h4>
 <div class="outline-text-4" id="text-2-1-10">
 <p>
 非常に面倒なことに、入力されたキー(特にCommandなどの特殊キー)を持っていくレイヤーがいくつもある。まずホストであるMacOS X。例えばCommand + SpaceでSpotlight Searchが出てくる。次にGNOME。Command(Super)キーはいろいろと使われていて、鬱陶しいことこの上ない。デフォルトでCtrl-Spaceが(日本語)入力モード切り替えにアサインされているので、これを変えないとemacsでとても困る。
@@ -370,8 +370,8 @@ C-\で入力モードトグルです。
 </div>
 </div>
 
-<div id="outline-container-orgc2e774d" class="outline-4">
-<h4 id="orgc2e774d"><span class="section-number-4">2.1.11.</span> DNSの変更</h4>
+<div id="outline-container-org549e7da" class="outline-4">
+<h4 id="org549e7da"><span class="section-number-4">2.1.11.</span> DNSの変更</h4>
 <div class="outline-text-4" id="text-2-1-11">
 <p>
 DNSをローカルのpi-holeに変更します。これが意外とくせもの。
@@ -402,8 +402,8 @@ sudo systemctl restart systemd-resolved
 </div>
 </div>
 
-<div id="outline-container-org63888a3" class="outline-3">
-<h3 id="org63888a3"><span class="section-number-3">2.2.</span> RetroArchインストール</h3>
+<div id="outline-container-org436324b" class="outline-3">
+<h3 id="org436324b"><span class="section-number-3">2.2.</span> RetroArchインストール</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 RetroArch公式サイトの<a href="https://www.retroarch.com/index.php?page=linux-instructions">Linuxインストール</a> のページにUbuntuでのインストール手順が書いてあるので、そのままコピペして実行します。
@@ -417,8 +417,8 @@ sudo add-apt-repository ppa:libretro/stable &amp;&amp; sudo apt-get update &amp;
 </p>
 </div>
 
-<div id="outline-container-orgddc59af" class="outline-4">
-<h4 id="orgddc59af"><span class="section-number-4">2.2.1.</span> Coreインストール</h4>
+<div id="outline-container-org0d4d095" class="outline-4">
+<h4 id="org0d4d095"><span class="section-number-4">2.2.1.</span> Coreインストール</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 ここで、RetroArch上からCoreをダウンロードしようとすると何も起きません。それもそのはず、ARM64向けのcoresは用意されていないからなのでした。そこで、aarch64 core retroarchで検索すると、ビルド済みのcoreが(たくさん)置いてある <a href="https://github.com/christianhaitian/retroarch-cores">ありがたいページ</a> がヒットするので、こちらのaarch64ディレクトリからcoreをダウンロードします。
@@ -433,8 +433,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-orgbab7009" class="outline-4">
-<h4 id="orgbab7009"><span class="section-number-4">2.2.2.</span> 動作確認</h4>
+<div id="outline-container-org63c59a3" class="outline-4">
+<h4 id="org63c59a3"><span class="section-number-4">2.2.2.</span> 動作確認</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 あとは、合法的/自己責任で入手したROMをロードして実行するだけ。うまく動きましたか? ちゃんと音は出たでしょうか。
@@ -442,8 +442,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-org1480deb" class="outline-4">
-<h4 id="org1480deb"><span class="section-number-4">2.2.3.</span> 結論</h4>
+<div id="outline-container-org601160f" class="outline-4">
+<h4 id="org601160f"><span class="section-number-4">2.2.3.</span> 結論</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 全画面では秒60フレームがでなくてカクカクします。さすがにVM上で動かすには無理があったでしょうか。少し楽しみだったのだけど残念。
@@ -453,8 +453,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-org07050ef" class="outline-2">
-<h2 id="org07050ef"><span class="section-number-2">3.</span> Ubuntuの感想</h2>
+<div id="outline-container-org8cb8025" class="outline-2">
+<h2 id="org8cb8025"><span class="section-number-2">3.</span> Ubuntuの感想</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 全般的に気が利いていて使い勝手が良いように思います。以下、RockyLinux9.4との比較になりますが。。
@@ -469,8 +469,8 @@ sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
 </div>
 </div>
 
-<div id="outline-container-org095135e" class="outline-2">
-<h2 id="org095135e"><span class="section-number-2">4.</span> おわりに</h2>
+<div id="outline-container-org9244ef1" class="outline-2">
+<h2 id="org9244ef1"><span class="section-number-2">4.</span> おわりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 以前、一度Ubuntuを試したときはGUIの色使いのクセが嫌で使用を断念しましたが、なかなか使い勝手がよいことがわかりました。特に画面のクリスピーさは使っていて気持ちが良いです。
