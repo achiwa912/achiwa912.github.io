@@ -72,18 +72,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga3c9cd3">1. はじめに</a></li>
-<li><a href="#orgf7cfc03">2. 先人の情報を探す</a></li>
-<li><a href="#org30e915d">3. ビルドしてみる</a></li>
-<li><a href="#org2b08bf3">4. 動かしてみる</a></li>
-<li><a href="#orgbb5ac71">5. M1 MacBook Proでもビルドしてみる</a></li>
-<li><a href="#orga40661d">6. 最後に</a></li>
+<li><a href="#org09f7408">1. はじめに</a></li>
+<li><a href="#orgd8eb94d">2. 先人の情報を探す</a></li>
+<li><a href="#org9dce31b">3. ビルドしてみる</a></li>
+<li><a href="#orgcc71602">4. 動かしてみる</a></li>
+<li><a href="#orgbab23ec">5. M1 MacBook Proでもビルドしてみる</a></li>
+<li><a href="#orga80388b">6. 最後に</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga3c9cd3" class="outline-2">
-<h2 id="orga3c9cd3"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org09f7408" class="outline-2">
+<h2 id="org09f7408"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
@@ -91,8 +91,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf7cfc03" class="outline-2">
-<h2 id="orgf7cfc03"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
+<div id="outline-container-orgd8eb94d" class="outline-2">
+<h2 id="orgd8eb94d"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
@@ -100,8 +100,8 @@
 </div>
 </div>
 
-<div id="outline-container-org30e915d" class="outline-2">
-<h2 id="org30e915d"><span class="section-number-2">3.</span> ビルドしてみる</h2>
+<div id="outline-container-org9dce31b" class="outline-2">
+<h2 id="org9dce31b"><span class="section-number-2">3.</span> ビルドしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはemacsのソースコードを入手します。
@@ -156,8 +156,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org2b08bf3" class="outline-2">
-<h2 id="org2b08bf3"><span class="section-number-2">4.</span> 動かしてみる</h2>
+<div id="outline-container-orgcc71602" class="outline-2">
+<h2 id="orgcc71602"><span class="section-number-2">4.</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
@@ -181,8 +181,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-orgbb5ac71" class="outline-2">
-<h2 id="orgbb5ac71"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
+<div id="outline-container-orgbab23ec" class="outline-2">
+<h2 id="orgbab23ec"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 調子に乗って、M1 MacBook Proでもネイティブコンパイル版の最新emacsが入るか試してみました。
@@ -226,8 +226,8 @@ libgccjit.so: error: error invoking gcc driver
 </div>
 </div>
 
-<div id="outline-container-orga40661d" class="outline-2">
-<h2 id="orga40661d"><span class="section-number-2">6.</span> 最後に</h2>
+<div id="outline-container-orga80388b" class="outline-2">
+<h2 id="orga80388b"><span class="section-number-2">6.</span> 最後に</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
@@ -261,6 +261,9 @@ libgccjit.so: error: error invoking gcc driver
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
           <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
       <li class="post">
@@ -271,9 +274,6 @@ libgccjit.so: error: error invoking gcc driver
       </li>
       <li class="post">
           <a href="/burgerlunch.html">Cheap burgers for lunch</a>
-      </li>
-      <li class="post">
-          <a href="/summerreading25.html">Summer Reading 2025</a>
       </li>
     </ul>
   </section>
@@ -293,7 +293,7 @@ libgccjit.so: error: error invoking gcc driver
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
