@@ -72,18 +72,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbb478ed">1. はじめに</a></li>
-<li><a href="#org4099a5f">2. 先人の情報を探す</a></li>
-<li><a href="#org7c1cbae">3. ビルドしてみる</a></li>
-<li><a href="#orgd9e6916">4. 動かしてみる</a></li>
-<li><a href="#org7075920">5. M1 MacBook Proでもビルドしてみる</a></li>
-<li><a href="#org8d52f3a">6. 最後に</a></li>
+<li><a href="#orgc955a25">1. はじめに</a></li>
+<li><a href="#org78b0f35">2. 先人の情報を探す</a></li>
+<li><a href="#org03a3ba3">3. ビルドしてみる</a></li>
+<li><a href="#org63484b7">4. 動かしてみる</a></li>
+<li><a href="#org204d7d8">5. M1 MacBook Proでもビルドしてみる</a></li>
+<li><a href="#orgd424164">6. 最後に</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbb478ed" class="outline-2">
-<h2 id="orgbb478ed"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgc955a25" class="outline-2">
+<h2 id="orgc955a25"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
@@ -91,8 +91,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4099a5f" class="outline-2">
-<h2 id="org4099a5f"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
+<div id="outline-container-org78b0f35" class="outline-2">
+<h2 id="org78b0f35"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
@@ -100,8 +100,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7c1cbae" class="outline-2">
-<h2 id="org7c1cbae"><span class="section-number-2">3.</span> ビルドしてみる</h2>
+<div id="outline-container-org03a3ba3" class="outline-2">
+<h2 id="org03a3ba3"><span class="section-number-2">3.</span> ビルドしてみる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはemacsのソースコードを入手します。
@@ -156,8 +156,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-orgd9e6916" class="outline-2">
-<h2 id="orgd9e6916"><span class="section-number-2">4.</span> 動かしてみる</h2>
+<div id="outline-container-org63484b7" class="outline-2">
+<h2 id="org63484b7"><span class="section-number-2">4.</span> 動かしてみる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
@@ -181,8 +181,8 @@ sudo make install
 </div>
 </div>
 
-<div id="outline-container-org7075920" class="outline-2">
-<h2 id="org7075920"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
+<div id="outline-container-org204d7d8" class="outline-2">
+<h2 id="org204d7d8"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 調子に乗って、M1 MacBook Proでもネイティブコンパイル版の最新emacsが入るか試してみました。
@@ -226,8 +226,8 @@ libgccjit.so: error: error invoking gcc driver
 </div>
 </div>
 
-<div id="outline-container-org8d52f3a" class="outline-2">
-<h2 id="org8d52f3a"><span class="section-number-2">6.</span> 最後に</h2>
+<div id="outline-container-orgd424164" class="outline-2">
+<h2 id="orgd424164"><span class="section-number-2">6.</span> 最後に</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
@@ -261,6 +261,9 @@ libgccjit.so: error: error invoking gcc driver
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
       </li>
       <li class="post">
@@ -271,9 +274,6 @@ libgccjit.so: error: error invoking gcc driver
       </li>
       <li class="post">
           <a href="/homelab.html">N150のMini PCでホームラボ始めました</a>
-      </li>
-      <li class="post">
-          <a href="/burgerlunch.html">Cheap burgers for lunch</a>
       </li>
     </ul>
   </section>
