@@ -72,22 +72,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org217897a">1. はじめに</a></li>
-<li><a href="#org5f39f00">2. 手順</a>
+<li><a href="#org992b57b">1. はじめに</a></li>
+<li><a href="#org9eb03a9">2. 手順</a>
 <ul>
-<li><a href="#orgedbb1bc">2.1. 概要</a></li>
-<li><a href="#org26af497">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#orgaee30b8">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#orgb49ba74">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#orgcdfd12b">2.1. 概要</a></li>
+<li><a href="#org5bcea49">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org87f71d3">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#orged6c48e">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#org7634b05">3. 終わりに</a></li>
+<li><a href="#orgc71223f">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org217897a" class="outline-2">
-<h2 id="org217897a"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org992b57b" class="outline-2">
+<h2 id="org992b57b"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -101,12 +101,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org5f39f00" class="outline-2">
-<h2 id="org5f39f00"><span class="section-number-2">2.</span> 手順</h2>
+<div id="outline-container-org9eb03a9" class="outline-2">
+<h2 id="org9eb03a9"><span class="section-number-2">2.</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgedbb1bc" class="outline-3">
-<h3 id="orgedbb1bc"><span class="section-number-3">2.1.</span> 概要</h3>
+<div id="outline-container-orgcdfd12b" class="outline-3">
+<h3 id="orgcdfd12b"><span class="section-number-3">2.1.</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -120,8 +120,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org26af497" class="outline-3">
-<h3 id="org26af497"><span class="section-number-3">2.2.</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-org5bcea49" class="outline-3">
+<h3 id="org5bcea49"><span class="section-number-3">2.2.</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -149,8 +149,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orgaee30b8" class="outline-3">
-<h3 id="orgaee30b8"><span class="section-number-3">2.3.</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org87f71d3" class="outline-3">
+<h3 id="org87f71d3"><span class="section-number-3">2.3.</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -189,8 +189,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-orgb49ba74" class="outline-3">
-<h3 id="orgb49ba74"><span class="section-number-3">2.4.</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-orged6c48e" class="outline-3">
+<h3 id="orged6c48e"><span class="section-number-3">2.4.</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -234,8 +234,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-org7634b05" class="outline-2">
-<h2 id="org7634b05"><span class="section-number-2">3.</span> 終わりに</h2>
+<div id="outline-container-orgc71223f" class="outline-2">
+<h2 id="orgc71223f"><span class="section-number-2">3.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -265,7 +265,7 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+          <a href="/moving25.html">ボストン近郊での引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
