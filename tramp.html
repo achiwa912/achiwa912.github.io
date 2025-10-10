@@ -72,31 +72,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9ae6ecb">1. はじめに</a></li>
-<li><a href="#orga28491e">2. trampモード</a>
+<li><a href="#org6bd98fa">1. はじめに</a></li>
+<li><a href="#org9915b6a">2. trampモード</a>
 <ul>
-<li><a href="#orga7e7f8d">2.1. インストール</a></li>
-<li><a href="#orge28fb38">2.2. 使ってみる</a>
+<li><a href="#orgf878afe">2.1. インストール</a></li>
+<li><a href="#org382f7ab">2.2. 使ってみる</a>
 <ul>
-<li><a href="#org66bed3a">2.2.1. magit</a></li>
-<li><a href="#orgba3f52c">2.2.2. org-mode</a></li>
-<li><a href="#org2068826">2.2.3. ブックマーク</a></li>
-<li><a href="#orgf5c6859">2.2.4. shell mode</a></li>
-<li><a href="#org23c165e">2.2.5. Python開発</a></li>
-<li><a href="#org6af9a64">2.2.6. スリープからの復帰</a></li>
-<li><a href="#orga558f49">2.2.7. ファイルコピーが遅い</a></li>
+<li><a href="#orge2f6ce9">2.2.1. magit</a></li>
+<li><a href="#org937def2">2.2.2. org-mode</a></li>
+<li><a href="#org346848c">2.2.3. ブックマーク</a></li>
+<li><a href="#org077f267">2.2.4. shell mode</a></li>
+<li><a href="#org4c01456">2.2.5. Python開発</a></li>
+<li><a href="#orgf61478c">2.2.6. スリープからの復帰</a></li>
+<li><a href="#org98590fa">2.2.7. ファイルコピーが遅い</a></li>
 </ul>
 </li>
-<li><a href="#org9ad4b94">2.3. 地球の反対側から使ってみる</a></li>
+<li><a href="#org88158db">2.3. 地球の反対側から使ってみる</a></li>
 </ul>
 </li>
-<li><a href="#org073b50c">3. おわりに</a></li>
+<li><a href="#orgc035d18">3. おわりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9ae6ecb" class="outline-2">
-<h2 id="org9ae6ecb"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org6bd98fa" class="outline-2">
+<h2 id="org6bd98fa"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 現在の職場では、各エンジニアにLinux(Fedora)の入ったデスクトップPCとノートPCが与えられています。COVIDのためにリモートワークとなって以来、私はノートPC(MacBookを選びました)のみアパートに持ち帰り、デスクトップPCはVPN経由でsshで入って使っていました。
@@ -108,16 +108,16 @@ emacsのいいところは、それがターミナル上で動くCUIアプリケ
 </div>
 </div>
 
-<div id="outline-container-orga28491e" class="outline-2">
-<h2 id="orga28491e"><span class="section-number-2">2.</span> trampモード</h2>
+<div id="outline-container-org9915b6a" class="outline-2">
+<h2 id="org9915b6a"><span class="section-number-2">2.</span> trampモード</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 しかし、emacsにはtramp-modeという強力な機能が標準で備わっていることを最近知りました。trampを使うと、リモートマシン上のファイルをまるでそれらがローカルにあるかのように扱えます。しかも、diredやmagitもシームレスに動作するようなのです。emacsのキラーアプリであるorg-modeも、もちろんそのまま使えます(<code>.org</code> は単なるテキストファイルなので)。これは試してみるしかありません。
 </p>
 </div>
 
-<div id="outline-container-orga7e7f8d" class="outline-3">
-<h3 id="orga7e7f8d"><span class="section-number-3">2.1.</span> インストール</h3>
+<div id="outline-container-orgf878afe" class="outline-3">
+<h3 id="orgf878afe"><span class="section-number-3">2.1.</span> インストール</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <a href="https://www.gnu.org/software/tramp/#System-Requiremencts">ここ</a> に前提が書かれています。また、trampでつなげる対象のリモートマシンに対するsshの設定をしておいてください。パスワード無しでsshできるようにしておくと便利と思います。
@@ -137,8 +137,8 @@ M-x list-packages
 </div>
 </div>
 
-<div id="outline-container-orge28fb38" class="outline-3">
-<h3 id="orge28fb38"><span class="section-number-3">2.2.</span> 使ってみる</h3>
+<div id="outline-container-org382f7ab" class="outline-3">
+<h3 id="org382f7ab"><span class="section-number-3">2.2.</span> 使ってみる</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 リモートのファイルが開けるか確認します。
@@ -162,8 +162,8 @@ WindowsのPuTTYでは、 <code>/ssh</code> の代わりに <code>/plink</code> �
 </p>
 </div>
 
-<div id="outline-container-org66bed3a" class="outline-4">
-<h4 id="org66bed3a"><span class="section-number-4">2.2.1.</span> magit</h4>
+<div id="outline-container-orge2f6ce9" class="outline-4">
+<h4 id="orge2f6ce9"><span class="section-number-4">2.2.1.</span> magit</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 magitはgit操作をemacs上で行う、emacsのキラーアプリの一つです。ものすごく便利で、私も毎日のように使っています。git管理対象のリモートファイルを開いているときに、普通に <code>M-x g</code> でmagit-status (git status相当)をします。そしていつものように <code>s</code> (stage) &gt; <code>c c</code> (commit)でコミットメッセージを入力し、 <code>C-c C-c</code> コミットします。その後、やはりいつものように <code>P u</code> (push)でプッシュしたら、何事もなく動いてしまいました。これはすごいです!
@@ -171,8 +171,8 @@ magitはgit操作をemacs上で行う、emacsのキラーアプリの一つで�
 </div>
 </div>
 
-<div id="outline-container-orgba3f52c" class="outline-4">
-<h4 id="orgba3f52c"><span class="section-number-4">2.2.2.</span> org-mode</h4>
+<div id="outline-container-org937def2" class="outline-4">
+<h4 id="org937def2"><span class="section-number-4">2.2.2.</span> org-mode</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 emacsのもう一つのキラーアプリです。このブログもorg-modeを使って書いています。 <code>.org</code> は単なるテキストファイルなので、全くシームレスにtramp-modeが使えます。
@@ -180,8 +180,8 @@ emacsのもう一つのキラーアプリです。このブログもorg-modeを�
 </div>
 </div>
 
-<div id="outline-container-org2068826" class="outline-4">
-<h4 id="org2068826"><span class="section-number-4">2.2.3.</span> ブックマーク</h4>
+<div id="outline-container-org346848c" class="outline-4">
+<h4 id="org346848c"><span class="section-number-4">2.2.3.</span> ブックマーク</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 trampは便利ですが、毎回 <code>C-x C-f</code> 等でリモートホスト+ファイルやディレクトリを指定するのが少し面倒です。そこで、emacsの <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Bookmarks.html">ブックマーク機能</a> を使います。
@@ -197,8 +197,8 @@ trampは便利ですが、毎回 <code>C-x C-f</code> 等でリモートホス�
 </div>
 </div>
 
-<div id="outline-container-orgf5c6859" class="outline-4">
-<h4 id="orgf5c6859"><span class="section-number-4">2.2.4.</span> shell mode</h4>
+<div id="outline-container-org077f267" class="outline-4">
+<h4 id="org077f267"><span class="section-number-4">2.2.4.</span> shell mode</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 trampはemacsのshell-mode(<code>M-x shell</code>)でも動きますが、companyのオートコンプリート(グローバルで設定している)が編集をブロックして使いものにならないので抑止します。
@@ -226,8 +226,8 @@ fi
 </div>
 </div>
 
-<div id="outline-container-org23c165e" class="outline-4">
-<h4 id="org23c165e"><span class="section-number-4">2.2.5.</span> Python開発</h4>
+<div id="outline-container-org4c01456" class="outline-4">
+<h4 id="org4c01456"><span class="section-number-4">2.2.5.</span> Python開発</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <p>
 elpyはtrampをサポートしていないようなので、私は <a href="https://achiwa912.github.io/eglot.html">前回のエントリ</a> で書いたようにeglot + python-lsp-serverに移行しました。eglotからは <code>pylsp</code> が見つかりさえすれば普通に動くようです。私の環境ではフルパスで指定しない限り <code>pylsp</code> が見つからないエラーが出ていたので、以下をinit.elに設定しました。
@@ -239,8 +239,8 @@ elpyはtrampをサポートしていないようなので、私は <a href="http
 </div>
 </div>
 
-<div id="outline-container-org6af9a64" class="outline-4">
-<h4 id="org6af9a64"><span class="section-number-4">2.2.6.</span> スリープからの復帰</h4>
+<div id="outline-container-orgf61478c" class="outline-4">
+<h4 id="orgf61478c"><span class="section-number-4">2.2.6.</span> スリープからの復帰</h4>
 <div class="outline-text-4" id="text-2-2-6">
 <p>
 編集中のファイルをセーブせずにMacBook Proのふたを閉じて数十分放置した後でどうなるか試してみました。リモートPCにはVPN接続していますが、スリープすると切れてしまいます。再度VPNを2段階認証してつなぎ、 <code>C-x C-s</code> でセーブしようとすると、しばらく頑張った後で以下のメッセージが出ました。
@@ -270,8 +270,8 @@ You can &lt;q&gt;uit; don't modify this file.
 </div>
 </div>
 
-<div id="outline-container-orga558f49" class="outline-4">
-<h4 id="orga558f49"><span class="section-number-4">2.2.7.</span> ファイルコピーが遅い</h4>
+<div id="outline-container-org98590fa" class="outline-4">
+<h4 id="org98590fa"><span class="section-number-4">2.2.7.</span> ファイルコピーが遅い</h4>
 <div class="outline-text-4" id="text-2-2-7">
 <p>
 diredの操作でローカルとリモートのファイルコピーに時間がかかり、その間 emacs をブロックする問題があるそうです。私はまだ困っていないので試していませんが、いくつか <a href="https://localcoder.org/using-emacs-tramp-vs-rsync-for-remote-development">ソリューションがある</a> ようです。
@@ -280,8 +280,8 @@ diredの操作でローカルとリモートのファイルコピーに時間が
 </div>
 </div>
 
-<div id="outline-container-org9ad4b94" class="outline-3">
-<h3 id="org9ad4b94"><span class="section-number-3">2.3.</span> 地球の反対側から使ってみる</h3>
+<div id="outline-container-org88158db" class="outline-3">
+<h3 id="org88158db"><span class="section-number-3">2.3.</span> 地球の反対側から使ってみる</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 日本に一時帰国する機会がありましたので、日本からボストン近郊にあるオフィスのFedora PCに対して(VPN経由で)trampを使ってみました。結論から言うと、相当に忍耐を要するレベルで遅いです。dired、shellモード、ファイルの編集、magitそれぞれがとても遅い。
@@ -298,8 +298,8 @@ sshで入ってリモートマシンでemacsを開いたり、gitをコマンド
 </div>
 </div>
 
-<div id="outline-container-org073b50c" class="outline-2">
-<h2 id="org073b50c"><span class="section-number-2">3.</span> おわりに</h2>
+<div id="outline-container-orgc035d18" class="outline-2">
+<h2 id="orgc035d18"><span class="section-number-2">3.</span> おわりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 これまで、リモートマシンにsshで入ってemacsを使うことで満足していましたが、tramp-modeを使ってあたかもローカルで作業しているかのようにリモートファイルを扱うやり方は、より便利だと感じました。
@@ -348,13 +348,13 @@ sshで入ってリモートマシンでemacsを開いたり、gitをコマンド
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
+      </li>
+      <li class="post">
           <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
-      </li>
-      <li class="post">
-          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
@@ -380,7 +380,7 @@ sshで入ってリモートマシンでemacsを開いたり、gitをコマンド
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

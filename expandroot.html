@@ -72,22 +72,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge37c40e">1. はじめに</a></li>
-<li><a href="#orga6007df">2. 手順</a>
+<li><a href="#orgf8d89f7">1. はじめに</a></li>
+<li><a href="#orga46be56">2. 手順</a>
 <ul>
-<li><a href="#orgd28ca79">2.1. 概要</a></li>
-<li><a href="#org345b7a3">2.2. ESXiでストレージ容量追加する</a></li>
-<li><a href="#org8f61eb9">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
-<li><a href="#org29146dc">2.4. ルートファイルシステムを拡張する</a></li>
+<li><a href="#orgeba11e9">2.1. 概要</a></li>
+<li><a href="#orgc0ac53e">2.2. ESXiでストレージ容量追加する</a></li>
+<li><a href="#org5c87f4e">2.3. growpartをインストール、ルートパーティションを拡張する</a></li>
+<li><a href="#org7c4e245">2.4. ルートファイルシステムを拡張する</a></li>
 </ul>
 </li>
-<li><a href="#org49f8aae">3. 終わりに</a></li>
+<li><a href="#orgec30ccb">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge37c40e" class="outline-2">
-<h2 id="orge37c40e"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgf8d89f7" class="outline-2">
+<h2 id="orgf8d89f7"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 VMware ESXi上にあるCent OS VMのルートファイルシステムがほぼ満杯になりました。
@@ -101,12 +101,12 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-orga6007df" class="outline-2">
-<h2 id="orga6007df"><span class="section-number-2">2.</span> 手順</h2>
+<div id="outline-container-orga46be56" class="outline-2">
+<h2 id="orga46be56"><span class="section-number-2">2.</span> 手順</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd28ca79" class="outline-3">
-<h3 id="orgd28ca79"><span class="section-number-3">2.1.</span> 概要</h3>
+<div id="outline-container-orgeba11e9" class="outline-3">
+<h3 id="orgeba11e9"><span class="section-number-3">2.1.</span> 概要</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 以下のステップを行います。
@@ -120,8 +120,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org345b7a3" class="outline-3">
-<h3 id="org345b7a3"><span class="section-number-3">2.2.</span> ESXiでストレージ容量追加する</h3>
+<div id="outline-container-orgc0ac53e" class="outline-3">
+<h3 id="orgc0ac53e"><span class="section-number-3">2.2.</span> ESXiでストレージ容量追加する</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>ESXi GUIにログインする
@@ -149,8 +149,8 @@ VMのいいところは、ストレージなどのリソースが不足したら
 </div>
 </div>
 
-<div id="outline-container-org8f61eb9" class="outline-3">
-<h3 id="org8f61eb9"><span class="section-number-3">2.3.</span> growpartをインストール、ルートパーティションを拡張する</h3>
+<div id="outline-container-org5c87f4e" class="outline-3">
+<h3 id="org5c87f4e"><span class="section-number-3">2.3.</span> growpartをインストール、ルートパーティションを拡張する</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>Linux VMにsshで入り、リブートします。
@@ -189,8 +189,8 @@ sdc                           8:32   0   160G  0 disk
 </div>
 </div>
 
-<div id="outline-container-org29146dc" class="outline-3">
-<h3 id="org29146dc"><span class="section-number-3">2.4.</span> ルートファイルシステムを拡張する</h3>
+<div id="outline-container-org7c4e245" class="outline-3">
+<h3 id="org7c4e245"><span class="section-number-3">2.4.</span> ルートファイルシステムを拡張する</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>最初にファイルシステム容量を確認する
@@ -234,8 +234,8 @@ Filesystem      Size  Used Avail Use% Mounted on
 </div>
 </div>
 
-<div id="outline-container-org49f8aae" class="outline-2">
-<h2 id="org49f8aae"><span class="section-number-2">3.</span> 終わりに</h2>
+<div id="outline-container-orgec30ccb" class="outline-2">
+<h2 id="orgec30ccb"><span class="section-number-2">3.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 現在使用中のルートファイルシステムを容量拡張するということで、動かなくなったらどうしようと思いましたが、意外にもすんなり拡張できてしまいました。VMはつくづく便利だと思います。Linux管理者の方々には常識的な内容かもしれません。
@@ -265,13 +265,13 @@ Filesystem      Size  Used Avail Use% Mounted on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
+      </li>
+      <li class="post">
           <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
-      </li>
-      <li class="post">
-          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
@@ -297,7 +297,7 @@ Filesystem      Size  Used Avail Use% Mounted on
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

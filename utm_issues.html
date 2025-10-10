@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>MacBook(ARM)上のUTMでトラブル &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">MacBook(ARM)上のUTMでトラブル</h1>
+    <p class="meta">
+<time datetime="2025-10-10T00:00:00-04:00" pubdate>Fri 10 October 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org77ba3bd">1. はじめに</a></li>
+<li><a href="#org9d9483d">2. トラブルシュート断念</a></li>
+<li><a href="#org841f751">3. Ubuntuを入れ直す</a></li>
+<li><a href="#orgb1fd03f">4. UTMで遭遇したトラブル</a>
+<ul>
+<li><a href="#orge16b69a">4.1. 起動して数分でVMがフリーズする</a></li>
+<li><a href="#org1ede4fd">4.2. 曲の切り替わりでVMがフリーズする</a></li>
+<li><a href="#orgc1979df">4.3. Emulated VLANが使えない</a></li>
+<li><a href="#org08514a0">4.4. GNOMEがフリーズする</a>
+<ul>
+<li><a href="#org3611a47">4.4.1. ログイン画面でフリーズ1</a></li>
+<li><a href="#orgce049b4">4.4.2. ログイン画面でフリーズ2</a></li>
+<li><a href="#orgc7f5494">4.4.3. 通常画面でフリーズ</a></li>
+</ul>
+</li>
+<li><a href="#orga8ad3ba">4.5. UTMの起動画面で進まなくなる</a></li>
+</ul>
+</li>
+<li><a href="#org72207b3">5. おわりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org77ba3bd" class="outline-2">
+<h2 id="org77ba3bd"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+M1 MacBookにUTMを入れてUbuntuを使っていたのですが、最近Ubuntuがフリーズするようになりました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9d9483d" class="outline-2">
+<h2 id="org9d9483d"><span class="section-number-2">2.</span> トラブルシュート断念</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+これまでもGNOMEがフリーズしてマウスが効かなくなることが何度かあったのですが、今回はsshで入ることもできず、本格的にOSがフリーズしているようです。起動して数十秒〜数分でフリーズしてしまい、使い物になりません。
+</p>
+
+<p>
+最初はVMのUbuntuを疑いましたが、お試して入れたRockyLinux10でもフリーズします。おまけにdnf updateしたらUTMの起動画面から進まなくなるトラブルが発生しました。RockyLinux&amp;UTMの相性がよくありません。しばらく前のSnapshotに戻してもフリーズします。何かがおかしい。
+</p>
+
+<p>
+ARM MacのUTMが新しくなっていたので入れ直しましたが、Ubuntuのフリーズは解決しません。
+</p>
+
+<p>
+Mac側で最近やったことといえば、MacOS Sonomaのマイナーアップデートくらいです。これが原因かもしれません。が、MacOSのメジャーアップデートはいろいろと影響が大きいのでこれは試さず、より手軽にVMを作り直すことにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org841f751" class="outline-2">
+<h2 id="org841f751"><span class="section-number-2">3.</span> Ubuntuを入れ直す</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+前回ダウンロードした24.04.2のISOが手元にあってので、再びこれを使います。VM作成の際に不安定になるリスクはなるべく排除するため、Enable hardware OpenGL accelerationとUse Apple Virtualizationはチェックしませんでした。(前回は前者をチェックした気がする)
+</p>
+
+<p>
+<a href="https://achiwa912.github.io/utm_ub.html">以前の記事</a> を参考にインストール、設定していきました。どうやらフリーズはしないようです。よかった。
+</p>
+
+<p>
+しかし、一つ大きな問題が発生しました。Emulated LANを使ってホストであるMacからVMにsshしようとするとタイムアウトするようになったのです。この現象は以前にも発生していたのですが、あるときに試したら動いたのでEmulated VLANを愛用していたのでした。
+</p>
+
+<p>
+VM側ではfirewallは動いておらず、ポート22は空いています。tcpdumpでポート22を見ていてもsshがVMに来ている気配はありません。もちろん、VM上でlocalhostにsshすることはできます。Emulated VLANの設定は、フリーズするようになったUbuntu VMのものと一緒です。
+</p>
+
+<p>
+不思議なことに、フリーズする古いUbuntu VMを使うとEmulated LANを使ったsshができるのです。しばらくするとフリーズしますが。
+</p>
+
+<p>
+仕方がないのでBridgeネットワークを追加して、IPをアサインして使うことにしました。Sharedネットワークとの2本立てです。Bridgeだけだと自宅と異なるネットワーク環境でVMが一切ネットにつながらなくなってしまうため。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb1fd03f" class="outline-2">
+<h2 id="orgb1fd03f"><span class="section-number-2">4.</span> UTMで遭遇したトラブル</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+UTMを使い始めて、多くのトラブルにあいました。
+</p>
+</div>
+
+<div id="outline-container-orge16b69a" class="outline-3">
+<h3 id="orge16b69a"><span class="section-number-3">4.1.</span> 起動して数分でVMがフリーズする</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+今回遭遇して解決できなかった問題です。これがあるからUTMは安心して使い続けることができません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1ede4fd" class="outline-3">
+<h3 id="org1ede4fd"><span class="section-number-3">4.2.</span> 曲の切り替わりでVMがフリーズする</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズします。これも解決していませんが、頻繁には起こらないので致命的ではありません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc1979df" class="outline-3">
+<h3 id="orgc1979df"><span class="section-number-3">4.3.</span> Emulated VLANが使えない</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+突然使えなくなったり、使えるようになったりするので困ります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org08514a0" class="outline-3">
+<h3 id="org08514a0"><span class="section-number-3">4.4.</span> GNOMEがフリーズする</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+しばらく放置しているとGNOMEがフリーズすることがあります。3パターンあります。
+</p>
+</div>
+<div id="outline-container-org3611a47" class="outline-4">
+<h4 id="org3611a47"><span class="section-number-4">4.4.1.</span> ログイン画面でフリーズ1</h4>
+<div class="outline-text-4" id="text-4-4-1">
+<p>
+全画面モードにしたりもとに戻したりすると解決する場合
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce049b4" class="outline-4">
+<h4 id="orgce049b4"><span class="section-number-4">4.4.2.</span> ログイン画面でフリーズ2</h4>
+<div class="outline-text-4" id="text-4-4-2">
+<p>
+何をしても解決しない場合。いったん発生するようになると何度でも発生する気がします。
+ログイン画面で放置せずにすぐにログインすることで、今のところ回避できています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc7f5494" class="outline-4">
+<h4 id="orgc7f5494"><span class="section-number-4">4.4.3.</span> 通常画面でフリーズ</h4>
+<div class="outline-text-4" id="text-4-4-3">
+<p>
+幸いなことにOSは動いているので、外部からsshしてシャットダウンできます。頻繁には起きません。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga8ad3ba" class="outline-3">
+<h3 id="orga8ad3ba"><span class="section-number-3">4.5.</span> UTMの起動画面で進まなくなる</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+RockyLinuxでdnf updateをした後で発生することがあります。事前のsnapshotが欠かせません。
+これまでUbuntuでは起きていません。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org72207b3" class="outline-2">
+<h2 id="org72207b3"><span class="section-number-2">5.</span> おわりに</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+MacOSが悪いのかUTMなのかわかりませんが、Mac上でLinuxを安定して使い続けることができません。しばらく普通に使えていても、あるとき突然動かなくなるので困ります。ある程度はSnapshotで救えますが、今回のように古いスナップショットに戻しても遡って問題が起きてしまうこともあります。困ったなぁ。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-10-10T00:00:00-04:00" pubdate>Fri 10 October 2025</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
+      </li>
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

@@ -72,40 +72,40 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org768945d">1. Acemagic Mini PC V1</a></li>
-<li><a href="#orgeb3cd7e">2. Proxmoxを試してみる</a>
+<li><a href="#org37b7e69">1. Acemagic Mini PC V1</a></li>
+<li><a href="#org430f6bc">2. Proxmoxを試してみる</a>
 <ul>
-<li><a href="#org620ee45">2.1. インストール</a></li>
+<li><a href="#orgfd0ba52">2.1. インストール</a></li>
 </ul>
 </li>
-<li><a href="#org01a6150">3. Linuxを入れる</a>
+<li><a href="#org0326fbb">3. Linuxを入れる</a>
 <ul>
-<li><a href="#orgeb3f501">3.1. VMを作る</a></li>
-<li><a href="#org8ef6a31">3.2. Ubuntuインストール</a></li>
+<li><a href="#org66ab621">3.1. VMを作る</a></li>
+<li><a href="#org76bb6d2">3.2. Ubuntuインストール</a></li>
 </ul>
 </li>
-<li><a href="#orgfa46635">4. Dockerを入れる</a></li>
-<li><a href="#org5a875d6">5. サーバーアプリ(コンテナ)を入れる</a>
+<li><a href="#org62c66a4">4. Dockerを入れる</a></li>
+<li><a href="#orgddcb346">5. サーバーアプリ(コンテナ)を入れる</a>
 <ul>
-<li><a href="#org98743fa">5.1. Immich</a></li>
-<li><a href="#orgf0088a1">5.2. Pi-hole</a>
+<li><a href="#orge52404a">5.1. Immich</a></li>
+<li><a href="#orgd588060">5.2. Pi-hole</a>
 <ul>
-<li><a href="#orgc28926d">5.2.1. VMのDocker上にデプロイする(旧)</a></li>
-<li><a href="#org2a6c49b">5.2.2. ProxmoxにCTとしてデプロイする(新; 追記)</a></li>
-<li><a href="#org0a630d5">5.2.3. ChromeがPi-holeをバイパスする</a></li>
+<li><a href="#org71c6e08">5.2.1. VMのDocker上にデプロイする(旧)</a></li>
+<li><a href="#org2e49716">5.2.2. ProxmoxにCTとしてデプロイする(新; 追記)</a></li>
+<li><a href="#org42a00bc">5.2.3. ChromeがPi-holeをバイパスする</a></li>
 </ul>
 </li>
-<li><a href="#org77455f2">5.3. RomM</a></li>
+<li><a href="#org23da3dd">5.3. RomM</a></li>
 </ul>
 </li>
-<li><a href="#org8626dec">6. その他</a></li>
-<li><a href="#orgfc3ca92">7. 終わりに</a></li>
+<li><a href="#orgd060d01">6. その他</a></li>
+<li><a href="#orgb411776">7. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org768945d" class="outline-2">
-<h2 id="org768945d"><span class="section-number-2">1.</span> Acemagic Mini PC V1</h2>
+<div id="outline-container-org37b7e69" class="outline-2">
+<h2 id="org37b7e69"><span class="section-number-2">1.</span> Acemagic Mini PC V1</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 2025年のsummer projectとして、N150 Mini PCでホームラボサーバーをたてました。
@@ -125,8 +125,8 @@ IntelのN150プロセッサーは6-7年くらい前のミドルレンジCPUと�
 </div>
 </div>
 
-<div id="outline-container-orgeb3cd7e" class="outline-2">
-<h2 id="orgeb3cd7e"><span class="section-number-2">2.</span> Proxmoxを試してみる</h2>
+<div id="outline-container-org430f6bc" class="outline-2">
+<h2 id="org430f6bc"><span class="section-number-2">2.</span> Proxmoxを試してみる</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ホームラボなので色々と試したりして環境をうっかり壊してしまうリスクが常にあります。そこで、Linuxを直接インストールするのではなくハイパーバイザー上で動かすことにしました。壊してしまってもスナップショットがとってあればその状態に戻すことができます。
@@ -137,8 +137,8 @@ VMwareがBroadcomに買収されてESXiを有償化したり、無料に戻し�
 </p>
 </div>
 
-<div id="outline-container-org620ee45" class="outline-3">
-<h3 id="org620ee45"><span class="section-number-3">2.1.</span> インストール</h3>
+<div id="outline-container-orgfd0ba52" class="outline-3">
+<h3 id="orgfd0ba52"><span class="section-number-3">2.1.</span> インストール</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Proxmoxのインストールはえらく簡単でした。手順は、
@@ -170,8 +170,8 @@ diskutil eject /dev/diskN
 </div>
 </div>
 
-<div id="outline-container-org01a6150" class="outline-2">
-<h2 id="org01a6150"><span class="section-number-2">3.</span> Linuxを入れる</h2>
+<div id="outline-container-org0326fbb" class="outline-2">
+<h2 id="org0326fbb"><span class="section-number-2">3.</span> Linuxを入れる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 次にLinuxを入れます。職場ではRocky Linuxを使っているのですが、将来性が微妙そうなのでUbuntuを選びました。RedHatはすごい会社と思いますが、IBMに買収されてからやはり迷走しています。資本主義の行き過ぎを実感している今日このごろです。
@@ -182,8 +182,8 @@ diskutil eject /dev/diskN
 </p>
 </div>
 
-<div id="outline-container-orgeb3f501" class="outline-3">
-<h3 id="orgeb3f501"><span class="section-number-3">3.1.</span> VMを作る</h3>
+<div id="outline-container-org66ab621" class="outline-3">
+<h3 id="org66ab621"><span class="section-number-3">3.1.</span> VMを作る</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>Proxmoxの管理画面にログイン &gt; local(ディスク) &gt; ISO Images &gt; Download from URL &gt; ISOへのURLを指定する &gt; Download</li>
@@ -196,8 +196,8 @@ Proxmox+CT用にメモリ4GB、ストレージ100GB+アルファを残してい�
 </div>
 </div>
 
-<div id="outline-container-org8ef6a31" class="outline-3">
-<h3 id="org8ef6a31"><span class="section-number-3">3.2.</span> Ubuntuインストール</h3>
+<div id="outline-container-org76bb6d2" class="outline-3">
+<h3 id="org76bb6d2"><span class="section-number-3">3.2.</span> Ubuntuインストール</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 普通にインストールするだけ。サーバーにするのでIPアドレスを固定で与えます。あとはapt update&amp;upgradeしたり、opensshサーバーをインストールしたり。
@@ -227,8 +227,8 @@ ssh &lt;user&gt;@&lt;Ubuntu VM IP&gt; # パスワード無しでsshできるこ�
 </div>
 
 
-<div id="outline-container-orgfa46635" class="outline-2">
-<h2 id="orgfa46635"><span class="section-number-2">4.</span> Dockerを入れる</h2>
+<div id="outline-container-org62c66a4" class="outline-2">
+<h2 id="org62c66a4"><span class="section-number-2">4.</span> Dockerを入れる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 アプリケーションを楽にデプロイ、運用するためにDockerを入れます。docker-composeによるデプロイはあまりに簡単です。<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04">ここ</a> を参考にインストールします。
@@ -248,8 +248,8 @@ docker run hello-world
 </div>
 </div>
 
-<div id="outline-container-org5a875d6" class="outline-2">
-<h2 id="org5a875d6"><span class="section-number-2">5.</span> サーバーアプリ(コンテナ)を入れる</h2>
+<div id="outline-container-orgddcb346" class="outline-2">
+<h2 id="orgddcb346"><span class="section-number-2">5.</span> サーバーアプリ(コンテナ)を入れる</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 docker-composeが本領を発揮します。以下のアプリを入れることにしました。
@@ -261,8 +261,8 @@ docker-composeが本領を発揮します。以下のアプリを入れること
 </ul>
 </div>
 
-<div id="outline-container-org98743fa" class="outline-3">
-<h3 id="org98743fa"><span class="section-number-3">5.1.</span> Immich</h3>
+<div id="outline-container-orge52404a" class="outline-3">
+<h3 id="orge52404a"><span class="section-number-3">5.1.</span> Immich</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 <a href="https://immich.app/">immich</a> はすごいです。Google Photosと比べてほとんど違和感がありません。写真や動画の圧縮に対応していないことと、スマホからの最初のアップロードが重いことが難点なくらいで、使い勝手はGoogle Photosそのまま。写真の顔認識も(勝手に)してくれます。
@@ -287,8 +287,8 @@ docker compose up -d
 </div>
 </div>
 
-<div id="outline-container-orgf0088a1" class="outline-3">
-<h3 id="orgf0088a1"><span class="section-number-3">5.2.</span> Pi-hole</h3>
+<div id="outline-container-orgd588060" class="outline-3">
+<h3 id="orgd588060"><span class="section-number-3">5.2.</span> Pi-hole</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 広告ブロッカーって便利ですよね。一度使ってしまうと、これなしではいられなくなります。鬱陶しいWeb広告を見なくて済むことって、こんなにも精神衛生上良いことだとは。。。
@@ -303,8 +303,8 @@ docker compose up -d
 </p>
 </div>
 
-<div id="outline-container-orgc28926d" class="outline-4">
-<h4 id="orgc28926d"><span class="section-number-4">5.2.1.</span> VMのDocker上にデプロイする(旧)</h4>
+<div id="outline-container-org71c6e08" class="outline-4">
+<h4 id="org71c6e08"><span class="section-number-4">5.2.1.</span> VMのDocker上にデプロイする(旧)</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 (この方法はやめました)
@@ -377,8 +377,8 @@ pihole setpassword
 </div>
 </div>
 
-<div id="outline-container-org2a6c49b" class="outline-4">
-<h4 id="org2a6c49b"><span class="section-number-4">5.2.2.</span> ProxmoxにCTとしてデプロイする(新; 追記)</h4>
+<div id="outline-container-org2e49716" class="outline-4">
+<h4 id="org2e49716"><span class="section-number-4">5.2.2.</span> ProxmoxにCTとしてデプロイする(新; 追記)</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 Pi-holeをUbuntu VM上のDockerコンテナとしてしばらく使っていたのですが、このVM上でWebサイトをブラウズする時には広告が表示されてしまうというしょうもない問題に気が付きました。ProxmoxのCTはセキュリティー上あまり好ましくないようなことを読んだので使うのを避けていましたが、背に腹は代えられないので、Pi-holeをCTに外だしすることにしました。
@@ -420,8 +420,8 @@ pct enter 101 # 101はコンテナ番号
 </div>
 </div>
 
-<div id="outline-container-org0a630d5" class="outline-4">
-<h4 id="org0a630d5"><span class="section-number-4">5.2.3.</span> ChromeがPi-holeをバイパスする</h4>
+<div id="outline-container-org42a00bc" class="outline-4">
+<h4 id="org42a00bc"><span class="section-number-4">5.2.3.</span> ChromeがPi-holeをバイパスする</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <p>
 と、ここで問題が。ChromeがPi-holeを無視して勝手にDNS解決するのです。広告が消えないのであせりました。まったくGoogleってやつは。。。
@@ -440,8 +440,8 @@ chrome://settings/security?search=dns
 </div>
 </div>
 
-<div id="outline-container-org77455f2" class="outline-3">
-<h3 id="org77455f2"><span class="section-number-3">5.3.</span> RomM</h3>
+<div id="outline-container-org23da3dd" class="outline-3">
+<h3 id="org23da3dd"><span class="section-number-3">5.3.</span> RomM</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 <a href="https://romm.app/">RomM</a>はレトロゲームのROMマネージャーです。PCやスマホのブラウザー(Chrome推奨)からゲームがプレイできます。ゲームは端末上のJavaScriptで動くため、サーバーへの負荷は最小限です。スーファミのゲームなら、うちにある2013年のMacBook Proでもサクサク動きます。これはすごい。もちろん、ROMはご自分で用意ください。
@@ -466,8 +466,8 @@ Pro tip: ROMがたくさんあるとRomMのUIから全部アップロードす�
 </div>
 </div>
 
-<div id="outline-container-org8626dec" class="outline-2">
-<h2 id="org8626dec"><span class="section-number-2">6.</span> その他</h2>
+<div id="outline-container-orgd060d01" class="outline-2">
+<h2 id="orgd060d01"><span class="section-number-2">6.</span> その他</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 <a href="https://achiwa912.github.io/utm_ub.html">以前のエントリー</a>を参考に、emacsやら何やらをセットアップしています。
@@ -483,8 +483,8 @@ Pro tip: ROMがたくさんあるとRomMのUIから全部アップロードす�
 </div>
 </div>
 
-<div id="outline-container-orgfc3ca92" class="outline-2">
-<h2 id="orgfc3ca92"><span class="section-number-2">7.</span> 終わりに</h2>
+<div id="outline-container-orgb411776" class="outline-2">
+<h2 id="orgb411776"><span class="section-number-2">7.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 今回はホームラボサーバーをたてました。写真などの重要なデータはここに集約予定なので、これが動かなくなったりデータが失われると困ります。次回はホームラボサーバーのバックアップについて考えます。
@@ -514,13 +514,13 @@ Pro tip: ROMがたくさんあるとRomMのUIから全部アップロードす�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
+      </li>
+      <li class="post">
           <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
-      </li>
-      <li class="post">
-          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
@@ -546,7 +546,7 @@ Pro tip: ROMがたくさんあるとRomMのUIから全部アップロードす�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
