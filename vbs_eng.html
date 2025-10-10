@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Introducing vocaBull - a web app for building your vocabulary skills &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Introducing vocaBull - a web app for building your vocabulary skills</h1>
+    <p class="meta">
+<time datetime="2023-11-02T00:00:00-04:00" pubdate>Thu 02 November 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0f9afda">1. Introduction</a></li>
+<li><a href="#org55e6a1b">2. vocaBull</a>
+<ul>
+<li><a href="#orgdce8d1e">2.1. Overview</a></li>
+<li><a href="#orgc2f9b83">2.2. The "Shifting Learning Window" feature</a></li>
+</ul>
+</li>
+<li><a href="#orge6b0989">3. Usage</a>
+<ul>
+<li><a href="#org19d400c">3.1. Register and login</a></li>
+<li><a href="#org1dc9daa">3.2. Choose a sample book</a></li>
+<li><a href="#org6ceaf96">3.3. Practice flashcards</a></li>
+<li><a href="#orgb10510c">3.4. Practice spells by typing words (many times..)</a></li>
+<li><a href="#orgfe0c829">3.5. Create a book and add words</a></li>
+<li><a href="#orgef4849e">3.6. Or, borrow a wordbook from the library</a></li>
+<li><a href="#org9cf852e">3.7. Alternatively, you can load words from a file</a></li>
+<li><a href="#org48cb607">3.8. Backup and restore</a>
+<ul>
+<li><a href="#org28fe525">3.8.1. How to backup</a></li>
+<li><a href="#orgd9656ae">3.8.2. How to restore</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org1601966">4. Resources</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0f9afda" class="outline-2">
+<h2 id="org0f9afda"><span class="section-number-2">1.</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I recently created a web application for vocabulary building called <code>vocaBull</code>, and deployed it on pythonanywhere.com.  Of course, you can register and use it for free.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org55e6a1b" class="outline-2">
+<h2 id="org55e6a1b"><span class="section-number-2">2.</span> vocaBull</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgdce8d1e" class="outline-3">
+<h3 id="orgdce8d1e"><span class="section-number-3">2.1.</span> Overview</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<div id="org6c96e84" class="figure">
+<p><img src="./images/vbs.jpg" alt="vbs.jpg" />
+</p>
+</div>
+
+<p>
+vocaBull is a web application for building your vocabulary skills.  It has three practice modes:
+</p>
+<ol class="org-ol">
+<li>flashcard - <code>word to def</code> mode</li>
+<li>flashcard - <code>def to word</code> mode</li>
+<li>practicing spells - <code>type word</code> mode</li>
+</ol>
+
+<p>
+You can access vocaBull from you PC or mobile devices.  On my Google Pixel 7 Pro, it looks like:
+</p>
+
+<div id="org9334e48" class="figure">
+<p><img src="./images/vbs_mobile.jpg" alt="vbs_mobile.jpg" />
+</p>
+</div>
+
+<p>
+I believe it is better than simple flashcards because:
+</p>
+<ul class="org-ul">
+<li>You’ll see hard-to-memorize words more frequently
+<ul class="org-ul">
+<li>The "<b>Shifting Learning Window</b>" feature (see below)</li>
+</ul></li>
+<li>You can practice anywhere at anytime with your mobile phone, tablet or PC</li>
+<li>You can practice spelling (type-word mode)</li>
+<li>Presents words in random order</li>
+<li>It reads aloud words for you with <code>(pronounce) word</code> or <code>example</code> button</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc2f9b83" class="outline-3">
+<h3 id="orgc2f9b83"><span class="section-number-3">2.2.</span> The "Shifting Learning Window" feature</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Repetition is the key for memorizing new words (thus, flash cards), but I don’t think exising flash cards or flash-card apps provide you with enough repetitions for efficient memorization.
+</p>
+
+<p>
+For example, say, a set of flash cards or a word book has 200 words. If you go over the 200 words one-by-one, you’d be most likely to forget almost everything when you encountr the same word for the 2nd, 3rd or 4th time.
+</p>
+
+<p>
+vocaBull addresses this issue by introducing a combination of high-frequency repetitions of small number of words, and low-frequency repetitions of medium number of words - the <span class="underline">Shifting Learning Window</span> feature.
+</p>
+
+
+<div id="org384fe54" class="figure">
+<p><img src="./images/vbs_SLW.jpg" alt="vbs_SLW.jpg" />
+</p>
+</div>
+
+<p>
+The high-frequenry repetitions are realized with the “Learning Window”. Learning Window has 10 words, and initially these are the 1st 10 words in a word book. (More precicely, words are randomly picked)
+</p>
+
+<p>
+As you repeat 10 words in the Learning Window, you memorize a word or two. Then, the Learning Window replaces the memorized word with a new word. This way, the Learning Window has 10 words that you are actively working on. It shifts through a word book and eventually reaches the end of the book. Then, the next cycle starts. This process contines until you memorize everything in the book.
+</p>
+
+<p>
+As you can see, 
+</p>
+<ul class="org-ul">
+<li>the Learning Winows represents the unit of high-frequency repetitions</li>
+<li>a word book represents that of low-frequency repepitions.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge6b0989" class="outline-2">
+<h2 id="orge6b0989"><span class="section-number-2">3.</span> Usage</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org19d400c" class="outline-3">
+<h3 id="org19d400c"><span class="section-number-3">3.1.</span> Register and login</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>Visit <a href="https://achiwa912.pythonanywhere.com">https://achiwa912.pythonanywhere.com</a></li>
+</ul>
+
+
+<div id="org78c6bf4" class="figure">
+<p><img src="./images/vbs_top.jpg" alt="vbs_top.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the menu icon at the top right corner &gt; <code>Login</code> &gt; <code>Click here to register</code></li>
+</ul>
+<p>
+<img src="./images/vbs_navbar.jpg" alt="vbs_navbar.jpg" />
+<img src="./images/vbs_login.jpg" alt="vbs_login.jpg" />
+</p>
+<ul class="org-ul">
+<li>Enter email, username and password to create an account</li>
+<li>Wait for several minutes for an email to come, and click a confirmation link in it</li>
+<li>Login with your email and password</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1dc9daa" class="outline-3">
+<h3 id="org1dc9daa"><span class="section-number-3">3.2.</span> Choose a sample book</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>At first, a sample book (ie, sample_&lt;your_user_name&gt;) is registerd and it has 5 words in it</li>
+</ul>
+
+<div id="org9aee1d0" class="figure">
+<p><img src="./images/vbs_samplebook.jpg" alt="vbs_samplebook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click it.  And then, the sample book page opens</li>
+</ul>
+
+<div id="org91dc98a" class="figure">
+<p><img src="./images/vbs_samplewords.jpg" alt="vbs_samplewords.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ceaf96" class="outline-3">
+<h3 id="org6ceaf96"><span class="section-number-3">3.3.</span> Practice flashcards</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>Click <code>Practice</code> menu &gt; <code>word to def</code> or <code>def to word</code></li>
+</ul>
+
+<div id="orgda12196" class="figure">
+<p><img src="./images/vbs_mode.jpg" alt="vbs_mode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>You will be navigated to the practice page.</li>
+</ul>
+
+<div id="org41de2f5" class="figure">
+<p><img src="./images/vbs_w2d.jpg" alt="vbs_w2d.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the word card to flip and show the answer
+<ul class="org-ul">
+<li>Sky blue side shows the word, and turquoise side shows the definition</li>
+<li>An example is always shown on the back side</li>
+<li>You can flip cards as many as you like</li>
+</ul></li>
+<li>Click <code>(pronounce) word</code> and <code>example</code> to check the pronounciation
+<ul class="org-ul">
+<li>It's a browser capability and might not sound very natural</li>
+</ul></li>
+<li>If you don’t know, click <code>(thumbs down) once more</code> so that the word will reappear in the near future</li>
+<li>If you managed to memorize it, click <code>(thumbs up) okay!</code> to increase the score by 1
+<ul class="org-ul">
+<li>You won’t see the word for this round as vocaBull presents to you 10-lowest-score words</li>
+</ul></li>
+<li>If you know the word, click <code>knew it!</code> to increase the score by 5!
+<ul class="org-ul">
+<li>So, you won’t see the word for 5 rounds</li>
+</ul></li>
+<li>Click <code>Back to book</code> to go back to the selected book</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgb10510c" class="outline-3">
+<h3 id="orgb10510c"><span class="section-number-3">3.4.</span> Practice spells by typing words (many times..)</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>Click <code>Practice</code> menu &gt; choose <code>type word</code></li>
+<li>vocaBull shows the definition of a word and asks you to type the word</li>
+</ul>
+
+<div id="org77c9f81" class="figure">
+<p><img src="./images/vbs_typemode.jpg" alt="vbs_typemode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Type your answer and click <code>Submit</code> (or push return key)</li>
+<li>It shows corret/incorrect and asks you to type the word 4 times, anyway
+<ul class="org-ul">
+<li>Tip: use tab or return key to move from an input box to another</li>
+<li>If incorrect, you’ll see the word again after a while</li>
+</ul></li>
+</ul>
+
+<div id="orgf519e9c" class="figure">
+<p><img src="./images/vbs_repeat.jpg" alt="vbs_repeat.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click <code>(pronounce) word</code> and <code>example</code> to check the pronounciation</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfe0c829" class="outline-3">
+<h3 id="orgfe0c829"><span class="section-number-3">3.5.</span> Create a book and add words</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Also, you can create your own book and register words.
+</p>
+<ul class="org-ul">
+<li>Click Word books &gt; <code>(book) Add</code> button</li>
+</ul>
+
+<div id="orgcc9c86a" class="figure">
+<p><img src="./images/vbs_addbook.jpg" alt="vbs_addbook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Type a book name, select level, type language-code (en-US for US English) and click <code>Submit</code></li>
+</ul>
+
+<div id="org0cede9d" class="figure">
+<p><img src="./images/vbs_newbook.jpg" alt="vbs_newbook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>Click the newly created book card &gt; click <code>Add word</code></li>
+<li>Type word, definition and example, and then click <code>Submit</code> → Now, <code>Practice</code> is activated
+<ul class="org-ul">
+<li>Add a few words</li>
+</ul></li>
+</ul>
+
+<div id="orgb0ca639" class="figure">
+<p><img src="./images/vbs_newword.jpg" alt="vbs_newword.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgef4849e" class="outline-3">
+<h3 id="orgef4849e"><span class="section-number-3">3.6.</span> Or, borrow a wordbook from the library</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+You can borrow wordbooks that other users created and practice them as if these are your own books.
+</p>
+
+<ul class="org-ul">
+<li>Click menu icon on the top-right corner &gt; choose <code>library</code> &gt; you are navigated to the library page</li>
+</ul>
+
+
+<div id="orga61f0cf" class="figure">
+<p><img src="./images/library.jpg" alt="library.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>You'll see books that other pepole published</li>
+<li>Click a book for browsing</li>
+</ul>
+
+
+<div id="org9709f9d" class="figure">
+<p><img src="./images/browse.jpg" alt="browse.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>If you click <code>(Cart) Checkout</code>, the book will appear on your home page but in a different color from your own books.</li>
+</ul>
+
+
+<div id="org9230ae5" class="figure">
+<p><img src="./images/borrowed.jpg" alt="borrowed.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9cf852e" class="outline-3">
+<h3 id="org9cf852e"><span class="section-number-3">3.7.</span> Alternatively, you can load words from a file</h3>
+<div class="outline-text-3" id="text-3-7">
+<ul class="org-ul">
+<li>Prepare a word definition file
+<ul class="org-ul">
+<li>one word definition per line</li>
+<li>a line consists of <code>word</code>, <code>definition</code> and an optional <code>sample sentence</code> separated by a tab (<code>\t</code>)</li>
+<li>a line format (<code>\t</code> is a tab):</li>
+</ul></li>
+</ul>
+<pre class="example">
+&lt;word&gt;\t&lt;definition&gt;[\t&lt;sample&gt;]
+</pre>
+
+<ul class="org-ul">
+<li>Example:</li>
+</ul>
+<pre class="example">
+strident	shrill, harsh, rough	in more strident tones
+lassitude	weariness, fatigue
+deleterious	bad, harmful	a deleterious effect on health
+</pre>
+<ul class="org-ul">
+<li>Navigate to a book page</li>
+<li>Click <code>Load from file</code> &gt; click <code>Browse...</code> &gt; choose a file &gt; click <code>Submit</code></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org48cb607" class="outline-3">
+<h3 id="org48cb607"><span class="section-number-3">3.8.</span> Backup and restore</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+As vocaBull is still being developed, there's some risk that your data is all deleted and lost.  For example, a bug could corrupt the database.  To address such a scenario, I have implemented <code>Export all</code> and <code>Import and restore</code> features, which enable you to backup/restore your books and practice progress to a local file.
+</p>
+
+
+<div id="org308feb3" class="figure">
+<p><img src="./images/vbs_backup.jpg" alt="vbs_backup.jpg" />
+</p>
+</div>
+
+<p>
+<code>Export all</code> exports all your books, all words in them and scores to a JSON file.
+</p>
+
+<p>
+<code>Import and restore</code> reads the backup JSON file and restores books, words and scores.  If there's an existing book of the same name, it will add words to the existing book.  If the same word is in the book, it will overwrite the definition and sample sentence from the backup.  For scores, larger values remain.
+</p>
+
+<p>
+For example, if you <code>Export all</code> and then <code>Import and restore</code> right after, nothing will change in your books, words or scores.
+</p>
+</div>
+
+<div id="outline-container-org28fe525" class="outline-4">
+<h4 id="org28fe525"><span class="section-number-4">3.8.1.</span> How to backup</h4>
+<div class="outline-text-4" id="text-3-8-1">
+<ul class="org-ul">
+<li>On the top page, scroll down until you see Backup and restore section.</li>
+<li>Click <code>Export all</code> to save your books and progress to a local file named <code>vocabull.json</code></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd9656ae" class="outline-4">
+<h4 id="orgd9656ae"><span class="section-number-4">3.8.2.</span> How to restore</h4>
+<div class="outline-text-4" id="text-3-8-2">
+<ul class="org-ul">
+<li>On the top page, scroll down until you see Backup and restore section.</li>
+<li>click <code>Import and restore</code> button</li>
+<li>Click <code>Browse...</code> and choose <code>vocabull.json</code>, and then click <code>Submit</code></li>
+</ul>
+
+<p>
+Now that vocaBull has backup/restore feature, I recommend you to backup your data frequently.  As it's still under development, there's some risk that the vocaBull database is corrupt and lost.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1601966" class="outline-2">
+<h2 id="org1601966"><span class="section-number-2">4.</span> Resources</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Deployed at: <a href="https://achiwa912.pythonanywhere.com/">https://achiwa912.pythonanywhere.com/</a></li>
+<li>Project Link: <a href="https://github.com/achiwa912/vbs">https://github.com/achiwa912/vbs</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Kyos
+    </span>
+  </span>
+<time datetime="2023-11-02T00:00:00-04:00" pubdate>Thu 02 November 2023</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/english.html">English</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

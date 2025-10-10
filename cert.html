@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Webサイトに安全にアクセスするための仕掛け &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Webサイトに安全にアクセスするための仕掛け</h1>
+    <p class="meta">
+<time datetime="2024-04-18T00:00:00-04:00" pubdate>Thu 18 April 2024</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf3e9472">1. はじめに</a></li>
+<li><a href="#orge726280">2. 公開鍵暗号と共通鍵暗号</a>
+<ul>
+<li><a href="#org0950422">2.1. 公開鍵暗号</a></li>
+<li><a href="#orgd1a8709">2.2. 共通鍵暗号</a></li>
+</ul>
+</li>
+<li><a href="#orgb24f67e">3. Digital signature(電子署名)</a></li>
+<li><a href="#orge85cd5d">4. SSL Certificate(SSL証明書)</a>
+<ul>
+<li><a href="#org79744f9">4.1. SSL Certificateを見てみる</a></li>
+</ul>
+</li>
+<li><a href="#orgaebc785">5. WebサイトにSSL certificateを用意する</a>
+<ul>
+<li><a href="#org066479d">5.1. キーペアとCSRを用意する</a></li>
+<li><a href="#orgfca9c03">5.2. SSL certificateを発行してもらう</a></li>
+<li><a href="#org68b5129">5.3. SSL certificateをアップロードする</a></li>
+</ul>
+</li>
+<li><a href="#org79d7b23">6. ブラウザーからWebサイトにアクセスする</a></li>
+<li><a href="#org8403fef">7. 終わりに</a></li>
+<li><a href="#org535e65f">8. リンク</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf3e9472" class="outline-2">
+<h2 id="orgf3e9472"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+ブラウザーでWebサイトを見る際には、安全性を担保するために送受信するデータを暗号化します。暗号化は、ユーザーが意識することはほぼ無く、サーバーとブラウザーの間で水面下に行われます。ブラウザーで開いているページのURLがhttpでなくhttps(最後のsが重要)で始まっている場合、やり取りは暗号化されています。
+</p>
+
+<p>
+今回のエントリーでは、Webサイトにアクセスする際のSSL暗号化について、特にWebサーバーが提示するSSL certificate(SSL証明書)がどういうものかを見ていきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge726280" class="outline-2">
+<h2 id="orge726280"><span class="section-number-2">2.</span> 公開鍵暗号と共通鍵暗号</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+ファイルなどの電子データを暗号化する方法に、<a href="https://ja.wikipedia.org/wiki/%E5%85%AC%E9%96%8B%E9%8D%B5%E6%9A%97%E5%8F%B7">公開鍵暗号</a>と<a href="https://ja.wikipedia.org/wiki/%E5%85%B1%E9%80%9A%E9%8D%B5%E6%9A%97%E5%8F%B7">共通鍵暗号</a>があります(他にもあります)。ブラウザーとWebサーバーの間で使われるSSL暗号ではこの両方が使われます。特に公開鍵暗号は、digital signature(電子署名)やcertificate(サーバー証明書)といったものの中核をなす重要技術です。
+</p>
+</div>
+
+<div id="outline-container-org0950422" class="outline-3">
+<h3 id="org0950422"><span class="section-number-3">2.1.</span> 公開鍵暗号</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+公開鍵暗号は、世間に公開するpublicキーと、持ち主以外には決して見せてはいけないprivateキーのキーペアを使います。ペアとなるpublicとprivateキーは数学的に密接に関係していて、片方で暗号化したデータはもう片方で「のみ」復号化できます。
+</p>
+
+<p>
+この、もう片方のキーを使わないと決して復号化できないという性質を応用して、お互いに知らない者同士が、インターネットという安全でないインフラを経由して、安全に秘密情報(例:クレジットカード情報)をやりとりする方法が確立されています。
+</p>
+
+<p>
+publicキーで暗号化したデータはペアとなるprivateキーでしか復号化することができません。例えばブラウザーからWebサーバーに秘密情報を送る際に、サーバーのpublicキーを使って暗号化したものを送付すれば、たとえ誰かに覗き見されていても安全です。サーバーの持つprivateキーでしか復号化できないのですから。
+</p>
+
+<p>
+一方、privateキーを暗号化したデータは、ペアとなるpublicキーでしか復号化することができません。このため、例えばWebサーバーが自身のprivateキーで暗号化したデータを受領した場合、途中で何者かに書き換えられたことが決して無い(もし書き換えられていたらサーバーのpublicキーで復号化できないので)ことが確認できます。
+</p>
+
+<p>
+ポイントは以下です。
+</p>
+<ul class="org-ul">
+<li>publicキーとprivateキーがペアをなす</li>
+<li>片方のキーで暗号化したデータは、もう片方のキーでのみ復号化することができる</li>
+<li>暗号化するキーをpublic/privateのどちらにするかで異なる用途に使える</li>
+</ul>
+
+<p>
+公開鍵暗号は極めて安全ですが、複雑な計算が必要なので、ここぞという用途で使われます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd1a8709" class="outline-3">
+<h3 id="orgd1a8709"><span class="section-number-3">2.2.</span> 共通鍵暗号</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+一方、共通鍵暗号は暗号化も復号化も同じ一つのキー(secretキー)を使って行います。公開鍵暗号と比べて軽いという特徴がありますが、そもそもやり取りしたい両者がキーを安全に共有すること自体が課題となります。
+</p>
+
+<p>
+ブラウザーとWebサーバーとの間では、この共通鍵をお互いに共有するために公開鍵暗号を使い、その後のやりとり(セッション)は共通鍵暗号を使います。
+</p>
+
+<p>
+簡単なまとめ
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">暗号化方式</th>
+<th scope="col" class="org-left">キー種類</th>
+<th scope="col" class="org-left">公開範囲</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">公開鍵暗号</td>
+<td class="org-left">publicキー</td>
+<td class="org-left">世間に公開する</td>
+</tr>
+
+<tr>
+<td class="org-left">公開鍵暗号</td>
+<td class="org-left">privateキー</td>
+<td class="org-left">持ち主しかアクセスできない</td>
+</tr>
+
+<tr>
+<td class="org-left">共通鍵暗号</td>
+<td class="org-left">secretキー</td>
+<td class="org-left">やり取りする2者だけが知っている</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb24f67e" class="outline-2">
+<h2 id="orgb24f67e"><span class="section-number-2">3.</span> Digital signature(電子署名)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Digital signatureは電子データが作成したままの状態である(改ざんされていない)ことを保証します。そしてこのために公開鍵暗号を利用します。
+</p>
+
+<p>
+具体的には、保護したい電子データのハッシュを取り、ハッシュ値をprivateキーを使って暗号化したものがdigital signatureです。
+</p>
+
+<p>
+受領した電子データにdigital signatureが付いていた場合、サインした者のpublicキーを使って復号化したハッシュ値と、電子データをハッシュした値を突き合わせて、それらが合致すればその電子データは作成したままの正しいデータであることになります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge85cd5d" class="outline-2">
+<h2 id="orge85cd5d"><span class="section-number-2">4.</span> SSL Certificate(SSL証明書)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+SSL certificateはブラウザーとWebサーバーの間で安全にやりとりをするべく、暗号化されたコネクションを確立するために使われます。ブラウザーがWebサーバーにhttpsでアクセスしようとすると、Webサーバーは自身のcertificateをブラウザーに送ります。
+</p>
+
+<p>
+このcertificateは、アクセスしているWebサーバーが正当であることを保証すると共に、Webサーバーのpublicキーを保持しています。ブラウザーはこのpublicキーを使って自身の生成したsecretキーを暗号化し、秘密裏にそして安全にWebサーバーに渡すことができます。
+</p>
+
+<p>
+証明書で明確に理解しておきたいことは、2つのprivate keyが関連しているということです。1つ目はその証明書の元になっているキーで、証明書は1つ目のprivate keyの化身と言えます。2つ目はその証明書の正当性を保証するべくサインするのに使っているキーです。1つ目は、その証明書の持ち主が秘密裏に持っているもので、2つ目は、通常CAがやはり秘密裏に持っています。
+</p>
+
+<p>
+証明書が有効期限内なのに失効した場合、それは対になる1つ目のprivate keyが流出した(compromiseされた)ことを意味します。証明書自体はオープンなので、流出するリスクはありません。めったにありませんが、2つ目のprivate keyが流出すると、それはかなり大事です。それでサインした証明書が全て実質無効化されてしまうので。
+</p>
+</div>
+
+<div id="outline-container-org79744f9" class="outline-3">
+<h3 id="org79744f9"><span class="section-number-3">4.1.</span> SSL Certificateを見てみる</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+ブラウザーでとりあえずSonyのWebサイト <a href="https://www.sony.co.jp/">https://www.sony.co.jp/</a> に行ってみます。
+(Firefoxの場合)URLの左側にある鍵アイコン &gt; Connection secure &gt; More information とクリックするとウインドウがオープンするので、View Certificateをクリックします。これがSonyサイトのcertificateです。
+</p>
+
+<p>
+このままブラウザー上でcertificateを見てもいいのですが、コピペしやすいようにテキストファイルに変換してみます。certificateをMicellaneousセクションまでスクロールして、PEM (cert)をクリックすると Downloadsフォルダに www-sony-net.pem というファイルでダウンロードされます:
+</p>
+<pre class="example">
+-----BEGIN CERTIFICATE-----
+MIIHPjCCBiagAwIBAgIQDfh/6fcD463/IpRXcMni+DANBgkqhkiG9w0BAQsFADBP
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMSkwJwYDVQQDEyBE
+aWdpQ2VydCBUTFMgUlNBIFNIQTI1NiAyMDIwIENBMTAeFw0yMzExMDgwMDAwMDBa
+Fw0yNDExMDcyMzU5NTlaMG0xCzAJBgNVBAYTAkpQMQ4wDAYDVQQIEwVUb2t5bzES
+&lt;snip&gt;
+</pre>
+
+<p>
+意味不明なので、opensslコマンドを使ってテキストファイルに変換します。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">~/Downloads % openssl x509 -in www-sony-net.pem -text | less
+</pre>
+</div>
+
+<p>
+無事に見られました。Issuerを見たところ、DigiCert Incが発行したものです。Serial NumberはDigiCertが発行したcertificatesにアサインされるユニークなシリアル番号です。
+</p>
+<pre class="example">
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            0d:f8:7f:e9:f7:03:e3:ad:ff:22:94:57:70:c9:e2:f8
+        Signature Algorithm: sha256WithRSAEncryption
+        Issuer: C=US, O=DigiCert Inc, CN=DigiCert TLS RSA SHA256 2020 CA1
+        Validity
+            Not Before: Nov  8 00:00:00 2023 GMT
+            Not After : Nov  7 23:59:59 2024 GMT
+        Subject: C=JP, ST=Tokyo, L=Minato-ku, O=Sony Global Solutions Inc., CN=www.sony.net
+&lt;snip&gt;
+</pre>
+
+<p>
+Validityはこのcertificateの有効期間を示します。昔はもっと長かったですが、最近は大体１年間ですね。GMTで2023/11/8の0:00から2024/11/7 23:59:59までです。
+</p>
+
+<p>
+Subjectはこのcertificateが認めている組織です。国(C; Country)から市(L; Locality)までの所在地と、組織名(O): Sony Global Solutions Inc.、そしてCommon Name(CN): www.sony.netが指定されています。DigiCertなどのCA(Certificate Authority)は、このSony Global Solutions Incという組織が実際に存在し、このcertificateの発行を要求したのがSony Global Solutions Incであることを保証するために、役所の登記情報を調べたり実際に電話番号にかけたりして確認するそうです。
+</p>
+
+<p>
+SSL certificateにはpublicキーが含まれていて、これを保証するのも証明書の目的です。publicキーが入っているのは、後でこれを使ってセッションを暗号化するsecretキーを共有するためです。非対称暗号はより安全ですが遅いので、セッション全体は対称暗号キーを使って暗号化します。ブラウザーは自分が生成した対称暗号キーを、certificateに入っているサーバーのpublicキーを使って暗号化し、サーバーに送ります。これはサーバーの持つprivateキーでしか復号化することができないので、安全に渡すことができるというわけです。
+</p>
+
+<pre class="example">
+Subject Public Key Info:
+    Public Key Algorithm: id-ecPublicKey
+        Public-Key: (256 bit)
+        pub:
+            04:e7:39:f7:43:da:fd:1d:4e:17:14:60:94:98:74:
+            03:59:ac:f3:e6:c3:4b:0e:d4:f9:9f:65:3e:27:63:
+            a9:3b:bf:52:f7:26:0a:bb:d6:d6:c5:7c:93:9b:5c:
+            13:e2:92:d4:36:21:1c:62:e2:14:5e:ad:4b:2e:a2:
+            4e:38:3c:06:50
+        ASN1 OID: prime256v1
+        NIST CURVE: P-256
+</pre>
+
+<p>
+publicキーはpub:以下に入っています。256ビットよりも長いですが、<a href="https://www.itu.int/rec/T-REC-X.690-202102-I/en">X.690</a> でエンコードされているためのようです。
+</p>
+
+<pre class="example">
+X509v3 extensions:
+    X509v3 Authority Key Identifier: 
+        B7:6B:A2:EA:A8:AA:84:8C:79:EA:B4:DA:0F:98:B2:C5:95:76:B9:F4
+    X509v3 Subject Key Identifier: 
+        B9:34:CD:A9:4C:D5:A0:FB:0B:3E:99:FD:B3:1A:F3:E9:C5:8E:B1:97
+</pre>
+<p>
+Authority Key Identifierはこのcertificateを保証するDigiCertの(中間)certificateのユニークなキーIDです。そしてSubject Key IdentifierはこのcertificateのユニークなIDです。SonyのWebサーバーから送られるcertificatesは、このSonyのcertificateだけでなく、それを保証するDigiCertの中間certificateと、されにそれを保証する、やはりDigiCertのルートcertificateがチェインされた状態で付いてきます。
+</p>
+
+<pre class="example">
+X509v3 Subject Alternative Name: 
+    DNS:www.sony.net, DNS:ap.pitsquare.jp, DNS:rd1.sony.net, DNS:rd2.sony.net, DNS:sony.net, DNS:www.360ra.info, DNS:www.sony-olympus-medical.com, DNS:www.sony.co.jp, DNS:www.sonybo.co.jp, DNS:www.sonydna.com, DNS:www.sonyglobalsolutions.jp, DNS:www.sonykigyo.jp, DNS:www.sonymobility.com, DNS:www.sonypark.com, DNS:www.sonyprotechnosupport.co.jp, DNS:www.sonystoragemedia.co.jp, DNS:www.sonytc.co.jp, DNS:www.syneco.inc
+</pre>
+<p>
+Subject Alternative Name (SAN)は、このcertificateが認めている、この組織(Sony Global Solutions Inc)のドメイン名一覧です。これらがこの組織のものであることをcertificateは保証しています。
+</p>
+
+<pre class="example">
+X509v3 Key Usage: critical
+    Digital Signature, Key Agreement
+</pre>
+<p>
+Key Usageは、このcertificateの用途を示します。SSL certificateの場合はDigital Signature, Key Agreementまたは類似のもの(Key Encipherment等)が指定されます。Digital Signatureは、certificateに入っているpublicキーが(certificate signing以外に)電子署名の用途でも使われることを意味し、Key Agreementはやはりこのpublicキーでセッション暗号化に使うsecretキーを暗号化することを意味します。
+</p>
+
+<pre class="example">
+X509v3 CRL Distribution Points: 
+    Full Name:
+      URI:http://crl3.digicert.com/DigiCertTLSRSASHA2562020CA1-4.crl
+    Full Name:
+      URI:http://crl4.digicert.com/DigiCertTLSRSASHA2562020CA1-4.crl
+</pre>
+<p>
+CRL Distribution PointsはCertification Revocation List (CRL)の場所を示します。Certificateは一度発行した後にrevoke(取り消す)されることがあるので、取り消されたcertificatesがリストされている場所を示す必要があります。例えば、certificateに含まれるpublicキーに対応するprivateキーが流出したような場合にそのpublicキーを含むcertificate無効化し、このリストに載せます。
+</p>
+
+<pre class="example">
+    Signature Algorithm: sha256WithRSAEncryption
+    Signature Value:
+        0c:38:1b:fc:e9:54:f9:02:2f:bc:6b:39:ea:9e:ef:c0:fd:f3:
+        40:03:dc:17:d2:b2:0a:b6:c9:25:0e:8e:74:23:30:53:01:67:
+        ab:ac:71:c8:3b:a1:46:1c:1c:40:4e:c8:51:8e:aa:fe:84:38:
+&lt;snip&gt;
+</pre>
+<p>
+SignatureはCA(この場合DigiCert)のサイン(digital signature)であり、この証明書が正しいことを保証するものです。この値は証明書全体(マイナスsignature情報)をハッシュした値をCA自身のprivateキーを使って暗号化したものです。これをこのcertificateにチェインされているCAの(中間)certificateに含まれるpublicキーを使って復号化した値と、別途証明書を指定アルゴリズムでハッシュした値が合致することで、この証明書が改ざんされていないことが確認できます。
+</p>
+
+<p>
+ここまでで、この証明書が正しいことをCAの(中間)証明書が保証していることがわかりました。それじゃ、その中間証明書が正しいことは誰が、、、と辿っていくと、最終的にCAのルート証明書に行き着きます。
+</p>
+
+<p>
+CAのルート証明書はだれがどうやって保証しているの、というと、証明書だけ見ていてもわかりません。技術的には、CAルート証明書はいわゆる「オレオレ証明書(self-signed certificate)」と同じものです。CAが自分で生成したCA root private keyを使って作成、サインされています。俺が正しいと言ってサインしているから正しい、以上の保証はありません。
+</p>
+
+<p>
+ところが実は、ブラウザーはいくつかのCAルート証明書を無批判に信用していて、その信用リストに当該CAルート証明書が入っているかを確認することで、最終的にブラウザーがそのサイトを信用するかどうかを決めているのでした。
+</p>
+
+<p>
+仮に私が作成したself-signed certificateしかもたないWebサーバーにhttpsでブラウザーがアクセスに行くと、それはブラウザーの信用リストに(もちろん)入っていないので、Warningが出ます。Warningを無視してアクセスすることは、実はかなり危険なことなのです。
+</p>
+
+<p>
+結局私のブラウザーは、この証明書を受け取ったことで、以下がわかりました。
+</p>
+<ul class="org-ul">
+<li>セッションキーを暗号化するためのサーバーpublicキー</li>
+<li>Sony Global Solutions Incが正しいとDigiCertが保証している</li>
+<li>Sony Global Solutions Incが管理しているDNSドメイン名一覧</li>
+<li>この証明書自体が正しい(出どころが正しく、改ざんされていない、取り消されていない等)ものとDigiCertが保証している</li>
+<li>そして、DigiCert(のCAルート証明書)はブラウザーが信用している</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgaebc785" class="outline-2">
+<h2 id="orgaebc785"><span class="section-number-2">5.</span> WebサイトにSSL certificateを用意する</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org066479d" class="outline-3">
+<h3 id="org066479d"><span class="section-number-3">5.1.</span> キーペアとCSRを用意する</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+まずは公開鍵暗号に使うキーペアを用意します。いろいろなツールが使えますが、<a href="https://www.openssl.org/">openssl</a> や gpg(<a href="https://www.gnupg.org/">GnuPG</a>) も使えます。この <a href="https://unix.stackexchange.com/questions/119967/rsa-2048-keypair-generation-via-openssl-0-5s-via-gpg-30s-why-the-difference">stackexchangeのページ</a> によると、openssl よりも gpg のほうがより品質の良い乱数を使っているそうです。
+</p>
+
+<p>
+作成したキーペアはそのままでは誰も信用してくれません。CAにcertificateを作成してもらって権威付けすることで、初めてブラウザーが信用してくれるようになります。そのためにCSR(Certificate Signing Request)が必要になります。
+</p>
+
+<p>
+DigiCertの <a href="https://www.digicert.com/kb/csr-ssl-installation/apache-openssl.htm">Knowledge Base</a> を見ると openssl を使った privateキーとCSRの作成方法が書いてあるので、openssl を使ってみます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openssl req -new -newkey rsa:2048 -nodes -keyout sv.key -out sv.csr
+</pre>
+</div>
+<p>
+国、州や県、組織名などの情報を聞かれるので入力していくと2つのファイルが生成されます。
+</p>
+<ul class="org-ul">
+<li>sv.csr - CSRファイルです。これにはpublic keyの情報が含まれます。</li>
+<li>sv.key - privateキーです。安全なところに厳重に保管します。CAにも渡してはいけません。</li>
+</ul>
+
+<p>
+なお、privateキーからpublicキーが生成できます。これ、意外と大事なポイントです。逆はもちろんできません。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">openssl pkey -in sv.key -pubout
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfca9c03" class="outline-3">
+<h3 id="orgfca9c03"><span class="section-number-3">5.2.</span> SSL certificateを発行してもらう</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+上で作成したCSRファイル(sv.csr)の中身をコピペしてDigiCert等のCAに証明書を発行依頼します。CAによる調査が行われたあと、問題がなければCAのプライベートキーで署名されたSSL certificateが送られてきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org68b5129" class="outline-3">
+<h3 id="org68b5129"><span class="section-number-3">5.3.</span> SSL certificateをアップロードする</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+Webサーバーによってやり方が変わってきますが、WebサーバーやロードバランサーにcertificateをアップロードしてSSLを使えるようにします。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79d7b23" class="outline-2">
+<h2 id="org79d7b23"><span class="section-number-2">6.</span> ブラウザーからWebサイトにアクセスする</h2>
+<div class="outline-text-2" id="text-6">
+<ol class="org-ol">
+<li>ブラウザーからhttpsを指定してWebサイトにアクセスに行くと、まずブラウザーはサーバーのidnetityをリクエストする</li>
+<li>サーバーは自身のSSL certificateを送る</li>
+<li>ブラウザーはCertificateが信頼できるか確認する
+<ul class="org-ul">
+<li>チェインされているルートcertificateの発行元であるCAが信頼しているリストに載っているか
+<ul class="org-ul">
+<li>たどる際に、Authority Key IdentifierがチェインされているcertificateのSubject Key Identifierと合っているか確認する</li>
+</ul></li>
+<li>Certificateは書き換えられていないか
+<ul class="org-ul">
+<li>CertificateについているCAの署名(Signature Value)を、CAのpublicキーで復号化したものが、このcertificateをハッシュした値と一致すれば書き換えられていない</li>
+</ul></li>
+<li>Certificateが有効か(expireしていないか、revokeされていないか等)</li>
+</ul></li>
+<li>ブラウザーはセッションでのやりとりを対称暗号化するsecretキー(セッションキー)を準備し、これをCertificateに含まれるpublicキーを使って暗号化してサーバーに送る
+<ul class="org-ul">
+<li>送信経路で覗き見されても、暗号化されているためにsecretキーを取り出すことができない</li>
+</ul></li>
+<li>サーバーは自身のprivateキーを使ってセッションキーを復号化して取り出す
+<ul class="org-ul">
+<li>復号化に成功したら、途中で書き換えられていないことがわかる</li>
+</ul></li>
+<li>サーバーは共有できたセッションキーを使って暗号化されたセッションを開始する</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org8403fef" class="outline-2">
+<h2 id="org8403fef"><span class="section-number-2">7.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+証明書、署名、private keyといったキーワードは耳にしたことがあると思いますが、それらの働きを正しく理解することはかなり大変です。実感を伴って理解するには、opensslなどで何がインプットとなって何がアウトプットとなるのか、といったあたりを実際にコマンドラインを眺めて整理していみるのが早道かと思います。
+</p>
+
+<p>
+これらの技術の全ては公開鍵暗号から来ていると理解することで、ひとつずつ確実に理解してゆけるものと思います
+。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org535e65f" class="outline-2">
+<h2 id="org535e65f"><span class="section-number-2">8.</span> リンク</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><a href="https://www.digicert.com/what-is-an-ssl-certificate">What is an SSL certificate?</a> (DigiCert)</li>
+<li><a href="https://www.digicert.com/kb/csr-creation.htm">Create a CSR</a> (DigiCert)</li>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc5280">rfc5280</a></li>
+</ul>
+<p>
+<a href="https://www.ietf.org/rfc/rfc3280.txt">https://www.ietf.org/rfc/rfc3280.txt</a>
+</p>
+<ul class="org-ul">
+<li><a href="https://www.ibm.com/docs/en/i/7.4?topic=coprocessor-generating-verifying-digital-signature">Generating and verifying a digital signature</a> (IBM)</li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2024-04-18T00:00:00-04:00" pubdate>Thu 18 April 2024</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>,    <a class="category" href="/tag/sekiyuritei.html">セキュリティ</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

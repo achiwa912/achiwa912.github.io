@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>アメリカ格安SIMのTelloに乗り換えました &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">アメリカ格安SIMのTelloに乗り換えました</h1>
+    <p class="meta">
+<time datetime="2024-09-30T00:00:00-04:00" pubdate>Mon 30 September 2024</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge921d30">1. はじめに</a></li>
+<li><a href="#orgb32cbbe">2. Speedtalkプランの問題</a></li>
+<li><a href="#org64e5f95">3. Tello</a></li>
+<li><a href="#orgc8dfc51">4. Port in &amp; out</a></li>
+<li><a href="#orgcea380f">5. Port inでトラブル</a></li>
+<li><a href="#org0bebbc4">6. Speedtalk残事項</a></li>
+<li><a href="#org059b55c">7. 比較</a></li>
+<li><a href="#org509dce5">8. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge921d30" class="outline-2">
+<h2 id="orge921d30"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+こんにちは、ボストン近郊在住の きょうす です。
+</p>
+
+<p>
+子供用の格安SIMとして<a href="https://speedtalkmobile.com/">Speedtalk Mobile</a>の一番安いプランを使っていたのですが、あっという間に使用上限に達して使えなくなることを繰り返していたので、移行先を探していました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb32cbbe" class="outline-2">
+<h2 id="orgb32cbbe"><span class="section-number-2">2.</span> Speedtalkプランの問題</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+利用していたのは月に$5(+税他)の一番安いプランです。通話1分、テキスト1通、1MBのデータ通信がそれぞれ2セントかかるので、ほとんど意識せずに簡単に使い切ってしまいます。データ転送250MBが上限だと、スマホのシステムが通信するだけでだいぶ使われてしまうかもしれません。
+</p>
+
+<p>
+テキストは着信する分にも課金されるので、使わないようにする努力にも限界があります。なぜか、Speedtalkのポータルで使用状況を見ると、実際には着信しているだけの筈なのに自分の番号への発信と表示されます。iMessageが着信確認をわざわざテキストで送っているのかなぁ。どうして自分の番号なのかなぁ。Speedtalk(とApple)への不信感が増すばかりです。
+</p>
+
+<p>
+ちなみに今月は、SMSが198通、データ転送が140.82MBに達して、10日ほどでプランを使い切ってしまっていました。
+</p>
+
+<p>
+元々Speedtalkは子供用腕時計タイプの携帯のために契約したものだったのですが、さすがにスマホで使うには無理がありました。数ヶ月連続で$5の追加課金することを繰り返した後で、いい加減にSpeedtalkに見切りをつけて移行先を探すことにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org64e5f95" class="outline-2">
+<h2 id="org64e5f95"><span class="section-number-2">3.</span> Tello</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+ネットでいろいろと探したところ、<a href="https://tello.com/">Tello</a> が評判も含めて良さそうだったのでこれにすることにしました。データ通信1GB+通話100分+テキスト無制限で$6/月のプランを選びました。Speedtalkと比べて1ドルアップするだけで格段に使えるようになります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc8dfc51" class="outline-2">
+<h2 id="orgc8dfc51"><span class="section-number-2">4.</span> Port in &amp; out</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+電話番号を引き継ぎたいので、日本のMNP(Mobile Number Portability)に相当するPort inをします。まずは移行元のSpeedtalkのサポートに連絡してport outしたい旨を伝えます。確認のためにオーダー番号が入った注文票をエビデンスとして要求されるので、Amazonの購入履歴をPDFにしてメールに添付して返信すると、アカウント番号、PIN番号、登録ZIPコードが送られてきました。これで移行元の手続きは完了です。
+</p>
+
+<p>
+TelloからSIMが送られてきたら、まずそれをactivateします。すると、port inができるようになるので、移行する電話番号を入力し、更にもらっておいたアカウント番号、PIN、ZIPコードを入れて手続きの完了を待ちます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcea380f" class="outline-2">
+<h2 id="orgcea380f"><span class="section-number-2">5.</span> Port inでトラブル</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+ここで問題が。TelloからURGENTのメールがすぐに返ってきました。なんとZIPコードが違うので移行元に確認するように、とのこと。Speedtalkから指定された、我が家のZIPコードを入れたのですが。
+</p>
+
+<p>
+Speedtalkのサポートに再度コンタクトして状況を説明したところ、アラスカのとある村のZIPコードが送られてきて、これを試してみてくれと言ってきました。そのコードで試したところ、port inが完了ステータスになりました。なぜアラスカ、と思いましたが、たまたまランダムな番号を使っているようです。もし意図的にやっているとしたら、いやらしいことをしますね。
+</p>
+
+<p>
+もしこのようなトラブルが無かったら、port out &amp; inはとても簡単に手続きできると思います。日本のMNPはもっと大変だったような。。。
+</p>
+
+<p>
+試しに移行した番号に別のスマホからテキストを送ったところ、無事に届きました。番号が移行先で使えるようになるまでに数時間から数日かかるようにTelloのサイトには書いてありましたが、実質数分で完了しました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0bebbc4" class="outline-2">
+<h2 id="org0bebbc4"><span class="section-number-2">6.</span> Speedtalk残事項</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+最後に不信感がより高まったSpeedtalkですが、アカウントのステータスはDeactivated-PortOutになっています。プランの自動更新がActiveのままなのと、クレジットカード情報が残ったままなのが気になるので、改めてサポートに問い合わせてみたところ、プランをdisableにしてカード情報を消したとの返事がありました。
+</p>
+
+<p>
+これらはあえて質問しなければそのままだったんですかねぇ。次の引き落としが来る前に問い合わせしてよかったです。これからしばらく引き落としが無いことが確認できたら、Speedtalkとは完全にさようならできます。(12/25/2024 引き落としがないことを確認できました。)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org059b55c" class="outline-2">
+<h2 id="org059b55c"><span class="section-number-2">7.</span> 比較</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+しばらく使ってみて問題がないようだったら、残りの家族の分もGoogle FiからTelloに移行することを考えています。Google Fiは留守録(なんと文字に起こしてくれます!)やSPAM対策、海外ローミングなどのサービスがとても良いのですが、その分高いので。
+</p>
+
+<p>
+乗り換えを考えて少し比較してみます。
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Google Fi</th>
+<th scope="col" class="org-left">Tello</th>
+<th scope="col" class="org-left">Povo 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">アメリカから日本への通話</td>
+<td class="org-left">Free?</td>
+<td class="org-left">Free</td>
+<td class="org-left">140円/min</td>
+</tr>
+
+<tr>
+<td class="org-left">アメリカから日本(携帯)への通話</td>
+<td class="org-left">Free?</td>
+<td class="org-left">4.1c/min(*4)</td>
+<td class="org-left">140円/min?</td>
+</tr>
+
+<tr>
+<td class="org-left">アメリカ内データ通信</td>
+<td class="org-left">$10/GB(*1)</td>
+<td class="org-left">$7/2GB(*2)</td>
+<td class="org-left">don't use</td>
+</tr>
+
+<tr>
+<td class="org-left">日本国内で通話</td>
+<td class="org-left">Free?</td>
+<td class="org-left">25c/min</td>
+<td class="org-left">22円/30秒</td>
+</tr>
+
+<tr>
+<td class="org-left">日本国内でのデータ通信</td>
+<td class="org-left">$10/GB(*1)</td>
+<td class="org-left">5c/MB</td>
+<td class="org-left">990円/3GB(*3)</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li>(*1) 基本料金別($35/二人)</li>
+<li>(*2) 100分通話付き。プランによる。</li>
+<li>(*3) 30日限定トッピング</li>
+<li>(*4) (<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-05-30 Fri&gt;</span></span>追記)一見とてもリーズナブルですが、実は罠がありました。これを利用するためにはAdd Pay As You Go Credit(トッピング)を使って事前にいくらかチャージする必要があり、最低チャージ額が20ドルもするのです! しかも有効期間が90日間。。。相当に微妙、というか、めったに必要にならないことを考えると、実質使い物になりません。20分程度以下の通話ならPovoを使ったほうがマシでした。とても残念。</li>
+</ul>
+
+<p>
+アメリカではTello、日本ではPovoといきたいところですが、Povoの国内通話はローミングしているTelloよりも高いのですね。Telloはローミングにトッピングがいるので、日本ではPovoかなぁ。大して通話しないし。
+</p>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-05-30 Fri&gt;</span></span>追記:
+残りの家族もTelloに乗り換えました。二人で毎月30-40ドルも節約できて満足なのですが、やはりGoogle Fiの方が良かった点もあります。
+</p>
+<ul class="org-ul">
+<li>留守番電話が専用の番号(123)にかけないと聞けない。便利だった文字起こしもしてくれない。メッセージは聞かないと消せない。よくある音声メニューの留守録サービスですが、もう少しなんとかならないかな。。。なお、これはアメリカ国内通話時間にカウントされます(せこい)。</li>
+<li>トッピングしないと日本の携帯番号にかけられない。"Please top up your account"と言われて一方的に切られます。</li>
+<li>トッピングが「帯に短し襷に長し」感満載で使いづらい。90日期限$20からなので、たまに少ししか使わないことには使えない。期限を無くすか最低料金を$1にしてほしい。使っただけ後払いだと更にうれしい。</li>
+<li>ローミングが使いものにならない。トッピングが必要。データ通信はかなり高めの値段設定なので緊急時以外には使えない。通話はそこまで高くはないですが、$20分も使わない。。。Google Fiはアメリカと同じ料金、感覚で日本でも使えました。2ヶ月以上使っていると止められますが。</li>
+<li>Fiを契約しているとPixel端末が安く買えました</li>
+</ul>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-09-18 Thu&gt;</span></span>追記:
+TelloのポータルからWifi Callingをオンにすることで、日本でアメリカからの通話やテキストの着信ができるよういなりました。トッピングは必要ありません。これは便利。
+</p>
+
+<p>
+最近、毎日何通も迷惑電話がかかってくるようになったので、PixelのPhone &gt; Settings &gt; Call ScreenでAutomatic screen callsをオン(しかもMaximum protection)にしています。デバイスが電話に出ている間はTelloでは通話時間にカウントされています。これにより、電話の文字起こしもしてくれるようになりましたが、肝心なVoice Mailの文字起こしは手つかず。中途半端です。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org509dce5" class="outline-2">
+<h2 id="org509dce5"><span class="section-number-2">8.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+なお、Telloのテキスト(SMS)は無制限ですが、MMS(画像等の送付やグループチャット)はデータ転送としてカウントされるようです。考えてみれば妥当と思いますが、こういうことは契約してみないと気が付きませんねぇ。ポータルから見られる履歴ではテキストとMMSが区別できます。テキスト無制限、は今どき大した付加価値にはならないのですね。
+</p>
+
+<p>
+そして更に、アメリカから日本の携帯番号へかけるには$20(以上)の事前トッピングが必要で、しかも有効期間が90日間しかないため、この点ではとても格安とは言い難いことがわかりました。見かけ上は4.1c/minで良さそうなのですが。
+</p>
+
+<p>
+実際に使ってみると不便な点がいろいろと見えてきます。まあしかし、月々の使用料が数十ドル安くなったことは確かなので、Telloに乗り換えて正解だったと言えます。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2024-09-30T00:00:00-04:00" pubdate>Mon 30 September 2024</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/blog.html">Blog</a>,    <a class="category" href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

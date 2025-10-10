@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>効率よくボキャビルできるWebアプリvocaBull &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li class="active">
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">効率よくボキャビルできるWebアプリvocaBull</h1>
+    <p class="meta">
+<time datetime="2024-01-28T00:00:00-05:00" pubdate>Sun 28 January 2024</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfe0d2e0">1. はじめに</a></li>
+<li><a href="#orgf67950a">2. vocaBull</a></li>
+<li><a href="#orgec6e820">3. Shifting Learning Window機能</a></li>
+<li><a href="#org7cc0f2d">4. 使い方</a>
+<ul>
+<li><a href="#org1905b95">4.1. 登録、ログイン</a></li>
+<li><a href="#org3ec8887">4.2. サンプルブックを選ぶ</a></li>
+<li><a href="#org165ed33">4.3. フラッシュカードでボキャビル</a></li>
+<li><a href="#org7dd5b3a">4.4. 単語をタイプしてスペルを学ぶ</a></li>
+<li><a href="#orgebd0c69">4.5. 単語帳(wordbooks)を準備する</a>
+<ul>
+<li><a href="#orgdb60498">4.5.1. 図書館で単語帳を借りる(ライブラリー機能)</a></li>
+<li><a href="#orgb63d547">4.5.2. 新規に作成し、単語登録する</a></li>
+<li><a href="#org7649a63">4.5.3. あるいは、ファイルから単語を読み込む</a></li>
+</ul>
+</li>
+<li><a href="#orgc3cd51c">4.6. バックアップと復旧</a>
+<ul>
+<li><a href="#org9afcf4b">4.6.1. バックアップの仕方</a></li>
+<li><a href="#orgc3dfae2">4.6.2. 復旧の仕方</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgeca97d6">5. リンク</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgfe0d2e0" class="outline-2">
+<h2 id="orgfe0d2e0"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+英単語を覚えるのに苦労していませんか。単語カードよりも効率よく覚えられるボキャビル用Webアプリ <code>vocaBull</code> を作って公開しています。スマホやPCからアクセスできます。
+</p>
+
+
+<div id="org627707d" class="figure">
+<p><img src="./images/vbs.jpg" alt="vbs.jpg" />
+</p>
+</div>
+
+<p>
+vocaBullには以下の特長があります。巷にある単語カードアプリやWebサービスの主要機能はあると思います。
+</p>
+<ul class="org-ul">
+<li>覚えていない単語をインテリジェントに優先して繰り返し練習できる
+<ul class="org-ul">
+<li>Shifting Learning Window機能。後で詳しく説明します</li>
+<li>vocaBullならではの機能です</li>
+</ul></li>
+<li>普通の単語カードモード以外に、スペルが練習できるタイプ練習モードがある
+<ul class="org-ul">
+<li>最初に単語に慣れるのに、意外とストレスが少なくて便利です</li>
+</ul></li>
+<li>単語や例文を発音してくれる
+<ul class="org-ul">
+<li>間違って音を覚えてしまうことが避けられます</li>
+</ul></li>
+<li>出題する順番がランダム
+<ul class="org-ul">
+<li>ボキャビル本でありがちな、単語の並びで覚えてしまうことが避けられます</li>
+</ul></li>
+<li>他のユーザーが作成、公開している単語帳を「図書館(ライブラリー)」で借りて練習できる
+<ul class="org-ul">
+<li>Quizlet等、ボキャビル用Webアプリのキラー機能と思います</li>
+<li>作者が単語帳を修正すると、自動で反映されます</li>
+</ul></li>
+<li>覚えたい単語一式をファイルからインポートできる
+<ul class="org-ul">
+<li>一つずつ単語を登録するより、楽に早くできます</li>
+</ul></li>
+<li>サーバーのデータが無くなっても安心。単語帳や学習状況のローカルバックアップ機能</li>
+<li>全て無料で、煩わしい広告もありません</li>
+</ul>
+
+<p>
+アクセスはこちらから:
+<a href="https://achiwa912.pythonanywhere.com/">https://achiwa912.pythonanywhere.com/</a>
+</p>
+
+<p>
+emailを登録するだけで使えます。スマホやPCからアクセスできますので、気軽に試していただけるとうれしいです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf67950a" class="outline-2">
+<h2 id="orgf67950a"><span class="section-number-2">2.</span> vocaBull</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+vocaBull は単語カード+アルファの機能を持つボキャビル用Webアプリです。以下の3つのモードがあります。
+</p>
+<ol class="org-ol">
+<li>単語カード(単語 &rarr; 意味) &rarr; <code>word to def</code> モード</li>
+<li>単語カード(意味 &rarr; 単語) &rarr; <code>def to word</code> モード</li>
+<li>スペル練習 &rarr; <code>type word</code> モード</li>
+</ol>
+
+<p>
+vocaBullはWebアプリなので、iPhoneやAndroidなどのモバイルデバイスからもアクセスできます。私のGoogle Pixel 7 Pro上のFirefoxからはこんな感じです:
+</p>
+
+<div id="orgc1c0767" class="figure">
+<p><img src="./images/vbs_mobile.jpg" alt="vbs_mobile.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgec6e820" class="outline-2">
+<h2 id="orgec6e820"><span class="section-number-2">3.</span> Shifting Learning Window機能</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+新しい単語を覚えるには繰り返しが効果的ですが、通常の単語カード(アプリ)では、効率よく覚えるために必要な繰り返しが得られないと考えています。
+</p>
+
+<p>
+例えば、フラッシュカードに200単語あったとして、その200単語を一つずつ繰り返していったら、最初の方の単語はすっかり忘れてしまっているでしょう。ほとんど覚えていない状態が何巡も続くので、ストレスフルで挫折しやすいと思います。
+</p>
+
+<p>
+vocaBull はこの問題に対して、少数単語の頻繁な繰り返しと、単語帳全体の繰り返しを組み合わせることで、挫折しづらくてより効率よく単語が覚えられる <span class="underline">Shifting Learning Window</span> 機能をサポートしました。
+</p>
+
+
+<div id="org3e12b8d" class="figure">
+<p><img src="./images/vbs_SLW.jpg" alt="vbs_SLW.jpg" />
+</p>
+</div>
+
+<p>
+この少数単語の頻繁な繰り返しを「Learning Window(学習ウインドウ)」で実現しています。Learning Windowは10単語分の大きさを持ち、最初は単語帳の中からランダムに選んだ10単語が入っています。
+</p>
+
+<p>
+Learning Window内の10単語を繰り返し練習するうち、一つ二つの単語を覚えていくでしょう。そうしたら、Learning Windowは覚えた単語をまだ覚えていない単語で置き換えます。こうして、Learning Windowは常に現在覚え途中の10単語だけが入っていることになります。覚えようとしている少数の単語を集中的に学習できる、というわけです。Learning Windowは単語帳内を進んでいき、最終的に単語帳の最後まで到達します。そうしたら、次のサイクルが始まります。このプロセスは単語帳内のすべての単語を覚えてしまうまで続きます。
+</p>
+
+<p>
+つまり、Learning Windowは高頻度の繰り返しを、単語帳全体が低頻度の繰り返しを表しています。
+</p>
+
+<p>
+他のボキャビル用アプリには、単語に手動でスターをつける機能がついていて、スターの付いている単語のみ練習したりできますが、これを常に自動でバランスよくやってくれるのが Shifting Learning Window 機能です。高頻度の繰り返しと低頻度の繰り返しの組み合わせは、<a href="https://ja.wikipedia.org/wiki/%E5%BF%98%E5%8D%B4%E6%9B%B2%E7%B7%9A">忘却曲線</a> の考え方にも沿っていると思います。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org7cc0f2d" class="outline-2">
+<h2 id="org7cc0f2d"><span class="section-number-2">4.</span> 使い方</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org1905b95" class="outline-3">
+<h3 id="org1905b95"><span class="section-number-3">4.1.</span> 登録、ログイン</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>ブラウザーから <a href="https://achiwa912.pythonanywhere.com">https://achiwa912.pythonanywhere.com</a> にアクセスします</li>
+</ul>
+
+
+<div id="orgeec4b06" class="figure">
+<p><img src="./images/vbs_top.jpg" alt="vbs_top.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>右上のメニューアイコンから <code>Login</code> &gt; <code>Click here to register</code> とクリック</li>
+</ul>
+<p>
+<img src="./images/vbs_navbar.jpg" alt="vbs_navbar.jpg" />
+<img src="./images/vbs_login.jpg" alt="vbs_login.jpg" />
+</p>
+<ul class="org-ul">
+<li>emailアドレス、ユーザー名、パスワードを入力してアカウントを作成します</li>
+<li>数分程度待つとemailが送られてくるので、確認のためのconfirmation linkをクリックします</li>
+<li>emailアドレスとパスワードを使ってログインします</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3ec8887" class="outline-3">
+<h3 id="org3ec8887"><span class="section-number-3">4.2.</span> サンプルブックを選ぶ</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>最初、サンプルのワードブック(sample_&lt;ユーザー名&gt;)が登録されており、それには単語が5個入っています。</li>
+</ul>
+
+<div id="org6a538c9" class="figure">
+<p><img src="./images/vbs_samplebook.jpg" alt="vbs_samplebook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>サンプルワードブックをクリックして開きます</li>
+</ul>
+
+<div id="orge6a1333" class="figure">
+<p><img src="./images/vbs_samplewords.jpg" alt="vbs_samplewords.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org165ed33" class="outline-3">
+<h3 id="org165ed33"><span class="section-number-3">4.3.</span> フラッシュカードでボキャビル</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li><code>Practice</code> menu をクリック &gt; <code>word to def</code> または <code>def to word</code> を選びます</li>
+</ul>
+
+<div id="org5cdb3ef" class="figure">
+<p><img src="./images/vbs_mode.jpg" alt="vbs_mode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>フラッシュカードの練習ページが表示されます</li>
+</ul>
+
+<div id="org92e7e0a" class="figure">
+<p><img src="./images/vbs_w2d.jpg" alt="vbs_w2d.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>ワードカードをクリックすると裏面の答えが表示されます
+<ul class="org-ul">
+<li>水色の面が単語を、青緑の面が意味を意味します</li>
+<li>例文は常に裏面に表示されます</li>
+<li>カードを何度もクリックして表、裏を表示させることもできます</li>
+</ul></li>
+<li><code>(音符) word</code> や <code>example</code> をクリックすると発音が確認できます
+<ul class="org-ul">
+<li>これはブラウザー機能を利用していて、若干不自然なところがありますが、学習に大きな支障は無いと思います</li>
+</ul></li>
+<li>もし覚えていなかったら <code>(親指ダウン) once more</code> をクリックします。その単語は近いうち(10単語かそれ以内)にまた現れます</li>
+<li>なんとか覚えたら <code>(親指アップ) okay!</code> をクリックしスコアを+1します
+<ul class="org-ul">
+<li>vocaBull は10個の最も低いスコアの単語を選ぶため、しばらくその単語は出てきません</li>
+</ul></li>
+<li>すでに知っている単語だったら <code>knew it!</code> ボタンをクリックしてスコアを+5することもできます</li>
+<li><code>Back to book</code> をクリックして選択しているワードブックに戻ります</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org7dd5b3a" class="outline-3">
+<h3 id="org7dd5b3a"><span class="section-number-3">4.4.</span> 単語をタイプしてスペルを学ぶ</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li><code>Practice</code> メニューをクリック &gt; <code>type word</code> モードを選択します</li>
+<li>vocaBull が単語の意味を表示します</li>
+</ul>
+
+<div id="orgfe48d0e" class="figure">
+<p><img src="./images/vbs_typemode.jpg" alt="vbs_typemode.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>答えをタイプして <code>Submit</code> をクリックするかリターンキーを押します</li>
+<li>正解/不正解と判断されるので、いずれにしても4回単語をタイプします
+<ul class="org-ul">
+<li>Tip: タブやリターンキーを使って入力ボックス間を移動できます</li>
+<li>間違ったら同じ単語が近いうちに出てきます</li>
+</ul></li>
+</ul>
+
+<div id="org6df37cb" class="figure">
+<p><img src="./images/vbs_repeat.jpg" alt="vbs_repeat.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li><code>(音符) word</code> や <code>example</code> を押すと発音してくれます</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgebd0c69" class="outline-3">
+<h3 id="orgebd0c69"><span class="section-number-3">4.5.</span> 単語帳(wordbooks)を準備する</h3>
+<div class="outline-text-3" id="text-4-5">
+</div>
+<div id="outline-container-orgdb60498" class="outline-4">
+<h4 id="orgdb60498"><span class="section-number-4">4.5.1.</span> 図書館で単語帳を借りる(ライブラリー機能)</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<p>
+一番手っ取り早い方法です。他のユーザーが作って公開している単語帳を図書館で借りると、自分で作った単語帳のように練習することができます。
+</p>
+<ul class="org-ul">
+<li>右上のメニューアイコンから <code>library</code> を選ぶと、図書館ページに移動します</li>
+</ul>
+
+
+<div id="org3c00304" class="figure">
+<p><img src="./images/library.jpg" alt="library.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li>図書館には他のユーザーが作って公開している単語帳が並んでいます</li>
+<li>単語帳をクリックして詳細を確認します</li>
+</ul>
+
+
+<div id="org43963f1" class="figure">
+<p><img src="./images/browse.jpg" alt="browse.jpg" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li><code>(カートアイコン) Checkout</code> をクリックするとその単語帳は緑色でホームページの単語帳リストに現れます</li>
+</ul>
+
+<div id="org311b41c" class="figure">
+<p><img src="./images/borrowed.jpg" alt="borrowed.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb63d547" class="outline-4">
+<h4 id="orgb63d547"><span class="section-number-4">4.5.2.</span> 新規に作成し、単語登録する</h4>
+<div class="outline-text-4" id="text-4-5-2">
+<p>
+新たに単語帳を作成して単語を追加することもできます。サンプルのワードブックに単語を追加していってもいいでしょう。
+</p>
+<ul class="org-ul">
+<li><code>(本のアイコン) Add</code> ボタンをクリックします</li>
+</ul>
+
+<div id="orgb6372c2" class="figure">
+<p><img src="./images/vbs_addbook.jpg" alt="vbs_addbook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>単語帳の名前を入れ、レベルを選び、言語コード(US英語なら en-US)をタイプして <code>Submit</code> をクリックします
+<ul class="org-ul">
+<li>言語コードは発音機能が利用します。英文に日本語ja-JPを指定すると、和製英語が聞けます(笑)</li>
+<li>言語コード一覧は下のリンクセクションにて。英語以外の言語も選べます。</li>
+</ul></li>
+</ul>
+
+<div id="orgdabe170" class="figure">
+<p><img src="./images/vbs_newbook.jpg" alt="vbs_newbook.jpg" />
+</p>
+</div>
+<ul class="org-ul">
+<li>新たに作成した単語帳をクリックし、 <code>Add word</code> をクリックします</li>
+<li>単語と意味、例文をタイプして <code>Submit</code> をクリックすると <code>Practice</code> ボタンが有効になります
+<ul class="org-ul">
+<li>単語をいくつか登録してください</li>
+</ul></li>
+</ul>
+
+<div id="org5170e39" class="figure">
+<p><img src="./images/vbs_newword.jpg" alt="vbs_newword.jpg" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7649a63" class="outline-4">
+<h4 id="org7649a63"><span class="section-number-4">4.5.3.</span> あるいは、ファイルから単語を読み込む</h4>
+<div class="outline-text-4" id="text-4-5-3">
+<p>
+覚えたい単語がたくさんある場合、ファイルを作って読み込むのが早いです。
+</p>
+<ul class="org-ul">
+<li>メモ帳等のテキストエディタやexcelで単語定義ファイルを作ります
+<ul class="org-ul">
+<li>1行に1単語です</li>
+<li>行には、単語、意味、例文をタブ(<code>\t</code>)で区切って並べます。例文はオプションです</li>
+</ul></li>
+</ul>
+<pre class="example">
+&lt;word&gt;\t&lt;definition&gt;[\t&lt;sample&gt;]
+</pre>
+
+<ul class="org-ul">
+<li>excelの場合はcsv形式でセーブしてください</li>
+</ul>
+<ul class="org-ul">
+<li>例:</li>
+</ul>
+<pre class="example">
+strident	shrill, harsh, rough	in more strident tones
+lassitude	weariness, fatigue
+deleterious	bad, harmful	a deleterious effect on health
+</pre>
+<ul class="org-ul">
+<li>新たに単語帳を作り、それをクリックします</li>
+<li><code>Load from file</code> &gt; <code>Browse...</code> をクリックし、単語定義ファイルを選んで <code>Submit</code> をクリックします</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgc3cd51c" class="outline-3">
+<h3 id="orgc3cd51c"><span class="section-number-3">4.6.</span> バックアップと復旧</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+vocaBull はまだ開発中のため、バグなどによりサーバーにある全ての単語や学習状況が失われてしまうリスクがあります。この状況に対処するため、 <code>Export all</code> と <code>Import and restore</code> 機能をサポートしました。これを使って、あなたの単語帳や学習状況をあなたのPCにバックアップしてください。最悪、サーバーのデータが全て無くなっても復旧することが可能です。
+</p>
+
+
+<div id="orgc247c72" class="figure">
+<p><img src="./images/vbs_backup.jpg" alt="vbs_backup.jpg" />
+</p>
+</div>
+
+<p>
+<code>Export all</code> はあなたの単語帳、その中にある単語、及び学習状況をJSONファイルに出力します。
+</p>
+
+<p>
+<code>Import and restore</code> はバックアップした JSON ファイルを読んで復旧します。この時、もし同じ名前の単語帳が存在したら、単語などはそれに追加されます。同じ単語が登録されていたら、意味や例文を上書きします。学習状況に関しては、既存のものとバックアップファイルのものの、より進んだ状態を選びます。
+</p>
+
+<p>
+例えば、 <code>Export all</code> してすぐに <code>Import and restore</code> したら、単語帳、単語、スコアは全く変わりません。
+</p>
+</div>
+
+<div id="outline-container-org9afcf4b" class="outline-4">
+<h4 id="org9afcf4b"><span class="section-number-4">4.6.1.</span> バックアップの仕方</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<ul class="org-ul">
+<li>ホームページ上でBackup and restoreセクションが見えるまでスクロールします</li>
+<li><code>Export all</code> をクリックして単語帳や学習状況を <code>vocabull.json</code> というローカルファイルにセーブします</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc3dfae2" class="outline-4">
+<h4 id="orgc3dfae2"><span class="section-number-4">4.6.2.</span> 復旧の仕方</h4>
+<div class="outline-text-4" id="text-4-6-2">
+<ul class="org-ul">
+<li>全てが消えたらアカウントも無くなりログインできなくなっているので、再度アカウント登録をします</li>
+<li>新たなアカウントでログインした後、ホームページ上でBackup and restoreセクションが見えるまでスクロールします</li>
+<li><code>Import and restore</code> ボタンをクリックします</li>
+<li><code>Browse...</code> をクリックして <code>vocabull.json</code> を選び <code>Submit</code> をクリックします</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeca97d6" class="outline-2">
+<h2 id="orgeca97d6"><span class="section-number-2">5.</span> リンク</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li>ここにデプロイしています: <a href="https://achiwa912.pythonanywhere.com/">https://achiwa912.pythonanywhere.com/</a></li>
+<li>プロジェクトはこちら: <a href="https://github.com/achiwa912/vbs">https://github.com/achiwa912/vbs</a></li>
+<li>言語コード一覧: <a href="http://www.lingoes.net/en/translator/langcode.htm">http://www.lingoes.net/en/translator/langcode.htm</a>
+<ul class="org-ul">
+<li>注) ブラウザーがサポートしているもののみ有効です</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Kyos
+    </span>
+  </span>
+<time datetime="2024-01-28T00:00:00-05:00" pubdate>Sun 28 January 2024</time>  <span class="categories">
+    <a class='category' href='/category/english.html'>English</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/english.html">English</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

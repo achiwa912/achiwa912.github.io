@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ボキャビル用ツールVocaBullの紹介 &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li class="active">
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">ボキャビル用ツールVocaBullの紹介</h1>
+    <p class="meta">
+<time datetime="2021-02-15T00:00:00-05:00" pubdate>Mon 15 February 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga30e88b">1. はじめに</a>
+<ul>
+<li><a href="#org6c24a55">1.1. ボキャビルの勧め</a></li>
+<li><a href="#orgacd105e">1.2. 効率よくボキャビルしたい</a></li>
+<li><a href="#org9807baa">1.3. VocaBullについて</a></li>
+</ul>
+</li>
+<li><a href="#org2a401e6">2. VocaBullを使ったボキャビル</a>
+<ul>
+<li><a href="#org1a02b45">2.1. 起動</a></li>
+<li><a href="#org90f01a5">2.2. 学習</a></li>
+<li><a href="#org4ccae40">2.3. 学習進捗のセーブとロード</a></li>
+</ul>
+</li>
+<li><a href="#org7691f68">3. Tips</a>
+<ul>
+<li><a href="#orgdc80009">3.1. イメージ化しよう</a></li>
+<li><a href="#org34c7ee0">3.2. 例文を活用しよう</a></li>
+<li><a href="#org586309e">3.3. 繰り返そう</a></li>
+<li><a href="#orge4035a0">3.4. ワードブックファイルの調達方法</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+このエントリでは、CLI版の古いツールを紹介しています。Webアプリ版のvocaBullは <a href="https://achiwa912.github.io/vbs_intro.html">こちら</a>へ。
+</p>
+
+<div id="outline-container-orga30e88b" class="outline-2">
+<h2 id="orga30e88b"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org6c24a55" class="outline-3">
+<h3 id="org6c24a55"><span class="section-number-3">1.1.</span> ボキャビルの勧め</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+英語の勉強を継続していると、自分の英語語彙の少なさを痛感する時が来ると思います。TOEICの点数はそれなりに上がっているのに、洋書が読めないのは、語彙の少なさが原因であることが多いです。
+</p>
+
+<p>
+そこでボキャビルです。500〜1000単語増やすと効果は絶大で、これまで読めなかった洋書が読めるようになったり、自分の英語力が一気に2,3レベル上がった気分になります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgacd105e" class="outline-3">
+<h3 id="orgacd105e"><span class="section-number-3">1.2.</span> 効率よくボキャビルしたい</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+ボキャビルのやり方で最も効果的なものは、<a href="http://mutuno.o.oo7.jp/05_training/05_training06.html">英語完全上達マップ</a> で説明されている「サイクル回し」だと個人的に思っています。これは、
+</p>
+<ul class="org-ul">
+<li>例文を繰り返し読み解くことでまずは短期記憶に入れる</li>
+<li>生覚えな単語を何十回も繰り返し「回す」ことで長期記憶に定着させる</li>
+</ul>
+
+<p>
+というプロセスで覚えていきます。
+</p>
+
+<p>
+根本的には、新たな単語を覚えるには繰り返し出会う(覚えようとする)しかなく、サイクル回しはこの繰り返しをシステマティックに、挫折しづらいやり方で実現しています。
+</p>
+
+<p>
+しかし一方で、サイクル回しは覚えにくい単語と覚えやすい単語を同列に扱って回していくため、若干効率が悪いと感じていました。
+</p>
+
+<p>
+そこで、覚えにくい単語を集中して繰り返すためのツール VocaBull を作り、githubで<a href="https://github.com/achiwa912/vocabull">公開</a> しました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9807baa" class="outline-3">
+<h3 id="org9807baa"><span class="section-number-3">1.3.</span> VocaBullについて</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+VocaBullは以下の特徴があります。
+</p>
+<ul class="org-ul">
+<li>一度に未知の10単語にフォーカスして繰り返し学習する</li>
+<li>覚えたかどうかをトラックしており、VocaBullが「(とりあえず)覚えた」と判断した単語は新たな単語で置き換える</li>
+<li>これにより、常に未知の10単語を学習し続けることができる</li>
+<li>10個の学習中ウインドウは単語ブック内を移動し、完全に覚えるまで繰り返し学習できる</li>
+</ul>
+
+<p>
+ある時点では10個の単語を覚えることにフォーカスすることで、いったん短期記憶に入るまでを効率化しています。その後も繰り返し練習することで、長期記憶への定着を図ります。「何度も繰り返し学習させる」という基本コンセプトのレベルでは「サイクル回し」と同様です。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2a401e6" class="outline-2">
+<h2 id="org2a401e6"><span class="section-number-2">2.</span> VocaBullを使ったボキャビル</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1a02b45" class="outline-3">
+<h3 id="org1a02b45"><span class="section-number-3">2.1.</span> 起動</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+まずはVocaBullをインストールして、ワードブックファイルを用意します。ワードブックは「単語」「意味」「例文」をタブ('\t')で区切って書いた行をたくさん並べたファイル形式です。「例文」はオプションです。例えば、
+</p>
+<pre class="example">
+Abhor	hate
+Bigot	narrow-minded, prejudiced person
+Counterfeit	fake; false
+</pre>
+
+<p>
+のような感じです(上記で例文はありません)。
+</p>
+
+<p>
+とりあえず試したい方は、サンプルのワードブックファイル(samples.txt)を用意してあるので使って下さい。
+</p>
+<pre class="example">
+python vb.py &lt;ワードブックファイル&gt;
+</pre>
+
+<p>
+で起動し、以下のようなメッセージが出力されます。
+</p>
+<pre class="example">
+% python vb.py samples.txt 
+    *** VocaBull - Help your vocabulary building ***
+    10 words loaded.
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org90f01a5" class="outline-3">
+<h3 id="org90f01a5"><span class="section-number-3">2.2.</span> 学習</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+いきなり単語の入力を求められます。
+</p>
+<pre class="example">
+*** S: save, L: show learning set, Q: save and quit
+exaggerated figure of speech? 
+</pre>
+
+<p>
+わからないので単にリターンキーを押すと、正解が出て、4回繰り返すように言われます。
+</p>
+<pre class="example">
+    exaggerated figure of speech? 
+    *** Incorrect.  Let's practice 4 times.
+    &gt; The rhetoric soared into lagrant hyperbole.
+    exaggerated figure of speech: hyperbole
+1/4 exaggerated figure of speech? 
+</pre>
+
+<p>
+'&gt;'の行は例文です。そしてここからが肝です。
+</p>
+
+<p>
+単語とその意味を確認し、例文を読み解きます。例文のイメージがはっきり沸くまでじっくり考えて下さい。それが出来たら単語をタイプしていきます。
+</p>
+<pre class="example">
+    &gt; The rhetoric soared into lagrant hyperbole.
+    exaggerated figure of speech: hyperbole
+1/4 exaggerated figure of speech? hyperbole
+2/4 exaggerated figure of speech? hyperbole
+3/4 exaggerated figure of speech? hyperbole
+4/4 exaggerated figure of speech? hyperbole
+</pre>
+
+
+<p>
+毎回、意味と単語、例文を読んでイメージを沸かせた状態で単語をタイプします。イメージが重要です。頭が半分ぼーっとした状態で、指だけが単語をタイプするようなことは、暗記という点で意味が無いのでしてはいけません。
+</p>
+
+<p>
+正解すると、やはり2回繰り返してタイプするように言われます。
+</p>
+<pre class="example">
+    generous? munificent
+    *** Correct.  Practice a little more.
+    &gt; He was surprised by the munificent gratuity given by the usually parismonious termagant.
+    generous: munificent
+1/2 generous? 
+</pre>
+
+<p>
+意味を再確認してイメージを浮かべながら、2回タイプします。
+</p>
+
+<p>
+VocaBullは覚えていない単語10個(learning windowと呼びます)にフォーカスして、そこから順に単語クイズを出します。数回正解するとVocaBullは(とりあえず)その単語を覚えたと判断します。覚えた単語は新たな単語で置き換えられ、leaning window内は常に覚えていない単語10個が入っています。
+</p>
+
+<p>
+こうして、learning windowは単語ブックのリストを上からシフトしていきます。リストの下まで来たら、いったん覚えた一番上の単語がleaning windowに再度入ってきます。このように、VocaBullでは、覚えたはずの単語を何度も繰り返し学習することができます。
+</p>
+
+<p>
+なお、ワードブック内の単語数が100を超える場合には、ブックを100個単位の「セット(または章)」に分け、セットの単位で学習することになります。あまりに多いと最初に覚えた筈の単語をすっかり忘れてしまうので、100個単位に学習するようにしました。この100個をlearning setと呼びます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4ccae40" class="outline-3">
+<h3 id="org4ccae40"><span class="section-number-3">2.3.</span> 学習進捗のセーブとロード</h3>
+<div class="outline-text-3" id="text-2-3">
+<pre class="example">
+*** S: save, L: show learning set, Q: save and quit
+generous?
+</pre>
+
+
+<p>
+このように"<b>*</b> S: save, L: show learning set, Q: save and quit"が表示されている時は、単語を入力するかわりに1文字のコマンドを入力、実行することができます。
+</p>
+
+<p>
+'S'は学習の進捗をセーブします。
+</p>
+
+<pre class="example">
+    *** S: save, L: show learning set, Q: save and quit
+    high praise? S
+Saved 10 words to samples.pickle
+    *** S: save, L: show learning set, Q: save and quit
+    high praise?
+</pre>
+
+
+<p>
+'L'はlearning setを表示します。3桁の数字は左から、
+</p>
+<ul class="org-ul">
+<li>VocaBullが何回この単語を(とりあえず)覚えたと判断したか。この値が最も小さい単語が次のlearning windowに加わる単語の候補になります</li>
+<li>これまでの間違い数</li>
+<li>これまでの総学習数(間違い数+正解数)</li>
+</ul>
+
+<pre class="example">
+    *** S: save, L: show learning set, Q: save and quit
+    high praise? L
+0 hyperbole - 0/0/1
+1 munificent - 0/1/1
+2 prevarication - 0/1/1
+3 tyro - 0/1/1
+&lt;snip&gt;
+</pre>
+
+
+<p>
+'Q'はセーブして学習を終了します。セーブせずに終了したい場合は(いつでもよいので)Ctrl-Cを押して下さい。
+</p>
+
+<p>
+次にVocaBullを起動したときに、セーブデータは自動的にロードされます。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7691f68" class="outline-2">
+<h2 id="org7691f68"><span class="section-number-2">3.</span> Tips</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgdc80009" class="outline-3">
+<h3 id="orgdc80009"><span class="section-number-3">3.1.</span> イメージ化しよう</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+上の使い方でも書きましたが、漫然と単語を繰り返しタイプするだけでは効果は出ません。意味と例文のイメージを浮かべながら単語をタイプするようにしてください。特に英語オンリーの単語リストを使う場合には、これが極めて重要になります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org34c7ee0" class="outline-3">
+<h3 id="org34c7ee0"><span class="section-number-3">3.2.</span> 例文を活用しよう</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+英語と日本語の単語はあまりに違うために、単なる丸暗記はとても大変です。そこで、例文の力を借りて単語の使われ方のコンテキストを加えることで、暗記を容易にすることができます。ワードブックを用意する際に例文まで入力するのは大変ですが、例文の有無で学習効率が変わってくるため、多少面倒でも例文を用意したほうがよいです。
+</p>
+
+<p>
+なお、ワードブックは例文の追加に対応しています。まずは単語と意味だけのブックを作り、後からすこしずつ例文を足していく、といったことが可能です。覚えるのがどうしても辛い単語だけでも例文を加えると、覚えるためのとっかかりができるのでお勧めです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org586309e" class="outline-3">
+<h3 id="org586309e"><span class="section-number-3">3.3.</span> 繰り返そう</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+上でも書きましたが、ボキャビルの基本は繰り返しです。どんなに覚えづらい単語でも、覚えるまで繰り返すだけでよいのです。中には何十回も間違える単語が出てくると思いますが、大抵はどんな単語も100回以上繰り返せば覚えてしまいます。もし100回間違えたら、それだけで400回はタイプしているのです。暗記の苦手な人、50才を超えて暗記力が目に見えて衰えた気分になっている人、そういう人こそ100回間違える気で頑張って下さい。まずは100単語覚えてみて下さい。繰り返しのパワーを実感できると思います。
+</p>
+
+<p>
+なお、語学力は一生伸び続けるらしいですよ。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orge4035a0" class="outline-3">
+<h3 id="orge4035a0"><span class="section-number-3">3.4.</span> ワードブックファイルの調達方法</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+"SAT" "vocabulary" "list"あたりのキーワードでgoogle等で検索すると、うまくコピペできるページがヒットすることがあります。例えば <a href="https://www.majortests.com/sat/wordlist.php">https://www.majortests.com/sat/wordlist.php</a> のリストはそのままコピペしてセーブするとワードブックとして使えます。"SAT"のところを自分の覚えたいキーワードに置き換えて、いろいろ検索してみてください。
+</p>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-02-15T00:00:00-05:00" pubdate>Mon 15 February 2021</time>  <span class="categories">
+    <a class='category' href='/category/english.html'>English</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/english.html">English</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

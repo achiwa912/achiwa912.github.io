@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>rcloneでデータを暗号化してpCloudにバックアップする &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">rcloneでデータを暗号化してpCloudにバックアップする</h1>
+    <p class="meta">
+<time datetime="2024-03-08T00:00:00-05:00" pubdate>Fri 08 March 2024</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org44f56ab">1. はじめに</a></li>
+<li><a href="#orgdd50eaa">2. pCloud</a></li>
+<li><a href="#org39b9d08">3. rclone</a></li>
+<li><a href="#org9ad7203">4. セットアップ</a>
+<ul>
+<li><a href="#orge522c38">4.1. インストールとリモート設定</a></li>
+<li><a href="#org6154fc0">4.2. cryptリモートの作成</a></li>
+<li><a href="#org75eb3cd">4.3. rclone.confをバックアップする</a></li>
+</ul>
+</li>
+<li><a href="#orgf397611">5. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org44f56ab" class="outline-2">
+<h2 id="org44f56ab"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+pCloudはライフタイムプランで有名なクラウドストレージプロバイダーです。私は去年のサンクスギビングセールで500GBプランを買っていました。
+</p>
+
+<p>
+クラウドストレージはとても便利ですが、ハックされてデータがリークしたり、データを見られたりするリスクがあります。そこで、データを暗号化してクラウドに置くよい方法を探していたところ、rcloneというコマンドラインツールの評判が良さそうなので、これを使うことにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdd50eaa" class="outline-2">
+<h2 id="orgdd50eaa"><span class="section-number-2">2.</span> pCloud</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://www.pcloud.com/">pCloud</a> はライフタイムプランを売りにしています。容量を前払いで購入し、会社が潰れたりしなければずっと使えます。クラウドストレージベンダーからすると、ライフタイムプランは当座の資金集めに便利ですが、あまりサステイナブルなビジネスモデルではありません。中には、破格の価格をつけているところもありますが、そういうところは本社の住所が普通の民家だったりして、資金集めをするだけして消えてしまいそうです。
+</p>
+
+<p>
+pCloudは、グーグルやアマゾンのような最大手ではありませんが、ライフタイムプランを提供しているベンダーの中では大手で、実績もあります。そこで、年に数回ある安売りのタイミングで500GBプランを買いました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org39b9d08" class="outline-2">
+<h2 id="org39b9d08"><span class="section-number-2">3.</span> rclone</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://rclone.org/">rclone</a> はクラウドストレージ上のファイルを管理するコマンドラインツールです。使い勝手に多少クセがありますが、いったんクラウドストレージを登録して、ファイルやディレクトリの表示ができるようになる頃には慣れると思います。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">command</th>
+<th scope="col" class="org-left">comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">rclone listremotes</td>
+<td class="org-left">登録済みクラウドストレージ(remote)の一覧表示</td>
+</tr>
+
+<tr>
+<td class="org-left">rclone config</td>
+<td class="org-left">remoteの登録</td>
+</tr>
+
+<tr>
+<td class="org-left">rclone ls &lt;remote:&gt;</td>
+<td class="org-left">オブジェクトを表示</td>
+</tr>
+
+<tr>
+<td class="org-left">rclone lsd &lt;remote:&gt;</td>
+<td class="org-left">ディレクトリを表示</td>
+</tr>
+
+<tr>
+<td class="org-left">rclone lsf &lt;remote:&gt;</td>
+<td class="org-left">"ls -F"的なシンプル表示</td>
+</tr>
+
+<tr>
+<td class="org-left">rclone lsl &lt;remote:&gt;</td>
+<td class="org-left">"ls -l"的なオブジェクト表示</td>
+</tr>
+
+<tr>
+<td class="org-left">rclone sync &lt;local&gt; &lt;remote:&gt;</td>
+<td class="org-left">&lt;local&gt;から&lt;remote:&gt;へ差分のみ転送</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+リモート名には最後にコロン(:)を付けるのがポイントです。
+</p>
+
+<p>
+普段はsyncを使って差分のみをコピーします。こんな感じで使います。
+</p>
+<pre class="example">
+rclone sync Important pcl_cryp:/
+</pre>
+
+<p>
+<code>Important</code> はローカルのバックアップしたいファイルやディレクトリの入っているディレクトリ、 <code>pcl_cryp:/</code> は(crypt)リモートのルートディレクトリです。cron等で自動化するのがオススメです。
+</p>
+
+<p>
+注意として、 <code>rclone sync &lt;source&gt; &lt;destination&gt;</code> はsourceとdestinationの方向が決まっています。destinationをsourceに合わせるため、sourceに無いファイルはdestinationから消えてしまいます。
+</p>
+
+<p>
+<code>rclone ls</code> と <code>rclone lsl</code> はディレクトリ配下のファイルも表示してしまい、少し違和感を覚えました。 <code>rclone --help</code> や <code>rclone &lt;subcommand&gt; --help</code> しながら使うといいと思います。
+</p>
+
+<p>
+最初に <code>rclone config</code> してクラウドストレージを登録すると設定ファイル <code>~/.config/rclone/rclone.conf</code> が作られますが、パスワードを設定してこれ自体を暗号化しておくのがおすすめです。毎回パスワードを入力するのはとても面倒なので、環境変数 <code>RCLONE_CONFIG_PASS</code> に設定するとよいです。私は更にこれをgpgで暗号化してクラウドストレージにバックアップしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ad7203" class="outline-2">
+<h2 id="org9ad7203"><span class="section-number-2">4.</span> セットアップ</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orge522c38" class="outline-3">
+<h3 id="orge522c38"><span class="section-number-3">4.1.</span> インストールとリモート設定</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+まずは rclone をインストールします。brewの入っているmacの場合、
+</p>
+<pre class="example">
+brew install rclone
+</pre>
+
+<p>
+で行けます。
+</p>
+
+<p>
+次に念の為、configファイルにパスワードをつけます。
+</p>
+<pre class="example">
+rclone config
+No remotes found, make a new one?
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt; s
+(確か、2回パスワードを入れたような)
+</pre>
+
+<p>
+続いて、<a href="https://rclone.org/pcloud/">このあたり</a> を参考にしてpcloudを登録します。先ほどの続きから行ってもOKです。
+後から書いているので、間違いがあるかも。。。
+</p>
+<pre class="example">
+rclone config
+(configパスワードを入れる)
+No remotes found, make a new one?
+n) New remote
+s) Set configuration password
+q) Quit config
+n/s/q&gt; n  # 新規リモート作成を選択
+name&gt; pcloud  # リモートの名前を入力
+Type of storage to configure.
+Choose a number from below, or type in your own value
+略
+番号 / Pcloud
+   \ "pcloud"
+略
+Storage&gt; pcloud  # pcloudを選択
+Pcloud App Client Id - leave blank normally.
+client_id&gt;   # ブランクのまま
+Pcloud App Client Secret - leave blank normally.
+client_secret&gt;   # ブランクのまま
+Remote config
+Use web browser to automatically authenticate rclone with remote?
+ * Say Y if the machine running rclone has a web browser you can use
+ * Say N if running rclone on a (remote) machine without web browser access
+If not sure try Y. If Y failed, try N.
+y) Yes
+n) No
+y/n&gt; y  # ブラウザーを使った認証を行う
+</pre>
+<p>
+ブラウザーが開いてpcloudへのログインを求められるので、ログインしてrcloneへのアクセスを許可します。
+</p>
+
+<pre class="example">
+If your browser doesn't open automatically go to the following link: http://127.0.0.1:53682/auth
+Log in and authorize rclone for access
+Waiting for code...
+Got code
+--------------------
+[remote]
+client_id = 
+client_secret = 
+token = {"access_token":"XXX","token_type":"bearer","expiry":"0001-01-01T00:00:00Z"}
+--------------------
+y) Yes this is OK
+e) Edit this remote
+d) Delete this remote
+y/e/d&gt; y  # yを押して登録完了
+</pre>
+
+<p>
+登録を確認します。pcloudという名前のリモートにあるディレクトリを表示してみます。
+</p>
+<pre class="example">
+~ % rclone lsd pcloud:
+(configパスワードを入れる)
+          -1 2023-11-23 10:06:14        -1 My Music
+          -1 2023-11-23 10:06:14        -1 My Pictures
+          -1 2023-11-23 10:06:14        -1 My Videos
+~ % 
+</pre>
+<p>
+最初からある <code>My Music</code> などのディレクトリが表示できました。
+</p>
+
+<p>
+そろそろ面倒になってきたので、環境変数にconfigパスワードを登録します。
+</p>
+<pre class="example">
+export RCLONE_CONFIG_PASS=&lt;パスワード&gt;
+</pre>
+
+<p>
+これでパスワードを聞かれなくなりました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6154fc0" class="outline-3">
+<h3 id="org6154fc0"><span class="section-number-3">4.2.</span> cryptリモートの作成</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+crypt(暗号化)リモートは、作成済みのリモートの中に暗号化されたリモートを作成します。
+今回はpcloudリモートの中にcryptというディレクトリを作り、これをcryptリモートにします。
+</p>
+
+<pre class="example">
+rclone mkdir pcloud:/crypt  # cryptリモート用ディレクトリ作成
+rclone config
+n  # 新規作成
+pcloud_crypt  # cryptリモート名を指定
+crypt  # cryptリモートを作ることを指定
+pcloud:/crypt  # cryptリモートを作る場所(pcloud:/crypt)を指定
+1  # ファイル名を暗号化する
+1  # ディレクトリ名を暗号化する
+g  # ランダムパスワードを生成する
+128  # 128ビットを指定
+y  # はい、そのパスワードを使います
+g  # ランダムソルトを生成する
+128  # 128ビットを指定
+y  # はい、そのソルトを使います
+n  # advancedなconfigはしない
+y  # OK
+</pre>
+
+<p>
+確認します。
+</p>
+<pre class="example">
+~ % rclone listremotes
+pcloud:
+pcloud_crypt:
+~ %
+</pre>
+
+<p>
+試しにファイルを置いてみます。
+</p>
+<pre class="example">
+date &gt; test.txt
+rclone copy test.txt pcloud_crypt:
+rclone ls pcloud_crypt:  # test.txtが表示される
+rclone ls pcloud:/crypt  # jmi...(ランダムな文字列)が表示される
+</pre>
+<p>
+3行目はcryptリモートを通して見た場合、最後の行はcryptリモートを置いているディレクトリを直接(cryptリモートを経由せずに)表示しています。pcloudのweb UIを使って見ても、同じ暗号化されたファイル名が見えます。
+</p>
+
+<p>
+ファイルの中身も直接見てみます。
+</p>
+<pre class="example">
+~ % rclone lsf pcloud:crypt
+jmilh0..&lt;snip&gt;..og1bpihd4  # 暗号化された"test.txt"
+~ % rclone cat pcloud:crypt/jmilh0..&lt;snip&gt;..og1bpihd4
+?CLONE.TЂQ???(?..&lt;snip&gt;..?&amp;}????x?!????NG;N?T?/V?
+ ????z4?k?FQ%                                                                   ~ % 
+</pre>
+<p>
+しっかりと暗号化されています。
+</p>
+
+<p>
+もちろん、cryptリモートを通して見ると、普通に見えます。
+</p>
+<pre class="example">
+~ % rclone cat pcloud_crypt:/test.txt
+Thu Mar  7 16:12:41 EST 2024
+~ %
+</pre>
+<p>
+たったこれだけのファイルなのに、結構時間がかかります。性能面が心配になりましたが、複数ファイルをまとめてアップロードしたらそこまで遅くなかったです。
+</p>
+
+<p>
+私は早速、確定申告用の書類一式をcryptリモートにバックアップしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org75eb3cd" class="outline-3">
+<h3 id="org75eb3cd"><span class="section-number-3">4.3.</span> rclone.confをバックアップする</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+~/.config/rclone/rclone.conf はパスワードをつけて暗号化したので、中身を見られても多少は安心です。しかし、もしこれが消えてしまうと、2度とcryptリモートにアクセスできなくなってしまいます。そこで、rclone.confを(念には念を入れて)更に暗号化してpcloud上に置きます。
+</p>
+
+<p>
+まずは暗号化する <a href="https://formulae.brew.sh/formula/gnupg">gnupg</a> をインストールします。brewのあるmacの場合、
+</p>
+<pre class="example">
+brew install gnupg
+</pre>
+
+<p>
+で入ります。
+</p>
+
+<p>
+続いて、暗号化します。
+</p>
+<pre class="example">
+~/tmp % gpg --output rclone.gpg --symmetric ~/.config/rclone/rclone.conf 
+(パスフレーズを2回入力)
+</pre>
+
+<p>
+これをpcloudにコピーします。ポイントはcryptリモートには入れないことです。そうしてしまうと、リカバリーしたいときにそもそもcryptリモートにアクセスできずにはまります。
+</p>
+<pre class="example">
+rclone copy rclone.gpg pcloud:/rclone.gpg
+</pre>
+
+<p>
+リストアする場合は以下のようにします。
+</p>
+<pre class="example">
+rclone copy pcloud:/rclone.gpg ./rclone.gpg
+gpg --output rclone.conf --decrypt rclone.gpg
+(パスフレーズを入力)
+mv rclone.conf ~/.config/rclone/rclone.conf
+chmod 600 ~/.config/rclone/rclone.conf
+</pre>
+<p>
+他のマシンに環境をコピーする場合は、いったんrcloneをインストールした後、rclone.gpgをpCloudのWebUIを使ってダウンロードし、2行目以降を実行します。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf397611" class="outline-2">
+<h2 id="orgf397611"><span class="section-number-2">5.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+去年の11月に勢いで500GB分のpcloudストレージを買いましたが、セキュリティー面が心配でほとんど使っていませんでした。rcloneのcryptリモートを設定したことで、センシティブなデータも含めてバックアップ用途に使えるようになりました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2024-03-08T00:00:00-05:00" pubdate>Fri 08 March 2024</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Flask Web Developmentを読みました &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Flask Web Developmentを読みました</h1>
+    <p class="meta">
+<time datetime="2023-03-11T00:00:00-05:00" pubdate>Sat 11 March 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf924991">1. Flask Web Development</a></li>
+<li><a href="#org21482ce">2. 内容</a></li>
+<li><a href="#org36056fc">3. レベルと前提知識</a></li>
+<li><a href="#org06fd55a">4. 最後に</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgf924991" class="outline-2">
+<h2 id="orgf924991"><span class="section-number-2">1.</span> Flask Web Development</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+O'Reillyの <a href="https://www.amazon.com/Flask-Web-Development-Developing-Applications/dp/1491991739">Flask Web Development 2nd edition</a> by Miguel Grinbergを読みました。
+この本はDjangoと並んでメジャーなPythonのWebアプリケーションフレームワークであるFlaskの実践的な入門書です。
+</p>
+
+
+<div id="orga271422" class="figure">
+<p><img src="./images/flask.jpg" alt="flask.jpg" />
+</p>
+</div>
+
+<p>
+300ページ弱と、Flask及び周辺技術を解説した本としては短めですが、補足のgithub <a href="https://github.com/miguelgrinberg/flasky">レポジトリ</a> が用意されています。
+ソースコードは全てのバージョンがこのレポジトリにありますが、手を動かして全て「写経」するのがオススメです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org21482ce" class="outline-2">
+<h2 id="org21482ce"><span class="section-number-2">2.</span> 内容</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Webアプリ入門としてよくあるパターンでブログサイトを作ります。ネット上に見られるチュートリアルよりもだいぶ踏み込んでいて、きちんとセキュリティーまで考えられたユーザー管理などはそのまま自分のプロジェクトに応用(コピペとも言う)できます。ありがたいことに、ソースコードの一部を使いまわしても良いようです。
+</p>
+
+<p>
+前半は一つのpythonファイルで機能を追加して大きくしていきますが、中盤以降はある程度の規模での開発を想定したディレクトリやファイル配置をしていきます。この分け方がとても参考になりました。Blueprintを使ったネームスペースの使い分けが詳しく説明されています。個人の趣味での開発ではサボりがちなテスト関係も、どういう目的に何のテストが有効なのかも含めて解説されています。(結局、趣味の開発ではまたサボってしまうわけですが)
+</p>
+
+<p>
+最後にはクラウドやコンテナ、物理サーバーを使ったデプロイにも(さらっとですが)触れられていて、単なる入門書の枠を超えた、とても実践的で使える本になっていると思います。
+</p>
+
+<p>
+難点は、古くなってきている部分があることと、ソースコードの説明が不十分だったり間違いがあったりすることです。本書で使っているflask-bootstrapよりも、Bootstrap 5に対応したbootstrap-flaskを使ったほうが良いと思います。ソースコードが不十分な点は、githubの補足レポジトリ(間違いが修正され、アップデートされている)を利用することで何とかなるレベルです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org36056fc" class="outline-2">
+<h2 id="org36056fc"><span class="section-number-2">3.</span> レベルと前提知識</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+この本のレベルは中級者以上で、入門書を終えたあとの2冊目として使うには難しすぎると思います。
+Pythonではデコレーターやクラスは知っているものとして話が進みます。写経しそこねてエラーが出たときにPythonのスタックトレースが読めないとお手上げです。
+HTMLの知識も多少必要です。JavaScriptの知識はあまり必要ありません。
+データベースは入門書を終えてjoinが曲りなりに理解出来るくらいでないとついていけないでしょう。別途、軽くSQLAlchemyには入門しておいたほうがよいように思います。
+補足のgithubレポジトリを使うために、gitが使えたほうがいいと思います。githubのUIでコードを読むだけでも何とかなりますが。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org06fd55a" class="outline-2">
+<h2 id="org06fd55a"><span class="section-number-2">4.</span> 最後に</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+ネット上で非常に評判の良い本書ですが、噂に違わない良書でした。これ1冊読むことで、チュートリアルレベルを完全に超えたWebアプリケーションが作れるようになります。私も早速、FlaskとSQLAlchemy/sqlite3, beautifulsoup, paramikoを組み合わせた職場ラボのサーバー管理Webアプリを作ってみました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2023-03-11T00:00:00-05:00" pubdate>Sat 11 March 2023</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

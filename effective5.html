@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Effective Python一人輪読会(Item 75 to 90) &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Effective Python一人輪読会(Item 75 to 90)</h1>
+    <p class="meta">
+<time datetime="2020-08-31T00:00:00-04:00" pubdate>Mon 31 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8a59225">1. Chapter 9: テストとデバッグ</a>
+<ul>
+<li><a href="#orga4e3f11">1.1. Item 75: デバッグ用表示にはreprを使え</a></li>
+<li><a href="#org84b401f">1.2. Item 76: TestCaseのサブクラスを使って関連する挙動を検証せよ</a></li>
+<li><a href="#orgaef5ce2">1.3. Item 77: setUp, tearDown, setUpModule, tearDownModuleを使って各テストを独立させよ</a></li>
+<li><a href="#orge46093c">1.4. Item 78: 複雑な依存関係を持つコードをテストするために Mocks を使え</a></li>
+<li><a href="#org7d9ecf6">1.5. Item 79: Mockingとテストを容易にするため依存関係をカプセル化せよ</a></li>
+<li><a href="#org70ccb57">1.6. Item 80: pdbを使って対話的にデバッグせよ</a></li>
+<li><a href="#org0ce28e4">1.7. Item 81: メモリの利用状況とリークを調べるためtracemallocを使え</a></li>
+</ul>
+</li>
+<li><a href="#orgaa9730f">2. Chapter 10: コラボレーション</a>
+<ul>
+<li><a href="#org96aa384">2.1. Item 82: コミュニティーが作るモジュールをどこで見つけるかを知れ</a></li>
+<li><a href="#org76592a0">2.2. Item 83: 隔離された、再現可能な依存関係のために仮想環境を使え</a></li>
+<li><a href="#orgcc692ea">2.3. Item 84: 全ての関数、クラス、モジュールにdocstringsを書け</a></li>
+<li><a href="#orgc17df38">2.4. Item 85: モジュールを管理し、安定したAPIを提供するためにパッケージを使え</a></li>
+<li><a href="#org9c92280">2.5. Item 86: デプロイ環境をconfigureするためにモジュールスコープのコードを検討せよ</a></li>
+<li><a href="#org84c04c4">2.6. Item 87: APIから呼び主をinsulateするためにルート例外を定義せよ</a></li>
+<li><a href="#org7b34149">2.7. Item 88: 循環依存を断ち切る方法を知れ</a></li>
+<li><a href="#org30a0dd1">2.8. Item 89: リファクタリングと利用の移行促進のために warningを検討せよ</a></li>
+<li><a href="#org91e31c0">2.9. Item 90: バグを取り除くためにtypingを使った静的解析を検討せよ</a></li>
+</ul>
+</li>
+<li><a href="#orga857356">3. 終わりに</a>
+<ul>
+<li><a href="#org963cfe2">3.1. 感想</a>
+<ul>
+<li><a href="#org5837cab">3.1.1. 内容全般</a></li>
+<li><a href="#org96bfc2f">3.1.2. この本の読み方</a></li>
+<li><a href="#org1d005b7">3.1.3. 第2版について</a></li>
+<li><a href="#org6df4f86">3.1.4. 前後参照の多さ</a></li>
+<li><a href="#orgd6f8176">3.1.5. Kindle版</a></li>
+</ul>
+</li>
+<li><a href="#orgf13a94b">3.2. その次</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8a59225" class="outline-2">
+<h2 id="org8a59225"><span class="section-number-2">1.</span> Chapter 9: テストとデバッグ</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orga4e3f11" class="outline-3">
+<h3 id="orga4e3f11"><span class="section-number-3">1.1.</span> Item 75: デバッグ用表示にはreprを使え</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+print文を使ったデバッグは有用です。デバッグにおいてはintの5とstrの'5'の違いが重要になってくるので、reprを使って表示するべきです。
+</p>
+
+<p>
+普通に作ったクラスを表示しても有用な情報は表示されないので、 <code>__repr__</code> を用意するか <code>__dict__</code> を表示します。本書には自分で作ったクラスなら前者をするように書いてありますが、 <code>__repr__</code> 自体が信用できないケースもあるような気がするので、 <code>__dict__</code> だけで十分なような。いや、__dict__は見づらいですね。
+</p>
+
+<p>
+F-Stringsの <code>{}</code> は <code>f'...{..!r}...'</code> のように <code>!r</code> サフィックスを付けるとrepr扱いになります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84b401f" class="outline-3">
+<h3 id="org84b401f"><span class="section-number-3">1.2.</span> Item 76: TestCaseのサブクラスを使って関連する挙動を検証せよ</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+ここではunittestを勧めていますが、<a href="https://realpython.com/pytest-python-testing/">pytest</a>の方が良さそうです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaef5ce2" class="outline-3">
+<h3 id="orgaef5ce2"><span class="section-number-3">1.3.</span> Item 77: setUp, tearDown, setUpModule, tearDownModuleを使って各テストを独立させよ</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+pytestにも<a href="https://docs.pytest.org/en/stable/xunit_setup.html">同様の機能</a>がありますが、よりパワフルなfixtureメカニズムが使えるかも知れません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def setup_module(module):
+def teardown_module(module):
+
+@classmethod
+def setup_clas(cls):
+@classmethod
+def teardown_class(cls):
+
+def setup_method(self, method):
+def teardown_method(self, method):
+
+def setup_function(function):
+def teardown_function(function):
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge46093c" class="outline-3">
+<h3 id="orge46093c"><span class="section-number-3">1.4.</span> Item 78: 複雑な依存関係を持つコードをテストするために Mocks を使え</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+pytestの<a href="https://docs.pytest.org/en/stable/monkeypatch.html">monkeypatch</a> fixtureが相当するようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7d9ecf6" class="outline-3">
+<h3 id="org7d9ecf6"><span class="section-number-3">1.5.</span> Item 79: Mockingとテストを容易にするため依存関係をカプセル化せよ</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+この節もunittestをベースに話が進むため、斜め読みです。
+</p>
+
+<p>
+独立した関数をクラスメソッドにしたりすると、テストが容易になる場合があるそうです。テストを読みやすくするためにもリファクタリングするとよい、とのこと。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org70ccb57" class="outline-3">
+<h3 id="org70ccb57"><span class="section-number-3">1.6.</span> Item 80: pdbを使って対話的にデバッグせよ</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+pdbの使い方が衝撃的です。コードの止めたい部分に <code>breakpoint()</code> を埋め込みます。
+以下の例では、 <code>if err_2 &gt;= 1:</code> で止めたい条件を絞り込んでいます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import math
+
+def compute_rmse(observed, ideal):
+    total_err_2 = 0
+    count = 0
+    for got, wanted in zip(observed, ideal):
+        err_2 = (got - wanted) ** 2
+        if err_2 &gt;= 1:  # Injected for pdb
+            breakpoint()  # Breakpoint will trigger pdb 
+        total_err_2 += err_2
+        count += 1
+    mean_err = total_err_2 / count
+    rmse = math.sqrt(mean_err)
+    return rmse
+
+result = compute_rmse(
+    [1.8, 1.7, 3.2, 6],
+    [2, 1.5, 3, 5])
+print(result)
+</pre>
+</div>
+<p>
+この状態で普通に実行すると、 <code>breakpoint()</code> の次の行(の直前)でpdbが起動します。変数を見るなり、ステップ実行するなりします。
+</p>
+
+<p>
+pdbコマンドチートシート:
+</p>
+<pre class="example">
+s - step; ステップ実行
+n - next; 1行実行。関数だったら戻るまで実行。
+c - continue; 次のブレークポイントまで実行再開
+locals() - ローカル変数表示
+help
+q - quit
+</pre>
+
+<p>
+post-mortemデバッグは以下のように実行します。例外が出たらpdbが起動します。変数の値を見るくらいしかできませんが。。。
+</p>
+<pre class="example">
+python -m pdb -c continue &lt;filename&gt;.py
+あるいは、
+&gt;&gt;&gt; import my_module
+&gt;&gt;&gt; my_module.some_func()
+Traceback ...&lt;snip&gt;
+&gt;&gt;&gt; import pdb; pdb.pm()
+</pre>
+
+<p>
+これまでprint文デバッグばかりでしたが、pdbも使うようにしたいと思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0ce28e4" class="outline-3">
+<h3 id="org0ce28e4"><span class="section-number-3">1.7.</span> Item 81: メモリの利用状況とリークを調べるためtracemallocを使え</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+まずはメモリを浪費する準備です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import os
+class MyObject:
+    def __init__(self):
+        self.data = os.urandom(100)
+
+def get_data():
+    values = []
+    for _ in range(100):
+        obj = MyObject()
+        values.append(obj)
+    return values
+
+def run():
+    deep_values = []
+    for _ in range(100):
+        deep_values.append(get_data())
+    return deep_values
+</pre>
+</div>
+
+<p>
+tracemallocを使います。メモリ浪費関数(<code>run()</code>)の前後でメモリのスナップショットを取り、差分を見ます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import tracemalloc
+tracemalloc.start(10)  # Set stack depth
+time1 = tracemalloc.take_snapshot()
+x = run()
+time2 = tracemalloc.take_snapshot()
+stats = time2.compare_to(time1, 'lineno')
+for stat in stats[:3]:
+    print(stat)
+&gt;&gt;&gt;
+t.py:4: size=2314 KiB (+2314 KiB), count=29993 (+29993), average=79 B
+t.py:9: size=469 KiB (+469 KiB), count=10001 (+10001), average=48 B
+t.py:10: size=82.8 KiB (+82.8 KiB), count=100 (+100), average=848 B
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaa9730f" class="outline-2">
+<h2 id="orgaa9730f"><span class="section-number-2">2.</span> Chapter 10: コラボレーション</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org96aa384" class="outline-3">
+<h3 id="org96aa384"><span class="section-number-3">2.1.</span> Item 82: コミュニティーが作るモジュールをどこで見つけるかを知れ</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Python Package Index (PyPI)はPythonパッケージのセントラルレポジトリです。PyPIからパッケージをインストールするには pip を使います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org76592a0" class="outline-3">
+<h3 id="org76592a0"><span class="section-number-3">2.2.</span> Item 83: 隔離された、再現可能な依存関係のために仮想環境を使え</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+はい、venvなら使っています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcc692ea" class="outline-3">
+<h3 id="orgcc692ea"><span class="section-number-3">2.3.</span> Item 84: 全ての関数、クラス、モジュールにdocstringsを書け</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+docstringsを書きましょう。ただし、type annotationsと重複する情報は不要です。
+</p>
+
+<p>
+docstringsは <code>__doc__</code> でアクセスできます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">print(repr(some_func.__doc__))
+</pre>
+</div>
+
+<p>
+ビルトインの <code>pydoc</code> モジュールはWebサーバーを立ち上げ、自作のモジュールも含めてアクセス可能な全てのPythonドキュメントが見られるようになります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">$ python -m pydoc -p 1234
+Server ready at http://localhost:1234/
+Server commands: [b]rowser, [q]uit
+server&gt; b
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc17df38" class="outline-3">
+<h3 id="orgc17df38"><span class="section-number-3">2.4.</span> Item 85: モジュールを管理し、安定したAPIを提供するためにパッケージを使え</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+ディレクトリに <code>__init__.py</code> を入れることでパッケージが定義されます。パッケージの第1の目的は、ネームスペースを分けることです。モジュールは一つのファイルです。
+</p>
+
+<p>
+異なるパッケージやモジュールから同名のファイルを import する場合、 <code>as</code> で区別しないと後のimportで上書きされてしまいます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from xxxx.xxxx import inspect as xxxx_inspect
+from yyyy.yyyy import inspect as yyyy_inspect
+</pre>
+</div>
+
+<p>
+公開するAPIを限定したい場合に <code>__all__</code> のスペシャルアトリビュートが使えます。 <code>__all__</code> の値がパブリックAPIとして公開する名前のリストになっています。かなりの規模にならない限り <code>__all__</code> は不要です。
+</p>
+
+<p>
+<code>__init__.py</code> で <code>__all__</code> をaggregateする例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">__all__ = []
+from . models import *
+__all__ += models.__all__
+from . utils import *
+__all__ += utils.__all__
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9c92280" class="outline-3">
+<h3 id="org9c92280"><span class="section-number-3">2.5.</span> Item 86: デプロイ環境をconfigureするためにモジュールスコープのコードを検討せよ</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+複数の種類のデプロイ環境が考えられます。OSの種類、開発環境、テスト環境、等。これらはモジュールスコープの普通のPythonステートメントにて区別します。例えば os.environ 環境変数を見るなど。複雑になってきたら、設定ファイルで区別するようにします。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org84c04c4" class="outline-3">
+<h3 id="org84c04c4"><span class="section-number-3">2.6.</span> Item 87: APIから呼び主をinsulateするためにルート例外を定義せよ</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+モジュールにおいてルート例外を定義するメリットは2つあります。
+</p>
+<ol class="org-ol">
+<li>APIの呼び側のエラーハンドリングミスがわかる</li>
+<li>API提供側の検討漏れがわかる</li>
+</ol>
+
+<p>
+API側でルート例外を定義した例:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class RootError(Exception):
+    pass
+class InvalidValueError(RootError):
+    pass
+class InvalidLengthError(RootError):
+    pass
+
+def some_func(name, value):
+    if len(name) &gt;= 10:
+        raise InvalidLengthError('name length must be 9 or less')
+    if value &lt; 0:
+        raise InvalidValueError('value must be 0 or higher')
+    return name + str(value)
+</pre>
+</div>
+
+<p>
+上記において、API利用側が <code>InvalidValueError</code> のハンドリングしかしていない時に <code>InvalidLengthError</code> 例外が上がると、利用側のエラーハンドリングミスであることがわかります。
+</p>
+
+<p>
+もしPython標準の <code>Exception</code> が上がったときには、API提供側のコードに検討漏れがあったことがわかります。
+</p>
+
+<p>
+更に、中間の例外を定義すると例外のカテゴリー分けが可能です。実際に上げるエラーは中間例外を継承した具体的な例外です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">class RootError(Exception):  # ルート
+    pass
+class ValueError(RootError):  # 中間
+    pass
+class NameError(RootError):  # 中間
+    pass
+...
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7b34149" class="outline-3">
+<h3 id="org7b34149"><span class="section-number-3">2.7.</span> Item 88: 循環依存を断ち切る方法を知れ</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+循環依存(import)になったら、相互依存部分を別のモジュールに切り出して依存ツリーのbottomに置くようにリファクタリングすることが望ましいです。
+</p>
+
+<p>
+そこまでやらずに済む手っ取り早い方法としては、関数等の中に問題のimportを持ってくるダイナミックインポートをすることが考えられます。実行速度が低下する、エラーが出るタイミングが遅くなるなどの副作用があります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org30a0dd1" class="outline-3">
+<h3 id="org30a0dd1"><span class="section-number-3">2.8.</span> Item 89: リファクタリングと利用の移行促進のために warningを検討せよ</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+APIのI/Fに変更を入れた場合、warningを使って利用者に移行の促進をすることができます。 <code>warnings.warn()</code> の <code>stacklevel</code> 引数により、どのレベルの呼び主にwarningを出力するかを指定できます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import warnings
+def require(name, value, default):
+    if value is not None:
+        return value
+    warnings.warn(
+        f'{name} will be required soon, update your code',
+        DeprecationWarning,
+        stacklevel=3)
+    return default
+
+def print_distance(speed, duration, *,
+                   speed_units=None,
+                   time_units=None,
+                   distance_units=None):
+    speed_units = require('speed_units', speed_units, 'mph')
+    time_units = require('time_units', time_units, 'hours')
+    distance_units = require('distance_units', distance_units, 'miles')
+
+    norm_speed = convert(speed, speed_units)
+    norm_duration = convert(duration, time_units)
+    norm_distance = norm_speed * norm_duration
+    distance = localize(norm_distance, distance_units)
+    print(f'{distance} {distance_units}')
+</pre>
+</div>
+
+<p>
+実行すると以下のようになりました。エラーと違って、コードの挙動には影響しません。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import contextlib
+import io
+fake_stderr = io.StringIO()
+with contextlib.redirect_stderr(fake_stderr):
+    print_distance(1000, 3,
+                   speed_units='meters',
+                   time_units='seconds')
+print(fake_stderr.getvalue())
+&gt;&gt;&gt;
+1.8641182099494205 miles
+t.py:46: DeprecationWarning: distance_units will be required soon, update your code
+  print_distance(1000, 3,
+</pre>
+</div>
+
+<p>
+warningはエラーにすることもできます。 <code>-W error</code> を指定します。指定した場合には、実行が途中で終わって最後のdoneメッセージが表示されないことがわかります。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import warnings
+print('begin')
+warnings.warn('This usage is deprecated',
+              DeprecationWarning)
+print('done')
+&gt;&gt;&gt;
+(blg) ~/Documents/AW/py/blg % python t.py  # 普通に起動
+begin
+t.py:3: DeprecationWarning: This usage is deprecated
+  warnings.warn('This usage is deprecated',
+done
+(blg) ~/Documents/AW/py/blg % python -W error t.py  # エラーを指定
+begin
+Traceback (most recent call last):
+  File "t.py", line 3, in &lt;module&gt;
+    warnings.warn('This usage is deprecated',
+DeprecationWarning: This usage is deprecated
+</pre>
+</div>
+
+<p>
+warningを抑止することもできます。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">warnings.simplefilter('ignore')
+warnings.warn('How about this?')
+</pre>
+</div>
+
+<p>
+よりよいアプローチは、ログにリダイレクトすることです。logging.captureWarningsを呼んで、対応するpy.warningsロガーを設定します。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">import io
+import logging
+import warnings
+fake_stderr = io.StringIO()
+handler = logging.StreamHandler(fake_stderr)
+formatter = logging.Formatter(
+    '%(asctime)-15s WARNING] %(message)s')
+handler.setFormatter(formatter)
+
+logging.captureWarnings(True)
+logger = logging.getLogger('py.warnings')
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
+
+warnings.resetwarnings()
+warnings.simplefilter('default')
+warnings.warn('This will go to the logs output')
+
+print(fake_stderr.getvalue())
+&gt;&gt;&gt;
+2020-09-01 08:00:24,490 WARNING] t.py:17: UserWarning: This will go to the logs output
+  warnings.warn('This will go to the logs output')
+</pre>
+</div>
+<p>
+あれ、どこのファイルに出力されているのでしょう??? /var/log/system.logには無さそうですが。。。(macOSです)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org91e31c0" class="outline-3">
+<h3 id="org91e31c0"><span class="section-number-3">2.9.</span> Item 90: バグを取り除くためにtypingを使った静的解析を検討せよ</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+type annotationsはコードの実行にはほとんど関係しませんが、静的解析でタイプエラーを見つけるのに役に立ちます。これまで何度か出てきていますが、こういうやつです:
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def subtract(a: int, b: int) -&gt; int:
+    return a - b
+</pre>
+</div>
+
+<p>
+mypyのようなツールで実行前の静的解析が可能です。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">python -m mypy --strict t.py
+</pre>
+</div>
+
+<p>
+type annotationsには性能的な副作用もあるので、全てに付ける必要はありません。公開しているAPIや最も重要な部分だけに絞った方が良さそうです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga857356" class="outline-2">
+<h2 id="orga857356"><span class="section-number-2">3.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Effective Pythonはなかなか難しい本でしたが、なんとか読み終えることができました。Effective Javaで挫折した経験があるので、少しほっとしています。2冊を比べると、もしかしてEffective Javaの方が難しいのでしょうか。
+</p>
+</div>
+
+<div id="outline-container-org963cfe2" class="outline-3">
+<h3 id="org963cfe2"><span class="section-number-3">3.1.</span> 感想</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org5837cab" class="outline-4">
+<h4 id="org5837cab"><span class="section-number-4">3.1.1.</span> 内容全般</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+評判に違わず良書でした。位置づけとしては初中級くらいの人をターゲットにしていると思われますが、それにしては要求される前提知識のレベルが高めだと感じました。本書は、これをしろ、これをするな、という書き方が多いのですが、その理由を実際のコード例で示してくれるため、納得のいく内容になっています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org96bfc2f" class="outline-4">
+<h4 id="org96bfc2f"><span class="section-number-4">3.1.2.</span> この本の読み方</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+この本はわからないところが出てきたときに、自分でどれらけ調べられるかで、読み進められるかどうかが決まってくると思います。その際に<a href="https://realpython.com/">Real Pythonのサイト</a>にはとてもお世話になりました。フレンドリーな見かけによらず意外と中上級向けの解説記事があって助かりました。
+</p>
+
+<p>
+この本のコードは半分くらい写経して、実際に動かしてみました。実際に動かしてみると(主にTYPOですが)エラーがたくさん出ます。これらのエラーを直すのに改めてコードを読み直したりして、結構勉強になりました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1d005b7" class="outline-4">
+<h4 id="org1d005b7"><span class="section-number-4">3.1.3.</span> 第2版について</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+第2版を読んだのは正解でした。この版ではPython 3.8までの機能を普通に使っています。asyncio周りは動きが速く、最新の情報を元にしないとすぐに陳腐化してしまいますし、特にWalrus operator(<code>:=</code>)はエレガントなコードを書くために必須と思いました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6df4f86" class="outline-4">
+<h4 id="org6df4f86"><span class="section-number-4">3.1.4.</span> 前後参照の多さ</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<p>
+この本は前後の項目への参照が非常に多く、最初は読みづらかったのですが、後半になってくると以前に読んだ内容が多くなり、逆に読みやすくなりました。ただ、後で説明する内容を前の項目で使うことが多く、この構成はどうにならないものかと感じます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd6f8176" class="outline-4">
+<h4 id="orgd6f8176"><span class="section-number-4">3.1.5.</span> Kindle版</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<p>
+何度も書きましたが、Kindle版はコードのインデントが崩れており、非常に読みづらいです。そのためにビットマップイメージへのリンクがある筈ですが、ビットマップでもインデントがずれている箇所がたくさんあり、辟易しました。Kindle版の技術書は2度と買いません。
+</p>
+
+<p>
+また、ビットマップのリンクを見たり、前に出てきたコードを見返したりを多様するためか、Kindleデバイスの電池の減りがとても速かったです。
+</p>
+
+<p>
+繰り返しますが、Kindle版は勧めません。紙かPDF版にしておけばよかったです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf13a94b" class="outline-3">
+<h3 id="orgf13a94b"><span class="section-number-3">3.2.</span> その次</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+fluent pythonに行くか、python cookbookに行くかでまだ悩んでいます。。。
+</p>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-31T00:00:00-04:00" pubdate>Mon 31 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

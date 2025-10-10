@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DL-4; メッセージ表示ウインドウ &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">DL-4; メッセージ表示ウインドウ</h1>
+    <p class="meta">
+<time datetime="2021-02-27T00:00:00-05:00" pubdate>Sat 27 February 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5e77312">1. はじめに</a></li>
+<li><a href="#orgfbcba30">2. メッセージウインドウクラス</a></li>
+<li><a href="#org6a1d5da">3. メッセージ表示メソッド</a></li>
+<li><a href="#org747453e">4. ユーザーインプットメソッド</a></li>
+<li><a href="#org180872a">5. 1文字入力メソッド</a></li>
+<li><a href="#org72ee478">6. 次は、、</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5e77312" class="outline-2">
+<h2 id="org5e77312"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの4回目です。今回はメッセージウインドウとその上での文字列入力を実装します。
+</p>
+
+<p>
+コードのリファクタリングが進んで状況がわからなくなっていると思うので、githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未対応です。
+</p>
+
+<p>
+メッセージウインドウはスペックがなかなか決まらず、どういったものを作るかを決めるのにだいぶ時間がかかりました。スクロール画面の一部に常時表示する形態としました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfbcba30" class="outline-2">
+<h2 id="orgfbcba30"><span class="section-number-2">2.</span> メッセージウインドウクラス</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+仮想スクロール画面クラス(Vscr)の一部にするか悩んだのですが、肥大化するのも嫌なので、メッセージウインドウクラス(Meswin)として独立させました。
+</p>
+
+<p>
+ウインドウ自体のサイズ(width, height)とその中のメッセージ表示エリアのサイズ(mes_width, mes_height)とを分けて管理しています。(x, y)はスクロールウインドウ内のメッセージウインドウの表示位置(左上)です。
+</p>
+
+<p>
+mes_linesに表示するメッセージ(文字列)のリストを入れます。これを空にするとメッセージウインドウをクリアすることができます(cls())。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class Meswin:
+    """
+    Message window.  Max 40x8 at the upper center of the scroll window.
+    The message area is max 36x6 and a message starts with " * ".
+    """
+
+    def __init__(self, vscr):
+        self.vscr = vscr
+        self.width = min(40, vscr.width)
+        self.height = min(8, vscr.height)
+        self.x = max(0, (vscr.width-self.width)//2)  # center
+        self.y = max(0, (vscr.height-self.height)//10)  # uppper
+        self.mes_width = self.width - 4  # Message area width
+        self.mes_height = self.height - 2  # Message area height
+        self.cur_x = 0  # cursor position in message area
+        self.cur_y = 0
+        self.show = False
+        self.mes_lines = []
+        self.cls()
+
+    def cls(self):
+        # clear message area
+        self.mes_lines = []
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6a1d5da" class="outline-2">
+<h2 id="org6a1d5da"><span class="section-number-2">3.</span> メッセージ表示メソッド</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+print()メソッドでメッセージを表示します。昔のファミコンRPGのように、メッセージの先頭には" * "を付けます。この記号はstart引数で変更できます。
+</p>
+
+<p>
+引数msgはメッセージで、この中に含まれる'\n'を改行として処理します。メソッドの最初に'\n'でsublinesリストにsplitしていますが、'\n'の情報が失われないように正規表現のre.split()を使っています。
+</p>
+
+<p>
+sublineは更にウインドウの右端&amp;単語の境界で折り返すようにtextwrap.wrap()を使います。ここで折り返した行の先頭には' * 'が付かないようにしました。
+</p>
+
+<p>
+改行オンリーの行を正しく処理するように、len(ssls)がゼロの時にもmes_linesに登録する処理を入れています。
+</p>
+
+<p>
+表示行数がメッセージエリアの行数よりも多い文はmes_linesから抜いています。こうすることで、メッセージウインドウがスクロールします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def print(self, msg, start='*'):
+    """
+    Print a message in the message window.  Long text wraps
+    to the next line.  Process '\n' in texts.
+    """
+    sublines = re.split('\n', msg)
+    for idx, sl in enumerate(sublines):  # subline
+        header = '  '
+        if idx == 0:
+            header = start + ' '
+        ssls = textwrap.wrap(sl, width=self.mes_width)
+        if len(ssls) == 0:
+            self.mes_lines.append(header)
+        else:
+            for ssl in ssls:
+                self.mes_lines.append(''.join([header, ssl]))
+                header = '  '
+    if len(self.mes_lines) &gt; self.mes_height:
+        self.mes_lines = self.mes_lines[len(
+            self.mes_lines)-self.mes_height:]
+    self.cur_y = len(self.mes_lines)-1
+    self.show = True
+</pre>
+</div>
+
+<p>
+スクリーンショット(笑)です。1歩歩くたびにメッセージ出力するようにしてみました。
+</p>
+
+<pre class="example">
+^^^^^^^^^^^^^^^^^^^^----------------------------------------^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * north                               |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * north                               |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * south                               |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * west                                |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * south                               |###...#############
+^^^^^^^^^^^^^^^^^^^^| * east                                |###...##...........
+^^^^^^^^^^^^^^^^^^^^----------------------------------------+..+...##...........
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^##########..........#####.......####...##...........
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^##########..........########+#######...########+####
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^##########..........########+#######...########.####
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^##########..@.......*.....+.....+...+++++.......####
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^##########..........#######.....####.....###########
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^##########..........#######.....####.....###########
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org747453e" class="outline-2">
+<h2 id="org747453e"><span class="section-number-2">4.</span> ユーザーインプットメソッド</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+メッセージウインドウ内でユーザーインプットできるようにしました。"* "の代わりに"&gt; "で入力を促します。
+</p>
+
+<pre class="example">
+^^^^^^^^^^^^^^^^^^^^----------------------------------------####......##########
+&lt;snip&gt;
+^^^^^^^^^^^^^^^^^^^^| * How?                                |*......#####.......
+^^^^^^^^^^^^^^^^^^^^| &gt;                                     |#####..#####.......
+^^^^^^^^^^^^^^^^^^^^----------------------------------------.#####++#####.......
+</pre>
+
+<p>
+宝箱の罠やスペル(魔法)の名前の入力でこのメソッドを使います。
+</p>
+
+<pre class="example">
+^^^^^^^^^^^^^^^^^^^^| * How?                                |.######*#####......
+^^^^^^^^^^^^^^^^^^^^| &gt; poison needle                       |.*......#####......
+^^^^^^^^^^^^^^^^^^^^| * Input: poison needle                |.#####..#####......
+^^^^^^^^^^^^^^^^^^^^----------------------------------------.#####++#####.......
+</pre>
+
+<p>
+inputメソッドです。メッセージとプロンプトを表示して、その右にカーソルを持って行き、後は普通に標準ライブラリのinput()関数を呼んでいます。こちらの関数で画面表示された文字列はメッセージウインドウに登録されておらず、次回の表示で消えてしまうために、メッセージウインドウに登録しなおしています。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def input(self, msg):
+    """
+    Input a string in the message window.
+    """
+    self.print(msg)
+    self.print('', start='&gt;')
+    self.vscr.show_meswin()
+    self.vscr.display()
+    print(f"\033[{self.y+self.cur_y+1};{self.x+5}H", end='', flush=True)
+    try:
+        value = input()
+        self.mes_lines[self.cur_y] = "&gt; " + value
+    except:
+        pass
+    return value
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org180872a" class="outline-2">
+<h2 id="org180872a"><span class="section-number-2">5.</span> 1文字入力メソッド</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+次は1文字入力メソッドです。Yes/Noに答える際に'y'または'n'の入力待ちをするようなケースで使用します。
+</p>
+
+<pre class="example">
+^^^^^^^^^^^^^^^^^^^^----------------------------------------^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * east                                |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * east                                |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * east                                |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * Do you? (y/n) &gt; f                   |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * Do you? (y/n) &gt; y                   |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^| * Input char: y                       |^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^----------------------------------------####################
+</pre>
+
+<p>
+期待する文字をリストで渡して、それが出るまでループさせることもできます。このメソッドはnon-blocking 1文字入力のgetch()関数を使っていて、リターンキーの入力が不要です。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def input_char(self, msg, values=[]):
+    """
+    Input a character in the message window.
+    """
+    ch = ''
+    while ch not in values:
+        self.print(msg+' &gt;')
+        self.vscr.show_meswin()
+        self.vscr.display()
+        print(f"\033[{self.y+self.cur_y+1};{self.x+len(msg)+8}H",
+              end='', flush=True)
+        ch = getch()
+        l = self.mes_lines.pop()
+        self.print(''.join([l, ' ', ch])[2:])
+        self.vscr.show_meswin()
+        self.vscr.display()
+        if not values:
+            break
+    return ch
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org72ee478" class="outline-2">
+<h2 id="org72ee478"><span class="section-number-2">6.</span> 次は、、</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+メッセージも出力できるようになったので、次はいよいよWizardry画面らしい、パーティーリストの画面表示にチャレンジします。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-02-27T00:00:00-05:00" pubdate>Sat 27 February 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

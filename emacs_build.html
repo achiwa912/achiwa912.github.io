@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rokcy LinuxとM1 MacBook上でemacsをソースからビルドしてみる &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li class="active">
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Rokcy LinuxとM1 MacBook上でemacsをソースからビルドしてみる</h1>
+    <p class="meta">
+<time datetime="2024-07-12T00:00:00-04:00" pubdate>Fri 12 July 2024</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb53790c">1. はじめに</a></li>
+<li><a href="#orgaea0cce">2. 先人の情報を探す</a></li>
+<li><a href="#org39fabad">3. ビルドしてみる</a></li>
+<li><a href="#orgc507f03">4. 動かしてみる</a></li>
+<li><a href="#org4b7500d">5. M1 MacBook Proでもビルドしてみる</a></li>
+<li><a href="#org332ad1b">6. 最後に</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb53790c" class="outline-2">
+<h2 id="orgb53790c"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+最新のRocky Linux 9.4にdnfで入れられるemacsは27.1で、これだといくつか使えない機能があるんです。そこで、ついに重い腰を上げてemacsをソースからビルドしてみることにしました。以前チャレンジした時はエラーが出たら機能を削っていき、結局はターミナルでしか使えないものになりましたが、今回はGUI版が使えるように頑張ります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaea0cce" class="outline-2">
+<h2 id="orgaea0cce"><span class="section-number-2">2.</span> 先人の情報を探す</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+ひたすらググってみて、見つけたのは <a href="https://batsov.com/articles/2021/12/19/building-emacs-from-source-with-pgtk/">Building Emacs from Source with pgtk</a> のブログ記事でした。しかし残念ながらこれはUbuntuのもので、Rocky Linuxとはパッケージ名が色々と違ってきます。ドンピシャなサイトは見つからなかったので、これを参考にトライアンドエラーで試してみます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org39fabad" class="outline-2">
+<h2 id="org39fabad"><span class="section-number-2">3.</span> ビルドしてみる</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+まずはemacsのソースコードを入手します。
+</p>
+<pre class="example">
+git clone git://git.sv.gnu.org/emacs.git
+</pre>
+
+<p>
+さすがに巨大プロジェクトだけあって、時間がかかります。
+</p>
+
+<p>
+つぎは、必要なパッケージを入れたいところですが、いきなり <code>build-essential</code> が Rocky Linuxにはありません。。。仕方がないので、
+</p>
+<pre class="example">
+cd emacs
+./autogen.sh
+./configure --with-native-compilation --with-native-json --with-pgtk
+</pre>
+<p>
+で出たエラーをググりながらつぶしていきます。上記の参考ブログによると、./configureで出るエラーを見て必要なものを入れていくのが普通のやり方なようです。素人には少し敷居が高いですね。。。ちなみに <code>--with-pgtk</code> は Rocky Linux等RedHat系のデフォルトWayland (X11でなく)をGUIモードで使うオプションらしいです。今回はこれとネイティブコンパイルのオプションがメインの目的です。
+</p>
+
+<p>
+入れたのは以下です。ここが試行錯誤するところです。
+</p>
+<pre class="example">
+sudo dnf install make automake gcc gcc-c++ kernel-devel
+sudo dnf install texinfo
+sudo dnf install gtk3-devel
+sudo dnf install gnutls-devel
+sudo dnf lnstall libgccjit libgccjit-devel
+</pre>
+<p>
+で、最終的に
+</p>
+<pre class="example">
+./configure --with-native-compilation --with-native-json --with-pgtk
+make bootstrap
+</pre>
+<p>
+で曲りなりにビルドできたみたいです。
+</p>
+
+<p>
+インストールします。
+</p>
+<pre class="example">
+sudo make install
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgc507f03" class="outline-2">
+<h2 id="orgc507f03"><span class="section-number-2">4.</span> 動かしてみる</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+起動すると、すでにインストール済みのパッケージでエラーが出るので、M-x list-packages でインストール済みパッケージを全ていったん消して、最初からやりなおしたところ、意外とすんなりと既存 init.elが使えてしまいました。
+</p>
+
+<p>
+いろいろwarningが出ているようでですが、見なかったことにします。以前出ていたTLSで接続できない問題も、知らない間に解決していたようです。gnutls-develがうまく認識できていなかったのかな。
+</p>
+
+<p>
+せっかくなので以下をinit.elに追記します。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(pixel-scroll-precision-mode)
+</pre>
+</div>
+
+<p>
+曲りなりにemacsがGUI/ターミナル版ともに使えているように見えます。。。ちなみに入ったのは emacs 31.0.50 でした。新しいと喜んで使っていたMacのemacsが29.3なので、更に新しいです。少しうれしい。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4b7500d" class="outline-2">
+<h2 id="org4b7500d"><span class="section-number-2">5.</span> M1 MacBook Proでもビルドしてみる</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+調子に乗って、M1 MacBook Proでもネイティブコンパイル版の最新emacsが入るか試してみました。
+当然ググるところから始めます。なんと、いきなりよい記事を見つけました。 <a href="https://zenn.dev/xbonewalker/articles/35c4fb424bbfa7">macOSにネイティブコンパイル対応のEmacs29を導入する</a>
+</p>
+
+<p>
+この記事の通りに入れてみます。
+</p>
+<pre class="example">
+brew install autoconf texinfo gnutls pkgconfig gcc libgccjit
+git clone --depth 1 https://git.savannah.gnu.org/git/emacs.git
+cd emacs
+./autogen.sh
+./configure --with-native-compilation=aot --with-ns --without-x
+make -j8
+make install
+</pre>
+
+<p>
+そして <code>emacs/nextstep</code> に作成されたEmacs.appをApplicationにコピーして起動したところ、
+</p>
+<pre class="example">
+libgccjit.so: error: error invoking gcc driver
+</pre>
+
+<p>
+というエラーが出ました。一通りパッケージを消して入れ直してもだめです。libgccjit.soが見つからないのかな。解決策を探すと早速見つかりました。<a href="https://github.com/d12frosted/homebrew-emacs-plus/issues/323">warning - libgccjit.so: error: error invoking gcc driver</a> ここのコメントによると、 <code>LIBRARY_PATH</code> をearly-init.elで設定するとよいとあります。
+</p>
+
+<p>
+以下のような.emacs.d/early-init.elを作成したところうまくいきました。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(setenv "LIBRARY_PATH" "/opt/homebrew/opt/gcc/lib/gcc/14:/opt/homebrew/opt/libgccjit/lib/gcc/14:/opt/homebrew/opt/gcc/lib/gcc/14/gcc/aarch64-apple-darwin22/14")
+</pre>
+</div>
+<p>
+上記で、14や22等の数字は、実際に入っているもので置き換えてください。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org332ad1b" class="outline-2">
+<h2 id="org332ad1b"><span class="section-number-2">6.</span> 最後に</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+意外にも数時間しか試行錯誤せず、emacsをソースからビルドすることに成功してしまいました。うれしいです。
+</p>
+
+<p>
+肝心のネイティブコンパイルの威力は、言われると体感的に速くなったような気もしますが、わざわざそのために自分でビルドするという茨の道を行くほどのことも無いかもしれません。しばらく使ってみると、また感じ方が変わってくるかもしれませんが。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2024-07-12T00:00:00-04:00" pubdate>Fri 12 July 2024</time>  <span class="categories">
+    <a class='category' href='/category/emacs.html'>Emacs</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

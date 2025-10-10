@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>M1 MacBook上にUbuntuを入れる &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">M1 MacBook上にUbuntuを入れる</h1>
+    <p class="meta">
+<time datetime="2025-01-03T00:00:00-05:00" pubdate>Fri 03 January 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge91e8dc">1. はじめに</a></li>
+<li><a href="#org9cbb426">2. 環境構築</a>
+<ul>
+<li><a href="#org90c7a38">2.1. Ubuntuインストール</a>
+<ul>
+<li><a href="#org5b1519e">2.1.1. Ubuntu最新LTM版のダウンロード</a></li>
+<li><a href="#orgca8d314">2.1.2. VM作成</a></li>
+<li><a href="#orgf4c2c25">2.1.3. Ubuntuインストール</a></li>
+<li><a href="#org6303881">2.1.4. デスクトップ版インストール</a></li>
+<li><a href="#org7984e55">2.1.5. ネットワーク変更(旧方法)</a></li>
+<li><a href="#orga49d0ef">2.1.6. ネットワーク変更(追記<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-09-17 Wed&gt;</span></span>)</a></li>
+<li><a href="#orgf25e383">2.1.7. ssh keyのインポート</a></li>
+<li><a href="#org4bd5dc3">2.1.8. OSを最新にする</a></li>
+<li><a href="#orgcb64aec">2.1.9. ssh key作成</a></li>
+<li><a href="#org1b8e5a0">2.1.10. 日本語入力環境を作る</a></li>
+<li><a href="#orgd99b3e4">2.1.11. キーボードショートカット</a></li>
+<li><a href="#orgaaa9049">2.1.12. DNSの変更</a></li>
+<li><a href="#org544a72d">2.1.13. ディスプレイ設定</a></li>
+</ul>
+</li>
+<li><a href="#orgfb2a237">2.2. RetroArchインストール(おまけ)</a>
+<ul>
+<li><a href="#org551395b">2.2.1. Coreインストール</a></li>
+<li><a href="#orgf290626">2.2.2. 動作確認</a></li>
+<li><a href="#orgdae8422">2.2.3. 結論</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org6ba0dcd">3. Ubuntuの感想</a></li>
+<li><a href="#org7b2434a">4. おわりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge91e8dc" class="outline-2">
+<h2 id="orge91e8dc"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+年末の休みを使ってMacBook Pro16インチ上にUbuntuを入れ、お試しでRetroArchをセットアップし
+てみました。これまでRedHat系ばかりでしたが、Ubuntuはどうでしょうか。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9cbb426" class="outline-2">
+<h2 id="org9cbb426"><span class="section-number-2">2.</span> 環境構築</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org90c7a38" class="outline-3">
+<h3 id="org90c7a38"><span class="section-number-3">2.1.</span> Ubuntuインストール</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org5b1519e" class="outline-4">
+<h4 id="org5b1519e"><span class="section-number-4">2.1.1.</span> Ubuntu最新LTM版のダウンロード</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<ul class="org-ul">
+<li>ubuntu ARM downloadなどで検索してARM版のisoイメージを探します。現在の最新安定版は<a href="https://ubuntu.com/download/server/arm">20.04.01 LTS</a>のようです(<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-10 Thu&gt;</span></span>現在20.04.02 LTS)。ARMはなぜかデスクトップ版が無いのでサーバー版を選びます。ubuntu-24.04.1-live-server-arm64.iso</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgca8d314" class="outline-4">
+<h4 id="orgca8d314"><span class="section-number-4">2.1.2.</span> VM作成</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<ul class="org-ul">
+<li>UTM &gt; <code>+</code> &gt; Virtualize &gt; Linux &gt; Boot ISO Image &gt; Browse&#x2026; 
+<ul class="org-ul">
+<li>今回はUse Apple Virtualizationを外したままにしました。Apple Virtualizationが原因でRetroArchで音が出なくなるという書き込みを見た気がします。</li>
+</ul></li>
+<li>ISOイメージ選択 &gt; Continue &gt; (メモリサイズ4GB、ドライブも64GBのまま) &gt; Save</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf4c2c25" class="outline-4">
+<h4 id="orgf4c2c25"><span class="section-number-4">2.1.3.</span> Ubuntuインストール</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<ul class="org-ul">
+<li>Run VM &gt; Try or Install Ubuntu Server &gt; (wait) &gt; English</li>
+<li>&gt; Continue without updating &gt; (keyboard) Done</li>
+<li>&gt; (Ubuntu Server) Done &gt; (Network) Done &gt; (Proxy) Done</li>
+<li>&gt; (Mirror) Done &gt; (Use an entire disk) Done &gt; (file system summary) Done</li>
+<li>&gt; Continue &gt; your name, server name, username, passwordいれる &gt; Done</li>
+<li>&gt; Continue &gt; check Install OpenSSH server &gt; Done &gt; (server snaps) Done</li>
+<li>&gt; Begin Installation &gt; (wait) &gt; (Installation complete!)</li>
+<li>&gt; UTMウインドウからeject ISO &gt; Reboot Now</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6303881" class="outline-4">
+<h4 id="org6303881"><span class="section-number-4">2.1.4.</span> デスクトップ版インストール</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+サーバー版なのでGUIではなくCUIのログインコンソールで立ち上がってきます。<a href="https://jun1okamura.medium.com/install-ubuntu-on-mac-m1-powered-by-utm-499aba3ba7e9">ここ</a>を参考にGUIを入れたりします。先人がいてよかった。ありがとうございます。
+</p>
+<ul class="org-ul">
+<li>リンク先のページを見ながら、まずは未使用ストレージ領域を使用できるようにします。</li>
+</ul>
+<pre class="example">
+sudo lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv
+sudo resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv
+</pre>
+<ul class="org-ul">
+<li>デスクトップ版のインストール</li>
+</ul>
+<pre class="example">
+sudo apt install ubuntu-desktop
+(ひたすら待つ)
+poweroff
+</pre>
+<ul class="org-ul">
+<li>boot VM &gt; (割と待つ) &gt;  GUI画面からログイン</li>
+<li>ブート高速化の <a href="https://www.reddit.com/r/Ubuntu/comments/16xi5h0/how_do_i_fix_systemdnetworkdwaitonlineservice/">おまじない</a> をやっておきます。</li>
+</ul>
+<pre class="example">
+sudo vim /etc/systemd/system/network-online.target.wants/systemd-networkd-wait-online.service 
+</pre>
+
+<ul class="org-ul">
+<li><code>ExecStart=/lib/systemd/systemd-networkd-wait-online</code> の行を探して、 <code>--timeout=5</code> を追記します。</li>
+</ul>
+<pre class="example">
+ExecStart=/lib/systemd/systemd-networkd-wait-online --timeout=5 
+</pre>
+
+<ul class="org-ul">
+<li>このあたりでpoweoffし、VMのクローンを取っておきましょう。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7984e55" class="outline-4">
+<h4 id="org7984e55"><span class="section-number-4">2.1.5.</span> ネットワーク変更(旧方法)</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+なぜか、最初から変更しておくと、途中で黒画面のままブートしなかったり、ログインできなかったりする(気がする)ので、VMクローンを取った後にやります。
+</p>
+<ul class="org-ul">
+<li>right-click vm &gt; Edit &gt; Network &gt; Newtwork Mode: Bridged (Advanced) &gt; Save
+<ul class="org-ul">
+<li>デフォルトのままだとIPは192.168.64.xxとなり、外にsshできません。。。</li>
+</ul></li>
+<li>無事にブートしてGUIログインできたら、オプションでIPを固定します。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga49d0ef" class="outline-4">
+<h4 id="orga49d0ef"><span class="section-number-4">2.1.6.</span> ネットワーク変更(追記<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-09-17 Wed&gt;</span></span>)</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<p>
+ネットワークのやり方を変えました。VMからの通常のネットアクセスはデフォルトで設定されているShared Networkをそのまま使い、ホストのMacBookからvmにsshする際にはEmulated LANを使います。
+</p>
+
+<ul class="org-ul">
+<li>right-click vm &gt; Edit &gt; Devices &gt; New&#x2026; &gt; Network - これでNetworkが2つになります。</li>
+<li>2つ目のNetworkをクリック &gt; Network Mode: Emulated VLAN - Networkの下にPort For&#x2026;が出てくるのでそれをクリック &gt; New&#x2026; &gt; ポート 22(ゲスト側) と 2222(ホスト側)を設定 &gt; Save</li>
+</ul>
+
+<p>
+ゲストVMへは:
+</p>
+<pre class="example">
+ssh localhost -p 2222
+</pre>
+<p>
+のようにホスト自身のIPとポートを指定してアクセスします。
+</p>
+
+<p>
+このようにすることで、ゲスト用にIPアドレスを一つ使うことがなくなるのと、自宅以外のWifi/ネットワーク環境でもVMへのアクセス(ssh)方法が変わることがありません。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf25e383" class="outline-4">
+<h4 id="orgf25e383"><span class="section-number-4">2.1.7.</span> ssh keyのインポート</h4>
+<div class="outline-text-4" id="text-2-1-7">
+<p>
+MacBookからUbuntuに、パスワード認証無しでsshで入れるように、ssh keyをVMにインポートします。これをやっておくと、trampモードを使って、ホストのMacからVM上のファイルをemacsでシームレスに編集できるようになります。
+</p>
+<ul class="org-ul">
+<li>まずは、VM上で sshd が動いていることを確認します。</li>
+</ul>
+<pre class="example">
+ssh localhost
+exit
+</pre>
+
+<ul class="org-ul">
+<li>次にホストであるMacBookからVMにsshできることを確認します。最初はパスワードを聞かれます。</li>
+</ul>
+<pre class="example">
+ssh &lt;user&gt;@&lt;VM IP&gt;
+</pre>
+
+<ul class="org-ul">
+<li>ホストからsshキーをインポートします。&lt;id_rsa&gt;はプライベートキーを指定します。</li>
+</ul>
+<pre class="example">
+ssh-copy-id -i &lt;id_rsa&gt; &lt;user&gt;@&lt;VM IP&gt;
+</pre>
+
+<ul class="org-ul">
+<li>無事に、パスワード認証無しで ssh できることを確認します。</li>
+</ul>
+<pre class="example">
+ssh &lt;user&gt;@&lt;VM IP&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4bd5dc3" class="outline-4">
+<h4 id="org4bd5dc3"><span class="section-number-4">2.1.8.</span> OSを最新にする</h4>
+<div class="outline-text-4" id="text-2-1-8">
+<pre class="example">
+sudo apt update
+sudo apt upgrade
+poweroff
+</pre>
+<ul class="org-ul">
+<li>VMのクローンを取ってブート</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcb64aec" class="outline-4">
+<h4 id="orgcb64aec"><span class="section-number-4">2.1.9.</span> ssh key作成</h4>
+<div class="outline-text-4" id="text-2-1-9">
+<pre class="example">
+cd ~/.ssh
+ssh-keygen -t ed25519 -C "&lt;email address&gt;"
+</pre>
+
+<p>
+参考URL
+</p>
+<ul class="org-ul">
+<li><a href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1b8e5a0" class="outline-4">
+<h4 id="org1b8e5a0"><span class="section-number-4">2.1.10.</span> 日本語入力環境を作る</h4>
+<div class="outline-text-4" id="text-2-1-10">
+</div>
+<ol class="org-ol">
+<li><a id="orgbbd49d8"></a>GNOME<br />
+<div class="outline-text-5" id="text-2-1-10-1">
+<pre class="example">
+sudo apt install fcitx5-mozc
+im-config -n fcitx5
+sudo apt install gnome-shell-extensions gnome-tweaks
+</pre>
+<ul class="org-ul">
+<li>(一旦リブート?)</li>
+<li>ブラウザーからGnome Extensions website &gt; Input Method Panel インストール</li>
+</ul>
+</div>
+</li>
+
+<li><a id="org0828930"></a>emacs<br />
+<div class="outline-text-5" id="text-2-1-10-2">
+<p>
+GNOMEで設定した日本語入力はemacsでも使えますが、オーバーレイがじゃっかん見づらいので、emacs-mozcを入れます。
+</p>
+<pre class="example">
+(require 'mozc)
+(setq default-input-method "japanese-mozc")
+(setq mozc-candidate-style 'overlay)
+</pre>
+
+<pre class="example">
+sudo apt install emacs-mozc-bin
+</pre>
+<p>
+C-\で入力モードトグルです。
+</p>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-orgd99b3e4" class="outline-4">
+<h4 id="orgd99b3e4"><span class="section-number-4">2.1.11.</span> キーボードショートカット</h4>
+<div class="outline-text-4" id="text-2-1-11">
+<p>
+非常に面倒なことに、入力されたキー(特にCommandなどの特殊キー)を持っていくレイヤーがいくつもある。まずホストであるMacOS X。例えばCommand + SpaceでSpotlight Searchが出てくる。次にGNOME。Command(Super)キーはいろいろと使われていて、鬱陶しいことこの上ない。デフォルトでCtrl-Spaceが(日本語)入力モード切り替えにアサインされているので、これを変えないとemacsでとても困る。
+</p>
+
+<ul class="org-ul">
+<li>Settings &gt; Keyboard &gt; View and Customize Shortcuts
+<ul class="org-ul">
+<li>Superで検索して、ことごとくdisableする</li>
+<li>&gt; Typing - これだけ変えても大した解決にならない割に邪魔になる。適当にC-`とかをアサインしておく</li>
+</ul></li>
+<li>Tweaks &gt; Keyboard。これも持っていくっぽい?</li>
+<li>emacs
+<ul class="org-ul">
+<li>入力切替の標準がC-\。GNOMEなどに邪魔されないようにする</li>
+<li>Command(Super)キーをメタキーに割り当てる</li>
+</ul></li>
+</ul>
+<pre class="example">
+(setq x-super-keysym 'meta)
+</pre>
+<ul class="org-ul">
+<li>いろいろやってGNOMEは入力切替にC-=を指定したんだけど、どこでやったんだろう???</li>
+<li>なんと、UTMがCommand+w(Close), Command+n(New&#x2026;), Command+o(Open&#x2026;)で持って行く。Copy (Meta+w)しようとしてVMがクローズしてしまう。。
+<ul class="org-ul">
+<li>回避策: MacのSettings &gt; Keyboard &gt; Keyboard Shortcuts&#x2026; &gt; App Shortcuts &gt; + &gt; UTM, New&#x2026;, 使わないキーバインド、例えばCtrl+Shift+Command+0で上書きしてやる</li>
+</ul></li>
+</ul>
+
+<p>
+参考
+</p>
+<ul class="org-ul">
+<li><a href="https://qiita.com/keith_campbell/items/791816c4ec3e334d10e4">https://qiita.com/keith_campbell/items/791816c4ec3e334d10e4</a></li>
+<li><a href="https://v0dro.in/blog/2018/04/12/setup-japanese-environment-on-ubuntu-and-emacs/">https://v0dro.in/blog/2018/04/12/setup-japanese-environment-on-ubuntu-and-emacs/</a></li>
+<li><a href="https://github.com/utmapp/UTM/issues/5513">https://github.com/utmapp/UTM/issues/5513</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaaa9049" class="outline-4">
+<h4 id="orgaaa9049"><span class="section-number-4">2.1.12.</span> DNSの変更</h4>
+<div class="outline-text-4" id="text-2-1-12">
+<p>
+DNSをローカルのpi-holeに変更します。これが意外とくせもの。
+</p>
+<ul class="org-ul">
+<li>Settingsのネットワーク設定でDNSを以下に設定する。</li>
+</ul>
+<pre class="example">
+192.168.0.156,8.8.8.8,1.1.1.1
+</pre>
+<ul class="org-ul">
+<li>腹立たしいことに、これが反映されない。nslookupすると127.0.0.53が設定されている。これはローカルのcaching stub resolver。こいつを何とかしないといけない。</li>
+<li>sudo vim /etc/systemd/resolved.conf</li>
+</ul>
+<pre class="example">
+DNSStubListener=no
+</pre>
+
+<pre class="example">
+sudo systemctl restart systemd-resolved
+</pre>
+
+<ul class="org-ul">
+<li><a href="https://askubuntu.com/questions/1521666/24-04-how-to-find-what-is-changing-dns-settings-in-etc-resolv-conf">https://askubuntu.com/questions/1521666/24-04-how-to-find-what-is-changing-dns-settings-in-etc-resolv-conf</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org544a72d" class="outline-4">
+<h4 id="org544a72d"><span class="section-number-4">2.1.13.</span> ディスプレイ設定</h4>
+<div class="outline-text-4" id="text-2-1-13">
+<p>
+画面がどうもぼやけていてフォントがきれいに表示できない場合、GPUを利用していないせいかもしれません。
+試行錯誤の結果、UTMのディスプレイカードを変更することで、画面がクリスピーになりました。
+UTM &gt; VM &gt; config &gt; Display &gt; Emulated Display Card: virtio-gpu-gl-pci (GPU Supported)
+</p>
+
+<p>
+ネット上ではvirtio-ramfb-gl (GPU Supported)にするとよいといった情報がありましたが、マウスが一切使えなくなりました。唯一使えたのがvirtio-gpu-gl-pciでした。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfb2a237" class="outline-3">
+<h3 id="orgfb2a237"><span class="section-number-3">2.2.</span> RetroArchインストール(おまけ)</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+RetroArch公式サイトの<a href="https://www.retroarch.com/index.php?page=linux-instructions">Linuxインストール</a> のページにUbuntuでのインストール手順が書いてあるので、そのままコピペして実行します。
+</p>
+<pre class="example">
+sudo add-apt-repository ppa:libretro/stable &amp;&amp; sudo apt-get update &amp;&amp; sudo aptget install retroarch
+</pre>
+
+<p>
+長々と走ってインストール完了します。
+</p>
+</div>
+
+<div id="outline-container-org551395b" class="outline-4">
+<h4 id="org551395b"><span class="section-number-4">2.2.1.</span> Coreインストール</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+ここで、RetroArch上からCoreをダウンロードしようとすると何も起きません。それもそのはず、ARM64向けのcoresは用意されていないからなのでした。そこで、aarch64 core retroarchで検索すると、ビルド済みのcoreが(たくさん)置いてある <a href="https://github.com/christianhaitian/retroarch-cores">ありがたいページ</a> がヒットするので、こちらのaarch64ディレクトリからcoreをダウンロードします。
+</p>
+
+<p>
+これをunzipしたものを <code>/usr/lib/aarch64-linux-gnu/libretro/</code> にコピーします。注意点として、なぜかここ以外のディレクトリからcoreをロードしようとしても失敗します。
+</p>
+<pre class="example">
+sudo cp &lt;core&gt;_libretro.so /usr/lib/aarch64-linux-gnu/libretro/
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgf290626" class="outline-4">
+<h4 id="orgf290626"><span class="section-number-4">2.2.2.</span> 動作確認</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+あとは、合法的/自己責任で入手したROMをロードして実行するだけ。うまく動きましたか? ちゃんと音は出たでしょうか。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdae8422" class="outline-4">
+<h4 id="orgdae8422"><span class="section-number-4">2.2.3.</span> 結論</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+全画面では秒60フレームがでなくてカクカクします。さすがにVM上で動かすには無理があったでしょうか。少し楽しみだったのだけど残念。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ba0dcd" class="outline-2">
+<h2 id="org6ba0dcd"><span class="section-number-2">3.</span> Ubuntuの感想</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+全般的に気が利いていて使い勝手が良いように思います。以下、RockyLinux9.4との比較になりますが。。
+</p>
+<ul class="org-ul">
+<li>GUIの色使いは若干押し付けがましい</li>
+<li>文字やアイコンがクリスピーで読みやすい</li>
+<li>フルスクリーンにしても単に拡大するのでなく、解像度の変化で追従する</li>
+<li>スリープから復帰したときに時計が合っている(chrony.confを変更しなくても)</li>
+<li>ネット上に情報がより多い</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7b2434a" class="outline-2">
+<h2 id="org7b2434a"><span class="section-number-2">4.</span> おわりに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+以前、一度Ubuntuを試したときはGUIの色使いのクセが嫌で使用を断念しましたが、なかなか使い勝手がよいことがわかりました。特に画面のクリスピーさは使っていて気持ちが良いです。
+</p>
+
+<p>
+<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-11 Fri&gt;</span></span>追記。RedHatの方針によりRocky/Almaの将来性が微妙になってきたため、本格的にUbuntuに移行しようかと考えています。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-01-03T00:00:00-05:00" pubdate>Fri 03 January 2025</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

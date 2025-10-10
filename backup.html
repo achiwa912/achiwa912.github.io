@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ホームラボサーバーのバックアップ &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">ホームラボサーバーのバックアップ</h1>
+    <p class="meta">
+<time datetime="2025-07-01T00:00:00-04:00" pubdate>Tue 01 July 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8f4d2cd">1. はじめに</a></li>
+<li><a href="#org6e85ebd">2. 3-2-1ルール</a></li>
+<li><a href="#orga34b496">3. Proxmoxのバックアップ</a>
+<ul>
+<li><a href="#orgd092e7d">3.1. USBディスクの準備</a></li>
+<li><a href="#org4f25c9a">3.2. USBディスクへのバックアップ</a></li>
+</ul>
+</li>
+<li><a href="#org3bf22c1">4. MacBookにバックアップファイルを持ってくる</a></li>
+<li><a href="#org42cfabc">5. pCloudにアップロードする</a></li>
+<li><a href="#orga1f0e2b">6. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8f4d2cd" class="outline-2">
+<h2 id="org8f4d2cd"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://achiwa912.github.io/homelab.html">前回の記事</a> ではMini PCを使ってホームラボサーバーをたてました。今回はそのバックアップについてです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6e85ebd" class="outline-2">
+<h2 id="org6e85ebd"><span class="section-number-2">2.</span> 3-2-1ルール</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+バックアップの3-2-1ルールをご存知でしょうか。
+</p>
+<ul class="org-ul">
+<li>3 - 3つのコピー(オリジナル含む)を持つ</li>
+<li>2 - 2種類の媒体にコピーを持つ</li>
+<li>1 - オフサイトコピーを一つ持つ</li>
+</ul>
+
+<p>
+というバックアップのベストプラクティスです。そこまでやるのはマニアックですが、大事なデータが無くなってから泣いても仕方がないので、これを満たすバックアップを考えます。オフサイトコピーとしては、せっかく持っているpCloudを使いたいところです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga34b496" class="outline-2">
+<h2 id="orga34b496"><span class="section-number-2">3.</span> Proxmoxのバックアップ</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Proxmox Backup Serverという機能があります。差分バックアップや重複排除に対応していてなかなか良さそうなのですが、クラウドやポータブルなUSBディスクには対応していないようなので断念しました。
+</p>
+
+<p>
+次善の手としてProxmoxのバックアップ機能を使います。こちらは潔くフルバックアップのみですが、圧縮には対応しています。毎回VMサイズ820GBのファイルを作られても困りますし。。。
+</p>
+</div>
+
+<div id="outline-container-orgd092e7d" class="outline-3">
+<h3 id="orgd092e7d"><span class="section-number-3">3.1.</span> USBディスクの準備</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+バックアップ先は10年前から持っている気がする1TBのUSBドライブ(HDD)です。数年ぶりに引っ張り出してきて繋いだら無事に動きましたが、こいつが一番先に逝ってしまいそうな気がします。
+</p>
+
+<p>
+これをMacにつなぐと、disk utilityが立ち上がって「読めないけど初期化するよ?」と聞いてくるので、Proxmoxとの互換性を考慮してexFAT形式でフォーマットします。読めてしまう場合も、いったん取り出しボタンをクリックした後で、やはりdisk utilityを使ってexFATでフォーマットします。FAT32だと2GB以上のファイルが扱えないらしいので。
+</p>
+
+<p>
+これを取り出し、ホームラボPCに差し替えます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f25c9a" class="outline-3">
+<h3 id="org4f25c9a"><span class="section-number-3">3.2.</span> USBディスクへのバックアップ</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+このままではProxmoxが認識しないので、Proxmoxにsshして手動マウントします。
+</p>
+<pre class="example">
+mkdir /mnt/bkup
+fdisk -l  # USBディスクのパスを調べる。/dev/sdb1など。
+mount -t exfat /dev/sdb1 /mnt/bkup
+</pre>
+
+<p>
+すると、ProxmoxのWeb UI上にそのディスクが現れます(だっけ?)。仮に&lt;bkup1&gt;とします。ついで、バックアップジョブを作成します。手動バックアップしたいだけなので、一番長い1年1回のスケジュールを仮に指定します。
+</p>
+
+<ul class="org-ul">
+<li>Datacenter &gt; Backup &gt; Add</li>
+<li>Generalタブ &gt; Storage: &lt;bkup1&gt; &gt; Schedule: First day of the year 00:00 &gt; check VM &gt; Mode: Snapshot</li>
+<li>Retentionタブ &gt; check Keep all backups</li>
+<li>&gt; Create</li>
+<li>作成されたバックアップジョブを選択してハイライトさせる &gt; Run now</li>
+</ul>
+
+<p>
+バックアップが完了したらProxmoxにsshしているターミナルでUSBディスクをアンマウントします。
+</p>
+<pre class="example">
+sync # おまじない
+umount /mnt/bkup
+</pre>
+
+<p>
+これで第1のバックアップができました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3bf22c1" class="outline-2">
+<h2 id="org3bf22c1"><span class="section-number-2">4.</span> MacBookにバックアップファイルを持ってくる</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+次いで、MacBook上にバックアップファイルを持ってきます。これは簡単で、USBディスクをつないでローカルにコピーするだけ。第2のバックアップもできました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org42cfabc" class="outline-2">
+<h2 id="org42cfabc"><span class="section-number-2">5.</span> pCloudにアップロードする</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+残るはオフサイトバックアップです。<a href="https://www.pcloud.com/">pCloud</a>のライフタイムプラン512GBを購入しているので、これを使います。
+</p>
+
+<p>
+ところが、pCloudはGBのファイルをアップロードできなかったという情報(古いかもしれない)をいくつか見た気がするので、安全のためにファイルを分割して転送することにしました。これだと途中経過も見られますし。(巨大ファイルはアップロードできないと思い込んでいたのが本当のところです。。。)
+</p>
+
+<p>
+分割:
+</p>
+<pre class="example">
+split -b 800M -d bigfile bigfile-part
+</pre>
+
+<p>
+結合はこれでできるはず:
+</p>
+<pre class="example">
+cat bigfile-part* &gt;bigfile
+</pre>
+
+
+<p>
+クラウドへのアップロードには<a href="https://achiwa912.github.io/rclone.html">既に設定してある</a>rcloneを使います。過去のブログエントリーを参考にしてcryptリモートを作成し、こちらに転送します。pCloudがわざわざファイルを結合して覗いたりはしないと思いますが、念の為。
+</p>
+<pre class="example">
+rclone mkdir pcl:/bkup_cryp
+(略。リンク参照。)
+ls &gt;filelist.txt  # 分割したファイルのある場所で
+rclone copy --include-from=filelist.txt . bkup_crypt:/20250629/
+</pre>
+
+<p>
+54GB分のファイル転送に3時間ほどかかりました。
+おっと、filelist.txtまで送ってしまいました。ま、いいか。
+これでオフサイトにある第3のバックアップができました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga1f0e2b" class="outline-2">
+<h2 id="orga1f0e2b"><span class="section-number-2">6.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+3-2-1ルールを満たすバックアップができるようになりました。全く自動化していませんが、USBディスクへのバックアップは週に1回くらい、クラウドへは数ヶ月に1回もやればいいのでこれでよしとしましょう。
+</p>
+
+<p>
+ところで、4th of JulyセールでpCloudが2TBライフタイムプランを$279(66%オフ)に下げているんですよね。$279かぁ。ちょっと高いな。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-07-01T00:00:00-04:00" pubdate>Tue 01 July 2025</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Linuxカーネルのlist head構造体って何するもの? &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Linuxカーネルのlist head構造体って何するもの?</h1>
+    <p class="meta">
+<time datetime="2020-08-01T00:00:00-04:00" pubdate>Sat 01 August 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org118f1aa">1. はじめに</a>
+<ul>
+<li><a href="#orgeedd27c">1.1. ソースコードの入手</a></li>
+<li><a href="#org8c3a120">1.2. 最初の一歩?</a></li>
+</ul>
+</li>
+<li><a href="#orge96d7c6">2. list head構造体</a>
+<ul>
+<li><a href="#org8f35a5c">2.1. 背景</a></li>
+<li><a href="#org62bbf5a">2.2. list head構造体の定義</a></li>
+<li><a href="#orgafc4bff">2.3. Linuxカーネルでの使われ方</a></li>
+<li><a href="#orgc07080c">2.4. ペアレント構造体へのポインタを得る</a></li>
+</ul>
+</li>
+<li><a href="#orgca6dda7">3. まとめ</a></li>
+<li><a href="#org3baf945">4. 参考文献</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org118f1aa" class="outline-2">
+<h2 id="org118f1aa"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Linuxユーザーのエンジニアであれば、Linuxがどのように動くのかに興味ありますよね。いつかはLinuxカーネルについて勉強してみたいと思っている方も少なくないのではないでしょうか。
+</p>
+
+<p>
+この記事では、Linuxカーネルに入門しようとしている初心者が、割と早いうちに途方に暮れると思われる壁「list_head構造体」について見ていきたいと思います。
+</p>
+</div>
+
+<div id="outline-container-orgeedd27c" class="outline-3">
+<h3 id="orgeedd27c"><span class="section-number-3">1.1.</span> ソースコードの入手</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+まずはLinuxカーネルのソースコードを入手しましょう。
+</p>
+
+<p>
+Linuxカーネルの開発はずっと続いているので、書籍などで引用されているコードはすでに古くなっています。折角なので、最新版を入手したいですよね。
+Linuxカーネルのソースコードをgit cloneして持ってきましょう。
+</p>
+<pre class="example">
+git clone http://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+</pre>
+
+
+<p>
+20−30分くらいかかります。放置して待ちましょう。
+</p>
+
+<pre class="example">
+~/git % git clone http://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+Cloning into 'linux-stable'...
+warning: redirecting to https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git/
+remote: Enumerating objects: 1189260, done.
+remote: Counting objects: 100% (1189260/1189260), done.
+remote: Compressing objects: 100% (165947/165947), done.
+remote: Total 8680156 (delta 1022459), reused 1186934 (delta 1020762), pack-reused 7490896
+Receiving objects: 100% (8680156/8680156), 1.57 GiB | 3.01 MiB/s, done.
+Resolving deltas: 100% (7328421/7328421), done.
+Updating files: 100% (69365/69365), done.
+warning: the following paths have collided (e.g. case-sensitive paths
+on a case-insensitive filesystem) and only one from the same
+colliding group is in the working tree:
+
+  'include/uapi/linux/netfilter/xt_CONNMARK.h'
+  'include/uapi/linux/netfilter/xt_connmark.h'
+  'include/uapi/linux/netfilter/xt_DSCP.h'
+  'include/uapi/linux/netfilter/xt_dscp.h'
+  'include/uapi/linux/netfilter/xt_MARK.h'
+  'include/uapi/linux/netfilter/xt_mark.h'
+  'include/uapi/linux/netfilter/xt_RATEEST.h'
+  'include/uapi/linux/netfilter/xt_rateest.h'
+  'include/uapi/linux/netfilter/xt_TCPMSS.h'
+  'include/uapi/linux/netfilter/xt_tcpmss.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_ECN.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_ecn.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_TTL.h'
+  'include/uapi/linux/netfilter_ipv4/ipt_ttl.h'
+  'include/uapi/linux/netfilter_ipv6/ip6t_HL.h'
+  'include/uapi/linux/netfilter_ipv6/ip6t_hl.h'
+  'net/netfilter/xt_DSCP.c'
+  'net/netfilter/xt_dscp.c'
+  'net/netfilter/xt_HL.c'
+  'net/netfilter/xt_hl.c'
+  'net/netfilter/xt_RATEEST.c'
+  'net/netfilter/xt_rateest.c'
+  'net/netfilter/xt_TCPMSS.c'
+  'net/netfilter/xt_tcpmss.c'
+  'tools/memory-model/litmus-tests/Z6.0+pooncelock+poonceLock+pombonce.litmus'
+  'tools/memory-model/litmus-tests/Z6.0+pooncelock+pooncelock+pombonce.litmus'
+</pre>
+
+<p>
+おめでとうございます。これで、Linuxカーネルのソースコードを一式入手することができました。意外と簡単ですね。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8c3a120" class="outline-3">
+<h3 id="org8c3a120"><span class="section-number-3">1.2.</span> 最初の一歩?</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Linuxのカーネルは巨大です。一体、どこから見始めればよいのか検討もつきません。普通は参考文献にあるようなLinuxカーネル本をガイドにするのがよいと思います。ところで、私の場合はVFSに興味があります。inodeとかsuperblockとかのあれです。若干いきなりすぎる感もありますが、superblockのデータ構造を見てみましょう。
+&lt;linux-stable/include/linux/fs.h&gt;にありました。
+</p>
+
+<pre class="example">
+struct super_block {
+        struct list_head        s_list;         /* Keep this first */
+        dev_t                   s_dev;          /* search index; _not_ kdev_t */
+        unsigned char           s_blocksize_bits;
+        unsigned long           s_blocksize;
+        loff_t                  s_maxbytes;     /* Max file size */
+        struct file_system_type *s_type;
+        const struct super_operations   *s_op;
+        const struct dquot_operations   *dq_op;
+        const struct quotactl_ops       *s_qcop;
+        const struct export_operations *s_export_op;
+        unsigned long           s_flags;
+        unsigned long           s_iflags;       /* internal SB_I_* flags */
+        unsigned long           s_magic;
+        struct dentry           *s_root;
+        struct rw_semaphore     s_umount;
+        int                     s_count;
+        atomic_t                s_active;
+&lt;snip&gt;
+</pre>
+
+<p>
+これが、superblockのデータ構造です。中身はさっぱりわかりませんが。。。
+構造体の中の1行目に着目します。
+</p>
+<pre class="example">
+struct list_head        s_list;         /* Keep this first */
+</pre>
+
+
+<p>
+これです。list head構造体。こいつが、カーネルのソースコードを少しでも読もうとする私のような初心者を突き放す、手強いやつなのです。しかも、やたらとたくさん出てきます。今回の記事では、これが何を意味するのかについて見ていきたいと思います。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge96d7c6" class="outline-2">
+<h2 id="orge96d7c6"><span class="section-number-2">2.</span> list head構造体</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org8f35a5c" class="outline-3">
+<h3 id="org8f35a5c"><span class="section-number-3">2.1.</span> 背景</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+LinuxカーネルはC言語で書かれています。C言語には、よりモダンなプログラミング言語と違って、サポートするデータ構造は貧弱で、オブジェクト指向の仕組みも入っていません。例えば、Python等にあるリスト構造(['abc', 'def']みたいなやつ)はとても便利で、無くてはかったるくてプログラムなど書いていられないほどですが、C言語にリストはありません。同様にC言語にはクラスもありません。あるのは構造体のみ。
+</p>
+
+<p>
+Linuxカーネル開発者達はこれらのモダンなデータ構造を、ユニークなやり方で実現しています。その一つが、リスト構造を実現するlist head構造体です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org62bbf5a" class="outline-3">
+<h3 id="org62bbf5a"><span class="section-number-3">2.2.</span> list head構造体の定義</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+では、list head構造体の定義を見てみましょう。
+&lt;linux-stable/include/linux/types.h&gt;にあります。
+</p>
+
+<pre class="example">
+struct list_head {
+        struct list_head *next, *prev;
+};
+</pre>
+
+
+<p>
+拍子抜けするほど単純ですね。前方、後方の、自身と同じlist head構造体へのポインタが入っているだけでした。なるほど、双方向リンクトリストなのですね。こういったやつです。(厳密には、循環双方向リンクトリストです)
+</p>
+<pre class="example">
++------+     +------+------+------+     +------+-----+------+     +------+
+| null | &lt;-&gt; | prev |  ... | next | &lt;-&gt; | prev | ... | next | &lt;-&gt; | null |
++------+     +------+------+------+     +------+-----+------+     +------+
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgafc4bff" class="outline-3">
+<h3 id="orgafc4bff"><span class="section-number-3">2.3.</span> Linuxカーネルでの使われ方</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+いや、ちょっと待ってください。リストって、前後のポインタだけ入っていても意味が無いです。リストを構成する各ノードのデータが入っていないと。例えばinodeをリンクトリストで持つ場合、inodeはinode自身のデータをたくさん持っているはずです。ファイル名とか、オーナーとか、パーミッションとか。上の図で言うと・・・の部分です。
+</p>
+
+<p>
+実は、list head構造体は、それを他の構造体に埋め込むことで、埋め込まれたペアレント構造体をリンクトリスト化できる便利なやつなのです。すごい！発想の転換です。
+</p>
+
+<p>
+そう言えば、superblockの構造体は、list head構造体をメンバーとして持っていました。
+</p>
+<pre class="example">
+struct super_block {
+        struct list_head        s_list;         /* Keep this first */
+        dev_t                   s_dev;          /* search index; _not_ kdev_t */
+        unsigned char           s_blocksize_bits;
+&lt;snip&gt;
+</pre>
+
+<p>
+こうすることで、superblockがリンクトリストのノードになっているのです。
+</p>
+
+<p>
+更に、いくつものlist_head構造体を埋め込むことで、複数のリンクトリストに同時に登録することも可能です。構造体の定義を見ただけで、これは何と何と何のリンクトリストに含まれるかもわかります(コメントが書いてあるので)。これはPythonのリンクには真似ができませんね。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc07080c" class="outline-3">
+<h3 id="orgc07080c"><span class="section-number-3">2.4.</span> ペアレント構造体へのポインタを得る</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+リストを持たないC言語でリンクトリストを実現するため、という目的はわかりましたが、一つ問題が残っています。リストヘッド構造体は、同じリストヘッド構造体同士を結びつけるだけなのですが、本当に欲しいのはそれを埋め込んだペアレント構造体へのポインタです。ペアレント構造体をリンクトリスト化したいのですから。
+</p>
+
+<p>
+それをするための関数が定義されています。
+</p>
+<pre class="example">
+/**
+ * list_entry - get the struct for this entry
+ * @ptr:        the &amp;struct list_head pointer.
+ * @type:       the type of the struct this is embedded in.
+ * @member:     the name of the list_head within the struct.
+ */
+#define list_entry(ptr, type, member) \
+        container_of(ptr, type, member)
+</pre>
+
+<p>
+list_entry()関数です。この3つの引数は、
+</p>
+<ul class="org-ul">
+<li>ptr: このlist_head構造体へのポインタ</li>
+<li>type: list_headを埋め込んであるペアレント構造体のタイプ(上の例ではsuper_block)</li>
+<li>member: このlist_head構造体の、ペアレント構造体内のメンバー名(上の例ではs_list)</li>
+</ul>
+<p>
+であり、ペアレント構造体へのポインタを返します。
+</p>
+
+<p>
+よかった、よかった。ですが、list_entry()関数の定義内容が気になります。
+container_of()って何でしょうか。
+grepで探したところ、&lt;linux-stable/include/linux/kernel.h&gt;に定義がありました。
+</p>
+<pre class="example">
+/**
+ * container_of - cast a member of a structure out to the containing structure
+ * @ptr:        the pointer to the member.
+ * @type:       the type of the container struct this is embedded in.
+ * @member:     the name of the member within the struct.
+ *
+ */
+#define container_of(ptr, type, member) ({                              \
+        void *__mptr = (void *)(ptr);                                   \
+        BUILD_BUG_ON_MSG(!__same_type(*(ptr), ((type *)0)-&gt;member) &amp;&amp;   \
+                         !__same_type(*(ptr), void),                    \
+                         "pointer type mismatch in container_of()");    \
+        ((type *)(__mptr - offsetof(type, member))); })
+</pre>
+
+<p>
+ポイントだけ抜き出します。
+</p>
+
+<pre class="example">
+#define container_of(ptr, type, member) ({                              \
+        void *__mptr = (void *)(ptr);                                   \
+        ((type *)(__mptr - offsetof(type, member))); })
+</pre>
+
+
+<p>
+まずは、voidへのポインタ__mptrに、list_head構造体へのポインタptrをvoidへのポインタにキャストして代入しています。list_head構造体へのポインタのままだと使えないですからね。
+</p>
+
+<p>
+次の行で、__mptrを、offsetof(type, member)分前にずらしているようです。offsetof(type, member)は上の例の場合、super_block構造体の中でのメンバーstruct list_head s_listのオフセットです。つまり、ペアレントであるsuper_block構造体へのポインタに変換しているのでした。そしてこれを、super_block構造体へのポインタにキャストしています。
+</p>
+
+<p>
+まとめると、
+</p>
+<ol class="org-ol">
+<li>list_head構造体をvoidへのポインタにキャストして扱いやすくする</li>
+<li>作ったポインタを手前にずらして、ペアレント構造体の先頭を指すようにする</li>
+<li>最後に、ペアレント構造体へのポインタにキャストする</li>
+</ol>
+
+<p>
+ということでした。
+</p>
+
+<p>
+なお、container_ofについては、参考文献のLinux Kernel Developmentの中では次のように定義されていました。
+</p>
+<pre class="example">
+#define container_of(ptr, type, member) ({ \
+    const typeof( ((type *)0)-&gt;member ) *__mptr = (ptr); \
+    (type *)( (char *)__mptr - offsetof(type,member) );})
+</pre>
+
+
+<p>
+これを見て、「((type *)0)-&gt;memberって何だ? これは一体何をしているんだ???」と相当悩んだことがこの記事を書く動機だったのですが、最新のソースでは、若干わかりやすくなっていました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgca6dda7" class="outline-2">
+<h2 id="orgca6dda7"><span class="section-number-2">3.</span> まとめ</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Linuxカーネルで定義するデータ構造において、list_head構造体が埋め込まれた構造体があったら、それは何かのリンクトリストに含まれるということがわかりましたね。ソースのコメントを読めば、大抵は何のリンクトリストかが書いてあります。
+</p>
+
+<p>
+list_entry()関数を使って、list_head構造体のポインタから、それが埋め込まれたペアレント構造体へのポインタに変換できます。そして、Linuxカーネルでのlist_entry() - contaier_of()の実装を少し見てみました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3baf945" class="outline-2">
+<h2 id="org3baf945"><span class="section-number-2">4.</span> 参考文献</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468">Linux Kernel Development 3rd Edition</a>, Robert Love</li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-08-01T00:00:00-04:00" pubdate>Sat 01 August 2020</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

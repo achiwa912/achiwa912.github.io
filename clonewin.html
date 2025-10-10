@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Windows 10 VMをクローンする &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Windows 10 VMをクローンする</h1>
+    <p class="meta">
+<time datetime="2022-10-20T00:00:00-04:00" pubdate>Thu 20 October 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1e8e68c">1. はじめに</a></li>
+<li><a href="#orgf05f22e">2. クローンVMを作る</a>
+<ul>
+<li><a href="#org4880e05">2.1. Windows 10のISOファイルを取得する</a></li>
+<li><a href="#orgb1b141c">2.2. クローン元Win10 VMをつくる</a>
+<ul>
+<li><a href="#org86c4137">2.2.1. Win10のためのVM作成</a></li>
+<li><a href="#org80e056f">2.2.2. Win10インストール</a></li>
+<li><a href="#org10e3d2c">2.2.3. Audit Modeに入る</a></li>
+<li><a href="#org2773d32">2.2.4. Guest Addtionsを入れる</a></li>
+<li><a href="#org7b1d1f2">2.2.5. アプリなどを入れる</a></li>
+<li><a href="#org899d512">2.2.6. Generalizeする</a></li>
+</ul>
+</li>
+<li><a href="#org9fb716b">2.3. Win10 VMをクローンする</a></li>
+<li><a href="#org51b0835">2.4. クローンしたVMを構成する</a></li>
+</ul>
+</li>
+<li><a href="#org94ccb46">3. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org1e8e68c" class="outline-2">
+<h2 id="org1e8e68c"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+複数のWindows 10 VMが必要になったのでVirtualBox上でVMをクローンしたのですが、単にクローンするだけだとうまくいかないことがわかりました。これは、Windowsインスタンスのユニークな(筈の)ID(GUID)が同一のVMが複数作られてしまうためです。これを解決するには、クローン元となるWindows VMをgeneralizeしてGUID等を取り除き、それをクローンして、クローンしたVMに個別のGUID等をアサインする必要がありました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf05f22e" class="outline-2">
+<h2 id="orgf05f22e"><span class="section-number-2">2.</span> クローンVMを作る</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org4880e05" class="outline-3">
+<h3 id="org4880e05"><span class="section-number-3">2.1.</span> Windows 10のISOファイルを取得する</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/en-us/software-download/windows10ISO">Microsoftのダウンロードページ</a> から入手可能のようです。以前はMicrosoftのISO生成ツールを使わないといけなかった気がしますが。。。また、 <a href="https://www.itechtics.com/windows-10-download-iso/">このページ</a> からもISOファイルへの直リンクがはられています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb1b141c" class="outline-3">
+<h3 id="orgb1b141c"><span class="section-number-3">2.2.</span> クローン元Win10 VMをつくる</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+注意: 英語版OS&amp;VirtualBoxを使っているため、メニュー等が英語です。
+</p>
+</div>
+
+<div id="outline-container-org86c4137" class="outline-4">
+<h4 id="org86c4137"><span class="section-number-4">2.2.1.</span> Win10のためのVM作成</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<ul class="org-ul">
+<li>VirtualBox起動 &gt; New &gt; Name: &lt;Win10&gt;, Type: MicrosoftWindows,</li>
+<li>Version: Windows 10 (64-bit)</li>
+<li>&gt; Next &gt; Memory: 2048 MB &gt; Next &gt; Create &gt; Next (VDI)</li>
+<li>&gt; Next (Dynamically allocated) &gt; 50GB &gt; Create</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org80e056f" class="outline-4">
+<h4 id="org80e056f"><span class="section-number-4">2.2.2.</span> Win10インストール</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<ul class="org-ul">
+<li>Settingsをクリック &gt; Storage &gt; Contoroller:SATA &gt; Emptyをクリック</li>
+<li>&gt; ディスクアイコンをクリック (ドロップダウン) &gt; Choose a disk file… &gt; ISOファイルを選択</li>
+<li>&gt; OK &gt; Start</li>
+<li>&gt; Next (English (US)) &gt; Install Now &gt; I don’t have a product key</li>
+<li>&gt; Windows 10 Pro &gt; Next &gt; I accept the license terms &gt; Next</li>
+<li>&gt; Custom: Install Windows only (advanced) &gt; Next (Drive 0)</li>
+<li>(インストールが始まるので1時間ほど待つ)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org10e3d2c" class="outline-4">
+<h4 id="org10e3d2c"><span class="section-number-4">2.2.3.</span> Audit Modeに入る</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<ul class="org-ul">
+<li>"Let's start with region&#x2026;"の画面に来たら Ctrl+Shift+F3 を押す</li>
+<li>(リブートする)</li>
+<li>Cancel and close (System Preparation Tool)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2773d32" class="outline-4">
+<h4 id="org2773d32"><span class="section-number-4">2.2.4.</span> Guest Addtionsを入れる</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<ul class="org-ul">
+<li>VirtualBox menu &gt; Devices &gt; Insert Guest Additions CD image…</li>
+<li>Run D:\VBoxWindowsAdditions.exe &gt; Nextを2回押す &gt; Install &gt; (待つ)</li>
+<li>&gt; Reboot now &gt; Finish</li>
+<li>リブート後、cancel and close (System Preparation Tool)</li>
+<li>VirtualBoxメニュー &gt; Devices &gt; Drag and Drop &gt; Bidirectional</li>
+<li>&gt; Devices &gt; Shared Clipboard &gt; Bidirectional</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7b1d1f2" class="outline-4">
+<h4 id="org7b1d1f2"><span class="section-number-4">2.2.5.</span> アプリなどを入れる</h4>
+<div class="outline-text-4" id="text-2-2-5">
+<ul class="org-ul">
+<li>タイムゾーンを変更する
+<ul class="org-ul">
+<li>Settings &gt; Time &amp; Language &gt; Eastern Time (US &amp; Canada)</li>
+</ul></li>
+<li>必要なアプリを入れる。FireFox, Chrome等。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org899d512" class="outline-4">
+<h4 id="org899d512"><span class="section-number-4">2.2.6.</span> Generalizeする</h4>
+<div class="outline-text-4" id="text-2-2-6">
+<ul class="org-ul">
+<li>C:\Windows\System32\Sysprep\sysprep.exe 実行</li>
+<li>&gt; Enter System Audit Mode, Generalizeをチェック, Shutdown &gt; OK</li>
+<li>(電源が落ちるまで数分待つ)</li>
+<li>スナップショットをとっておく</li>
+</ul>
+
+<p>
+これでクローン元となるVMが出来ました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9fb716b" class="outline-3">
+<h3 id="org9fb716b"><span class="section-number-3">2.3.</span> Win10 VMをクローンする</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>VirtualBox &gt; &lt;Win10&gt; VM &gt; VMを右クリック &gt; Clone</li>
+<li>Name: &lt;w10-1&gt;, MAC Address Policy: Generate new MAC addresses for all network adapters</li>
+<li>&gt; Next &gt; Full clone &gt; Next &gt; Current machine state &gt; Clone &gt; (数分待つ)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org51b0835" class="outline-3">
+<h3 id="org51b0835"><span class="section-number-3">2.4.</span> クローンしたVMを構成する</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+ここからはクローンした各VMに対して行います。
+</p>
+
+<ul class="org-ul">
+<li>クローンしたVMを実行 &gt; (20分くらい待つ) &gt; (まだAdministratorのまま)
+<ul class="org-ul">
+<li>待っている間、他のVMをクローンするとよいです</li>
+</ul></li>
+<li>&gt; System Preparation Tool &gt; OOBE, Generalizeのチェックを外す, Reboot &gt; OK</li>
+<li>&gt; (数分待つ)</li>
+<li>&gt; Region: US Yes &gt; keyboard: US Yes &gt; adding another keyboardをスキップ</li>
+<li>(待つ) &gt; Accept</li>
+<li>&gt; Set up for personal use &gt; Next &gt; 適当に入力。例: test@test.com &gt; Next</li>
+<li>&gt; passsword: &lt;適当に&gt; &gt; Next &gt; Oops &gt; Next</li>
+<li>&gt; userを適当に入力 &gt; Next &gt; Security questions: 面倒なので全て同じ回答にするとよいかも</li>
+<li>&gt; privacy settingsは全てNoにする &gt; Accept &gt; Skip &gt; Not now (Cortana)</li>
+<li>(数分待つ)</li>
+<li>hostnameを変更する
+<ul class="org-ul">
+<li>Settings &gt; System &gt; About &gt; Rename this PC &gt; &lt;w10-1&gt; &gt; Next</li>
+<li>&gt; Restart later</li>
+</ul></li>
+<li>シャットダウンし、スナップショットをとっておく</li>
+</ul>
+
+<p>
+これでクローンしたVMがまともに使えるようになりました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94ccb46" class="outline-2">
+<h2 id="org94ccb46"><span class="section-number-2">3.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Windowsの場合、クローンを作るのにも結構手間がかかります。クローンしたVMそれぞれに対して行わなければならない手順があり、それを考えると、何度もOSをインストールする場合と比べてそれほど楽になるわけでは無いという、やや残念な結果となりました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-10-20T00:00:00-04:00" pubdate>Thu 20 October 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

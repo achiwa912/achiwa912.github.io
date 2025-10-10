@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>An Introduction to Programming in Emacs Lispを読みました &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li class="active">
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">An Introduction to Programming in Emacs Lispを読みました</h1>
+    <p class="meta">
+<time datetime="2025-03-31T00:00:00-04:00" pubdate>Mon 31 March 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org61832c7">1. はじめに</a></li>
+<li><a href="#orgaf93f07">2. eslipについて</a></li>
+<li><a href="#org38f1ee0">3. 本書について</a>
+<ul>
+<li><a href="#orgfe71b13">3.1. フォーマット</a></li>
+<li><a href="#org2e4f61a">3.2. 難易度</a></li>
+<li><a href="#org99492f9">3.3. 読んだ効果</a></li>
+<li><a href="#org123f7a9">3.4. 次のステップ</a></li>
+</ul>
+</li>
+<li><a href="#org1501584">4. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org61832c7" class="outline-2">
+<h2 id="org61832c7"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Robert J. Chassell著の<a href="https://www.gnu.org/software/emacs/manual/eintr.html">An Introduction to Programming in Emacs Lisp</a>はとても評判の良いemacs lisp(elisp)の入門書です。いい加減にelispを学ぶことは避けて通れないと思って、読み始めては挫折することを繰り返し、3度目の正直でやっと読み終わりました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaf93f07" class="outline-2">
+<h2 id="orgaf93f07"><span class="section-number-2">2.</span> eslipについて</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Emacsは高機能なテキストエディタという表の姿の影で、elispの実行環境であるという真の姿があります。高速化のためにC言語で書かれた一部の低レベル機能を除いて、Emacsの本体や拡張機能の多くはelispで書かれており、elispを使うことでEmacsでできることの範囲が大きく広がります。
+</p>
+
+<p>
+また、elispが分からないと、init.elでの設定が自分ではできず、ネット上にある先人の例をコピペするしかありませんでした。自分でinit.elを書けるようになりたいということが、elispを学ぶ大きなモチベーションの一つでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org38f1ee0" class="outline-2">
+<h2 id="org38f1ee0"><span class="section-number-2">3.</span> 本書について</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgfe71b13" class="outline-3">
+<h3 id="orgfe71b13"><span class="section-number-3">3.1.</span> フォーマット</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+本書はemacsに付属していて <code>C-h i</code> で出てくる一覧から飛べるようになっている他、ネット上にPDF版やHTML版があります。どうせEmacs上で例を実行(評価)したり関数を作ったりしながら進めるのだから、Emacsの付属版を使うのがよいと思います。Infoモードのキーバインドを覚えるのに若干敷居が高いですが。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2e4f61a" class="outline-3">
+<h3 id="org2e4f61a"><span class="section-number-3">3.2.</span> 難易度</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+結構難しい本です。最初に、プログラマーでなくてもわかるように平易に書いた、ようなことが書いてあるのですが、プログラミング初級者はついていけないと思います。一つずつの章をきちんと正しく理解して、学んだことを覚えていかないと、章が進むにつれて読むのが辛くなってきます。文章もアカデミックで、私の英語力に問題あるだけかもしれませんが、意味がすんなり頭に入ってきません。
+</p>
+
+<p>
+私はこれを克服するために、(もちろんemacsで)メモを取りながら読み進めました。
+</p>
+
+<p>
+正規表現の章に至っては、正規表現自体の使い方の説明はほぼ無いのに、正規表現をほぼノーヒントで書かなくてはならない演習問題が出てきます。私の2回目のチャレンジではこの章で挫折しています。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99492f9" class="outline-3">
+<h3 id="org99492f9"><span class="section-number-3">3.3.</span> 読んだ効果</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+プログラミングの本では半ば常識と思いますが、出てきた例や演習問題はすべて手で入力して、その言語に体で慣れていく必要があります。この本では、そういったハンズオンの量が少なすぎると思います。
+</p>
+
+<p>
+本書を一通りこなしたら自分のinit.elがある程度読めるようになります。しかし、膨大なelispライブラリの知識が不十分すぎて、やりたいことを実現することはできないでしょう。
+</p>
+
+<p>
+効果として一番大きいのは、Emacsに備わっているドキュメント(docstring)が読めるようになることだと思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org123f7a9" class="outline-3">
+<h3 id="org123f7a9"><span class="section-number-3">3.4.</span> 次のステップ</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+例えばPythonやJavaScriptでは入門書から中級者向けの本に事欠きませんが、ユーザーの少ないelispには次に読むべき本があまりありません。いろいろ検索した結果、2冊見つけました。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://leanpub.com/hacking-your-way-emacs">Hacking your way around emacs</a> by Marcin Borkowski</li>
+</ul>
+<p>
+An introduction to programming in Emacs lispの次に読むことを想定された本(電子版のみ)です。うれしいことに2021年末リリースなので、情報が新しいです。ページ数が104と少ないのが気になります。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://www.amazon.com/Writing-GNU-Emacs-Extensions-Glickstein/dp/1565922611">Writing GNU Emacs Extensions</a> by Bob Glickstein</li>
+</ul>
+<p>
+1997年発行で、紙の本は中古でしか入手できません。内容が古いので、すでにdeprecatedされた機能が説明されていたりするようです。
+</p>
+
+<p>
+elispはマイナーな言語なので選択肢が限られますね。次はこれらに挑戦してみたいと思います。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1501584" class="outline-2">
+<h2 id="org1501584"><span class="section-number-2">4.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+最初に読み始めてから、長い中断も含めて、2,3年かけてやっと読み終わりました。もっと早く読んでおくべきだったとは思いますが、Mastering Emacsを読んでいなかったら挫折したままだったとも言えます。Emacsにやっと本格的に入門することができた、という感想を持ちました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-03-31T00:00:00-04:00" pubdate>Mon 31 March 2025</time>  <span class="categories">
+    <a class='category' href='/category/emacs.html'>Emacs</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

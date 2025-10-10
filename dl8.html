@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DL-8; キャンプと戦闘の基本部分 &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">DL-8; キャンプと戦闘の基本部分</h1>
+    <p class="meta">
+<time datetime="2021-03-21T00:00:00-04:00" pubdate>Sun 21 March 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org01fe529">1. はじめに</a></li>
+<li><a href="#org3ca9281">2. 表示バグの解決</a></li>
+<li><a href="#orgbd4dcf8">3. キャンプ</a></li>
+<li><a href="#orgc9d33c1">4. 戦闘基本</a></li>
+<li><a href="#org8aeef6b">5. 次は、、</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org01fe529" class="outline-2">
+<h2 id="org01fe529"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Rogue+Wizライクなゲーム(仮称Daemon Lord)を作るプロジェクトの8回目です。今回はキャンプと戦闘の非常に基本的な部分を実装しています(現在進行形)。
+</p>
+
+<p>
+githubでコードを <a href="https://github.com/achiwa912/daemonlord">公開</a> しています。MacとLinuxで動作確認していますが、Windowsは未対応です。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3ca9281" class="outline-2">
+<h2 id="org3ca9281"><span class="section-number-2">2.</span> 表示バグの解決</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+これまでずっと妙な表示バグに悩まされてきました。DL(Daemon Lord)では仮想画面を使ったダブルバッファリングをしているのですが、ふと、一部古い画面を表示してしまうのです。致命的なバグではないのでしばらく放置してきましたが、ようやく原因がわかりました。メッセージ表示メソッドにおいて、メッセージウインドウのみを書き換えて他は前回の画面のまま表示していたのです。現象から原因を推測するのが難しいバグでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbd4dcf8" class="outline-2">
+<h2 id="orgbd4dcf8"><span class="section-number-2">3.</span> キャンプ</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+キャンプはキャラクター表示からの魔法(スペル)使用やアイテムの装備など、使い回しでそれなりに実装できました。キャンプ途中のみとはいえ、回復魔法が使えるのは心強いです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc9d33c1" class="outline-2">
+<h2 id="orgc9d33c1"><span class="section-number-2">4.</span> 戦闘基本</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Wizardryのシステムにおいて、戦闘は最も複雑な部分です。その中で、逃亡、単純な打撃、parry(身を守る)と戦闘終了時の経験値とgoldの取得のみを実装しました。打撃は更に属性攻撃やドレイン、クリティカルなどの効果があります。
+</p>
+
+<pre class="example">
+ daemon lord - dl - [battle] floor: 1 (8/14) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   1) 1 robber                   (1)    |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|                                        |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|                                        |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|                                        |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^....###.#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   Betty's action? &gt; f                  |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   Cal's action? &gt; f                    ||^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   Debora's action? &gt; p                 |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   Emily's action? &gt; p                  ||^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   Fast's action? &gt; p                   ||^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^| * hit any key or t)ake back &gt;          |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^| * Alex stabs violently at robber and   ||^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   hits 1 times for 2 damage.           |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^| * Fast parried.                        |^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^| * Betty stabs violently at robber and  ||^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   hits 1 times for 4 damage.           ||^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^|   robber is killed.                    |^^^^^^^^^^^^^^^^^^^^^^^^
+ # name       class  ac   hp status       * south                               
+ 1 Alex       G-FIG   2   13 fight          Which direction? - ;)leave &gt; o      
+ 2 Betty      G-FIG   3    8 fight          Which direction? - ;)leave &gt; j      
+ 3 Cal        G-SAM   4   16 fight        * Unlocked.                           
+ 4 Debora     N-THI  10   11 parry        * south                               
+ 5 Emily      G-PRI  10   12 parry        * south                               
+ 6 Fast       G-MAG  10    7 parry        * *** encounter ***   
+</pre>
+
+<p>
+メッセージのみの戦闘は地味ですねぇ。まあWizardryはこれでいいのです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8aeef6b" class="outline-2">
+<h2 id="org8aeef6b"><span class="section-number-2">5.</span> 次は、、</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+戦闘の実装を進めます。魔法がキャンプと戦闘で思ったよりも共通化が難しいので、工夫が必要です。不本意ながら、それぞれ独立した実装になってしまうかもしれません。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-03-21T00:00:00-04:00" pubdate>Sun 21 March 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

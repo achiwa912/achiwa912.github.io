@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rocky Linux 9を試してみる &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li class="active">
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Rocky Linux 9を試してみる</h1>
+    <p class="meta">
+<time datetime="2022-09-16T00:00:00-04:00" pubdate>Fri 16 September 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org79e5d37">1. はじめに</a></li>
+<li><a href="#org1041c0d">2. Rocky Linuxインストール</a>
+<ul>
+<li><a href="#org84bfa1a">2.1. VM作成</a></li>
+<li><a href="#org3c6892c">2.2. Rocky Linuxインストーラー</a></li>
+<li><a href="#org82d03ee">2.3. Rocky Linux起動</a></li>
+<li><a href="#org0eca46f">2.4. Guest Additions</a></li>
+</ul>
+</li>
+<li><a href="#org757efbe">3. gitの設定</a></li>
+<li><a href="#org52eb2c7">4. pythonの設定</a>
+<ul>
+<li><a href="#org15f19b2">4.1. pyenvを入れる</a></li>
+</ul>
+</li>
+<li><a href="#orgbc9d750">5. emacsを設定する</a></li>
+<li><a href="#orgef73dbe">6. Macからssh接続できるようにする</a></li>
+<li><a href="#orgfb0b4f3">7. github, gitlabにアクセスできるようにする</a></li>
+<li><a href="#orgb6cc7c1">8. git cloneしてくる</a></li>
+<li><a href="#org7906564">9. emacsのメール環境を作る</a></li>
+<li><a href="#orgda200f1">10. ブログ環境を設定する</a></li>
+<li><a href="#org3865896">11. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org79e5d37" class="outline-2">
+<h2 id="org79e5d37"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+職場のデスクトップPCには古いFedora 28が入っています。最近dnfで問題が起きてDevOpsに泣きついたら、Rocky Linux 9への入れ替えを勧められました。そこで、デスクトップPCのOS移行に先立ち、MacBook上のvitrualboxで <a href="https://rockylinux.org/">Rocky Linux</a> を試してみることにしました。
+</p>
+
+<p>
+CentOSがStreamになって、RHELの無償版という位置づけ(ダウンストリーム)から、RHELのベータ版的な位置づけ(アップストリーム)に変わってしまったために、元々のCentOSのあるべき後継版(RHELのダウンストリーム)として登場したのがRocky Linuxです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1041c0d" class="outline-2">
+<h2 id="org1041c0d"><span class="section-number-2">2.</span> Rocky Linuxインストール</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+まずは <a href="https://rockylinux.org/download">ここ</a> からx86_64のDVDイメージ(iso)をダウンロードします。
+</p>
+</div>
+
+<div id="outline-container-org84bfa1a" class="outline-3">
+<h3 id="org84bfa1a"><span class="section-number-3">2.1.</span> VM作成</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+VirtualBoxでRocky LinuxをインストールするVMを作成します。VM作成手順:
+</p>
+<ul class="org-ul">
+<li>VirtualBox &gt; Tools tab &gt; New icon &gt; Name: "Rocky9" &gt; Continue &gt; memory 1024 MB &gt; Continue &gt; Create (hard disk) &gt; 略</li>
+</ul>
+
+<p>
+ストレージはthin provisioningで64GBアサインしました。今回はCPUコア数を1に、メモリをVirtualBox推奨通りの1GBにしました。共にFedora36 VMの半分です。emacsからtramp接続する使い方がメインなので足りるでしょう。
+</p>
+
+<p>
+ダウンロードしてきたisoファイルをVMにマウントします:
+</p>
+<ul class="org-ul">
+<li>VirtualBox &gt; 作成したvm &gt; Settings &gt; Storage &gt; Storage Devices &gt; Controller: IDE &gt; Emptyをクリック &gt; Optical Drive: の右にあるdiscアイコンクリック &gt; choose a disc file &gt; isoを選択 &gt; Open</li>
+</ul>
+
+<p>
+Rocky9 VMをダブルクリックして、VMを起動します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3c6892c" class="outline-3">
+<h3 id="org3c6892c"><span class="section-number-3">2.2.</span> Rocky Linuxインストーラー</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+しばらく待っているとRocky Linux 9のインストーラー起動画面が出ます。Guest Additionsが入っていないせいか、マウスカーソルがVMに持っていかれ、操作性がやや悪いです。Macの場合、左コマンドキーでマウスカーソルをVMから戻すことができます。
+</p>
+<ul class="org-ul">
+<li>install to hard drive &gt; installer起動 &gt; インストール先ストレージ選択 &gt; rootパスワード指定 &gt; Nextを押す &gt; インストール開始 &gt; 終わるまで待つ &gt; Finish</li>
+</ul>
+
+<p>
+DVDイメージは手動でアンマウントしませんでしたが、その後DVDからは起動してきませんでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org82d03ee" class="outline-3">
+<h3 id="org82d03ee"><span class="section-number-3">2.3.</span> Rocky Linux起動</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+初めてインストールしたハードドライブからRocky Linuxが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。
+</p>
+
+<p>
+便利なことに、ネットワークは自動で設定されていました。DNSも問題ありません。
+確認のために、terminalから <code>ping google.com</code> してみます。OSをアップデートします。
+</p>
+<pre class="example">
+sudo dnf update
+</pre>
+
+
+<p>
+しばらく待って完了したら、次はGuest Additionsです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0eca46f" class="outline-3">
+<h3 id="org0eca46f"><span class="section-number-3">2.4.</span> Guest Additions</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+最近のfedoraは最初からGuest Additionsがインストールされていますが、Rocky Linuxは手動でインストールする必要があります。Rocky Linux 9 Guest Additionsで検索して出てくる <a href="https://computingforgeeks.com/install-virtualbox-guest-additions-rocky/">このあたりのサイト</a> を参考にしました。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install epel-release -y
+sudo dnf install dkms kernel-devel kernel-headers gcc make bzip2 perl elfutils-libelf-devel
+sudo dnf update kernel-*
+reboot
+</pre>
+</div>
+
+<p>
+そして、VirtualBoxメニュー &gt; Devices &gt; Insert Guest Additions CD image &#x2026; を選択するとポップアップが出るので Run をクリックします。
+</p>
+
+<p>
+Guest Additionsが入ってマウスがシームレスに使えるようになりました。ついで、以下を設定します。
+</p>
+<ul class="org-ul">
+<li>Devices &gt; Shared Clipboard &gt; Bidirectional</li>
+<li>Devices &gt; Drag and Drop &gt; Bidirectional</li>
+<li>Devices &gt; Shares Folders &gt; Shared Folders Sttings &gt; ホストOSの共有したいフォルダを指定</li>
+</ul>
+
+<p>
+(相変わらず)共有フォルダにアクセスしようとするとPermission Deniedでエラーとなるので、ユーザーをvboxsfグループに追加します。
+</p>
+<pre class="example">
+sudo usermod -G vboxsf -a &lt;user name&gt;
+</pre>
+
+
+<p>
+そして、リブート(logout &rarr; loginでもいいかも)する前にホスト名も変えておきます。
+</p>
+<pre class="example">
+sudo hostnamectl set-hostname &lt;hostname&gt;
+</pre>
+
+<p>
+確認します。Static hostnameがきちんと設定されていたらOKです。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">$ hostnamectl
+ Static hostname: r9
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 140b0aa3b900499c85acc0596f73044c
+         Boot ID: 72e3fcfa5cba45a2b26cf6399bc731dd
+  Virtualization: oracle
+Operating System: Rocky Linux 9.0 (Blue Onyx)
+     CPE OS Name: cpe:/o:rocky:rocky:9::baseos
+          Kernel: Linux 5.14.0-70.22.1.el9_0.x86_64
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+</pre>
+</div>
+
+<p>
+リブートします。Rocky Linuxとしての基本的な設定はここで終わりです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org757efbe" class="outline-2">
+<h2 id="org757efbe"><span class="section-number-2">3.</span> gitの設定</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+gitが入っていなかったのでインストールします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install git
+</pre>
+</div>
+
+<p>
+gitの最低限の設定をしておきます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">git config --global user.email "&lt;user@email.com&gt;"
+git config --global user.name "&lt;your name&gt;"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org52eb2c7" class="outline-2">
+<h2 id="org52eb2c7"><span class="section-number-2">4.</span> pythonの設定</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+最初から入っているPythonは3.9.10と、Fedora36よりも少し古かったです。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">[k****@r9 ~]$ which python
+/usr/bin/python
+[k****@r9 ~]$ python -V
+Python 3.9.10
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org15f19b2" class="outline-3">
+<h3 id="org15f19b2"><span class="section-number-3">4.1.</span> pyenvを入れる</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+最新pythonを入れるのにpyenvを使います。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
+</p>
+
+<p>
+まずは前提ソフトのインストールです。
+</p>
+<pre class="example">
+sudo dnf install make gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel
+</pre>
+
+
+<p>
+ついで、pyenvをgit cloneしてきます。
+</p>
+<pre class="example">
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+</pre>
+
+
+<p>
+.bash_profileを書き換えて実行します。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">echo 'export PYENV_ROOT="$HOME/.pyenv"' &gt;&gt; ~/.bash_profile
+echo 'export PATH="$PYENV_ROOT/shims:$PYENV_ROOT/bin:$PATH"' &gt;&gt; ~/.bash_profile
+echo 'eval "$(pyenv init -)"' &gt;&gt; ~/.bash_profile
+source .bash_profile
+</pre>
+</div>
+
+<p>
+そして、pyenvを使って最新安定版の3.10.7をインストールします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">pyenv install --list
+</pre>
+</div>
+<p>
+これでインストール可能バージョンを確認して、
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">pyenv install 3.10.7
+pyenv global 3.10.7
+pyenv rehash
+</pre>
+</div>
+<p>
+インストール(しばらくかかります)、グローバルに適用、pyenvのキャッシュ(?)を最新にします。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-bash">[k****@r9 ~]$ python -V
+Python 3.10.7
+[k****@r9 ~]$ which python
+~/.pyenv/shims/python
+</pre>
+</div>
+<p>
+無事に、pyenv版のpythonが設定されました。
+</p>
+
+<p>
+pythonと共にpipが入ったので、MacBook上のemacsからeglotで使うために、python用のlspサーバーをインストールします。
+</p>
+<pre class="example">
+pip install 'python-lsp-server[all]'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc9d750" class="outline-2">
+<h2 id="orgbc9d750"><span class="section-number-2">5.</span> emacsを設定する</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+まずはemacsを入れます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo dnf install emacs
+</pre>
+</div>
+
+<p>
+以前の <a href="https://achiwa912.github.io/emacs.html">記事</a> を参考に設定します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgef73dbe" class="outline-2">
+<h2 id="orgef73dbe"><span class="section-number-2">6.</span> Macからssh接続できるようにする</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+これも <a href="https://achiwa912.github.io/sshvm.html">以前の記事</a> を参考にして設定します。
+なお、Rocky Linux 9ではsshサーバーが最初から動いていました。server with GUI(デフォルト)でインストールしたためでしょうか。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfb0b4f3" class="outline-2">
+<h2 id="orgfb0b4f3"><span class="section-number-2">7.</span> github, gitlabにアクセスできるようにする</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+github, gitlabに生成したsshパブリックキーを登録します。
+githubで自分のアイコンをクリック &gt; Settings &gt; SSH and GPG keys &gt; New SSH Keyから登録します。
+</p>
+
+<p>
+~/.ssh/configに以下を追記します。
+</p>
+<pre class="example">
+Host github.com
+     HostName github.com
+     User git
+     IdentityFile ~/.ssh/id_rsa_r9
+</pre>
+
+<p>
+接続確認をします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">ssh -T git@github.com
+</pre>
+</div>
+<p>
+Welcomeメッセージが出たらOKです。
+うまくいかなかったら、verboseモードできちんと意図したsshキーが使われているかを見ます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">ssh -vT git@github.com
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb6cc7c1" class="outline-2">
+<h2 id="orgb6cc7c1"><span class="section-number-2">8.</span> git cloneしてくる</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+github, gitlabから、自分で作成したドキュメントやソースコードをgit cloneしてきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7906564" class="outline-2">
+<h2 id="org7906564"><span class="section-number-2">9.</span> emacsのメール環境を作る</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+mbsyncの入っているisyncをdnf installしようとしたら「無い」と言われました。
+epelを設定しても駄目でした。どうして???
+</p>
+
+<p>
+仕方なく <a href="https://centos.pkgs.org/8/epel-x86_64/isync-1.4.4-1.el8.x86_64.rpm.html">このページ</a> のDownload &gt; Binary PackageのURLからrpmをwgetしてきます。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">wget https://download-ib01.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/i/isync-1.4.4-1.el8.x86_64.rpm
+</pre>
+</div>
+
+<p>
+そして、ローカルインストールします。
+</p>
+<div class="org-src-container">
+<pre class="src src-bash">sudo yum localinstall isync-1.4.4-1.el8.x86_64.rpm
+</pre>
+</div>
+<p>
+前提パッケージ不足で怒られることもなく、無事にインストールできました。
+</p>
+
+<p>
+後は、<a href="https://achiwa912.github.io/notmuch.html">以前の記事</a> を参考にして環境を作ります。相変わらずタグは使っておりません。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgda200f1" class="outline-2">
+<h2 id="orgda200f1"><span class="section-number-2">10.</span> ブログ環境を設定する</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+ブログデータはgit cloneで戻せるものの、pelicanサイトジェネレーターは手動で設定しています。もっとうまくやる方法があるような気もするのですが。。。
+</p>
+
+<p>
+このブログの <a href="https://achiwa912.github.io/startblog.html">最初の記事</a> を参考にして設定します。content ディレクトリは、git cloneしてきたブログデータ(の入ったディレクトリ)へのシンボリックリンクで置き換えます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3865896" class="outline-2">
+<h2 id="org3865896"><span class="section-number-2">11.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Guest Additionsを手動で設定しなければならないことと、isyncをRPMから入れなければ行けなかったことを除いて、Rocky Linux 9はFedoraの最新版であるかのように設定することができました。今回はVMのメモリを今までの半分である1GBに減らしましたが、特に問題無く使えています。MacのVirtualBoxがへぼいので倍の2GBを使っているわけですが。。。
+</p>
+
+<p>
+とりあえず試すつもりが、Fedora36からの全面移行になってしまいました。当たり前ですが、今の所使い勝手はFedoraやCentOSとほとんど同じです。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-09-16T00:00:00-04:00" pubdate>Fri 16 September 2022</time>  <span class="categories">
+    <a class='category' href='/category/linux.html'>Linux</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/linux.html">Linux</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

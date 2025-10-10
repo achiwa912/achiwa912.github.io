@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>emacsのPython環境をeglotにしてみる &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">emacsのPython環境をeglotにしてみる</h1>
+    <p class="meta">
+<time datetime="2022-05-10T00:00:00-04:00" pubdate>Tue 10 May 2022</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdec960f">1. はじめに</a></li>
+<li><a href="#org5344afa">2. LSP</a></li>
+<li><a href="#org8ecb8c5">3. eglot</a></li>
+<li><a href="#orgddbd8de">4. 設定</a>
+<ul>
+<li><a href="#org56b0f9e">4.1. lsp server</a></li>
+<li><a href="#orgfba5391">4.2. eglot</a>
+<ul>
+<li><a href="#org20917df">4.2.1. tramp-modeでの注意点</a></li>
+</ul>
+</li>
+<li><a href="#org2a8b055">4.3. その他のパッケージ</a></li>
+</ul>
+</li>
+<li><a href="#orgc0c77c3">5. おまけ</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgdec960f" class="outline-2">
+<h2 id="orgdec960f"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+一昨年2020年にPythonに(何度めかの)入門をして以来、エディタというかIDE相当の開発環境としてemacs + elpyを使ってきましたが、リモートサーバー上のファイル等を扱う tramp モードに elpy が対応していないことを知り、対応しているらしい eglot を試してみることにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5344afa" class="outline-2">
+<h2 id="org5344afa"><span class="section-number-2">2.</span> LSP</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://microsoft.github.io/language-server-protocol/">Language Server Protocol (LSP)</a> はマイクロソフトが決めて公開しているプロトコルです。PythonやJavaといった言語ごとのLSPサーバーと、それらの機能を利用するemacs(上で動くeglot)のようなクライアントに分かれていて、それぞれ独立して開発が可能です。
+</p>
+
+<p>
+プロトコル部分が標準化されているため、eglotのようなLSPクライアントは、既存の多くのLSPサーバーを使うことができます。elpyのように、何か一つの言語に特化した開発環境を一から実装することは時代遅れになってきたのですね。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org8ecb8c5" class="outline-2">
+<h2 id="org8ecb8c5"><span class="section-number-2">3.</span> eglot</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+emacs用のlspクライアントとしては、 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a> と <a href="https://github.com/joaotavora/eglot">eglot</a> がよく使われているようです。lsp-modeの方が本格的で人気も高いように見えますが、 eglot は設定が簡単で公式ページに「tramp でも動く」と明記してあるので、まずは極力リスクを避けてeglotに入門してみたいと思います。emacsでは動くはずのものが動かないことは日常茶飯事なので(単に私に技術が無いだけとも言う)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgddbd8de" class="outline-2">
+<h2 id="orgddbd8de"><span class="section-number-2">4.</span> 設定</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org56b0f9e" class="outline-3">
+<h3 id="org56b0f9e"><span class="section-number-3">4.1.</span> lsp server</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Python用のlspサーバーとしては python-language-server と python-lsp-server というよく似た名前のものがありますが、前者はすでにメンテナンスされていないようなので、後者を入れます。
+</p>
+<pre class="example">
+pip install 'python-lsp-server[all]'
+</pre>
+
+<p>
+簡単に入りました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfba5391" class="outline-3">
+<h3 id="orgfba5391"><span class="section-number-3">4.2.</span> eglot</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+<code>~/.emacs.d/init.el</code> に以下を書きました。もしまだ <a href="https://github.com/jwiegley/use-package">use-package</a> を使っていないようなら、ぜひとも使ってみてください。パッケージのインストールを自動化してくれ、とても便利です。私の環境ではなぜか自動インストールが失敗し、 <code>M-x list-packages</code> から手動インストールすることがよくありますが。。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package eglot)
+(add-to-list 'eglot-server-programs
+               '(python-mode "pylsp"))
+(use-package python-mode
+  :ensure nil
+  :hook
+  (python-mode . eglot-ensure))
+</pre>
+</div>
+<p>
+これで最低限の設定が完了です。試しにローカルの <code>.py</code> ファイルを開いてみてください。
+</p>
+</div>
+
+<div id="outline-container-org20917df" class="outline-4">
+<h4 id="org20917df"><span class="section-number-4">4.2.1.</span> tramp-modeでの注意点</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+私の場合、ローカルではうまくいくのですが tramp でリモートの <code>.py</code> ファイルを開こうとすると <code>pylsp</code> が見つからないというエラーに悩まされました。試行錯誤の結果、以下の行をinit.elに入れて解決しました。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2a8b055" class="outline-3">
+<h3 id="org2a8b055"><span class="section-number-3">4.3.</span> その他のパッケージ</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+他に、以下のパッケージを追加しました。
+</p>
+<ul class="org-ul">
+<li><code>company</code>: オートコンプリート。pythonファイル以外にも適用する</li>
+<li><code>highlight-indent-guides</code>: インデントをよりビジュアル的にわかりやすくするパッケージ</li>
+<li><code>black</code>: 整形ツール。セーブ時に規定フォーマットを強制する</li>
+<li><code>flycheck</code>: 動的に構文チェックしてくれるツール。 <code>flycheck-inline</code> はエラーをインラインで表示させる</li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package company
+  :init
+  (global-company-mode)
+  (setq company-idle-delay 0.3)
+  (setq company-minimum-prefix-length 1)
+  (setq company-transformers '(company-sort-by-occurrence))
+  :bind
+  (:map company-active-map
+              ("C-n". company-select-next)
+              ("C-p". company-select-previous)
+              ("M-&lt;". company-select-first)
+              ("M-&gt;". company-select-last)))
+
+(use-package highlight-indent-guides
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
+;; black
+(use-package blacken
+  :config
+  (add-hook 'python-mode-hook 'blacken-mode))
+
+;; Flycheck
+(use-package flycheck
+  :init
+  (add-hook 'after-init-hook 'global-flycheck-mode))
+(use-package flycheck-inline
+  :init
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode)))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0c77c3" class="outline-2">
+<h2 id="orgc0c77c3"><span class="section-number-2">5.</span> おまけ</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+elpyがtrampに <a href="https://github.com/jorgenschaefer/elpy/issues/276">対応していない</a> らしいことは、実際にやってみてわかりました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2022-05-10T00:00:00-04:00" pubdate>Tue 10 May 2022</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/emacs.html">emacs</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

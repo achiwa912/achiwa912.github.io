@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python Cookbookレシピリスト &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Python Cookbookレシピリスト</h1>
+    <p class="meta">
+<time datetime="2021-01-11T00:00:00-05:00" pubdate>Mon 11 January 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org16ac976">1. はじめに</a></li>
+<li><a href="#orgc75a898">2. レシピ一覧</a>
+<ul>
+<li><a href="#orgc6eac71">2.1. Chapter 1: データ構造とアルゴリズム</a>
+<ul>
+<li><a href="#orge68fe29">2.1.1. defaultdictとsetdefault(1.6)</a></li>
+<li><a href="#org51f12ff">2.1.2. itemgetter()関数(1.13)</a></li>
+<li><a href="#org73be991">2.1.3. dictcompを使ってフィルタする(1.17)</a></li>
+</ul>
+</li>
+<li><a href="#orgd64a96e">2.2. Chapter 2: 文字列とテキスト</a>
+<ul>
+<li><a href="#orgce17940">2.2.1. noncaptureグループ(2.1)</a></li>
+<li><a href="#org2b422c2">2.2.2. テキストファイル全体をstripする(2.11)</a></li>
+<li><a href="#org3435264">2.2.3. (2.14)</a></li>
+</ul>
+</li>
+<li><a href="#org5bc5b82">2.3. Chapter 3: 数、日にちと時間</a>
+<ul>
+<li><a href="#org6bc1f9b">2.3.1. ランダム値を得る(3.11)</a></li>
+<li><a href="#org30615ed">2.3.2. タイムゾーンの扱い(3.16)</a></li>
+</ul>
+</li>
+<li><a href="#org4d967d2">2.4. Chapter 4: アイテレーターとジェネレーター</a>
+<ul>
+<li><a href="#orgf733120">2.4.1. iterate可能なオブジェクト (4.4)</a></li>
+<li><a href="#org943c6e5">2.4.2. iter()の特別な用法(4.16)</a></li>
+</ul>
+</li>
+<li><a href="#orgfc0b9bd">2.5. Chapter 5: ファイルとI/O</a>
+<ul>
+<li><a href="#org34bc35a">2.5.1. バッファインタフェース(5.4)</a></li>
+<li><a href="#orgd8dceb5">2.5.2. 圧縮ファイルの読み書き(5.7)</a></li>
+<li><a href="#org096a7f6">2.5.3. mmapを使う(5.10)</a></li>
+<li><a href="#org33823c7">2.5.4. テキスト操作の3つのレイヤー(5.16)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org16ac976" class="outline-2">
+<h2 id="org16ac976"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Python Cookbook 3rd edition by David Beazley &amp; Brian K. Jonesを読んだのですが、読んだことはほとんど忘れてしまっていて、レシピ集として活用できるレベルになっていません。やはり、掲載されているコードサンプルは全て自分で入力して動きを確認していかないと駄目そうです。
+</p>
+
+<p>
+そこで、復習の意味でサンプルコードの実行と、自分用にレシピリストを作ることにしました。少しずつアップデートするので、完成までに時間がかかりそうです。今のペースだと5ヶ月くらい。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc75a898" class="outline-2">
+<h2 id="orgc75a898"><span class="section-number-2">2.</span> レシピ一覧</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgc6eac71" class="outline-3">
+<h3 id="orgc6eac71"><span class="section-number-3">2.1.</span> Chapter 1: データ構造とアルゴリズム</h3>
+<div class="outline-text-3" id="text-2-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1.1</td>
+<td class="org-left">シーケンスやiterableは <code>=</code> で複数変数にアンパックできる</td>
+</tr>
+
+<tr>
+<td class="org-right">1.2</td>
+<td class="org-left"><code>*</code> (star unpacking)を使って可変数変数をリストに受ける</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">リストのレコードにタグを付けて異なる処理をするレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">1.3</td>
+<td class="org-left">限定数のヒストリーを持つのにcollections.dequeが使える <code>deque(maxlen=3)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">ファイル内でアイテムを探す、yieldを使うレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">1.4</td>
+<td class="org-left">最大/最小からN個のアイテムを見つけるのにheapqが使える <code>heapq.nlargest(3, somelist)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">大きなリストを扱うにはheapify()しておく</td>
+</tr>
+
+<tr>
+<td class="org-right">1.5</td>
+<td class="org-left">プライオリティキューを作るのにheapqが使える</td>
+</tr>
+
+<tr>
+<td class="org-right">1.6</td>
+<td class="org-left">複数値を持つdictionaryの作り方</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">初期値の自動作成にdefaultdictが使えるが、やや不自然</td>
+</tr>
+
+<tr>
+<td class="org-right">1.7</td>
+<td class="org-left">OrderedDictの使い方。後でJSON化したい時に有用</td>
+</tr>
+
+<tr>
+<td class="org-right">1.8</td>
+<td class="org-left">zip()を使ってdictionaryを(value, key)のシーケンスに並び替えてソート等する</td>
+</tr>
+
+<tr>
+<td class="org-right">1.9</td>
+<td class="org-left">dictionaries間の共通等を操作するのに <code>&amp;, -</code> 等のset操作を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">1.10</td>
+<td class="org-left">シーケンスの順序を維持したままdedupeする</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">重複をsetで管理し、重複していない場合に値をyieldするdedupe関数のレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">1.11</td>
+<td class="org-left">スライスに名前を付けてコードの可読性を上げる。ビルトインslice()関数の使い方</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">IndexErrorが出ないように範囲にお編めるには <code>sliceobj.indices(len(s))</code> を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">1.12</td>
+<td class="org-left">Counterオブジェクトを使ってアイテムの登場回数を管理する</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">most_common(n)メソッド。 <code>+, -</code> での複数Counter操作</td>
+</tr>
+
+<tr>
+<td class="org-right">1.13</td>
+<td class="org-left">ディクショナリのリストをソートするのに、ソートキーkey=itemgetter(キー)を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">lambda関数も使える。ソートだけでなくmin(), max()でも指定可能</td>
+</tr>
+
+<tr>
+<td class="org-right">1.14</td>
+<td class="org-left">比較をサポートしないオブジェクトをソートする。キーにattrgetter()を指定する</td>
+</tr>
+
+<tr>
+<td class="org-right">1.15</td>
+<td class="org-left">ディクショナリのリストをフィールド値でグループ分けしたい</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">フィールドでソート(itemgetter())し、groupby()でグループ分けする</td>
+</tr>
+
+<tr>
+<td class="org-right">1.16</td>
+<td class="org-left">シーケンスをフィルタするにはlistcomp/genexpを使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">filter()やcompress()の使い方。compressはbooleanのシーケンスを受ける</td>
+</tr>
+
+<tr>
+<td class="org-right">1.17</td>
+<td class="org-left">ディクショナリをフィルタしてサブセットのディクショナリを取り出すにはdictcompを使う</td>
+</tr>
+
+<tr>
+<td class="org-right">1.18</td>
+<td class="org-left">namedtupleの使い方。dict &rarr; namedtuple変換レシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">デフォルト値からなるnamedtupleを作り、_replace(**dic)でアップデートする</td>
+</tr>
+
+<tr>
+<td class="org-right">1.19</td>
+<td class="org-left">変換/フィルタしてからsum(),min(),max()等するのにgenexpを使う(値のみ返す)</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">genexpの代わりに、min(), max()等にkey引数を渡すレシピ(全体を返す)</td>
+</tr>
+
+<tr>
+<td class="org-right">1.20</td>
+<td class="org-left">collections.ChainMapは複数のマッピングを仮想的に一つにまとめる</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">ChainMapへのアップデートは、最初のマップにのみ反映される</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orge68fe29" class="outline-4">
+<h4 id="orge68fe29"><span class="section-number-4">2.1.1.</span> defaultdictとsetdefault(1.6)</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+<code>defaultdict</code> は以下のように使う
+</p>
+<div class="org-src-container">
+<pre class="src src-python">from collections import defaultdict
+d = defaultdict(list)  # list, set等を指定
+d['a'].append(1)  # setの場合は.add(1)
+</pre>
+</div>
+<p>
+defaultdictは、間違えてアクセス(値の取得でも)をした場合にも空きリスト/セットが設定されてしまう。
+</p>
+
+<p>
+<code>setdefault</code> は通常のディクショナリに対して使える
+</p>
+<div class="org-src-container">
+<pre class="src src-python">d = {}  # 普通のディクショナリ
+d.setdeault('a', []).append(1)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org51f12ff" class="outline-4">
+<h4 id="org51f12ff"><span class="section-number-4">2.1.2.</span> itemgetter()関数(1.13)</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+<code>operator.itemgetter(item), itemgetter(*items)</code> は引数に <code>__getitem__()</code> に渡せるインデックスを取り、callableを返す。 <code>f = itemgetter(2)</code> の後で <code>f(r)</code> をコールすると <code>r[2]</code> を返す。同様に、 <code>g = itemgetter(2, 5, 3)</code> の後で <code>g(r)</code> をコールすると <code>(r[2], r[5], r[3])</code> のタプルを返す。
+</p>
+
+<p>
+sort等の関数に <code>key=itemgetter('some_key')</code> のように指定する。レシピ1.14の <code>attrgetter()</code> も同様。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org73be991" class="outline-4">
+<h4 id="org73be991"><span class="section-number-4">2.1.3.</span> dictcompを使ってフィルタする(1.17)</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+以下のようなパターンで使う。
+</p>
+<pre class="example">
+{ key:value for key,value in prices.items() if value &gt; 200}
+{ key:value for key,value in prices.items() if key in tech_names }
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgd64a96e" class="outline-3">
+<h3 id="orgd64a96e"><span class="section-number-3">2.2.</span> Chapter 2: 文字列とテキスト</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">2.1</td>
+<td class="org-left">混在するdelimitersに対処 <code>re.split(r'[;,\s]\s*', line)</code> のように使う</td>
+</tr>
+
+<tr>
+<td class="org-right">2.2</td>
+<td class="org-left">文字列の先頭または末尾を調べるのにstartswith(), endswith()を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">複数選択肢がある場合はタプルを渡す <code>name.endswith(('.py', 'html'))</code></td>
+</tr>
+
+<tr>
+<td class="org-right">2.3</td>
+<td class="org-left">fnmatch(), fnmatchcase()の使い方 <code>fnmatch('foo.txt', '*.txt')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">ワイルドカードを使いたいとき。正規表現未満。ファイル名以外でも</td>
+</tr>
+
+<tr>
+<td class="org-right">2.4</td>
+<td class="org-left">正規表現 re.compile(), match(), findall(), finditer()の使い方</td>
+</tr>
+
+<tr>
+<td class="org-right">2.5</td>
+<td class="org-left"><code>str.replace('before', 'after')</code> re.sub()/subn()使い方</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>re.sub(r'(\d+)/(\d+)/(\d+)', r'\3-\1-\2', text)</code> コールバック指定可</td>
+</tr>
+
+<tr>
+<td class="org-right">2.6</td>
+<td class="org-left">re.findall()等にflags=re.IGNORECASEを付ける</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">置き換え単語のケースを維持する、closureのヘルプ関数を使ったレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">2.7</td>
+<td class="org-left">正規表現で最短マッチ <code>re.compile(r'\"(.*?)\"')</code> のように?を付ける</td>
+</tr>
+
+<tr>
+<td class="org-right">2.8</td>
+<td class="org-left">複数行にわたるマッチ <code>re.compile(r'/\*((?:.¦\n)*?)\*/')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">re.DOTALLよりも自分でマッチパターンを書いた方が融通が利く</td>
+</tr>
+
+<tr>
+<td class="org-right">2.9</td>
+<td class="org-left">unicode textをnormalizeする <code>unicodedata.normalize('NFC', text)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">combining文字を含むテキストをasciiに変換するレシピ。</td>
+</tr>
+
+<tr>
+<td class="org-right">2.10</td>
+<td class="org-left">uniocde文字を正規表現で扱う場合、case foldに注意</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">本格的にやるなら3rd partyのregexライブラリ等を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">2.11</td>
+<td class="org-left">strip(), lstrip(), rstrip() スペース以外の文字も指定可能 <code>strip('-=')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">先頭、末尾以外もstripしたい場合 <code>re.sub('\s+', ' ', text)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">2.12</td>
+<td class="org-left">テキストをsanitize, clean upするのにtranslate()を使うレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">NFDにnormalizeして <code>b.encode('ascii', 'ignore').decode('ascii')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">速度ではstr.replace()メソッドが一番速い</td>
+</tr>
+
+<tr>
+<td class="org-right">2.13</td>
+<td class="org-left">ljust(), rjust(), center()を使ったallignment <code>text.rjust(20, '=')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">format()も使える。ストリング以外でも <code>format(x, '10.2f')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">2.14</td>
+<td class="org-left">str.join()の使い方 <code>+</code> は文字列をコピーするので非効率(遅い)</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">print文のセパレーター指定は使える <code>print(a,b,c,sep=' ')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">多くの文字列小片をyieldするgenerator関数を使うレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">2.15</td>
+<td class="org-left">文字列に変数を入れ込む <code>s.format_map(vars())</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">dictを継承し、__missing__()を持つクラスを作って例外にならないように</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">vars()の代わりにsys._getframe(1).f_localsを使うframe hackレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">2.16</td>
+<td class="org-left">1行の文字数を制限して表示するためにtextwrapモジュールを使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>textwrap.fill(s, 40, initial_indent='    ')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">2.17</td>
+<td class="org-left">HTML/XMLエンティティーの扱い html.escape(), html.unescape()</td>
+</tr>
+
+<tr>
+<td class="org-right">2.18</td>
+<td class="org-left">token化する <code>(?P&lt;grp_name&gt;...)</code> でグループ名を付け、scanner()を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">2.19</td>
+<td class="org-left">(パーサーを書く。BNFとかEBNFとか)</td>
+</tr>
+
+<tr>
+<td class="org-right">2.20</td>
+<td class="org-left">byte stringsにテキスト操作が意外と使える。</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">正規表現も使えるが、パターンをbyte string b'&#x2026;'で指定する</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgce17940" class="outline-4">
+<h4 id="orgce17940"><span class="section-number-4">2.2.1.</span> noncaptureグループ(2.1)</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; re.split(r'[;,\s]\s*', line)
+['asdf', 'fjdk', 'afed', 'fjek', 'asdf', 'foo']
+&gt;&gt;&gt; re.split(r'(;|,|\s)\s*', line)  # captureグループ(結果のリストに出力される)
+['asdf', ' ', 'fjdk', ';', 'afed', ',', 'fjek', ',', 'asdf', ',', 'foo']
+&gt;&gt;&gt; re.split(r'(?:;|,|\s)\s*', line)  # noncaptureグループ (?: ...)
+['asdf', 'fjdk', 'afed', 'fjek', 'asdf', 'foo']
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2b422c2" class="outline-4">
+<h4 id="org2b422c2"><span class="section-number-4">2.2.2.</span> テキストファイル全体をstripする(2.11)</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+ファイル内の行を全てstripしたい場合、genexpで効率よく実現できる。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">with open(filename) as f:
+    lines = (line.strip() for line in f)  # iteratorを作るだけ
+    for line in lines:
+        ...
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3435264" class="outline-4">
+<h4 id="org3435264"><span class="section-number-4">2.2.3.</span> (2.14)</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+genexpを使ってリストを文字列に変換するレシピ。文字列化と連結を一括で実施する。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; data = ['ACME', 50, 91.1]
+&gt;&gt;&gt; ','.join(str(d) for d in data)
+'ACME,50,91.1'
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5bc5b82" class="outline-3">
+<h3 id="org5bc5b82"><span class="section-number-3">2.3.</span> Chapter 3: 数、日にちと時間</h3>
+<div class="outline-text-3" id="text-2-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">3.1</td>
+<td class="org-left">数字を四捨五入するのにround()を使う。 <code>round(-1.27, 1) &gt;&gt;&gt; -1.3</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">マイナス値も使える <code>round(7734, -2) &gt;&gt;&gt; 7700</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.2</td>
+<td class="org-left">浮動小数点の誤差が許せない場合は Decimal('4.2') を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">with localcontext() as ctx: のように精度等を制御できる</td>
+</tr>
+
+<tr>
+<td class="org-right">3.3</td>
+<td class="org-left">formatの使い方 <code>format(x, '^10.1f'), format(x, '0.2e')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.4</td>
+<td class="org-left">2進、8進、16進での表記 <code>oct(x), format(x, 'o')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">10進に直すにはintを使う <code>int('4d2', 16)</code>  8進は0o755のように</td>
+</tr>
+
+<tr>
+<td class="org-right">3.5</td>
+<td class="org-left">バイト列から大きなintegerをパック、アンパックする</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>int.from_bytes(data, 'little'), x.to_bytes(16, 'little')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>x.bit_length()</code> でビット長取得</td>
+</tr>
+
+<tr>
+<td class="org-right">3.6</td>
+<td class="org-left">複素数を使う <code>complex(2, 4), 3-5j, cmath.sqrt(-1)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.7</td>
+<td class="org-left">無限とNaN(not a number) <code>float('inf'), float('-inf'), float('nan')</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.8</td>
+<td class="org-left">分数 fractions.Fraction <code>Fraction(5, 4)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.9</td>
+<td class="org-left">numpyの基本的な使い方 カラム <code>a[:,2]</code>, subregion <code>a[1:3, 1:3]</code> 選択</td>
+</tr>
+
+<tr>
+<td class="org-right">3.10</td>
+<td class="org-left">numpyでの線形代数計算(パス)</td>
+</tr>
+
+<tr>
+<td class="org-right">3.11</td>
+<td class="org-left">ランダム値を得る randint(0, 10)は0も10も含む。random()</td>
+</tr>
+
+<tr>
+<td class="org-right">3.12</td>
+<td class="org-left">時間の変換 <code>timedelta(hours=4.5), datetime(2021, 1, 26)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>dateutil.relativedelta()</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.13</td>
+<td class="org-left">先週の火曜日は何日、のレシピ。 dateutil.relativedeltaで簡単に。</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>relativedelta(weekday=FR), relativedelta(weekday=FR(-1)</code> 先週</td>
+</tr>
+
+<tr>
+<td class="org-right">3.14</td>
+<td class="org-left">今月をリストするレシピ。ビルトインrange()の日にち版レシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>date.today().replace(day=1), calendar.monthrange(yr, mon)</code></td>
+</tr>
+
+<tr>
+<td class="org-right">3.15</td>
+<td class="org-left">文字列で表記された日にちをdatetimeに変換するレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left"><code>datetime.strptime(text, '%Y-%m-%d')</code> strftimeで逆変換</td>
+</tr>
+
+<tr>
+<td class="org-right">3.16</td>
+<td class="org-left">タイムゾーンの変換はpytzモジュールを使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">ローカル時間を操作するレシピ。いったんUTCに変換する</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org6bc1f9b" class="outline-4">
+<h4 id="org6bc1f9b"><span class="section-number-4">2.3.1.</span> ランダム値を得る(3.11)</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; import random
+&gt;&gt;&gt; values = [1,2,3,4,5,6]
+&gt;&gt;&gt; random.choice(values)  # 一つ選ぶ
+2
+&gt;&gt;&gt; random.sample(values, 3)  # 3つ選ぶ
+[4, 3, 1]
+&gt;&gt;&gt; random.shuffle(values)  # ランダムに並び替える
+&gt;&gt;&gt; values
+[5, 2, 3, 1, 4, 6]
+&gt;&gt;&gt; random.random()  # 0-1のfloat値を得る
+0.14043684176026439
+&gt;&gt;&gt; random.seed()  # システム時間やos.random()ベースのシード
+&gt;&gt;&gt; random.seed(12345)
+</pre>
+</div>
+
+<p>
+暗号に使う厳密なランダム値は ssl.RAND_byes() 等を使うこと。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org30615ed" class="outline-4">
+<h4 id="org30615ed"><span class="section-number-4">2.3.2.</span> タイムゾーンの扱い(3.16)</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; from datetime import datetime
+&gt;&gt;&gt; import pytz
+&gt;&gt;&gt; d = datetime(2021, 1, 27, 21, 30,0)  # (1) datetimeで日時を表記
+&gt;&gt;&gt; print(d)
+2021-01-27 21:30:00
+&gt;&gt;&gt; boston = timezone('America/New_York')
+&gt;&gt;&gt; bos_d = boston.localize(d)  # (2) 東海岸時間に指定
+&gt;&gt;&gt; print(bos_d)
+2021-01-27 21:30:00-05:00
+&gt;&gt;&gt; utc_d = bos_d.astimezone(pytz.utc)  # (3) UTCに変換
+&gt;&gt;&gt; print(utc_d)
+2021-01-28 02:30:00+00:00
+&gt;&gt;&gt; later_utc_d = utc_d + timedelta(minutes=30)  # (4) UTCで時間計算
+&gt;&gt;&gt; japan = timezone('Asia/Tokyo')
+&gt;&gt;&gt; print(later_utc_d.astimezone(japan))  # (5) JST時間で表示
+2021-01-28 12:00:00+09:00
+</pre>
+</div>
+
+<p>
+国のタイムゾーンを取得する方法。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; pytz.country_timezones['JP']
+['Asia/Tokyo']
+&gt;&gt;&gt; pytz.country_timezones['US']
+['America/New_York', 'America/Detroit', 'America/Kentucky/Louisville', 
+'America/Kentucky/Monticello', 'America/Indiana/Indianapolis', 
+'America/Indiana/Vincennes', 'America/Indiana/Winamac', 
+'America/Indiana/Marengo', 'America/Indiana/Petersburg', 
+'America/Indiana/Vevay', 'America/Chicago', 'America/Indiana/Tell_City', 
+'America/Indiana/Knox', 'America/Menominee', 'America/North_Dakota/Center', 
+'America/North_Dakota/New_Salem', 'America/North_Dakota/Beulah', 
+'America/Denver', 'America/Boise', 'America/Phoenix', 
+'America/Los_Angeles', 'America/Anchorage', 'America/Juneau', 
+'America/Sitka', 'America/Metlakatla', 'America/Yakutat', 'America/Nome', 
+'America/Adak', 'Pacific/Honolulu']
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4d967d2" class="outline-3">
+<h3 id="org4d967d2"><span class="section-number-3">2.4.</span> Chapter 4: アイテレーターとジェネレーター</h3>
+<div class="outline-text-3" id="text-2-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">4.1</td>
+<td class="org-left">for文を使わずにiterateする</td>
+</tr>
+
+<tr>
+<td class="org-right">4.2</td>
+<td class="org-left">カスタムコンテナオブジェクトにiteratorプロトコルを実装する</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">__iter__()は__next__()を実装するiteratorオブジェクトを返す</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">iter(s)はs.__iter__()と同じ</td>
+</tr>
+
+<tr>
+<td class="org-right">4.3</td>
+<td class="org-left">新たなiterationパターンはジェネレーター関数で実装する</td>
+</tr>
+
+<tr>
+<td class="org-right">4.4</td>
+<td class="org-left">オブジェクトに再帰呼び出しするジェネレーター関数を定義してiterateする</td>
+</tr>
+
+<tr>
+<td class="org-right">4.5</td>
+<td class="org-left">シーケンスを逆にiterateする。reverse()を使う。</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">__reverse__()を実装する(効率よい)か、いったんリストにする</td>
+</tr>
+
+<tr>
+<td class="org-right">4.6</td>
+<td class="org-left">ジェネレーター関数にステートを持たせるには、クラスにすればよい</td>
+</tr>
+
+<tr>
+<td class="org-right">4.7</td>
+<td class="org-left">iteratorをスライス(eg, [1:5])するにはitertools.islice()を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">4.8</td>
+<td class="org-left">iterableの最初の部分をスキップするにはitertools.dropwhile()を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">4.9</td>
+<td class="org-left">itertools.permutations, combinations, combinations_with_replacement</td>
+</tr>
+
+<tr>
+<td class="org-right">4.10</td>
+<td class="org-left">シーケンスに行番号やインデックス番号を付けるにはenumerateを使う</td>
+</tr>
+
+<tr>
+<td class="org-right">4.11</td>
+<td class="org-left">複数のシーケンスを同時にたどるにはzip()を使う zip_longest()</td>
+</tr>
+
+<tr>
+<td class="org-right">4.12</td>
+<td class="org-left">複数のシーケンスを一つにつなげるのはchain()を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">シーケンスを+でつなげるのは、同じタイプでないといけない&amp; inefficient</td>
+</tr>
+
+<tr>
+<td class="org-right">4.13</td>
+<td class="org-left">ジェネレーター関数をパイプラインでつなぐ</td>
+</tr>
+
+<tr>
+<td class="org-right">4.14</td>
+<td class="org-left">ネストされたシーケンスをflattenするのに、ジェネレーター関数を</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">yield fromで再帰呼び出しするレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">4.15</td>
+<td class="org-left">ソートされた複数のリストをマージするのにheapq.mergeが使える</td>
+</tr>
+
+<tr>
+<td class="org-right">4.16</td>
+<td class="org-left">sentinelが出るまでストリームをiterateするiter(lambda: xx, sentinel)</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">を使うレシピ</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-orgf733120" class="outline-4">
+<h4 id="orgf733120"><span class="section-number-4">2.4.1.</span> iterate可能なオブジェクト (4.4)</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+ルートノードから世代をiterateするオブジェクトの実装例。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class Node:
+    def __init__(self, value)
+        self._value = value
+        self._children = []
+&lt;snip&gt;
+    def __iter__(self):
+        return iter(self._children)
+    def depth_first(self):  # ジェネレーター関数
+        yield self
+        for c in self:
+            yield from c.depth_first()  # 再帰呼び出し
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org943c6e5" class="outline-4">
+<h4 id="org943c6e5"><span class="section-number-4">2.4.2.</span> iter()の特別な用法(4.16)</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+iter()に引数を取らないcallableとsentinelを与えると、sentinelが出るまで指定callableを繰り返し呼ぶiteratorを返す。引数を取らないcallableを作るためにlambdaを使う。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def reader(s):
+    for chunk in iter(lambda: s.recv(CHUNKSIZE), b''):
+        process_data(chunk)
+
+import sys
+f = open('/etc/passwd')
+for chunk in iter(lambda: f.read(10), ''):
+    n = sys.stdout.write(chunk)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfc0b9bd" class="outline-3">
+<h3 id="orgfc0b9bd"><span class="section-number-3">2.5.</span> Chapter 5: ファイルとI/O</h3>
+<div class="outline-text-3" id="text-2-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">5.1</td>
+<td class="org-left">テキストファイルを読み書きするにはopenする。withを使うと便利。</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">リターンコード、エンコードエラーの扱い</td>
+</tr>
+
+<tr>
+<td class="org-right">5.2</td>
+<td class="org-left">print('&#x2026;', file=fd)を使ってファイルにリダイレクトする</td>
+</tr>
+
+<tr>
+<td class="org-right">5.3</td>
+<td class="org-left">print('&#x2026;', sep=',', end='!!\n')</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">str.join()と異なり、文字列以外にも使える</td>
+</tr>
+
+<tr>
+<td class="org-right">5.4</td>
+<td class="org-left">open('filename', 'rb') 'wb' でバイナリモードでオープン</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">配列やC構造体はいったんバイナリに変換しなくてよい</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">readinto()はメモリに直接読み可能</td>
+</tr>
+
+<tr>
+<td class="org-right">5.5</td>
+<td class="org-left">既存ファイルがあるとライトを失敗させるには'xb' 'xt'を指定する</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">with open('file', 'xt') as f:</td>
+</tr>
+
+<tr>
+<td class="org-right">5.6</td>
+<td class="org-left">文字列やバイト列をファイルライクなオブジェクトとして扱うレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">io.StringIO(), io.BytesIO()</td>
+</tr>
+
+<tr>
+<td class="org-right">5.7</td>
+<td class="org-left">gzip.open(), bz2.open()を使って圧縮ファイルを読み書きする</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">正しいファイルモード(テキスト/バイナリ)を使う事が重要</td>
+</tr>
+
+<tr>
+<td class="org-right">5.8</td>
+<td class="org-left">固定サイズずつバイナリファイルをiterateするレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">iter(partial(f.read, REC_SZ), b'')を使う b'': sentinel</td>
+</tr>
+
+<tr>
+<td class="org-right">5.9</td>
+<td class="org-left">mutableなバッファにバイナリデータを読む f.readinto(buf)を使う</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">memoryviewを使っても。bytes(mv)で中身を見る</td>
+</tr>
+
+<tr>
+<td class="org-right">5.10</td>
+<td class="org-left">mmapを使うレシピ。コンテキストマネージャとしても使える</td>
+</tr>
+
+<tr>
+<td class="org-right">5.11</td>
+<td class="org-left">パス名の操作にはos.pathモジュールを使う</td>
+</tr>
+
+<tr>
+<td class="org-right">5.12</td>
+<td class="org-left">os.pathの関数 exists(), isfile(), islink(), realpath(), getsize(), etc.</td>
+</tr>
+
+<tr>
+<td class="org-right">5.13</td>
+<td class="org-left">ディレクトリのリスティング。os.listdir(), endswith(), glob, fnmatch等</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">os.stat(file)でメタデータ一括取得</td>
+</tr>
+
+<tr>
+<td class="org-right">5.14</td>
+<td class="org-left">listdir(b'.'), open(b'..txt')でファイル名エンコーディングをバイパスする</td>
+</tr>
+
+<tr>
+<td class="org-right">5.15</td>
+<td class="org-left">デコードできないファイル名をどう扱うか</td>
+</tr>
+
+<tr>
+<td class="org-right">5.16</td>
+<td class="org-left">オープンしているファイルのエンコーディングを変えるレシピ</td>
+</tr>
+
+<tr>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">f.detach()してTextIOWrapperレイヤーを別エンコードで付け直す</td>
+</tr>
+
+<tr>
+<td class="org-right">5.17</td>
+<td class="org-left">テキストファイルにバイトを書き込む。 f.buffer.write(b'&#x2026;')</td>
+</tr>
+
+<tr>
+<td class="org-right">5.18</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-org34bc35a" class="outline-4">
+<h4 id="org34bc35a"><span class="section-number-4">2.5.1.</span> バッファインタフェース(5.4)</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+配列(アレイ)等はバッファインタフェースを持ち、いったんバイトに変換せずにバイトとして読み書きできる。配列等にバイトを直接読み出すのにfd.readinto(array)が使える。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; import array
+&gt;&gt;&gt; nums = array.array('i', [1,2,3,4])
+&gt;&gt;&gt; with open('tt.bin', 'wb') as f:
+...     f.write(nums)
+&gt;&gt;&gt; a = array.array('i',[0,0,0,0,0,0])
+&gt;&gt;&gt; with open('tt.bin', 'rb') as f:
+...     f.readinto(a)
+&gt;&gt;&gt; a
+array('i', [1, 2, 3, 4, 0, 0])
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd8dceb5" class="outline-4">
+<h4 id="orgd8dceb5"><span class="section-number-4">2.5.2.</span> 圧縮ファイルの読み書き(5.7)</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<div class="org-src-container">
+<pre class="src src-python">import gzip
+with gzip.open('file.gz', 'rt') as f:
+    text = f.read()
+
+import bz2
+with bz2.open('file.bz2', 'wb') as f:
+    f.write(bytes)
+</pre>
+</div>
+
+<p>
+バイナリモードでオープンした既存ファイルに重ねることが可能。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">f = open('file.gz', 'rb')
+with gzip.open(f, 'rt') as g:
+    text = g.read()
+</pre>
+</div>
+
+<p>
+これは、ソケット、パイプ、インメモリファイル等のファイルライクなオブジェクトに対して使えるということ。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org096a7f6" class="outline-4">
+<h4 id="org096a7f6"><span class="section-number-4">2.5.3.</span> mmapを使う(5.10)</h4>
+<div class="outline-text-4" id="text-2-5-3">
+<p>
+mmapを使うユーティリティ関数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">import os                                                                              
+import mmap                                                                            
+def memory_map(filename, access=mmap.ACCESS_WRITE):                                    
+    size = os.path.getsize(filename)                                                   
+    fd = os.open(filename, os.O_RDWR)                                                  
+    return mmap.mmap(fd, size, access=access)
+</pre>
+</div>
+
+<p>
+mmapするファイルを用意する。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">size = 10000
+with open('tt.bin', 'wb') as f:
+    f.seek(size-1)
+    f.write(b'\x00')
+</pre>
+</div>
+
+<p>
+使い方。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; m = memory_map('tt.bin')
+&gt;&gt;&gt; len(m)
+10000
+&gt;&gt;&gt; m[:10]
+b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
+&gt;&gt;&gt; m[0]
+0
+&gt;&gt;&gt; m[:11] = b'Hello World'
+&gt;&gt;&gt; m
+&lt;mmap.mmap closed=False, access=ACCESS_WRITE, length=10000, pos=0, offset=0&gt;
+&gt;&gt;&gt; m.close()  # 必須!
+&gt;&gt;&gt; m
+&lt;mmap.mmap closed=True&gt;
+&gt;&gt;&gt; with open('tt.bin', 'rb') as f:
+...     print(f.read(11))
+... 
+b'Hello World'
+</pre>
+</div>
+
+<p>
+コンテキストマネージャとしても使える。close()不要。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">with memory_map('tt.bin') as m:
+    print(len(m))
+    print(m[0:10])
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org33823c7" class="outline-4">
+<h4 id="org33823c7"><span class="section-number-4">2.5.4.</span> テキスト操作の3つのレイヤー(5.16)</h4>
+<div class="outline-text-4" id="text-2-5-4">
+<p>
+テキストファイルは3つのレイヤーでアクセスする。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">&gt;&gt;&gt; f = open('tt.txt', 'w')
+&gt;&gt;&gt; f  # テキストハンドリングレイヤー
+&lt;_io.TextIOWrapper name='tt.txt' mode='w' encoding='UTF-8'&gt;
+&gt;&gt;&gt; f.buffer  # buffered I/Oレイヤー
+&lt;_io.BufferedWriter name='tt.txt'&gt;
+&gt;&gt;&gt; f.buffer.raw  # OSの低レベルファイルデスクリプター
+&lt;_io.FileIO name='tt.txt' mode='wb' closefd=True&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-01-11T00:00:00-05:00" pubdate>Mon 11 January 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

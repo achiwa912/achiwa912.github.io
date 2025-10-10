@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>M-x shellからemacs-eatに乗り換える &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li class="active">
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">M-x shellからemacs-eatに乗り換える</h1>
+    <p class="meta">
+<time datetime="2025-01-23T00:00:00-05:00" pubdate>Thu 23 January 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org43de831">1. はじめに</a>
+<ul>
+<li><a href="#orge8e8dd4">1.1. リモートシェルの指定がうまくいかない</a></li>
+<li><a href="#org7de55e0">1.2. つい、terminalのキーバインドを使おうとしてしまう</a></li>
+</ul>
+</li>
+<li><a href="#orga5069bd">2. emacs-eat</a>
+<ul>
+<li><a href="#org50af1fa">2.1. リモートシェルが指定できない</a></li>
+<li><a href="#org5609816">2.2. M-o が効かない</a></li>
+<li><a href="#orge2dfa91">2.3. TERMが認識されない</a></li>
+<li><a href="#org444e053">2.4. init.elの設定</a></li>
+</ul>
+</li>
+<li><a href="#org412a108">3. emacs-eatを使ってみて</a></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-org43de831" class="outline-2">
+<h2 id="org43de831"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+これまで emacs上で使うシェルとして、 <code>M-x shell</code> を使っていたのですが、いくつか不満点がありました。
+</p>
+</div>
+
+<div id="outline-container-orge8e8dd4" class="outline-3">
+<h3 id="orge8e8dd4"><span class="section-number-3">1.1.</span> リモートシェルの指定がうまくいかない</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+MacからLinuxマシンにリモートでログインすることが多いのですが、ローカルのMacではMacOS標準のzshを、リモートでは bash を使いたいのです。 
+</p>
+
+<p>
+trampのドキュメントを読むと <code>tramp-default-remote-shell</code> を操作するとよいとあるので、
+</p>
+<pre class="example">
+(setq tramp-default-remote-shell "/bin/bash")
+</pre>
+
+<p>
+としても何故かデフォルトのまま <code>/bin/sh</code> を使おうとして、それでよいか聞いてきます。ここで <code>/bin/bash</code> に修正すれば使えるのですが、毎回聞いてくるので地味に面倒です。
+</p>
+
+<p>
+一方で、
+</p>
+<pre class="example">
+(setq explicit-shell-file-name "/bin/bash")
+</pre>
+
+<p>
+のようにすると、リモートだけでなくローカルまで bash にしてしまいます。Macがzshでないと文句を言うので、これは困ります。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7de55e0" class="outline-3">
+<h3 id="org7de55e0"><span class="section-number-3">1.2.</span> つい、terminalのキーバインドを使おうとしてしまう</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<code>M-x shell</code> ではコマンドラインのヒストリー操作をするのにCtrlキーや矢印キーでなく、メタキーを使う(<code>M-p</code>, <code>M-r</code> 等)のですが、つい矢印キーを押して、カーソルが動いてしまいます。
+</p>
+
+<p>
+わかっているのですが、気を抜いた時に想定外の挙動をするので、地味に不満を感じていました。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga5069bd" class="outline-2">
+<h2 id="orga5069bd"><span class="section-number-2">2.</span> <a href="https://codeberg.org/akib/emacs-eat">emacs-eat</a></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+emacsから使うターミナル/シェルとして eat の評判が良いので乗り換えを検討することにしました。
+eatは M-x shell と違って、ターミナルとして使うモード(デフォルトのsemi charモード)と、表示履歴をemacsのキー操作で検索したりコピペしたりするモード(emacsモード)に分かれています。ほぼターミナルとして振る舞うsemi charモードで普段は十分間に合うため、emacsのキーバンドで表示履歴を操作するemacsモードを独立させたのは理がかなっていると思います。
+</p>
+
+<p>
+<code>C-c C-e</code> でemacsモードに、 <code>C-c C-j</code> でsemi charモードになることを覚えるだけで、あとは何となく感覚的に使えると思います。semi charモードでも厳選されたごく一部のemacsキーバインドが使えます。
+</p>
+
+<p>
+このemacs-eatですが、使えるようになるまでに結構試行錯誤し、以下のような問題にぶつかりました。
+</p>
+</div>
+
+<div id="outline-container-org50af1fa" class="outline-3">
+<h3 id="org50af1fa"><span class="section-number-3">2.1.</span> リモートシェルが指定できない</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+まずは、リモートシェルにローカルと同じ zsh を探しに行ってエラーになり、リモートでは全く使い物にならない問題がありました。eatの <a href="https://elpa.nongnu.org/nongnu-devel/doc/eat.html">マニュアル</a> を読むと <code>eat-tramp-shells</code> 変数を設定するように書いてあるのですが、設定しても挙動が変わりません。
+</p>
+
+<p>
+このためしばらく使用を断念して放置していたのですが、最近、私のemacsから参照しているソースコード(eat.el)を眺めていて、codeberg上の最新eat.elと差があることに気が付きました。NonGNUからパッケージインストールした手元にある版では"tramp"で検索してもヒットしないのです。package-list-packagesからはアップデートできないため、最新版なはずなのですが。
+</p>
+
+<p>
+そこで、NonGNU版をアンインストールして、git cloneしてきたcodeberg版を指定したところ、やっと <code>eat-tramp-shells</code> の設定が有効になりました。こんなことってあるんですね。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5609816" class="outline-3">
+<h3 id="org5609816"><span class="section-number-3">2.2.</span> M-o が効かない</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+私は <a href="https://www.masteringemacs.org/">Mastering Emacs</a> の推奨に従って、ウインドウ間のカーソル移動に <code>M-o</code> を使っています。標準は <code>C-x o</code> に割り当てられていますが、頻繁に使用する操作なので、よりストロークの少ないキーバインドにグローバルで設定しています。
+</p>
+
+<p>
+ところが、eatのデフォルトモードであるsemi charモードでは <code>M-o</code> のグローバル設定が無視されてしまいます。eatでは、semi charモードのキーバインドをカスタマイズできるのですが、 <code>M-o</code> を追記しても挙動が変わりません。
+</p>
+
+<p>
+検索したところ、全く同じ問題で悩んでいた人のQ&amp;Aが <a href="https://www.reddit.com/r/emacs/comments/1cowif8/override_key_in_emacseats_semichar_mode/">redditのページ</a> にあったので、解決策をそのまま使ったところ <code>M-o</code> でウインドウ間のカーソル移動ができるようになりました。この人も Mastering Emacs に倣ったのでしょうか。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge2dfa91" class="outline-3">
+<h3 id="orge2dfa91"><span class="section-number-3">2.3.</span> TERMが認識されない</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+まだ最終的に解決していないのがこの問題です。手動でeatをセットアップしたためか、$TERMに(正しく)設定されているeat-truecolorが認識されず、 <code>clear</code> コマンドや <code>C-l</code> が動きません。マニュアルを読んで変数を確認しても問題なく、少なくともローカルでは$TERMINFOに正しいディレクトリが設定されています。
+</p>
+
+<p>
+このままでは使い勝手が悪いので、workaroundとして <code>eat-term-name</code> に <code>xterm-256color</code> を設定しています。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org444e053" class="outline-3">
+<h3 id="org444e053"><span class="section-number-3">2.4.</span> init.elの設定</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+eat関係の設定は以下です。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package eat
+  :load-path "~/.emacs.d/site-lisp/emacs-eat" ;; git cloneしてきたものを指定
+  :config  ;; M-o をターミナルに渡さないようにする設定
+  (customize-set-variable ;; has :set code
+   'eat-semi-char-non-bound-keys
+   (append
+    (list (vector meta-prefix-char ?o))
+    eat-semi-char-non-bound-keys)))
+(setq eat-tramp-shells '(("ssh" . "/bin/bash"))) ;; リモートでbashを使う設定
+(setq eat-term-name "xterm-256color") ;; $TERMが認識されないことのworkaround
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org412a108" class="outline-2">
+<h2 id="org412a108"><span class="section-number-2">3.</span> emacs-eatを使ってみて</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+まだ使い始めて間がありませんが、 M-x shell の不満点は解消され、使いやすくなったと思います。
+emacs上でシェル/ターミナルを多用するため、ちょっとした改善でも大きな差が出ます。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-01-23T00:00:00-05:00" pubdate>Thu 23 January 2025</time>  <span class="categories">
+    <a class='category' href='/category/emacs.html'>Emacs</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

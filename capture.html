@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>org-captureって便利なんでは!? &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">org-captureって便利なんでは!?</h1>
+    <p class="meta">
+<time datetime="2023-07-01T00:00:00-04:00" pubdate>Sat 01 July 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga6e6ef9">1. はじめに</a></li>
+<li><a href="#org409d057">2. org-journal</a></li>
+<li><a href="#orga00dfdc">3. 王様の耳はロバの耳</a></li>
+<li><a href="#org99dadba">4. リンク</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga6e6ef9" class="outline-2">
+<h2 id="orga6e6ef9"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+禍津神Elon MuskのおかげでTwitterが迷走しています。3rd partyのアプリが使えなくなって以来、私はTwitterにほとんどアクセスしなくなりましたが、時には誰も聞いていないとはわかっていても呟いてみたい気分になることがあります。
+</p>
+
+<p>
+ふと、そんな時にemacsのorg-journalが代わりになるのでは、と思い立ち、使ってみることにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org409d057" class="outline-2">
+<h2 id="org409d057"><span class="section-number-2">2.</span> org-journal</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="https://github.com/bastibe/org-journal">org-journal</a> は名前の通り、ジャーナルを書くためのemacsのメジャーモードです。私はglobalに <code>C-c j</code> でorg-journalが起動するようにしてみました。init.elには以下を追記しています。
+</p>
+<div class="org-src-container">
+<pre class="src src-elisp">(use-package org-journal
+  :ensure t
+  :defer t
+  :custom
+  (org-journal-dir "~/py/memo/journal")
+  (org-journal-date-format "%A, %d %B %Y")
+  (org-journal-file-format "%Y%m%d.org")
+  (org-journal-file-type 'monthly))
+
+(global-set-key (kbd "C-c j") 'org-journal-new-entry)
+</pre>
+</div>
+<ul class="org-ul">
+<li>ジャーナルファイルはgithubのプライベートレポジトリに同期するようにしました。</li>
+<li>githubがorgファイルと認識するように、ファイル名に <code>.org</code> を付けるようにしました。</li>
+<li>月ごとにファイルを作成するように指定しています。</li>
+</ul>
+
+<p>
+<code>M-x package-list-packages</code> などから手動でインストールしないといけないかも。
+</p>
+
+<p>
+何か思い立った時に <code>C-c j</code> を押すと画面が2分割されてジャーナルファイルが開き、 言いたいことを追記していくことができます。画面が完全に切り替わるのではなく、画面の下にorg-journalが開くところがよいです。書いたらすぐに <code>C-x 0</code> で下のorg-journal画面を閉じるだけ。これ、滅茶苦茶便利です。操作が面倒だと書き込もうという意欲が萎んでしまいますが、ほぼノーストレスです。
+</p>
+
+<p>
+しかも、私の環境ではgithubに同期しているので、(commit &gt; push すれば)スマホ等のデバイスからもアクセスできます。いや〜、便利です。こんな感じにレンダリングされます。
+<img src="./images/capture.jpg" alt="capture.jpg" />
+</p>
+
+<p>
+基本的なキーバインド:
+</p>
+<ul class="org-ul">
+<li><code>C-c C-f</code> / <code>C-c C-b</code>: 次/前のjournalファイルに移動</li>
+<li><code>C-c C-j</code>: エントリー追加(org-journal-new-entry)</li>
+<li><code>C-u C-c C-j</code>: エントリー追加せずにjournalファイルを開く</li>
+<li><code>C-c C-s</code>: journalを検索</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga00dfdc" class="outline-2">
+<h2 id="orga00dfdc"><span class="section-number-2">3.</span> 王様の耳はロバの耳</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+だれも読んでいないとはわかっていても、Twitterは世界に向けて公開しています。org-journalで代わりが務まるのでしょうか。そもそもは全く異なる目的のものですし。
+</p>
+
+<p>
+まあ、仮にTwitterの代わりにはならないとしても、org-journalはそれ自体とてもよくできていると思います。私はこれまで日記の類が全く続きませんでしたが、これは続くでしょうか。。。
+</p>
+
+<p>
+。。。しばらく使ってみましたが、メモ代わりにとても重宝しています。結局、twitterの代わりにはあまりならないかな。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org99dadba" class="outline-2">
+<h2 id="org99dadba"><span class="section-number-2">4.</span> リンク</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="https://github.com/bastibe/org-journal">https://github.com/bastibe/org-journal</a></li>
+<li><a href="https://www.mhatta.org/wp/2019/02/25/org-mode-101-8/">モーレツ! Org mode 教室 その8: org-journalで日記を書く</a></li>
+<li><a href="https://mac-ra.com/emacs-org-journal-lifelog/">【emacs】org-journal でライフログっぽいやつ</a></li>
+</ul>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2023-07-01T00:00:00-04:00" pubdate>Sat 01 July 2023</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/emacs.html">emacs</a>,    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

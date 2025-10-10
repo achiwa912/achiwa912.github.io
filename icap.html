@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>RFC3507 (ICAP)読書メモ &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">RFC3507 (ICAP)読書メモ</h1>
+    <p class="meta">
+<time datetime="2020-07-27T00:00:00-04:00" pubdate>Mon 27 July 2020</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2a2fec8">1. はじめに</a></li>
+<li><a href="#orgb96dad2">2. Abstract</a></li>
+<li><a href="#org14e30c8">3. ICAP Overall Operation</a>
+<ul>
+<li><a href="#org11f97aa">3.1. リクエスト修正モード</a></li>
+<li><a href="#orgeb4b6bb">3.2. レスポンス修正モード</a></li>
+</ul>
+</li>
+<li><a href="#org75bea5b">4. プロトコルの説明(セマンティクス)</a>
+<ul>
+<li><a href="#org792065b">4.1. 一般的なオペレーション</a></li>
+<li><a href="#org1b1d27a">4.2. ICAP URIs</a></li>
+<li><a href="#org43d4a5b">4.3. ICAPヘッダー</a>
+<ul>
+<li><a href="#orgbc87430">4.3.1. リクエストとレスポンスに共通なヘッダー</a></li>
+<li><a href="#org3d67695">4.3.2. リクエストヘッダー</a></li>
+<li><a href="#orgc641939">4.3.3. レスポンスヘッダー</a></li>
+<li><a href="#org4f22978">4.3.4. HTTPメッセージにおけるICAP関連ヘッダー</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgc8f4562">5. RFC 3507のcopyright statement</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org2a2fec8" class="outline-2">
+<h2 id="org2a2fec8"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+ウイルススキャンサーバーで使われる
+ICAP (Internet Content Adaption Protocol)の概要が知りたかったので、
+RFC 3507を読んでみます。概要プラスアルファくらいまで。
+<a href="https://tools.ietf.org/html/rfc3507">https://tools.ietf.org/html/rfc3507</a>
+</p>
+
+<blockquote>
+<p>
+私の独り言をクオートでつぶやきます。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orgb96dad2" class="outline-2">
+<h2 id="orgb96dad2"><span class="section-number-2">2.</span> Abstract</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+ICAPは、HTTPのサービスに対して、シンプルなオブジェクトベースのcontent vectoringを提供する。
+</p>
+<blockquote>
+<p>
+content vectoring protocol (CVP)は初耳でした。ファイヤーウォールを通過しようとするデータをフィルタリングするプロトコル、だそうです。
+</p>
+</blockquote>
+
+<p>
+ICAPは、その本質としては、HTTPメッセージに"remote procedure call"を実行するためのlight weightなプロトコルである。
+ICAPクライアントはICAPサーバーにHTTPメッセージを送って、何らかの変換等の処理("adaptation"という)をさせることができる。サーバーはメッセージに対して変換サービスを実施し、通常は変更されたメッセージと共にクライアントにレスポンスを返す。
+通常、アダプトされるメッセージはHTTPリクエストまたはHTTPレスポンスである。
+</p>
+
+<blockquote>
+<p>
+つまり、ICAPクライアントが転送したメッセージに、ICAPサーバーが手を加えて返すしかけ、ということですね。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org14e30c8" class="outline-2">
+<h2 id="org14e30c8"><span class="section-number-2">3.</span> ICAP Overall Operation</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org11f97aa" class="outline-3">
+<h3 id="org11f97aa"><span class="section-number-3">3.1.</span> リクエスト修正モード</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+"request modificaiton" (reqmod) モードでは、ICAPクライアントはHTTPリクエストをICAPサーバーに送る。
+ICAPサーバーは以下をしてもよい(may)。
+</p>
+
+<ol class="org-ol">
+<li>リクエストの修正したバージョンを送り返す。ICAPクライアントはそれから、元のサーバーにコンタクトして修正されたリクエストを処理するか、別のICAPサーバーで更に修正するために、修正されたリクエストをパイプラインしてもよい。</li>
+<li>HTTPレスポンスをリクエストに対して返す。これはエラーを返す時に使える。</li>
+<li>エラーを返す。</li>
+</ol>
+
+<p>
+ICAPクライアントはこれら三つのレスポンスタイプを全て扱えなくてはならない。しかし、エラーの扱いについては多少の自由が与えられている。エラーをすぐに返す、リトライする、など。
+</p>
+
+<p>
+コンテントフィルタリングのアプリケーション例を使って、この方法を説明する。
+元のサーバー上にあるウェブページに対するクライアントの要求を受けた代理(surrogate)について考えてみる。
+</p>
+
+<p>
+ICAPクライアントとして働くこの代理は、クライアントの要求をICAPサーバーに送り、そこでURIベースのコンテントフィルタリングを行う。
+要求されたURIへのアクセスが許可されるなら、その要求はICAPクライアントに修正なしで戻される。しかしICAPサーバーが、要求されたリソースへのアクセスを許可しないなら、サーバーは以下のいずれかをしても良い:
+</p>
+
+<ol class="org-ol">
+<li>リクエストを修正し、元のURIの代わりにエラーメッセージを含むページをポイントする</li>
+<li>HTTPエラーを示す、カプセル化されたHTTPレスポンスを返す</li>
+</ol>
+
+<p>
+この方法は、様々な種類のアプリケーションで使うことができる。
+典型的なデータの流れは以下のようになる。
+</p>
+<pre class="example">
+origin-server
+    | /|\
+    |  |
+ 5  |  |  4
+    |  |
+   \|/ |              2
+ICAP-client    --------------&gt;   ICAP-resource
+(surrogate)    &lt;--------------   on ICAP-server
+    | /|\             3
+    |  |
+ 6  |  |  1
+    |  |
+   \|/ |
+   client
+</pre>
+<ol class="org-ol">
+<li>クライアントはICAPクライアント(=代理)に、オリジンサーバー上にあるオブジェクトへのリクエストを行う。</li>
+<li>代理はそのリクエストをICAPサーバーに送る</li>
+<li>ICAPサーバーは、リクエストに対するそのICAPリソースのサービスを実行し、修正されたリクエストを送るか、リクエストに対するレスポンスをICAPクライアントに返す。</li>
+</ol>
+
+<p>
+もしステップ3においてリクエストを戻したら、
+</p>
+
+<ol class="org-ol">
+<li>代理はそのリクエスト(元々のクライアントリクエストとは異なるかもしれない)をオリジンサーバーに送る</li>
+<li>オリジンサーバーはリクエストに対するレスポンスを返す</li>
+<li>代理はそのリプライ(ICAPサーバーまたはオリジンサーバーからの)をクライアントに返す</li>
+</ol>
+
+<blockquote>
+<p>
+ウイルススキャンで言うと、例えばエンドユーザーのPCがファイルサーバーにファイルをアップロードする時にスキャンするモードです。ファイルサーバーにウイルスが入らないようにする。
+</p>
+</blockquote>
+</div>
+</div>
+
+
+<div id="outline-container-orgeb4b6bb" class="outline-3">
+<h3 id="orgeb4b6bb"><span class="section-number-3">3.2.</span> レスポンス修正モード</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+"response modificaiton" (respmod)モードでは、ICAPクライアントはHTTPレスポンスをICAPサーバーに送る。(ICAPクライアントが送るレスポンスは、普通はオリジンサーバーによって生成されたものである)
+ICAPサーバーはそれから以下をしても良い:
+</p>
+
+<ol class="org-ol">
+<li>修正版のレスポンスを返す</li>
+<li>エラーを返す</li>
+</ol>
+
+<p>
+レスポンス修正方式は、HTTPレスポンスをクライアントに渡す前に行う事後処理(post-processing)を意図している。例として、特殊デバイスに表示するためのHTMLフォーマッティングや、言語翻訳、ウイルスチェック等がある。典型的なデータの流れは以下のようになる。
+</p>
+<pre class="example">
+origin-server
+    | /|\
+    |  |
+ 3  |  |  2
+    |  |
+   \|/ |            4
+ICAP-client    --------------&gt;   ICAP-resource
+(surrogate)    &lt;--------------   on ICAP-server
+    | /|\            5
+    |  |
+ 6  |  |  1
+    |  |
+   \|/ |
+   client
+</pre>
+
+<ol class="org-ol">
+<li>クライアントはICAPクライアント(=代理)に、オリジンサーバー上にあるオブジェクトへのリクエストを行う。</li>
+<li>代理はそのリクエストをオリジンサーバーに送る</li>
+<li>オリジンサーバーはリクエストに対するレスポンスを返す</li>
+<li>代理はオリジンサーバーのリプライをICAPサーバーに送る</li>
+<li>ICAPサーバーは、オリジンサーバーのリプライに対してそのICAPリソースのサービスを実行し、修正された可能性のあるリプライをICAPクライアントに返す</li>
+<li>代理はそのリプライ(ICAPサーバーまたはオリジンサーバーからの)をクライアントに返す</li>
+</ol>
+
+<blockquote>
+<p>
+こちらのモードは、ファイルサーバーにすでにウイルス付きのファイルが入ってしまっている時に、エンドユーザーのPCにそれをダウンロードできないように、水際で食い止めるのが目的。ウイルス定義ファイルの更新が間に合わないときなど、サーバーへのウイルス潜入がありえます。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75bea5b" class="outline-2">
+<h2 id="org75bea5b"><span class="section-number-2">4.</span> プロトコルの説明(セマンティクス)</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org792065b" class="outline-3">
+<h3 id="org792065b"><span class="section-number-3">4.1.</span> 一般的なオペレーション</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+ICAPはHTTP/1.1にセマンティクスも使用法もよく似た、リクエスト/レスポンスプロトコルである。似ているが、ICAPはHTTPでは無く、HTTP上で動くアプリケーションプロトコルでも無い。例えばこれはつまり、HTTP surrogateがICAPメッセージをフォワードできないことを意味する。
+</p>
+
+<p>
+ICAPはトランスポートプロトコルとしてTCP/IPを使う。デフォルトポートは1344であるが、他のポートを使っても良い。TCPフローは、ICAPクライアントが、受け身でリスニングしているICAPサーバーにinitiateする。
+</p>
+
+<p>
+ICAPメッセージは、クライアントからサーバーへのリクエストと、サーバーからクライアントへのレスポンスからなる。リクエストとレスポンスは RFC 2822の一般的なメッセージフォーマットを使う。つまり、スタート行(リクエスト行またはステータス行)、ヘッダーフィールドの数("headers"としても知られる)、ヘッダーフィールドの終わりを示す空行、そしてメッセージボディーからなる。
+</p>
+
+<p>
+ICAPメッセージのヘッダー行は、リクエストされているICAPリソースや、キャッシュ制御情報のようなメタデータを指定する。ICAPリクエストのメッセージボディーは、修正されようとしている(カプセル化された)HTTPメッセージを保持する。
+</p>
+
+<p>
+HTTP/1.1の場合と同様、一つのトランスポートコネクションが、複数のリクエスト/レスポンスペアに対して再利用されてもよい。そのルールを具体的に言うと、複数のリクエストは、ある時点において、一つのトランスポートコネクション上にoutstandingなリクエストを一つしか許さないことで、レスポンスと対応づけられる。HTTPと同様に、複数の並列コネクションを使っても良い。
+</p>
+
+<blockquote>
+<p>
+HTTPとよく似ているけどHTTPではなく、HTTP上で動く何かでもない。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org1b1d27a" class="outline-3">
+<h3 id="org1b1d27a"><span class="section-number-3">4.2.</span> ICAP URIs</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+全てのICAPリクエストはICAP URIを使って、サーバーから要求するICAPリソースを指定する。これは、完全なホスト名と要求するリソースのパスを両方指定する、絶対URIでなくてはならない。URIについてはRFC 2396参照。ICAPによって規定されるURIは、
+</p>
+<pre class="example">
+icap://icap.example.net:2000/services/icap-service-1
+</pre>
+
+<p>
+のようになる。ICAPサーバーは全てのホスト名を認識できる必要がある。これはエイリアス、ローカルのvariations、数字表記するIPアドレスなど。
+</p>
+
+<p>
+サービスの性質を変えるために、ICAPクライアントがICAPサーバーに渡したい引数は、ICAP-URIの一部として、HTTPで使われる標準的な"?"-エンコードされた引数-値のペアとして渡しても良い。例えば:
+</p>
+<pre class="example">
+icap://icap.net/servies?mode=translate&amp;lang=french
+</pre>
+
+
+<blockquote>
+<p>
+なるほど。HTTPのURIと同じパターンです。http/httpsの代わりにicapと書く。
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org43d4a5b" class="outline-3">
+<h3 id="org43d4a5b"><span class="section-number-3">4.3.</span> ICAPヘッダー</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+以下のセクションでICAPメッセージで有効なヘッダーを定義する。
+最初にリクエストとレスポンスに共通のヘッダーを説明する。リクエスト限定、レスポンス限定のヘッダーを次いで説明する。
+</p>
+
+<p>
+ユーザー定義ヘッダー拡張を使っても良い。インターネットメールフォーマットで確立され、後にHTTPが採用した前例に適合するために、全てのユーザー定義ヘッダーは"X-"のnaming convention ("X-Extension-Header: Foo")に従う必要がある。ICAPの実装はどの"X-"ヘッダーを無視してもよい。
+</p>
+
+<p>
+各ヘッダーフィールドは、name + ":" + フィールド値からなる。フィールド名は大文字、小文字の区別をしない。
+</p>
+
+<blockquote>
+<p>
+”X-"ヘッダーまでHTTPと同じ。
+</p>
+</blockquote>
+</div>
+
+<div id="outline-container-orgbc87430" class="outline-4">
+<h4 id="orgbc87430"><span class="section-number-4">4.3.1.</span> リクエストとレスポンスに共通なヘッダー</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<p>
+全てのICAPメッセージのヘッダーは以下のディレクティブを含んでも良い:
+</p>
+<ul class="org-ul">
+<li>Cache-Control</li>
+<li>Connection</li>
+<li>Date</li>
+<li>Expires</li>
+<li>Pragma</li>
+<li>Trailer</li>
+<li>Upgrade</li>
+</ul>
+<p>
+"Transfer-Encoding"が許されないことに特に注意。ICAPボディーの特別なtransfer-encodingの条件については後述する。
+</p>
+
+<p>
+Upgradeヘッダーは、HTTP/1.1にある通り、ICAPコネクションのTLSを交渉するのに使う。
+</p>
+
+<p>
+ICAP特有のヘッダーは以下である。
+</p>
+<ul class="org-ul">
+<li>Encapsulated</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3d67695" class="outline-4">
+<h4 id="org3d67695"><span class="section-number-4">4.3.2.</span> リクエストヘッダー</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<p>
+HTTPと同様に、ICAPリクエストはメソッド、リクエストするICAPリソースの完全なURI、ICAPバージョン文字列を含むリクエスト行で始まる必要がある。最新バージョン番号は"1.0"である。
+</p>
+
+<p>
+このバージョンのICAPは3つのメソッドを定義する。
+</p>
+<ul class="org-ul">
+<li>REQMOD - リクエスト修正のため</li>
+<li>RESPMOD - レスポンス修正のため</li>
+<li>OPTIONS - 構成について知るため</li>
+</ul>
+
+<p>
+OPTIONSメソッドは全てのICAPサーバーが実装しなくてはならない。他のメソッドはオプションで、インプリメントしてもしなくてもよい。
+</p>
+
+<blockquote>
+<p>
+REQMOD、RESPMOD片方しかサポートしていなくても(厳密には、両方サポートしていなくても)ICAPサポートと言えるのですね。
+</p>
+</blockquote>
+
+<p>
+ユーザー定義の拡張メソッドを使っても良い。拡張メソッドを使おうとする前に、ICAPクライアントはOPTIONSメソッドを使って、ICAPサーバーがサポートするメソッドのリストを問い合わせるべき。(ICAPサーバーが未知のメソッドを受け取ったら、次のセクションで示すように501エラーを返さなくてはならない。)
+</p>
+
+<p>
+前に説明したURIルールの通り、正しいICAPリクエスト行は以下の例のようになる。
+</p>
+<pre class="example">
+RESPMOD icap://icap.example.net/translate?mode=french ICAP/1.0
+</pre>
+
+
+<p>
+いくつものリクエスト特有ヘッダーがICAPリクエストにおいて使え、これは対応するHTTPリクエストヘッダーのセマンティクスと同じである。これらは、
+</p>
+<ul class="org-ul">
+<li>Authorization</li>
+<li>Allow</li>
+<li>From</li>
+<li>Host (REQUIRED in ICAP as it is in HTTP/1.1)</li>
+<li>Referer</li>
+<li>User-Agent</li>
+</ul>
+
+<p>
+HTTPライクなヘッダーに加え、ICAP特有のリクエストヘッダーもある。
+</p>
+<ul class="org-ul">
+<li>Preview</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc641939" class="outline-4">
+<h4 id="orgc641939"><span class="section-number-4">4.3.3.</span> レスポンスヘッダー</h4>
+<div class="outline-text-4" id="text-4-3-3">
+<p>
+ICAPのレスポンスは、フォーマットがHTTPによく似た、ICAPバージョンとステータスコードを含むICAPステータス行で始まる必要がある。例えば、
+</p>
+<pre class="example">
+ICAP/1.0 200 OK
+</pre>
+
+
+<p>
+ICAPのステータスコードは、このドキュメントで規定されているもの(100と204)の他は、対応するHTTPのステータスコードの意味と同じである。
+</p>
+
+<p>
+HTTPと異なるICAPのエラーコードは、
+</p>
+<ul class="org-ul">
+<li>100 - ICAPプレビューの後に続く</li>
+<li>204 - 修正は不要</li>
+<li>400 - Bad request</li>
+<li>404 - ICAP sesrvice not found</li>
+<li>405 - そのメソッドは使えない(例: REQMODしかサポートしないサービスにRESPMODを要求した)</li>
+<li>408 - Request timeout</li>
+<li>500 - Server error.  ICAPサーバー上のエラー例えばディスク不足。</li>
+<li>501 - メソッド未実装</li>
+<li>502 - Bad Gateway.  ICAP proxyがエラーを出した</li>
+<li>503 - サービス過負荷。ICAPサーバーが最大コネクション数を超えた。ICAPは今後、その負荷を超えてはならない。</li>
+<li>505 - サーバーがサポートしていないICAPバージョン</li>
+</ul>
+
+<p>
+HTTPの場合と同様に、4xxクラスのエラーはクライアントエラー、5xxクラスはサーバーエラーを意味する。
+</p>
+
+<blockquote>
+<p>
+curlコマンドなどで、直接HTTPを使うことがある方にはおなじみのエラーコードばかりですね。
+</p>
+</blockquote>
+
+
+<p>
+ICAPレスポンスヘッダーフィールドには、ICAPのステータス行に書けない追加のレスポンス情報をサーバーが記載することができる。
+</p>
+
+<p>
+あるレスポンス特有のヘッダーはICAPリクエストで使って良く、この場合、対応するHTTPレスポンスヘッダーと同じ意味を持つ。これは、
+</p>
+<ul class="org-ul">
+<li>Server</li>
+</ul>
+
+<p>
+HTTPライクなヘッダーに加え、ICAP特有のレスポンスヘッダーもある。
+</p>
+<ul class="org-ul">
+<li>ISTag</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4f22978" class="outline-4">
+<h4 id="org4f22978"><span class="section-number-4">4.3.4.</span> HTTPメッセージにおけるICAP関連ヘッダー</h4>
+<div class="outline-text-4" id="text-4-3-4">
+<p>
+(気が向いたら続く)
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc8f4562" class="outline-2">
+<h2 id="orgc8f4562"><span class="section-number-2">5.</span> RFC 3507のcopyright statement</h2>
+<div class="outline-text-2" id="text-5">
+<pre class="example">
+Full Copyright Statement
+
+   Copyright (C) The Internet Society (2003).  All Rights Reserved.
+
+   This document and translations of it may be copied and furnished to
+   others, and derivative works that comment on or otherwise explain it
+   or assist in its implementation may be prepared, copied, published
+   and distributed, in whole or in part, without restriction of any
+   kind, provided that the above copyright notice and this paragraph are
+   included on all such copies and derivative works.  However, this
+   document itself may not be modified in any way, such as by removing
+   the copyright notice or references to the Internet Society or other
+   Internet organizations, except as needed for the purpose of
+   developing Internet standards in which case the procedures for
+   copyrights defined in the Internet Standards process must be
+   followed, or as required to translate it into languages other than
+   English.
+
+   The limited permissions granted above are perpetual and will not be
+   revoked by the Internet Society or its successors or assigns.
+
+   This document and the information contained herein is provided on an
+   "AS IS" basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING
+   TASK FORCE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION
+   HEREIN WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF
+   MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
+</pre>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2020-07-27T00:00:00-04:00" pubdate>Mon 27 July 2020</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

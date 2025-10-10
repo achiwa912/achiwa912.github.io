@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Learning SQL 3rd Editionを読みました &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Learning SQL 3rd Editionを読みました</h1>
+    <p class="meta">
+<time datetime="2021-01-10T00:00:00-05:00" pubdate>Sun 10 January 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org04470de">1. はじめに</a></li>
+<li><a href="#org5d6a9ea">2. Learning SQL</a>
+<ul>
+<li><a href="#orgf2a8d55">2.1. SQL入門書として</a></li>
+<li><a href="#org1424be0">2.2. サンドボックス</a></li>
+<li><a href="#org6b1a232">2.3. MySQL準拠</a></li>
+<li><a href="#orga4fbec6">2.4. データベースの内部構造について</a></li>
+<li><a href="#orgdda2354">2.5. 効果</a></li>
+</ul>
+</li>
+<li><a href="#org885e997">3. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org04470de" class="outline-2">
+<h2 id="org04470de"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+SQLの入門書、Learning SQL Third Edition by Alan Beaulieuを読みました。Pythonの「お勉強」にもだいぶ飽きが来ていたのですが、多少なりともまともなアプリケーションを書くために、データベースの知識が必要と考えたためです。
+</p>
+
+<p>
+私はSQLについてほとんど知りませんでした。職場でQAテストを手伝う際に、手順書に書いてある <code>SELECT * FROM ... WHERE ...</code> のようなSQLをおまじないのように使うことがあったくらいで、それが何を意味するかほとんど理解してませんでした。
+</p>
+
+<p>
+ネットでSQLの入門書を検索して、評判の良さそうな本書を読むことにしました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5d6a9ea" class="outline-2">
+<h2 id="org5d6a9ea"><span class="section-number-2">2.</span> Learning SQL</h2>
+<div class="outline-text-2" id="text-2">
+
+<div id="orgbcef04f" class="figure">
+<p><img src="./images/LearnSQL.jpg" alt="LearnSQL.jpg" />
+</p>
+</div>
+
+<p>
+Learning SQL Alan Beaulieu著の第3版は去年出たばかりです。最近のオライリー本は表紙がカラーになっていますが、この本もキモい干からびたようなカエルが描かれています。表紙は以前の方が好みです。
+</p>
+
+<p>
+本書はMySQL準拠で書かれています。私の職場ではPostgreSQLやsqlite3をつかっているのですが、基本コマンドに見えたshow tablesやdesc &lt;table&gt;がこれらのデータベースで使えないことを知ったときにはショックでした。SQL以外の部分には互換性はほとんど無いのですね。。。
+</p>
+</div>
+
+<div id="outline-container-orgf2a8d55" class="outline-3">
+<h3 id="orgf2a8d55"><span class="section-number-3">2.1.</span> SQL入門書として</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+完全な初心者向けではない、というレビューを見かけて、ついて行けるか若干心配だったのですが、特に問題なく読み通すことができました。
+</p>
+
+<p>
+プログラミングは特に入門者は、頭で理解するだけでなく、手で覚えることがとても重要ですが、その意味でも本書はよくできていると思います。私はサンプルを一通り入力して動きを確認し、各チャプターの最後に載っている演習問題もやりました。この演習問題がよく出来ていて、消化不良気味な理解をうまく補完してくれました。
+</p>
+
+<p>
+本書を読むにあたって、トランザクションやインデックスが何を意味するか、くらいのデータベースの基本的な知識はあった方がよいと思います。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1424be0" class="outline-3">
+<h3 id="org1424be0"><span class="section-number-3">2.2.</span> サンドボックス</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+自分でMySQLをインストールしなくても、MySQLがインストールされていて本書で使うテーブルを持つサンドボックスをオライリーが用意してくれています。登録が必要ですが無料で使えます。数十分でセッションがexpireするので、そのたびにブラウザーをリフレッシュして読み直さなくてはいけません。このとき、入力途中だったものは全て消えてしまうので、手元のエディタ等を使って書いたSQLをコピペするようにした方がよいでしょう。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org6b1a232" class="outline-3">
+<h3 id="org6b1a232"><span class="section-number-3">2.3.</span> MySQL準拠</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+PostgreSQL, Oracle, MySQLなど異なるデータベース間ではSQL以外の互換性がほとんどないので、できれば自分の使うデータベースに準拠したテキストを使うのがよいかもしれません。ただ、私のような入門レベルでは、ネット検索ですぐに答えの見つかる、表面的なコマンドの違いを除いて、大きな問題はありませんでした。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga4fbec6" class="outline-3">
+<h3 id="orga4fbec6"><span class="section-number-3">2.4.</span> データベースの内部構造について</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+本書はSQLの入門書であって、データベースの内部的な構造や動きについてはほとんど説明がありません。しかしデータベースを道具として使えればよいのであれば問題はありません。個人的には、インデックスがb-treeで出来ている(別の場合もあり)ことがわかったのは収穫でした。私にとってデータベースのインデックスは極めて不可思議で魔法的な存在だったので。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdda2354" class="outline-3">
+<h3 id="orgdda2354"><span class="section-number-3">2.5.</span> 効果</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+本書をこなせば、テーブル作成からデータの入力(INSERT)、取り出し(SELECT)、インデックス作成など、基本的なSQL操作が一通り使えるようになるでしょう。SQL入門書として、よく出来ていると思います。もっと早く読んでおけばよかったです。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org885e997" class="outline-2">
+<h2 id="org885e997"><span class="section-number-2">3.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+大量のデータを扱うアプリケーションを作ろうとすると、言語によらず、データベースの知識が必要になってきます。その意味で、早い内にSQLに入門しておくことは、エンジニアとして大事なことと思います。本書はSQLの入門書として非常に優れていると思います。お勧めです。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-01-10T00:00:00-05:00" pubdate>Sun 10 January 2021</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

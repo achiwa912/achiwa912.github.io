@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>DL-2; マップを自動生成する &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li class="active">
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li >
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">DL-2; マップを自動生成する</h1>
+    <p class="meta">
+<time datetime="2021-02-25T00:00:00-05:00" pubdate>Thu 25 February 2021</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge57a640">1. はじめに</a></li>
+<li><a href="#org09360eb">2. マップ自動生成</a>
+<ul>
+<li><a href="#orge78cdc1">2.1. 部屋データ生成</a></li>
+<li><a href="#org8306c47">2.2. 部屋のフロアへの配置</a></li>
+<li><a href="#org62e81ee">2.3. 廊下で部屋をつなぐ</a></li>
+<li><a href="#org0ef1142">2.4. ドアの設置</a></li>
+</ul>
+</li>
+<li><a href="#orgafffc79">3. 続き</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge57a640" class="outline-2">
+<h2 id="orge57a640"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プロジェクトに名前が無いと不便なので、仮称DL - Daemon Lordとしました。dl.pyで作り始めます。
+</p>
+
+<p>
+今回はマップの自動生成をやります。<a href="http://rogueliketutorials.com/tutorials/tcod/v2/">このサイト</a> にざっと目を通して簡単に予習しておきました。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org09360eb" class="outline-2">
+<h2 id="org09360eb"><span class="section-number-2">2.</span> マップ自動生成</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+まずは1フロア分のマップを作ります。以下のような流れになります。
+</p>
+<ol class="org-ol">
+<li>配置する部屋データを生成する</li>
+<li>フロアを岩で埋め尽くす</li>
+<li>部屋をフロアに配置する</li>
+<li>廊下で部屋同士をつなぐ</li>
+<li>ドアを配置する</li>
+</ol>
+</div>
+
+<div id="outline-container-orge78cdc1" class="outline-3">
+<h3 id="orge78cdc1"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+まずはRoomクラスを作ります。パラメーターとして左上の座標(x, y)と横縦のサイズ(x_size, y_size)を持ちます。後で計算をさぼるために部屋の中心座標も計算して持っておきます(center_x, center_y)。
+</p>
+
+<p>
+\__repr__()をデバッグ用に用意しました。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class Room:
+    def __init__(self, x, y, x_size, y_size):
+        self.x = x
+        self.y = y
+        self.x_size = x_size
+        self.y_size = y_size
+        self.center_x = x + x_size//2
+        self.center_y = y + y_size//2
+
+    def __repr__(self):
+        return f"Room(x/y: {self.x}/{self.y}, size: {self.x_size}/{self.y_size})"
+</pre>
+</div>
+
+<p>
+これを生成してroomsリストにアペンドしていきます。
+</p>
+
+<p>
+他にもフロアFloorクラスを定義します。ディクショナリで十分な気もします。。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">class Floor:
+    def __init__(self, x_size, y_size, floor, floor_data):
+        self.x_size = x_size
+        self.y_size = y_size
+        self.floor = floor
+        self.floor_data = floor_data
+
+    def __repr__(self):
+        s = self.floor_data.decode()
+        return f"Floor(size: {self.x_size}x{self.y_size}, floor: {self.floor} - {s})"
+</pre>
+</div>
+
+<p>
+次は部屋生成のprepare_rooms関数です。フロアのサイズを引数として取ります。
+フロアのランダムな位置に、横サイズ3-12 x 縦サイズ3-7の部屋候補を作り、既にroomsリストに登録されている部屋と重ならなければリストに追加することを繰り返します。二つの部屋の重なりを判定するユーティリティー関数rooms_intersect()を定義しています。
+</p>
+
+<p>
+仮に256, 10, 4等の定数を直接指定していて見苦しいですが、後でconfig値化するつもりです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def prepare_rooms(floor_x_size, floor_y_size):
+    """
+    Return a list filled with Rooms objects on a floor.
+    """
+    rooms = []
+    for _ in range(random.randrange(256)):
+        rx = 3 + random.randrange(10)
+        ry = 3 + random.randrange(4)
+        room = Room(random.randrange(floor_x_size-rx+1),
+                    random.randrange(floor_y_size-ry+1),
+                    rx, ry)
+        intersect = False
+        for r in rooms:
+            if rooms_intersect(room, r):
+                intersect = True
+                break
+        if not intersect:
+            rooms.append(room)
+    return rooms
+</pre>
+</div>
+
+<p>
+部屋の重なり判定は、「矩形」「重なり」「判定」あたりのキーワードで検索し、紙に絵をいくつか描いて整理してからコードにしました。以下のコードは単純ですが、これだけを読んで理解するのはハードルが高いかもしれません。。。
+</p>
+<div class="org-src-container">
+<pre class="src src-python">def rooms_intersect(r1, r2):
+    """
+    Return True if two rooms are intersected.
+    """
+    return max(r1.x, r2.x) &lt;= min(r1.x+r1.x_size, r2.x+r2.x_size) \
+        and max(r1.y, r2.y) &lt;= min(r1.y+r1.y_size, r2.y+r2.y_size)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8306c47" class="outline-3">
+<h3 id="org8306c47"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+続いて、フロアを岩で埋め尽くして初期化し、そこに部屋を配置していきます。これは一フロアを生成する関数generate_floor()の中で直接やってしまいます。今回のテーマのメイン関数です。
+</p>
+
+<p>
+フロアデータfloor_dataはbytearrayで表現します。最初これをstrで作って、上書きしようとしてエラーになったのは内緒です(汗)。slice操作を高速化するためにfloor_dataのmemoryviewを作成し、それに対して以降はfloor_viewに対して操作します。
+</p>
+
+<p>
+'#'の文字は岩を、'.'は歩ける床を意味しています。floor_dataをb'#'で埋めたbytearrayとし、そこに(floor_view経由で)部屋の床b'.'を上書きしています。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def generate_floor(floor_x_size, floor_y_size, floor):
+    """
+    Generate a dungeon floor.
+    Create rooms, connect among them and place doors
+    """
+    rooms = prepare_rooms(floor_x_size, floor_y_size)
+    floor_data = bytearray(b'#' * floor_x_size *
+                           floor_y_size)  # rock only floor
+    floor_view = memoryview(floor_data)
+    for r in rooms:
+        for y in range(r.y_size):
+            start = (r.y + y)*floor_x_size + r.x
+            floor_view[start:start+r.x_size] = b'.'*r.x_size
+    connect_all_rooms(rooms, floor_x_size, floor_view)
+    place_doors(rooms, floor_x_size, floor_y_size, floor_view)
+    return Floor(floor_x_size, floor_y_size, floor, floor_data)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org62e81ee" class="outline-3">
+<h3 id="org62e81ee"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+そして、部屋を廊下でつないでいきます。まずは部屋をy座標 &rarr; x座標の順でソートします。そして部屋をひとつずつリストからpopして、一番近い部屋を探し、互いの中心座標を歩ける床のタイルb'.'で結び、廊下とします。他の廊下や部屋と重なっても気にしません。全ての部屋を一筆書きの要領でつなぎます。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def connect_all_rooms(rooms, floor_x_size, floor_view):
+    """
+    Connect all rooms with hallways.
+    Try to find and connect with the nearest room.
+    """
+    rooms.sort(key=lambda room: room.y+room.y_size//2)
+    rooms.sort(key=lambda room: room.x+room.x_size//2)
+    rs = rooms[:]
+    r_src = rs.pop()
+    while rs:
+        idx_near = 0
+        len_rs = len(rs)
+        for i in range(len_rs):  # look for the nearest room
+            if distsq_rooms(r_src, rs[i]) &lt; distsq_rooms(r_src, rs[idx_near]):
+                idx_near = i
+        r_near = rs.pop(idx_near)
+        connect_rooms(r_src, r_near, floor_x_size, floor_view)
+        r_src = r_near
+</pre>
+</div>
+
+<p>
+disqsq_rooms関数は、二つの部屋間の距離(の2乗)を求めるユーティリティー関数です。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def distsq_rooms(r1, r2):
+    """
+    Calculate distance between two rooms.
+    Will return distance**2.
+    """
+    return (r1.x+r1.x_size//2 - (r2.x+r2.x_size//2))**2 \
+        + (r1.y+r1.y_size//2 - (r2.y+r2.y_size//2))**2
+</pre>
+</div>
+
+<p>
+connect_rooms()関数は、二つの部屋に廊下を作ります。二つの部屋の結び方は、横方向と縦方向のどちらを先に作るかで2パターンあります。確率50%のランダムで決めています。(cx, cy)は縦線と横線が交差する点です。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def connect_rooms(r1, r2, floor_x_size, floor_view):
+    """
+    Create a hallway between two rooms and connect them.
+    """
+    if random.randrange(1) == 0:  # 1/2
+        cx = r1.center_x
+        cy = r2.center_y
+    else:
+        cx = r2.center_x
+        cy = r1.center_y
+    for x, y in draw_line(r1.center_x, r1.center_y, cx, cy):
+        pos = floor_x_size * y + x
+        floor_view[pos:pos+1] = b'.'
+    for x, y in draw_line(r2.center_x, r2.center_y, cx, cy):
+        pos = floor_x_size * y + x
+        floor_view[pos:pos+1] = b'.'
+</pre>
+</div>
+
+<p>
+draw_line()は縦線あるいは横線を一本引くだけの関数です。次の座標(x, y)をyieldするジェネレーター関数なので、for文に与えています。最初、終点をyieldせずにしばらく悩んだことも内緒です(汗)。これをジェネレーター関数として実装するアイデアは、例のRogue-like tutorialからいただきました。ジェネレーターはなんか初心者ぽくなくて格好良いので好きです。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def draw_line(x1, y1, x2, y2):
+    """
+    Utility generator function to draw a straight line.
+    Must eithr be vertical (x1==x2) or horizontal (y1==y2).
+    """
+    if x1 &lt; x2:
+        x1, x2 = x2, x1
+    if y1 &lt; y2:
+        y1, y2 = y2, y1
+    while x1 &gt; x2 or y1 &gt; y2:
+        yield x2, y2
+        if x1 &gt; x2:
+            x2 += 1
+        if y1 &gt; y2:
+            y2 += 1
+    yield x2, y2
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0ef1142" class="outline-3">
+<h3 id="org0ef1142"><span class="section-number-3">2.4.</span> ドアの設置</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+最後に、place_doors()関数で部屋の入り口にドアを設置します。ドアにはロック無し('+')、あり('*')の2種類を用意し、10%の確率でその部屋のドアをロック付きにします。
+</p>
+
+<p>
+部屋の4隅の辺(上下左右)をチェックし、その隣が歩ける床タイル('.')等なら廊下と接続していると判断し、ドアを設置していきます。
+</p>
+
+<p>
+コードの繰り返しがみっともなかったので、共通部分をplace_door()関数として切り出しました。見た目がすっきりしたと思います。最初のif文では、その座標がフロアの内側にあるかどうかを判定しています。指定座標が床('.')または(ロック無し)ドア('+')ならばドア(ロック付きかもしれない)を設置します。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">def place_door(x, y, floor_x_size, floor_y_size, floor_view, dc):
+    """
+    Utility function to check and place a door
+    """
+    if 0 &lt;= x &lt; floor_x_size and 0 &lt;= y &lt; floor_y_size:
+        pos = y*floor_x_size + x
+        c = floor_view[pos:pos+1]
+        if c == b'.' or c == b'+':
+            floor_view[pos:pos+1] = dc
+
+
+def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
+    """
+    Place locked or unlocked doors in front of rooms.
+    """
+    for r in rooms:
+        dc = b'+'  # door character
+        if random.randrange(10) == 0:  # 10%
+            dc = b'*'  # locked door
+        for x in range(r.x_size):  # top and bottom edges
+            place_door(r.x+x, r.y-1, fl_xsz, fl_ysz, fl_vw, dc)
+            place_door(r.x+x, r.y+r.y_size, fl_xsz, fl_ysz, fl_vw, dc)
+
+        for y in range(r.y_size):  # left and right edges
+            place_door(r.x-1, r.y+y, fl_xsz, fl_ysz, fl_vw, dc)
+            place_door(r.x+r.x_size, r.y+y, fl_xsz, fl_ysz, fl_vw, dc)
+</pre>
+</div>
+
+<p>
+このアルゴリズムには難点があって、部屋のすぐ隣を廊下が併走しているときに、この廊下を全てドアにしてしまいます。まあ、実害は無さそうなので放置しておきましょう。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgafffc79" class="outline-2">
+<h2 id="orgafffc79"><span class="section-number-2">3.</span> 続き</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+今回はダンジョンフロアの自動生成部分を作ってみました。思いのほか長くなってしまいました。次回はフロアをスクロール画面に表示します。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2021-02-25T00:00:00-05:00" pubdate>Thu 25 February 2021</time>  <span class="categories">
+    <a class='category' href='/category/python.html'>Python</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/python.html">Python</a>,    <a class="category" href="/tag/game.html">game</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

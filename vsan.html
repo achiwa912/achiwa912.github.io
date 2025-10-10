@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>VMwareのvSAN検証環境を作ってみました &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">VMwareのvSAN検証環境を作ってみました</h1>
+    <p class="meta">
+<time datetime="2023-07-19T00:00:00-04:00" pubdate>Wed 19 July 2023</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3494f4f">1. はじめに</a></li>
+<li><a href="#orgbc83ea9">2. Overview</a>
+<ul>
+<li><a href="#org1b6211c">2.1. vSAN</a></li>
+<li><a href="#orgb36a6ca">2.2. nested ESXi</a></li>
+</ul>
+</li>
+<li><a href="#org25dd41e">3. nested ESXiを作る</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgce20012">3.0.1. PSODの回避</a></li>
+<li><a href="#orgeaacfc3">3.0.2. 外側のESXiで、ネットワークのpromiscuous設定が必要だった</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgbaca7f3">4. vSAN datastoreの構築</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgc4ed996">4.0.1. vCLSを起動させる</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org29de762">5. 終わりに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3494f4f" class="outline-2">
+<h2 id="org3494f4f"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+vSANを動作検証するために、HDDしか持たないサーバー上にnested ESXiを作るところから始めて検証環境を作ってみました。いくつかはまりポイントがあったので覚書用に残しておきます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbc83ea9" class="outline-2">
+<h2 id="orgbc83ea9"><span class="section-number-2">2.</span> Overview</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org1b6211c" class="outline-3">
+<h3 id="org1b6211c"><span class="section-number-3">2.1.</span> vSAN</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+VMware vSANは複数のESXiで作るSDS (Software Defined Storage)です。冗長化されているので、ホストESXiが1台ダウンしてもデータが消えたりアクセスできなくなることがありません。
+</p>
+
+<p>
+vSANには古いOSA (Original Storage Architecture)とvSphere8以降のESA (Express Storage Architecture)があります。前者はSSDとHDDのハイブリッド、後者はNVMe専用です。SSD無しの構成はありませんが、検証環境はOSAを使い、HDDをSSDに見せかけます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb36a6ca" class="outline-3">
+<h3 id="orgb36a6ca"><span class="section-number-3">2.2.</span> nested ESXi</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+vSANは通常3台以上のESXiホストが必要なのですが、そんなにサーバーがありません。そこで、1台のESXi上に3台のESXi VMsを作ってなんとかします。nested ESXiは意外と癖があって、簡単には動きませんでした。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org25dd41e" class="outline-2">
+<h2 id="org25dd41e"><span class="section-number-2">3.</span> nested ESXiを作る</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+nested ESXiについて検索していたらとてもよいサイトを見つけました。 <a href="https://changineer.info/vmware/hypervisor/vmware_nested_esxi.html">https://changineer.info/vmware/hypervisor/vmware_nested_esxi.html</a>
+</p>
+
+<p>
+インストーラーの入手から説明されていて、とても丁寧です。基本的にこの手順に沿って作ってみました。
+CPUの「ハードウエアアシストによる仮想化をゲストOSに公開」設定は普通なら見過ごしてしまうところです。助かります。
+</p>
+
+<p>
+(外側の)ESXiにログインしてVMを選び、Edit &gt; CPUを展開して Expose hardware assisted virtualization to the guest OS をチェックします。
+</p>
+
+<p>
+この手順に無くてはまったポイントだけ簡単に説明します。
+</p>
+</div>
+<div id="outline-container-orgce20012" class="outline-4">
+<h4 id="orgce20012"><span class="section-number-4">3.0.1.</span> PSODの回避</h4>
+<div class="outline-text-4" id="text-3-0-1">
+<p>
+まず、いきなりESXiのインストーラーが起動せずにPSOD (Purple Screen of Death)画面が出ました。"Exception 13"が出ていたのでそれで検索したところ回避策が見つかりました。 <a href="https://www.virten.net/2022/11/esxi-7-and-8-installation-fails-with-fatal-cpu-mismatch-on-feature/">https://www.virten.net/2022/11/esxi-7-and-8-installation-fails-with-fatal-cpu-mismatch-on-feature/</a>
+</p>
+
+<p>
+私の環境では、ESXiのブートオプションをつけてやる必要がありました。インストーラーが起動しはじめた瞬間に <code>Shift+O</code> キーを押すとブートオプションが付けられます。タイミングが割りとシビアなのでぐずぐずしているとPSODを拝むことになります。追加したブートオプション:
+</p>
+<pre class="example">
+cpuUniformityHardCheckPanic=FALSE ignoreMsrFaults
+</pre>
+
+
+<p>
+ESXiのsshをenableにして、次のコマンドで追加オプションを永続化してやるまでPSODが出てしまうリスクがあります。
+</p>
+<pre class="example">
+esxcli system settings kernel set -s cpuUniformityHardCheckPanic -v FALSE
+esxcli system settings kernel set -s ignoreMsrFaults -v TRUE
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgeaacfc3" class="outline-4">
+<h4 id="orgeaacfc3"><span class="section-number-4">3.0.2.</span> 外側のESXiで、ネットワークのpromiscuous設定が必要だった</h4>
+<div class="outline-text-4" id="text-3-0-2">
+<p>
+nested ESXi上にLinuxのVMを作ったのですが、自分とホストESXi以外にpingが通りません。もちろん外からもだめです。ESXiの仮想スイッチやポートグループを疑っていろいろ設定をいじった挙げ句、vCenterから当該nested ESXiがdisconnectedになってしまいました。
+</p>
+
+<p>
+結局のところ(nestedでない)外側のESXiで、ネットワーク設定を変えてpromiscuousモードとforged trasmitsをacceptにしてやる必要がありました。 <a href="https://williamlam.com/2013/11/why-is-promiscuous-mode-forged.html">https://williamlam.com/2013/11/why-is-promiscuous-mode-forged.html</a>
+</p>
+
+<p>
+外側のESXiからnested ESXiのVMを選び、Hardware configuration &gt; click Front-end Network &gt; Edit settings &gt; expand Security &gt; accept Promiscuous mode &amp; Forged transmits &gt; Save
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbaca7f3" class="outline-2">
+<h2 id="orgbaca7f3"><span class="section-number-2">4.</span> vSAN datastoreの構築</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+nested ESXiを使ってvSANを構築する手順を説明しているよいサイトを見つけたので、ほぼそのままの手順で構築しました。 <a href="https://changineer.info/vmware/hypervisor/vmware_vsan_basic.html">https://changineer.info/vmware/hypervisor/vmware_vsan_basic.html</a>
+</p>
+
+<p>
+HDDをSSDに見せかけるやり方も丁寧に説明されているので、はまりポイントはありませんでした。
+</p>
+
+<p>
+nested ESXiのVMに8GBくらいの小さなストレージを割り当て、nested ESXiにsshしてそれをSSDに見せかけます。
+</p>
+
+<p>
+<code>cd /vmfs/volumes/datastore1/&lt;VM名&gt;</code> &gt; viで &lt;VM名&gt;.vmx を編集して以下の行を追加します。SCSI番号(0:3)はその8GBストレージの番号です。
+</p>
+<pre class="example">
+scsi0:3.virtualSSD = 1
+</pre>
+</div>
+
+<div id="outline-container-orgc4ed996" class="outline-4">
+<h4 id="orgc4ed996"><span class="section-number-4">4.0.1.</span> vCLSを起動させる</h4>
+<div class="outline-text-4" id="text-4-0-1">
+<p>
+しかし、翌日になってvCenterのタスク履歴を見たところ、vSAN用の(?)vCLS VMが起動しないエラーが大量に出ていることに気が付きました。エラーメッセージを見ると、MWAITが無いと文句を言っているようです。これで検索して回避策を見つけました。 <a href="https://kb.vmware.com/s/article/83076">https://kb.vmware.com/s/article/83076</a>
+</p>
+
+<p>
+vCLS VMのEVCを無効にするのですが、そのためにはvCLSが乗っているESXi(vCenterからでなく)にログインしてvCLSのcompatibilityをESXi 6.7に「アップグレード」する必要があります(8 &rarr; 6.7なので下げているのですが)。するとvCenter上でvCLSのconfigメニューにdisable EVC項目が現れるので無効化します。
+</p>
+
+<p>
+一つvCLSが上がると、次のvCLSが起動しようとして同じエラーになるので、これにも同じことをします。計3回やることになります。
+</p>
+
+<p>
+VMwareのページから手順を引用。
+</p>
+<blockquote>
+<ol class="org-ol">
+<li>Locate the 1st powered off vCLS VM in vCenter and open the Configure tab. Notice that "VMware EVC" is not offered as an option.</li>
+<li>Identify the ESXi host where the 1st vCLS resides.</li>
+<li>Open the ESXi Host Client for this ESXi and login as root .</li>
+<li>Right click the vCLS VM within the host, and select "Upgrade VM Compatibility". Select "ESXi 6.7 virtual machine" to change the virtual hardware version to 14, and click on [Upgrade].</li>
+<li>Confirm the VM Compatibility Upgrade (click on [YES]).</li>
+<li>Return to the vCLS VM in vCenter and click one the Configure tab for the VM. Notice that "VMware EVC" is now an option. Edit EVC. Refresh vCenter if "Edit" is greyed out.</li>
+<li>Disable EVC for the vCLS vm (this is temporary as EVC will actually then re-enable as Intel "Cascade Lake" Generation&#x2026;for the purposes of satisfying the MWAIT error, this is an acceptable workaround).</li>
+<li>Another vCLS will power on the cluster note this.</li>
+</ol>
+</blockquote>
+
+<p>
+本当はESXiのBIOSでMonitor/MWAITを有効化するのが正しい対処方法みたいですが、こちらは試していません。
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org29de762" class="outline-2">
+<h2 id="org29de762"><span class="section-number-2">5.</span> 終わりに</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+というわけで、何とかvSAN検証環境が出来ました。これから少しvSANで遊んでみたいと思います。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2023-07-19T00:00:00-04:00" pubdate>Wed 19 July 2023</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/moving2.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+      <li class="post">
+          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>
