@@ -72,23 +72,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge588c3d">1. はじめに</a></li>
-<li><a href="#org9163471">2. eslipについて</a></li>
-<li><a href="#org3828baa">3. 本書について</a>
+<li><a href="#org9e732b0">1. はじめに</a></li>
+<li><a href="#orge8d62cc">2. eslipについて</a></li>
+<li><a href="#orgb7e6cc2">3. 本書について</a>
 <ul>
-<li><a href="#org366ae8d">3.1. フォーマット</a></li>
-<li><a href="#orgebc1da0">3.2. 難易度</a></li>
-<li><a href="#orga3dde33">3.3. 読んだ効果</a></li>
-<li><a href="#org4e52483">3.4. 次のステップ</a></li>
+<li><a href="#org32c2628">3.1. フォーマット</a></li>
+<li><a href="#orgdec71e3">3.2. 難易度</a></li>
+<li><a href="#org37e0bd6">3.3. 読んだ効果</a></li>
+<li><a href="#org9f15933">3.4. 次のステップ</a></li>
 </ul>
 </li>
-<li><a href="#org3bc1228">4. 終わりに</a></li>
+<li><a href="#orgbb06cc6">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge588c3d" class="outline-2">
-<h2 id="orge588c3d"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org9e732b0" class="outline-2">
+<h2 id="org9e732b0"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Robert J. Chassell著の<a href="https://www.gnu.org/software/emacs/manual/eintr.html">An Introduction to Programming in Emacs Lisp</a>はとても評判の良いemacs lisp(elisp)の入門書です。いい加減にelispを学ぶことは避けて通れないと思って、読み始めては挫折することを繰り返し、3度目の正直でやっと読み終わりました。
@@ -96,8 +96,8 @@ Robert J. Chassell著の<a href="https://www.gnu.org/software/emacs/manual/eintr
 </div>
 </div>
 
-<div id="outline-container-org9163471" class="outline-2">
-<h2 id="org9163471"><span class="section-number-2">2.</span> eslipについて</h2>
+<div id="outline-container-orge8d62cc" class="outline-2">
+<h2 id="orge8d62cc"><span class="section-number-2">2.</span> eslipについて</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Emacsは高機能なテキストエディタという表の姿の影で、elispの実行環境であるという真の姿があります。高速化のためにC言語で書かれた一部の低レベル機能を除いて、Emacsの本体や拡張機能の多くはelispで書かれており、elispを使うことでEmacsでできることの範囲が大きく広がります。
@@ -109,12 +109,12 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-org3828baa" class="outline-2">
-<h2 id="org3828baa"><span class="section-number-2">3.</span> 本書について</h2>
+<div id="outline-container-orgb7e6cc2" class="outline-2">
+<h2 id="orgb7e6cc2"><span class="section-number-2">3.</span> 本書について</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org366ae8d" class="outline-3">
-<h3 id="org366ae8d"><span class="section-number-3">3.1.</span> フォーマット</h3>
+<div id="outline-container-org32c2628" class="outline-3">
+<h3 id="org32c2628"><span class="section-number-3">3.1.</span> フォーマット</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 本書はemacsに付属していて <code>C-h i</code> で出てくる一覧から飛べるようになっている他、ネット上にPDF版やHTML版があります。どうせEmacs上で例を実行(評価)したり関数を作ったりしながら進めるのだから、Emacsの付属版を使うのがよいと思います。Infoモードのキーバインドを覚えるのに若干敷居が高いですが。
@@ -122,8 +122,8 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-orgebc1da0" class="outline-3">
-<h3 id="orgebc1da0"><span class="section-number-3">3.2.</span> 難易度</h3>
+<div id="outline-container-orgdec71e3" class="outline-3">
+<h3 id="orgdec71e3"><span class="section-number-3">3.2.</span> 難易度</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 結構難しい本です。最初に、プログラマーでなくてもわかるように平易に書いた、ようなことが書いてあるのですが、プログラミング初級者はついていけないと思います。一つずつの章をきちんと正しく理解して、学んだことを覚えていかないと、章が進むにつれて読むのが辛くなってきます。文章もアカデミックで、私の英語力に問題あるだけかもしれませんが、意味がすんなり頭に入ってきません。
@@ -139,8 +139,8 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-orga3dde33" class="outline-3">
-<h3 id="orga3dde33"><span class="section-number-3">3.3.</span> 読んだ効果</h3>
+<div id="outline-container-org37e0bd6" class="outline-3">
+<h3 id="org37e0bd6"><span class="section-number-3">3.3.</span> 読んだ効果</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 プログラミングの本では半ば常識と思いますが、出てきた例や演習問題はすべて手で入力して、その言語に体で慣れていく必要があります。この本では、そういったハンズオンの量が少なすぎると思います。
@@ -156,8 +156,8 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-org4e52483" class="outline-3">
-<h3 id="org4e52483"><span class="section-number-3">3.4.</span> 次のステップ</h3>
+<div id="outline-container-org9f15933" class="outline-3">
+<h3 id="org9f15933"><span class="section-number-3">3.4.</span> 次のステップ</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 例えばPythonやJavaScriptでは入門書から中級者向けの本に事欠きませんが、ユーザーの少ないelispには次に読むべき本があまりありません。いろいろ検索した結果、2冊見つけました。
@@ -184,8 +184,8 @@ elispはマイナーな言語なので選択肢が限られますね。次はこ
 </div>
 </div>
 
-<div id="outline-container-org3bc1228" class="outline-2">
-<h2 id="org3bc1228"><span class="section-number-2">4.</span> 終わりに</h2>
+<div id="outline-container-orgbb06cc6" class="outline-2">
+<h2 id="orgbb06cc6"><span class="section-number-2">4.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 最初に読み始めてから、長い中断も含めて、2,3年かけてやっと読み終わりました。もっと早く読んでおくべきだったとは思いますが、Mastering Emacsを読んでいなかったら挫折したままだったとも言えます。Emacsにやっと本格的に入門することができた、という感想を持ちました。

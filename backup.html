@@ -72,23 +72,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbdef304">1. はじめに</a></li>
-<li><a href="#org910479b">2. 3-2-1ルール</a></li>
-<li><a href="#org2f8aae7">3. Proxmoxのバックアップ</a>
+<li><a href="#org9c297da">1. はじめに</a></li>
+<li><a href="#org8588205">2. 3-2-1ルール</a></li>
+<li><a href="#org3017b8c">3. Proxmoxのバックアップ</a>
 <ul>
-<li><a href="#orgb53f1f0">3.1. USBディスクの準備</a></li>
-<li><a href="#org05fff25">3.2. USBディスクへのバックアップ</a></li>
+<li><a href="#org1ee36f6">3.1. USBディスクの準備</a></li>
+<li><a href="#org26e0a29">3.2. USBディスクへのバックアップ</a></li>
 </ul>
 </li>
-<li><a href="#org11d99fc">4. MacBookにバックアップファイルを持ってくる</a></li>
-<li><a href="#orgbd49f01">5. pCloudにアップロードする</a></li>
-<li><a href="#org9e4ba87">6. 終わりに</a></li>
+<li><a href="#org7feada6">4. MacBookにバックアップファイルを持ってくる</a></li>
+<li><a href="#org197d407">5. pCloudにアップロードする</a></li>
+<li><a href="#orgdad3d0e">6. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbdef304" class="outline-2">
-<h2 id="orgbdef304"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org9c297da" class="outline-2">
+<h2 id="org9c297da"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://achiwa912.github.io/homelab.html">前回の記事</a> ではMini PCを使ってホームラボサーバーをたてました。今回はそのバックアップについてです。
@@ -96,8 +96,8 @@
 </div>
 </div>
 
-<div id="outline-container-org910479b" class="outline-2">
-<h2 id="org910479b"><span class="section-number-2">2.</span> 3-2-1ルール</h2>
+<div id="outline-container-org8588205" class="outline-2">
+<h2 id="org8588205"><span class="section-number-2">2.</span> 3-2-1ルール</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 バックアップの3-2-1ルールをご存知でしょうか。
@@ -114,8 +114,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2f8aae7" class="outline-2">
-<h2 id="org2f8aae7"><span class="section-number-2">3.</span> Proxmoxのバックアップ</h2>
+<div id="outline-container-org3017b8c" class="outline-2">
+<h2 id="org3017b8c"><span class="section-number-2">3.</span> Proxmoxのバックアップ</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Proxmox Backup Serverという機能があります。差分バックアップや重複排除に対応していてなかなか良さそうなのですが、クラウドやポータブルなUSBディスクには対応していないようなので断念しました。
@@ -126,8 +126,8 @@ Proxmox Backup Serverという機能があります。差分バックアップ�
 </p>
 </div>
 
-<div id="outline-container-orgb53f1f0" class="outline-3">
-<h3 id="orgb53f1f0"><span class="section-number-3">3.1.</span> USBディスクの準備</h3>
+<div id="outline-container-org1ee36f6" class="outline-3">
+<h3 id="org1ee36f6"><span class="section-number-3">3.1.</span> USBディスクの準備</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 バックアップ先は10年前から持っている気がする1TBのUSBドライブ(HDD)です。数年ぶりに引っ張り出してきて繋いだら無事に動きましたが、こいつが一番先に逝ってしまいそうな気がします。
@@ -143,8 +143,8 @@ Proxmox Backup Serverという機能があります。差分バックアップ�
 </div>
 </div>
 
-<div id="outline-container-org05fff25" class="outline-3">
-<h3 id="org05fff25"><span class="section-number-3">3.2.</span> USBディスクへのバックアップ</h3>
+<div id="outline-container-org26e0a29" class="outline-3">
+<h3 id="org26e0a29"><span class="section-number-3">3.2.</span> USBディスクへのバックアップ</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 このままではProxmoxが認識しないので、Proxmoxにsshして手動マウントします。
@@ -182,8 +182,8 @@ umount /mnt/bkup
 </div>
 </div>
 
-<div id="outline-container-org11d99fc" class="outline-2">
-<h2 id="org11d99fc"><span class="section-number-2">4.</span> MacBookにバックアップファイルを持ってくる</h2>
+<div id="outline-container-org7feada6" class="outline-2">
+<h2 id="org7feada6"><span class="section-number-2">4.</span> MacBookにバックアップファイルを持ってくる</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 次いで、MacBook上にバックアップファイルを持ってきます。これは簡単で、USBディスクをつないでローカルにコピーするだけ。第2のバックアップもできました。
@@ -191,8 +191,8 @@ umount /mnt/bkup
 </div>
 </div>
 
-<div id="outline-container-orgbd49f01" class="outline-2">
-<h2 id="orgbd49f01"><span class="section-number-2">5.</span> pCloudにアップロードする</h2>
+<div id="outline-container-org197d407" class="outline-2">
+<h2 id="org197d407"><span class="section-number-2">5.</span> pCloudにアップロードする</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 残るはオフサイトバックアップです。<a href="https://www.pcloud.com/">pCloud</a>のライフタイムプラン512GBを購入しているので、これを使います。
@@ -235,8 +235,8 @@ rclone copy --include-from=filelist.txt . bkup_crypt:/20250629/
 </div>
 </div>
 
-<div id="outline-container-org9e4ba87" class="outline-2">
-<h2 id="org9e4ba87"><span class="section-number-2">6.</span> 終わりに</h2>
+<div id="outline-container-orgdad3d0e" class="outline-2">
+<h2 id="orgdad3d0e"><span class="section-number-2">6.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 3-2-1ルールを満たすバックアップができるようになりました。全く自動化していませんが、USBディスクへのバックアップは週に1回くらい、クラウドへは数ヶ月に1回もやればいいのでこれでよしとしましょう。

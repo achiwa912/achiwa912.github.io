@@ -72,28 +72,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb4704e4">1. はじめに</a></li>
-<li><a href="#orgebf87c1">2. インストール、設定</a>
+<li><a href="#org9a7720d">1. はじめに</a></li>
+<li><a href="#org291ef27">2. インストール、設定</a>
 <ul>
-<li><a href="#orgdc4e2e4">2.1. 構成</a></li>
-<li><a href="#org35acf9f">2.2. mbsync</a></li>
-<li><a href="#org84c3350">2.3. notmuch</a></li>
-<li><a href="#org800eef2">2.4. afew</a></li>
-<li><a href="#org097b631">2.5. smtp</a>
+<li><a href="#orgd2b259e">2.1. 構成</a></li>
+<li><a href="#org1efa0c8">2.2. mbsync</a></li>
+<li><a href="#orgeb6b156">2.3. notmuch</a></li>
+<li><a href="#org2e05b35">2.4. afew</a></li>
+<li><a href="#org080d5d8">2.5. smtp</a>
 <ul>
-<li><a href="#org1d1d952">2.5.1. 追記<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-14 Mon&gt;</span></span></a></li>
+<li><a href="#org0e383fa">2.5.1. 追記<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-14 Mon&gt;</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org57ec712">2.6. Macからリモートのメールボックスを使う</a></li>
+<li><a href="#org9a2a2ec">2.6. Macからリモートのメールボックスを使う</a></li>
 </ul>
 </li>
-<li><a href="#orga2425c6">3. 終わりに</a></li>
+<li><a href="#orgc1127a4">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb4704e4" class="outline-2">
-<h2 id="orgb4704e4"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org9a7720d" class="outline-2">
+<h2 id="org9a7720d"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はメーラーとしてgmailを使っていますが、gmailのUIにどうしても馴染めません。そこで、emacsでemailを読み書きできるようにしてみました。
@@ -105,8 +105,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgebf87c1" class="outline-2">
-<h2 id="orgebf87c1"><span class="section-number-2">2.</span> インストール、設定</h2>
+<div id="outline-container-org291ef27" class="outline-2">
+<h2 id="org291ef27"><span class="section-number-2">2.</span> インストール、設定</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 notmuchはそれだけではメールの読み書きができるようになりません。その他に以下のツールを使用します。
@@ -118,8 +118,8 @@ notmuchはそれだけではメールの読み書きができるようになり�
 </ul>
 </div>
 
-<div id="outline-container-orgdc4e2e4" class="outline-3">
-<h3 id="orgdc4e2e4"><span class="section-number-3">2.1.</span> 構成</h3>
+<div id="outline-container-orgd2b259e" class="outline-3">
+<h3 id="orgd2b259e"><span class="section-number-3">2.1.</span> 構成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Macのemacs上でメールを読み書きすることが目的ですが、メールボックスをプレーンテキストでMac上にじか置きしたくないので、VirtualBoxのFedora 36 VMにメールを取り込み、そこにtrampを使ってリモートアクセスします。このため、まずはFedora上に一式環境を作り、その後Macのemacs設定をします。
@@ -131,8 +131,8 @@ trampを使ってリモートのメールボックスにアクセスすること
 </div>
 </div>
 
-<div id="outline-container-org35acf9f" class="outline-3">
-<h3 id="org35acf9f"><span class="section-number-3">2.2.</span> mbsync</h3>
+<div id="outline-container-org1efa0c8" class="outline-3">
+<h3 id="org1efa0c8"><span class="section-number-3">2.2.</span> mbsync</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 パッケージマネージャーを使ってisyncをインストールします。
@@ -144,7 +144,7 @@ trampを使ってリモートのメールボックスにアクセスすること
 </div>
 
 <ol class="org-ol">
-<li><a id="org11da182"></a><span class="timestamp-wrapper"><span class="timestamp">&lt;2023-06-29 Thu&gt;</span></span>追記<br />
+<li><a id="org9b6ee34"></a><span class="timestamp-wrapper"><span class="timestamp">&lt;2023-06-29 Thu&gt;</span></span>追記<br />
 <div class="outline-text-5" id="text-2-2-0-1">
 <p>
 AlmaLinux 9ではdnf installできませんでした。ので、公式のソースから入れます。
@@ -317,8 +317,8 @@ unexpected eofのソケットエラーは相変わらず出ていますが、全
 </ol>
 </div>
 
-<div id="outline-container-org84c3350" class="outline-3">
-<h3 id="org84c3350"><span class="section-number-3">2.3.</span> notmuch</h3>
+<div id="outline-container-orgeb6b156" class="outline-3">
+<h3 id="orgeb6b156"><span class="section-number-3">2.3.</span> notmuch</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 mbsyncでメールのデータを取り込んだので、notmuchでそれらのデータベースを作ってアクセス可能にします。
@@ -356,8 +356,8 @@ emacs上で <code>M-x notmuch</code> とするとメールが読めるように�
 </div>
 </div>
 
-<div id="outline-container-org800eef2" class="outline-3">
-<h3 id="org800eef2"><span class="section-number-3">2.4.</span> afew</h3>
+<div id="outline-container-org2e05b35" class="outline-3">
+<h3 id="org2e05b35"><span class="section-number-3">2.4.</span> afew</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 自動タグ付けツールです。とりあえずインストールだけします。
@@ -373,8 +373,8 @@ pip install afew
 </div>
 </div>
 
-<div id="outline-container-org097b631" class="outline-3">
-<h3 id="org097b631"><span class="section-number-3">2.5.</span> smtp</h3>
+<div id="outline-container-org080d5d8" class="outline-3">
+<h3 id="org080d5d8"><span class="section-number-3">2.5.</span> smtp</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 ここまででメールは読めるようになりましたが、メールを出すにはsmtpの設定が必要です。
@@ -422,8 +422,8 @@ Sending failed: 535-5.7.8 Username and Password not accepted.  Learn more at 535
 </pre>
 </div>
 
-<div id="outline-container-org1d1d952" class="outline-4">
-<h4 id="org1d1d952"><span class="section-number-4">2.5.1.</span> 追記<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-14 Mon&gt;</span></span></h4>
+<div id="outline-container-org0e383fa" class="outline-4">
+<h4 id="org0e383fa"><span class="section-number-4">2.5.1.</span> 追記<span class="timestamp-wrapper"><span class="timestamp">&lt;2025-07-14 Mon&gt;</span></span></h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 上記の設定をしてもGoogleのSMTPサーバーが認証のためのパスワード等を聞いてくれず単に認証エラーになるだけだったので試行錯誤した結果、~/.authinfoを作ることでエラーを回避できました。仕組みがいまひとつはっきりしませんが、とりあえず:
@@ -442,8 +442,8 @@ machine smtp.gmail.com login &lt;address&gt;@gmail.com port 587 password &lt;app
 </div>
 </div>
 
-<div id="outline-container-org57ec712" class="outline-3">
-<h3 id="org57ec712"><span class="section-number-3">2.6.</span> Macからリモートのメールボックスを使う</h3>
+<div id="outline-container-org9a2a2ec" class="outline-3">
+<h3 id="org9a2a2ec"><span class="section-number-3">2.6.</span> Macからリモートのメールボックスを使う</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 やっと、本来やりたかったMac上の設定に入ります。リモート(と言ってもMacホスト上で動くVMですが)のメールボックスをtrampを使ってアクセスします。基本は: <a href="https://notmuchmail.org/remoteusage/">Using notmuch remotely</a> に従って設定します。人気のmu4eでなくnotmuchを選んだのは、最初からこれを使うつもりだったからです。mu4eはtrampと相性が悪い(動かない)という書き込みを目にしていたので。。。
@@ -516,7 +516,7 @@ exec ssh notmuch notmuch ${ARGS}
 </div>
 
 <ol class="org-ol">
-<li><a id="orgc9f1358"></a><span class="timestamp-wrapper"><span class="timestamp">&lt;2022-09-15 Thu&gt;</span></span>追記<br />
+<li><a id="org0805533"></a><span class="timestamp-wrapper"><span class="timestamp">&lt;2022-09-15 Thu&gt;</span></span>追記<br />
 <div class="outline-text-5" id="text-2-6-0-1">
 <p>
 notmuch setupしていないんじゃない? のようなエラーがでてM-x notmuchに失敗した場合は、リモートにパスワードなしで問題なくsshできるか確認してみてください。これが原因で長いことはまりましたが、おそらく初回ssh接続時にknown_hostsに登録するための確認プロンプトが出ると失敗するようです。
@@ -524,7 +524,7 @@ notmuch setupしていないんじゃない? のようなエラーがでてM-x n
 </div>
 </li>
 
-<li><a id="org902ae25"></a><span class="timestamp-wrapper"><span class="timestamp">&lt;2025-09-18 Thu&gt;</span></span>追記<br />
+<li><a id="orgf5dd2c0"></a><span class="timestamp-wrapper"><span class="timestamp">&lt;2025-09-18 Thu&gt;</span></span>追記<br />
 <div class="outline-text-5" id="text-2-6-0-2">
 <p>
 私のメール読み書きワークフローでは、VM上でターミナルを開いて <code>mbsync -a</code> を実行してから <code>M-x notmuch</code> するのですが、それなりに面倒なので、リモートで <code>mbsync -a</code> をする関数を作ってみました。これでemacsから離れずにメールが使えるようになります。 <code>M-x mbsync</code> で実行します。
@@ -551,8 +551,8 @@ notmuch setupしていないんじゃない? のようなエラーがでてM-x n
 </div>
 
 
-<div id="outline-container-orga2425c6" class="outline-2">
-<h2 id="orga2425c6"><span class="section-number-2">3.</span> 終わりに</h2>
+<div id="outline-container-orgc1127a4" class="outline-2">
+<h2 id="orgc1127a4"><span class="section-number-2">3.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回は、Mac上のemacs+notmuch から、Linux VM上に同期したgmailのメールを読み書きする構成を試してみました。タグ付けなどまだ使いこなしていませんが、曲りなりにemacsでメールの読み書きができるようになって満足しています。
