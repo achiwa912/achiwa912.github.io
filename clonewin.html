@@ -72,31 +72,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2e4b96f">1. はじめに</a></li>
-<li><a href="#orgdc77fb6">2. クローンVMを作る</a>
+<li><a href="#org9e758f6">1. はじめに</a></li>
+<li><a href="#org7c91a2b">2. クローンVMを作る</a>
 <ul>
-<li><a href="#org8de2ded">2.1. Windows 10のISOファイルを取得する</a></li>
-<li><a href="#org4e410b4">2.2. クローン元Win10 VMをつくる</a>
+<li><a href="#orgcd25f8a">2.1. Windows 10のISOファイルを取得する</a></li>
+<li><a href="#orgd690b74">2.2. クローン元Win10 VMをつくる</a>
 <ul>
-<li><a href="#orgc4a705a">2.2.1. Win10のためのVM作成</a></li>
-<li><a href="#org54f1c25">2.2.2. Win10インストール</a></li>
-<li><a href="#orgbfda9af">2.2.3. Audit Modeに入る</a></li>
-<li><a href="#orgfc5ed65">2.2.4. Guest Addtionsを入れる</a></li>
-<li><a href="#orgdde0247">2.2.5. アプリなどを入れる</a></li>
-<li><a href="#org07b1bd7">2.2.6. Generalizeする</a></li>
+<li><a href="#org2b13c14">2.2.1. Win10のためのVM作成</a></li>
+<li><a href="#orgefb2e8b">2.2.2. Win10インストール</a></li>
+<li><a href="#org1908b4c">2.2.3. Audit Modeに入る</a></li>
+<li><a href="#org3fda05a">2.2.4. Guest Addtionsを入れる</a></li>
+<li><a href="#org53e3e34">2.2.5. アプリなどを入れる</a></li>
+<li><a href="#org531d1e7">2.2.6. Generalizeする</a></li>
 </ul>
 </li>
-<li><a href="#org43f5976">2.3. Win10 VMをクローンする</a></li>
-<li><a href="#orgf7dc55d">2.4. クローンしたVMを構成する</a></li>
+<li><a href="#org67e60b5">2.3. Win10 VMをクローンする</a></li>
+<li><a href="#orgc8af461">2.4. クローンしたVMを構成する</a></li>
 </ul>
 </li>
-<li><a href="#org9c9aab3">3. 終わりに</a></li>
+<li><a href="#orgd22effb">3. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2e4b96f" class="outline-2">
-<h2 id="org2e4b96f"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org9e758f6" class="outline-2">
+<h2 id="org9e758f6"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 複数のWindows 10 VMが必要になったのでVirtualBox上でVMをクローンしたのですが、単にクローンするだけだとうまくいかないことがわかりました。これは、Windowsインスタンスのユニークな(筈の)ID(GUID)が同一のVMが複数作られてしまうためです。これを解決するには、クローン元となるWindows VMをgeneralizeしてGUID等を取り除き、それをクローンして、クローンしたVMに個別のGUID等をアサインする必要がありました。
@@ -104,12 +104,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgdc77fb6" class="outline-2">
-<h2 id="orgdc77fb6"><span class="section-number-2">2.</span> クローンVMを作る</h2>
+<div id="outline-container-org7c91a2b" class="outline-2">
+<h2 id="org7c91a2b"><span class="section-number-2">2.</span> クローンVMを作る</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8de2ded" class="outline-3">
-<h3 id="org8de2ded"><span class="section-number-3">2.1.</span> Windows 10のISOファイルを取得する</h3>
+<div id="outline-container-orgcd25f8a" class="outline-3">
+<h3 id="orgcd25f8a"><span class="section-number-3">2.1.</span> Windows 10のISOファイルを取得する</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/en-us/software-download/windows10ISO">Microsoftのダウンロードページ</a> から入手可能のようです。以前はMicrosoftのISO生成ツールを使わないといけなかった気がしますが。。。また、 <a href="https://www.itechtics.com/windows-10-download-iso/">このページ</a> からもISOファイルへの直リンクがはられています。
@@ -117,16 +117,16 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-org4e410b4" class="outline-3">
-<h3 id="org4e410b4"><span class="section-number-3">2.2.</span> クローン元Win10 VMをつくる</h3>
+<div id="outline-container-orgd690b74" class="outline-3">
+<h3 id="orgd690b74"><span class="section-number-3">2.2.</span> クローン元Win10 VMをつくる</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 注意: 英語版OS&amp;VirtualBoxを使っているため、メニュー等が英語です。
 </p>
 </div>
 
-<div id="outline-container-orgc4a705a" class="outline-4">
-<h4 id="orgc4a705a"><span class="section-number-4">2.2.1.</span> Win10のためのVM作成</h4>
+<div id="outline-container-org2b13c14" class="outline-4">
+<h4 id="org2b13c14"><span class="section-number-4">2.2.1.</span> Win10のためのVM作成</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <ul class="org-ul">
 <li>VirtualBox起動 &gt; New &gt; Name: &lt;Win10&gt;, Type: MicrosoftWindows,</li>
@@ -137,8 +137,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-org54f1c25" class="outline-4">
-<h4 id="org54f1c25"><span class="section-number-4">2.2.2.</span> Win10インストール</h4>
+<div id="outline-container-orgefb2e8b" class="outline-4">
+<h4 id="orgefb2e8b"><span class="section-number-4">2.2.2.</span> Win10インストール</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>Settingsをクリック &gt; Storage &gt; Contoroller:SATA &gt; Emptyをクリック</li>
@@ -152,8 +152,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-orgbfda9af" class="outline-4">
-<h4 id="orgbfda9af"><span class="section-number-4">2.2.3.</span> Audit Modeに入る</h4>
+<div id="outline-container-org1908b4c" class="outline-4">
+<h4 id="org1908b4c"><span class="section-number-4">2.2.3.</span> Audit Modeに入る</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <ul class="org-ul">
 <li>"Let's start with region&#x2026;"の画面に来たら Ctrl+Shift+F3 を押す</li>
@@ -163,8 +163,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-orgfc5ed65" class="outline-4">
-<h4 id="orgfc5ed65"><span class="section-number-4">2.2.4.</span> Guest Addtionsを入れる</h4>
+<div id="outline-container-org3fda05a" class="outline-4">
+<h4 id="org3fda05a"><span class="section-number-4">2.2.4.</span> Guest Addtionsを入れる</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <ul class="org-ul">
 <li>VirtualBox menu &gt; Devices &gt; Insert Guest Additions CD image…</li>
@@ -177,8 +177,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-orgdde0247" class="outline-4">
-<h4 id="orgdde0247"><span class="section-number-4">2.2.5.</span> アプリなどを入れる</h4>
+<div id="outline-container-org53e3e34" class="outline-4">
+<h4 id="org53e3e34"><span class="section-number-4">2.2.5.</span> アプリなどを入れる</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <ul class="org-ul">
 <li>タイムゾーンを変更する
@@ -190,8 +190,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-org07b1bd7" class="outline-4">
-<h4 id="org07b1bd7"><span class="section-number-4">2.2.6.</span> Generalizeする</h4>
+<div id="outline-container-org531d1e7" class="outline-4">
+<h4 id="org531d1e7"><span class="section-number-4">2.2.6.</span> Generalizeする</h4>
 <div class="outline-text-4" id="text-2-2-6">
 <ul class="org-ul">
 <li>C:\Windows\System32\Sysprep\sysprep.exe 実行</li>
@@ -207,8 +207,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-org43f5976" class="outline-3">
-<h3 id="org43f5976"><span class="section-number-3">2.3.</span> Win10 VMをクローンする</h3>
+<div id="outline-container-org67e60b5" class="outline-3">
+<h3 id="org67e60b5"><span class="section-number-3">2.3.</span> Win10 VMをクローンする</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>VirtualBox &gt; &lt;Win10&gt; VM &gt; VMを右クリック &gt; Clone</li>
@@ -218,8 +218,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-orgf7dc55d" class="outline-3">
-<h3 id="orgf7dc55d"><span class="section-number-3">2.4.</span> クローンしたVMを構成する</h3>
+<div id="outline-container-orgc8af461" class="outline-3">
+<h3 id="orgc8af461"><span class="section-number-3">2.4.</span> クローンしたVMを構成する</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 ここからはクローンした各VMに対して行います。
@@ -254,8 +254,8 @@ Windows 10のISOファイルは合法的に <a href="https://www.microsoft.com/e
 </div>
 </div>
 
-<div id="outline-container-org9c9aab3" class="outline-2">
-<h2 id="org9c9aab3"><span class="section-number-2">3.</span> 終わりに</h2>
+<div id="outline-container-orgd22effb" class="outline-2">
+<h2 id="orgd22effb"><span class="section-number-2">3.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Windowsの場合、クローンを作るのにも結構手間がかかります。クローンしたVMそれぞれに対して行わなければならない手順があり、それを考えると、何度もOSをインストールする場合と比べてそれほど楽になるわけでは無いという、やや残念な結果となりました。
