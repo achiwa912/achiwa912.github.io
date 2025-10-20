@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Immichを安全にインターネットから見られるようにする &mdash; Daydreaming in Boston</title>
+  <title>自宅サーバー上の写真を安全にインターネットから見られるようにする &mdash; Daydreaming in Boston</title>
   <meta name="author" content="Kyos">
 
 
@@ -63,7 +63,7 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Immichを安全にインターネットから見られるようにする</h1>
+      <h1 class="entry-title">自宅サーバー上の写真を安全にインターネットから見られるようにする</h1>
     <p class="meta">
 <time datetime="2025-10-19T00:00:00-04:00" pubdate>Sun 19 October 2025</time>    </p>
 </header>
@@ -72,29 +72,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4337efc">1. はじめに</a></li>
-<li><a href="#orgaa672eb">2. リスクと対策</a>
+<li><a href="#org5e793f2">1. はじめに</a></li>
+<li><a href="#org39b31c2">2. リスクと対策</a>
 <ul>
-<li><a href="#org6ed2f7c">2.1. リスク</a></li>
-<li><a href="#org3262e99">2.2. 対策</a></li>
+<li><a href="#org0338019">2.1. リスク</a></li>
+<li><a href="#org4698803">2.2. 対策</a></li>
 </ul>
 </li>
-<li><a href="#org8bf54a6">3. Immichをインターネットにexposeする</a>
+<li><a href="#orgb2855fa">3. Immichをインターネットにexposeする</a>
 <ul>
-<li><a href="#org0c88f56">3.1. ドメインの取得</a></li>
-<li><a href="#org58ef5df">3.2. DDNSを設定する</a></li>
-<li><a href="#orgd1f3109">3.3. ルーターの設定</a></li>
-<li><a href="#org2502b04">3.4. Caddyのインストール</a></li>
-<li><a href="#orgac1ecd9">3.5. テスト</a></li>
+<li><a href="#org54c7dcb">3.1. ドメインの取得</a></li>
+<li><a href="#org18da43d">3.2. DDNSを設定する</a></li>
+<li><a href="#org385d81d">3.3. ルーターの設定</a></li>
+<li><a href="#org04ebbf3">3.4. Caddyのインストール</a></li>
+<li><a href="#org8497ec3">3.5. テスト</a></li>
 </ul>
 </li>
-<li><a href="#orgfeca5c8">4. さいごに</a></li>
+<li><a href="#orgc7b7882">4. さいごに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4337efc" class="outline-2">
-<h2 id="org4337efc"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org5e793f2" class="outline-2">
+<h2 id="org5e793f2"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://achiwa912.github.io/homelab.html">以前のエントリ</a> でホームラボサーバーを建て、Google Photosの代わりとなる <a href="https://github.com/immich-app/immich">Immich</a> という写真アプリを入れましたが、Google Photos置き換えとしては大事な点が抜けていました。それは外出先からインターネットを経由してのアクセスです。
@@ -106,12 +106,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgaa672eb" class="outline-2">
-<h2 id="orgaa672eb"><span class="section-number-2">2.</span> リスクと対策</h2>
+<div id="outline-container-org39b31c2" class="outline-2">
+<h2 id="org39b31c2"><span class="section-number-2">2.</span> リスクと対策</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org6ed2f7c" class="outline-3">
-<h3 id="org6ed2f7c"><span class="section-number-3">2.1.</span> リスク</h3>
+<div id="outline-container-org0338019" class="outline-3">
+<h3 id="org0338019"><span class="section-number-3">2.1.</span> リスク</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 サーバーをインターネットに公開することは結構危険なことです。今回、トラブルシュート中に(caddyの)ログを見ていて気がついたのですが、ドメインに自宅ルーターのIPアドレスを設定して割とすぐにサーチエンジンyandex.comのボットからのアクセスが来ていました。(一部情報伏せてます)
@@ -149,8 +149,8 @@ The IP address \(51.81.46.212\) is associated with the internet service provider
 </div>
 </div>
 
-<div id="outline-container-org3262e99" class="outline-3">
-<h3 id="org3262e99"><span class="section-number-3">2.2.</span> 対策</h3>
+<div id="outline-container-org4698803" class="outline-3">
+<h3 id="org4698803"><span class="section-number-3">2.2.</span> 対策</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 今回は<a href="https://caddyserver.com/">caddy</a>のリバースプロキシー機能を使うことにしました。インターネットからのアクセスはすべてcaddyで受け、Immichを直接インターネットに晒さないようにします。Immichはhttpsをサポートしていないので、caddyでhttps対応します。
@@ -159,19 +159,23 @@ The IP address \(51.81.46.212\) is associated with the internet service provider
 <p>
 また、インターネットとLANをつなぐTP-Linkのルーターでポートフォワーディング設定し、443ポートのみをcaddyにつなぎます。必要のないポートはすべてルーターでブロックします。
 </p>
+
+<p>
+リバースプロキシー以外にもVPNを使ったりできるようですが、将来的にサーバー上のWebサイトを公開することを見据えて茨の道を進んでみることにしました。
+</p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8bf54a6" class="outline-2">
-<h2 id="org8bf54a6"><span class="section-number-2">3.</span> Immichをインターネットにexposeする</h2>
+<div id="outline-container-orgb2855fa" class="outline-2">
+<h2 id="orgb2855fa"><span class="section-number-2">3.</span> Immichをインターネットにexposeする</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org0c88f56" class="outline-3">
-<h3 id="org0c88f56"><span class="section-number-3">3.1.</span> ドメインの取得</h3>
+<div id="outline-container-org54c7dcb" class="outline-3">
+<h3 id="org54c7dcb"><span class="section-number-3">3.1.</span> ドメインの取得</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-(Wifi)ルーターをからインターネットにアクセスできるようにした時点で、インターネットプロバイダーはルーターにグローバルなIPアドレスを割り当てています。実は、このIPアドレスはインターネットからアクセス可能です。もっとも、ルーターがインターネットからのアクセスをすべてブロックしているわけですが。
+実は、(Wifi)ルーターをからインターネットにアクセスできるようにした時点で、インターネットプロバイダーはルーターにグローバルなIPアドレスを割り当てています。このIPアドレスはインターネット経由で全世界からアクセス可能です。もっとも、普段はルーターが外からのアクセスをすべてブロックしているわけですが。
 </p>
 
 <p>
@@ -192,8 +196,8 @@ IPアドレスはランダムに見える数字の羅列なので、人間が使
 </div>
 </div>
 
-<div id="outline-container-org58ef5df" class="outline-3">
-<h3 id="org58ef5df"><span class="section-number-3">3.2.</span> DDNSを設定する</h3>
+<div id="outline-container-org18da43d" class="outline-3">
+<h3 id="org18da43d"><span class="section-number-3">3.2.</span> DDNSを設定する</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 インターネットプロバイダーは、固定IPアドレス契約をしていない限り、契約者のルーターに割り当てるIPアドレスを時折変更します。その際に、購入したドメインに割り当てるIPアドレスも変更する必要があり、それを自動でやってくれるのがDynamic DNS(DDNS)という技術です。
@@ -245,8 +249,8 @@ docker compose up -d
 </div>
 </div>
 
-<div id="outline-container-orgd1f3109" class="outline-3">
-<h3 id="orgd1f3109"><span class="section-number-3">3.3.</span> ルーターの設定</h3>
+<div id="outline-container-org385d81d" class="outline-3">
+<h3 id="org385d81d"><span class="section-number-3">3.3.</span> ルーターの設定</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 いよいよルーターでポートフォワーディング設定してポート番号443をこれからインストールするcaddyにフォワードします。うちのTP-Linkルーターの場合、ブラウザーから<a href="http://192.168.0.1">http://192.168.0.1</a> に行き、管理画面にログインしてAdvancedタブを選択し、NAT forwarding &gt; Virtual Serversと進んでAddをクリックします。そしてExternal Portに443、Intrnal IPに自宅サーバーのIPアドレス、Internal Portに443を入力してOKを押します。
@@ -258,8 +262,8 @@ docker compose up -d
 </div>
 </div>
 
-<div id="outline-container-org2502b04" class="outline-3">
-<h3 id="org2502b04"><span class="section-number-3">3.4.</span> Caddyのインストール</h3>
+<div id="outline-container-org04ebbf3" class="outline-3">
+<h3 id="org04ebbf3"><span class="section-number-3">3.4.</span> Caddyのインストール</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 最後にCaddyを入れて<a href="https://caddyserver.com/docs/quick-starts/reverse-proxy">リバースプロキシーの設定</a>をします。Caddyのすごいところは、httpsに必要なサーバー証明書を自動で<a href="https://letsencrypt.org/">Let's Encrypt</a>から生成、取得して、期限が切れる前に更新まで<a href="https://caddyserver.com/docs/automatic-https">してくれる</a>ところです。面倒な証明書更新までお任せでやってくれるとは。感動的です。
@@ -337,8 +341,8 @@ $ docker logs 369b0b77d4ad 2&gt;&amp;1 | less  # コンテナIDを指定して�
 </div>
 </div>
 
-<div id="outline-container-orgac1ecd9" class="outline-3">
-<h3 id="orgac1ecd9"><span class="section-number-3">3.5.</span> テスト</h3>
+<div id="outline-container-org8497ec3" class="outline-3">
+<h3 id="org8497ec3"><span class="section-number-3">3.5.</span> テスト</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 各コンテナのデプロイがうまくいっているようだったら、スマホのWifiを切って、ブラウザーから<a href="https://">https://</a>&lt;サブドメイン&gt;.&lt;取得したドメイン&gt; に行ってみます。無事にImmichのログイン画面が出てきたときには感動しました。ハッカーの侵入を防ぐ最後の砦であるImmichのパスワードは強めのものを設定しておきました。
@@ -351,8 +355,8 @@ $ docker logs 369b0b77d4ad 2&gt;&amp;1 | less  # コンテナIDを指定して�
 </div>
 </div>
 
-<div id="outline-container-orgfeca5c8" class="outline-2">
-<h2 id="orgfeca5c8"><span class="section-number-2">4.</span> さいごに</h2>
+<div id="outline-container-orgc7b7882" class="outline-2">
+<h2 id="orgc7b7882"><span class="section-number-2">4.</span> さいごに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 今回はインターネット経由で自宅サーバー上のImmichをセキュアにアクセスできるようにしてみました。
@@ -382,7 +386,7 @@ $ docker logs 369b0b77d4ad 2&gt;&amp;1 | less  # コンテナIDを指定して�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+          <a href="/exposeimmich.html">自宅サーバー上の写真を安全にインターネットから見られるようにする</a>
       </li>
       <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
