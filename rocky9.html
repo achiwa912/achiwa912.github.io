@@ -72,34 +72,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org297eb4a">1. はじめに</a></li>
-<li><a href="#org208c352">2. Rocky Linuxインストール</a>
+<li><a href="#org4b1b157">1. はじめに</a></li>
+<li><a href="#org0a40651">2. Rocky Linuxインストール</a>
 <ul>
-<li><a href="#org6ac17ab">2.1. VM作成</a></li>
-<li><a href="#orge8944fa">2.2. Rocky Linuxインストーラー</a></li>
-<li><a href="#org31a88f5">2.3. Rocky Linux起動</a></li>
-<li><a href="#orgb746230">2.4. Guest Additions</a></li>
+<li><a href="#orgdf247f6">2.1. VM作成</a></li>
+<li><a href="#orga3330a8">2.2. Rocky Linuxインストーラー</a></li>
+<li><a href="#orga488bb4">2.3. Rocky Linux起動</a></li>
+<li><a href="#org823a431">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org48e5d08">3. gitの設定</a></li>
-<li><a href="#org2ecbd6a">4. pythonの設定</a>
+<li><a href="#org5a64542">3. gitの設定</a></li>
+<li><a href="#orgaf15214">4. pythonの設定</a>
 <ul>
-<li><a href="#org93511e8">4.1. pyenvを入れる</a></li>
+<li><a href="#org6397664">4.1. pyenvを入れる</a></li>
 </ul>
 </li>
-<li><a href="#org2817351">5. emacsを設定する</a></li>
-<li><a href="#org0bcdb0b">6. Macからssh接続できるようにする</a></li>
-<li><a href="#org15b5be7">7. github, gitlabにアクセスできるようにする</a></li>
-<li><a href="#orgfd8b982">8. git cloneしてくる</a></li>
-<li><a href="#org7caee64">9. emacsのメール環境を作る</a></li>
-<li><a href="#org4666129">10. ブログ環境を設定する</a></li>
-<li><a href="#orgfa32506">11. 終わりに</a></li>
+<li><a href="#orgc245bdd">5. emacsを設定する</a></li>
+<li><a href="#org4b15a34">6. Macからssh接続できるようにする</a></li>
+<li><a href="#org83b6c00">7. github, gitlabにアクセスできるようにする</a></li>
+<li><a href="#orgd354d52">8. git cloneしてくる</a></li>
+<li><a href="#orgbe45e54">9. emacsのメール環境を作る</a></li>
+<li><a href="#orgc65d3ef">10. ブログ環境を設定する</a></li>
+<li><a href="#orgfafc9bb">11. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org297eb4a" class="outline-2">
-<h2 id="org297eb4a"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org4b1b157" class="outline-2">
+<h2 id="org4b1b157"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 職場のデスクトップPCには古いFedora 28が入っています。最近dnfで問題が起きてDevOpsに泣きついたら、Rocky Linux 9への入れ替えを勧められました。そこで、デスクトップPCのOS移行に先立ち、MacBook上のvitrualboxで <a href="https://rockylinux.org/">Rocky Linux</a> を試してみることにしました。
@@ -111,16 +111,16 @@ CentOSがStreamになって、RHELの無償版という位置づけ(ダウンス
 </div>
 </div>
 
-<div id="outline-container-org208c352" class="outline-2">
-<h2 id="org208c352"><span class="section-number-2">2.</span> Rocky Linuxインストール</h2>
+<div id="outline-container-org0a40651" class="outline-2">
+<h2 id="org0a40651"><span class="section-number-2">2.</span> Rocky Linuxインストール</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 まずは <a href="https://rockylinux.org/download">ここ</a> からx86_64のDVDイメージ(iso)をダウンロードします。
 </p>
 </div>
 
-<div id="outline-container-org6ac17ab" class="outline-3">
-<h3 id="org6ac17ab"><span class="section-number-3">2.1.</span> VM作成</h3>
+<div id="outline-container-orgdf247f6" class="outline-3">
+<h3 id="orgdf247f6"><span class="section-number-3">2.1.</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 VirtualBoxでRocky LinuxをインストールするVMを作成します。VM作成手順:
@@ -146,8 +146,8 @@ Rocky9 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-orge8944fa" class="outline-3">
-<h3 id="orge8944fa"><span class="section-number-3">2.2.</span> Rocky Linuxインストーラー</h3>
+<div id="outline-container-orga3330a8" class="outline-3">
+<h3 id="orga3330a8"><span class="section-number-3">2.2.</span> Rocky Linuxインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとRocky Linux 9のインストーラー起動画面が出ます。Guest Additionsが入っていないせいか、マウスカーソルがVMに持っていかれ、操作性がやや悪いです。Macの場合、左コマンドキーでマウスカーソルをVMから戻すことができます。
@@ -162,8 +162,8 @@ DVDイメージは手動でアンマウントしませんでしたが、その�
 </div>
 </div>
 
-<div id="outline-container-org31a88f5" class="outline-3">
-<h3 id="org31a88f5"><span class="section-number-3">2.3.</span> Rocky Linux起動</h3>
+<div id="outline-container-orga488bb4" class="outline-3">
+<h3 id="orga488bb4"><span class="section-number-3">2.3.</span> Rocky Linux起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからRocky Linuxが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。
@@ -184,8 +184,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-orgb746230" class="outline-3">
-<h3 id="orgb746230"><span class="section-number-3">2.4.</span> Guest Additions</h3>
+<div id="outline-container-org823a431" class="outline-3">
+<h3 id="org823a431"><span class="section-number-3">2.4.</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 最近のfedoraは最初からGuest Additionsがインストールされていますが、Rocky Linuxは手動でインストールする必要があります。Rocky Linux 9 Guest Additionsで検索して出てくる <a href="https://computingforgeeks.com/install-virtualbox-guest-additions-rocky/">このあたりのサイト</a> を参考にしました。
@@ -254,8 +254,8 @@ Operating System: Rocky Linux 9.0 (Blue Onyx)
 </div>
 </div>
 
-<div id="outline-container-org48e5d08" class="outline-2">
-<h2 id="org48e5d08"><span class="section-number-2">3.</span> gitの設定</h2>
+<div id="outline-container-org5a64542" class="outline-2">
+<h2 id="org5a64542"><span class="section-number-2">3.</span> gitの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitが入っていなかったのでインストールします。
@@ -276,8 +276,8 @@ git config --global user.name "&lt;your name&gt;"
 </div>
 </div>
 
-<div id="outline-container-org2ecbd6a" class="outline-2">
-<h2 id="org2ecbd6a"><span class="section-number-2">4.</span> pythonの設定</h2>
+<div id="outline-container-orgaf15214" class="outline-2">
+<h2 id="orgaf15214"><span class="section-number-2">4.</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 最初から入っているPythonは3.9.10と、Fedora36よりも少し古かったです。
@@ -291,8 +291,8 @@ Python 3.9.10
 </div>
 </div>
 
-<div id="outline-container-org93511e8" class="outline-3">
-<h3 id="org93511e8"><span class="section-number-3">4.1.</span> pyenvを入れる</h3>
+<div id="outline-container-org6397664" class="outline-3">
+<h3 id="org6397664"><span class="section-number-3">4.1.</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 最新pythonを入れるのにpyenvを使います。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。
@@ -367,8 +367,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org2817351" class="outline-2">
-<h2 id="org2817351"><span class="section-number-2">5.</span> emacsを設定する</h2>
+<div id="outline-container-orgc245bdd" class="outline-2">
+<h2 id="orgc245bdd"><span class="section-number-2">5.</span> emacsを設定する</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 まずはemacsを入れます。
@@ -384,8 +384,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org0bcdb0b" class="outline-2">
-<h2 id="org0bcdb0b"><span class="section-number-2">6.</span> Macからssh接続できるようにする</h2>
+<div id="outline-container-org4b15a34" class="outline-2">
+<h2 id="org4b15a34"><span class="section-number-2">6.</span> Macからssh接続できるようにする</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 これも <a href="https://achiwa912.github.io/sshvm.html">以前の記事</a> を参考にして設定します。
@@ -394,8 +394,8 @@ pip install 'python-lsp-server[all]'
 </div>
 </div>
 
-<div id="outline-container-org15b5be7" class="outline-2">
-<h2 id="org15b5be7"><span class="section-number-2">7.</span> github, gitlabにアクセスできるようにする</h2>
+<div id="outline-container-org83b6c00" class="outline-2">
+<h2 id="org83b6c00"><span class="section-number-2">7.</span> github, gitlabにアクセスできるようにする</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 github, gitlabに生成したsshパブリックキーを登録します。
@@ -430,8 +430,8 @@ Welcomeメッセージが出たらOKです。
 </div>
 </div>
 
-<div id="outline-container-orgfd8b982" class="outline-2">
-<h2 id="orgfd8b982"><span class="section-number-2">8.</span> git cloneしてくる</h2>
+<div id="outline-container-orgd354d52" class="outline-2">
+<h2 id="orgd354d52"><span class="section-number-2">8.</span> git cloneしてくる</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 github, gitlabから、自分で作成したドキュメントやソースコードをgit cloneしてきます。
@@ -439,8 +439,8 @@ github, gitlabから、自分で作成したドキュメントやソースコー
 </div>
 </div>
 
-<div id="outline-container-org7caee64" class="outline-2">
-<h2 id="org7caee64"><span class="section-number-2">9.</span> emacsのメール環境を作る</h2>
+<div id="outline-container-orgbe45e54" class="outline-2">
+<h2 id="orgbe45e54"><span class="section-number-2">9.</span> emacsのメール環境を作る</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 mbsyncの入っているisyncをdnf installしようとしたら「無い」と言われました。
@@ -472,8 +472,8 @@ epelを設定しても駄目でした。どうして???
 </div>
 </div>
 
-<div id="outline-container-org4666129" class="outline-2">
-<h2 id="org4666129"><span class="section-number-2">10.</span> ブログ環境を設定する</h2>
+<div id="outline-container-orgc65d3ef" class="outline-2">
+<h2 id="orgc65d3ef"><span class="section-number-2">10.</span> ブログ環境を設定する</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 ブログデータはgit cloneで戻せるものの、pelicanサイトジェネレーターは手動で設定しています。もっとうまくやる方法があるような気もするのですが。。。
@@ -485,8 +485,8 @@ epelを設定しても駄目でした。どうして???
 </div>
 </div>
 
-<div id="outline-container-orgfa32506" class="outline-2">
-<h2 id="orgfa32506"><span class="section-number-2">11.</span> 終わりに</h2>
+<div id="outline-container-orgfafc9bb" class="outline-2">
+<h2 id="orgfafc9bb"><span class="section-number-2">11.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Guest Additionsを手動で設定しなければならないことと、isyncをRPMから入れなければ行けなかったことを除いて、Rocky Linux 9はFedoraの最新版であるかのように設定することができました。今回はVMのメモリを今までの半分である1GBに減らしましたが、特に問題無く使えています。MacのVirtualBoxがへぼいので倍の2GBを使っているわけですが。。。

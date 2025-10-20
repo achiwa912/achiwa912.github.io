@@ -72,39 +72,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5f34e48">1. はじめに</a></li>
-<li><a href="#org50d9db6">2. Overview</a>
+<li><a href="#org05e95e8">1. はじめに</a></li>
+<li><a href="#org76824d4">2. Overview</a>
 <ul>
-<li><a href="#orgf082756">2.1. vSAN</a></li>
-<li><a href="#org1a5ea7b">2.2. nested ESXi</a></li>
+<li><a href="#org1f57bdf">2.1. vSAN</a></li>
+<li><a href="#org0dbefea">2.2. nested ESXi</a></li>
 </ul>
 </li>
-<li><a href="#org7f7bd36">3. nested ESXiを作る</a>
-<ul>
-<li>
-<ul>
-<li><a href="#org21214f6">3.0.1. PSODの回避</a></li>
-<li><a href="#org0686bf0">3.0.2. 外側のESXiで、ネットワークのpromiscuous設定が必要だった</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org8fbcc70">4. vSAN datastoreの構築</a>
+<li><a href="#org334d3f7">3. nested ESXiを作る</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgbc1f076">4.0.1. vCLSを起動させる</a></li>
+<li><a href="#orgbcdb8f6">3.0.1. PSODの回避</a></li>
+<li><a href="#org26b4bba">3.0.2. 外側のESXiで、ネットワークのpromiscuous設定が必要だった</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc981275">5. 終わりに</a></li>
+<li><a href="#orgcaad252">4. vSAN datastoreの構築</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org990938e">4.0.1. vCLSを起動させる</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org89a4479">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5f34e48" class="outline-2">
-<h2 id="org5f34e48"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org05e95e8" class="outline-2">
+<h2 id="org05e95e8"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 vSANを動作検証するために、HDDしか持たないサーバー上にnested ESXiを作るところから始めて検証環境を作ってみました。いくつかはまりポイントがあったので覚書用に残しておきます。
@@ -112,12 +112,12 @@ vSANを動作検証するために、HDDしか持たないサーバー上にnest
 </div>
 </div>
 
-<div id="outline-container-org50d9db6" class="outline-2">
-<h2 id="org50d9db6"><span class="section-number-2">2.</span> Overview</h2>
+<div id="outline-container-org76824d4" class="outline-2">
+<h2 id="org76824d4"><span class="section-number-2">2.</span> Overview</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf082756" class="outline-3">
-<h3 id="orgf082756"><span class="section-number-3">2.1.</span> vSAN</h3>
+<div id="outline-container-org1f57bdf" class="outline-3">
+<h3 id="org1f57bdf"><span class="section-number-3">2.1.</span> vSAN</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 VMware vSANは複数のESXiで作るSDS (Software Defined Storage)です。冗長化されているので、ホストESXiが1台ダウンしてもデータが消えたりアクセスできなくなることがありません。
@@ -129,8 +129,8 @@ vSANには古いOSA (Original Storage Architecture)とvSphere8以降のESA (Expr
 </div>
 </div>
 
-<div id="outline-container-org1a5ea7b" class="outline-3">
-<h3 id="org1a5ea7b"><span class="section-number-3">2.2.</span> nested ESXi</h3>
+<div id="outline-container-org0dbefea" class="outline-3">
+<h3 id="org0dbefea"><span class="section-number-3">2.2.</span> nested ESXi</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 vSANは通常3台以上のESXiホストが必要なのですが、そんなにサーバーがありません。そこで、1台のESXi上に3台のESXi VMsを作ってなんとかします。nested ESXiは意外と癖があって、簡単には動きませんでした。
@@ -139,8 +139,8 @@ vSANは通常3台以上のESXiホストが必要なのですが、そんなに�
 </div>
 </div>
 
-<div id="outline-container-org7f7bd36" class="outline-2">
-<h2 id="org7f7bd36"><span class="section-number-2">3.</span> nested ESXiを作る</h2>
+<div id="outline-container-org334d3f7" class="outline-2">
+<h2 id="org334d3f7"><span class="section-number-2">3.</span> nested ESXiを作る</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 nested ESXiについて検索していたらとてもよいサイトを見つけました。 <a href="https://changineer.info/vmware/hypervisor/vmware_nested_esxi.html">https://changineer.info/vmware/hypervisor/vmware_nested_esxi.html</a>
@@ -159,8 +159,8 @@ CPUの「ハードウエアアシストによる仮想化をゲストOSに公開
 この手順に無くてはまったポイントだけ簡単に説明します。
 </p>
 </div>
-<div id="outline-container-org21214f6" class="outline-4">
-<h4 id="org21214f6"><span class="section-number-4">3.0.1.</span> PSODの回避</h4>
+<div id="outline-container-orgbcdb8f6" class="outline-4">
+<h4 id="orgbcdb8f6"><span class="section-number-4">3.0.1.</span> PSODの回避</h4>
 <div class="outline-text-4" id="text-3-0-1">
 <p>
 まず、いきなりESXiのインストーラーが起動せずにPSOD (Purple Screen of Death)画面が出ました。"Exception 13"が出ていたのでそれで検索したところ回避策が見つかりました。 <a href="https://www.virten.net/2022/11/esxi-7-and-8-installation-fails-with-fatal-cpu-mismatch-on-feature/">https://www.virten.net/2022/11/esxi-7-and-8-installation-fails-with-fatal-cpu-mismatch-on-feature/</a>
@@ -184,8 +184,8 @@ esxcli system settings kernel set -s ignoreMsrFaults -v TRUE
 </div>
 </div>
 
-<div id="outline-container-org0686bf0" class="outline-4">
-<h4 id="org0686bf0"><span class="section-number-4">3.0.2.</span> 外側のESXiで、ネットワークのpromiscuous設定が必要だった</h4>
+<div id="outline-container-org26b4bba" class="outline-4">
+<h4 id="org26b4bba"><span class="section-number-4">3.0.2.</span> 外側のESXiで、ネットワークのpromiscuous設定が必要だった</h4>
 <div class="outline-text-4" id="text-3-0-2">
 <p>
 nested ESXi上にLinuxのVMを作ったのですが、自分とホストESXi以外にpingが通りません。もちろん外からもだめです。ESXiの仮想スイッチやポートグループを疑っていろいろ設定をいじった挙げ句、vCenterから当該nested ESXiがdisconnectedになってしまいました。
@@ -202,8 +202,8 @@ nested ESXi上にLinuxのVMを作ったのですが、自分とホストESXi以�
 </div>
 </div>
 
-<div id="outline-container-org8fbcc70" class="outline-2">
-<h2 id="org8fbcc70"><span class="section-number-2">4.</span> vSAN datastoreの構築</h2>
+<div id="outline-container-orgcaad252" class="outline-2">
+<h2 id="orgcaad252"><span class="section-number-2">4.</span> vSAN datastoreの構築</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 nested ESXiを使ってvSANを構築する手順を説明しているよいサイトを見つけたので、ほぼそのままの手順で構築しました。 <a href="https://changineer.info/vmware/hypervisor/vmware_vsan_basic.html">https://changineer.info/vmware/hypervisor/vmware_vsan_basic.html</a>
@@ -225,8 +225,8 @@ scsi0:3.virtualSSD = 1
 </pre>
 </div>
 
-<div id="outline-container-orgbc1f076" class="outline-4">
-<h4 id="orgbc1f076"><span class="section-number-4">4.0.1.</span> vCLSを起動させる</h4>
+<div id="outline-container-org990938e" class="outline-4">
+<h4 id="org990938e"><span class="section-number-4">4.0.1.</span> vCLSを起動させる</h4>
 <div class="outline-text-4" id="text-4-0-1">
 <p>
 しかし、翌日になってvCenterのタスク履歴を見たところ、vSAN用の(?)vCLS VMが起動しないエラーが大量に出ていることに気が付きました。エラーメッセージを見ると、MWAITが無いと文句を言っているようです。これで検索して回避策を見つけました。 <a href="https://kb.vmware.com/s/article/83076">https://kb.vmware.com/s/article/83076</a>
@@ -264,8 +264,8 @@ VMwareのページから手順を引用。
 </div>
 
 
-<div id="outline-container-orgc981275" class="outline-2">
-<h2 id="orgc981275"><span class="section-number-2">5.</span> 終わりに</h2>
+<div id="outline-container-org89a4479" class="outline-2">
+<h2 id="org89a4479"><span class="section-number-2">5.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 というわけで、何とかvSAN検証環境が出来ました。これから少しvSANで遊んでみたいと思います。

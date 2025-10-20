@@ -72,29 +72,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5e793f2">1. はじめに</a></li>
-<li><a href="#org39b31c2">2. リスクと対策</a>
+<li><a href="#org8afee59">1. はじめに</a></li>
+<li><a href="#orgd57bc15">2. リスクと対策</a>
 <ul>
-<li><a href="#org0338019">2.1. リスク</a></li>
-<li><a href="#org4698803">2.2. 対策</a></li>
+<li><a href="#org4cb90a0">2.1. リスク</a></li>
+<li><a href="#org8018044">2.2. 対策</a></li>
 </ul>
 </li>
-<li><a href="#orgb2855fa">3. Immichをインターネットにexposeする</a>
+<li><a href="#org9543efb">3. Immichをインターネットにexposeする</a>
 <ul>
-<li><a href="#org54c7dcb">3.1. ドメインの取得</a></li>
-<li><a href="#org18da43d">3.2. DDNSを設定する</a></li>
-<li><a href="#org385d81d">3.3. ルーターの設定</a></li>
-<li><a href="#org04ebbf3">3.4. Caddyのインストール</a></li>
-<li><a href="#org8497ec3">3.5. テスト</a></li>
+<li><a href="#org71103ab">3.1. ドメインの取得</a></li>
+<li><a href="#org57c8aa2">3.2. DDNSを設定する</a></li>
+<li><a href="#org833dc3b">3.3. ルーターの設定</a></li>
+<li><a href="#orge402518">3.4. Caddyのインストール</a></li>
+<li><a href="#orgdcb83f6">3.5. テスト</a></li>
+<li><a href="#org7e34908">3.6. おまけ:あせったこと</a></li>
 </ul>
 </li>
-<li><a href="#orgc7b7882">4. さいごに</a></li>
+<li><a href="#org904d628">4. さいごに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5e793f2" class="outline-2">
-<h2 id="org5e793f2"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org8afee59" class="outline-2">
+<h2 id="org8afee59"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <a href="https://achiwa912.github.io/homelab.html">以前のエントリ</a> でホームラボサーバーを建て、Google Photosの代わりとなる <a href="https://github.com/immich-app/immich">Immich</a> という写真アプリを入れましたが、Google Photos置き換えとしては大事な点が抜けていました。それは外出先からインターネットを経由してのアクセスです。
@@ -106,12 +107,12 @@
 </div>
 </div>
 
-<div id="outline-container-org39b31c2" class="outline-2">
-<h2 id="org39b31c2"><span class="section-number-2">2.</span> リスクと対策</h2>
+<div id="outline-container-orgd57bc15" class="outline-2">
+<h2 id="orgd57bc15"><span class="section-number-2">2.</span> リスクと対策</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0338019" class="outline-3">
-<h3 id="org0338019"><span class="section-number-3">2.1.</span> リスク</h3>
+<div id="outline-container-org4cb90a0" class="outline-3">
+<h3 id="org4cb90a0"><span class="section-number-3">2.1.</span> リスク</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 サーバーをインターネットに公開することは結構危険なことです。今回、トラブルシュート中に(caddyの)ログを見ていて気がついたのですが、ドメインに自宅ルーターのIPアドレスを設定して割とすぐにサーチエンジンyandex.comのボットからのアクセスが来ていました。(一部情報伏せてます)
@@ -149,8 +150,8 @@ The IP address \(51.81.46.212\) is associated with the internet service provider
 </div>
 </div>
 
-<div id="outline-container-org4698803" class="outline-3">
-<h3 id="org4698803"><span class="section-number-3">2.2.</span> 対策</h3>
+<div id="outline-container-org8018044" class="outline-3">
+<h3 id="org8018044"><span class="section-number-3">2.2.</span> 対策</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 今回は<a href="https://caddyserver.com/">caddy</a>のリバースプロキシー機能を使うことにしました。インターネットからのアクセスはすべてcaddyで受け、Immichを直接インターネットに晒さないようにします。Immichはhttpsをサポートしていないので、caddyでhttps対応します。
@@ -167,12 +168,12 @@ The IP address \(51.81.46.212\) is associated with the internet service provider
 </div>
 </div>
 
-<div id="outline-container-orgb2855fa" class="outline-2">
-<h2 id="orgb2855fa"><span class="section-number-2">3.</span> Immichをインターネットにexposeする</h2>
+<div id="outline-container-org9543efb" class="outline-2">
+<h2 id="org9543efb"><span class="section-number-2">3.</span> Immichをインターネットにexposeする</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org54c7dcb" class="outline-3">
-<h3 id="org54c7dcb"><span class="section-number-3">3.1.</span> ドメインの取得</h3>
+<div id="outline-container-org71103ab" class="outline-3">
+<h3 id="org71103ab"><span class="section-number-3">3.1.</span> ドメインの取得</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 実は、(Wifi)ルーターをからインターネットにアクセスできるようにした時点で、インターネットプロバイダーはルーターにグローバルなIPアドレスを割り当てています。このIPアドレスはインターネット経由で全世界からアクセス可能です。もっとも、普段はルーターが外からのアクセスをすべてブロックしているわけですが。
@@ -196,8 +197,8 @@ IPアドレスはランダムに見える数字の羅列なので、人間が使
 </div>
 </div>
 
-<div id="outline-container-org18da43d" class="outline-3">
-<h3 id="org18da43d"><span class="section-number-3">3.2.</span> DDNSを設定する</h3>
+<div id="outline-container-org57c8aa2" class="outline-3">
+<h3 id="org57c8aa2"><span class="section-number-3">3.2.</span> DDNSを設定する</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 インターネットプロバイダーは、固定IPアドレス契約をしていない限り、契約者のルーターに割り当てるIPアドレスを時折変更します。その際に、購入したドメインに割り当てるIPアドレスも変更する必要があり、それを自動でやってくれるのがDynamic DNS(DDNS)という技術です。
@@ -249,8 +250,8 @@ docker compose up -d
 </div>
 </div>
 
-<div id="outline-container-org385d81d" class="outline-3">
-<h3 id="org385d81d"><span class="section-number-3">3.3.</span> ルーターの設定</h3>
+<div id="outline-container-org833dc3b" class="outline-3">
+<h3 id="org833dc3b"><span class="section-number-3">3.3.</span> ルーターの設定</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 いよいよルーターでポートフォワーディング設定してポート番号443をこれからインストールするcaddyにフォワードします。うちのTP-Linkルーターの場合、ブラウザーから<a href="http://192.168.0.1">http://192.168.0.1</a> に行き、管理画面にログインしてAdvancedタブを選択し、NAT forwarding &gt; Virtual Serversと進んでAddをクリックします。そしてExternal Portに443、Intrnal IPに自宅サーバーのIPアドレス、Internal Portに443を入力してOKを押します。
@@ -262,8 +263,8 @@ docker compose up -d
 </div>
 </div>
 
-<div id="outline-container-org04ebbf3" class="outline-3">
-<h3 id="org04ebbf3"><span class="section-number-3">3.4.</span> Caddyのインストール</h3>
+<div id="outline-container-orge402518" class="outline-3">
+<h3 id="orge402518"><span class="section-number-3">3.4.</span> Caddyのインストール</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 最後にCaddyを入れて<a href="https://caddyserver.com/docs/quick-starts/reverse-proxy">リバースプロキシーの設定</a>をします。Caddyのすごいところは、httpsに必要なサーバー証明書を自動で<a href="https://letsencrypt.org/">Let's Encrypt</a>から生成、取得して、期限が切れる前に更新まで<a href="https://caddyserver.com/docs/automatic-https">してくれる</a>ところです。面倒な証明書更新までお任せでやってくれるとは。感動的です。
@@ -341,26 +342,56 @@ $ docker logs 369b0b77d4ad 2&gt;&amp;1 | less  # コンテナIDを指定して�
 </div>
 </div>
 
-<div id="outline-container-org8497ec3" class="outline-3">
-<h3 id="org8497ec3"><span class="section-number-3">3.5.</span> テスト</h3>
+<div id="outline-container-orgdcb83f6" class="outline-3">
+<h3 id="orgdcb83f6"><span class="section-number-3">3.5.</span> テスト</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 各コンテナのデプロイがうまくいっているようだったら、スマホのWifiを切って、ブラウザーから<a href="https://">https://</a>&lt;サブドメイン&gt;.&lt;取得したドメイン&gt; に行ってみます。無事にImmichのログイン画面が出てきたときには感動しました。ハッカーの侵入を防ぐ最後の砦であるImmichのパスワードは強めのものを設定しておきました。
 </p>
 
 <p>
-うまくいかなかったらコンテナのログを見るなどしてトラブルシュートします。
+証明書はLet's Encryptのものが正しく設定されています。
+</p>
+
+<p>
+もしうまくいかなかったらコンテナのログを見たり、設定ファイルを変えるなどしてトラブルシュートします。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7e34908" class="outline-3">
+<h3 id="org7e34908"><span class="section-number-3">3.6.</span> おまけ:あせったこと</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+いろいろとトラブルシュートしている途中で、自宅WifiにつながっているPCから<a href="http://">http://</a>&lt;ルーターのグローバルIP&gt; に行ってみたところ、Wifiルーターの管理コンソールへのログイン画面が出てきました。あれ、実はうちのWifiルーターは、これまでずっとインターネットから管理画面にアクセス可能だったのでしょうか!?
+</p>
+
+<p>
+これはまずいです。あわてて対処しないと! とりあえず容易に想像できないパスワードをつけていてよかったですが。。。
+</p>
+
+<p>
+と、ここでスマホでWifiを切ってルーターのグローバルIPにHTTP接続してみたところ、無事に(?)ルーターの管理コンソール画面は出てきませんでした。どうやら、PCからアクセスしたのがWifiからだったからのようでした。かなり焦りました。
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc7b7882" class="outline-2">
-<h2 id="orgc7b7882"><span class="section-number-2">4.</span> さいごに</h2>
+
+<div id="outline-container-org904d628" class="outline-2">
+<h2 id="org904d628"><span class="section-number-2">4.</span> さいごに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-今回はインターネット経由で自宅サーバー上のImmichをセキュアにアクセスできるようにしてみました。
+今回はインターネット経由で自宅サーバー上のImmichをセキュアにアクセスできるようにしてみました。今後の課題がいくつかあるので、解決したら記事をアップデートしたいと思います。
 </p>
+
+<p>
+課題:
+</p>
+<ul class="org-ul">
+<li>Immich専用の証明書になっている。他のサービスを追加することはできるのか?</li>
+<li>CaddyはIPアドレスを指定してImmichとやり取りをしている(気がする)。別コンテナにいるサービス間でIPを使わずに通信できないのか?</li>
+</ul>
 </div>
 </div>
 </div>
