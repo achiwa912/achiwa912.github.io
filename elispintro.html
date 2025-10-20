@@ -72,23 +72,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4f78b0a">1. はじめに</a></li>
-<li><a href="#org15e9ea0">2. eslipについて</a></li>
-<li><a href="#org0ef5681">3. 本書について</a>
+<li><a href="#org0d370dd">1. はじめに</a></li>
+<li><a href="#orgbcb39f8">2. eslipについて</a></li>
+<li><a href="#orga783d74">3. 本書について</a>
 <ul>
-<li><a href="#org71ba49e">3.1. フォーマット</a></li>
-<li><a href="#org854ef3c">3.2. 難易度</a></li>
-<li><a href="#org52d80e5">3.3. 読んだ効果</a></li>
-<li><a href="#org54e1166">3.4. 次のステップ</a></li>
+<li><a href="#org30d1d15">3.1. フォーマット</a></li>
+<li><a href="#org3f4fb83">3.2. 難易度</a></li>
+<li><a href="#org1a62a21">3.3. 読んだ効果</a></li>
+<li><a href="#org7e43808">3.4. 次のステップ</a></li>
 </ul>
 </li>
-<li><a href="#org1aed19d">4. 終わりに</a></li>
+<li><a href="#orgb63bcb4">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4f78b0a" class="outline-2">
-<h2 id="org4f78b0a"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org0d370dd" class="outline-2">
+<h2 id="org0d370dd"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Robert J. Chassell著の<a href="https://www.gnu.org/software/emacs/manual/eintr.html">An Introduction to Programming in Emacs Lisp</a>はとても評判の良いemacs lisp(elisp)の入門書です。いい加減にelispを学ぶことは避けて通れないと思って、読み始めては挫折することを繰り返し、3度目の正直でやっと読み終わりました。
@@ -96,8 +96,8 @@ Robert J. Chassell著の<a href="https://www.gnu.org/software/emacs/manual/eintr
 </div>
 </div>
 
-<div id="outline-container-org15e9ea0" class="outline-2">
-<h2 id="org15e9ea0"><span class="section-number-2">2.</span> eslipについて</h2>
+<div id="outline-container-orgbcb39f8" class="outline-2">
+<h2 id="orgbcb39f8"><span class="section-number-2">2.</span> eslipについて</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Emacsは高機能なテキストエディタという表の姿の影で、elispの実行環境であるという真の姿があります。高速化のためにC言語で書かれた一部の低レベル機能を除いて、Emacsの本体や拡張機能の多くはelispで書かれており、elispを使うことでEmacsでできることの範囲が大きく広がります。
@@ -109,12 +109,12 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-org0ef5681" class="outline-2">
-<h2 id="org0ef5681"><span class="section-number-2">3.</span> 本書について</h2>
+<div id="outline-container-orga783d74" class="outline-2">
+<h2 id="orga783d74"><span class="section-number-2">3.</span> 本書について</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org71ba49e" class="outline-3">
-<h3 id="org71ba49e"><span class="section-number-3">3.1.</span> フォーマット</h3>
+<div id="outline-container-org30d1d15" class="outline-3">
+<h3 id="org30d1d15"><span class="section-number-3">3.1.</span> フォーマット</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 本書はemacsに付属していて <code>C-h i</code> で出てくる一覧から飛べるようになっている他、ネット上にPDF版やHTML版があります。どうせEmacs上で例を実行(評価)したり関数を作ったりしながら進めるのだから、Emacsの付属版を使うのがよいと思います。Infoモードのキーバインドを覚えるのに若干敷居が高いですが。
@@ -122,8 +122,8 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-org854ef3c" class="outline-3">
-<h3 id="org854ef3c"><span class="section-number-3">3.2.</span> 難易度</h3>
+<div id="outline-container-org3f4fb83" class="outline-3">
+<h3 id="org3f4fb83"><span class="section-number-3">3.2.</span> 難易度</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 結構難しい本です。最初に、プログラマーでなくてもわかるように平易に書いた、ようなことが書いてあるのですが、プログラミング初級者はついていけないと思います。一つずつの章をきちんと正しく理解して、学んだことを覚えていかないと、章が進むにつれて読むのが辛くなってきます。文章もアカデミックで、私の英語力に問題あるだけかもしれませんが、意味がすんなり頭に入ってきません。
@@ -139,8 +139,8 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-org52d80e5" class="outline-3">
-<h3 id="org52d80e5"><span class="section-number-3">3.3.</span> 読んだ効果</h3>
+<div id="outline-container-org1a62a21" class="outline-3">
+<h3 id="org1a62a21"><span class="section-number-3">3.3.</span> 読んだ効果</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 プログラミングの本では半ば常識と思いますが、出てきた例や演習問題はすべて手で入力して、その言語に体で慣れていく必要があります。この本では、そういったハンズオンの量が少なすぎると思います。
@@ -156,8 +156,8 @@ Emacsは高機能なテキストエディタという表の姿の影で、elisp�
 </div>
 </div>
 
-<div id="outline-container-org54e1166" class="outline-3">
-<h3 id="org54e1166"><span class="section-number-3">3.4.</span> 次のステップ</h3>
+<div id="outline-container-org7e43808" class="outline-3">
+<h3 id="org7e43808"><span class="section-number-3">3.4.</span> 次のステップ</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 例えばPythonやJavaScriptでは入門書から中級者向けの本に事欠きませんが、ユーザーの少ないelispには次に読むべき本があまりありません。いろいろ検索した結果、2冊見つけました。
@@ -184,8 +184,8 @@ elispはマイナーな言語なので選択肢が限られますね。次はこ
 </div>
 </div>
 
-<div id="outline-container-org1aed19d" class="outline-2">
-<h2 id="org1aed19d"><span class="section-number-2">4.</span> 終わりに</h2>
+<div id="outline-container-orgb63bcb4" class="outline-2">
+<h2 id="orgb63bcb4"><span class="section-number-2">4.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 最初に読み始めてから、長い中断も含めて、2,3年かけてやっと読み終わりました。もっと早く読んでおくべきだったとは思いますが、Mastering Emacsを読んでいなかったら挫折したままだったとも言えます。Emacsにやっと本格的に入門することができた、という感想を持ちました。
@@ -215,6 +215,9 @@ elispはマイナーな言語なので選択肢が限られますね。次はこ
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
       </li>
       <li class="post">
@@ -225,9 +228,6 @@ elispはマイナーな言語なので選択肢が限られますね。次はこ
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
-      </li>
-      <li class="post">
-          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
     </ul>
   </section>
@@ -247,7 +247,7 @@ elispはマイナーな言語なので選択肢が限られますね。次はこ
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

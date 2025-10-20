@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Immichを安全にインターネットから見られるようにする &mdash; Daydreaming in Boston</title>
+  <meta name="author" content="Kyos">
+
+
+
+
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="/favicon.png" rel="icon">
+
+  <link href="/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="/">Daydreaming in Boston</a></h1>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+</ul>
+
+
+<ul class="main-navigation">
+    <li><a href="/pages/about.html">About Me</a></li>
+      <li >
+        <a href="/category/blog.html">Blog</a>
+      </li>
+      <li >
+        <a href="/category/emacs.html">Emacs</a>
+      </li>
+      <li >
+        <a href="/category/english.html">English</a>
+      </li>
+      <li >
+        <a href="/category/linux.html">Linux</a>
+      </li>
+      <li >
+        <a href="/category/python.html">Python</a>
+      </li>
+      <li class="active">
+        <a href="/category/tech.html">Tech</a>
+      </li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Immichを安全にインターネットから見られるようにする</h1>
+    <p class="meta">
+<time datetime="2025-10-19T00:00:00-04:00" pubdate>Sun 19 October 2025</time>    </p>
+</header>
+
+  <div class="entry-content"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org4337efc">1. はじめに</a></li>
+<li><a href="#orgaa672eb">2. リスクと対策</a>
+<ul>
+<li><a href="#org6ed2f7c">2.1. リスク</a></li>
+<li><a href="#org3262e99">2.2. 対策</a></li>
+</ul>
+</li>
+<li><a href="#org8bf54a6">3. Immichをインターネットにexposeする</a>
+<ul>
+<li><a href="#org0c88f56">3.1. ドメインの取得</a></li>
+<li><a href="#org58ef5df">3.2. DDNSを設定する</a></li>
+<li><a href="#orgd1f3109">3.3. ルーターの設定</a></li>
+<li><a href="#org2502b04">3.4. Caddyのインストール</a></li>
+<li><a href="#orgac1ecd9">3.5. テスト</a></li>
+</ul>
+</li>
+<li><a href="#orgfeca5c8">4. さいごに</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4337efc" class="outline-2">
+<h2 id="org4337efc"><span class="section-number-2">1.</span> はじめに</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https://achiwa912.github.io/homelab.html">以前のエントリ</a> でホームラボサーバーを建て、Google Photosの代わりとなる <a href="https://github.com/immich-app/immich">Immich</a> という写真アプリを入れましたが、Google Photos置き換えとしては大事な点が抜けていました。それは外出先からインターネットを経由してのアクセスです。
+</p>
+
+<p>
+今回は、Immichをインターネットからアクセスできるようにします。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgaa672eb" class="outline-2">
+<h2 id="orgaa672eb"><span class="section-number-2">2.</span> リスクと対策</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6ed2f7c" class="outline-3">
+<h3 id="org6ed2f7c"><span class="section-number-3">2.1.</span> リスク</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+サーバーをインターネットに公開することは結構危険なことです。今回、トラブルシュート中に(caddyの)ログを見ていて気がついたのですが、ドメインに自宅ルーターのIPアドレスを設定して割とすぐにサーチエンジンyandex.comのボットからのアクセスが来ていました。(一部情報伏せてます)
+</p>
+<pre class="example">
+{"level":"error","ts":1760900112.789462,"logger":"http.log.error","msg":"dial tcp :&lt;port&gt;: connect: connection refused","request":{"remote_ip":"5.196.80.240","remote_port":"44506","client_ip":"5.196.80.240","proto":"HTTP/1.1","method":"GET","host":"&lt;URL&gt;","uri":"/.git/config","headers":{"User-Agent":["YandexBot/3.0 (+http://yandex.com/bots)"],"Accept":["*/*"],"Accept-Encoding":["gzip"]},"tls":{"resumed":false,"version":772,"cipher_suite":4867,"proto":"","server_name":"&lt;URL&gt;"}},"duration":0.000435061,"status":502,"err_id":"00vrh2gtu","err_trace":"reverseproxy.statusError (reverseproxy.go:1390)"}
+</pre>
+<p>
+また、<a href="https://datadome.co/bots/leakix-bot/">leakix</a>のIPアドレス(157.230.19.140)から脆弱性をチェックしていると思われるプローブが。。。
+</p>
+<pre class="example">
+{"level":"error","ts":1760900122.5479143,"logger":"http.log.error","msg":"dial tcp :&lt;port&gt;: connect: connection refused","request":{"remote_ip":"157.230.19.140","remote_port":"60512","client_ip":"157.230.19.140","proto":"HTTP/1.1","method":"GET","host":"&lt;URL&gt;","uri":"/","headers":{"Connection":["close"]},"tls":{"resumed":false,"version":772,"cipher_suite":4867,"proto":"","server_name":"&lt;URL&gt;"}},"duration":0.000433301,"status":502,"err_id":"9qcgybyv3","err_trace":"reverseproxy.statusError (reverseproxy.go:1390)"}
+</pre>
+<p>
+まあ、これらは危険では無さそうですが、こいつ(51.81.46.212)はやばそうです。
+</p>
+<pre class="example">
+{"level":"error","ts":1760900548.6968164,"logger":"http.log.error","msg":"dial tcp :&lt;port&gt;: connect: connection refused","request":{"remote_ip":"51.81.46.212","remote_port":"56230","client_ip":"51.81.46.212","proto":"HTTP/1.1","method":"GET","host":"&lt;URL&gt;","uri":"/","headers":{"X-Scanned-By":["RecordedFuture-Global Inventory"],"Accept-Encoding":["identity"]},"tls":{"resumed":false,"version":772,"cipher_suite":4867,"proto":"","server_name":"&lt;URL&gt;"}},"duration":0.00049338,"status":502,"err_id":"mmkg4vicx","err_trace":"reverseproxy.statusError (reverseproxy.go:1390)"}
+</pre>
+<p>
+IPアドレスで検索すると、、、
+</p>
+<blockquote>
+<p>
+The IP address \(51.81.46.212\) is associated with the internet service provider OVH US LLC, a data center and web hosting company. This IP has been flagged for being used in malicious activities like phishing and other cyberattacks.
+</p>
+</blockquote>
+<p>
+悪いことをたくらんでいるらしい会社のクローラーからのアクセスでした。他にも正体不明なIPアドレスからのアクセスがたくさん。。。
+</p>
+
+<p>
+セキュリティをよく検討せずにサーバーをインターネットに公開してしまうと、ハッカーの標的になって、サーバーを乗っ取られたり、情報が盗まれるリスクがあるわけです。このことは知識として知ってはいても、実際にクローラーからのアクセスが来たのを見ると、リスクにさらされていることを実感します。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3262e99" class="outline-3">
+<h3 id="org3262e99"><span class="section-number-3">2.2.</span> 対策</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+今回は<a href="https://caddyserver.com/">caddy</a>のリバースプロキシー機能を使うことにしました。インターネットからのアクセスはすべてcaddyで受け、Immichを直接インターネットに晒さないようにします。Immichはhttpsをサポートしていないので、caddyでhttps対応します。
+</p>
+
+<p>
+また、インターネットとLANをつなぐTP-Linkのルーターでポートフォワーディング設定し、443ポートのみをcaddyにつなぎます。必要のないポートはすべてルーターでブロックします。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8bf54a6" class="outline-2">
+<h2 id="org8bf54a6"><span class="section-number-2">3.</span> Immichをインターネットにexposeする</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org0c88f56" class="outline-3">
+<h3 id="org0c88f56"><span class="section-number-3">3.1.</span> ドメインの取得</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+(Wifi)ルーターをからインターネットにアクセスできるようにした時点で、インターネットプロバイダーはルーターにグローバルなIPアドレスを割り当てています。実は、このIPアドレスはインターネットからアクセス可能です。もっとも、ルーターがインターネットからのアクセスをすべてブロックしているわけですが。
+</p>
+
+<p>
+IPアドレスはランダムに見える数字の羅列なので、人間が使いやすいようにドメイン名を使ってサービスにアクセスすることが普通です。インターネットに公開する自宅サーバーにもドメインが欲しくなるわけで、それを入手する必要があります。
+</p>
+
+<p>
+ネットで調べたところ、mydns.jpという個人サイト(?)から無償でドメイン入手が可能なようだったのでアカウントを作ろうとしたのですが、いつまで待ってもアカウント登録メールが来ないので断念して、有償で業者から買い求めることにしました。
+</p>
+
+<p>
+<a href="https://porkbun.com">https://porkbun.com</a>が安くて評判が良さそうだったので、ここで安いドメインを探しました。co.ukドメインがキャンペーン中で初年度$2.84、更新が$5.66と格安で出ていました。アメリカに住んでいる日本人なのにco.ukドメインはちょっと変な気もしますが、安いのでお試しにピッタリということで、一つドメインを購入しました。
+</p>
+
+<p>
+なお、ドメインを購入するとそれが公開されるためか、ボット等からのクロールが始まります。IPアドレスを設定するまではporkbunが、IPアドレスを設定した後は自宅ルーターがブロックしてくれているはずです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org58ef5df" class="outline-3">
+<h3 id="org58ef5df"><span class="section-number-3">3.2.</span> DDNSを設定する</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+インターネットプロバイダーは、固定IPアドレス契約をしていない限り、契約者のルーターに割り当てるIPアドレスを時折変更します。その際に、購入したドメインに割り当てるIPアドレスも変更する必要があり、それを自動でやってくれるのがDynamic DNS(DDNS)という技術です。
+</p>
+
+<p>
+<a href="https://github.com/mietzen/porkbun-ddns">porkbun-ddns</a>はporkbunのAPIを使ってDDNS設定を自動でやってくれるありがたいツールです。300秒に一度、ルーターに割り当てられているグローバルIPアドレスをporkbunのDNS設定に反映してくれます。ものすごく便利!
+</p>
+
+<p>
+インストールにはもちろんdocker composeを使います。githubのREADMEからdocker-compose.ymlサンプルをコピペしてきてDOMAIN, SUBDOMAINS, SECRETAPIKEY, APIKEYを入れます。DOMAINは購入したドメインでサブドメインは自分で使いたいものをカンマで区切って並べます。SECRETAPIKEYとAPIKEYはporkbunの管理画面で生成します。
+</p>
+<pre class="example">
+services:
+  porkbun-ddns:
+    image: "mietzen/porkbun-ddns:latest"
+    container_name: porkbun-ddns
+    environment:
+      DOMAIN: "&lt;ドメイン&gt;" # Your Porkbun domain
+      SUBDOMAINS: "&lt;サブドメイン&gt;" # Subdomains comma spreaded
+      SECRETAPIKEY: "sk1_&lt;シークレットキー&gt;" # Your Porkbun Secret-API-Key
+      APIKEY: "pk1_&lt;APIキー&gt;" # Your Porkbun API-Key
+      # PUBLIC_IPS: "1.2.3.4,2001:043e::1" # Set if you got static IP's
+      # FRITZBOX: "192.168.178.1" # Use Fritz!BOX to obtain Public IP's
+      # SLEEP: "300" # Seconds to sleep between DynDNS runs
+      # IPV4: "TRUE" # Set IPv4 address
+      # IPV6: "TRUE" # Set IPv6 address
+      # DEBUG: "FALSE" # DEBUG LOGGING
+    restart: unless-stopped
+
+# # Uncomment below to let it detect ipv6 address:
+#     networks:
+#       - ipv6_enabled
+
+# networks:
+#   ipv6_enabled:
+#     enable_ipv6: true
+</pre>
+
+<p>
+そうしたら、
+</p>
+<pre class="example">
+docker compose up -d
+</pre>
+<p>
+でインストール、起動するだけ。難しいことは何も考えなくて済みます。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd1f3109" class="outline-3">
+<h3 id="orgd1f3109"><span class="section-number-3">3.3.</span> ルーターの設定</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+いよいよルーターでポートフォワーディング設定してポート番号443をこれからインストールするcaddyにフォワードします。うちのTP-Linkルーターの場合、ブラウザーから<a href="http://192.168.0.1">http://192.168.0.1</a> に行き、管理画面にログインしてAdvancedタブを選択し、NAT forwarding &gt; Virtual Serversと進んでAddをクリックします。そしてExternal Portに443、Intrnal IPに自宅サーバーのIPアドレス、Internal Portに443を入力してOKを押します。
+</p>
+
+<p>
+これで(ハッカーの攻撃を含めて)うちのルーターのグローバルIPアドレス、ポート443へのアクセスが全て自宅サーバーのポート443に来ているはずです。怖い怖い。。。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2502b04" class="outline-3">
+<h3 id="org2502b04"><span class="section-number-3">3.4.</span> Caddyのインストール</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+最後にCaddyを入れて<a href="https://caddyserver.com/docs/quick-starts/reverse-proxy">リバースプロキシーの設定</a>をします。Caddyのすごいところは、httpsに必要なサーバー証明書を自動で<a href="https://letsencrypt.org/">Let's Encrypt</a>から生成、取得して、期限が切れる前に更新まで<a href="https://caddyserver.com/docs/automatic-https">してくれる</a>ところです。面倒な証明書更新までお任せでやってくれるとは。感動的です。
+</p>
+
+<p>
+Caddyももちろんdocker composeを使ってお手軽にインストールします。Caddy+Immich設定方法は<a href="https://docs.immich.app/administration/reverse-proxy/">Immichのドキュメント</a>に出ています。
+</p>
+
+<p>
+まずCaddyをデプロイするためのdocker-compose.ymlファイルを作ります。ポート80はブロックして、443のみを扱います。volumesのディレクトリはあなたのサーバー環境に合わせて適宜設定してください。
+</p>
+<pre class="example">
+services:
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    ports:
+        #- "80:80"
+        - "443:443"
+        #- "443:443/udp" # For HTTP/3
+    volumes:
+      - ./conf:/etc/caddy # Mount your Caddyfile for configuration
+      - ./site:/srv # Mount directory for serving static files
+      - caddy_data:/data # Named volume for Caddy's persistent data
+      - caddy_config:/config # Named volume for Caddy's configuration
+
+volumes:
+  caddy_data:
+  caddy_config:
+</pre>
+
+<p>
+ついでCaddyのconfigファイルを作ります。./conf/Caddyfileです。
+</p>
+<pre class="example">
+&lt;Immich用サブとメイン&gt;.&lt;取得したドメイン&gt; {
+    reverse_proxy 192.168.0.&lt;snip&gt;:2283
+}
+</pre>
+
+<p>
+そして、
+</p>
+<pre class="example">
+docker compose up -d
+</pre>
+<p>
+うまくいくとメッセージいろいろと出て動きます。
+</p>
+
+<p>
+失敗したらCaddyのログを見に行きましょう。
+</p>
+<pre class="example">
+$ docker ps | grep caddy  # CaddyのコンテナIDを表示
+369b0b77d4ad   caddy:latest
+
+$ docker logs 369b0b77d4ad 2&gt;&amp;1 | less  # コンテナIDを指定してログ表示
+</pre>
+<p>
+<code>2&gt;&amp;1</code> の部分はログをlessで見られるようにするおまじないです。(標準エラー出力を標準出力にリダイレクトしています。)
+</p>
+
+<p>
+例えば、
+</p>
+<pre class="example">
+{"level":"error","ts":1760900129.7842133,"logger":"http.log.error","msg":"dial tcp :2283: connect: connection refused","request":{"remote_ip":"157.230.19.140","remote_port":"32786","client_ip":"157.230.19.140","proto":"HTTP/1.1","method":"GET","host":"&lt;設定したサブドメイン&gt;.&lt;取得したドメイン&gt;","uri":"/server-status","headers":{"Accept-Encoding":["gzip"],"Connection":["close"],"User-Agent":["Go-http-client/1.1"]},"tls":{"resumed":true,"version":772,"cipher_suite":4867,"proto":"","server_name":"photos.achiwa.co.uk"}},"duration":0.000412908,"status":502,"err_id":"2gb8awcmr","err_trace":"reverseproxy.statusError (reverseproxy.go:1390)"}
+</pre>
+<p>
+のエラーはHTTP 502 (Bad Gateway)であることがわかります。CaddyがうまくバックエンドのImmichと通信できないために出ているエラーです。client IP 157.230.19.140からのクロールがきっかけです。
+<a href="https://www.abuseipdb.com/whois/157.230.19.140">https://www.abuseipdb.com/whois/157.230.19.140</a>によると、DigitalOceanのドイツにあるデータセンター上でホストしているleakix.orgのスキャンサーバーからであるようです。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgac1ecd9" class="outline-3">
+<h3 id="orgac1ecd9"><span class="section-number-3">3.5.</span> テスト</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+各コンテナのデプロイがうまくいっているようだったら、スマホのWifiを切って、ブラウザーから<a href="https://">https://</a>&lt;サブドメイン&gt;.&lt;取得したドメイン&gt; に行ってみます。無事にImmichのログイン画面が出てきたときには感動しました。ハッカーの侵入を防ぐ最後の砦であるImmichのパスワードは強めのものを設定しておきました。
+</p>
+
+<p>
+うまくいかなかったらコンテナのログを見るなどしてトラブルシュートします。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfeca5c8" class="outline-2">
+<h2 id="orgfeca5c8"><span class="section-number-2">4.</span> さいごに</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+今回はインターネット経由で自宅サーバー上のImmichをセキュアにアクセスできるようにしてみました。
+</p>
+</div>
+</div>
+</div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        きょうす
+    </span>
+  </span>
+<time datetime="2025-10-19T00:00:00-04:00" pubdate>Sun 19 October 2025</time>  <span class="categories">
+    <a class='category' href='/category/tech.html'>Tech</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="/tag/tech.html">Tech</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+</div>
+<aside class="sidebar">
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
+          <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
+      </li>
+      <li class="post">
+          <a href="/moving25.html">アメリカで近距離の引っ越し(2回目)</a>
+      </li>
+      <li class="post">
+          <a href="/starry.html">XfinityからStarry Internetに乗り換えました</a>
+      </li>
+      <li class="post">
+          <a href="/summerreading25.html">Summer Reading 2025</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="/category/blog.html">Blog</a></li>
+        <li><a href="/category/emacs.html">Emacs</a></li>
+        <li><a href="/category/english.html">English</a></li>
+        <li><a href="/category/linux.html">Linux</a></li>
+        <li><a href="/category/python.html">Python</a></li>
+        <li><a href="/category/tech.html">Tech</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+
+
+    <section>
+        <h1>Social</h1>
+        <ul>
+            <li><a href="#" target="_blank">You can add links in your config file</a></li>
+            <li><a href="#" target="_blank">Another social link</a></li>
+        </ul>
+    </section>
+    <section>
+        <h1>Blogroll</h1>
+        <ul>
+            <li><a href="https://getpelican.com/" target="_blank">Pelican</a></li>
+            <li><a href="https://www.python.org/" target="_blank">Python.org</a></li>
+            <li><a href="https://palletsprojects.com/p/jinja/" target="_blank">Jinja2</a></li>
+            <li><a href="#" target="_blank">You can modify those links in your config file</a></li>
+        </ul>
+    </section>
+
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2020&ndash;2025  Kyos &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="/theme/js/modernizr-2.0.js"></script>
+  <script src="/theme/js/ender.js"></script>
+  <script src="/theme/js/octopress.js" type="text/javascript"></script>
+</body>
+</html>

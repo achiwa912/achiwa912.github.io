@@ -72,22 +72,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4ebed07">1. はじめに</a></li>
-<li><a href="#org45f42a8">2. マップ自動生成</a>
+<li><a href="#orgece18db">1. はじめに</a></li>
+<li><a href="#org47c54be">2. マップ自動生成</a>
 <ul>
-<li><a href="#orgd9a7beb">2.1. 部屋データ生成</a></li>
-<li><a href="#org7b037f6">2.2. 部屋のフロアへの配置</a></li>
-<li><a href="#orgcc40b8a">2.3. 廊下で部屋をつなぐ</a></li>
-<li><a href="#orgab8af56">2.4. ドアの設置</a></li>
+<li><a href="#org2943659">2.1. 部屋データ生成</a></li>
+<li><a href="#orgc7fa6a6">2.2. 部屋のフロアへの配置</a></li>
+<li><a href="#orgaa2bc52">2.3. 廊下で部屋をつなぐ</a></li>
+<li><a href="#orgbc8dd15">2.4. ドアの設置</a></li>
 </ul>
 </li>
-<li><a href="#org1f7206f">3. 続き</a></li>
+<li><a href="#org8fc8bab">3. 続き</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org4ebed07" class="outline-2">
-<h2 id="org4ebed07"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgece18db" class="outline-2">
+<h2 id="orgece18db"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プロジェクトに名前が無いと不便なので、仮称DL - Daemon Lordとしました。dl.pyで作り始めます。
@@ -99,8 +99,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org45f42a8" class="outline-2">
-<h2 id="org45f42a8"><span class="section-number-2">2.</span> マップ自動生成</h2>
+<div id="outline-container-org47c54be" class="outline-2">
+<h2 id="org47c54be"><span class="section-number-2">2.</span> マップ自動生成</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 まずは1フロア分のマップを作ります。以下のような流れになります。
@@ -114,8 +114,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </ol>
 </div>
 
-<div id="outline-container-orgd9a7beb" class="outline-3">
-<h3 id="orgd9a7beb"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
+<div id="outline-container-org2943659" class="outline-3">
+<h3 id="org2943659"><span class="section-number-3">2.1.</span> 部屋データ生成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずはRoomクラスを作ります。パラメーターとして左上の座標(x, y)と横縦のサイズ(x_size, y_size)を持ちます。後で計算をさぼるために部屋の中心座標も計算して持っておきます(center_x, center_y)。
@@ -209,8 +209,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-org7b037f6" class="outline-3">
-<h3 id="org7b037f6"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
+<div id="outline-container-orgc7fa6a6" class="outline-3">
+<h3 id="orgc7fa6a6"><span class="section-number-3">2.2.</span> 部屋のフロアへの配置</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 続いて、フロアを岩で埋め尽くして初期化し、そこに部屋を配置していきます。これは一フロアを生成する関数generate_floor()の中で直接やってしまいます。今回のテーマのメイン関数です。
@@ -246,8 +246,8 @@ Rogue+Wizライクなゲームを作るプロジェクトの2回目です。プ�
 </div>
 </div>
 
-<div id="outline-container-orgcc40b8a" class="outline-3">
-<h3 id="orgcc40b8a"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
+<div id="outline-container-orgaa2bc52" class="outline-3">
+<h3 id="orgaa2bc52"><span class="section-number-3">2.3.</span> 廊下で部屋をつなぐ</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 そして、部屋を廊下でつないでいきます。まずは部屋をy座標 &rarr; x座標の順でソートします。そして部屋をひとつずつリストからpopして、一番近い部屋を探し、互いの中心座標を歩ける床のタイルb'.'で結び、廊下とします。他の廊下や部屋と重なっても気にしません。全ての部屋を一筆書きの要領でつなぎます。
@@ -340,8 +340,8 @@ draw_line()は縦線あるいは横線を一本引くだけの関数です。次
 </div>
 </div>
 
-<div id="outline-container-orgab8af56" class="outline-3">
-<h3 id="orgab8af56"><span class="section-number-3">2.4.</span> ドアの設置</h3>
+<div id="outline-container-orgbc8dd15" class="outline-3">
+<h3 id="orgbc8dd15"><span class="section-number-3">2.4.</span> ドアの設置</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 最後に、place_doors()関数で部屋の入り口にドアを設置します。ドアにはロック無し('+')、あり('*')の2種類を用意し、10%の確率でその部屋のドアをロック付きにします。
@@ -392,8 +392,8 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
 </div>
 </div>
 
-<div id="outline-container-org1f7206f" class="outline-2">
-<h2 id="org1f7206f"><span class="section-number-2">3.</span> 続き</h2>
+<div id="outline-container-org8fc8bab" class="outline-2">
+<h2 id="org8fc8bab"><span class="section-number-2">3.</span> 続き</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 今回はダンジョンフロアの自動生成部分を作ってみました。思いのほか長くなってしまいました。次回はフロアをスクロール画面に表示します。
@@ -423,6 +423,9 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
       </li>
       <li class="post">
@@ -433,9 +436,6 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
-      </li>
-      <li class="post">
-          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
     </ul>
   </section>
@@ -455,7 +455,7 @@ def place_doors(rooms, fl_xsz, fl_ysz, fl_vw):
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

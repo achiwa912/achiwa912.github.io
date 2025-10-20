@@ -72,23 +72,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org180e3c4">1. はじめに</a></li>
-<li><a href="#orgbb79315">2. pCloud</a></li>
-<li><a href="#orgbfc357a">3. rclone</a></li>
-<li><a href="#org7bded4d">4. セットアップ</a>
+<li><a href="#org31aa212">1. はじめに</a></li>
+<li><a href="#org98fcb27">2. pCloud</a></li>
+<li><a href="#org573fc6a">3. rclone</a></li>
+<li><a href="#org3f15e83">4. セットアップ</a>
 <ul>
-<li><a href="#orgffafcc6">4.1. インストールとリモート設定</a></li>
-<li><a href="#org17c1417">4.2. cryptリモートの作成</a></li>
-<li><a href="#org167213e">4.3. rclone.confをバックアップする</a></li>
+<li><a href="#orgc88052c">4.1. インストールとリモート設定</a></li>
+<li><a href="#org45ef10a">4.2. cryptリモートの作成</a></li>
+<li><a href="#orgceffe47">4.3. rclone.confをバックアップする</a></li>
 </ul>
 </li>
-<li><a href="#org82d0191">5. 終わりに</a></li>
+<li><a href="#org1c0ca32">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org180e3c4" class="outline-2">
-<h2 id="org180e3c4"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org31aa212" class="outline-2">
+<h2 id="org31aa212"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 pCloudはライフタイムプランで有名なクラウドストレージプロバイダーです。私は去年のサンクスギビングセールで500GBプランを買っていました。
@@ -100,8 +100,8 @@ pCloudはライフタイムプランで有名なクラウドストレージプ�
 </div>
 </div>
 
-<div id="outline-container-orgbb79315" class="outline-2">
-<h2 id="orgbb79315"><span class="section-number-2">2.</span> pCloud</h2>
+<div id="outline-container-org98fcb27" class="outline-2">
+<h2 id="org98fcb27"><span class="section-number-2">2.</span> pCloud</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://www.pcloud.com/">pCloud</a> はライフタイムプランを売りにしています。容量を前払いで購入し、会社が潰れたりしなければずっと使えます。クラウドストレージベンダーからすると、ライフタイムプランは当座の資金集めに便利ですが、あまりサステイナブルなビジネスモデルではありません。中には、破格の価格をつけているところもありますが、そういうところは本社の住所が普通の民家だったりして、資金集めをするだけして消えてしまいそうです。
@@ -113,8 +113,8 @@ pCloudは、グーグルやアマゾンのような最大手ではありませ�
 </div>
 </div>
 
-<div id="outline-container-orgbfc357a" class="outline-2">
-<h2 id="orgbfc357a"><span class="section-number-2">3.</span> rclone</h2>
+<div id="outline-container-org573fc6a" class="outline-2">
+<h2 id="org573fc6a"><span class="section-number-2">3.</span> rclone</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://rclone.org/">rclone</a> はクラウドストレージ上のファイルを管理するコマンドラインツールです。使い勝手に多少クセがありますが、いったんクラウドストレージを登録して、ファイルやディレクトリの表示ができるようになる頃には慣れると思います。
@@ -201,12 +201,12 @@ rclone sync Important pcl_cryp:/
 </div>
 </div>
 
-<div id="outline-container-org7bded4d" class="outline-2">
-<h2 id="org7bded4d"><span class="section-number-2">4.</span> セットアップ</h2>
+<div id="outline-container-org3f15e83" class="outline-2">
+<h2 id="org3f15e83"><span class="section-number-2">4.</span> セットアップ</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgffafcc6" class="outline-3">
-<h3 id="orgffafcc6"><span class="section-number-3">4.1.</span> インストールとリモート設定</h3>
+<div id="outline-container-orgc88052c" class="outline-3">
+<h3 id="orgc88052c"><span class="section-number-3">4.1.</span> インストールとリモート設定</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 まずは rclone をインストールします。brewの入っているmacの場合、
@@ -314,8 +314,8 @@ export RCLONE_CONFIG_PASS=&lt;パスワード&gt;
 </div>
 </div>
 
-<div id="outline-container-org17c1417" class="outline-3">
-<h3 id="org17c1417"><span class="section-number-3">4.2.</span> cryptリモートの作成</h3>
+<div id="outline-container-org45ef10a" class="outline-3">
+<h3 id="org45ef10a"><span class="section-number-3">4.2.</span> cryptリモートの作成</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 crypt(暗号化)リモートは、作成済みのリモートの中に暗号化されたリモートを作成します。
@@ -396,8 +396,8 @@ Thu Mar  7 16:12:41 EST 2024
 </div>
 </div>
 
-<div id="outline-container-org167213e" class="outline-3">
-<h3 id="org167213e"><span class="section-number-3">4.3.</span> rclone.confをバックアップする</h3>
+<div id="outline-container-orgceffe47" class="outline-3">
+<h3 id="orgceffe47"><span class="section-number-3">4.3.</span> rclone.confをバックアップする</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 ~/.config/rclone/rclone.conf はパスワードをつけて暗号化したので、中身を見られても多少は安心です。しかし、もしこれが消えてしまうと、2度とcryptリモートにアクセスできなくなってしまいます。そこで、rclone.confを(念には念を入れて)更に暗号化してpcloud上に置きます。
@@ -446,8 +446,8 @@ chmod 600 ~/.config/rclone/rclone.conf
 </div>
 </div>
 
-<div id="outline-container-org82d0191" class="outline-2">
-<h2 id="org82d0191"><span class="section-number-2">5.</span> 終わりに</h2>
+<div id="outline-container-org1c0ca32" class="outline-2">
+<h2 id="org1c0ca32"><span class="section-number-2">5.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 去年の11月に勢いで500GB分のpcloudストレージを買いましたが、セキュリティー面が心配でほとんど使っていませんでした。rcloneのcryptリモートを設定したことで、センシティブなデータも含めてバックアップ用途に使えるようになりました。
@@ -477,6 +477,9 @@ chmod 600 ~/.config/rclone/rclone.conf
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
       </li>
       <li class="post">
@@ -487,9 +490,6 @@ chmod 600 ~/.config/rclone/rclone.conf
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
-      </li>
-      <li class="post">
-          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
     </ul>
   </section>
@@ -509,7 +509,7 @@ chmod 600 ~/.config/rclone/rclone.conf
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

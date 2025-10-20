@@ -72,16 +72,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9c78b6a">1. はじめに</a></li>
-<li><a href="#org02cde98">2. VMが倍のメモリを使っている!?</a></li>
-<li><a href="#org10a5c13">3. macOSの問題でした</a></li>
-<li><a href="#orge598fef">4. 終わりに</a></li>
+<li><a href="#orgdca9ed4">1. はじめに</a></li>
+<li><a href="#orgc54b8e2">2. VMが倍のメモリを使っている!?</a></li>
+<li><a href="#orgc35e64b">3. macOSの問題でした</a></li>
+<li><a href="#org06ce9fb">4. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org9c78b6a" class="outline-2">
-<h2 id="org9c78b6a"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgdca9ed4" class="outline-2">
+<h2 id="orgdca9ed4"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメモリ量よりも少ないので、VMWare ESXi等ではVMへのメモリのオーバープロビジョニング(実際のメモリ量以上に割り当てること)をすることがよくあるそうです。実際にどの程度、メモリがVMに使われているのかをMacBook (macOS Big Sur)上で確認したところ、とんでもないことに気が付いてしまいました。
@@ -89,15 +89,15 @@ Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメ�
 </div>
 </div>
 
-<div id="outline-container-org02cde98" class="outline-2">
-<h2 id="org02cde98"><span class="section-number-2">2.</span> VMが倍のメモリを使っている!?</h2>
+<div id="outline-container-orgc54b8e2" class="outline-2">
+<h2 id="orgc54b8e2"><span class="section-number-2">2.</span> VMが倍のメモリを使っている!?</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 うちのMacBook ProはLate 2013のお年寄りでメモリは8GBしか積んでいませんので、VM(Fedora34)には2GBしかメモリを割り当てていません。しかし、Activity Monitorで見たところ、なんと倍の4GBもメモリを消費していることがわかりました。
 </p>
 
 
-<div id="org7afbf0d" class="figure">
+<div id="org40f8e70" class="figure">
 <p><img src="./images/memalloc.png" alt="memalloc.png" />
 </p>
 </div>
@@ -108,8 +108,8 @@ Virtual Memory (VM)が実際に使用するメモリ量は、割り当てたメ�
 </div>
 </div>
 
-<div id="outline-container-org10a5c13" class="outline-2">
-<h2 id="org10a5c13"><span class="section-number-2">3.</span> macOSの問題でした</h2>
+<div id="outline-container-orgc35e64b" class="outline-2">
+<h2 id="orgc35e64b"><span class="section-number-2">3.</span> macOSの問題でした</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まずはVirtualBoxの問題かと思い、ネットで検索したところ見つけました。
@@ -155,8 +155,8 @@ VirtualBox 6.1.2に戻せば、このメモリ倍使用の問題は回避でき�
 </div>
 </div>
 
-<div id="outline-container-orge598fef" class="outline-2">
-<h2 id="orge598fef"><span class="section-number-2">4.</span> 終わりに</h2>
+<div id="outline-container-org06ce9fb" class="outline-2">
+<h2 id="org06ce9fb"><span class="section-number-2">4.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 MacとPythonの相性があまり良くなく、macOSをアップグレードするたびにPythonが動かなくなったりするので、私はMacBookにVirtualBoxをインストールして、Linux VMを日常的につかっていましたが、倍のメモリが使われていることはこれまで気が付きませんでした。
@@ -190,6 +190,9 @@ MacとPythonの相性があまり良くなく、macOSをアップグレードす
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
       </li>
       <li class="post">
@@ -200,9 +203,6 @@ MacとPythonの相性があまり良くなく、macOSをアップグレードす
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
-      </li>
-      <li class="post">
-          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
     </ul>
   </section>
@@ -222,7 +222,7 @@ MacとPythonの相性があまり良くなく、macOSをアップグレードす
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

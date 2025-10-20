@@ -72,23 +72,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org743033c">1. はじめに</a></li>
-<li><a href="#org17e4c0b">2. Avery 8386</a></li>
-<li><a href="#orgdb5db9c">3. Avery Webサービス</a></li>
-<li><a href="#orgbe7c107">4. 宛先リスト</a></li>
-<li><a href="#orgb5228bc">5. 日本語フォントの扱い</a></li>
-<li><a href="#org7fac58f">6. Pythonスクリプト</a></li>
-<li><a href="#org72eea1c">7. 使い方</a></li>
-<li><a href="#orgf05bc51">8. 印刷</a></li>
-<li><a href="#org777a05a">9. 宛名面レイアウト</a></li>
-<li><a href="#org00a8f97">10. 切手を貼る</a></li>
-<li><a href="#org21c5c1d">11. 終わりに</a></li>
+<li><a href="#org2ba9843">1. はじめに</a></li>
+<li><a href="#orgefc8684">2. Avery 8386</a></li>
+<li><a href="#orgbeac2a6">3. Avery Webサービス</a></li>
+<li><a href="#org90792eb">4. 宛先リスト</a></li>
+<li><a href="#orgd8e8ec8">5. 日本語フォントの扱い</a></li>
+<li><a href="#org14465e6">6. Pythonスクリプト</a></li>
+<li><a href="#org628470d">7. 使い方</a></li>
+<li><a href="#orgb489f3f">8. 印刷</a></li>
+<li><a href="#org07bd3c1">9. 宛名面レイアウト</a></li>
+<li><a href="#org8322ec6">10. 切手を貼る</a></li>
+<li><a href="#org31980bf">11. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org743033c" class="outline-2">
-<h2 id="org743033c"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org2ba9843" class="outline-2">
+<h2 id="org2ba9843"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 今年は転職及び引越しのご挨拶にグリーティングカードを出すことにしました。
@@ -105,8 +105,8 @@
 </div>
 </div>
 
-<div id="outline-container-org17e4c0b" class="outline-2">
-<h2 id="org17e4c0b"><span class="section-number-2">2.</span> Avery 8386</h2>
+<div id="outline-container-orgefc8684" class="outline-2">
+<h2 id="orgefc8684"><span class="section-number-2">2.</span> Avery 8386</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 AmazonやAveryのサイトで探してみると、ポストカードにはAvery 8386番が良さそうです。早速注文してみました。
@@ -120,8 +120,8 @@ AmazonやAveryのサイトで探してみると、ポストカードにはAvery 
 </div>
 </div>
 
-<div id="outline-container-orgdb5db9c" class="outline-2">
-<h2 id="orgdb5db9c"><span class="section-number-2">3.</span> Avery Webサービス</h2>
+<div id="outline-container-orgbeac2a6" class="outline-2">
+<h2 id="orgbeac2a6"><span class="section-number-2">3.</span> Avery Webサービス</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 PCでAvery用ポストカードデータを作成するには、8386番のテンプレートを使用します。Averyサイトの<a href="https://www.avery.com/templates/8386?gclid=Cj0KCQiAy4eNBhCaARIsAFDVtI1fMZfOw9Qzn_yygpqJkxg7CWWjV6C8DzkWu87LeNpkSuWoDBbKV1caAtIbEALw_wcB&amp;gclsrc=aw.ds">8386テンプレートページ</a> からMicrosoft Wordやその他のアプリケーション用テンプレートをダウンロードできます。
@@ -152,8 +152,8 @@ PCでAvery用ポストカードデータを作成するには、8386番のテン
 </div>
 </div>
 
-<div id="outline-container-orgbe7c107" class="outline-2">
-<h2 id="orgbe7c107"><span class="section-number-2">4.</span> 宛先リスト</h2>
+<div id="outline-container-org90792eb" class="outline-2">
+<h2 id="org90792eb"><span class="section-number-2">4.</span> 宛先リスト</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 これまで宛先住所録は はがきデザインキットWeb版 のデータを使っていました。2年前のWeb版サービス終了の際に、csvファイルとしてデータをダウンロードしてありました。
@@ -180,8 +180,8 @@ PCでAvery用ポストカードデータを作成するには、8386番のテン
 </div>
 </div>
 
-<div id="outline-container-orgb5228bc" class="outline-2">
-<h2 id="orgb5228bc"><span class="section-number-2">5.</span> 日本語フォントの扱い</h2>
+<div id="outline-container-orgd8e8ec8" class="outline-2">
+<h2 id="orgd8e8ec8"><span class="section-number-2">5.</span> 日本語フォントの扱い</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 少し試してみたところ、日本語が全て四角形シンボルになってしまいました。
@@ -214,8 +214,8 @@ canvas.setFont('HeiseiMin-W3', 20)
 </div>
 </div>
 
-<div id="outline-container-org7fac58f" class="outline-2">
-<h2 id="org7fac58f"><span class="section-number-2">6.</span> Pythonスクリプト</h2>
+<div id="outline-container-org14465e6" class="outline-2">
+<h2 id="org14465e6"><span class="section-number-2">6.</span> Pythonスクリプト</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 数カ月ぶりにPythonコードを書きました。あまりに久しぶりすぎて、
@@ -358,8 +358,8 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-org72eea1c" class="outline-2">
-<h2 id="org72eea1c"><span class="section-number-2">7.</span> 使い方</h2>
+<div id="outline-container-org628470d" class="outline-2">
+<h2 id="org628470d"><span class="section-number-2">7.</span> 使い方</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 PDFライブラリをインストールします。
@@ -388,8 +388,8 @@ Pythonは3.6以降なら動くと思います。開発には3.10を使いまし�
 </div>
 </div>
 
-<div id="outline-container-orgf05bc51" class="outline-2">
-<h2 id="orgf05bc51"><span class="section-number-2">8.</span> 印刷</h2>
+<div id="outline-container-orgb489f3f" class="outline-2">
+<h2 id="orgb489f3f"><span class="section-number-2">8.</span> 印刷</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Averyの8386テンプレートを使ってWeb上でポストカードデータを作成したら、自分のプリンターで印刷するためにPDFファイルとしてダウンロードすることができます。
@@ -407,8 +407,8 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 </div>
 </div>
 
-<div id="outline-container-org777a05a" class="outline-2">
-<h2 id="org777a05a"><span class="section-number-2">9.</span> 宛名面レイアウト</h2>
+<div id="outline-container-org07bd3c1" class="outline-2">
+<h2 id="org07bd3c1"><span class="section-number-2">9.</span> 宛名面レイアウト</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 アメリカのポストカードレイアウト例です。
@@ -425,8 +425,8 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 </div>
 </div>
 
-<div id="outline-container-org00a8f97" class="outline-2">
-<h2 id="org00a8f97"><span class="section-number-2">10.</span> 切手を貼る</h2>
+<div id="outline-container-org8322ec6" class="outline-2">
+<h2 id="org8322ec6"><span class="section-number-2">10.</span> 切手を貼る</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 日本に手紙(約30g以内)やポストカードを送るには、グローバルフォーエバー切手を買います。アメリカはインフレで郵便の値段が上がっていきますが、フォーエバー切手を買えば、ずっと使えます。アメリカ国内用と海外用(グローバル)で価格が異なり、グローバルフォーエバー切手は現在1枚$1.3です。
@@ -440,8 +440,8 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 </div>
 
 
-<div id="outline-container-org21c5c1d" class="outline-2">
-<h2 id="org21c5c1d"><span class="section-number-2">11.</span> 終わりに</h2>
+<div id="outline-container-org31980bf" class="outline-2">
+<h2 id="org31980bf"><span class="section-number-2">11.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 はがきデザインキットの住所録csvデータを、Avery 8386用のポストカード宛名面PDFファイルに埋め込むという、ものすごくニッチなスクリプトを作りました。需要は無いと思いますが、来年の自分のために記録として残しておきます。
@@ -471,6 +471,9 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
       </li>
       <li class="post">
@@ -481,9 +484,6 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
-      </li>
-      <li class="post">
-          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
     </ul>
   </section>
@@ -503,7 +503,7 @@ Averyの8386テンプレートを使ってWeb上でポストカードデータ�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>

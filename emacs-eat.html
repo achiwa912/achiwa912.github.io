@@ -72,36 +72,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1705f9d">1. はじめに</a>
+<li><a href="#org93f3555">1. はじめに</a>
 <ul>
-<li><a href="#org1faee5d">1.1. リモートシェルの指定がうまくいかない</a></li>
-<li><a href="#org7438c85">1.2. つい、terminalのキーバインドを使おうとしてしまう</a></li>
+<li><a href="#org5890144">1.1. リモートシェルの指定がうまくいかない</a></li>
+<li><a href="#org3148598">1.2. つい、terminalのキーバインドを使おうとしてしまう</a></li>
 </ul>
 </li>
-<li><a href="#org6214163">2. emacs-eat</a>
+<li><a href="#orgf62bccf">2. emacs-eat</a>
 <ul>
-<li><a href="#orgae334b4">2.1. リモートシェルが指定できない</a></li>
-<li><a href="#org9a02f5e">2.2. M-o が効かない</a></li>
-<li><a href="#org7bae2f6">2.3. TERMが認識されない</a></li>
-<li><a href="#orgc8213c0">2.4. init.elの設定</a></li>
+<li><a href="#org25ccb2a">2.1. リモートシェルが指定できない</a></li>
+<li><a href="#org07adba8">2.2. M-o が効かない</a></li>
+<li><a href="#orgec697cd">2.3. TERMが認識されない</a></li>
+<li><a href="#orgb3ceb01">2.4. init.elの設定</a></li>
 </ul>
 </li>
-<li><a href="#orgcf30f7c">3. emacs-eatを使ってみて</a></li>
+<li><a href="#orgf9ab6e8">3. emacs-eatを使ってみて</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org1705f9d" class="outline-2">
-<h2 id="org1705f9d"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org93f3555" class="outline-2">
+<h2 id="org93f3555"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 これまで emacs上で使うシェルとして、 <code>M-x shell</code> を使っていたのですが、いくつか不満点がありました。
 </p>
 </div>
 
-<div id="outline-container-org1faee5d" class="outline-3">
-<h3 id="org1faee5d"><span class="section-number-3">1.1.</span> リモートシェルの指定がうまくいかない</h3>
+<div id="outline-container-org5890144" class="outline-3">
+<h3 id="org5890144"><span class="section-number-3">1.1.</span> リモートシェルの指定がうまくいかない</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 MacからLinuxマシンにリモートでログインすることが多いのですが、ローカルのMacではMacOS標準のzshを、リモートでは bash を使いたいのです。 
@@ -131,8 +131,8 @@ trampのドキュメントを読むと <code>tramp-default-remote-shell</code> �
 </div>
 </div>
 
-<div id="outline-container-org7438c85" class="outline-3">
-<h3 id="org7438c85"><span class="section-number-3">1.2.</span> つい、terminalのキーバインドを使おうとしてしまう</h3>
+<div id="outline-container-org3148598" class="outline-3">
+<h3 id="org3148598"><span class="section-number-3">1.2.</span> つい、terminalのキーバインドを使おうとしてしまう</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <code>M-x shell</code> ではコマンドラインのヒストリー操作をするのにCtrlキーや矢印キーでなく、メタキーを使う(<code>M-p</code>, <code>M-r</code> 等)のですが、つい矢印キーを押して、カーソルが動いてしまいます。
@@ -145,8 +145,8 @@ trampのドキュメントを読むと <code>tramp-default-remote-shell</code> �
 </div>
 </div>
 
-<div id="outline-container-org6214163" class="outline-2">
-<h2 id="org6214163"><span class="section-number-2">2.</span> <a href="https://codeberg.org/akib/emacs-eat">emacs-eat</a></h2>
+<div id="outline-container-orgf62bccf" class="outline-2">
+<h2 id="orgf62bccf"><span class="section-number-2">2.</span> <a href="https://codeberg.org/akib/emacs-eat">emacs-eat</a></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 emacsから使うターミナル/シェルとして eat の評判が良いので乗り換えを検討することにしました。
@@ -162,8 +162,8 @@ eatは M-x shell と違って、ターミナルとして使うモード(デフ�
 </p>
 </div>
 
-<div id="outline-container-orgae334b4" class="outline-3">
-<h3 id="orgae334b4"><span class="section-number-3">2.1.</span> リモートシェルが指定できない</h3>
+<div id="outline-container-org25ccb2a" class="outline-3">
+<h3 id="org25ccb2a"><span class="section-number-3">2.1.</span> リモートシェルが指定できない</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 まずは、リモートシェルにローカルと同じ zsh を探しに行ってエラーになり、リモートでは全く使い物にならない問題がありました。eatの <a href="https://elpa.nongnu.org/nongnu-devel/doc/eat.html">マニュアル</a> を読むと <code>eat-tramp-shells</code> 変数を設定するように書いてあるのですが、設定しても挙動が変わりません。
@@ -179,8 +179,8 @@ eatは M-x shell と違って、ターミナルとして使うモード(デフ�
 </div>
 </div>
 
-<div id="outline-container-org9a02f5e" class="outline-3">
-<h3 id="org9a02f5e"><span class="section-number-3">2.2.</span> M-o が効かない</h3>
+<div id="outline-container-org07adba8" class="outline-3">
+<h3 id="org07adba8"><span class="section-number-3">2.2.</span> M-o が効かない</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 私は <a href="https://www.masteringemacs.org/">Mastering Emacs</a> の推奨に従って、ウインドウ間のカーソル移動に <code>M-o</code> を使っています。標準は <code>C-x o</code> に割り当てられていますが、頻繁に使用する操作なので、よりストロークの少ないキーバインドにグローバルで設定しています。
@@ -196,8 +196,8 @@ eatは M-x shell と違って、ターミナルとして使うモード(デフ�
 </div>
 </div>
 
-<div id="outline-container-org7bae2f6" class="outline-3">
-<h3 id="org7bae2f6"><span class="section-number-3">2.3.</span> TERMが認識されない</h3>
+<div id="outline-container-orgec697cd" class="outline-3">
+<h3 id="orgec697cd"><span class="section-number-3">2.3.</span> TERMが認識されない</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 まだ最終的に解決していないのがこの問題です。手動でeatをセットアップしたためか、$TERMに(正しく)設定されているeat-truecolorが認識されず、 <code>clear</code> コマンドや <code>C-l</code> が動きません。マニュアルを読んで変数を確認しても問題なく、少なくともローカルでは$TERMINFOに正しいディレクトリが設定されています。
@@ -209,8 +209,8 @@ eatは M-x shell と違って、ターミナルとして使うモード(デフ�
 </div>
 </div>
 
-<div id="outline-container-orgc8213c0" class="outline-3">
-<h3 id="orgc8213c0"><span class="section-number-3">2.4.</span> init.elの設定</h3>
+<div id="outline-container-orgb3ceb01" class="outline-3">
+<h3 id="orgb3ceb01"><span class="section-number-3">2.4.</span> init.elの設定</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 eat関係の設定は以下です。
@@ -232,8 +232,8 @@ eat関係の設定は以下です。
 </div>
 </div>
 
-<div id="outline-container-orgcf30f7c" class="outline-2">
-<h2 id="orgcf30f7c"><span class="section-number-2">3.</span> emacs-eatを使ってみて</h2>
+<div id="outline-container-orgf9ab6e8" class="outline-2">
+<h2 id="orgf9ab6e8"><span class="section-number-2">3.</span> emacs-eatを使ってみて</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 まだ使い始めて間がありませんが、 M-x shell の不満点は解消され、使いやすくなったと思います。
@@ -264,6 +264,9 @@ emacs上でシェル/ターミナルを多用するため、ちょっとした�
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="/exposeimmich.html">Immichを安全にインターネットから見られるようにする</a>
+      </li>
+      <li class="post">
           <a href="/utm_issues.html">MacBook(ARM)上のUTMでトラブル</a>
       </li>
       <li class="post">
@@ -274,9 +277,6 @@ emacs上でシェル/ターミナルを多用するため、ちょっとした�
       </li>
       <li class="post">
           <a href="/summerreading25.html">Summer Reading 2025</a>
-      </li>
-      <li class="post">
-          <a href="/toastpresident.html">Boston近郊のToastmasters clubでプレジデントになりました</a>
       </li>
     </ul>
   </section>
@@ -296,7 +296,7 @@ emacs上でシェル/ターミナルを多用するため、ちょっとした�
 
   <section>
   <h1>Tags</h1>
-    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
+    <a href="/tag/tech.html">Tech</a>,    <a href="/tag/linux.html">Linux</a>,    <a href="/tag/blog.html">Blog</a>,    <a href="/tag/amerikasheng-huo.html">アメリカ生活</a>,    <a href="/tag/toraburu.html">トラブル</a>,    <a href="/tag/emacs.html">emacs</a>,    <a href="/tag/ying-yu.html">英語</a>,    <a href="/tag/sekiyuritei.html">セキュリティ</a>,    <a href="/tag/investment.html">Investment</a>,    <a href="/tag/python.html">Python</a>,    <a href="/tag/english.html">English</a>,    <a href="/tag/mac.html">Mac</a>,    <a href="/tag/game.html">game</a>,    <a href="/tag/vacation.html">Vacation</a>,    <a href="/tag/ying-yu-jiao-yu.html">英語教育</a>,    <a href="/tag/ying-jian.html">英検</a>  </section>
 
 
     <section>
