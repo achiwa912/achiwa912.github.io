@@ -72,46 +72,46 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3295de4">1. はじめに</a></li>
-<li><a href="#org318d13d">2. Vocabull (server)</a>
+<li><a href="#orgbf43279">1. はじめに</a></li>
+<li><a href="#org16fa3ba">2. Vocabull (server)</a>
 <ul>
-<li><a href="#orge834844">2.1. Overview</a></li>
-<li><a href="#org1b86064">2.2. Vocabullの特長</a>
+<li><a href="#orgc05b172">2.1. Overview</a></li>
+<li><a href="#org77b87b5">2.2. Vocabullの特長</a>
 <ul>
-<li><a href="#orgfa43e3f">2.2.1. 直近の知らない単語が繰り返し出てくる</a></li>
-<li><a href="#org919590a">2.2.2. スペルテスト＆練習モード</a></li>
-<li><a href="#org0b30c8d">2.2.3. パソコンでもモバイルでも</a></li>
-<li><a href="#orgc022c91">2.2.4. 即時セーブ</a></li>
-<li><a href="#org5a58ecf">2.2.5. 単語の発音がわかる(新機能; 7/7/2023)</a></li>
+<li><a href="#org27f88a6">2.2.1. 直近の知らない単語が繰り返し出てくる</a></li>
+<li><a href="#org50de203">2.2.2. スペルテスト＆練習モード</a></li>
+<li><a href="#orga0b4510">2.2.3. パソコンでもモバイルでも</a></li>
+<li><a href="#org58e5e03">2.2.4. 即時セーブ</a></li>
+<li><a href="#org37e90ad">2.2.5. 単語の発音がわかる(新機能; 7/7/2023)</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgd21443e">3. 使い方</a>
+<li><a href="#org155736b">3. 使い方</a>
 <ul>
-<li><a href="#orga086e50">3.1. 流れ</a></li>
-<li><a href="#org7cccc49">3.2. クイックスタート</a>
+<li><a href="#orgd1b03ee">3.1. 流れ</a></li>
+<li><a href="#orgb9b417f">3.2. クイックスタート</a>
 <ul>
-<li><a href="#org03ffafc">3.2.1. ユーザー登録＆ログイン</a></li>
-<li><a href="#org3f576d6">3.2.2. サンプルブックを選ぶ(新機能 7/8/2023)</a></li>
-<li><a href="#org452bc2b">3.2.3. 単語カードモード</a></li>
-<li><a href="#org9f81382">3.2.4. スペルテスト＆練習モード</a></li>
-<li><a href="#orgbdd0f2d">3.2.5. ブックを作成し、単語を登録する</a></li>
-<li><a href="#org286bf43">3.2.6. あるいは、単語をファイルからインポートできる</a></li>
-<li><a href="#org4786a15">3.2.7. バックアップとリストア</a></li>
+<li><a href="#org4fe8075">3.2.1. ユーザー登録＆ログイン</a></li>
+<li><a href="#org1b47cbd">3.2.2. サンプルブックを選ぶ(新機能 7/8/2023)</a></li>
+<li><a href="#org537242c">3.2.3. 単語カードモード</a></li>
+<li><a href="#orgdc2de97">3.2.4. スペルテスト＆練習モード</a></li>
+<li><a href="#org2476854">3.2.5. ブックを作成し、単語を登録する</a></li>
+<li><a href="#org045ca0a">3.2.6. あるいは、単語をファイルからインポートできる</a></li>
+<li><a href="#orgdba92f3">3.2.7. バックアップとリストア</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5c546e4">4. サーバーセットアップ</a></li>
-<li><a href="#org1795af6">5. Pythonanywhereについて</a></li>
-<li><a href="#org517f368">6. 終わりに</a></li>
+<li><a href="#orgbf9ef99">4. サーバーセットアップ</a></li>
+<li><a href="#org1e3e942">5. Pythonanywhereについて</a></li>
+<li><a href="#org6c12e48">6. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3295de4" class="outline-2">
-<h2 id="org3295de4"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgbf43279" class="outline-2">
+<h2 id="orgbf43279"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 先日の <a href="https://achiwa912.github.io/flask.html">エントリー</a> で書いたようにPythonのWebフレームワークであるFlaskに入門したので、Flaskを使ってボキャビル用のWebアプリ <a href="https://github.com/achiwa912/vbs">Vocabull (server)</a> を作って公開しました。括弧付きで <code>(server)</code> とあるのは、以前にもボキャビル用のスクリプト <a href="https://github.com/achiwa912/vocabull">旧Vocabull</a> を作っていてそのWebアプリ版のつもりで開発を始めたためです。だいぶ規模が大きくなり、ほとんど別物になりましたが。。。
@@ -119,12 +119,12 @@
 </div>
 </div>
 
-<div id="outline-container-org318d13d" class="outline-2">
-<h2 id="org318d13d"><span class="section-number-2">2.</span> Vocabull (server)</h2>
+<div id="outline-container-org16fa3ba" class="outline-2">
+<h2 id="org16fa3ba"><span class="section-number-2">2.</span> Vocabull (server)</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge834844" class="outline-3">
-<h3 id="orge834844"><span class="section-number-3">2.1.</span> Overview</h3>
+<div id="outline-container-orgc05b172" class="outline-3">
+<h3 id="orgc05b172"><span class="section-number-3">2.1.</span> Overview</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 フリーで使える pythonanywhere にデプロイしてみました。アクセスは <a href="https://achiwa912.pythonanywhere.com/">こちら</a> から。
@@ -147,12 +147,12 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org1b86064" class="outline-3">
-<h3 id="org1b86064"><span class="section-number-3">2.2.</span> Vocabullの特長</h3>
+<div id="outline-container-org77b87b5" class="outline-3">
+<h3 id="org77b87b5"><span class="section-number-3">2.2.</span> Vocabullの特長</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-orgfa43e3f" class="outline-4">
-<h4 id="orgfa43e3f"><span class="section-number-4">2.2.1.</span> 直近の知らない単語が繰り返し出てくる</h4>
+<div id="outline-container-org27f88a6" class="outline-4">
+<h4 id="org27f88a6"><span class="section-number-4">2.2.1.</span> 直近の知らない単語が繰り返し出てくる</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 単語カードモードでは、直近の知らない単語10個を(覚えるまで)順にリピートします。知っている単語は次々と進み、知らない単語だけ繰り返し練習できるので、単なる単語カードアプリよりも記憶効率が良いと思います。
@@ -160,8 +160,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org919590a" class="outline-4">
-<h4 id="org919590a"><span class="section-number-4">2.2.2.</span> スペルテスト＆練習モード</h4>
+<div id="outline-container-org50de203" class="outline-4">
+<h4 id="org50de203"><span class="section-number-4">2.2.2.</span> スペルテスト＆練習モード</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 単語カードではどうしてもスペルが覚えづらいですが、Vocabullにはスペル練習モードがあります。間違ったら何度でも、正解しても4回は正しいスペルをタイプさせられます。全く知らない単語を覚える際にはこのモードが便利です。
@@ -169,8 +169,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org0b30c8d" class="outline-4">
-<h4 id="org0b30c8d"><span class="section-number-4">2.2.3.</span> パソコンでもモバイルでも</h4>
+<div id="outline-container-orga0b4510" class="outline-4">
+<h4 id="orga0b4510"><span class="section-number-4">2.2.3.</span> パソコンでもモバイルでも</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 スペル練習モードでは単語を繰り返しタイプするのでパソコンが向いていますが、単語カードモードはモバイルデバイスでソファーやベッドの上からでもボキャビルできます。
@@ -178,8 +178,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-orgc022c91" class="outline-4">
-<h4 id="orgc022c91"><span class="section-number-4">2.2.4.</span> 即時セーブ</h4>
+<div id="outline-container-org58e5e03" class="outline-4">
+<h4 id="org58e5e03"><span class="section-number-4">2.2.4.</span> 即時セーブ</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 どのデバイスからアクセスしたかによらず、学習状況はリアルタイムにデータベースに保存されます。複数デバイスから同時にアクセス可能です。
@@ -187,8 +187,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org5a58ecf" class="outline-4">
-<h4 id="org5a58ecf"><span class="section-number-4">2.2.5.</span> 単語の発音がわかる(新機能; 7/7/2023)</h4>
+<div id="outline-container-org37e90ad" class="outline-4">
+<h4 id="org37e90ad"><span class="section-number-4">2.2.5.</span> 単語の発音がわかる(新機能; 7/7/2023)</h4>
 <div class="outline-text-4" id="text-2-2-5">
 <p>
 <code>Pronounce word</code> ボタンをクリックすると、単語を読み上げます。音声合成なのでナチュラルではありませんが、単語の発音確認には十分と思います。以前はより自然なgoogleのgttsライブラリを使っていましたが、使用制限がキツイので使用を断念しました。(一日100リクエスト上限て。。。)
@@ -260,8 +260,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-orgd21443e" class="outline-2">
-<h2 id="orgd21443e"><span class="section-number-2">3.</span> 使い方</h2>
+<div id="outline-container-org155736b" class="outline-2">
+<h2 id="org155736b"><span class="section-number-2">3.</span> 使い方</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 クイックスタートはWebアプリの操作説明です。お試し版を <a href="https://achiwa912.pythonanywhere.com">pythonanywhere.comで公開</a> しました。
@@ -272,8 +272,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </p>
 </div>
 
-<div id="outline-container-orga086e50" class="outline-3">
-<h3 id="orga086e50"><span class="section-number-3">3.1.</span> 流れ</h3>
+<div id="outline-container-orgd1b03ee" class="outline-3">
+<h3 id="orgd1b03ee"><span class="section-number-3">3.1.</span> 流れ</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 こんな感じで使えます。
@@ -288,18 +288,18 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org7cccc49" class="outline-3">
-<h3 id="org7cccc49"><span class="section-number-3">3.2.</span> クイックスタート</h3>
+<div id="outline-container-orgb9b417f" class="outline-3">
+<h3 id="orgb9b417f"><span class="section-number-3">3.2.</span> クイックスタート</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org03ffafc" class="outline-4">
-<h4 id="org03ffafc"><span class="section-number-4">3.2.1.</span> ユーザー登録＆ログイン</h4>
+<div id="outline-container-org4fe8075" class="outline-4">
+<h4 id="org4fe8075"><span class="section-number-4">3.2.1.</span> ユーザー登録＆ログイン</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>ブラウザーからVocabullサーバーの動いているURLにアクセスします。<a href="https://achiwa912.pythonanywhere.com">こちらから</a> どうぞ。</li>
 </ul>
 
-<div id="orgb282016" class="figure">
+<div id="org9d09553" class="figure">
 <p><img src="./images/vbs_navbar.jpg" alt="vbs_navbar.jpg" />
 </p>
 </div>
@@ -307,7 +307,7 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 <li>画面上部にあるナビゲーションバー右隅にあるメニューアイコン &gt; <code>Login</code> &gt; <code>Click here to register</code> とクリックする</li>
 </ul>
 
-<div id="org8b49937" class="figure">
+<div id="orgfa3f2fa" class="figure">
 <p><img src="./images/vbs_login.jpg" alt="vbs_login.jpg" />
 </p>
 </div>
@@ -321,14 +321,14 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org3f576d6" class="outline-4">
-<h4 id="org3f576d6"><span class="section-number-4">3.2.2.</span> サンプルブックを選ぶ(新機能 7/8/2023)</h4>
+<div id="outline-container-org1b47cbd" class="outline-4">
+<h4 id="org1b47cbd"><span class="section-number-4">3.2.2.</span> サンプルブックを選ぶ(新機能 7/8/2023)</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ul class="org-ul">
 <li>初めてログインすると、サンプルのブックが登録されています。sample_&lt;ユーザー名&gt;という名です。これをクリックしてみてください。</li>
 </ul>
 
-<div id="orgf2b2ce6" class="figure">
+<div id="org007569f" class="figure">
 <p><img src="./images/vbs_samplebook.jpg" alt="vbs_samplebook.jpg" />
 </p>
 </div>
@@ -337,18 +337,18 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 <li>すると、サンプルブックのページが開きます。</li>
 </ul>
 
-<div id="orgd5e268a" class="figure">
+<div id="org31b1269" class="figure">
 <p><img src="./images/vbs_samplewords.jpg" alt="vbs_samplewords.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org452bc2b" class="outline-4">
-<h4 id="org452bc2b"><span class="section-number-4">3.2.3.</span> 単語カードモード</h4>
+<div id="outline-container-org537242c" class="outline-4">
+<h4 id="org537242c"><span class="section-number-4">3.2.3.</span> 単語カードモード</h4>
 <div class="outline-text-4" id="text-3-2-3">
 
-<div id="orgcfaa086" class="figure">
+<div id="orgae1e840" class="figure">
 <p><img src="./images/vbs_mode.jpg" alt="vbs_mode.jpg" />
 </p>
 </div>
@@ -357,7 +357,7 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 <li>練習画面が表示されるので、単語カードをクリックして答えを見る</li>
 </ul>
 
-<div id="org6ad68b4" class="figure">
+<div id="org34c2989" class="figure">
 <p><img src="./images/vbs_w2d.jpg" alt="vbs_w2d.jpg" />
 </p>
 </div>
@@ -380,14 +380,14 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 </div>
 
-<div id="outline-container-org9f81382" class="outline-4">
-<h4 id="org9f81382"><span class="section-number-4">3.2.4.</span> スペルテスト＆練習モード</h4>
+<div id="outline-container-orgdc2de97" class="outline-4">
+<h4 id="orgdc2de97"><span class="section-number-4">3.2.4.</span> スペルテスト＆練習モード</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <ul class="org-ul">
 <li><code>Practice</code> メニュー &gt; <code>type word</code> をクリック</li>
 </ul>
 
-<div id="orgbfdb3be" class="figure">
+<div id="org89622e7" class="figure">
 <p><img src="./images/vbs_typemode.jpg" alt="vbs_typemode.jpg" />
 </p>
 </div>
@@ -400,7 +400,7 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </ul></li>
 </ul>
 
-<div id="orgdce7deb" class="figure">
+<div id="orgcae1d63" class="figure">
 <p><img src="./images/vbs_repeat.jpg" alt="vbs_repeat.jpg" />
 </p>
 </div>
@@ -412,8 +412,8 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </div>
 
 
-<div id="outline-container-orgbdd0f2d" class="outline-4">
-<h4 id="orgbdd0f2d"><span class="section-number-4">3.2.5.</span> ブックを作成し、単語を登録する</h4>
+<div id="outline-container-org2476854" class="outline-4">
+<h4 id="org2476854"><span class="section-number-4">3.2.5.</span> ブックを作成し、単語を登録する</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <p>
 サンプルブック以外に、ブックを自分で作成して単語を登録することもできます。
@@ -424,7 +424,7 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 <li>ブック名をタイプして <code>Submit</code> をクリック</li>
 </ul>
 
-<div id="org9101db6" class="figure">
+<div id="org780e64e" class="figure">
 <p><img src="./images/vbs_top.jpg" alt="vbs_top.jpg" />
 </p>
 </div>
@@ -436,15 +436,15 @@ VocabullはWebアプリなので、iPhoneやAndroidなどのモバイルデバ�
 </ul></li>
 </ul>
 
-<div id="org1b30cf1" class="figure">
+<div id="org079defd" class="figure">
 <p><img src="./images/vbs_book.jpg" alt="vbs_book.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org286bf43" class="outline-4">
-<h4 id="org286bf43"><span class="section-number-4">3.2.6.</span> あるいは、単語をファイルからインポートできる</h4>
+<div id="outline-container-org045ca0a" class="outline-4">
+<h4 id="org045ca0a"><span class="section-number-4">3.2.6.</span> あるいは、単語をファイルからインポートできる</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <ul class="org-ul">
 <li>単語定義ファイルを用意する
@@ -469,8 +469,8 @@ deleterious	bad, harmful	[a *********** effect on health]
 </div>
 </div>
 
-<div id="outline-container-org4786a15" class="outline-4">
-<h4 id="org4786a15"><span class="section-number-4">3.2.7.</span> バックアップとリストア</h4>
+<div id="outline-container-orgdba92f3" class="outline-4">
+<h4 id="orgdba92f3"><span class="section-number-4">3.2.7.</span> バックアップとリストア</h4>
 <div class="outline-text-4" id="text-3-2-7">
 <p>
 Vocabullはまだ開発途中なので、いつデータベースが壊れてデータが全て失われるかわかりません。多くの単語を手動登録した後など、なるべくこまめにバックアップを取っておくことをおすすめします。
@@ -478,7 +478,7 @@ Vocabullはまだ開発途中なので、いつデータベースが壊れてデ
 </div>
 
 <ol class="org-ol">
-<li><a id="orgfd649db"></a>バックアップの取り方<br />
+<li><a id="org3f11bcd"></a>バックアップの取り方<br />
 <div class="outline-text-5" id="text-3-2-7-1">
 <ul class="org-ul">
 <li>ログインした状態の先頭ページを下にスクロールするとBackup and restoreというセクションがあります</li>
@@ -488,7 +488,7 @@ Vocabullはまだ開発途中なので、いつデータベースが壊れてデ
 </div>
 </li>
 
-<li><a id="org89b8f99"></a>リストアの仕方<br />
+<li><a id="orgd23363e"></a>リストアの仕方<br />
 <div class="outline-text-5" id="text-3-2-7-2">
 <ul class="org-ul">
 <li>Backup and restoreセクションにある <code>Import and restore</code> ボタンを押す</li>
@@ -510,8 +510,8 @@ Vocabullはまだ開発途中なので、いつデータベースが壊れてデ
 </div>
 
 
-<div id="outline-container-org5c546e4" class="outline-2">
-<h2 id="org5c546e4"><span class="section-number-2">4.</span> サーバーセットアップ</h2>
+<div id="outline-container-orgbf9ef99" class="outline-2">
+<h2 id="orgbf9ef99"><span class="section-number-2">4.</span> サーバーセットアップ</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 pythonanywhereで使う分には必要ありません。自分でサーバーを立ててみたい方に。
@@ -570,8 +570,8 @@ http://192.168.0.103:5000
 </div>
 </div>
 
-<div id="outline-container-org1795af6" class="outline-2">
-<h2 id="org1795af6"><span class="section-number-2">5.</span> Pythonanywhereについて</h2>
+<div id="outline-container-org1e3e942" class="outline-2">
+<h2 id="org1e3e942"><span class="section-number-2">5.</span> Pythonanywhereについて</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 残念なことに <a href="https://www.heroku.com/">Heroku</a> が有料化してしまったので、ちまたで評判の良さそうな <a href="https://www.pythonanywhere.com/">Pythonanywhere</a> を使ってみました。開発者としてクラウド(Paas)を使うのは初めてですが、(ドキュメントもろくに読まず)適当に試行錯誤していたらデプロイできてしまいました。やったこと。
@@ -629,8 +629,8 @@ from vbs import app as application
 </div>
 </div>
 
-<div id="outline-container-org517f368" class="outline-2">
-<h2 id="org517f368"><span class="section-number-2">6.</span> 終わりに</h2>
+<div id="outline-container-org6c12e48" class="outline-2">
+<h2 id="org6c12e48"><span class="section-number-2">6.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 私はボキャビル用に <a href="https://quizlet.com">Quizlet</a> を使っていたのですが、あまり外出先で使わなくなったので無料版に切り替えたところ、制限がきつくなって使い勝手に不満を感じていました。そこで、Flaskの勉強を兼ねて無料で使えるアプリを自作してみました。

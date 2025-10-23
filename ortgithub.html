@@ -72,28 +72,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org17411c7">1. はじめに</a></li>
-<li><a href="#org8551151">2. org-mode + github(/gitlab)でパーソナルWiki</a>
+<li><a href="#orgc79a286">1. はじめに</a></li>
+<li><a href="#org11aea28">2. org-mode + github(/gitlab)でパーソナルWiki</a>
 <ul>
-<li><a href="#orgbe8ad52">2.1. org-modeのレンダリング</a></li>
-<li><a href="#org317ccbf">2.2. githubのプライベートレポジトリ</a></li>
-<li><a href="#org62dbe5d">2.3. 複数デバイスでの共有</a></li>
-<li><a href="#orgfed2777">2.4. コンパイル等不要</a></li>
+<li><a href="#orgda511fc">2.1. org-modeのレンダリング</a></li>
+<li><a href="#org57a6930">2.2. githubのプライベートレポジトリ</a></li>
+<li><a href="#org7fe4170">2.3. 複数デバイスでの共有</a></li>
+<li><a href="#org5a938b7">2.4. コンパイル等不要</a></li>
 </ul>
 </li>
-<li><a href="#org8b90898">3. Tips</a>
+<li><a href="#org9cee42f">3. Tips</a>
 <ul>
-<li><a href="#org2b6ed21">3.1. READMEからリンクを貼る</a></li>
+<li><a href="#orgafc4174">3.1. READMEからリンクを貼る</a></li>
 </ul>
 </li>
-<li><a href="#org7cb37ee">4. 終わりに</a></li>
-<li><a href="#orgf8c93c8">5. おまけ</a></li>
+<li><a href="#org332817d">4. 終わりに</a></li>
+<li><a href="#org9fef0e0">5. おまけ</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org17411c7" class="outline-2">
-<h2 id="org17411c7"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgc79a286" class="outline-2">
+<h2 id="orgc79a286"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 私はemacsのorg-modeでメモを書いていますが、複数台のPCで編集したり、モバイルデバイスから閲覧するよい方法が無いか探していました。ブログに使っているgithub pagesにアクセス制限をかけられればよいのですが、そのためには有償のプランを契約しないとだめそうです。また、Pelican等の静的サイトジェネレーターでHTMLにレンダリングする必要があり、手間がかかります。
@@ -116,16 +116,16 @@
 </div>
 </div>
 
-<div id="outline-container-org8551151" class="outline-2">
-<h2 id="org8551151"><span class="section-number-2">2.</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
+<div id="outline-container-org11aea28" class="outline-2">
+<h2 id="org11aea28"><span class="section-number-2">2.</span> org-mode + github(/gitlab)でパーソナルWiki</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 いろいろと検索したところ、org-modeとgithub(/gitlabも)の相性が良さそうであることがわかりました。
 </p>
 </div>
 
-<div id="outline-container-orgbe8ad52" class="outline-3">
-<h3 id="orgbe8ad52"><span class="section-number-3">2.1.</span> org-modeのレンダリング</h3>
+<div id="outline-container-orgda511fc" class="outline-3">
+<h3 id="orgda511fc"><span class="section-number-3">2.1.</span> org-modeのレンダリング</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 これまで私はレポジトリのREADMEをわざわざ慣れないマークダウン記法で書いていましたが、なんと、githubは <code>README.org</code> ファイルを作成すればレンダリングして表示してくれるという <a href="http://yasuyk.github.io/blog/2013/04/27/github-readme-org-mode/">うれしい情報</a> を見つけました。(yasuykさんありがとうございます!)
@@ -142,8 +142,8 @@ orgファイルのレンダリング例:
 </div>
 </div>
 
-<div id="outline-container-org317ccbf" class="outline-3">
-<h3 id="org317ccbf"><span class="section-number-3">2.2.</span> githubのプライベートレポジトリ</h3>
+<div id="outline-container-org57a6930" class="outline-3">
+<h3 id="org57a6930"><span class="section-number-3">2.2.</span> githubのプライベートレポジトリ</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 更に、githubは2019年からプライベートレポジトリの作成を <a href="https://github.blog/2019-01-07-new-year-new-github/">無制限に無償化していた</a> ようです。私はgithubに複数レポジトリを持って、ブログもgithub pagesで公開していましたが、このことは知りませんでした。これはありがたい変更です。
@@ -155,8 +155,8 @@ orgファイルのレンダリング例:
 </div>
 </div>
 
-<div id="outline-container-org62dbe5d" class="outline-3">
-<h3 id="org62dbe5d"><span class="section-number-3">2.3.</span> 複数デバイスでの共有</h3>
+<div id="outline-container-org7fe4170" class="outline-3">
+<h3 id="org7fe4170"><span class="section-number-3">2.3.</span> 複数デバイスでの共有</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 普通のgithubレポジトリなので、もちろん複数デバイスでの閲覧、変更が可能です。githubに同じアカウントでサインインするだけです。
@@ -172,8 +172,8 @@ gitlabでも同様ですが、個人モバイルデバイスからオフィス�
 </div>
 </div>
 
-<div id="outline-container-orgfed2777" class="outline-3">
-<h3 id="orgfed2777"><span class="section-number-3">2.4.</span> コンパイル等不要</h3>
+<div id="outline-container-org5a938b7" class="outline-3">
+<h3 id="org5a938b7"><span class="section-number-3">2.4.</span> コンパイル等不要</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 私のgithub pagesのブログは静的サイトジェネレーターのPelicanを使っていますが、だいぶ記事がたまってきたせいか、コンパイルに1分以上かかるようになっています。
@@ -186,12 +186,12 @@ githubがorgファイルのレンダリングをしてくれるので、レポ�
 </div>
 </div>
 
-<div id="outline-container-org8b90898" class="outline-2">
-<h2 id="org8b90898"><span class="section-number-2">3.</span> Tips</h2>
+<div id="outline-container-org9cee42f" class="outline-2">
+<h2 id="org9cee42f"><span class="section-number-2">3.</span> Tips</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org2b6ed21" class="outline-3">
-<h3 id="org2b6ed21"><span class="section-number-3">3.1.</span> READMEからリンクを貼る</h3>
+<div id="outline-container-orgafc4174" class="outline-3">
+<h3 id="orgafc4174"><span class="section-number-3">3.1.</span> READMEからリンクを貼る</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 githubではご存知のように、レポジトリのトップページにREADMEファイルをレンダリングして表示します。パーソナルWikiのトップページとして、README.orgに各orgファイル(=メモ)へのリンクを貼っておくことで、使い勝手が良くなると思います。
@@ -214,8 +214,8 @@ githubではご存知のように、レポジトリのトップページにREADM
 </div>
 
 
-<div id="outline-container-org7cb37ee" class="outline-2">
-<h2 id="org7cb37ee"><span class="section-number-2">4.</span> 終わりに</h2>
+<div id="outline-container-org332817d" class="outline-2">
+<h2 id="org332817d"><span class="section-number-2">4.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 org-mode と github(/gitlab) のプライベートレポジトリを利用して、複数デバイスから編集、閲覧できる個人用のWikiページを持てることがわかりました。
@@ -224,8 +224,8 @@ org-mode と github(/gitlab) のプライベートレポジトリを利用して
 </div>
 
 
-<div id="outline-container-orgf8c93c8" class="outline-2">
-<h2 id="orgf8c93c8"><span class="section-number-2">5.</span> おまけ</h2>
+<div id="outline-container-org9fef0e0" class="outline-2">
+<h2 id="org9fef0e0"><span class="section-number-2">5.</span> おまけ</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 いつの頃からか、org-modeで改行すると、勝手にインデントされるようになりました。ものすごく使い勝手が悪いので、抑止する方法を探したところ、案の定、<a href="https://blue.hatenadiary.jp/entry/2014/11/20/211335">先人が解決</a> してくれていました。(あお日記さん、どうもありがとうございます。)

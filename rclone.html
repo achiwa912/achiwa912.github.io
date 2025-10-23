@@ -72,23 +72,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc549537">1. はじめに</a></li>
-<li><a href="#org9c3db25">2. pCloud</a></li>
-<li><a href="#orgd50b17b">3. rclone</a></li>
-<li><a href="#org1df7da7">4. セットアップ</a>
+<li><a href="#org18c021c">1. はじめに</a></li>
+<li><a href="#orga637a8f">2. pCloud</a></li>
+<li><a href="#org8f5dbfa">3. rclone</a></li>
+<li><a href="#orgf493be9">4. セットアップ</a>
 <ul>
-<li><a href="#orgb0a4cab">4.1. インストールとリモート設定</a></li>
-<li><a href="#orgf12a23c">4.2. cryptリモートの作成</a></li>
-<li><a href="#org57308de">4.3. rclone.confをバックアップする</a></li>
+<li><a href="#org89306cf">4.1. インストールとリモート設定</a></li>
+<li><a href="#orgf66bd9f">4.2. cryptリモートの作成</a></li>
+<li><a href="#org5e3b353">4.3. rclone.confをバックアップする</a></li>
 </ul>
 </li>
-<li><a href="#org8e831bf">5. 終わりに</a></li>
+<li><a href="#org734d396">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc549537" class="outline-2">
-<h2 id="orgc549537"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org18c021c" class="outline-2">
+<h2 id="org18c021c"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 pCloudはライフタイムプランで有名なクラウドストレージプロバイダーです。私は去年のサンクスギビングセールで500GBプランを買っていました。
@@ -100,8 +100,8 @@ pCloudはライフタイムプランで有名なクラウドストレージプ�
 </div>
 </div>
 
-<div id="outline-container-org9c3db25" class="outline-2">
-<h2 id="org9c3db25"><span class="section-number-2">2.</span> pCloud</h2>
+<div id="outline-container-orga637a8f" class="outline-2">
+<h2 id="orga637a8f"><span class="section-number-2">2.</span> pCloud</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="https://www.pcloud.com/">pCloud</a> はライフタイムプランを売りにしています。容量を前払いで購入し、会社が潰れたりしなければずっと使えます。クラウドストレージベンダーからすると、ライフタイムプランは当座の資金集めに便利ですが、あまりサステイナブルなビジネスモデルではありません。中には、破格の価格をつけているところもありますが、そういうところは本社の住所が普通の民家だったりして、資金集めをするだけして消えてしまいそうです。
@@ -113,8 +113,8 @@ pCloudは、グーグルやアマゾンのような最大手ではありませ�
 </div>
 </div>
 
-<div id="outline-container-orgd50b17b" class="outline-2">
-<h2 id="orgd50b17b"><span class="section-number-2">3.</span> rclone</h2>
+<div id="outline-container-org8f5dbfa" class="outline-2">
+<h2 id="org8f5dbfa"><span class="section-number-2">3.</span> rclone</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://rclone.org/">rclone</a> はクラウドストレージ上のファイルを管理するコマンドラインツールです。使い勝手に多少クセがありますが、いったんクラウドストレージを登録して、ファイルやディレクトリの表示ができるようになる頃には慣れると思います。
@@ -201,12 +201,12 @@ rclone sync Important pcl_cryp:/
 </div>
 </div>
 
-<div id="outline-container-org1df7da7" class="outline-2">
-<h2 id="org1df7da7"><span class="section-number-2">4.</span> セットアップ</h2>
+<div id="outline-container-orgf493be9" class="outline-2">
+<h2 id="orgf493be9"><span class="section-number-2">4.</span> セットアップ</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgb0a4cab" class="outline-3">
-<h3 id="orgb0a4cab"><span class="section-number-3">4.1.</span> インストールとリモート設定</h3>
+<div id="outline-container-org89306cf" class="outline-3">
+<h3 id="org89306cf"><span class="section-number-3">4.1.</span> インストールとリモート設定</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 まずは rclone をインストールします。brewの入っているmacの場合、
@@ -314,8 +314,8 @@ export RCLONE_CONFIG_PASS=&lt;パスワード&gt;
 </div>
 </div>
 
-<div id="outline-container-orgf12a23c" class="outline-3">
-<h3 id="orgf12a23c"><span class="section-number-3">4.2.</span> cryptリモートの作成</h3>
+<div id="outline-container-orgf66bd9f" class="outline-3">
+<h3 id="orgf66bd9f"><span class="section-number-3">4.2.</span> cryptリモートの作成</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 crypt(暗号化)リモートは、作成済みのリモートの中に暗号化されたリモートを作成します。
@@ -396,8 +396,8 @@ Thu Mar  7 16:12:41 EST 2024
 </div>
 </div>
 
-<div id="outline-container-org57308de" class="outline-3">
-<h3 id="org57308de"><span class="section-number-3">4.3.</span> rclone.confをバックアップする</h3>
+<div id="outline-container-org5e3b353" class="outline-3">
+<h3 id="org5e3b353"><span class="section-number-3">4.3.</span> rclone.confをバックアップする</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 ~/.config/rclone/rclone.conf はパスワードをつけて暗号化したので、中身を見られても多少は安心です。しかし、もしこれが消えてしまうと、2度とcryptリモートにアクセスできなくなってしまいます。そこで、rclone.confを(念には念を入れて)更に暗号化してpcloud上に置きます。
@@ -446,8 +446,8 @@ chmod 600 ~/.config/rclone/rclone.conf
 </div>
 </div>
 
-<div id="outline-container-org8e831bf" class="outline-2">
-<h2 id="org8e831bf"><span class="section-number-2">5.</span> 終わりに</h2>
+<div id="outline-container-org734d396" class="outline-2">
+<h2 id="org734d396"><span class="section-number-2">5.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 去年の11月に勢いで500GB分のpcloudストレージを買いましたが、セキュリティー面が心配でほとんど使っていませんでした。rcloneのcryptリモートを設定したことで、センシティブなデータも含めてバックアップ用途に使えるようになりました。
