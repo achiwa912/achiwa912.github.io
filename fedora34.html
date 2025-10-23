@@ -72,28 +72,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgce1299e">1. はじめに</a></li>
-<li><a href="#orga249876">2. Fedora36インストール</a>
+<li><a href="#orgaf4708d">1. はじめに</a></li>
+<li><a href="#org05ab9bb">2. Fedora36インストール</a>
 <ul>
-<li><a href="#org98c7721">2.1. VM作成</a></li>
-<li><a href="#org4bb0b9f">2.2. fedoraインストーラー</a></li>
-<li><a href="#orga5d3b9b">2.3. fedora起動</a></li>
-<li><a href="#org089a7e9">2.4. Guest Additions</a></li>
+<li><a href="#org08dffcc">2.1. VM作成</a></li>
+<li><a href="#org7585367">2.2. fedoraインストーラー</a></li>
+<li><a href="#org71cd4e8">2.3. fedora起動</a></li>
+<li><a href="#org62bbc93">2.4. Guest Additions</a></li>
 </ul>
 </li>
-<li><a href="#org1a354de">3. gitの設定</a></li>
-<li><a href="#orgdafbb8b">4. emacsの設定</a></li>
-<li><a href="#org143a66d">5. pythonの設定</a>
+<li><a href="#org5f02478">3. gitの設定</a></li>
+<li><a href="#org68ed48d">4. emacsの設定</a></li>
+<li><a href="#org01d9268">5. pythonの設定</a>
 <ul>
-<li><a href="#orgc7a39a3">5.1. pyenvを入れる</a></li>
+<li><a href="#org0c4d06f">5.1. pyenvを入れる</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgce1299e" class="outline-2">
-<h2 id="orgce1299e"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgaf4708d" class="outline-2">
+<h2 id="orgaf4708d"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 MacBook上のVitrualBoxにFedora36を入れました。最近のFedoraはGuest Additionsが最初から入っているので、インストールがとても楽になっています。今回はFedora36インストール及び設定の備忘録です。
@@ -106,12 +106,12 @@ Fedoraインストールと設定、emacs設定、python設定までがワンセ
 </div>
 </div>
 
-<div id="outline-container-orga249876" class="outline-2">
-<h2 id="orga249876"><span class="section-number-2">2.</span> Fedora36インストール</h2>
+<div id="outline-container-org05ab9bb" class="outline-2">
+<h2 id="org05ab9bb"><span class="section-number-2">2.</span> Fedora36インストール</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org98c7721" class="outline-3">
-<h3 id="org98c7721"><span class="section-number-3">2.1.</span> VM作成</h3>
+<div id="outline-container-org08dffcc" class="outline-3">
+<h3 id="org08dffcc"><span class="section-number-3">2.1.</span> VM作成</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 <code>fedora 36 download</code> で検索して、isoファイルをダウンロードします。
@@ -139,8 +139,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-org4bb0b9f" class="outline-3">
-<h3 id="org4bb0b9f"><span class="section-number-3">2.2.</span> fedoraインストーラー</h3>
+<div id="outline-container-org7585367" class="outline-3">
+<h3 id="org7585367"><span class="section-number-3">2.2.</span> fedoraインストーラー</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 しばらく待っているとFedora36のインストーラー起動画面が出ます。
@@ -161,8 +161,8 @@ fedora36 VMをダブルクリックして、VMを起動します。
 </div>
 </div>
 
-<div id="outline-container-orga5d3b9b" class="outline-3">
-<h3 id="orga5d3b9b"><span class="section-number-3">2.3.</span> fedora起動</h3>
+<div id="outline-container-org71cd4e8" class="outline-3">
+<h3 id="org71cd4e8"><span class="section-number-3">2.3.</span> fedora起動</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 初めてインストールしたハードドライブからfedoraが起動してくると、設定画面が出てくるので、メインで使うユーザーを登録して設定を終わらせます。(fedora34ではしばらく不安になる画面で放置されますが、数十秒で使えるようになりました。fedora36ではなぜかログイン画面が出ずに強制電断 &rarr; 電源オンしたところ、何事もなかったようにログイン画面が出ました。何だったんだろう。。。)
@@ -186,8 +186,8 @@ sudo dnf update
 </div>
 </div>
 
-<div id="outline-container-org089a7e9" class="outline-3">
-<h3 id="org089a7e9"><span class="section-number-3">2.4.</span> Guest Additions</h3>
+<div id="outline-container-org62bbc93" class="outline-3">
+<h3 id="org62bbc93"><span class="section-number-3">2.4.</span> Guest Additions</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 「はじめに」でも書きましたが、最近のfedoraは最初からGuest Additionsがインストールされています。Guest Additionsのインストールは結構トラブりやすいので、初心者に優しい良い改善点と思います。
@@ -245,8 +245,8 @@ Fedora36としての基本的な設定はここで終わりです。
 </div>
 </div>
 
-<div id="outline-container-org1a354de" class="outline-2">
-<h2 id="org1a354de"><span class="section-number-2">3.</span> gitの設定</h2>
+<div id="outline-container-org5f02478" class="outline-2">
+<h2 id="org5f02478"><span class="section-number-2">3.</span> gitの設定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 gitの最低限の設定をしておきます。これを忘れて、コミットでエラーになりました(magitではemacsごと落ちました)。
@@ -259,8 +259,8 @@ git config --global user.name "&lt;your name&gt;"
 </div>
 </div>
 
-<div id="outline-container-orgdafbb8b" class="outline-2">
-<h2 id="orgdafbb8b"><span class="section-number-2">4.</span> emacsの設定</h2>
+<div id="outline-container-org68ed48d" class="outline-2">
+<h2 id="org68ed48d"><span class="section-number-2">4.</span> emacsの設定</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 注) 5/12/2022追記。emacsの設定は最近いろいろ変えているので、アップデートせずにそのまま残しておきます。
@@ -550,8 +550,8 @@ pip install jedi black flake8
 </div>
 </div>
 
-<div id="outline-container-org143a66d" class="outline-2">
-<h2 id="org143a66d"><span class="section-number-2">5.</span> pythonの設定</h2>
+<div id="outline-container-org01d9268" class="outline-2">
+<h2 id="org01d9268"><span class="section-number-2">5.</span> pythonの設定</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Fedora36を入れたら、いきなりpython 3.10.4が/usr/bin/pythonとしてインストールされていました。
@@ -566,8 +566,8 @@ Python 3.10.4
 </div>
 </div>
 
-<div id="outline-container-orgc7a39a3" class="outline-3">
-<h3 id="orgc7a39a3"><span class="section-number-3">5.1.</span> pyenvを入れる</h3>
+<div id="outline-container-org0c4d06f" class="outline-3">
+<h3 id="org0c4d06f"><span class="section-number-3">5.1.</span> pyenvを入れる</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 pyenvの最新安定pyrhonバージョンも3.10.4なので、pyenvの導入は見送ろうかとも思ったのですが、後でシステム標準pythonのバージョンを上げたときに不都合が出そうなので、観念して設定することにしました。pyenvについては<a href="https://github.com/pyenv/pyenv">公式github</a>へ。

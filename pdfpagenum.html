@@ -72,21 +72,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org721f230">1. はじめに</a></li>
-<li><a href="#org4eeb59b">2. ReportLab PDFライブラリ</a></li>
-<li><a href="#orgf3b6381">3. ReportLab + pdfrwを組み合わせる</a></li>
-<li><a href="#orgbccb11b">4. 使用方法</a>
+<li><a href="#org56de442">1. はじめに</a></li>
+<li><a href="#org55a0ff2">2. ReportLab PDFライブラリ</a></li>
+<li><a href="#orgee86988">3. ReportLab + pdfrwを組み合わせる</a></li>
+<li><a href="#orgc25fd60">4. 使用方法</a>
 <ul>
-<li><a href="#orgb11e05e">4.1. カスタマイズ方法</a></li>
+<li><a href="#orgb13734c">4.1. カスタマイズ方法</a></li>
 </ul>
 </li>
-<li><a href="#org244b8d2">5. 終わりに</a></li>
+<li><a href="#orga43906a">5. 終わりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org721f230" class="outline-2">
-<h2 id="org721f230"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-org56de442" class="outline-2">
+<h2 id="org56de442"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 小学生の娘が算数で間違った問題を、スキャンしてまとめてPDF化しています。しかし、必要なページだけ印刷したつもりが、結構ページ番号がずれていて、何度もやりなおしたりしています。電子化したつもりが意外とアナログです。そこで、自動でPDFファイルにページ番号を付けたいと思いました。ヒューマンエラーによるページ番号のずれが防げる、またはずれてもすぐに気がつくので。
@@ -102,8 +102,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4eeb59b" class="outline-2">
-<h2 id="org4eeb59b"><span class="section-number-2">2.</span> ReportLab PDFライブラリ</h2>
+<div id="outline-container-org55a0ff2" class="outline-2">
+<h2 id="org55a0ff2"><span class="section-number-2">2.</span> ReportLab PDFライブラリ</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりのようです。これらは、複数のPDFファイルをマージしたり、逆に分割したり、ページを入れ替えたりといったことが得意ですが、「既存PDFファイルにページ番号を付加する」というユースケースには対応していないようです。
@@ -129,8 +129,8 @@ PythonでのPDFライブラリで有名なものは、PyPDF2, pdfrwあたりの�
 </div>
 </div>
 
-<div id="outline-container-orgf3b6381" class="outline-2">
-<h2 id="orgf3b6381"><span class="section-number-2">3.</span> ReportLab + pdfrwを組み合わせる</h2>
+<div id="outline-container-orgee86988" class="outline-2">
+<h2 id="orgee86988"><span class="section-number-2">3.</span> ReportLab + pdfrwを組み合わせる</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 それでも諦めずに検索を続けたところ、見つけました。
@@ -200,8 +200,8 @@ canvas.save()
 </div>
 </div>
 
-<div id="outline-container-orgbccb11b" class="outline-2">
-<h2 id="orgbccb11b"><span class="section-number-2">4.</span> 使用方法</h2>
+<div id="outline-container-orgc25fd60" class="outline-2">
+<h2 id="orgc25fd60"><span class="section-number-2">4.</span> 使用方法</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 f-stringを使っているので、python 3.6以降で使ってください。
@@ -233,8 +233,8 @@ python addpagenum.py &lt;pdf_filename&gt;
 </p>
 </div>
 
-<div id="outline-container-orgb11e05e" class="outline-3">
-<h3 id="orgb11e05e"><span class="section-number-3">4.1.</span> カスタマイズ方法</h3>
+<div id="outline-container-orgb13734c" class="outline-3">
+<h3 id="orgb13734c"><span class="section-number-3">4.1.</span> カスタマイズ方法</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 このあたりを適当に変えてください。
@@ -260,8 +260,8 @@ A4以外のLetter等にしたい場合は、canvasオブジェクトを作成す
 </div>
 </div>
 
-<div id="outline-container-org244b8d2" class="outline-2">
-<h2 id="org244b8d2"><span class="section-number-2">5.</span> 終わりに</h2>
+<div id="outline-container-orga43906a" class="outline-2">
+<h2 id="orga43906a"><span class="section-number-2">5.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 このスクリプトはgithubにも載せました。

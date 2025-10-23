@@ -72,35 +72,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga6698a5">1. はじめに</a></li>
-<li><a href="#org2204170">2. 公開鍵暗号と共通鍵暗号</a>
+<li><a href="#orge1ee7a6">1. はじめに</a></li>
+<li><a href="#org46c8753">2. 公開鍵暗号と共通鍵暗号</a>
 <ul>
-<li><a href="#orgdbef959">2.1. 公開鍵暗号</a></li>
-<li><a href="#org1efeb76">2.2. 共通鍵暗号</a></li>
+<li><a href="#org9c2a536">2.1. 公開鍵暗号</a></li>
+<li><a href="#orgf0a28e4">2.2. 共通鍵暗号</a></li>
 </ul>
 </li>
-<li><a href="#org25eba44">3. Digital signature(電子署名)</a></li>
-<li><a href="#orgce7523a">4. SSL Certificate(SSL証明書)</a>
+<li><a href="#orgc450e08">3. Digital signature(電子署名)</a></li>
+<li><a href="#org5e7c71a">4. SSL Certificate(SSL証明書)</a>
 <ul>
-<li><a href="#org3f053c7">4.1. SSL Certificateを見てみる</a></li>
+<li><a href="#orgeb69612">4.1. SSL Certificateを見てみる</a></li>
 </ul>
 </li>
-<li><a href="#org3d794ea">5. WebサイトにSSL certificateを用意する</a>
+<li><a href="#org74dc441">5. WebサイトにSSL certificateを用意する</a>
 <ul>
-<li><a href="#org913d03d">5.1. キーペアとCSRを用意する</a></li>
-<li><a href="#org60f5a5c">5.2. SSL certificateを発行してもらう</a></li>
-<li><a href="#org6128120">5.3. SSL certificateをアップロードする</a></li>
+<li><a href="#org176eb2a">5.1. キーペアとCSRを用意する</a></li>
+<li><a href="#orgf0cf66d">5.2. SSL certificateを発行してもらう</a></li>
+<li><a href="#org1e97776">5.3. SSL certificateをアップロードする</a></li>
 </ul>
 </li>
-<li><a href="#org24a8daa">6. ブラウザーからWebサイトにアクセスする</a></li>
-<li><a href="#orga539301">7. 終わりに</a></li>
-<li><a href="#org3419484">8. リンク</a></li>
+<li><a href="#orgc95052e">6. ブラウザーからWebサイトにアクセスする</a></li>
+<li><a href="#orge7bae44">7. 終わりに</a></li>
+<li><a href="#org266c910">8. リンク</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orga6698a5" class="outline-2">
-<h2 id="orga6698a5"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orge1ee7a6" class="outline-2">
+<h2 id="orge1ee7a6"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 ブラウザーでWebサイトを見る際には、安全性を担保するために送受信するデータを暗号化します。暗号化は、ユーザーが意識することはほぼ無く、サーバーとブラウザーの間で水面下に行われます。ブラウザーで開いているページのURLがhttpでなくhttps(最後のsが重要)で始まっている場合、やり取りは暗号化されています。
@@ -112,16 +112,16 @@
 </div>
 </div>
 
-<div id="outline-container-org2204170" class="outline-2">
-<h2 id="org2204170"><span class="section-number-2">2.</span> 公開鍵暗号と共通鍵暗号</h2>
+<div id="outline-container-org46c8753" class="outline-2">
+<h2 id="org46c8753"><span class="section-number-2">2.</span> 公開鍵暗号と共通鍵暗号</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 ファイルなどの電子データを暗号化する方法に、<a href="https://ja.wikipedia.org/wiki/%E5%85%AC%E9%96%8B%E9%8D%B5%E6%9A%97%E5%8F%B7">公開鍵暗号</a>と<a href="https://ja.wikipedia.org/wiki/%E5%85%B1%E9%80%9A%E9%8D%B5%E6%9A%97%E5%8F%B7">共通鍵暗号</a>があります(他にもあります)。ブラウザーとWebサーバーの間で使われるSSL暗号ではこの両方が使われます。特に公開鍵暗号は、digital signature(電子署名)やcertificate(サーバー証明書)といったものの中核をなす重要技術です。
 </p>
 </div>
 
-<div id="outline-container-orgdbef959" class="outline-3">
-<h3 id="orgdbef959"><span class="section-number-3">2.1.</span> 公開鍵暗号</h3>
+<div id="outline-container-org9c2a536" class="outline-3">
+<h3 id="org9c2a536"><span class="section-number-3">2.1.</span> 公開鍵暗号</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 公開鍵暗号は、世間に公開するpublicキーと、持ち主以外には決して見せてはいけないprivateキーのキーペアを使います。ペアとなるpublicとprivateキーは数学的に密接に関係していて、片方で暗号化したデータはもう片方で「のみ」復号化できます。
@@ -154,8 +154,8 @@ publicキーで暗号化したデータはペアとなるprivateキーでしか�
 </div>
 </div>
 
-<div id="outline-container-org1efeb76" class="outline-3">
-<h3 id="org1efeb76"><span class="section-number-3">2.2.</span> 共通鍵暗号</h3>
+<div id="outline-container-orgf0a28e4" class="outline-3">
+<h3 id="orgf0a28e4"><span class="section-number-3">2.2.</span> 共通鍵暗号</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 一方、共通鍵暗号は暗号化も復号化も同じ一つのキー(secretキー)を使って行います。公開鍵暗号と比べて軽いという特徴がありますが、そもそもやり取りしたい両者がキーを安全に共有すること自体が課題となります。
@@ -209,8 +209,8 @@ publicキーで暗号化したデータはペアとなるprivateキーでしか�
 </div>
 </div>
 
-<div id="outline-container-org25eba44" class="outline-2">
-<h2 id="org25eba44"><span class="section-number-2">3.</span> Digital signature(電子署名)</h2>
+<div id="outline-container-orgc450e08" class="outline-2">
+<h2 id="orgc450e08"><span class="section-number-2">3.</span> Digital signature(電子署名)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Digital signatureは電子データが作成したままの状態である(改ざんされていない)ことを保証します。そしてこのために公開鍵暗号を利用します。
@@ -226,8 +226,8 @@ Digital signatureは電子データが作成したままの状態である(改�
 </div>
 </div>
 
-<div id="outline-container-orgce7523a" class="outline-2">
-<h2 id="orgce7523a"><span class="section-number-2">4.</span> SSL Certificate(SSL証明書)</h2>
+<div id="outline-container-org5e7c71a" class="outline-2">
+<h2 id="org5e7c71a"><span class="section-number-2">4.</span> SSL Certificate(SSL証明書)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 SSL certificateはブラウザーとWebサーバーの間で安全にやりとりをするべく、暗号化されたコネクションを確立するために使われます。ブラウザーがWebサーバーにhttpsでアクセスしようとすると、Webサーバーは自身のcertificateをブラウザーに送ります。
@@ -246,8 +246,8 @@ SSL certificateはブラウザーとWebサーバーの間で安全にやりと�
 </p>
 </div>
 
-<div id="outline-container-org3f053c7" class="outline-3">
-<h3 id="org3f053c7"><span class="section-number-3">4.1.</span> SSL Certificateを見てみる</h3>
+<div id="outline-container-orgeb69612" class="outline-3">
+<h3 id="orgeb69612"><span class="section-number-3">4.1.</span> SSL Certificateを見てみる</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 ブラウザーでとりあえずSonyのWebサイト <a href="https://www.sony.co.jp/">https://www.sony.co.jp/</a> に行ってみます。
@@ -403,12 +403,12 @@ CAのルート証明書はだれがどうやって保証しているの、とい
 </div>
 
 
-<div id="outline-container-org3d794ea" class="outline-2">
-<h2 id="org3d794ea"><span class="section-number-2">5.</span> WebサイトにSSL certificateを用意する</h2>
+<div id="outline-container-org74dc441" class="outline-2">
+<h2 id="org74dc441"><span class="section-number-2">5.</span> WebサイトにSSL certificateを用意する</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org913d03d" class="outline-3">
-<h3 id="org913d03d"><span class="section-number-3">5.1.</span> キーペアとCSRを用意する</h3>
+<div id="outline-container-org176eb2a" class="outline-3">
+<h3 id="org176eb2a"><span class="section-number-3">5.1.</span> キーペアとCSRを用意する</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 まずは公開鍵暗号に使うキーペアを用意します。いろいろなツールが使えますが、<a href="https://www.openssl.org/">openssl</a> や gpg(<a href="https://www.gnupg.org/">GnuPG</a>) も使えます。この <a href="https://unix.stackexchange.com/questions/119967/rsa-2048-keypair-generation-via-openssl-0-5s-via-gpg-30s-why-the-difference">stackexchangeのページ</a> によると、openssl よりも gpg のほうがより品質の良い乱数を使っているそうです。
@@ -443,8 +443,8 @@ DigiCertの <a href="https://www.digicert.com/kb/csr-ssl-installation/apache-ope
 </div>
 </div>
 
-<div id="outline-container-org60f5a5c" class="outline-3">
-<h3 id="org60f5a5c"><span class="section-number-3">5.2.</span> SSL certificateを発行してもらう</h3>
+<div id="outline-container-orgf0cf66d" class="outline-3">
+<h3 id="orgf0cf66d"><span class="section-number-3">5.2.</span> SSL certificateを発行してもらう</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 上で作成したCSRファイル(sv.csr)の中身をコピペしてDigiCert等のCAに証明書を発行依頼します。CAによる調査が行われたあと、問題がなければCAのプライベートキーで署名されたSSL certificateが送られてきます。
@@ -452,8 +452,8 @@ DigiCertの <a href="https://www.digicert.com/kb/csr-ssl-installation/apache-ope
 </div>
 </div>
 
-<div id="outline-container-org6128120" class="outline-3">
-<h3 id="org6128120"><span class="section-number-3">5.3.</span> SSL certificateをアップロードする</h3>
+<div id="outline-container-org1e97776" class="outline-3">
+<h3 id="org1e97776"><span class="section-number-3">5.3.</span> SSL certificateをアップロードする</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 Webサーバーによってやり方が変わってきますが、WebサーバーやロードバランサーにcertificateをアップロードしてSSLを使えるようにします。
@@ -462,8 +462,8 @@ Webサーバーによってやり方が変わってきますが、Webサーバ�
 </div>
 </div>
 
-<div id="outline-container-org24a8daa" class="outline-2">
-<h2 id="org24a8daa"><span class="section-number-2">6.</span> ブラウザーからWebサイトにアクセスする</h2>
+<div id="outline-container-orgc95052e" class="outline-2">
+<h2 id="orgc95052e"><span class="section-number-2">6.</span> ブラウザーからWebサイトにアクセスする</h2>
 <div class="outline-text-2" id="text-6">
 <ol class="org-ol">
 <li>ブラウザーからhttpsを指定してWebサイトにアクセスに行くと、まずブラウザーはサーバーのidnetityをリクエストする</li>
@@ -493,8 +493,8 @@ Webサーバーによってやり方が変わってきますが、Webサーバ�
 </div>
 </div>
 
-<div id="outline-container-orga539301" class="outline-2">
-<h2 id="orga539301"><span class="section-number-2">7.</span> 終わりに</h2>
+<div id="outline-container-orge7bae44" class="outline-2">
+<h2 id="orge7bae44"><span class="section-number-2">7.</span> 終わりに</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 証明書、署名、private keyといったキーワードは耳にしたことがあると思いますが、それらの働きを正しく理解することはかなり大変です。実感を伴って理解するには、opensslなどで何がインプットとなって何がアウトプットとなるのか、といったあたりを実際にコマンドラインを眺めて整理していみるのが早道かと思います。
@@ -508,8 +508,8 @@ Webサーバーによってやり方が変わってきますが、Webサーバ�
 </div>
 
 
-<div id="outline-container-org3419484" class="outline-2">
-<h2 id="org3419484"><span class="section-number-2">8.</span> リンク</h2>
+<div id="outline-container-org266c910" class="outline-2">
+<h2 id="org266c910"><span class="section-number-2">8.</span> リンク</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="https://www.digicert.com/what-is-an-ssl-certificate">What is an SSL certificate?</a> (DigiCert)</li>

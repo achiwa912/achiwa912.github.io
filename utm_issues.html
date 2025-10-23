@@ -72,31 +72,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org44dec10">1. はじめに</a></li>
-<li><a href="#org8f8784e">2. トラブルシュート断念</a></li>
-<li><a href="#orgf7b76b9">3. Ubuntuを入れ直す</a></li>
-<li><a href="#org4a9615f">4. UTMで遭遇したトラブル</a>
+<li><a href="#orgfedd966">1. はじめに</a></li>
+<li><a href="#org2fd174f">2. トラブルシュート断念</a></li>
+<li><a href="#orgcc2cdf5">3. Ubuntuを入れ直す</a></li>
+<li><a href="#org355ea42">4. UTMで遭遇したトラブル</a>
 <ul>
-<li><a href="#orgdd8aa3f">4.1. 起動して数分でVMがフリーズする</a></li>
-<li><a href="#org06deb36">4.2. 曲の切り替わりでVMがフリーズする</a></li>
-<li><a href="#orgf7134e7">4.3. Emulated VLANが使えない</a></li>
-<li><a href="#org7da224c">4.4. GNOMEがフリーズする</a>
+<li><a href="#org5b133da">4.1. 起動して数分でVMがフリーズする</a></li>
+<li><a href="#org1d03b2f">4.2. 曲の切り替わりでVMがフリーズする</a></li>
+<li><a href="#org8b320a7">4.3. Emulated VLANが使えない</a></li>
+<li><a href="#orgcc4a6f8">4.4. GNOMEがフリーズする</a>
 <ul>
-<li><a href="#orgab24405">4.4.1. ログイン画面でフリーズ1</a></li>
-<li><a href="#orgfdcc212">4.4.2. ログイン画面でフリーズ2</a></li>
-<li><a href="#orgf8c1efa">4.4.3. 通常画面でフリーズ</a></li>
+<li><a href="#org012d545">4.4.1. ログイン画面でフリーズ1</a></li>
+<li><a href="#org3f359f5">4.4.2. ログイン画面でフリーズ2</a></li>
+<li><a href="#orgf1084bb">4.4.3. 通常画面でフリーズ</a></li>
 </ul>
 </li>
-<li><a href="#org507a335">4.5. UTMの起動画面で進まなくなる</a></li>
+<li><a href="#orgd140af1">4.5. UTMの起動画面で進まなくなる</a></li>
 </ul>
 </li>
-<li><a href="#org71876ef">5. おわりに</a></li>
+<li><a href="#org02f9501">5. おわりに</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org44dec10" class="outline-2">
-<h2 id="org44dec10"><span class="section-number-2">1.</span> はじめに</h2>
+<div id="outline-container-orgfedd966" class="outline-2">
+<h2 id="orgfedd966"><span class="section-number-2">1.</span> はじめに</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 M1 MacBookにUTMを入れてUbuntuを使っていたのですが、最近Ubuntuがフリーズするようになりました。
@@ -104,8 +104,8 @@ M1 MacBookにUTMを入れてUbuntuを使っていたのですが、最近Ubuntu�
 </div>
 </div>
 
-<div id="outline-container-org8f8784e" class="outline-2">
-<h2 id="org8f8784e"><span class="section-number-2">2.</span> トラブルシュート断念</h2>
+<div id="outline-container-org2fd174f" class="outline-2">
+<h2 id="org2fd174f"><span class="section-number-2">2.</span> トラブルシュート断念</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 これまでもGNOMEがフリーズしてマウスが効かなくなることが何度かあったのですが、今回はsshで入ることもできず、本格的にOSがフリーズしているようです。起動して数十秒〜数分でフリーズしてしまい、使い物になりません。
@@ -125,8 +125,8 @@ Mac側で最近やったことといえば、MacOS Sonomaのマイナーアッ�
 </div>
 </div>
 
-<div id="outline-container-orgf7b76b9" class="outline-2">
-<h2 id="orgf7b76b9"><span class="section-number-2">3.</span> Ubuntuを入れ直す</h2>
+<div id="outline-container-orgcc2cdf5" class="outline-2">
+<h2 id="orgcc2cdf5"><span class="section-number-2">3.</span> Ubuntuを入れ直す</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 前回ダウンロードした24.04.2のISOが手元にあったので、再びこれを使います。不安定になるリスクをなるべく排除するため、VM作成の際にEnable hardware OpenGL accelerationとUse Apple Virtualizationはチェックしませんでした。(前回は前者をチェックした気がする)
@@ -154,16 +154,16 @@ VM側ではfirewallは動いておらず、ポート22は空いています。tc
 </div>
 </div>
 
-<div id="outline-container-org4a9615f" class="outline-2">
-<h2 id="org4a9615f"><span class="section-number-2">4.</span> UTMで遭遇したトラブル</h2>
+<div id="outline-container-org355ea42" class="outline-2">
+<h2 id="org355ea42"><span class="section-number-2">4.</span> UTMで遭遇したトラブル</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 UTMを使い始めて、多くのトラブルにあいました。
 </p>
 </div>
 
-<div id="outline-container-orgdd8aa3f" class="outline-3">
-<h3 id="orgdd8aa3f"><span class="section-number-3">4.1.</span> 起動して数分でVMがフリーズする</h3>
+<div id="outline-container-org5b133da" class="outline-3">
+<h3 id="org5b133da"><span class="section-number-3">4.1.</span> 起動して数分でVMがフリーズする</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 今回遭遇して解決できなかった問題です。こういうことがあるからUTMは安心して使い続けることができません。
@@ -171,8 +171,8 @@ UTMを使い始めて、多くのトラブルにあいました。
 </div>
 </div>
 
-<div id="outline-container-org06deb36" class="outline-3">
-<h3 id="org06deb36"><span class="section-number-3">4.2.</span> 曲の切り替わりでVMがフリーズする</h3>
+<div id="outline-container-org1d03b2f" class="outline-3">
+<h3 id="org1d03b2f"><span class="section-number-3">4.2.</span> 曲の切り替わりでVMがフリーズする</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズします。これも解決していませんが、頻繁には起こらないので致命的ではありません。
@@ -180,8 +180,8 @@ SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズ�
 </div>
 </div>
 
-<div id="outline-container-orgf7134e7" class="outline-3">
-<h3 id="orgf7134e7"><span class="section-number-3">4.3.</span> Emulated VLANが使えない</h3>
+<div id="outline-container-org8b320a7" class="outline-3">
+<h3 id="org8b320a7"><span class="section-number-3">4.3.</span> Emulated VLANが使えない</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 突然使えなくなったり、使えるようになったりするので困ります。
@@ -189,15 +189,15 @@ SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズ�
 </div>
 </div>
 
-<div id="outline-container-org7da224c" class="outline-3">
-<h3 id="org7da224c"><span class="section-number-3">4.4.</span> GNOMEがフリーズする</h3>
+<div id="outline-container-orgcc4a6f8" class="outline-3">
+<h3 id="orgcc4a6f8"><span class="section-number-3">4.4.</span> GNOMEがフリーズする</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 しばらく放置しているとGNOMEがフリーズすることがあります。3パターンあります。
 </p>
 </div>
-<div id="outline-container-orgab24405" class="outline-4">
-<h4 id="orgab24405"><span class="section-number-4">4.4.1.</span> ログイン画面でフリーズ1</h4>
+<div id="outline-container-org012d545" class="outline-4">
+<h4 id="org012d545"><span class="section-number-4">4.4.1.</span> ログイン画面でフリーズ1</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 全画面モードにしたりもとに戻したりすると解決する場合
@@ -205,8 +205,8 @@ SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズ�
 </div>
 </div>
 
-<div id="outline-container-orgfdcc212" class="outline-4">
-<h4 id="orgfdcc212"><span class="section-number-4">4.4.2.</span> ログイン画面でフリーズ2</h4>
+<div id="outline-container-org3f359f5" class="outline-4">
+<h4 id="org3f359f5"><span class="section-number-4">4.4.2.</span> ログイン画面でフリーズ2</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <p>
 何をしても解決しない場合。いったん発生するようになると何度でも発生する気がします。
@@ -215,8 +215,8 @@ SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズ�
 </div>
 </div>
 
-<div id="outline-container-orgf8c1efa" class="outline-4">
-<h4 id="orgf8c1efa"><span class="section-number-4">4.4.3.</span> 通常画面でフリーズ</h4>
+<div id="outline-container-orgf1084bb" class="outline-4">
+<h4 id="orgf1084bb"><span class="section-number-4">4.4.3.</span> 通常画面でフリーズ</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <p>
 幸いなことにOSは動いているので、外部からsshしてシャットダウンできます。頻繁には起きません。
@@ -225,8 +225,8 @@ SpotifyやYahooMusicで曲が切り替わるタイミングでVMがフリーズ�
 </div>
 </div>
 
-<div id="outline-container-org507a335" class="outline-3">
-<h3 id="org507a335"><span class="section-number-3">4.5.</span> UTMの起動画面で進まなくなる</h3>
+<div id="outline-container-orgd140af1" class="outline-3">
+<h3 id="orgd140af1"><span class="section-number-3">4.5.</span> UTMの起動画面で進まなくなる</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 RockyLinuxでdnf updateをした後で発生することがあります。事前のsnapshotが欠かせません。
@@ -237,8 +237,8 @@ RockyLinuxでdnf updateをした後で発生することがあります。事前
 </div>
 
 
-<div id="outline-container-org71876ef" class="outline-2">
-<h2 id="org71876ef"><span class="section-number-2">5.</span> おわりに</h2>
+<div id="outline-container-org02f9501" class="outline-2">
+<h2 id="org02f9501"><span class="section-number-2">5.</span> おわりに</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 MacOSが悪いのかUTMなのかわかりませんが、Mac上でLinuxを安定して使い続けることができません。しばらく普通に使えていても、あるとき突然動かなくなるので困ります。ある程度はSnapshotで救えますが、今回のように古いスナップショットに戻しても遡って問題が起きてしまうこともあります。困ったなぁ。
